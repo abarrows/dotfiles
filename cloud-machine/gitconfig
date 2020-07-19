@@ -1,0 +1,11 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Andrew Barrows
+	email = acbarrows@gmail.com
+	signingkey =
+[commit]
+	gpgsign = true
+[core]
+	excludesfile = ~/.gitignore
+[init]
+	templateDir = ~/.git-template-dir
