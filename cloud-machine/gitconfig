@@ -1,4 +1,20 @@
+
 # This is Git's per-user configuration file.
+[user]
+	name = Andrew Barrows
+	email = abarrows@amuniversal.com
+	url = https://github.com/abarrows
+[core]
+	editor = code-insiders
+	ignorecase = false
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	ff = only
+
 [user]
 	name = Andrew Barrows
 	email = acbarrows@gmail.com

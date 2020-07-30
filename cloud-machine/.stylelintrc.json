@@ -1,0 +1,73 @@
+{
+  "extends": ["stylelint-config-recommended-scss", "prettier-stylelint"],
+  "rules": {
+    "indentation": 2,
+    "selector-type-case": "lower",
+    "selector-pseudo-class-case": "lower",
+    "selector-pseudo-element-case": "lower",
+    "property-case": "lower",
+    "function-name-case": "lower",
+    "at-rule-name-case": "lower",
+    "media-feature-name-case": "lower",
+    "value-keyword-case": "lower",
+    "color-hex-case": "lower",
+    "unit-case": "lower",
+    "block-opening-brace-newline-after": "always",
+    "block-closing-brace-newline-before": "always",
+    "no-eol-whitespace": [
+      true,
+      {
+        "severity": "warning"
+      }
+    ],
+    "max-nesting-depth": 3,
+    "max-empty-lines": [
+      1,
+      {
+        "ignore": "comments"
+      }
+    ],
+    "rule-empty-line-before": [
+      "always",
+      {
+        "except": [
+          "after-single-line-comment",
+          "inside-block",
+          "inside-block-and-after-rule"
+        ],
+        "ignore": ["after-comment"]
+      }
+    ],
+    "shorthand-property-no-redundant-values": true,
+    "value-no-vendor-prefix": true,
+    "property-no-vendor-prefix": true,
+    "declaration-colon-newline-after": "always-multi-line",
+    "declaration-block-trailing-semicolon": "always",
+    "declaration-block-semicolon-newline-after": "always",
+    "selector-list-comma-newline-after": "always",
+    "selector-max-empty-lines": 0,
+    "selector-max-id": 0,
+    "selector-class-pattern": [
+      "^((?!js-).)*$",
+      {
+        "resolveNestedSelectors": true,
+        "severity": "error",
+        "message": "Don't style js- prefixed classes, those are reserved for JavaScript use only"
+      }
+    ],
+    "declaration-no-important": [
+      true,
+      {
+        "severity": "warning",
+        "message": "Avoid usage of !important"
+      }
+    ],
+    "at-rule-blacklist": [
+      "extend",
+      {
+        "severity": "error",
+        "message": "No @extend"
+      }
+    ]
+  }
+}
