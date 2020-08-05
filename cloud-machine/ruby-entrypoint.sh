@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xe
+
 # Move general dotfiles to workspace
 # cp general/* .
 
@@ -7,24 +10,22 @@
 # Echo where we are and that the setup script is taking place.
 
 # Check ruby version
+echo "RUBY: Your Ruby Version: "
 ruby --version
 
-# Install npm dependencies
-yarn install
-
-# Install eslint globally
-yarn global add eslint
-
-# Allow our non-root user to access the node modules
-sudo chown node node_modules
-
-# Compile the assets
-# bundle exec rake assets:precompile
-
-# Update rails dependencies
+echo "RUBY: Installing ruby gems and dependencies..."
 bundle install
 
-# Start the server
-bundle exec rails server -p '3000'
+echo "YARN: Installing npm packages..."
+yarn install --check-files
+
+echo "YARN: Installing npm packages..."
+yarn global add eslint
+
+echo "USER: Allow our non-root user to access the node modules"
+sudo chown node node_modules
+
+echo "RAILS: Starting server on port 3000"
+foreman start
 
 CMD ["$@"]

@@ -142,6 +142,20 @@ function replaceorigin()
   echo "\n\n5. ...Lastly, a fresh pull and you are all set!"
 }
 
+function mirrororigin()
+{
+  echo "1. ...Checking if repo exists in personal github"
+  if git remote add personal https://github.com/abarrows/$1.git ; then
+    echo "2. ...The repo exists.  Added it as a remote."
+     && git remote set-url personal --push --add https://github.com/abarrows/$1.git
+     echo "3. Easy as 1,2,3!  All done, here are your remotes!"
+     && git remote -v
+  else
+    echo "2b. The repo does NOT exists.  Please create first." &&
+
+  fi
+}
+
 
 # Security
 #alias security= "cd ~~"

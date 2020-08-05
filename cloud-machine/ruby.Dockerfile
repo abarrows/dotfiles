@@ -49,27 +49,7 @@ RUN apt-get update \
   && /bin/bash /tmp/node-setup.sh "${NVM_DIR}" "${NODE_VERSION}" "${USERNAME}" \
   #
   # Install gems and dependencies
-  && apt-get -y install build-essential libsqlite3-dev zlib1g-dev libxml2 \
-  && gem install \
-  better_html \
-  bullet \
-  bundler \
-  debase \
-  erb_lint \
-  fasterer \
-  foreman \
-  htmlbeautifier \
-  rake \
-  reek \
-  rubocop \
-  rubocop-performance \
-  rubocop-rails \
-  rubocop-rspec \
-  ruby-debug-ide \
-  solargraph \
-  traceroute \
-  webdrivers \
-  yamllint
+  && apt-get -y install build-essential libsqlite3-dev zlib1g-dev libxml2
 
 # Clean up
 RUN apt-get autoremove -y \
@@ -87,8 +67,9 @@ RUN apt-get autoremove -y \
 # RUN gem install <your gem names here>
 
 # Move our project into workspace
+WORKDIR $WORKDIR
 
-# RUN bash ./ruby-entrypoint.sh
+COPY . .
 
 # 1. Copy custom zsh shell aliases and commands into workspace
 # 2. Copy git configuration into workspace
