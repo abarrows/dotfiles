@@ -5,10 +5,10 @@ require:
 
 AllCops:
   Exclude:
-    - "bin/*"
-    - "node_modules/**/*"
-    - "vendor/bundle/**/*"
-    - "db/schema.rb"
+    - 'bin/*'
+    - 'node_modules/**/*'
+    - 'vendor/bundle/**/*'
+    - 'db/schema.rb'
 
 Rails/UnknownEnv:
   Environments:
@@ -29,10 +29,10 @@ Metrics/CyclomaticComplexity:
 Metrics/BlockLength:
   Max: 35
   Exclude:
-    - "spec/**/*"
-    - "config/**/*"
-    - "db/**/*"
-  ExcludedMethods: ["group", "context"]
+    - 'spec/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+  ExcludedMethods: ['group', 'context']
 
 Metrics/LineLength:
   Max: 120
@@ -42,8 +42,8 @@ Metrics/MethodLength:
 
 Style/Documentation:
   Exclude:
-    - "db/**/*"
-    - "spec/**/*"
+    - 'db/**/*'
+    - 'spec/**/*'
 
 Style/AsciiComments:
   Enabled: false
