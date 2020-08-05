@@ -27,7 +27,57 @@ process will involve three main levels of configuration and tooling:
    worked on which inherits the levels of configuration and respective
    environment above.
 
-## RVM
+## Ruby on Rails
+
+## Linting and Code Analysis
+
+The following tools can be used for improving the confidence of this apps logic and code.
+
+1. Fasterer gem - DESCRIPTION: Performance analyzer for ruby | DEPENDENCIES:
+   `gem install fasterer` | COMMAND: fasterer
+2. Flay gem - DESCRIPTION: This is the "DRY machine" for our code |
+   DEPENDENCIES: `gem install flay` | COMMAND: flay -v --diff
+3. Reek gem - DESCRIPTION: Code Quality Analyzer. This looks for bad code smells
+   and informs you of them. | DEPENDENCIES: `gem install reek` |
+   OUTPUT: /coverage/reek/ COMMAND: rake reek
+4. Rails Best Practices - DESCRIPTION: Looks at the best practices and can
+   advise on how to fix them | DEPENDENCIES: `gem install rails_best_practices` | COMMAND: `rails_best_practices -f html --output-file ./coverage/rails_best_practices.html`
+   | OUTPUT: /coverage/rails_best_practices.html
+5. YAML Lint gem - DESCRIPTION: This gem essentially is ESLint for YAML files.
+   DEPENDENCIES: `brew install yamllint` and adding to \$PATH. | DEPENDENCIES:
+   `gem install yamllint` | COMMAND: `yamllint ./path/yaml-file-you-want-to-lint.yml` | CONFIG: ./yamllint.yml
+6. Better HTML - DESCRIPTION: This gem allows for greater control over
+   html/erb formatting and enforcement of team's standards. It is more
+   self-aware than erb in that your erb code will more correctly be compared
+   against pure html rules and standards. It's highly customizable and can be
+   configured to enforce custom team rules: IE: Do not use 'js-' prefixed
+   classes. DEPENDENCIES: `gem install better_html` | CONFIGURATION:
+   `./config/initializers/.better-html.yml` | USAGE:
+   - 1. Include this line below the class declaration in your
+        application_helper.rb: `include BetterHtml::Helpers`
+7. ERB Lint - DESCRIPTION: This linter bridges the gap between html
+   beautifier formatters and rubocop linting capabilities/auto-correct features.
+   | DEPENDENCIES: `gem install erb_lint`, VS Code Extension:
+   ERB Formatter/Beautify | CONFIG: `./erb-lint.yml` | USAGE:
+
+   - 1. COMMAND: (This will scan the app and display linting errors in console)
+        erblint --lint-all --enable-all-linters
+   - 2. COMMAND: (This will auto-fix all errors that can be fixed) erblint --lint-all --enable-all-linters --autocorrect
+
+8. Solargraph gem - (VS CODE ONLY) DESCRIPTION: This is an extension that
+   enforces rubocop, rails best practices, fasterer, reek, erb-linting, etc. and
+   will display the errors/warnings in real time under problems. It also offers
+   Intellisense to Ruby, autocomplete, and much more |
+   DEPENDENCIES: `gem install solargraph`, VS Code Extension:
+   https://marketplace.visualstudio.com/items?itemName=castwide.solargraph |
+   USAGE:
+   - 1. `bundle exec yard gems && solargraph download-core && solargraph config .`
+   - 2. Navigate to the VS Code Command Palette (CMD + Shift + P) Run command:
+        `Restart Solargraph`
+   - 3. Open a .rb file and you should begin seeing rubocop and many of the other linters listed
+        above) errors within the VS Code _problems_ pane.
+
+### Caveats
 
 1. I discovered some strange caching and pathing issues in RVM and determined it
    was the bundler zsh plugin: https://rvm.io/support/troubleshooting. Updated
@@ -42,6 +92,18 @@ process will involve three main levels of configuration and tooling:
    2a and will setup all the ruby on rails related IDE settings, linting, etc.
 2. Decide if the workspace level should be language/tech stack specific or
    application specific.
+3. Add the corresponding cloud machine vs code settings for each linter/tool and
+   double check to ensure there are no other variables that need to accounted
+   for so that a team could reliably use it EXACTLY the same.
+4. Document the rest of the linters/tooling
+   - Bullet
+   - Brakeman
+   - Simplecov
+   - Rack-mini-profiler
+   - Rubocop-performance
+   - Rubocop-rails
+   - Rubocop-rspec
+   - Traceroute
 
 ## WORKFLOW INFORMATION
 
