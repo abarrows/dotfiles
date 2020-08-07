@@ -10,15 +10,17 @@
     "workspaceFolder": "/workspace"
   },
   "extensions": [
-    "aliariff.vscode-erb-beautify",
-    "ms-vsonline.vsonline",
-    "castwide.solargraph",
-    "pivotal.vscode-manifest-yaml",
-    "rebornix.ruby",
-    "redhat.vscode-yaml",
-    "vortizhe.simple-ruby-erb",
-    "wingrunr21.vscode-ruby"
-  ],
+	"aliariff.vscode-erb-beautify",
+	"ms-vsonline.vsonline",
+	"castwide.solargraph",
+	"pivotal.vscode-manifest-yaml",
+	"rebornix.ruby",
+	"redhat.vscode-yaml",
+	"vortizhe.simple-ruby-erb",
+	"wingrunr21.vscode-ruby",
+	"bmalehorn.shell-syntax",
+	"timonwong.shellcheck"
+],
   "forwardPorts": [
     3060
   ],
