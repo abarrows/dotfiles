@@ -1,5 +1,4 @@
-#!/bin/bash
-set -xe
+#!/usr/bin/env bash
 
 # Move general dotfiles to workspace
 # cp general/* .
@@ -8,6 +7,10 @@ set -xe
 # cp linting-and-formatting/* .
 
 # Echo where we are and that the setup script is taking place.
+echo "We are currently here: ${pwd}"
+
+# First source the Oh My Z-Shell file
+. ~/.zshrc
 
 # Check ruby version
 echo "RUBY: Your Ruby Version: "
