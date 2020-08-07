@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -13,7 +15,7 @@
 # source ~/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/abarrows/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -89,7 +91,6 @@ plugins=(
   yarn
   nvm-auto
   notify)
-# autojump
 #echo "IF BREW NULL: PREPENDING FPath: /share/zsh/site-functions (brew)"
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -111,50 +112,60 @@ alias repomigrater="cd ~/documents/AMU/repos/amu-development-team/team-tools-and
 function updateorigin()
 {
   if git remote rename origin bitbucket ; then
-    echo "1. ...Renamed origin to bitbucket" && git remote add origin https://github.com/Andrews-McMeel-Universal/$1.git
+    printf "%s\n" "1. ...Renamed origin to bitbucket" && git remote add origin https://github.com/Andrews-McMeel-Universal/"$1".git
   else
-    echo "1. ...Origin could not be found.  Simply adding github as the new origin..." &&
-    git remote add origin https://github.com/Andrews-McMeel-Universal/$1.git
+    printf "%s\n" "1. ...Origin could not be found.  Simply adding github as the new origin..." &&
+    git remote add origin https://github.com/Andrews-McMeel-Universal/"$1".git
   fi
-  echo "\n2. ...Successfully updated your bitbucket remotes to github:" && git remote -v && echo "\n3. ...Fetching and getting any new work from your new remotes." && git fetch --all && echo "\n4. ...Now setting staging and production to point upstream to github." && git branch --set-upstream-to=origin/staging staging && git branch --set-upstream-to=origin/production production && git pull && echo "\n\n5. ...Lastly, a fresh pull and you are all set!"
+  printf "%s\n" "2. ...Successfully updated your bitbucket remotes to github:" && git remote -v && \
+  printf "%s\n" "3. ...Fetching and getting any new work from your new remotes." && git fetch --all && \
+  printf "%s\n" "4. ...Now setting staging and production to point upstream to github." \
+  && git branch --set-upstream-to=origin/staging staging && \
+  git branch --set-upstream-to=origin/production production && git pull \
+  && printf "%s\n" "5. ...Lastly, a fresh pull and you are all set!"
 }
 
 function replaceorigin()
 {
   if git remote rename origin oldorigin ; then
-    echo "1. ...Renamed origin to oldorigin" && git remote add origin https://github.com/Andrews-McMeel-Universal/$1.git
+    echo "1. ...Renamed origin to oldorigin" && git remote add origin https://github.com/Andrews-McMeel-Universal/"$1".git
   else
     echo "1. ...Origin could not be found.  Simply adding github as the new origin..." &&
-    git remote add origin https://github.com/Andrews-McMeel-Universal/$1.git
+    git remote add origin https://github.com/Andrews-McMeel-Universal/"$1".git
   fi
   if git remote remove oldorigin ; then
-    echo "\n2. ...Removing old origin."
+    printf "%s\n" "2. ...Removing old origin."
   else
-    echo "\n2. ...Could not find an old origin so no cleanup is needed."
+    printf "%s\n" "2. ...Could not find an old origin so no cleanup is needed."
   fi
-  echo "\n3. ...Successfully updated your bitbucket remotes to github:"
+  printf "%s\n" "3. ...Successfully updated your bitbucket remotes to github:"
   git remote -v
-  echo "\n3. ...Fetching and getting any new work from github."
+  printf "%s\n" "3. ...Fetching and getting any new work from github."
   git fetch --all
-  echo "\n4. ...Now setting staging and production to point upstream to github."
+  printf "%s\n" "4. ...Now setting staging and production to point upstream to github."
   git branch --set-upstream-to=origin/staging staging
   git branch --set-upstream-to=origin/production production && git pull
-  echo "\n\n5. ...Lastly, a fresh pull and you are all set!"
+  printf "%s\n" "5. ...Lastly, a fresh pull and you are all set!"
 }
 
 function mirrororigin()
 {
-  echo "1. ...Checking if repo exists in personal github"
-  if git remote add personal https://github.com/abarrows/$1.git ; then
-    echo "2. ...The repo exists.  Added it as a remote."
-     && git remote set-url personal --push --add https://github.com/abarrows/$1.git
-     echo "3. Easy as 1,2,3!  All done, here are your remotes!"
-     && git remote -v
+  printf "%s\n" "1. ...Checking if repo exists in personal github"
+  if git remote set-url origin --push --add https://github.com/abarrows/"$1".git ; then
+    printf "%s\n" "2. ...The repo exists.  Added it as a remote." \
+    && git remote -v \
+    && printf "%s\n" "3. Easy as 1,2,3!  All done, here are your remotes!"
   else
-    echo "2b. The repo does NOT exists.  Please create first." &&
-
+    printf "%s\n" "3b. The repo does NOT exists.  Please create first."
   fi
 }
+
+function gitsearch()
+{
+   searchCrit='stash\|'$1
+   git stash list | while IFS=: read -r STASH ETC; do echo "$STASH: $ETC"; git diff --stat "$STASH"~.."$STASH" --; done | grep -e "$searchCrit"
+}
+alias searchstash=gitsearch
 
 
 # Security
@@ -289,8 +300,6 @@ alias hschema="heroku db:push"
 alias findruby="lsof -wni tcp:3000"
 alias killruby="cd tmp/pids/ && rm -rf server.pid && killall ruby"
 alias killforeman="killall \"foreman: master\""
-alias bundlerinit="gem install bundler && rbenv rehash && bundle"
-alias bi="bundle exec install"
 alias dbcreate="bin/rake db:create db:migrate"
 alias bmigrate="bundle exec rake db:migrate"
 alias btest="bundle exec rspec spec"
@@ -317,24 +326,32 @@ alias prototype="cd ~/documents/AMU/repos/amu-digital-technology-prototyping/"
 #   alias drive="cd ~/"
 
 #Bash Stuff
-alias edit="open -a Visual\ Studio\ Code\ -\ Insiders.app $1"
 alias addalias="cd ~/ && codeinsiders .zshrc"
 alias savealias="source ~/.zshrc"
 alias amiroot="who -u"
 alias checkprocesses="ps au"
-alias checkport="lsof -i $@"
-alias foremanstop="kill $(ps aux | grep -E 'redis|sidekiq|unicorn|puma|webrick|webpack|foreman' | grep -v grep | awk '{print $2}')"
 alias killbg='kill ${${(v)jobstates##*:*:}%=*}'
 alias checksshkey='cat ~/.ssh/id_rsa.pub'
 alias checkip='curl ipecho.net/plain ; echo'
+function edit() {
+    "open -a Visual\ Studio\ Code\ -\ Insiders.app $1"
+}
+function foremanstop()
+{
+    "kill $(redis|sidekiq|unicorn|puma|webrick|webpack|foreman) | grep -v grep | awk '{print $2}')"
+}
+function checkport()
+{
+    "lsof -i $1"
+}
 function killjob()
 {
-    kill -9 $@
+    kill -9 "$1"
 }
 
 function killport()
 {
-    lsof -ti tcp:$@ | xargs kill
+    lsof -ti tcp:"$1" | xargs kill
 }
 
 # Host File Modification
@@ -367,7 +384,7 @@ alias startmysql="mysql.server start"
 alias brewlist="brew list --versions"
 alias wpd="./bin/webpack-dev-server"
 alias zplugins="cd ~/.oh-my-zsh/custom/plugins"
-alias checkpath="print -l $path"
+alias checkpath="print -l PATH"
 #alias alwaysstartmysql="brew services start mysql"
 #alias generatekey="ls ~/.ssh/*.pub"
 
@@ -388,9 +405,9 @@ alias bcaap="cd ~/andyandpaige/"
 # alias rrails server --port=3101"
 
 # PLUGIN SETTINGS
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-source /usr/local/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
+# nvm.sh previously had permission issues.  Use: chmod u+x nvm.sh
+# shellcheck disable=SC1091
+[[ -s $HOME/.nvm/nvm.sh ]] && . "$HOME/.nvm/nvm.sh"  # This loads NVM
 
 # place this after nvm initialization!
 # autoload -U add-zsh-hook
@@ -417,7 +434,7 @@ zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
 
 # PATHING
 # NOTE: Need to setup pathing prior sourcing zsh.  nvm and rvm need to be checked at the very end of pathing and then sourced.
-#echo "Base Path: $PATH"
+# echo "Base Path: $PATH"
 PATH=$PATH
 PATH=/usr/local/sbin:/usr/local/opt/mysql@5.6/bin:/usr/local/opt/mysql@5.7/bin:/usr/local/mysql/bin:/usr/local/opt/imagemagick@6/bin:$PATH
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -442,23 +459,27 @@ fi
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 #echo "EXPORT: APPENDING Path: /usr/local/sbin (rvm)"
 
-source $ZSH/oh-my-zsh.sh
+# shellcheck disable=SC1091
+source "$ZSH/oh-my-zsh.sh"
 
 # NVM
-source $(brew --prefix nvm)/nvm.sh
+# nvm.sh previously had permission issues.  Use: chmod u+x /usr/local/opt/nvm/nvm.sh
+# source $(brew --prefix nvm)/nvm.sh
 nvm_auto_switch
 
-source ~/.iterm2_shell_integration.`basename $SHELL`
+source "$HOME/.iterm2_shell_integration.zsh"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$HOME/.rvm/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/abarrows/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/abarrows/google-cloud-sdk/path.zsh.inc'; fi
+# shellcheck disable=SC1091
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/abarrows/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/abarrows/google-cloud-sdk/completion.zsh.inc'; fi
+# shellcheck disable=SC1091
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 eval "$(pyenv init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"

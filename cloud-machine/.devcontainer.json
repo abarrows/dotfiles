@@ -4,24 +4,31 @@
       "NODE_VERSION": "lts/*",
       "UPGRADE_PACKAGES": "false",
       "VARIANT": "2.6",
-      "WORKDIR": "/workspace"
+      "WORKSPACE": "/workspace/"
     },
     "dockerfile": "ruby.Dockerfile",
     "workspaceFolder": "/workspace"
   },
   "extensions": [
+    "aliariff.vscode-erb-beautify",
     "ms-vsonline.vsonline",
     "castwide.solargraph",
     "pivotal.vscode-manifest-yaml",
     "rebornix.ruby",
     "redhat.vscode-yaml",
+    "vortizhe.simple-ruby-erb",
     "wingrunr21.vscode-ruby"
   ],
-  "forwardPorts": [3000],
+  "forwardPorts": [
+    3060
+  ],
   "name": "AB: Containerized Development - Ruby on Rails",
   "postCreateCommand": "echo Welcome to your cloud machine.  Get to Work!",
   "remoteUser": "vscode",
-  "runArgs": ["--env-file", "devcontainer.env"],
+  "runArgs": [
+    "--env-file",
+    "${localWorkspaceFolder}/devcontainer.env"
+  ],
   "settings": {
     "[javascript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -149,7 +156,10 @@
     },
     "atlascode.outputLevel": "errors",
     "breadcrumbs.enabled": true,
-    "cSpell.enableFiletypes": ["erb", "javascript"],
+    "cSpell.enableFiletypes": [
+      "erb",
+      "javascript"
+    ],
     "cSpell.enabledLanguageIds": [
       "asciidoc",
       "c",
@@ -1329,7 +1339,10 @@
     "gitlens.advanced.repositorySearchDepth": 2,
     "gitlens.autolinks": [],
     "gitlens.blame.heatmap.enabled": true,
-    "gitlens.codeLens.scopes": ["document", "containers"],
+    "gitlens.codeLens.scopes": [
+      "document",
+      "containers"
+    ],
     "gitlens.defaultDateFormat": "MMM DD, YYYY",
     "gitlens.gitCommands.skipConfirmations": [
       "fetch:command",

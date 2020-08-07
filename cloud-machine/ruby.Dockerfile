@@ -14,7 +14,7 @@ FROM ruby:${VARIANT} AS cloud-machine-base
 ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
-
+ARG WORKSPACE=$WORKSPACE
 # Options for common package install script
 ARG INSTALL_ZSH="true"
 ARG UPGRADE_PACKAGES="true"
@@ -54,7 +54,8 @@ RUN apt-get update \
 # Clean up
 RUN apt-get autoremove -y \
   && apt-get clean -y \
-  && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh
+  && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh \
+  && gem install bundler
 
 # ** [Optional] Uncomment this section to install additional OS packages. **
 #
@@ -67,9 +68,9 @@ RUN apt-get autoremove -y \
 # RUN gem install <your gem names here>
 
 # Move our project into workspace
-WORKDIR $WORKDIR
+WORKDIR $WORKSPACE
 
-COPY . .
+COPY . $WORKSPACE
 
 # 1. Copy custom zsh shell aliases and commands into workspace
 # 2. Copy git configuration into workspace
@@ -81,4 +82,4 @@ COPY . .
 # RUN echo 'Ready for entrypoint.  The present location is: ' && pwd
 ENTRYPOINT ["ruby-entrypoint.sh"]
 CMD ["zsh"]
-EXPOSE 3000
+EXPOSE 3060

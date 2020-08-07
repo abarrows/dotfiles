@@ -25,7 +25,7 @@ yarn global add eslint
 echo "USER: Allow our non-root user to access the node modules"
 sudo chown node node_modules
 
-echo "RAILS: Starting server on port 3000"
+echo "RAILS: Starting server on port 3060"
 foreman start
 
 CMD ["$@"]
