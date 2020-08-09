@@ -70,7 +70,7 @@ RUN apt-get autoremove -y \
 # Move our project into workspace
 WORKDIR $WORKSPACE
 
-COPY . $WORKSPACE
+COPY . /$WORKSPACE/
 
 # 1. Copy custom zsh shell aliases and commands into workspace
 # 2. Copy git configuration into workspace
@@ -80,6 +80,6 @@ COPY . $WORKSPACE
 # 3. Copy linting tools and configuration into workspace
 # Add a script to be executed every time the container starts.
 # RUN echo 'Ready for entrypoint.  The present location is: ' && pwd
-ENTRYPOINT ["ruby-entrypoint.sh"]
+ENTRYPOINT ["/$WORKSPACE/ruby-entrypoint.sh"]
 CMD ["zsh"]
 EXPOSE 3060

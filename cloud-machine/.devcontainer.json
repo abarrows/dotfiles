@@ -4,23 +4,23 @@
       "NODE_VERSION": "lts/*",
       "UPGRADE_PACKAGES": "false",
       "VARIANT": "2.6",
-      "WORKSPACE": "/workspace/"
+      "WORKSPACE": "workspace"
     },
     "dockerfile": "ruby.Dockerfile",
-    "workspaceFolder": "/workspace"
+    "workspaceFolder": "workspace"
   },
   "extensions": [
-	"aliariff.vscode-erb-beautify",
-	"ms-vsonline.vsonline",
-	"castwide.solargraph",
-	"pivotal.vscode-manifest-yaml",
-	"rebornix.ruby",
-	"redhat.vscode-yaml",
-	"vortizhe.simple-ruby-erb",
-	"wingrunr21.vscode-ruby",
-	"bmalehorn.shell-syntax",
-	"timonwong.shellcheck"
-],
+    "aliariff.vscode-erb-beautify",
+    "ms-vsonline.vsonline",
+    "castwide.solargraph",
+    "pivotal.vscode-manifest-yaml",
+    "rebornix.ruby",
+    "redhat.vscode-yaml",
+    "vortizhe.simple-ruby-erb",
+    "wingrunr21.vscode-ruby",
+    "bmalehorn.shell-syntax",
+    "timonwong.shellcheck"
+  ],
   "forwardPorts": [
     3060
   ],
