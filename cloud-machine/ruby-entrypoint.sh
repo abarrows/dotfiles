@@ -4,13 +4,12 @@
 # cp general/* .
 
 # Move general linting and formatting files to workspace
-# cp linting-and-formatting/* .
+cp .zshrc ~/
+# Now source the Oh My Z-Shell file
+source ~/.zshrc
 
 # Echo where we are and that the setup script is taking place.
 echo "We are currently here: ${pwd}"
-
-# First source the Oh My Z-Shell file
-. ~/.zshrc
 
 # Check ruby version
 echo "RUBY: Your Ruby Version: "
