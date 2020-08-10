@@ -2,10 +2,7 @@
 # Author: Andrew Barrows
 #-------------------------------------------------------------------------------------------------------------
 
-# Update the VARIANT arg in devcontainer.json to pick a Ruby version: 2, 2.7, 2.6, 2.5
-ARG VARIANT=2.7
-FROM ruby:${VARIANT} AS cloud-machine-base
-
+FROM ubuntu:18.04 AS cloud-machine-base
 # This Dockerfile adds a non-root user with sudo access. Use the "remoteUser"
 # property in devcontainer.json to use it. On Linux, the container user's GID/UIDs
 # will be updated to match your local UID/GID (when using the dockerFile property).
@@ -48,24 +45,34 @@ RUN apt-get update \
   && ([ "${NODE_SCRIPT_SHA}" = "dev-mode" ] || (echo "${COMMON_SCRIPT_SHA} */tmp/node-setup.sh" | sha256sum -c -)) \
   && /bin/bash /tmp/node-setup.sh "${NVM_DIR}" "${NODE_VERSION}" "${USERNAME}" \
   #
-  # Install gems and dependencies
-  && apt-get -y install build-essential libsqlite3-dev zlib1g-dev libxml2
+  # ZSH in Docker by Deluan on Github.  See url for more information.
+  && /bin/bash -c "$(wget -O- https://raw.githubusercontent.com/deluan/zsh-in-docker/master/zsh-in-docker.sh)" -- \
+  -t agnoster \
+  -p git \
+  -p ssh-agent \
+  -p https://github.com/zsh-users/zsh-autosuggestions \
+  -p https://github.com/zsh-users/zsh-completions \
+  -p zsh-syntax-highlighting \
+  -p nvm-auto \
+  -p notify
 
 # Clean up
 RUN apt-get autoremove -y \
   && apt-get clean -y \
   && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh \
-  && gem install bundler
+
+  # RUN bash ./setup.sh
+
+  RUN echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.zshrc"
+RUN echo '\n' >> "$HOME/.zshrc"
+RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$HOME/.zshrc"
+
 
 # ** [Optional] Uncomment this section to install additional OS packages. **
 #
 # RUN apt-get update \
 #     && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
-
-# ** [Optional] Uncomment this section to install additional Ruby gems packages. **
-#
-# RUN gem install <your gem names here>
 
 # Move our project into workspace
 WORKDIR $WORKSPACE
@@ -80,6 +87,6 @@ COPY . /$WORKSPACE/
 # 3. Copy linting tools and configuration into workspace
 # Add a script to be executed every time the container starts.
 # RUN echo 'Ready for entrypoint.  The present location is: ' && pwd
-ENTRYPOINT ["/$WORKSPACE/ruby-entrypoint.sh"]
+ENTRYPOINT ["/$WORKSPACE/base-entrypoint.sh"]
 CMD ["zsh"]
-EXPOSE 3060
+EXPOSE 3000

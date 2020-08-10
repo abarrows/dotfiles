@@ -1,0 +1,18 @@
+{
+  "build": {
+    "args": {
+      "NODE_VERSION": "lts/*",
+      "UPGRADE_PACKAGES": "false",
+      "VARIANT": "2.6",
+      "WORKSPACE": "workspace"
+    },
+    "context": "..",
+    "dockerfile": "../ruby.Dockerfile",
+    "workspaceFolder": "workspace"
+  },
+  "forwardPorts": [3060],
+  "name": "AB: Containerized Development - Ruby on Rails",
+  "postCreateCommand": "echo Welcome to your cloud machine.  Get to Work!",
+  "remoteUser": "vscode",
+  "runArgs": ["--env-file", "${localWorkspaceFolder}/devcontainer.env"]
+}
