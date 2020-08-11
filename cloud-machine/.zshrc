@@ -11,9 +11,6 @@
 
 # GENERAL SETTINGS
 
-# NVM Plugin
-# source ~/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
-
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -85,16 +82,9 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
-  rvm
-  thefuck
   vscode
   yarn
-  nvm-auto
   notify)
-#echo "IF BREW NULL: PREPENDING FPath: /share/zsh/site-functions (brew)"
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
 
 # PERSONAL SETTINGS
 alias personal="cd ~/documents/AMU/repos/personal"
@@ -404,11 +394,6 @@ alias bcdd="cd ~/driverdocs"
 alias bcaap="cd ~/andyandpaige/"
 # alias rrails server --port=3101"
 
-# PLUGIN SETTINGS
-# nvm.sh previously had permission issues.  Use: chmod u+x nvm.sh
-# shellcheck disable=SC1091
-[[ -s $HOME/.nvm/nvm.sh ]] && . "$HOME/.nvm/nvm.sh"  # This loads NVM
-
 # place this after nvm initialization!
 # autoload -U add-zsh-hook
 # add-zsh-hook chpwd
@@ -429,14 +414,14 @@ POWERLEVEL10k_BATTERY_VERBOSE=false
 POWERLEVEL10k_BATTERY_HIDE_ABOVE_THRESHOLD=40
 
 # Notify Plugin Config
-zstyle ':notify:*' error-title "Command failed (in #{time_elapsed} seconds)"
-zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
+# zstyle ':notify:*' error-title "Command failed (in #{time_elapsed} seconds)"
+# zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
 
 # PATHING
 # NOTE: Need to setup pathing prior sourcing zsh.  nvm and rvm need to be checked at the very end of pathing and then sourced.
 # echo "Base Path: $PATH"
-PATH=$PATH
-PATH=/usr/local/sbin:/usr/local/opt/mysql@5.6/bin:/usr/local/opt/mysql@5.7/bin:/usr/local/mysql/bin:/usr/local/opt/imagemagick@6/bin:$PATH
+# PATH=$PATH
+# PATH=/usr/local/sbin:/usr/local/opt/mysql@5.6/bin:/usr/local/opt/mysql@5.7/bin:/usr/local/mysql/bin:/usr/local/opt/imagemagick@6/bin:$PATH
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
@@ -462,15 +447,8 @@ fi
 # shellcheck disable=SC1091
 source "$ZSH/oh-my-zsh.sh"
 
-# NVM
-# nvm.sh previously had permission issues.  Use: chmod u+x /usr/local/opt/nvm/nvm.sh
-# source $(brew --prefix nvm)/nvm.sh
-nvm_auto_switch
-
-source "$HOME/.iterm2_shell_integration.zsh"
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$HOME/.rvm/bin:$PATH"
+# export PATH="$HOME/.rvm/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 # shellcheck disable=SC1091
