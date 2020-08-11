@@ -46,7 +46,7 @@ RUN apt-get update \
   && /bin/bash /tmp/node-setup.sh "${NVM_DIR}" "${NODE_VERSION}" "${USERNAME}" \
   #
   # ZSH in Docker by Deluan on Github.  See url for more information.
-  && /bin/bash -c "$(wget -O- https://raw.githubusercontent.com/deluan/zsh-in-docker/master/zsh-in-docker.sh)" -- \
+  && /bin/bash -c "$(curl https://raw.githubusercontent.com/deluan/zsh-in-docker/master/zsh-in-docker.sh)" -- \
   -t agnoster \
   -p git \
   -p ssh-agent \
