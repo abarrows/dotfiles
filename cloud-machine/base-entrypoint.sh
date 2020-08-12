@@ -5,7 +5,7 @@
 
 # Move general linting and formatting files to workspace
 # cp .zshrc ~/
-sudo chown vscode ~/.zshrc
+# sudo chown vscode ~/.zshrc
 # Now source the Oh My Z-Shell file
 source ~/.zshrc
 echo "Oh My ZSH is now installed with my local .zshrc.  The theme should be powerlevel10k: ${ZSH_THEME}"
@@ -22,4 +22,5 @@ yarn global add eslint
 echo "USER: Allow our non-root user to access the node modules"
 sudo chown vscode node_modules
 
-CMD ["$@"]
+CMD ["zsh"]
+
