@@ -70,7 +70,7 @@
   ],
   "forwardPorts": [3000],
   "name": "AB: Containerized Development - Node",
-  "postCreateCommand": "echo Welcome to your cloud machine base image.  Get to Work!",
+  "postCreateCommand": "echo Welcome to your cloud machine base image.  Get to Work! && cp /${workspaceFolder}/dotfiles-and-tooling/cloud-machine/.zshrc ~/.zshrc && yarn install",
   "remoteUser": "vscode",
   "settings": {
     "[javascript]": {
@@ -685,6 +685,7 @@
     "terminal.integrated.fontSize": 16,
     "terminal.integrated.rendererType": "dom",
     "terminal.integrated.rightClickBehavior": "default",
+    "terminal.integrated.shell.linux": "/bin/zsh",
     "timeline.excludeSources": [],
     "todo-tree.tree.showScanModeButton": false,
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
