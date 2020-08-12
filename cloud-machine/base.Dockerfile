@@ -8,10 +8,9 @@ FROM ubuntu:18.04 AS cloud-machine-base
 # will be updated to match your local UID/GID (when using the dockerFile property).
 # See https://aka.ms/vscode-remote/containers/non-root-user for details.
 
-ARG USERNAME=vscode
+ARG USERNAME=abarrows
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
-ARG WORKSPACE=$WORKSPACE
 # Options for common package install script
 ARG INSTALL_ZSH="true"
 ARG UPGRADE_PACKAGES="true"
@@ -29,13 +28,13 @@ ENV PATH=${NVM_DIR}/current/bin:${PATH}
 
 # TODO: Convert this to a multi-stage build.
 # FROM cloud-machine-base:latest
-# COPY --from=0 WORKDIR ${workspaceFolder}
+# COPY --from=0
 # Configure apt and install packages
 RUN apt-get update \
   && export DEBIAN_FRONTEND=noninteractive \
   #
   # Verify git, common tools / libs installed, add/modify non-root user, optionally install zsh
-  && apt-get -y install --no-install-recommends curl ca-certificates 2>&1 \
+  && apt-get -y install --no-install-recommends curl locales fonts-powerline ca-certificates 2>&1 \
   && curl -sSL ${COMMON_SCRIPT_SOURCE} -o /tmp/common-setup.sh \
   && ([ "${COMMON_SCRIPT_SHA}" = "dev-mode" ] || (echo "${COMMON_SCRIPT_SHA} */tmp/common-setup.sh" | sha256sum -c -)) \
   && /bin/bash /tmp/common-setup.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}" \
@@ -43,12 +42,31 @@ RUN apt-get update \
   # Install Node.js for front end development
   && curl -sSL ${NODE_SCRIPT_SOURCE} -o /tmp/node-setup.sh \
   && ([ "${NODE_SCRIPT_SHA}" = "dev-mode" ] || (echo "${COMMON_SCRIPT_SHA} */tmp/node-setup.sh" | sha256sum -c -)) \
-  && /bin/bash /tmp/node-setup.sh "${NVM_DIR}" "${NODE_VERSION}" "${USERNAME}"
-#!/usr/bin/env bash
+  && /bin/bash /tmp/node-setup.sh "${NVM_DIR}" "${NODE_VERSION}" "${USERNAME}" \
+  #
+  # set up locale
+  && locale-gen en_US.UTF-8
 
-RUN cp /root/.zshrc /home/"$USERNAME" &&
-sed -i -e "s/\/root\/.oh-my-zsh/\/home/\"$USERNAME\"/.oh-my-zsh/g" /home/"$USERNAME"/.zshrc
-chown -R "$USER_UID":"$USER_GID" /home/"$USERNAME"/.oh-my-zsh /home/"$USERNAME"/.zshrc
+# Switch back to dialog for any ad-hoc use of apt-get
+# ENV DEBIAN_FRONTEND=dialog
+
+# ## setup and install oh-my-zsh
+RUN /bin/bash -c "$(curl https://raw.githubusercontent.com/deluan/zsh-in-docker/master/zsh-in-docker.sh)" -- \
+  -p git \
+  -p ssh-agent \
+  -p https://github.com/zsh-users/zsh-autosuggestions \
+  -p https://github.com/zsh-users/zsh-completions \
+  -p nvm
+# RUN cp /root/.zshrc /home/"$USERNAME" \
+#  sed -i -e "s/\/root\/.oh-my-zsh/\/home/\"$USERNAME\"/.oh-my-zsh/g" /home/"$USERNAME"/.zshrc
+# chown -R "$USER_UID":"$USER_GID" /home/"$USERNAME"/.oh-my-zsh
+# /home/"$USERNAME"/.zshrc
+# RUN bash ./setup.sh
+
+# Sets up pathing for NVM and loads it.
+RUN echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/$USERNAME/.zshrc"
+RUN echo '\n' >> "$HOME/.zshrc"
+RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$HOME/.zshrc"
 
 
 # ZSH in Docker by Deluan on Github.  See url for more information
@@ -57,19 +75,6 @@ RUN apt-get autoremove -y \
   && apt-get clean -y \
   && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh
 
-# RUN bash ./setup.sh
-# ## setup and install oh-my-zsh
-RUN /bin/bash -c "$(curl https://raw.githubusercontent.com/deluan/zsh-in-docker/master/zsh-in-docker.sh)" -- \
-  -p git \
-  -p ssh-agent \
-  -p https://github.com/zsh-users/zsh-autosuggestions \
-  -p https://github.com/zsh-users/zsh-completions \
-  -p nvm
-RUN echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.zshrc"
-RUN echo '\n' >> "$HOME/.zshrc"
-RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$HOME/.zshrc"
-
-
 # ** [Optional] Uncomment this section to install additional OS packages. **
 #
 # RUN apt-get update \
@@ -77,9 +82,10 @@ RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> 
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
 # Move our project into workspace
-WORKDIR $WORKSPACE
+# WORKDIR $HOME
 
-COPY . /$WORKSPACE/
+# COPY . /$HOME/
+RUN echo 'This is right before the base-entrypoint.'
 
 # 1. Copy custom zsh shell aliases and commands into workspace
 # 2. Copy git configuration into workspace
@@ -89,5 +95,5 @@ COPY . /$WORKSPACE/
 # 3. Copy linting tools and configuration into workspace
 # Add a script to be executed every time the container starts.
 # RUN echo 'Ready for entrypoint.  The present location is: ' && pwd
-ENTRYPOINT ["/$WORKSPACE/base-entrypoint.sh"]
+ENTRYPOINT ["base-entrypoint.sh"]
 EXPOSE 3000

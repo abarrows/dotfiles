@@ -7,19 +7,9 @@ fi
 
 #!/usr/bin/env bash
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
-
 # DEBUGGING SCRIPTS
 
 # GENERAL SETTINGS
-
-# NVM Plugin
-source ~/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -81,7 +71,7 @@ COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_CUSTOM="$ZSH/custom/"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -89,15 +79,22 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  bundler
+  dotenv
   git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
+  history
+  history-substring-search
+  notify
+  nvm-auto
+  osx
+  rake
+  ruby
   rvm
   thefuck
   vscode
   yarn
-  nvm-auto
-  notify)
+  zsh-autosuggestions
+  zsh-syntax-highlighting )
 #echo "IF BREW NULL: PREPENDING FPath: /share/zsh/site-functions (brew)"
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -412,6 +409,12 @@ alias bcaap="cd ~/andyandpaige/"
 # alias rrails server --port=3101"
 
 # PLUGIN SETTINGS
+# history autosubstring plugin
+# DIRECTIONS: git clone
+# https://github.com/zsh-users/zsh-history-substring-search
+# ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+# source zsh-syntax-highlighting.zsh
+# source zsh-history-substring-search.zsh
 # nvm.sh previously had permission issues.  Use: chmod u+x nvm.sh
 # shellcheck disable=SC1091
 [[ -s $HOME/.nvm/nvm.sh ]] && . "$HOME/.nvm/nvm.sh"  # This loads NVM
@@ -489,7 +492,7 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 eval "$(pyenv init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
+# [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

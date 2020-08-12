@@ -2,11 +2,9 @@
   "build": {
     "args": {
       "NODE_VERSION": "lts/*",
-      "UPGRADE_PACKAGES": "false",
-      "WORKSPACE": "workspace"
+      "UPGRADE_PACKAGES": "false"
     },
-    "dockerfile": "base.Dockerfile",
-    "workspaceFolder": "workspace"
+    "dockerfile": "base.Dockerfile"
   },
   "extensions": [
     "ms-vsonline.vsonline",
@@ -70,8 +68,8 @@
   ],
   "forwardPorts": [3000],
   "name": "AB: Containerized Development - Node",
-  "postCreateCommand": "echo Welcome to your cloud machine base image.  Get to Work! && cp /${workspaceFolder}/dotfiles-and-tooling/cloud-machine/.zshrc ~/.zshrc && yarn install",
-  "remoteUser": "vscode",
+  "postCreateCommand": "echo Welcome to your cloud machine base image.  Get to Work! && yarn install && zsh",
+  "remoteUser": "abarrows",
   "settings": {
     "[javascript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
