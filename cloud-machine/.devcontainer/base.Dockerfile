@@ -43,27 +43,29 @@ RUN apt-get update \
   # Install Node.js for front end development
   && curl -sSL ${NODE_SCRIPT_SOURCE} -o /tmp/node-setup.sh \
   && ([ "${NODE_SCRIPT_SHA}" = "dev-mode" ] || (echo "${COMMON_SCRIPT_SHA} */tmp/node-setup.sh" | sha256sum -c -)) \
-  && /bin/bash /tmp/node-setup.sh "${NVM_DIR}" "${NODE_VERSION}" "${USERNAME}" \
-  #
-  # ZSH in Docker by Deluan on Github.  See url for more information.
-  && /bin/bash -c "$(curl https://raw.githubusercontent.com/deluan/zsh-in-docker/master/zsh-in-docker.sh)" -- \
-  -t agnoster \
+  && /bin/bash /tmp/node-setup.sh "${NVM_DIR}" "${NODE_VERSION}" "${USERNAME}"
+#!/usr/bin/env bash
+
+RUN cp /root/.zshrc /home/"$USERNAME" &&
+sed -i -e "s/\/root\/.oh-my-zsh/\/home/\"$USERNAME\"/.oh-my-zsh/g" /home/"$USERNAME"/.zshrc
+chown -R "$USER_UID":"$USER_GID" /home/"$USERNAME"/.oh-my-zsh /home/"$USERNAME"/.zshrc
+
+
+# ZSH in Docker by Deluan on Github.  See url for more information
+# Clean up
+RUN apt-get autoremove -y \
+  && apt-get clean -y \
+  && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh
+
+# RUN bash ./setup.sh
+# ## setup and install oh-my-zsh
+RUN /bin/bash -c "$(curl https://raw.githubusercontent.com/deluan/zsh-in-docker/master/zsh-in-docker.sh)" -- \
   -p git \
   -p ssh-agent \
   -p https://github.com/zsh-users/zsh-autosuggestions \
   -p https://github.com/zsh-users/zsh-completions \
-  -p zsh-syntax-highlighting \
-  -p nvm-auto \
-  -p notify
-
-# Clean up
-RUN apt-get autoremove -y \
-  && apt-get clean -y \
-  && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh \
-
-  # RUN bash ./setup.sh
-
-  RUN echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.zshrc"
+  -p nvm
+RUN echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/.zshrc"
 RUN echo '\n' >> "$HOME/.zshrc"
 RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$HOME/.zshrc"
 
@@ -88,5 +90,4 @@ COPY . /$WORKSPACE/
 # Add a script to be executed every time the container starts.
 # RUN echo 'Ready for entrypoint.  The present location is: ' && pwd
 ENTRYPOINT ["/$WORKSPACE/base-entrypoint.sh"]
-CMD ["zsh"]
 EXPOSE 3000
