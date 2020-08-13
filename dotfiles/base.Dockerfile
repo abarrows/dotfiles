@@ -2,7 +2,10 @@
 # Author: Andrew Barrows
 #-------------------------------------------------------------------------------------------------------------
 
-FROM ubuntu:18.04 AS cloud-machine-base
+# Update the VARIANT arg in devcontainer.json to pick a Ruby version: 2, 2.7, 2.6, 2.5
+ARG VARIANT=2.7
+FROM ruby:${VARIANT} AS cloud-machine-ruby
+
 # This Dockerfile adds a non-root user with sudo access. Use the "remoteUser"
 # property in devcontainer.json to use it. On Linux, the container user's GID/UIDs
 # will be updated to match your local UID/GID (when using the dockerFile property).
@@ -28,13 +31,13 @@ ENV PATH=${NVM_DIR}/current/bin:${PATH}
 
 # TODO: Convert this to a multi-stage build.
 # FROM cloud-machine-base:latest
-# COPY --from=0
+# COPY --from=0 WORKDIR ${workspaceFolder}
 # Configure apt and install packages
 RUN apt-get update \
   && export DEBIAN_FRONTEND=noninteractive \
   #
   # Verify git, common tools / libs installed, add/modify non-root user, optionally install zsh
-  && apt-get -y install --no-install-recommends curl locales fonts-powerline ca-certificates 2>&1 \
+  && apt-get -y install --no-install-recommends curl ca-certificates 2>&1 \
   && curl -sSL ${COMMON_SCRIPT_SOURCE} -o /tmp/common-setup.sh \
   && ([ "${COMMON_SCRIPT_SHA}" = "dev-mode" ] || (echo "${COMMON_SCRIPT_SHA} */tmp/common-setup.sh" | sha256sum -c -)) \
   && /bin/bash /tmp/common-setup.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}" \
@@ -44,37 +47,14 @@ RUN apt-get update \
   && ([ "${NODE_SCRIPT_SHA}" = "dev-mode" ] || (echo "${COMMON_SCRIPT_SHA} */tmp/node-setup.sh" | sha256sum -c -)) \
   && /bin/bash /tmp/node-setup.sh "${NVM_DIR}" "${NODE_VERSION}" "${USERNAME}" \
   #
-  # set up locale
-  && locale-gen en_US.UTF-8
+  # Install gems and dependencies
+  && apt-get -y install build-essential libsqlite3-dev zlib1g-dev libxml2
 
-# Switch back to dialog for any ad-hoc use of apt-get
-# ENV DEBIAN_FRONTEND=dialog
-
-# ## setup and install oh-my-zsh
-RUN /bin/bash -c "$(curl https://raw.githubusercontent.com/deluan/zsh-in-docker/master/zsh-in-docker.sh)" -- \
-  -p git \
-  -p ssh-agent \
-  -p https://github.com/zsh-users/zsh-autosuggestions \
-  -p https://github.com/zsh-users/zsh-completions \
-  -p nvm
-# RUN cp /root/.zshrc /home/"$USERNAME" \
-#  sed -i -e "s/\/root\/.oh-my-zsh/\/home/\"$USERNAME\"/.oh-my-zsh/g" /home/ \
-# "$USERNAME"/.zshrc
-# chown -R "$USER_UID":"$USER_GID" /home/"$USERNAME"/.oh-my-zsh
-# /home/"$USERNAME"/.zshrc
-# RUN bash ./setup.sh
-
-# Sets up pathing for NVM and loads it.
-RUN echo 'export NVM_DIR="$HOME/.nvm"' >> "$HOME/$USERNAME/.zshrc"
-RUN echo '\n' >> "$HOME/.zshrc"
-RUN echo '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' >> "$HOME/.zshrc"
-
-
-# ZSH in Docker by Deluan on Github.  See url for more information
 # Clean up
 RUN apt-get autoremove -y \
   && apt-get clean -y \
-  && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh
+  && rm -rf /var/lib/apt/lists/* /tmp/common-setup.sh /tmp/node-setup.sh \
+  && gem install bundler
 
 # ** [Optional] Uncomment this section to install additional OS packages. **
 #
@@ -82,11 +62,14 @@ RUN apt-get autoremove -y \
 #     && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
-# Move our project into workspace
-# WORKDIR $HOME
+# ** [Optional] Uncomment this section to install additional Ruby gems packages. **
+#
+# RUN gem install <your gem names here>
 
-# COPY . /$HOME/
-RUN echo 'This is right before the base-entrypoint.'
+# Move our project into workspace
+# WORKDIR $WORKSPACE
+
+# COPY . /$WORKSPACE/
 
 # 1. Copy custom zsh shell aliases and commands into workspace
 # 2. Copy git configuration into workspace

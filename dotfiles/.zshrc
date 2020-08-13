@@ -39,8 +39,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Uncomment the following line to automatically update without prompting.
 DISABLE_UPDATE_PROMPT="true"
 
-# Uncomment the following line to change how often to auto-update (in days).
- export UPDATE_ZSH_DAYS=30
+# Uncomment the following line to change how often to auto-update (in days).export UPDATE_ZSH_DAYS=30
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS=true
@@ -415,6 +414,8 @@ alias bcaap="cd ~/andyandpaige/"
 # ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 # source zsh-syntax-highlighting.zsh
 # source zsh-history-substring-search.zsh
+# NVM Plugin
+# source $ZSH/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
 # nvm.sh previously had permission issues.  Use: chmod u+x nvm.sh
 # shellcheck disable=SC1091
 [[ -s $HOME/.nvm/nvm.sh ]] && . "$HOME/.nvm/nvm.sh"  # This loads NVM
@@ -477,7 +478,7 @@ source "$ZSH/oh-my-zsh.sh"
 # source $(brew --prefix nvm)/nvm.sh
 nvm_auto_switch
 
-source "$HOME/.iterm2_shell_integration.zsh"
+[[ ! -f "$HOME/.iterm2_shell_integration.zsh" ]] || source "$HOME/.iterm2_shell_integration.zsh"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$HOME/.rvm/bin:$PATH"
@@ -492,7 +493,6 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 eval "$(pyenv init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
+[[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
