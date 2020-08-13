@@ -58,7 +58,8 @@ RUN /bin/bash -c "$(curl https://raw.githubusercontent.com/deluan/zsh-in-docker/
   -p https://github.com/zsh-users/zsh-completions \
   -p nvm
 # RUN cp /root/.zshrc /home/"$USERNAME" \
-#  sed -i -e "s/\/root\/.oh-my-zsh/\/home/\"$USERNAME\"/.oh-my-zsh/g" /home/"$USERNAME"/.zshrc
+#  sed -i -e "s/\/root\/.oh-my-zsh/\/home/\"$USERNAME\"/.oh-my-zsh/g" /home/ \
+# "$USERNAME"/.zshrc
 # chown -R "$USER_UID":"$USER_GID" /home/"$USERNAME"/.oh-my-zsh
 # /home/"$USERNAME"/.zshrc
 # RUN bash ./setup.sh
