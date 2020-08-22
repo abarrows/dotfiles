@@ -1,0 +1,16 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.zshrc: ~
+    ~/.oh-my-zsh: ~
+    ~/.p10k.zsh: ~
+
+- create:
+    - ~/downloads
+
+- shell:
+    - [git submodule update --init --recursive, Installing submodules]
