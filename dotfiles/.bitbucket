@@ -1,0 +1,6 @@
+[auth]
+username =abarrows@amuniversal.com
+password =
+
+[options]
+protocol = 'https'

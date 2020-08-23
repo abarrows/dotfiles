@@ -10,7 +10,10 @@
 #
 # Tip: Looking for a nice color? Here's a one-liner to print colormap.
 #
-#   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
+#   for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f "
+#   ${${(M)$((i%6)):#3}:+$'\n'}; done
+
+echo "DOTBOT MANAGED!"
 
 # Temporarily change options.
 'builtin' 'local' '-a' 'p10k_config_opts'
@@ -813,7 +816,7 @@
   ##############[ taskwarrior: taskwarrior task count (https://taskwarrior.org/) ]##############
   # Taskwarrior color.
   typeset -g POWERLEVEL9K_TASKWARRIOR_FOREGROUND=74
-  
+
   # Taskwarrior segment format. The following parameters are available within the expansion.
   #
   # - P9K_TASKWARRIOR_PENDING_COUNT   The number of pending tasks: `task +PENDING count`.
