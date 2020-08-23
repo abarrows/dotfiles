@@ -7,6 +7,7 @@
     ~/.config: .config
     ~/.p10k.zsh: .p10k.zsh
     ~/.gemrc: ruby/.gemrc
+    ~/.mkshrc: ruby/.mkshrc
     ~/.iterm2_shell_integration.zsh: .iterm2_shell_integration.zsh
 
 - create:
