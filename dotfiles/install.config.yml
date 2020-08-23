@@ -1,12 +1,8 @@
-- defaults:
-    link:
-      relink: true
-
 - clean: ['~']
 
 - link:
-    .bitbucket: ~
-    .p10k.zsh: ~
+    ~/.bitbucket: ~
+    ~/.p10k.zsh: ~
 
 - create:
     - ~/downloads
