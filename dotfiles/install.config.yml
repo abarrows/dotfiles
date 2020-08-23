@@ -5,9 +5,8 @@
 - clean: ['~']
 
 - link:
-    ~/.zshrc: ~
-    ~/.oh-my-zsh: ~
-    ~/.p10k.zsh: ~
+    .bitbucket: ~
+    .p10k.zsh: ~
 
 - create:
     - ~/downloads
