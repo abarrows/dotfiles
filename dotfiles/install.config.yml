@@ -3,9 +3,10 @@
 - link:
     ~/.bitbucket: .bitbucket
     ~/.gitconfig: .gitconfig
-    ~/.electron-gyp: .electron-gyp
     ~/.config: .config
     ~/.p10k.zsh: .p10k.zsh
+    ~/.electron-gyp: node/.electron-gyp
+    ~/.npmignore: node/.npmignore
     ~/.gemrc: ruby/.gemrc
     ~/.mkshrc: ruby/.mkshrc
     ~/.iterm2_shell_integration.zsh: .iterm2_shell_integration.zsh
