@@ -1,8 +1,8 @@
 - clean: ['~']
 
 - link:
-    ~/.bitbucket: ~
-    ~/.p10k.zsh: ~
+    ~/.bitbucket: .bitbucket
+    ~/.p10k.zsh: .p10k.zsh
 
 - create:
     - ~/downloads
