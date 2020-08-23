@@ -87,15 +87,17 @@ The following tools can be used for improving the confidence of this apps logic 
 
 ## TODOS
 
+1. .gnupg failed to sign commit data when adding .gitconfig. I suspect this has
+   to do with having two entities in git or homebrew managing the GPG functionality.
 1. Create multi-stage build for the second level above. IE: Provisioning of 1,
    2a (global ide settings, linting of js, css, etc.) then 2b.This will inherit from
    2a and will setup all the ruby on rails related IDE settings, linting, etc.
-2. Decide if the workspace level should be language/tech stack specific or
+1. Decide if the workspace level should be language/tech stack specific or
    application specific.
-3. Add the corresponding cloud machine vs code settings for each linter/tool and
+1. Add the corresponding cloud machine vs code settings for each linter/tool and
    double check to ensure there are no other variables that need to accounted
    for so that a team could reliably use it EXACTLY the same.
-4. Document the rest of the linters/tooling
+1. Document the rest of the linters/tooling
    - Bullet
    - Brakeman
    - Simplecov
