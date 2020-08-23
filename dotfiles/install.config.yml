@@ -6,6 +6,7 @@
     ~/.electron-gyp: .electron-gyp
     ~/.config: .config
     ~/.p10k.zsh: .p10k.zsh
+    ~/.gemrc: ruby/.gemrc
 
 - create:
     - ~/downloads
