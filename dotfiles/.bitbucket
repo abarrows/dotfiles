@@ -1,6 +1,6 @@
 [auth]
 username =abarrows@amuniversal.com
-password =
+password =ENV['BITBUCKET_PASSWORD']
 
 [options]
 protocol = 'https'
