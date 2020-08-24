@@ -2,3 +2,12 @@
   path = dotfiles/dotbot
 	ignore = dirty
   url = https://github.com/anishathalye/dotbot
+[submodule "dotfiles/oh-my-zsh"]
+	path = oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule "dotfiles/node/nvm"]
+	path = dotfiles/node/nvm
+	url = https://github.com/creationix/nvm
+[submodule "dotfiles/python/pyenv"]
+	path = dotfiles/python/pyenv
+	url = https://github.com/yyuu/pyenv.git
