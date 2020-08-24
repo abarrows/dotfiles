@@ -6,6 +6,7 @@
     ~/.config: .config
     ~/.p10k.zsh: .p10k.zsh
     ~/.electron-gyp: node/.electron-gyp
+    ~/.node: node/.nvmrc
     ~/.npmignore: node/.npmignore
     ~/.gemrc: ruby/.gemrc
     ~/.mkshrc: ruby/.mkshrc
