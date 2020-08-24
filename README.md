@@ -1,4 +1,4 @@
-# dotfiles-and-tooling
+# dotfiles-and-tooling TODO: THIS IS OUTDATED TBD
 
 This repository is all my personal IDE configuration, settings, tooling, and
 preferences. My ultimate goal here is to recreate my entire Macbook Pro machine
@@ -87,8 +87,21 @@ The following tools can be used for improving the confidence of this apps logic 
 
 ## TODOS
 
-1. .gnupg failed to sign commit data when adding .gitconfig. I suspect this has
-   to do with having two entities in git or homebrew managing the GPG functionality.
+1. Check the following dotfiles for ingestion or discarding:
+
+- .phpls
+- .profile
+- .rnd
+- .rvmrc
+- .solargraph
+- .vagrant.d
+- .viminfo
+- .vs-liveshare-keychain
+- .vs-liveshare-settings.json
+
+.gnupg failed to sign commit data when adding .gitconfig. I suspect this has
+to do with having two entities in git or homebrew managing the GPG functionality.
+
 1. Create multi-stage build for the second level above. IE: Provisioning of 1,
    2a (global ide settings, linting of js, css, etc.) then 2b.This will inherit from
    2a and will setup all the ruby on rails related IDE settings, linting, etc.
