@@ -4,12 +4,17 @@
     ~/.bitbucket: .bitbucket
     ~/.gitconfig: .gitconfig
     ~/.config: .config
+    ~/.oh-my-zsh: .oh-my-zsh
     ~/.p10k.zsh: .p10k.zsh
+    ~/.nvm: node/.nvm
     ~/.electron-gyp: node/.electron-gyp
     ~/.node: node/.nvmrc
     ~/.npmignore: node/.npmignore
     ~/.gemrc: ruby/.gemrc
     ~/.mkshrc: ruby/.mkshrc
+    ~/.pyenv:
+      path: python/.pyenv
+      create: true
     ~/.iterm2_shell_integration.zsh: .iterm2_shell_integration.zsh
 
 - create:
