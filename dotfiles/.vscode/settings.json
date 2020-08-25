@@ -102,8 +102,8 @@
     }
   ],
   "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
-    "projectKey": "DT"
+    "projectKey": "DT",
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
   },
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
     "maintenance",
@@ -1306,6 +1306,7 @@
     "scss": ".css"
   },
   "eslint.alwaysShowStatus": true,
+  "eslint.debug": true,
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
   "eslint.packageManager": "yarn",
