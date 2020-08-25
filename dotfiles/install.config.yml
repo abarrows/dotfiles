@@ -21,8 +21,8 @@
 - create:
     - ~/downloads
 
-- brewfile:
-    file: Brewfile
+# - brewfile:
+#   file: Brewfile
 
 # - vscodefile:
 #    file: Vscodefile
