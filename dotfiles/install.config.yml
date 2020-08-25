@@ -6,6 +6,7 @@
     ~/.config: .config
     ~/.oh-my-zsh: .oh-my-zsh
     ~/.p10k.zsh: .p10k.zsh
+    ~/.zshrc: .zshrc
     ~/.nvm: node/.nvm
     ~/.electron-gyp: node/.electron-gyp
     ~/.node: node/.nvmrc
@@ -19,6 +20,13 @@
 
 - create:
     - ~/downloads
+
+- brewfile:
+    file: Brewfile
+
+# - vscodefile:
+#    file: Vscodefile
+#    insiders: true
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]

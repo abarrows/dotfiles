@@ -14,6 +14,9 @@
 [submodule "dotfiles/dotbot-brew"]
 	path = dotfiles/dotbot-brew
 	url = https://github.com/d12frosted/dotbot-brew.git
-[submodule "dotbot-brewfile"]
-	path = dotbot-brewfile
+[submodule "dotfiles/dotbot-brewfile"]
+	path = dotfiles/dotbot-brewfile
 	url = https://github.com/sobolevn/dotbot-brewfile.git
+[submodule "dotfiles/dotbot-vscode"]
+	path = dotfiles/dotbot-vscode
+	url = https://github.com/hujianxin/dotbot-vscode
