@@ -11,6 +11,8 @@
     ~/.electron-gyp: node/.electron-gyp
     ~/.node: node/.nvmrc
     ~/.npmignore: node/.npmignore
+    ~/.bundle: ruby/.bundle
+    ~/.gem: ruby/.gem
     ~/.gemrc: ruby/.gemrc
     ~/.mkshrc: ruby/.mkshrc
     ~/.pyenv:
