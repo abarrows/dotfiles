@@ -1,3 +1,10 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+    file:
+      force: true
+
 - clean: ['~']
 
 - link:
@@ -19,18 +26,23 @@
       path: python/.pyenv
       create: true
     ~/Brewfile: Brewfile
+    ~/Brewfile.lock.json: Brewfile.lock.json
     ~/.iterm2_shell_integration.zsh: .iterm2_shell_integration.zsh
+    ~/yarn.lock: yarn.lock
 
 - create:
     - ~/downloads
 
 - brewfile:
-    file: ~/Brewfile
+    - Brewfile
 
 # - vscodefile:
 #    file: Vscodefile
 #    insiders: true
 
 - shell:
-    - [pwd]
+    - [
+        'if [ -n "$BASH_VERSION" ]; then chsh -s $(which zsh); fi',
+        'Changing shell to zsh if needed',
+      ]
     - [git submodule update --init --recursive, Installing submodules]
