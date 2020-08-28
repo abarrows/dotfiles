@@ -33,6 +33,11 @@
 - create:
     - ~/downloads
 
+- brew:
+    - uninstall --force wpengine/wpe-cli
+    - cleanup
+    - update
+
 - brewfile:
     - Brewfile
 
