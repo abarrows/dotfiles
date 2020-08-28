@@ -2,10 +2,6 @@
     - caskroom/fonts
     - homebrew/dupes
 
-- brew:
-    - git
-    - git-lfs
-
 - brew: [
       adns,
       autoconf,
