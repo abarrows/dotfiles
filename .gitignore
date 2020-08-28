@@ -21,6 +21,10 @@
 # macOS
 .DS_Store
 
+# command line and dotfiles
+dotfiles/ruby/.bundle/cache/*
+dotfiles/.cache/rubocop_cache/*
+
 # dotenv
 .env
 
