@@ -20,6 +20,9 @@
     ~/.node: node/.nvmrc
     ~/.npmignore: node/.npmignore
     ~/.bundle: ruby/.bundle
+    ~/.package.json: engineering/package.json
+    ~/.package-lock.json: engineering/package-lock.json
+    ~/.rubocop.yml: ruby/.rubocop.yml
     ~/.gem: ruby/.gem
     ~/.gemrc: ruby/.gemrc
     ~/.mkshrc: ruby/.mkshrc
@@ -33,11 +36,6 @@
 
 - create:
     - ~/downloads
-
-- brew:
-    - uninstall --force wpengine/wpe-cli
-    - cleanup
-    - update
 
 - brewfile:
     - Brewfile
