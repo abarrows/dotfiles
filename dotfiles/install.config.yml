@@ -18,17 +18,19 @@
     ~/.pyenv:
       path: python/.pyenv
       create: true
+    ~/Brewfile: Brewfile
     ~/.iterm2_shell_integration.zsh: .iterm2_shell_integration.zsh
 
 - create:
     - ~/downloads
 
 - brewfile:
-    file: Brewfile
+    file: ~/Brewfile
 
 # - vscodefile:
 #    file: Vscodefile
 #    insiders: true
 
 - shell:
+    - [pwd]
     - [git submodule update --init --recursive, Installing submodules]
