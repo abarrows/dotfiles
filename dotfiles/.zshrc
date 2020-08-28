@@ -418,7 +418,7 @@ alias bcaap="cd ~/andyandpaige/"
 # source $ZSH/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
 # nvm.sh previously had permission issues.  Use: chmod u+x nvm.sh
 # shellcheck disable=SC1091
-[[ -s $HOME/.nvm/nvm.sh ]] && . "$HOME/.nvm/nvm.sh"  # This loads NVM
+# [[ -s $HOME/.nvm/nvm.sh ]] && . "$HOME/.nvm/nvm.sh"  # This loads NVM
 
 # place this after nvm initialization!
 # autoload -U add-zsh-hook
@@ -475,7 +475,13 @@ source "$ZSH/oh-my-zsh.sh"
 
 # NVM
 # nvm.sh previously had permission issues.  Use: chmod u+x /usr/local/opt/nvm/nvm.sh
-# source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+# Speeds up load times for nvm but I do not know if it works with brew.
+# [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
+# export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
+# alias nvm="unalias nvm; [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"; nvm $@"
+source $(brew --prefix nvm)/nvm.sh
+
 nvm_auto_switch
 
 [[ ! -f "$HOME/.iterm2_shell_integration.zsh" ]] || source "$HOME/.iterm2_shell_integration.zsh"
