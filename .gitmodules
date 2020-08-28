@@ -9,11 +9,8 @@
 	path = dotfiles/python/pyenv
 	url = https://github.com/yyuu/pyenv.git
 [submodule "dotfiles/dotbot-brew"]
-	path = dotfiles/dotbot-brew
-	url = https://github.com/d12frosted/dotbot-brew.git
-[submodule "dotfiles/dotbot-brewfile"]
-	path = dotfiles/dotbot-brewfile
-	url = https://github.com/sobolevn/dotbot-brewfile.git
+  path = dotfiles/dotbot-brew
+  url = https://github.com/d12frosted/dotbot-brew.git
 [submodule "dotfiles/dotbot-vscode"]
 	path = dotfiles/dotbot-vscode
 	url = https://github.com/hujianxin/dotbot-vscode
