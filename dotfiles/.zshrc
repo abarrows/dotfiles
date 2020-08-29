@@ -83,8 +83,6 @@ plugins=(
   git
   history
   history-substring-search
-  notify
-  nvm-auto
   osx
   rake
   ruby
@@ -414,11 +412,9 @@ alias bcaap="cd ~/andyandpaige/"
 # ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 # source zsh-syntax-highlighting.zsh
 # source zsh-history-substring-search.zsh
-# NVM Plugin
-# source $ZSH/custom/plugins/zsh-nvm/zsh-nvm.plugin.zsh
-# nvm.sh previously had permission issues.  Use: chmod u+x nvm.sh
-# shellcheck disable=SC1091
-# [[ -s $HOME/.nvm/nvm.sh ]] && . "$HOME/.nvm/nvm.sh"  # This loads NVM
+
+# ZSH PLUGIN: Syntax Highlighting (Installed with homebrew)
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # place this after nvm initialization!
 # autoload -U add-zsh-hook
@@ -438,10 +434,6 @@ POWERLEVEL10k_TIME_FORMAT="%D{\uf017 %H:%M \uf073 %y.%m.%d}"
 POWERLEVEL10k_PROMPT_ON_NEWLINE=true
 POWERLEVEL10k_BATTERY_VERBOSE=false
 POWERLEVEL10k_BATTERY_HIDE_ABOVE_THRESHOLD=40
-
-# Notify Plugin Config
-zstyle ':notify:*' error-title "Command failed (in #{time_elapsed} seconds)"
-zstyle ':notify:*' success-title "Command finished (in #{time_elapsed} seconds)"
 
 # PATHING
 # NOTE: Need to setup pathing prior sourcing zsh.  nvm and rvm need to be checked at the very end of pathing and then sourced.
@@ -481,8 +473,29 @@ export NVM_DIR="$HOME/.nvm"
 # export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
 # alias nvm="unalias nvm; [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"; nvm $@"
 source $(brew --prefix nvm)/nvm.sh
+# NVM Built-in hook for autoswitching
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
 
-nvm_auto_switch
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
 
 [[ ! -f "$HOME/.iterm2_shell_integration.zsh" ]] || source "$HOME/.iterm2_shell_integration.zsh"
 

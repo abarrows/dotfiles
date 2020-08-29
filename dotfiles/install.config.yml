@@ -12,6 +12,7 @@
     ~/.gitconfig: .gitconfig
     ~/.cache: .cache
     ~/.config: .config
+    ~/.p10k.zsh: oh-my-zsh/custom/p10k.zsh
     ~/.oh-my-zsh: .oh-my-zsh
     ~/.p10k.zsh: .p10k.zsh
     ~/.zshrc: .zshrc
@@ -20,8 +21,10 @@
     ~/.node: node/.nvmrc
     ~/.npmignore: node/.npmignore
     ~/.bundle: ruby/.bundle
-    ~/.package.json: engineering/package.json
-    ~/.package-lock.json: engineering/package-lock.json
+    ~/package.json: engineering/package.json
+    ~/yarn.lock: engineering/yarn.lock
+    ~/postcss.config.js: engineering/postcss.config.js
+    ~/.postcssrc.yml: engineering/.postcssrc.yml
     ~/.rubocop.yml: ruby/.rubocop.yml
     ~/.gem: ruby/.gem
     ~/.gemrc: ruby/.gemrc
@@ -32,7 +35,6 @@
     ~/Brewfile: Brewfile
     ~/Brewfile.lock.json: Brewfile.lock.json
     ~/.iterm2_shell_integration.zsh: .iterm2_shell_integration.zsh
-    ~/yarn.lock: yarn.lock
 
 - create:
     - ~/downloads
@@ -49,5 +51,6 @@
         'if [ -n "$BASH_VERSION" ]; then chsh -s $(which zsh); fi',
         'Changing shell to zsh if needed',
       ]
-    - - [nvm install "lts/*" && nvm alias default node]
+    - [nvm install "lts/*" && nvm alias default node, NVM: Installing the
+          latest and setting it as default.]
     - [git submodule update --init --recursive, Installing submodules]
