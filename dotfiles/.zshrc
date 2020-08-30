@@ -78,6 +78,12 @@ ZSH_CUSTOM="$ZSH/custom/"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+ autojump
+  zsh-autosuggestions
+  zsh-completions
+  docker-completion
+  zsh-history-substring-search
+  zsh-syntax-highlighting
   bundler
   dotenv
   git
