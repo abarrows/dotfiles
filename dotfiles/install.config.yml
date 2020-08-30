@@ -1,6 +1,7 @@
 - defaults:
     link:
       create: true
+      relink: true
 
 - clean: ['~']
 
@@ -9,8 +10,7 @@
     ~/.gitconfig: .gitconfig
     ~/.cache: .cache
     ~/.config: .config
-    ~/.p10k.zsh: oh-my-zsh/custom/p10k.zsh
-    ~/.oh-my-zsh: .oh-my-zsh
+    # ~/.oh-my-zsh: .oh-my-zsh
     ~/.p10k.zsh: .p10k.zsh
     ~/.zshrc: .zshrc
     ~/.nvm: node/.nvm
@@ -54,4 +54,5 @@
         'if [ -n "$BASH_VERSION" ]; then chsh -s $(which zsh); fi',
         'Changing shell to zsh if needed',
       ]
+    - ['yarn install']
     - [git submodule update --init --recursive, Installing submodules]
