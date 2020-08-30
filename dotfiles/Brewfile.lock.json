@@ -8,13 +8,13 @@
         "revision": "d1fe8a76750e7df23373720f5ea212afcad847bd"
       },
       "homebrew/cask": {
-        "revision": "468befcbedfe032f88e5d2d32568eac8655d15e0"
+        "revision": "13256994e8a1c1fa7729d3200d0f6800975b6eba"
       },
       "homebrew/cask-fonts": {
-        "revision": "0e51ecfb6652533cf03741df4334065333bb5211"
+        "revision": "59d8e6e98c82a99d7f6c5514984b270397968dd0"
       },
       "homebrew/core": {
-        "revision": "420d54b44745752b66ed0968fed6701c6e0b0485"
+        "revision": "6a7614524159301c4f9148a7889c490a491b1ccf"
       },
       "homebrew/services": {
         "revision": "a2c3e50e4d1ac0e5f948f7d7fe17281fe1d18f32"
@@ -891,7 +891,40 @@
         "bottle": false
       },
       "bibendi/dip/dip": null,
-      "wpengine/wpe-cli/wpe-cli": null
+      "wpengine/wpe-cli/wpe-cli": null,
+      "zsh-autosuggestions": {
+        "version": "0.6.4",
+        "bottle": false
+      },
+      "zsh-completions": {
+        "version": "0.32.0",
+        "bottle": false
+      },
+      "docker-completion": {
+        "version": "19.03.12",
+        "bottle": false
+      },
+      "zsh-syntax-highlighting": {
+        "version": "0.7.1",
+        "bottle": {
+          "cellar": ":any_skip_relocation",
+          "prefix": "/usr/local",
+          "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/zsh-syntax-highlighting-0.7.1.catalina.bottle.tar.gz",
+              "sha256": "6b7d4cdc41b56c842a4b76f9901d922d1f39bd638e94249881078a873de8970b"
+            },
+            "mojave": {
+              "url": "https://homebrew.bintray.com/bottles/zsh-syntax-highlighting-0.7.1.mojave.bottle.tar.gz",
+              "sha256": "6b7d4cdc41b56c842a4b76f9901d922d1f39bd638e94249881078a873de8970b"
+            },
+            "high_sierra": {
+              "url": "https://homebrew.bintray.com/bottles/zsh-syntax-highlighting-0.7.1.high_sierra.bottle.tar.gz",
+              "sha256": "6b7d4cdc41b56c842a4b76f9901d922d1f39bd638e94249881078a873de8970b"
+            }
+          }
+        }
+      }
     },
     "cask": {
       "appcleaner": {
@@ -989,9 +1022,9 @@
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.4.14-22-g9bbd866",
+        "HOMEBREW_VERSION": "2.4.14-29-g7eb1a09",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "420d54b44745752b66ed0968fed6701c6e0b0485",
+        "Homebrew/homebrew-core": "6a7614524159301c4f9148a7889c490a491b1ccf",
         "CLT": "1103.0.32.62",
         "Xcode": "11.6",
         "macOS": "10.15.6"
