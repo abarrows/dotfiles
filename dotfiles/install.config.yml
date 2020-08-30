@@ -1,9 +1,6 @@
 - defaults:
     link:
       create: true
-      relink: true
-    file:
-      force: true
 
 - clean: ['~']
 
@@ -23,8 +20,14 @@
     ~/.bundle: ruby/.bundle
     ~/package.json: engineering/package.json
     ~/yarn.lock: engineering/yarn.lock
+    ~/.editorconfig: engineering/.editorconfig
+    ~/.eslintrc.json: engineering/.eslintrc.json
+    ~/.eslintignore: engineering/.eslintignore
     ~/postcss.config.js: engineering/postcss.config.js
+    ~/.prettierrc.json: engineering/.prettierrc.json
+    ~/.prettierignore: engineering/.prettierignore
     ~/.postcssrc.yml: engineering/.postcssrc.yml
+    ~/.stylelintrc.json: engineering/.stylelintrc.json
     ~/.rubocop.yml: ruby/.rubocop.yml
     ~/.gem: ruby/.gem
     ~/.gemrc: ruby/.gemrc
@@ -51,6 +54,4 @@
         'if [ -n "$BASH_VERSION" ]; then chsh -s $(which zsh); fi',
         'Changing shell to zsh if needed',
       ]
-    - [nvm install "lts/*" && nvm alias default node, NVM: Installing the
-          latest and setting it as default.]
     - [git submodule update --init --recursive, Installing submodules]
