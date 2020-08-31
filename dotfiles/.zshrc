@@ -12,9 +12,12 @@ fi
 
 # PATHING
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/sbin:$PATH
+export PATH=:bin/$HOME/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
+for file in $HOME/.zshrc_*; do
+    source "$file"
+done
 export ZSH=$HOME/.oh-my-zsh
 
 
@@ -90,6 +93,8 @@ HIST_STAMPS="yyyy-mm-dd"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 
+source $ZSH/oh-my-zsh.sh
+
 
 
 # NON-OH-MY-ZSH EXTENSIONS
@@ -115,8 +120,6 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 eval "$(pyenv init -)"
 
-source $ZSH/oh-my-zsh.sh
-
 
 
 # User configuration
@@ -135,7 +138,3 @@ source $ZSH/oh-my-zsh.sh
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-for file in $HOME/.zshrc_*; do
-    source "$file"
-done
