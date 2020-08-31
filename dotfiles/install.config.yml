@@ -12,7 +12,7 @@
     ~/.config: .config
     ~/.oh-my-zsh: oh-my-zsh
     ~/.p10k.zsh: .p10k.zsh
-    ~/.zshrc.zsh: .zshrc.zsh
+    ~/.zshrc: .zshrc
     ~/.zshrc_theme.zsh: .zshrc_theme.zsh
     ~/.zshrc_plugins.zsh: .zshrc_plugins.zsh
     ~/.zshrc_functions.zsh: .zshrc_functions.zsh

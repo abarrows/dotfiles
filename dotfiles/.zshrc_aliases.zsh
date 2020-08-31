@@ -173,8 +173,8 @@ alias prototype="cd ~/documents/AMU/repos/amu-digital-technology-prototyping/"
 #   alias drive="cd ~/"
 
 #Bash Stuff
-alias addalias="cd ~/ && codeinsiders .zshrc.zsh"
-alias savealias="source ~/.zshrc.zsh"
+alias addalias="cd ~/ && codeinsiders .zshrc"
+alias savealias="source ~/.zshrc"
 alias amiroot="who -u"
 alias checkprocesses="ps au"
 alias killbg='kill ${${(v)jobstates##*:*:}%=*}'
