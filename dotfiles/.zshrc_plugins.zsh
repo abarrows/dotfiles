@@ -8,30 +8,26 @@
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
- autojump
-  zsh-autosuggestions
-  zsh-completions
-  docker-completion
-  zsh-history-substring-search
-  zsh-syntax-highlighting
+  git
   bundler
   dotenv
-  git
-  history
-  history-substring-search
   osx
   rake
+  rbenv
   ruby
-  rvm
-  thefuck
-  vscode
-  yarn
-  zsh-autosuggestions
-  zsh-syntax-highlighting )
+)
 
 # PLUGIN SETTINGS AND INSTALLATION
 
-# ZSH PLUGIN: zsh-syntax-highlighting (Installed with homebrew)
+# ZSH PLUGIN@HOMEBREW: zsh-completions (Installed with homebrew)
+
+# ZSH PLUGIN@HOMEBREW: zsh-history-substring-search (Installed with homebrew)
+
+# ZSH PLUGIN@HOMEBREW: zsh-syntax-highlighting (Installed with homebrew)
+
+# ZSH PLUGIN@HOMEBREW: zsh-autosuggestions (Installed with homebrew)
+
+# ZSH PLUGIN@HOMEBREW: zsh-syntax-highlighting (Installed with homebrew)
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # history autosubstring plugin
