@@ -3,8 +3,7 @@
 # OH MY ZSH THEME
 
 # POWERLEVEL10K (Installed via homebrew)
-echo 'source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc_theme.zsh
-ZSH_THEME="powerlevel10k/powerlevel10k.zsh-theme"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # PowerLevel10k prompts
 POWERLEVEL10k_LEFT_PROMPT_ELEMENTS=(status os_icon battery dir dir_writable node_version rvm vcs)
