@@ -8,9 +8,11 @@
 - link:
     ~/.bitbucket: .bitbucket
     ~/.gitconfig: .gitconfig
-    ~/.cache: .cache
     ~/.config: .config
     ~/.oh-my-zsh: oh-my-zsh
+    ~/.oh-my-zsh-custom:
+      - path: .oh-my-zsh-custom/themes
+      - recursive: true
     ~/.p10k.zsh: .p10k.zsh
     ~/.zshrc: .zshrc
     ~/.zshrc_theme.zsh: .zshrc_theme.zsh
@@ -54,9 +56,4 @@
 #    insiders: true
 
 - shell:
-    - [
-        'if [ -n "$BASH_VERSION" ]; then chsh -s $(which zsh); fi',
-        'Changing shell to zsh if needed',
-      ]
-    - ['yarn install']
-    - [git submodule update --init --recursive, Installing submodules]
+    - ['git submodule update --init --recursive']
