@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "ZSH/ALIASES: Loaded."
+
 # PERSONAL SETTINGS
 alias personal="cd ~/documents/AMU/repos/personal"
 alias aw="cd ~/documents/AMU/repos/personal/animatronic-workhorse/animatronic-workhorse && codeinsiders"

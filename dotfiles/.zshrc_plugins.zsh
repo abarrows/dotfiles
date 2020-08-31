@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "ZSH/PLUGINS: Loaded."
+
 # PLUGINS
 
 # Which plugins would you like to load?
@@ -20,12 +22,13 @@ plugins=(
 # PLUGIN SETTINGS AND INSTALLATION
 
 # ZSH PLUGIN@HOMEBREW: zsh-completions (Installed with homebrew)
-
-# ZSH PLUGIN@HOMEBREW: zsh-history-substring-search (Installed with homebrew)
-
-# ZSH PLUGIN@HOMEBREW: zsh-syntax-highlighting (Installed with homebrew)
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # ZSH PLUGIN@HOMEBREW: zsh-autosuggestions (Installed with homebrew)
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# ZSH PLUGIN@HOMEBREW: zsh-history-substring-search (Installed with homebrew)
+source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # ZSH PLUGIN@HOMEBREW: zsh-syntax-highlighting (Installed with homebrew)
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -34,8 +37,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # DIRECTIONS: git clone
 # https://github.com/zsh-users/zsh-history-substring-search
 # ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
-# source zsh-syntax-highlighting.zsh
-# source zsh-history-substring-search.zsh
 
 # NVM - Non-Oh-My-Zsh
 # Now provides a built-in hook for autoswitching place this after nvm initialization!

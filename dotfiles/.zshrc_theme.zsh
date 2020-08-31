@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 # OH MY ZSH THEME
+# Sourced from Dotbot Plugin/Brewfile/ location
+echo "ZSH/THEME: Loaded."
+'/usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme'
 
 # POWERLEVEL10K (Installed via homebrew)
 ZSH_THEME="powerlevel10k/powerlevel10k"
