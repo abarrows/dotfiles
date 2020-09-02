@@ -54,3 +54,4 @@
 
 - shell:
     - ['git submodule update --init --recursive']
+    - ['source ~/.zshrc', Sourcing .zshrc]

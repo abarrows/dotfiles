@@ -5,19 +5,19 @@
         "revision": "311888e28ba54086d77f8f6203ce50c1d014b35d"
       },
       "homebrew/bundle": {
-        "revision": "7914b43d5bba5a3fc17957803004bca5dd5f0fdb"
+        "revision": "5ddb6cd9f6e7961f1ecd93a9d99abdabdc251bc9"
       },
       "homebrew/cask": {
-        "revision": "f83f5217796a56bc5eac1a4690f64dfb900f7ae5"
+        "revision": "518401e9d72608e15ca50264f7d3badac0dc6649"
       },
       "homebrew/cask-fonts": {
-        "revision": "23d0fa6af2c9079714071db81d109153c20a433e"
+        "revision": "40079074f98babe43a62e55ad7963f8e9d238c92"
       },
       "homebrew/core": {
-        "revision": "80b286229c63b5ce387068793fca2d554275a6d6"
+        "revision": "c871b69e62eb7769a54f3adfba543a9a7ceeeb9b"
       },
       "homebrew/services": {
-        "revision": "5ac3bb500cef44d4a11553393a40b3f7248fd330"
+        "revision": "cddcf1f998b34023b40203a32d8556892e29ed87"
       },
       "wpengine/wpe-cli": {
         "revision": "4efae3bc5c98419e249f96a939f134c98b9a404d"
@@ -1023,9 +1023,9 @@
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.4.16-8-gf8c3a1b",
+        "HOMEBREW_VERSION": "2.4.16-88-g742b3fa",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "80b286229c63b5ce387068793fca2d554275a6d6",
+        "Homebrew/homebrew-core": "c871b69e62eb7769a54f3adfba543a9a7ceeeb9b",
         "CLT": "1103.0.32.62",
         "Xcode": "11.6",
         "macOS": "10.15.6"
