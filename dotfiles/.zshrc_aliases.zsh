@@ -226,6 +226,7 @@ alias checkpath="print -l PATH"
 #alias ="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 
 # Personal Applications
+alias dotfilesinstall="dotfiles && dotfiles/install"
 alias bcsw="cd ~/specific-wellness-dev/"
 # alias rrails server --port=3110"
 alias bcdd="cd ~/driverdocs"

@@ -3,7 +3,7 @@
 # OH MY ZSH THEME
 # Sourced from Dotbot Plugin/Brewfile/ location
 echo "ZSH/THEME: Loaded."
-'/usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme'
+source '/usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme'
 
 # POWERLEVEL10K (Installed via homebrew)
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -23,4 +23,4 @@ POWERLEVEL10k_BATTERY_VERBOSE=false
 POWERLEVEL10k_BATTERY_HIDE_ABOVE_THRESHOLD=40
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

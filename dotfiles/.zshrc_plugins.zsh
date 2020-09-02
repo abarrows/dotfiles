@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "ZSH/PLUGINS: Loaded."
+# cp ~/.oh-my-zsh/templates/zshrc.zsh ~/.zshrc
 
 # PLUGINS
 
@@ -10,33 +11,61 @@ echo "ZSH/PLUGINS: Loaded."
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+  zsh-autosuggestions
   bundler
+  zsh-completions
   dotenv
+  git
+  history
+  history-substring-search
   osx
   rake
-  rbenv
   ruby
+  rvm
+  zsh-syntax-highlighting
+  thefuck
+  vscode
+  yarn
+  vscode
 )
 
-# PLUGIN SETTINGS AND INSTALLATION
 
-# ZSH PLUGIN@HOMEBREW: zsh-completions (Installed with homebrew)
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# BUILT-IN OH-MY-ZSH PLUGINS
+# bundler
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/bundler
 
-# ZSH PLUGIN@HOMEBREW: zsh-autosuggestions (Installed with homebrew)
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# dotenv
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv
+# DESCRIPTION: Automatically load your project ENV variables from .env file when you cd into project root directory.
 
-# ZSH PLUGIN@HOMEBREW: zsh-history-substring-search (Installed with homebrew)
-source $(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+# git
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 
-# ZSH PLUGIN@HOMEBREW: zsh-syntax-highlighting (Installed with homebrew)
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# history
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/history
+# COMMANDS: h (prints out your history), hs (use grep to search your command history)
 
-# history autosubstring plugin
-# DIRECTIONS: git clone
-# https://github.com/zsh-users/zsh-history-substring-search
-# ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+# osx
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/osx
+
+# thefuck
+# https://github.com/laggardkernel/zsh-thefuck
+
+# rake
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/rake
+
+# rvm
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/rvm
+
+# Yarn
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
+
+# VSCode
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
+
+
+
+# CUSTOM INSTALLED PLUGINS
 
 # NVM - Non-Oh-My-Zsh
 # Now provides a built-in hook for autoswitching place this after nvm initialization!
@@ -60,3 +89,46 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+# ZSH PLUGIN: zsh-completions
+# https://github.com/zsh-users/zsh-completions
+if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-completions" ]]; then
+  echo 'Plugin should be sourced: zsh-completion.'
+  autoload -U compinit && compinit
+else
+  echo 'Cloning plugin: zsh-completion'
+  git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+fi
+
+# ZSH PLUGIN: zsh-autosuggestions
+# https://github.com/zsh-users/zsh-autosuggestions/
+if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-autosuggestions" ]]; then
+  echo 'Plugin should be sourced: zsh-autosuggestions.'
+else
+  echo 'Cloning plugin: zsh-autosuggestions'
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+
+# ZSH PLUGIN: zsh-history-substring-search
+# https://github.com/zsh-users/zsh-history-substring-search
+if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-history-substring-search" ]]; then
+  echo 'Plugin should be sourced: zsh-history-substring-search.'
+else
+  echo 'Cloning plugin: zsh-history-substring-search'
+  git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+fi
+
+# ZSH PLUGIN: zsh-syntax-highlighting
+# https://github.com/zsh-users/zsh-syntax-highlighting
+if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-syntax-highlighting" ]]; then
+  echo 'Plugin should be sourced: zsh-syntax-highlighting.'
+else
+  echo 'Cloning plugin: zsh-syntax-highlighting'
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
+
+# Docker-completions
+# https://github.com/chr-fritz/docker-completion.zsh
+
+# Docker-helpers
+# https://github.com/unixorn/docker-helpers.zsh

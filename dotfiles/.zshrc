@@ -1,10 +1,14 @@
-# PROMPT
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+# PROMPT
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
 
 #!/usr/bin/env bash
 
@@ -109,7 +113,7 @@ source $ZSH/oh-my-zsh.sh
 # export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
 # alias nvm="unalias nvm; [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"; nvm $@"
 export NVM_DIR="$HOME/.nvm"
-source $(brew --prefix nvm)/nvm.sh
+. "$(brew --prefix nvm)/nvm.sh"
 
 # GOOGLE CLOUD SDK
 # shellcheck disable=SC1091
@@ -138,3 +142,5 @@ eval "$(pyenv init -)"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
+
+
