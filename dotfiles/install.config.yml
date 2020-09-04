@@ -4,12 +4,15 @@
 
 - clean: ['~']
 
+- shell:
+    - xcode-select --install || true
+    - git submodule update --init --recursive
+    - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" || true
+
 - link:
     ~/.bitbucket: .bitbucket
     ~/.gitconfig: .gitconfig
     ~/.config: .config
-    ~/.oh-my-zsh: oh-my-zsh
-    ~/.oh-my-zsh-custom: .oh-my-zsh-custom
     ~/.p10k.zsh: .p10k.zsh
     ~/.zshrc: .zshrc
     ~/.zshrc_theme.zsh: .zshrc_theme.zsh
@@ -44,14 +47,10 @@
 - create:
     - ~/downloads
     - ~/.nvm
+    - ~/.oh-my-zsh-custom
 
 - brewfile:
     - Brewfile
 
-# - vscodefile:
-#    file: Vscodefile
-#    insiders: true
-
 - shell:
-    - ['git submodule update --init --recursive']
-    - ['source ~/.zshrc', Sourcing .zshrc]
+    - [source ~/.zshrc, Sourcing .zshrc]

@@ -3,7 +3,13 @@
 # OH MY ZSH THEME
 # Sourced from Dotbot Plugin/Brewfile/ location
 echo "ZSH/THEME: Loaded."
-source '/usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme'
+if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/themes/powerlevel10k" ]]; then
+  echo 'Theme should be sourced: powerlevel10k.'
+else
+  echo 'Cloning the theme: Powerlevel10k'
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+fi
+
 
 # POWERLEVEL10K (Installed via homebrew)
 ZSH_THEME="powerlevel10k/powerlevel10k"
