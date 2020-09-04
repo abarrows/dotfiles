@@ -2,6 +2,7 @@ alexdima.copy-relative-path
 aliariff.vscode-erb-beautify
 arturock.gitstash
 atlassian.atlascode
+bierner.emojisense
 bierner.markdown-checkbox
 bmalehorn.shell-syntax
 castwide.solargraph

@@ -5,11 +5,11 @@
 - clean: ['~']
 
 - shell:
-    - xcode-select --install || true
     - git submodule update --init --recursive
     - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" || true
 
 - link:
+    ~/.acb_bin: ../acb_bin
     ~/.bitbucket: .bitbucket
     ~/.gitconfig: .gitconfig
     ~/.config: .config
@@ -52,31 +52,27 @@
     - Brewfile
 
 # VS Code
+- shell:
+    - $IDE_BUILD --list-extensions > ide/.vscode/extensions.txt
 - link:
-    '~/Library/Application Support/Code - Insiders/User/settings.json':
+    '~/Library/Application Support/$IDE_PATH/User/settings.json':
       path: ide/.vscode/settings.json
-      create: true
-    '~/Library/Application Support/Code - Insiders/User/keybindings.json':
+      force: true
+    '~/Library/Application Support/$IDE_PATH/User/keybindings.json':
       path: ide/.vscode/keybindings.json
-      create: true
-    '~/Library/Application Support/Code - Insiders/User/tasks.json':
+      force: true
+    '~/Library/Application Support/$IDE_PATH/User/tasks.json':
       path: ide/.vscode/tasks.json
-    '~/Library/Application Support/Code - Insiders/User/launch.json':
+    '~/Library/Application Support/$IDE_PATH/User/launch.json':
       path: ide/.vscode/launch.json
-    '~/Library/Application Support/Code - Insiders/User/snippets':
+    '~/Library/Application Support/$IDE_PATH/User/snippets':
       path: ide/.vscode/snippets
       create: true
-- script:
-    [
-      'code-insiders --list-extensions > dotfiles/ide/.vscode/extensions.txt',
-      VSCode - Retrieving all extensions...,
-    ]
 - vscodefile:
     file: ide/.vscode/extensions.txt
     insiders: false
 
 - shell:
-    - [
-        source ~/.zshrc,
-        'Sourcing your zshrc! You are ready to rock and roll...',
-      ]
+    - xcode-select --install || true
+    - source ~/.zshrc
+    - echo 'Sourcing your zshrc! You are ready to rock and roll...'
