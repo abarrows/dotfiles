@@ -47,7 +47,6 @@
 - create:
     - ~/downloads
     - ~/.nvm
-    - ~/.oh-my-zsh-custom
 
 - brewfile:
     - Brewfile

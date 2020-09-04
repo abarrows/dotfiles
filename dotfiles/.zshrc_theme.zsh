@@ -8,6 +8,7 @@ if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/themes/powerlevel10k" ]]; then
 else
   echo 'Cloning the theme: Powerlevel10k'
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  source ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k/powerlevel10k.zsh-theme
 fi
 
 
