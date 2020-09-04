@@ -8,13 +8,13 @@
         "revision": "5ddb6cd9f6e7961f1ecd93a9d99abdabdc251bc9"
       },
       "homebrew/cask": {
-        "revision": "518401e9d72608e15ca50264f7d3badac0dc6649"
+        "revision": "364e11acf95cc3179ac5978dad5e96f80e7ee2a7"
       },
       "homebrew/cask-fonts": {
-        "revision": "40079074f98babe43a62e55ad7963f8e9d238c92"
+        "revision": "f46493232e314439c39668d00dd0ddda0a47d5be"
       },
       "homebrew/core": {
-        "revision": "c871b69e62eb7769a54f3adfba543a9a7ceeeb9b"
+        "revision": "6022e36e1d2a1f09abdec72c8128ba3ca5053b9c"
       },
       "homebrew/services": {
         "revision": "cddcf1f998b34023b40203a32d8556892e29ed87"
@@ -360,22 +360,22 @@
         }
       },
       "gnupg": {
-        "version": "2.2.22",
+        "version": "2.2.23",
         "bottle": {
           "cellar": "/usr/local/Cellar",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/gnupg-2.2.22.catalina.bottle.tar.gz",
-              "sha256": "1b00809e7f0e197771c70a3d7ca6306b9ff236b2651aa1e92da1e09f6fd8c2a9"
+              "url": "https://homebrew.bintray.com/bottles/gnupg-2.2.23.catalina.bottle.tar.gz",
+              "sha256": "f3d7b9b1b344cf3aa2108756d922d1b48214a46b569ae737c604b22f4001b640"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/gnupg-2.2.22.mojave.bottle.tar.gz",
-              "sha256": "6b0855d5088f9921d2ae1a87b996214ffba8f9bf0bf467dfe2343dd390013cb5"
+              "url": "https://homebrew.bintray.com/bottles/gnupg-2.2.23.mojave.bottle.tar.gz",
+              "sha256": "1587039c4678d1c500fe8a3ba6d25f8070828bbe2159fc9fd12cad534b09dd9a"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/gnupg-2.2.22.high_sierra.bottle.tar.gz",
-              "sha256": "9ef79b1ffc23456648d6714566fe5ac0cb2388b9f3dc10ee8f1811a74a475a75"
+              "url": "https://homebrew.bintray.com/bottles/gnupg-2.2.23.high_sierra.bottle.tar.gz",
+              "sha256": "87b3d4b162e860382a2f5ab4ed468f324a389fca4cfddc5363e544f3ca370125"
             }
           }
         }
@@ -492,22 +492,22 @@
         }
       },
       "mercurial": {
-        "version": "5.5",
+        "version": "5.5.1",
         "bottle": {
           "cellar": "/usr/local/Cellar",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/mercurial-5.5.catalina.bottle.tar.gz",
-              "sha256": "99cd39e3f4bd9bbfc94b191d4c73276da4e174f0bd4043de96737c2b91c1bfe8"
+              "url": "https://homebrew.bintray.com/bottles/mercurial-5.5.1.catalina.bottle.tar.gz",
+              "sha256": "66fd7c929652e9acc7670d4e774029156cebdf6680a17001d5568af28790295f"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/mercurial-5.5.mojave.bottle.tar.gz",
-              "sha256": "a0e0763833b37b8731e2555c99c7a96825df7ab2c978f912b4bb17b87d0f8bcd"
+              "url": "https://homebrew.bintray.com/bottles/mercurial-5.5.1.mojave.bottle.tar.gz",
+              "sha256": "9de5a8784b30b71218cfb8efe9784a1e2666d5a4440ea3141c9bb7d018edccec"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/mercurial-5.5.high_sierra.bottle.tar.gz",
-              "sha256": "5477a3357f4e2345d626cb5dfe5f090f3765d24100aec70af9c958c5fd6338c0"
+              "url": "https://homebrew.bintray.com/bottles/mercurial-5.5.1.high_sierra.bottle.tar.gz",
+              "sha256": "209b75ffd8947a1aee35d1b06825f5611b7d6e2286617fa4a1695f9ea6f8c7cc"
             }
           }
         }
@@ -1017,17 +1017,26 @@
             "appdir": "/Applications"
           }
         }
+      },
+      "visual-studio-code": {
+        "version": "1.48.2",
+        "options": {
+          "full_name": "visual-studio-code",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
       }
     }
   },
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.4.16-88-g742b3fa",
+        "HOMEBREW_VERSION": "2.4.16-137-g3b43b8d",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "c871b69e62eb7769a54f3adfba543a9a7ceeeb9b",
+        "Homebrew/homebrew-core": "6022e36e1d2a1f09abdec72c8128ba3ca5053b9c",
         "CLT": "1103.0.32.62",
-        "Xcode": "11.6",
+        "Xcode": "11.7",
         "macOS": "10.15.6"
       }
     }
