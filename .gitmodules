@@ -11,6 +11,3 @@
 [submodule "dotfiles/dotbot-brew"]
 	path = dotfiles/dotbot-brew
 	url = https://github.com/d12frosted/dotbot-brew.git
-[submodule "dotfiles/dotbot-vscode"]
-	path = dotfiles/dotbot-vscode
-	url = https://github.com/hujianxin/dotbot-vscode
