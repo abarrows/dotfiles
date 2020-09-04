@@ -1,0 +1,97 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "New Rails App",
+      "type": "Ruby",
+      "request": "launch",
+      // Current dir using env variable input in tasks.json
+      "cwd": "${workspaceRoot}/sandbox",
+      // run bundle install before rails server
+      "preLaunchTask": "Create sandbox",
+      "program": "bin/rails",
+      "postDebugTask": "Delete sandbox",
+      // Setup debug binding IP and port.
+      "args": ["s", "-b", "0.0.0.0", "-p", "3000"]
+    },
+    {
+      "name": "Start Server: Application",
+      "type": "Ruby",
+      "request": "launch",
+      "env": { "GEM_PATH": "$GEM_PATH" },
+      "cwd": "${workspaceRoot}",
+      "program": "${workspaceRoot}/bin/rails",
+      "showDebuggerOutput": true,
+      "args": ["server", "-p", "3013"],
+      "useBundler": true,
+      "env": {
+        "DEBUG": "1",
+        "SHELL_USERNAME": "abarrows",
+        "RUBY_VERSION": "2.5.3"
+      },
+      "pathToRDebugIDE": "/Users/${SHELL_USERNAME}/.rvm/gems/ruby-${RUBY_VERSION}@application/gems/ruby-debug-ide-0.6.1",
+      "pathToBundler": "/Users/${SHELL_USERNAME}/.rvm/gems/ruby-${RUBY_VERSION}@application/wrappers/bundle"
+    },
+    {
+      "name": "Start Foreman",
+      "type": "Ruby",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "useBundler": true,
+      "program": "${workspacefolder}/bin/foreman",
+      "args": ["start"],
+      "serverReadyAction": {
+        "pattern": " on http://localhost:([0-9]+)",
+        "uriFormat": "http://localhost:%s",
+        "action": "openExternally"
+      }
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Debug Webpack Dev Server",
+      "preLaunchTask": "webpack: dev server",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "trace": true
+    },
+    {
+      "name": "Attach to Docker",
+      "type": "Ruby",
+      "request": "attach",
+      "remotePort": "1234",
+      "remoteHost": "0.0.0.0",
+      "remoteWorkspaceRoot": "${workspaceFolder}",
+      "cwd": "${workspaceRoot}",
+      "showDebuggerOutput": true
+    },
+    {
+      "name": "Listen for rdebug-ide",
+      "type": "Ruby",
+      "request": "attach",
+      "cwd": "${workspaceRoot}",
+      "remoteHost": "127.0.0.1",
+      "remotePort": "1234",
+      "remoteWorkspaceRoot": "${workspaceRoot}"
+    },
+    {
+      "name": "Debug All Files",
+      "type": "Ruby",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "program": "${workspaceRoot}/bin/bundle",
+      "args": ["exec", "rails", "s", "-p=3013"]
+    },
+    {
+      "name": "Debug Local File",
+      "type": "Ruby",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "program": "${file}"
+    }
+  ]
+}
