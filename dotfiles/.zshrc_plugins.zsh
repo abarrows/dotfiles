@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-echo "ZSH/PLUGINS: Loaded."
 # cp ~/.oh-my-zsh/templates/zshrc.zsh ~/.zshrc
 
 # PLUGINS
@@ -132,3 +131,5 @@ fi
 
 # Docker-helpers
 # https://github.com/unixorn/docker-helpers.zsh
+
+echo "ZSH/PLUGINS: Loaded."

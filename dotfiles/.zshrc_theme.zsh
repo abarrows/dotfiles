@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
 # OH MY ZSH THEME
-# Sourced from Dotbot Plugin/Brewfile/ location
-echo "ZSH/THEME: Loaded."
 if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/themes/powerlevel10k" ]]; then
   echo 'Theme should be sourced: powerlevel10k.'
 else
   echo 'Cloning the theme: Powerlevel10k'
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+  # Sourced from the zsh custom folder location
   source ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k/powerlevel10k.zsh-theme
 fi
 
@@ -31,3 +30,5 @@ POWERLEVEL10k_BATTERY_HIDE_ABOVE_THRESHOLD=40
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+echo "ZSH/THEME: Loaded."
