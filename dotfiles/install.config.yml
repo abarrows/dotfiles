@@ -51,5 +51,32 @@
 - brewfile:
     - Brewfile
 
+# VS Code
+- link:
+    '~/Library/Application Support/Code - Insiders/User/settings.json':
+      path: ide/.vscode/settings.json
+      create: true
+    '~/Library/Application Support/Code - Insiders/User/keybindings.json':
+      path: ide/.vscode/keybindings.json
+      create: true
+    '~/Library/Application Support/Code - Insiders/User/tasks.json':
+      path: ide/.vscode/tasks.json
+    '~/Library/Application Support/Code - Insiders/User/launch.json':
+      path: ide/.vscode/launch.json
+    '~/Library/Application Support/Code - Insiders/User/snippets':
+      path: ide/.vscode/snippets
+      create: true
+- script:
+    [
+      'code-insiders --list-extensions > dotfiles/ide/.vscode/extensions.txt',
+      VSCode - Retrieving all extensions...,
+    ]
+- vscodefile:
+    file: ide/.vscode/extensions.txt
+    insiders: false
+
 - shell:
-    - [source ~/.zshrc, Sourcing .zshrc]
+    - [
+        source ~/.zshrc,
+        'Sourcing your zshrc! You are ready to rock and roll...',
+      ]
