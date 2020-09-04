@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo "ZSH/FUNCTIONS: Loaded."
-
 # DEBUGGING SCRIPTS
 
 # FUNCTIONS
@@ -84,3 +82,5 @@ function killport()
 {
     lsof -ti tcp:"$1" | xargs kill
 }
+
+echo "ZSH/FUNCTIONS: Loaded."
