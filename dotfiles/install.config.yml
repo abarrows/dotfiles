@@ -37,9 +37,9 @@
     ~/.gem: ruby/.gem
     ~/.gemrc: ruby/.gemrc
     ~/.mkshrc: ruby/.mkshrc
-    ~/.pyenv:
-      path: python/.pyenv
-      create: true
+    # ~/.pyenv:
+    #   path: python/.pyenv
+    #   create: true
     ~/Brewfile: Brewfile
     ~/Brewfile.lock.json: Brewfile.lock.json
     ~/.iterm2_shell_integration.zsh: .iterm2_shell_integration.zsh
@@ -53,6 +53,8 @@
 
 # VS Code
 - shell:
+    - IDE_BUILD='code'
+    - IDE_PATH='code'
     - $IDE_BUILD --list-extensions > ide/.vscode/extensions.txt
 - link:
     '~/Library/Application Support/$IDE_PATH/User/settings.json':

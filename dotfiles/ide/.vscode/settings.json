@@ -639,6 +639,6 @@
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.7.0/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode-insiders/extensions/atlassian.atlascode-2.7.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   }
 }
