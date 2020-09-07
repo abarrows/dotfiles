@@ -53,21 +53,19 @@
 
 # VS Code
 - shell:
-    - IDE_BUILD='code'
-    - IDE_PATH='code'
-    - $IDE_BUILD --list-extensions > ide/.vscode/extensions.txt
+    - code --list-extensions > ide/.vscode/extensions.txt
 - link:
-    '~/Library/Application Support/$IDE_PATH/User/settings.json':
+    '~/Library/Application Support/code/User/settings.json':
       path: ide/.vscode/settings.json
       force: true
-    '~/Library/Application Support/$IDE_PATH/User/keybindings.json':
+    '~/Library/Application Support/code/User/keybindings.json':
       path: ide/.vscode/keybindings.json
       force: true
-    '~/Library/Application Support/$IDE_PATH/User/tasks.json':
+    '~/Library/Application Support/code/User/tasks.json':
       path: ide/.vscode/tasks.json
-    '~/Library/Application Support/$IDE_PATH/User/launch.json':
+    '~/Library/Application Support/code/User/launch.json':
       path: ide/.vscode/launch.json
-    '~/Library/Application Support/$IDE_PATH/User/snippets':
+    '~/Library/Application Support/code/User/snippets':
       path: ide/.vscode/snippets
       create: true
 - vscodefile:
