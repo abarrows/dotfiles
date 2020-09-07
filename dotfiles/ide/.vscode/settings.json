@@ -388,10 +388,10 @@
     "workhorse",
     "yamllint"
   ],
-  "codespaces.accountProvider": "Uninitialized",
+  "codespaces.accountProvider": "Microsoft",
   "codespaces.defaultExtensions": [],
   "codespaces.enableSubmoduleCloning": true,
-  "codespaces.featureSet": "insiders",
+  "codespaces.featureSet": "stable",
   "codespaces.planFilter": "/subscriptions/5479830b-7861-4a1a-b191-1cb538748d7d/resourceGroups/vso-rg-65b0015/providers/Microsoft.VSOnline/plans/vso-plan-eastus",
   "compareFolders.ignoreFileNameCase": true,
   "compareFolders.useDiffMerge": true,
