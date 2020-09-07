@@ -52,8 +52,6 @@
     - Brewfile
 
 # VS Code
-- shell:
-    - code --list-extensions > ide/.vscode/extensions.txt
 - link:
     '~/Library/Application Support/code/User/settings.json':
       path: ide/.vscode/settings.json
@@ -68,6 +66,11 @@
     '~/Library/Application Support/code/User/snippets':
       path: ide/.vscode/snippets
       create: true
+    '~/.vscode':
+      path: ide/.vscode
+      create: true
+- shell:
+    - code --list-extensions > ide/.vscode/extensions.txt
 - vscodefile:
     file: ide/.vscode/extensions.txt
     insiders: false
