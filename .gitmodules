@@ -11,3 +11,9 @@
 [submodule "dotfiles/dotbot-vscode"]
 	path = dotfiles/dotbot-vscode
 	url = https://github.com/hujianxin/dotbot-vscode
+[submodule "vscode-dev-containers"]
+	path = vscode-dev-containers
+	url = git://github.com/microsoft/vscode-dev-containers.git
+[submodule "dotfiles/vscode-dev-containers"]
+	path = dotfiles/vscode-dev-containers
+	url = git://github.com/microsoft/vscode-dev-containers.git
