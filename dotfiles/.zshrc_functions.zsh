@@ -83,4 +83,14 @@ function killport()
     lsof -ti tcp:"$1" | xargs kill
 }
 
+function ownfile()
+{
+  chmod 755 $1
+}
+
+function ownfolder()
+{
+  chmod -R 755 $1
+}
+
 echo "ZSH/FUNCTIONS: Loaded."
