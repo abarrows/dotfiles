@@ -15,6 +15,7 @@
     ~/.config: .config
     ~/.p10k.zsh: .p10k.zsh
     ~/.zshrc: .zshrc
+    ~/.zlogin: .zlogin
     ~/.zshrc_theme.zsh: .zshrc_theme.zsh
     ~/.zshrc_plugins.zsh: .zshrc_plugins.zsh
     ~/.zshrc_functions.zsh: .zshrc_functions.zsh

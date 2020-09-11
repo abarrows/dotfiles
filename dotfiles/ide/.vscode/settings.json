@@ -178,6 +178,7 @@
     "coverage/**"
   ],
   "cSpell.language": "en,en-GB",
+  "cSpell.maxDuplicateProblems": 2,
   "cSpell.userWords": [
     "AMU",
     "AMU’s",
@@ -485,7 +486,8 @@
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
-    "source.sortJSON.sortJSON": true
+    "source.sortJSON.sortJSON": true,
+    "source.fixAll.stylelint": true
   },
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": true,
@@ -528,6 +530,7 @@
   "files.associations": {
     "*.html.erb": "erb",
     "*.js.erb": "js",
+    ".erb": "erb",
     ".zshrc": "shellscript"
   },
   "files.autoSave": "off",
@@ -728,7 +731,7 @@
     "yzhang.markdown-all-in-one",
     "zhuangtongfa.material-theme",
     "Zignd.html-css-class-completion"
-  ]
+  ],
   "rewrap.autoWrap.enabled": true,
   "rewrap.doubleSentenceSpacing": true,
   "ruby.codeCompletion": false,
@@ -739,7 +742,8 @@
       "useBundler": true
     },
     "rubocop": {
-      "useBundler": true
+      "useBundler": true,
+      "onSave": true
     }
   },
   "ruby.useLanguageServer": true,
@@ -798,6 +802,6 @@
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.7.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode-insiders/extensions/atlassian.atlascode-2.7.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   }
 }
