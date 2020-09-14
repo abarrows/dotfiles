@@ -10,6 +10,7 @@
 
 - link:
     ~/.acb_bin: ../acb_bin
+    /usr/local/bin/pathChecker.sh: ../acb_bin/pathChecker.sh
     ~/.bitbucket: .bitbucket
     ~/.gitconfig: .gitconfig
     ~/.config: .config
