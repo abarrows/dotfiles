@@ -89,7 +89,7 @@
       "id": "dbf335f1-eb46-42b5-b25e-2f357b6ab7a1",
       "monitor": true,
       "name": "Dilbert - My Issues",
-      "query": "project = Dilbert AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "query": "project = Dilbert AND status != resolved ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -102,8 +102,8 @@
     }
   ],
   "atlascode.jira.lastCreateSiteAndProject": {
-    "projectKey": "DT",
-    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+    "projectKey": "DT"
   },
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
     "maintenance",
@@ -761,7 +761,6 @@
   "shellcheck.run": "onSave",
   "shellcheck.useWorkspaceRootAsCwd": true,
   "solargraph.autoformat": true,
-  "solargraph.commandPath": "${workspaceFolder}/bin/solargraph",
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.useBundler": true,
@@ -802,6 +801,6 @@
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode-insiders/extensions/atlassian.atlascode-2.7.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.7.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   }
 }
