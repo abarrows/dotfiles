@@ -6,5 +6,30 @@
   {
     "key": "cmd+k s",
     "command": "-workbench.action.files.saveWithoutFormatting"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "gitlens.toggleFileBlame",
+    "when": "editorTextFocus && gitlens:activeFileStatus =~ /blameable/"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "-gitlens.toggleFileBlame",
+    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /blameable/"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "gitlens.toggleFileBlame",
+    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /blameable/"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "gitlens.toggleFileBlame",
+    "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /blameable/"
+  },
+  {
+    "key": "alt+cmd+g b",
+    "command": "-gitlens.toggleFileBlame",
+    "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /blameable/"
   }
 ]
