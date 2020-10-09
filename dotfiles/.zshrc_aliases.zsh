@@ -166,6 +166,10 @@ alias seedfeatures="rake feature_data:reload"
 alias seedfeaturesrecent="rake feature_data:reload_recent"
 alias vsdebug="rdebug-ide ./bin/rails server puma"
 
+# Python stuff
+alias python="/usr/local/bin/python3"
+alias pip="/usr/local/bin/pip3"
+
 # Pathing
 alias desktop="cd ~/Desktop"
 alias apps="cd /Applications"

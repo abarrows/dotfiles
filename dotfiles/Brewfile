@@ -16,7 +16,7 @@ brew "git"
 brew "microsoft/vscodespaces/codespaces"
 brew "openssl@1.1"
 brew "readline"
-brew "python@3.8"
+brew "python"
 brew "glib"
 brew "unbound"
 brew "gnutls"
@@ -27,7 +27,6 @@ brew "imagemagick", link: false
 brew "imagemagick@6", link: true
 brew "libyaml"
 brew "memcached"
-brew "mercurial"
 brew "mysql", restart_service: true
 brew "mysql-client"
 brew "mysql@5.6", link: true

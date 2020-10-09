@@ -7,13 +7,13 @@
 - shell:
     - git submodule update --init --recursive
     - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" || true
+    - python3 get-pip.py
 
 - link:
     ~/.acb_bin: ../acb_bin
     /usr/local/bin/pathChecker.sh: ../acb_bin/pathChecker.sh
     ~/.bitbucket: .bitbucket
     ~/.gitconfig: .gitconfig
-    ~/.config: .config
     ~/.p10k.zsh: .p10k.zsh
     ~/.zshrc: .zshrc
     ~/.zlogin: .zlogin

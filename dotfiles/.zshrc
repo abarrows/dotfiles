@@ -8,7 +8,7 @@ export LC_ALL=en_US.UTF-8
 
 # PATHING
 # If you come from bash you might have to change your $PATH.
-PATH=:bin/~/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/sbin:$PATH
+PATH=:bin/~/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
 ZSH=$HOME/.oh-my-zsh

@@ -32,7 +32,6 @@ KnisterPeter.vscode-github
 L13RARY.l13-diff
 leizongmin.node-module-intellisense
 mhutchie.git-graph
-micnil.vscode-checkpoints
 mikestead.dotenv
 mkaufman.HTMLHint
 moshfeu.compare-folders
