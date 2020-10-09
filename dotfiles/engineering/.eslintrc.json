@@ -1,39 +1,36 @@
 {
   "env": {
     "browser": true,
-    "es6": true,
-    "jest": true,
-    "node": true
+    "jquery": true
   },
-  "extends": ["airbnb", "prettier", "prettier/react"],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
+  "extends": ["airbnb-base/legacy", "prettier"],
   "parser": "babel-eslint",
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true,
-      "modules": true
-    },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
-  "plugins": ["react", "prettier"],
+  "plugins": ["babel"],
   "rules": {
-    "prettier/prettier": "error",
-    "react/forbid-prop-types": [
-      0,
+    "max-len": [
+      "error",
       {
-        "forbid": ["any"]
+        "code": 120,
+        "ignoreUrls": true
       }
     ],
-    "react/jsx-filename-extension": [
-      1,
+    "no-caller": ["warn"],
+    "no-redeclare": ["warn"],
+    "no-param-reassign": ["warn"],
+    "no-plusplus": ["error"],
+    "no-template-curly-in-string": ["off"],
+    "no-use-before-define": ["warn"],
+    "no-unused-vars": ["warn"],
+    "no-useless-concat": ["off"],
+    "no-undef": ["warn"],
+    "spaced-comment": [
+      "warn",
+      "always",
       {
-        "extensions": [".js", ".jsx", ".es6"]
+        "exceptions": ["-", "+"],
+        "markers": ["=", "!"]
       }
     ],
-    "react/prop-types": 0
+    "vars-on-top": ["warn"]
   }
 }
