@@ -796,7 +796,7 @@
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.newWindowDimensions": "maximized",
   "window.restoreWindows": "all",
-  "window.zoomLevel": 0,
+  "window.zoomLevel": -1,
   "workbench.colorTheme": "One Dark Pro",
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.openPositioning": "last",
@@ -813,5 +813,8 @@
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
+  "stylelint.config": {
+    "source": "~/.stylelintrc.json"
   }
 }
