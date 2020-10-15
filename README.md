@@ -6,26 +6,54 @@ in the cloud as it relates to development. Something that can be reproduced at
 will and torn down with no repercussions. After some careful thought, this
 process will involve three main levels of configuration and tooling:
 
-1. setup.sh - Machine level installs, C compiled libraries, and other machine level
-   settings.
-   - iterm
+1. Dotenv
+   - Machine level sensitive variables
+2. iTerm 2
    - .zshrc
-   - Git configuration and defaults
-   - Homebrew
-   - Node
-   - Yarn
-2. .devcontainer. and .vscode - Development Environment IDE General Settings and project agnostic
-   configuration/linting/tooling. IE: Things like:
+     - powerlevel10k Theme
+     - Plugins
+     - Aliases
+     - Custom Bash Functions
+3. Git configuration and defaults
+   - General Settings and Configurations
+     - Repo Templates
+     - Workflow Templates
+     - Issue Templates
+4. Homebrew
+
+- Default recipes
+- Default casks (iOS apps)
+
+5. Node
+   - NVM Version Manager
+6. Yarn
+   - Global NPM Packages
+7. VS Code (Machine Level)
+   - .devcontainer. and .vscode - Development Environment IDE General Settings and project agnostic
+     configuration/linting/tooling. IE: Things like:
+   - Settings.json
+     - Theme
+     - Keybindings
+   - Extensions
+     - Code Quality Tools
+     - Linting
+     - Productivity
+     - Formatters
+     - Workload integrations (JIRA/Github/Etc.)
+8. VS Code - General Code Quality Tools
    - .editorconfig
    - package.json (Everything I work on has js and related dependencies)
-3. workspace environment - Workspace Environment for the specific tech stack.
-   IE: RoR, Python, Next.js, etc. This will contain any overrides/modifications to:
-   - settings.json
-   - vs code extensions
-   - new linting configurations, etc.
-4. Application environment - This will bring in the actual application being
-   worked on which inherits the levels of configuration and respective
-   environment above.
+   - Eslint
+   - Stylelint
+   - Prettier
+   - Shell Checker
+   - YAML Lint
+   - JSON Lint/Sorting
+9. VS Code - Project/Technology Specific
+
+- workspace environment - Workspace Environment for the specific tech stack.
+  IE: RoR, Python, Next.js, etc. This will contain any
+  overrides/modifications to:
 
 ## Ruby on Rails
 
@@ -81,9 +109,8 @@ The following tools can be used for improving the confidence of this apps logic 
 
 1. I discovered some strange caching and pathing issues in RVM and determined it
    was the bundler zsh plugin: https://rvm.io/support/troubleshooting. Updated
-   on 2020.07.29
-   2. I have added a debugger file in my gists that outline how to troubleshoot
-      uglifier gem woes.
+   on 2020.07.29 2. I have added a debugger file in my gists that outline how to troubleshoot
+   uglifier gem woes.
 
 ## TODOS
 
@@ -148,3 +175,7 @@ Some general caveats here are listed below:
   1. Eslint
   2. Prettier (Checkmark icon showing means it's good)
   3. Formatting (Checkmark icon showing means it's good)
+
+## DOTFILES TECHNOLOGY INDEX
+
+1.
