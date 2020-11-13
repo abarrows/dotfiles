@@ -136,3 +136,4 @@ eval "$(pyenv init -)"
 # export ARCHFLAGS="-arch x86_64"
 
 
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
