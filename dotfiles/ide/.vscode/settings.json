@@ -52,8 +52,16 @@
       "id": "02142ed5-c4d7-41af-a082-7e16cb33dada",
       "monitor": true,
       "name": "Games/Embed - Issues",
-      "query": "project in (Games, EMBEDSERV) AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "query": "project =\"AMU Games\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
+    },
+    {
+      "id": "5de0ffa1-bb1c-4a76-9371-a870197089a9",
+      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+      "name": "Embed Service",
+      "query": "project =\"Embed Service\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "enabled": true,
+      "monitor": true
     },
     {
       "enabled": true,
@@ -102,11 +110,19 @@
       "name": "My Most Recently Created Issues",
       "query": "reporter = currentUser() AND status != Done ORDER BY updatedDate",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
+    },
+    {
+      "id": "c7cd7030-fd5e-42e1-b4bd-857e58e22fe2",
+      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+      "name": "TFS",
+      "query": "project = Farside AND status != resolved AND assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "enabled": true,
+      "monitor": true
     }
   ],
   "atlascode.jira.lastCreateSiteAndProject": {
-    "projectKey": "DT",
-    "siteId": ""
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+    "projectKey": "DT"
   },
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
     "maintenance",
@@ -184,7 +200,7 @@
   "cSpell.maxDuplicateProblems": 2,
   "cSpell.userWords": [
     "AMU",
-    "AMU’s",
+    "AMUs",
     "AUTOML",
     "Adserver",
     "Arial",
@@ -318,6 +334,7 @@
     "multisize",
     "museo",
     "nodelist",
+    "noopener",
     "noscript",
     "npmignore",
     "nvmrc",
@@ -505,7 +522,7 @@
   "editor.emptySelectionClipboard": false,
   "editor.fastScrollSensitivity": 10,
   "editor.find.autoFindInSelection": "never",
-  "editor.fontFamily": "Fira Code",
+  "editor.fontFamily": "monaco",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
   "editor.formatOnPaste": false,
@@ -564,8 +581,6 @@
     }
   ],
   "git-graph.dialog.addTag.pushToRemote": true,
-  "git-graph.fetchAvatars": true,
-  "git-graph.openRepoToHead": true,
   "git-graph.openToTheRepoOfTheActiveTextEditorDocument": true,
   "git.autofetch": true,
   "git.confirmSync": false,
@@ -576,7 +591,6 @@
   "github.customPullRequestTitle": true,
   "github.preferedMergeMethod": "merge",
   "githubPullRequests.defaultMergeMethod": "merge",
-  "githubPullRequests.showInSCM": true,
   "gitlens.advanced.messages": {
     "suppressCommitNotFoundWarning": true,
     "suppressFileNotUnderSourceControlWarning": true,
@@ -786,7 +800,7 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.enableBell": true,
-  "terminal.integrated.fontFamily": "Fira Code",
+  "terminal.integrated.fontFamily": "Monaco",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.rendererType": "dom",
   "terminal.integrated.rightClickBehavior": "default",
@@ -796,7 +810,7 @@
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.newWindowDimensions": "maximized",
   "window.restoreWindows": "all",
-  "window.zoomLevel": -1,
+  "window.zoomLevel": 1,
   "workbench.colorTheme": "One Dark Pro",
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.openPositioning": "last",
@@ -812,9 +826,11 @@
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.4/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "stylelint.config": {
     "source": "~/.stylelintrc.json"
-  }
+  },
+  "terminal.integrated.shell.linux": "/usr/bin/zsh",
+  "keyboard.layout": "us"
 }
