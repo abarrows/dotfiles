@@ -51,12 +51,12 @@
       zsh-history-substring-search,
     ]
 
+# Incomplete
 - cask: [
       1password,
       adobe-creative-cloud,
       alfred,
       google-backup-and-sync,
-      cyberduck,
       docker,
       dropbox,
       firefox,
@@ -71,10 +71,10 @@
       nordvpn,
       onedrive,
       postman,
-      rar,
       slack,
       sourcetree,
       spotify,
+      the-unarchiver
       visual-studio-code,
       vlc,
       zoom,
