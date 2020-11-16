@@ -6,7 +6,7 @@ alias currentide="code"
 # PERSONAL SETTINGS
 alias personal="cd ~/documents/AMU/repos/personal"
 alias aw="cd ~/documents/AMU/repos/personal/animatronic-workhorse/animatronic-workhorse && currentide"
-alias dotfiles="cd ~/documents/AMU/repos/personal/dotfiles-and-tooling/ && currentide"
+alias dotfiles="cd ~/documents/AMU/repos/personal/dotfiles/ && currentide"
 
 # Team Tools and Settings
 alias teamtools="cd ~/documents/AMU/repos/amu-development-team/team-tools-and-settings && currentide"
