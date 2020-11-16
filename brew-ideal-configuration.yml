@@ -52,30 +52,14 @@
     ]
 
 # Incomplete
-- cask: [
+- cask:
+    [
       1password,
       adobe-creative-cloud,
-      alfred,
-      google-backup-and-sync,
-      docker,
-      dropbox,
-      firefox,
-      gemini,
       google-chrome,
       iterm2,
-      mamp,
-      microsoft-teams,
-      microsoft-excel,
-      microsoft-powerpoint,
-      microsoft-word
-      nordvpn,
-      onedrive,
-      postman,
-      slack,
-      sourcetree,
-      spotify,
-      the-unarchiver
-      visual-studio-code,
-      vlc,
-      zoom,
+      mysql-workbench,
+      utorrent,
+      xcode,
+      webroot-secureanywhere,
     ]
