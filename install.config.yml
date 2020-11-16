@@ -52,7 +52,7 @@
 - create:
     - ~/downloads
     - ~/.nvm
-    # - ~/Library/LaunchAgents
+    - ~/Library/LaunchAgents
 
 - brewfile:
     - Brewfile
@@ -80,7 +80,7 @@
 # Databases
 - link:
   '~/Library/LaunchAgents':
-    path: /usr/local/opt/postgresql/*.plist
+    path: /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
 - shell:
     - launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 
