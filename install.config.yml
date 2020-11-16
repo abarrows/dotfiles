@@ -3,27 +3,41 @@
       relink: true
 
 - clean: ['~']
+- create:
+    - ~/downloads
+    - ~/.nvm
+    - ~/Library/LaunchAgents
+# Shell - Oh My ZSH
 - shell:
     - command: oh-my-zsh/tools/install.sh
       stdout: true
       stderr: true
       description: Installing oh-my-zsh
-    # - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" || true
-
+# Shell - Custom plugins, themes, aliases, etc.
+- link:
+  ~/.p10k.zsh: shell/.p10k.zsh
+  ~/.zshrc: shell/.zshrc
+  ~/.zlogin: shell/.zlogin
+  ~/.oh-my-zsh/custom/.zshrc_theme.zsh: shell/.zshrc_theme.zsh
+  ~/.oh-my-zsh/custom/.zshrc_plugins.zsh: shell/.zshrc_plugins.zsh
+  ~/.oh-my-zsh/custom/.zshrc_functions.zsh: shell/.zshrc_functions.zsh
+  ~/.oh-my-zsh/custom/.zshrc_aliases.zsh: shell/.zshrc_aliases.zsh
+  ~/.iterm2_shell_integration.zsh: shell/.iterm2_shell_integration.zsh
+# Version Control
 - link:
     ~/.acb_bin: acb_bin
     /usr/local/bin/pathChecker.sh: acb_bin/pathChecker.sh
     ~/.bitbucket: version-control/.bitbucket
     ~/.gitconfig: version-control/.gitconfig
     ~/.gitconfig-professional: version-control/.gitconfig-professional
-    ~/.p10k.zsh: shell/.p10k.zsh
-    ~/.oh-my-zsh: oh-my-zsh
-    ~/.zshrc: shell/.zshrc
-    ~/.zlogin: shell/.zlogin
-    ~/.oh-my-zsh/custom/.zshrc_theme.zsh: shell/.zshrc_theme.zsh
-    ~/.oh-my-zsh/custom/.zshrc_plugins.zsh: shell/.zshrc_plugins.zsh
-    ~/.oh-my-zsh/custom/.zshrc_functions.zsh: shell/.zshrc_functions.zsh
-    ~/.oh-my-zsh/custom/.zshrc_aliases.zsh: shell/.zshrc_aliases.zsh
+# Homebrew General Software and Applications
+- link:
+    ~/Brewfile: Brewfile
+    ~/Brewfile.lock.json: Brewfile.lock.json
+- brewfile:
+    - Brewfile
+# General Software Engineering
+- link:
     ~/.electron-gyp: node/.electron-gyp
     ~/.node: node/.nvmrc
     ~/.npmignore: node/.npmignore
@@ -45,19 +59,15 @@
     # ~/.pyenv:
     #   path: python/.pyenv
     #   create: true
-    ~/Brewfile: Brewfile
-    ~/Brewfile.lock.json: Brewfile.lock.json
-    ~/.iterm2_shell_integration.zsh: shell/.iterm2_shell_integration.zsh
-
-- create:
-    - ~/downloads
-    - ~/.nvm
-    - ~/Library/LaunchAgents
-
-- brewfile:
-    - Brewfile
-
-# VS Code
+# Databases
+# TODO: Getting permission error when trying to symlink to LaunchAgents.  Do
+# this manually.
+# - link:
+# '~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist':
+# path: /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
+- shell:
+    - launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+# IDE - VS Code
 - link:
     '~/Library/Application Support/code/User/settings.json':
       path: .vscode/settings.json
@@ -77,13 +87,6 @@
 - vscodefile:
     file: .vscode/extensions.txt
     insiders: false
-# Databases
-- link:
-  '~/Library/LaunchAgents':
-    path: /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
-- shell:
-    - launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-
 - shell:
     - xcode-select --install || true
     - source ~/.zshrc
