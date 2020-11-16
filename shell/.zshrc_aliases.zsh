@@ -227,8 +227,8 @@ alias checkpath="print -l PATH"
 #alias rspecintegration="rails g integration_test $1"
 #alias rspeccontroller="rails g controller_test $1"
 
-# DB
-#alias startpg="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
+# Database
+alias startpg="postgres -D /usr/local/var/postgres"
 #alias ="launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist"
 
 # Personal Applications

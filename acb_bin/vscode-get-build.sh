@@ -15,7 +15,8 @@ if [[ $(which code-insiders) ]]; then
 fi
 
 # Hard coded for testing.
-IDE_PATH="CODE"
+IDE_PATH="code"
+IDE_BUILD="code"
 echo "The IDE Path is: $IDE_PATH and the IDE_BUILD is: $IDE_BUILD"
 export IDE_PATH
 export IDE_BUILD

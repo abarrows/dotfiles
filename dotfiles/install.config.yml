@@ -9,17 +9,17 @@
     - sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" || true
 
 - link:
-    ~/.acb_bin: ../acb_bin
-    /usr/local/bin/pathChecker.sh: ../acb_bin/pathChecker.sh
+    ~/.acb_bin: acb_bin
+    /usr/local/bin/pathChecker.sh: acb_bin/pathChecker.sh
     ~/.bitbucket: .bitbucket
     ~/.gitconfig: .gitconfig
     ~/.p10k.zsh: .p10k.zsh
-    ~/.zshrc: .zshrc
-    ~/.zlogin: .zlogin
-    ~/.zshrc_theme.zsh: .zshrc_theme.zsh
-    ~/.zshrc_plugins.zsh: .zshrc_plugins.zsh
-    ~/.zshrc_functions.zsh: .zshrc_functions.zsh
-    ~/.zshrc_aliases.zsh: .zshrc_aliases.zsh
+    ~/.zshrc: shell/.zshrc
+    ~/.zlogin: shell/.zlogin
+    ~/.zshrc_theme.zsh: shell/.zshrc_theme.zsh
+    ~/.zshrc_plugins.zsh: shell/.zshrc_plugins.zsh
+    ~/.zshrc_functions.zsh: shell/.zshrc_functions.zsh
+    ~/.zshrc_aliases.zsh: shell/.zshrc_aliases.zsh
     ~/.electron-gyp: node/.electron-gyp
     ~/.node: node/.nvmrc
     ~/.npmignore: node/.npmignore
@@ -48,6 +48,7 @@
 - create:
     - ~/downloads
     - ~/.nvm
+    - ~/Library/LaunchAgents
 
 - brewfile:
     - Brewfile
@@ -55,23 +56,29 @@
 # VS Code
 - link:
     '~/Library/Application Support/code/User/settings.json':
-      path: ide/.vscode/settings.json
+      path: .vscode/settings.json
       force: true
     '~/Library/Application Support/code/User/keybindings.json':
-      path: ide/.vscode/keybindings.json
+      path: .vscode/keybindings.json
       force: true
     '~/Library/Application Support/code/User/tasks.json':
-      path: ide/.vscode/tasks.json
+      path: .vscode/tasks.json
     '~/Library/Application Support/code/User/launch.json':
-      path: ide/.vscode/launch.json
+      path: .vscode/launch.json
     '~/Library/Application Support/code/User/snippets':
-      path: ide/.vscode/snippets
+      path: .vscode/snippets
       create: true
 - shell:
-    - code --list-extensions > ide/.vscode/extensions.txt
+    - code --list-extensions > .vscode/extensions.txt
 - vscodefile:
-    file: ide/.vscode/extensions.txt
+    file: .vscode/extensions.txt
     insiders: false
+# Databases
+- link:
+  '~/Library/LaunchAgents':
+    path: /usr/local/opt/postgresql/*.plist
+- shell:
+    - launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
 
 - shell:
     - xcode-select --install || true
