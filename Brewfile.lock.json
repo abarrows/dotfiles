@@ -8,13 +8,13 @@
         "revision": "6debfdc6b453b7c62bad3fba4836ec24561fac73"
       },
       "homebrew/cask": {
-        "revision": "2ee8df74e8fe8f826502b5e23c12b2fd0651ea7d"
+        "revision": "30a4332b6baf069cf9b607b2acf297000b4771fa"
       },
       "homebrew/cask-fonts": {
         "revision": "711d1405b999107d0ccd57f1d37ec28adc3ea5b4"
       },
       "homebrew/core": {
-        "revision": "04503a5bd4973c86a0ad900e77ce4adbed8d6af7"
+        "revision": "f5d620c2101bf831dd101e4923fce7a9838b5f7e"
       },
       "homebrew/services": {
         "revision": "f6313045d710df06b1e40597f5820026486a55ee"
@@ -1277,6 +1277,150 @@
             "appdir": "/Applications"
           }
         }
+      },
+      "alfred": {
+        "version": "4.2.1_1187",
+        "options": {
+          "full_name": "alfred",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "chiaki": {
+        "version": "1.3.0",
+        "options": {
+          "full_name": "chiaki",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "dropbox": {
+        "version": "latest",
+        "options": {
+          "full_name": "dropbox",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "firefox": {
+        "version": "82.0.3",
+        "options": {
+          "full_name": "firefox",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "gemini": {
+        "version": "2.7.0,356:1604685686",
+        "options": {
+          "full_name": "gemini",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "github": {
+        "version": "2.5.7-cfea2832",
+        "options": {
+          "full_name": "github",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "local": {
+        "version": "5.9.2,5056",
+        "options": {
+          "full_name": "local",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "microsoft-office": {
+        "version": "16.43.20110804",
+        "options": {
+          "full_name": "microsoft-office",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "microsoft-teams": {
+        "version": "1.3.00.28778",
+        "options": {
+          "full_name": "microsoft-teams",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "nordvpn": {
+        "version": "5.10.0",
+        "options": {
+          "full_name": "nordvpn",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "paragon-ntfs": {
+        "version": "15",
+        "options": {
+          "full_name": "paragon-ntfs",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "postman": {
+        "version": "7.34.0",
+        "options": {
+          "full_name": "postman",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "slack": {
+        "version": "4.11.1",
+        "options": {
+          "full_name": "slack",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "spotify": {
+        "version": "latest",
+        "options": {
+          "full_name": "spotify",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "teamviewer": {
+        "version": "15.11.6",
+        "options": {
+          "full_name": "teamviewer",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
+      },
+      "vlc": {
+        "version": "3.0.11.1",
+        "options": {
+          "full_name": "vlc",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
       }
     }
   },
@@ -1285,7 +1429,7 @@
       "catalina": {
         "HOMEBREW_VERSION": "2.5.11-6-g9f45814",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "04503a5bd4973c86a0ad900e77ce4adbed8d6af7",
+        "Homebrew/homebrew-core": "f5d620c2101bf831dd101e4923fce7a9838b5f7e",
         "CLT": "1103.0.32.62",
         "Xcode": "12.1",
         "macOS": "10.15.7"

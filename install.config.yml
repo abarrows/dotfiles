@@ -8,6 +8,7 @@
     - ~/.nvm
     - ~/Library/LaunchAgents
 # Shell - Oh My ZSH
+# TODO: Figure out the command to not copy the .zshrc
 - shell:
     - command: oh-my-zsh/tools/install.sh
       stdout: true
@@ -16,13 +17,27 @@
 # Shell - Custom plugins, themes, aliases, etc.
 - link:
   ~/.p10k.zsh: shell/.p10k.zsh
-  ~/.zshrc: shell/.zshrc
-  ~/.zlogin: shell/.zlogin
-  ~/.oh-my-zsh/custom/.zshrc_theme.zsh: shell/.zshrc_theme.zsh
-  ~/.oh-my-zsh/custom/.zshrc_plugins.zsh: shell/.zshrc_plugins.zsh
-  ~/.oh-my-zsh/custom/.zshrc_functions.zsh: shell/.zshrc_functions.zsh
-  ~/.oh-my-zsh/custom/.zshrc_aliases.zsh: shell/.zshrc_aliases.zsh
-  ~/.iterm2_shell_integration.zsh: shell/.iterm2_shell_integration.zsh
+  ~/.zshrc:
+    path: shell/.zshrc
+    force: true
+  ~/.zlogin:
+    path: shell/.zlogin
+    force: true
+  ~/.oh-my-zsh/.zshrc_theme.zsh:
+    path: shell/.zshrc_theme.zsh
+    force: true
+  ~/.oh-my-zsh/.zshrc_plugins.zsh:
+    path: shell/.zshrc_plugins.zsh
+    force: true
+  ~/.oh-my-zsh/.zshrc_functions.zsh:
+    path: shell/.zshrc_functions.zsh
+    force: true
+  ~/.oh-my-zsh/.zshrc_aliases.zsh:
+    path: shell/.zshrc_aliases.zsh
+    force: true
+  ~/.iterm2_shell_integration.zsh:
+    path: shell/.iterm2_shell_integration.zsh
+    force: true
 # Version Control
 - link:
     ~/.acb_bin: acb_bin
@@ -77,8 +92,10 @@
       force: true
     '~/Library/Application Support/code/User/tasks.json':
       path: .vscode/tasks.json
+      force: true
     '~/Library/Application Support/code/User/launch.json':
       path: .vscode/launch.json
+      force: true
     '~/Library/Application Support/code/User/snippets':
       path: .vscode/snippets
       create: true
