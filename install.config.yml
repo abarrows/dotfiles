@@ -12,7 +12,8 @@
     ~/.acb_bin: acb_bin
     /usr/local/bin/pathChecker.sh: acb_bin/pathChecker.sh
     ~/.bitbucket: .bitbucket
-    ~/.gitconfig: .gitconfig
+    ~/.gitconfig: version-control/.gitconfig
+    ~/.gitconfig-professional: version-control/.gitconfig-professional
     ~/.p10k.zsh: .p10k.zsh
     ~/.zshrc: shell/.zshrc
     ~/.zlogin: shell/.zlogin

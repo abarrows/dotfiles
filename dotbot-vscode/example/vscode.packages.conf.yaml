@@ -1,0 +1,18 @@
+- vscode:
+    dbaeumer.vscode-eslint:
+        status: install
+        insiders: true
+    eamodio.gitlens:
+        status: uninstall
+        insiders: true
+    eg2.tslint:
+        status: install
+        insiders: false
+
+- vscodefile:
+    file: Vscodefile
+    insiders: true
+
+- vscodefile:
+    file: Vscodefile
+    insiders: false
