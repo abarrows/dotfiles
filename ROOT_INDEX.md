@@ -7,7 +7,7 @@ drwxr-x--x 3 abarrows staff 96 Oct 21 2019 .adobe
 -rw------- 1 abarrows staff 2589 Aug 14 2019 .bash_history
 -rw-r--r--@ 1 abarrows staff 204 Feb 22 2020 .bash_profile
 -rw-r--r--@ 1 abarrows staff 257 Dec 11 2019 .bashrc
-lrwxr-xr-x 1 abarrows staff 85 Aug 23 10:11 .bitbucket -> /Users/abarrows/Documents/AMU/repos/personal/dotfiles-and-tooling/dotfiles/.bitbucket
+lrwxr-xr-x 1 abarrows staff 85 Aug 23 10:11 .bitbucket -> /Users/abarrows/Documents/AMU/repos/personal/dotfiles-and-tooling/.bitbucket
 drwxr-xr-x 3 abarrows staff 96 Aug 12 2019 .browserstack
 drwxr-xr-x 4 abarrows staff 128 Aug 5 11:00 .bundle
 drwxr-xr-x 9 abarrows staff 288 Aug 23 10:13 .cache
@@ -34,7 +34,7 @@ drwxr-xr-x 10 abarrows staff 320 Aug 21 18:38 .npm
 drwxr-xr-x 27 abarrows staff 864 Jun 19 2019 .nvm
 -rw-r--r-- 1 abarrows staff 7 May 30 13:39 .nvmrc
 drwxr-xr-x 20 abarrows staff 640 Aug 22 16:23 .oh-my-zsh
-lrwxr-xr-x 1 abarrows staff 84 Aug 23 10:07 .p10k.zsh -> /Users/abarrows/Documents/AMU/repos/personal/dotfiles-and-tooling/dotfiles/.p10k.zsh
+lrwxr-xr-x 1 abarrows staff 84 Aug 23 10:07 .p10k.zsh -> /Users/abarrows/Documents/AMU/repos/personal/dotfiles/shell/.p10k.zsh
 drwxr-xr-x 20 abarrows staff 640 Mar 10 14:19 .phpls
 -rw-r--r-- 1 abarrows staff 319 Dec 11 2019 .profile
 drwxr-xr-x 4 abarrows staff 128 Feb 22 2020 .pyenv

@@ -141,18 +141,6 @@
     "ISSUE:",
     "TODO -"
   ],
-  "atlascode.jira.workingSite": {
-    "avatarUrl": "https://site-admin-avatar-cdn.prod.public.atl-paas.net/avatars/240/koala.png",
-    "baseUrlSuffix": "atlassian.net",
-    "id": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
-    "name": "amuniversal",
-    "scopes": [
-      "manage:jira-project",
-      "write:jira-work",
-      "read:jira-work",
-      "read:jira-user"
-    ]
-  },
   "atlascode.outputLevel": "errors",
   "breadcrumbs.enabled": true,
   "cSpell.enableFiletypes": ["erb", "javascript"],
@@ -509,7 +497,7 @@
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.renderSideBySide": true,
   "docker.images.sortBy": "CreatedTime",
-  "dotfiles.installCommand": "~/dotfiles/install",
+  "dotfiles.installCommand": "~/install",
   "dotfiles.targetPath": "~/",
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {

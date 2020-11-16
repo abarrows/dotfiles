@@ -1,0 +1,17 @@
+[user]
+	name = Andrew Barrows
+	email = acbarrows@gmail.com
+	signingkey = BDE760D6A0526B62
+[core]
+	excludesfile = ~/version-control/.gitignore
+[init]
+	templateDir = ~/version-control/.git-template-dir
+[gpg]
+	program = gpg2
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = false
