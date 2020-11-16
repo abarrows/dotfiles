@@ -2,7 +2,6 @@ alexdima.copy-relative-path
 aliariff.vscode-erb-beautify
 arturock.gitstash
 atlassian.atlascode
-bierner.emojisense
 bierner.markdown-checkbox
 bmalehorn.shell-syntax
 castwide.solargraph
@@ -13,7 +12,6 @@ cpylua.language-postcss
 DavidAnson.vscode-markdownlint
 davidpallinder.rails-test-runner
 dbaeumer.vscode-eslint
-deerawan.vscode-faker
 eamodio.gitlens
 EditorConfig.EditorConfig
 EQuimper.react-native-react-redux
@@ -29,16 +27,13 @@ henriiik.docker-linter
 IBM.output-colorizer
 jasonlhy.hungry-delete
 jkjustjoshing.vscode-text-pastry
-johnpapa.vscode-peacock
 KnisterPeter.vscode-github
 L13RARY.l13-diff
 leizongmin.node-module-intellisense
 mhutchie.git-graph
-micnil.vscode-checkpoints
 mikestead.dotenv
 mkaufman.HTMLHint
 moshfeu.compare-folders
-moshfeu.compare-folders-insider
 moshfeu.diff-merge
 ms-azuretools.vscode-docker
 ms-vscode-remote.remote-containers
@@ -63,13 +58,11 @@ streetsidesoftware.code-spell-checker
 stylelint.vscode-stylelint
 svipas.control-snippets
 timonwong.shellcheck
-tombonnike.vscode-status-bar-format-toggle
 tomoki1207.pdf
 traBpUkciP.vscode-npm-scripts
 Tyriar.sort-lines
 VisualStudioExptTeam.vscodeintellicode
 vortizhe.simple-ruby-erb
-vsls-contrib.codetour
 vsls-contrib.gistfs
 wingrunr21.vscode-ruby
 winnnntttter.find-unused
