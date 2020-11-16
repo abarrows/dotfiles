@@ -11,7 +11,7 @@ export LC_ALL=en_US.UTF-8
 PATH=:bin/~/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
-# ZSH=$HOME/.oh-my-zsh
+ZSH=$HOME/.oh-my-zsh
 # for file in $HOME/.zshrc_*; do
 #     source "$file"
 # done
