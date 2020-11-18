@@ -9,35 +9,47 @@
     - ~/Library/LaunchAgents
 # Shell - Oh My ZSH
 # TODO: Figure out the command to not copy the .zshrc
-- shell:
-    - command: oh-my-zsh/tools/install.sh
-      stdout: true
-      stderr: true
-      description: Installing oh-my-zsh
+# - shell:
+#     - command: oh-my-zsh/tools/install.sh
+#       force: true
+#       stdout: true
+#       stderr: true
+#       description: Installing oh-my-zsh
+# ~/.hammerspoon:
+#   if: '[ `uname` = Darwin ]'
+#   path: hammerspoon
 # Shell - Custom plugins, themes, aliases, etc.
 - link:
-  ~/.p10k.zsh: shell/.p10k.zsh
-  ~/.zshrc:
-    path: shell/.zshrc
-    force: true
-  ~/.zlogin:
-    path: shell/.zlogin
-    force: true
-  ~/.oh-my-zsh/.zshrc_theme.zsh:
-    path: shell/.zshrc_theme.zsh
-    force: true
-  ~/.oh-my-zsh/.zshrc_plugins.zsh:
-    path: shell/.zshrc_plugins.zsh
-    force: true
-  ~/.oh-my-zsh/.zshrc_functions.zsh:
-    path: shell/.zshrc_functions.zsh
-    force: true
-  ~/.oh-my-zsh/.zshrc_aliases.zsh:
-    path: shell/.zshrc_aliases.zsh
-    force: true
-  ~/.iterm2_shell_integration.zsh:
-    path: shell/.iterm2_shell_integration.zsh
-    force: true
+    ~/.oh-my-zsh:
+      path: oh-my-zsh
+      force: true
+      stdout: true
+    ~/.p10k.zsh:
+      force: true
+      path: shell/.p10k.zsh
+      stdout: true
+    ~/.zlogin:
+      force: true
+      path: shell/.zlogin
+      stdout: true
+    ~/.zshrc_theme.zsh:
+      force: true
+      path: shell/.zshrc_theme.zsh
+    ~/.zshrc_plugins.zsh:
+      force: true
+      path: shell/.zshrc_plugins.zsh
+    ~/.zshrc_functions.zsh:
+      force: true
+      path: shell/.zshrc_functions.zsh
+    ~/.zshrc_aliases.zsh:
+      force: true
+      path: shell/.zshrc_aliases.zsh
+    ~/.iterm2_shell_integration.zsh:
+      force: true
+      path: shell/.iterm2_shell_integration.zsh
+    ~/.zshrc:
+      force: true
+      path: shell/.zshrc
 # Version Control
 - link:
     ~/.acb_bin: acb_bin
@@ -107,4 +119,5 @@
 - shell:
     - xcode-select --install || true
     - source ~/.zshrc
+    - zsh
     - echo 'Sourcing your zshrc! You are ready to rock and roll...'

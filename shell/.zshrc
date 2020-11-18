@@ -12,9 +12,9 @@ PATH=:bin/~/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/l
 
 # Path to your oh-my-zsh installation.
 ZSH=$HOME/.oh-my-zsh
-# for file in $HOME/.zshrc_*; do
-#     source "$file"
-# done
+for file in $HOME/.zshrc_*; do
+    source "$file"
+done
 
 
 
