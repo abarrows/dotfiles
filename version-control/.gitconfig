@@ -1,6 +1,6 @@
 [user]
 	name = Andrew Barrows
-	email = acbarrows@gmail.com
+	email = abarrows@amuniversal.com
 	signingkey = BDE760D6A0526B62
 [core]
 	excludesfile = ~/version-control/.gitignore
