@@ -23,7 +23,7 @@
     "stylelint-scss": "^3.13.0",
     "stylelint-config-recommended-scss": "^4.1.0",
     "stylelint-config-prettier": "^8.0.2",
-    "webpack-dev-server": "2.11.2"
+    "webpack-dev-server": "3.1.11"
   },
   "dependencies": {
     "@babel/core": "^7.11.5",
