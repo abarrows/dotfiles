@@ -8,7 +8,7 @@
         "revision": "6debfdc6b453b7c62bad3fba4836ec24561fac73"
       },
       "homebrew/cask": {
-        "revision": "590e1d4911d2702bb93219ac31452a57f92570bf"
+        "revision": "4d11a91f6eaeb3fbf1bbcc0227d176afa427c008"
       },
       "homebrew/cask-fonts": {
         "revision": "a6b5503ecab081fca3b6e084d718ec17a5446315"
@@ -1424,7 +1424,7 @@
         }
       },
       "iterm2": {
-        "version": "3.2.9",
+        "version": "3.4.1",
         "options": {
           "full_name": "iterm2",
           "args": {
@@ -1743,7 +1743,7 @@
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.5.11-53-g0ce654b",
+        "HOMEBREW_VERSION": "2.5.11-56-g1255557",
         "HOMEBREW_PREFIX": "/usr/local",
         "Homebrew/homebrew-core": "93ca3c41051b3ae2d5cda8152829b7fa69f5dbd6",
         "CLT": "1103.0.32.62",
