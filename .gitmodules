@@ -11,3 +11,6 @@
 [submodule "dotbot-vscode"]
 	path = dotbot-vscode
 	url = https://github.com/hujianxin/dotbot-vscode
+[submodule "dotbot-pip"]
+	path = dotbot-pip
+	url = https://github.com/sobolevn/dotbot-pip.git
