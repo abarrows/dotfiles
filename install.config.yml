@@ -113,6 +113,8 @@
 
 # Python
 - link:
+    ~/Pipfile: python/Pipfile
+    ~/Pipfile.lock: python/Pipfile.lock
     # ~/.pyenv:
     #   path: python/.pyenv
     #   create: true
