@@ -18,6 +18,7 @@
 # ~/.hammerspoon:
 #   if: '[ `uname` = Darwin ]'
 #   path: hammerspoon
+
 # Shell - Custom plugins, themes, aliases, etc.
 - link:
     ~/.oh-my-zsh:
@@ -50,6 +51,9 @@
     ~/.zshrc:
       force: true
       path: shell/.zshrc
+- shell:
+    - echo 'Shell/ZSH - Ready to go...'
+
 # Version Control
 - link:
     ~/.acb_bin: acb_bin
@@ -57,35 +61,64 @@
     ~/.bitbucket: version-control/.bitbucket
     ~/.gitconfig: version-control/.gitconfig
     ~/.gitconfig-professional: version-control/.gitconfig-professional
+- shell:
+    - echo 'General Version Control - Ready to go...'
+
 # Homebrew General Software and Applications
 - link:
     ~/Brewfile: Brewfile
     ~/Brewfile.lock.json: Brewfile.lock.json
 - brewfile:
     - Brewfile
+- shell:
+    - echo 'General Software and Applications (via homebrew) - Ready to go...'
+
+# Virtualized Environment
+- link:
+    ~/.dockerignore: virtualized_environments/.dockerignore
+
 # General Software Engineering
 - link:
-    ~/.electron-gyp: node/.electron-gyp
-    ~/.node: node/.nvmrc
-    ~/.npmignore: node/.npmignore
-    ~/.bundle: ruby/.bundle
-    ~/package.json: engineering/package.json
-    ~/yarn.lock: engineering/yarn.lock
     ~/.editorconfig: engineering/.editorconfig
     ~/.eslintrc.json: engineering/.eslintrc.json
     ~/.eslintignore: engineering/.eslintignore
     ~/postcss.config.js: engineering/postcss.config.js
     ~/.prettierrc.json: engineering/.prettierrc.json
     ~/.prettierignore: engineering/.prettierignore
-    ~/.postcssrc.yml: engineering/.postcssrc.yml
     ~/.stylelintrc.json: engineering/.stylelintrc.json
+- shell:
+    - echo 'General Software Engineering - Ready to go...'
+
+# Node / React
+- link:
+    ~/.nvmrc: node/.nvmrc
+    ~/.npmignore: node/.npmignore
+    ~/package.json: engineering/package.json
+    ~/yarn.lock: engineering/yarn.lock
+- shell:
+    - nvm install node
+    - nvm use node
+    - echo 'Node/React - Ready to go...'
+
+# Ruby on Rails
+- link:
+    ~/.bundle: ruby/.bundle
     ~/.rubocop.yml: ruby/.rubocop.yml
     ~/.gem: ruby/.gem
     ~/.gemrc: ruby/.gemrc
     ~/.mkshrc: ruby/.mkshrc
+    ~/.rvmrc: ruby/.rvmrc
+- shell:
+    - echo 'Ruby on Rails - Ready to go...'
+
+# Python
+- link:
     # ~/.pyenv:
     #   path: python/.pyenv
     #   create: true
+- shell:
+    - echo 'Python - Ready to go...'
+
 # Databases
 # TODO: Getting permission error when trying to symlink to LaunchAgents.  Do
 # this manually.
@@ -94,6 +127,8 @@
 # path: /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
 - shell:
     - launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+    - echo 'PostgresQL and MySQL Databases - Ready to go...'
+
 # IDE - VS Code
 - link:
     '~/Library/Application Support/code/User/settings.json':
@@ -117,7 +152,11 @@
     file: .vscode/extensions.txt
     insiders: false
 - shell:
+    - echo 'VS Code - Ready to go...'
+
+- shell:
     - xcode-select --install || true
+    - echo 'Xcode - Ready to go...'
     - source ~/.zshrc
     - zsh
     - echo 'Sourcing your zshrc! You are ready to rock and roll...'
