@@ -6,8 +6,16 @@
 	<string>1480332A-9F73-4753-9D77-A0854425B292</string>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
+	<key>Hotkey</key>
+	<true/>
+	<key>HotkeyChar</key>
+	<integer>96</integer>
+	<key>HotkeyCode</key>
+	<integer>50</integer>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>HotkeyModifiers</key>
+	<integer>524576</integer>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>

@@ -655,7 +655,7 @@
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.4/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "stylelint.config": {
     "source": "~/.stylelintrc.json"
