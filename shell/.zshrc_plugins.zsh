@@ -8,25 +8,6 @@
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  zsh-autosuggestions
-  bundler
-  zsh-completions
-  dotenv
-  git
-  history
-  history-substring-search
-  osx
-  rake
-  ruby
-  rvm
-  zsh-syntax-highlighting
-  thefuck
-  vscode
-  yarn
-  vscode
-)
 
 
 # BUILT-IN OH-MY-ZSH PLUGINS
@@ -66,29 +47,6 @@ plugins=(
 
 # CUSTOM INSTALLED PLUGINS
 
-# NVM - Non-Oh-My-Zsh
-# Now provides a built-in hook for autoswitching place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-
 # ZSH PLUGIN: zsh-completions
 # https://github.com/zsh-users/zsh-completions
 if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-completions" ]]; then
@@ -117,6 +75,18 @@ else
   git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
 fi
 
+# ZSH PLUGIN: zsh-nvm
+# https://github.com/lukechilds/zsh-nvm
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
+export NVM_AUTO_USE=true
+if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-nvm" ]]; then
+  echo 'Plugin should be sourced: zsh-nvm.'
+else
+  echo 'Cloning plugin: zsh-nvm'
+  git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
+fi
+
 # ZSH PLUGIN: zsh-syntax-highlighting
 # https://github.com/zsh-users/zsh-syntax-highlighting
 if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-syntax-highlighting" ]]; then
@@ -131,5 +101,29 @@ fi
 
 # Docker-helpers
 # https://github.com/unixorn/docker-helpers.zsh
+
+
+
+# Final plugins declaration
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  zsh-autosuggestions
+  bundler
+  zsh-completions
+  dotenv
+  git
+  history
+  history-substring-search
+  zsh-nvm
+  osx
+  rake
+  ruby
+  rvm
+  zsh-syntax-highlighting
+  thefuck
+  vscode
+  yarn
+  vscode
+)
 
 echo "ZSH/PLUGINS: Loaded."
