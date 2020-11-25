@@ -35,7 +35,6 @@ brew "mysql", restart_service: true
 brew "mysql-client"
 brew "mysql@5.6", link: true
 brew "mysql@5.7"
-brew "nvm"
 brew "pgloader"
 brew "pidof"
 brew "pyenv"

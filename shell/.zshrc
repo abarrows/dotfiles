@@ -12,9 +12,10 @@ PATH=:bin/~/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/l
 
 # Path to your oh-my-zsh installation.
 ZSH=$HOME/.oh-my-zsh
-for file in $HOME/.zshrc_*; do
-    source "$file"
-done
+source "$ZSH/custom/.theme.zsh"
+source "$ZSH/custom/.functions.zsh"
+source "$ZSH/custom/.plugins.zsh"
+source "$ZSH/custom/.aliases.zsh"
 
 
 
@@ -97,16 +98,6 @@ source $ZSH/oh-my-zsh.sh
 # iTerm2 Integration
 [[ ! -f "$HOME/.iterm2_shell_integration.zsh" ]] || source "$HOME/.iterm2_shell_integration.zsh"
 
-# NVM
-# nvm.sh previously had permission issues.  Use: chmod u+x
-# /usr/local/opt/nvm/nvm.sh
-# Speeds up load times for nvm but I do not know if it works with brew.
-# [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"
-# export PATH="$NVM_DIR/versions/node/v$(<$NVM_DIR/alias/default)/bin:$PATH"
-# alias nvm="unalias nvm; [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"; nvm $@"
-export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
-
 # GOOGLE CLOUD SDK
 # shellcheck disable=SC1091
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
@@ -114,7 +105,9 @@ if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/
 # The next line enables shell command completion for gcloud.
 # shellcheck disable=SC1091
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
-eval "$(pyenv init -)"
+
+# Python (Not in use.)
+# eval "$(pyenv init -)"
 
 
 

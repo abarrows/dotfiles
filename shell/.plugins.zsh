@@ -114,6 +114,7 @@ plugins=(
   git
   history
   history-substring-search
+  nvm
   zsh-nvm
   osx
   rake
