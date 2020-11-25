@@ -36,14 +36,12 @@ mkaufman.HTMLHint
 moshfeu.compare-folders
 moshfeu.diff-merge
 ms-azuretools.vscode-docker
-ms-vscode-remote.remote-containers
 ms-vscode.azure-account
 ms-vscode.vs-keybindings
 ms-vsliveshare.vsliveshare
 ms-vsliveshare.vsliveshare-audio
 ms-vsliveshare.vsliveshare-pack
 ms-vsonline.vsonline
-msjsdiag.debugger-for-chrome
 nhoizey.gremlins
 Pivotal.vscode-manifest-yaml
 PKief.material-icon-theme

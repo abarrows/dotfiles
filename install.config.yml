@@ -20,11 +20,10 @@
 #   path: hammerspoon
 
 # Shell - Custom plugins, themes, aliases, etc.
+- shell:
+    - cd ~/ && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    - echo 'Shell/ZSH - Installing the default Oh My ZSH...'
 - link:
-    ~/.oh-my-zsh:
-      path: oh-my-zsh
-      force: true
-      stdout: true
     ~/.p10k.zsh:
       force: true
       path: shell/.p10k.zsh
@@ -52,7 +51,7 @@
       force: true
       path: shell/.zshrc
 - shell:
-    - echo 'Shell/ZSH - Ready to go...'
+    - echo 'Shell/ZSH - Custom theme, plugins, aliases, etc. installed. Ready to go...'
 
 # Version Control
 - link:
