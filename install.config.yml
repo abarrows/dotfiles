@@ -60,7 +60,6 @@
     ~/.gitconfig:
       path: version-control/.gitconfig
       force: true
-    ~/.gitconfig-professional: version-control/.gitconfig-professional
 - shell:
     - echo 'General Version Control - Ready to go...'
 
