@@ -102,9 +102,7 @@
 
 # Ruby on Rails
 - link:
-    ~/.bundle: ruby/.bundle
     ~/.rubocop.yml: ruby/.rubocop.yml
-    ~/.gem: ruby/.gem
     ~/.gemrc: ruby/.gemrc
     ~/.mkshrc: ruby/.mkshrc
     ~/.rvmrc: ruby/.rvmrc
