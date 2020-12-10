@@ -30,7 +30,7 @@ brew "libpq"
 brew "libtool"
 brew "libyaml"
 brew "memcached"
-brew "microsoft/vscodespaces/codespaces"
+# brew "microsoft/vscodespaces/codespaces"
 brew "mysql", restart_service: true
 brew "mysql-client"
 brew "mysql@5.6", link: true

@@ -17,8 +17,6 @@ source "$ZSH/custom/.functions.zsh"
 source "$ZSH/custom/.plugins.zsh"
 source "$ZSH/custom/.aliases.zsh"
 
-
-
 # OLD PATHING
 # RVM
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
@@ -39,8 +37,6 @@ source "$ZSH/custom/.aliases.zsh"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 #echo "EXPORT: APPENDING Path: /usr/local/sbin (rvm)"
-
-
 
 # GENERAL SETTINGS
 # Uncomment the following line to use case-sensitive completion.
@@ -92,8 +88,6 @@ HIST_STAMPS="yyyy-mm-dd"
 
 source $ZSH/oh-my-zsh.sh
 
-
-
 # NON-OH-MY-ZSH EXTENSIONS
 # iTerm2 Integration
 [[ ! -f "$HOME/.iterm2_shell_integration.zsh" ]] || source "$HOME/.iterm2_shell_integration.zsh"
@@ -108,25 +102,3 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 
 # Python (Not in use.)
 # eval "$(pyenv init -)"
-
-
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme

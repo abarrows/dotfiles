@@ -20,7 +20,8 @@
 
 # Shell - Custom plugins, themes, aliases, etc.
 - shell:
-    - cd ~/ && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    - 'cd ~/'
+    - 'sh -c $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'
     - echo 'Shell/ZSH - Installing the default Oh My ZSH...'
 - link:
     ~/.p10k.zsh:
@@ -95,8 +96,6 @@
     ~/package.json: engineering/package.json
     ~/yarn.lock: engineering/yarn.lock
 - shell:
-    # - nvm install node
-    # - nvm use node
     - echo 'Node/React - Ready to go...'
 
 # Ruby on Rails
@@ -156,6 +155,4 @@
 - shell:
     - xcode-select --install || true
     - echo 'Xcode - Ready to go...'
-    - source ~/.zshrc
-    - zsh
     - echo 'Sourcing your zshrc! You are ready to rock and roll...'
