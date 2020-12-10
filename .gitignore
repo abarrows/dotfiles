@@ -177,7 +177,7 @@ atlassian-ide-plugin.xml
 # !.vscode/tasks.json
 # !.vscode/launch.json
 # !.vscode/extensions.json
-devcontainer.dev
+*devcontainer.env
 
 ###################
 
@@ -186,4 +186,4 @@ devcontainer.dev
 connections.xml
 server_instances.xml
 com.googlecode.iterm2.plist
-ruby/.gem
+ruby/.gem*
