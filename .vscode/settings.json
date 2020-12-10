@@ -1,4 +1,16 @@
 {
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
+    "editor.formatOnSave": true
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.formatOnSave": true
+  },
+  "[erb]": {
+    "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
+    "editor.formatOnSave": true
+  },
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -9,10 +21,12 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "[ruby]": {
     "editor.defaultFormatter": "castwide.solargraph",
@@ -22,8 +36,17 @@
     "editor.defaultFormatter": "timonwong.shellcheck",
     "editor.formatOnSave": true
   },
+  "[sql]": {
+    "editor.defaultFormatter": "sensourceinc.vscode-sql-beautify",
+    "editor.formatOnSave": true
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
+  },
   "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "atlascode.bitbucket.enabled": false,
   "atlascode.jira.enabled": true,
@@ -44,7 +67,7 @@
       "id": "110bea68-bd07-43aa-b1bc-2512556cd473",
       "monitor": true,
       "name": "TPS - My Issues",
-      "query": "project in (\"PUZSOC\",\"GAMES\") AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "query": "project =\"PUZSOC\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -121,8 +144,8 @@
     }
   ],
   "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
-    "projectKey": "DT"
+    "projectKey": "DT",
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
   },
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
     "maintenance",
@@ -143,7 +166,23 @@
   ],
   "atlascode.outputLevel": "errors",
   "breadcrumbs.enabled": true,
-  "cSpell.enableFiletypes": ["erb", "javascript"],
+  "cSpell.enableFiletypes": [
+    "!git-commit",
+    "dockerfile",
+    "dotenv",
+    "env",
+    "erb",
+    "gitignore",
+    "javascript",
+    "log",
+    "perl",
+    "perl6",
+    "powershell",
+    "sql",
+    "vue",
+    "xml",
+    "xsl"
+  ],
   "cSpell.enabledLanguageIds": [
     "asciidoc",
     "c",
@@ -465,6 +504,8 @@
   "files.associations": {
     "*.html.erb": "erb",
     "*.js.erb": "js",
+    ".env.*": "dotenv",
+    ".env.example": "dotenv",
     ".erb": "erb",
     ".zshrc": "shellscript"
   },
@@ -508,7 +549,10 @@
   "gitlens.advanced.repositorySearchDepth": 2,
   "gitlens.autolinks": [],
   "gitlens.blame.heatmap.enabled": true,
-  "gitlens.codeLens.scopes": ["document", "containers"],
+  "gitlens.codeLens.scopes": [
+    "document",
+    "containers"
+  ],
   "gitlens.defaultDateFormat": "MMM DD, YYYY",
   "gitlens.gitCommands.closeOnFocusOut": true,
   "gitlens.gitCommands.skipConfirmations": [
@@ -526,6 +570,7 @@
   ],
   "gitlens.sortBranchesBy": "date:desc",
   "gitlens.views.compare.enabled": true,
+  "gitlens.views.repositories.files.layout": "list",
   "gitlens.views.search.enabled": false,
   "html.format.enable": true,
   "jira-plugin.baseUrl": "https://amuniversal.atlassian.net",
@@ -575,10 +620,13 @@
   "jira-plugin.workingIssueStatues": "New, In Progress, In Peer Review, In QA Review, Approved",
   "jira-plugin.workingProject": "",
   "jira-plugin.worklogMinimumTrackingTime": 0,
+  "keyboard.layout": "us",
   "less.validate": false,
   "liveServer.settings.ChromeDebuggingAttachment": false,
   "liveServer.settings.donotShowInfoMsg": true,
   "liveServer.settings.wait": 500,
+  "liveshare.allowGuestDebugControl": true,
+  "liveshare.allowGuestTaskControl": true,
   "markdown.preview.fontSize": 16,
   "merge-conflict.autoNavigateNextConflict.enabled": true,
   "npm.packageManager": "yarn",
@@ -613,12 +661,27 @@
   "shellcheck.enableQuickFix": true,
   "shellcheck.run": "onSave",
   "shellcheck.useWorkspaceRootAsCwd": true,
+  "shellformat.effectLanguages": [
+    "shellscript",
+    "dockerfile",
+    "dotenv",
+    "hosts",
+    "jvmoptions",
+    "ignore",
+    "gitignore",
+    "properties",
+    "spring-boot-properties",
+    "azcli"
+  ],
   "solargraph.autoformat": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
   "solargraph.useBundler": true,
   "sortLines.filterBlankLines": true,
   "sortLines.sortEntireFile": true,
+  "stylelint.config": {
+    "source": "~/.stylelintrc.json"
+  },
   "stylelint.enable": true,
   "stylelint.packageManager": "yarn",
   "sync.autoDownload": true,
@@ -633,6 +696,7 @@
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.rendererType": "dom",
   "terminal.integrated.rightClickBehavior": "default",
+  "terminal.integrated.shell.linux": "/usr/bin/zsh",
   "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
   "timeline.excludeSources": [],
   "todo-tree.tree.showScanModeButton": false,
@@ -656,11 +720,5 @@
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
-  "stylelint.config": {
-    "source": "~/.stylelintrc.json"
-  },
-  "terminal.integrated.shell.linux": "/usr/bin/zsh",
-  "keyboard.layout": "us",
-  "gitlens.views.repositories.files.layout": "list"
+  }
 }
