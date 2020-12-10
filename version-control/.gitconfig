@@ -2,10 +2,13 @@
 	name = Andrew Barrows
 	email = abarrows@amuniversal.com
 	signingkey = BDE760D6A0526B62
+  url = https://github.com/abarrows
 [core]
+  editor = code
+	ignorecase = false
 	excludesfile = ~/version-control/.gitignore
 [init]
-	templateDir = ~/version-control/.git-template-dir
+	templateDir = ~/version-control/.git-template-directory
 [gpg]
 	program = gpg2
 [filter "lfs"]
@@ -15,3 +18,6 @@
 	required = true
 [pull]
 	rebase = false
+[commit]
+    # gpgsign = true
+    # template = ~/.gitmessage

@@ -57,7 +57,9 @@
     ~/.acb_bin: acb_bin
     /usr/local/bin/pathChecker.sh: acb_bin/pathChecker.sh
     ~/.bitbucket: version-control/.bitbucket
-    ~/.gitconfig: version-control/.gitconfig
+    ~/.gitconfig:
+      path: version-control/.gitconfig
+      force: true
     ~/.gitconfig-professional: version-control/.gitconfig-professional
 - shell:
     - echo 'General Version Control - Ready to go...'
