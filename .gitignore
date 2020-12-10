@@ -186,4 +186,4 @@ devcontainer.dev
 connections.xml
 server_instances.xml
 com.googlecode.iterm2.plist
-ruby/.gem/specs/
+ruby/.gem
