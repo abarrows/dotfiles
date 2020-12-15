@@ -84,7 +84,7 @@ if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-nvm" ]]; then
   echo 'Plugin should be sourced: zsh-nvm.'
 else
   echo 'Cloning plugin: zsh-nvm'
-  git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm
+  git clone "https://github.com/lukechilds/zsh-nvm" "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm"
 fi
 
 # ZSH PLUGIN: zsh-syntax-highlighting

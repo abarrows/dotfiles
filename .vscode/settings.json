@@ -32,7 +32,7 @@
     "editor.defaultFormatter": "castwide.solargraph",
     "editor.formatOnSave": true
   },
-  "[shell]": {
+  "[shellscript]": {
     "editor.defaultFormatter": "timonwong.shellcheck",
     "editor.formatOnSave": true
   },
@@ -508,7 +508,9 @@
     ".env.*": "dotenv",
     ".env.example": "dotenv",
     ".erb": "erb",
-    ".zshrc": "shellscript"
+    ".zshrc": "shellscript",
+    "*.zsh": "shellscript",
+    ".aliases.zsh": "shellscript"
   },
   "files.autoSave": "off",
   "files.exclude": {
@@ -656,6 +658,7 @@
   "search.globalFindClipboard": true,
   "search.quickOpen.includeHistory": false,
   "search.useIgnoreFiles": false,
+  "shellcheck.enable": true,
   "shellcheck.enableQuickFix": true,
   "shellcheck.run": "onSave",
   "shellcheck.useWorkspaceRootAsCwd": true,
@@ -715,5 +718,8 @@
   "workbench.startupEditor": "welcomePage",
   "workbench.tree.indent": 4,
   "workbench.view.alwaysShowHeaderActions": true,
-  "yaml.format.singleQuote": true
+  "yaml.format.singleQuote": true,
+  "yaml.schemas": {
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  }
 }

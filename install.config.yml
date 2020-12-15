@@ -32,16 +32,16 @@
       force: true
       path: shell/.zlogin
       stdout: true
-    ~/.oh-my-zsh/custom/.theme.zsh:
+    ~/.theme.zsh:
       force: true
       path: shell/.theme.zsh
-    ~/.oh-my-zsh/custom/.plugins.zsh:
+    ~/.plugins.zsh:
       force: true
       path: shell/.plugins.zsh
-    ~/.oh-my-zsh/custom/.functions.zsh:
+    ~/.functions.zsh:
       force: true
       path: shell/.functions.zsh
-    ~/.oh-my-zsh/custom/.aliases.zsh:
+    ~/.aliases.zsh:
       force: true
       path: shell/.aliases.zsh
     ~/.iterm2_shell_integration.zsh:
@@ -65,11 +65,11 @@
     - echo 'General Version Control - Ready to go...'
 
 # Homebrew General Software and Applications
+- brewfile:
+    - Brewfile
 - link:
     ~/Brewfile: Brewfile
     ~/Brewfile.lock.json: Brewfile.lock.json
-- brewfile:
-    - Brewfile
 - shell:
     - echo 'General Software and Applications (via homebrew) - Ready to go...'
 
