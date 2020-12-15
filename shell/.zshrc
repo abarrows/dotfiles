@@ -12,10 +12,10 @@ PATH=:bin/~/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/l
 
 # Path to your oh-my-zsh installation.
 ZSH=$HOME/.oh-my-zsh
-source "$ZSH/custom/.theme.zsh"
-source "$ZSH/custom/.functions.zsh"
-source "$ZSH/custom/.plugins.zsh"
-source "$ZSH/custom/.aliases.zsh"
+source "$HOME/.theme.zsh"
+source "$HOME/.functions.zsh"
+source "$HOME/.plugins.zsh"
+source "$HOME/.aliases.zsh"
 
 # CACHING
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
