@@ -56,7 +56,6 @@ ritwickdey.LiveServer
 sensourceinc.vscode-sql-beautify
 steoates.autoimport
 stkb.rewrap
-streetsidesoftware.code-spell-checker
 stylelint.vscode-stylelint
 svipas.control-snippets
 timonwong.shellcheck

@@ -95,6 +95,7 @@ alias servicegocontent="cd ~/documents/AMU/repos/amu-digital-services/embedded_e
 alias rsservicegoc="rails server --port=3070"
 alias servicegames="cd ~/documents/AMU/repos/amu-digital-services/amu_games/ && currentide"
 alias rsservicegames="rails server --port=3061"
+alias wwgame="cd ~/documents/AMU/repos/amu-digital-products/wonderword_game && currentide"
 alias servicegamedata="cd ~/documents/AMU/repos/amu-digital-services/webservice_gamedata/ && currentide"
 alias rsservicegamedata="rails server --port=3064"
 
@@ -137,8 +138,9 @@ alias glog="git log --pretty=format:'%h was %an, %ar, message: %s'"
 alias gadd="git add ."
 alias gaddu="git add -u"
 alias gremove="git rm -f "
-alias gpush="git push origin master"
-alias gpull="git pull origin master"
+alias gpush="git push origin --all"
+alias updatesubmodule="git pull --recurse-submodules && git submodule update --remote --recursive"
+alias gpull="\$updatesubmodule && git pull --all"
 alias removegit="rm -rf .git"
 
 # Heroku Stuff

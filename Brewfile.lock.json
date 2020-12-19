@@ -270,7 +270,7 @@
         }
       },
       "readline": {
-        "version": "8.0.4",
+        "version": "8.1",
         "bottle": {
           "cellar": ":any",
           "prefix": "/usr/local",
@@ -391,7 +391,7 @@
         }
       },
       "libksba": {
-        "version": "1.4.0",
+        "version": "1.5.0",
         "bottle": {
           "cellar": ":any",
           "prefix": "/usr/local",
@@ -1743,9 +1743,9 @@
         "HOMEBREW_VERSION": "2.6.1-25-gfc921bb",
         "HOMEBREW_PREFIX": "/usr/local",
         "Homebrew/homebrew-core": "93697825da4944984a7b496f565fc01f4d0c63ad",
-        "CLT": "12.2.0.0.1.1603499215",
-        "Xcode": "12.2",
-        "macOS": "11.0.1"
+        "CLT": "",
+        "Xcode": "12.3",
+        "macOS": "11.1"
       }
     }
   }
