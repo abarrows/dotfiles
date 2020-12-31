@@ -161,6 +161,7 @@ alias findassets="y Rails.application.config.assets.paths"
 alias sphinxindex="rake ts:index"
 alias sphinxrebuild="rake ts:rebuild"
 alias sphinx="rake ts:index && rake ts:rebuild"
+alias gemglobal="rvm @global do gem install $1"
 
 # Rails Stuff
 alias cleanassets="rake assets:clean assets:precompile"

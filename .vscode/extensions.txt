@@ -7,6 +7,7 @@ bmalehorn.shell-syntax
 castwide.solargraph
 christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
+codespaces-contrib.codeswing
 codezombiech.gitignore
 cpylua.language-postcss
 DavidAnson.vscode-markdownlint
