@@ -49,6 +49,7 @@
     "editor.formatOnSave": true
   },
   "atlascode.bitbucket.enabled": false,
+  "atlascode.helpExplorerEnabled": false,
   "atlascode.jira.enabled": true,
   "atlascode.jira.explorer.assignedIssueJql": "assignee=currentUser() and resolution = Unresolved",
   "atlascode.jira.explorer.enabled": true,
@@ -79,12 +80,12 @@
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "enabled": true,
       "id": "5de0ffa1-bb1c-4a76-9371-a870197089a9",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+      "monitor": true,
       "name": "Embed Service",
       "query": "project =\"Embed Service\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
-      "enabled": true,
-      "monitor": true
+      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
       "enabled": true,
@@ -135,17 +136,17 @@
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "enabled": true,
       "id": "c7cd7030-fd5e-42e1-b4bd-857e58e22fe2",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+      "monitor": true,
       "name": "TFS",
       "query": "project = Farside AND status != resolved AND assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
-      "enabled": true,
-      "monitor": true
+      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     }
   ],
   "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
-    "projectKey": "DT"
+    "projectKey": "DT",
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
   },
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
     "maintenance",
@@ -504,12 +505,12 @@
   "files.associations": {
     "*.html.erb": "erb",
     "*.js.erb": "js",
+    "*.zsh": "shellscript",
+    ".aliases.zsh": "shellscript",
     ".env.*": "dotenv",
     ".env.example": "dotenv",
     ".erb": "erb",
-    ".zshrc": "shellscript",
-    "*.zsh": "shellscript",
-    ".aliases.zsh": "shellscript"
+    ".zshrc": "shellscript"
   },
   "files.autoSave": "off",
   "files.exclude": {
@@ -616,10 +617,13 @@
   "jira-plugin.trackingTimeModeHybridTimeout": 15,
   "jira-plugin.username": "abarrows@amuniversal.com",
   "jira-plugin.workingIssueAssignees": "CURRENT_USER",
+  "jira-plugin.workingIssueChangeStatusAfterSelection": true,
+  "jira-plugin.workingIssueFilter": "ALL",
   "jira-plugin.workingIssueStatues": "New, In Progress, In Peer Review, In QA Review, Approved",
   "jira-plugin.workingProject": "",
   "jira-plugin.worklogMinimumTrackingTime": 0,
   "keyboard.layout": "us",
+  "l13Diff.ignoreEndOfLine": true,
   "less.validate": false,
   "liveServer.settings.ChromeDebuggingAttachment": false,
   "liveServer.settings.donotShowInfoMsg": true,
