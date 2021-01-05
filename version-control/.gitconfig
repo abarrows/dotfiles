@@ -1,23 +1,33 @@
 [user]
-	name = Andrew Barrows
-	email = abarrows@amuniversal.com
-	signingkey = BDE760D6A0526B62
-  url = https://github.com/abarrows
+name = Andrew Barrows
+email = abarrows@amuniversal.com
+signingkey = BDE760D6A0526B62
+url = https://github.com/abarrows
 [core]
-  editor = code
-	ignorecase = false
-	excludesfile = ~/version-control/.gitignore
+editor = code
+ignorecase = false
+excludesfile = ~/version-control/.gitignore
 [init]
-	templateDir = ~/version-control/.git-template-directory
+templateDir = ~/version-control/.git-template-directory
 [gpg]
-	program = gpg2
+program = gpg2
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
 [pull]
-	rebase = false
+rebase = false
 [commit]
-    # gpgsign = true
-    # template = ~/.gitmessage
+# gpgsign = true
+# template = ~/.gitmessage
+[core]
+editor = code --wait
+[diff]
+tool = vscode
+[difftool "vscode"]
+cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+tool = vscode
+[mergetool "vscode"]
+cmd = code --wait $MERGED
