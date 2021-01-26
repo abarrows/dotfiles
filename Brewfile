@@ -23,6 +23,7 @@ brew "htop"
 brew "icu4c"
 brew "imagemagick", link: false
 brew "imagemagick@6", link: true
+brew "katalon-studio"
 brew "krb5"
 brew "libgcrypt"
 brew "libksba"
@@ -35,6 +36,7 @@ brew "mysql", restart_service: true
 brew "mysql-client"
 brew "mysql@5.6", link: true
 brew "mysql@5.7"
+brew "openssl@1.1"
 brew "pgloader"
 brew "pidof"
 brew "pyenv"

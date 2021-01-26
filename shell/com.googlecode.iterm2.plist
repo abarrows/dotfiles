@@ -17,6 +17,33 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
+		<key>0x7a-0x100000-0x6</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string>0x1f</string>
+		</dict>
+		<key>0x7f-0x100000-0x33</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string>0x15</string>
+		</dict>
+		<key>0x7f-0x80000-0x33</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string>0x17</string>
+		</dict>
 		<key>0x9-0x40000</key>
 		<dict>
 			<key>Action</key>
@@ -41,20 +68,49 @@
 		<key>0xf702-0x300000-0x7b</key>
 		<dict>
 			<key>Action</key>
+			<integer>11</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string>0x01</string>
+		</dict>
+		<key>0xf702-0x320000-0x7b</key>
+		<dict>
+			<key>Action</key>
 			<integer>47</integer>
 			<key>Label</key>
 			<string></string>
 			<key>Text</key>
 			<string>2</string>
 		</dict>
-		<key>0xf702-0x320000</key>
+		<key>0xf702-0x380000-0x7b</key>
 		<dict>
 			<key>Action</key>
-			<integer>33</integer>
-			<key>Text</key>
+			<integer>47</integer>
+			<key>Label</key>
 			<string></string>
+			<key>Text</key>
+			<string>1</string>
+		</dict>
+		<key>0xf703-0x2a0000-0x7c</key>
+		<dict>
+			<key>Action</key>
+			<integer>48</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string>1</string>
 		</dict>
 		<key>0xf703-0x300000-0x7c</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Label</key>
+			<string></string>
+			<key>Text</key>
+			<string>0x05</string>
+		</dict>
+		<key>0xf703-0x320000-0x7c</key>
 		<dict>
 			<key>Action</key>
 			<integer>48</integer>
@@ -63,12 +119,14 @@
 			<key>Text</key>
 			<string>2</string>
 		</dict>
-		<key>0xf703-0x320000</key>
+		<key>0xf703-0x380000-0x7c</key>
 		<dict>
 			<key>Action</key>
-			<integer>34</integer>
-			<key>Text</key>
+			<integer>11</integer>
+			<key>Label</key>
 			<string></string>
+			<key>Text</key>
+			<string>0x1b 0x66</string>
 		</dict>
 		<key>0xf729-0x100000</key>
 		<dict>

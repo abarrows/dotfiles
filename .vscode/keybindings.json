@@ -33,14 +33,26 @@
     "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /blameable/"
   },
   {
-    "key": "alt+w",
+    "key": "ctrl+e",
+    "command": "workbench.view.explorer"
+  },
+  {
+    "key": "cmd+e",
     "command": "expand_region",
     "when": "editorTextFocus"
   },
   {
-    "key": "alt+shift+w",
+    "key": "cmd+e",
+    "command": "-actions.findWithSelection"
+  },
+  {
+    "key": "cmd+shift+e",
     "command": "undo_expand_region",
     "when": "editorTextFocus && editorHasSelection"
+  },
+  {
+    "key": "shift+cmd+e",
+    "command": "-workbench.view.explorer"
   },
   {
     "key": "ctrl+alt+[",
@@ -89,5 +101,183 @@
     "key": "shift+cmd+l",
     "command": "-editor.action.selectHighlights",
     "when": "editorFocus"
+  },
+  {
+    "key": "cmd+k",
+    "command": "editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "-editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+f4",
+    "command": "-references-view.prev",
+    "when": "reference-list.hasResult && references-view.canNavigate"
+  },
+  {
+    "key": "alt+cmd+backspace",
+    "command": "editor.emmet.action.removeTag"
+  },
+  {
+    "key": "cmd+t",
+    "command": "editor.emmet.action.updateTag"
+  },
+  {
+    "key": "alt+down",
+    "command": "spaceBlockJumper.moveDown"
+  },
+  {
+    "key": "alt+up",
+    "command": "spaceBlockJumper.moveUp"
+  },
+  {
+    "key": "shift+alt+down",
+    "command": "spaceBlockJumper.selectDown"
+  },
+  {
+    "key": "shift+alt+up",
+    "command": "spaceBlockJumper.selectUp"
+  },
+  {
+    "key": "alt+down",
+    "command": "-editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+up",
+    "command": "-editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+up",
+    "command": "-editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+down",
+    "command": "-editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+alt+up",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+alt+down",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+j",
+    "command": "-workbench.action.togglePanel"
+  },
+  {
+    "key": "cmd+j",
+    "command": "editor.emmet.action.matchTag",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+cmd+[",
+    "command": "-editor.fold",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "key": "cmd+j",
+    "command": "editor.foldRecursively",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "key": "cmd+shift+j",
+    "command": "editor.unfold",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "key": "cmd+k cmd+[",
+    "command": "-editor.foldRecursively",
+    "when": "editorTextFocus && foldingEnabled"
+  },
+  {
+    "key": "alt+cmd+j",
+    "command": "-liveshare.join",
+    "when": "liveshare:state != 'Joined' && liveshare:state != 'Shared'"
+  },
+  {
+    "key": "cmd+i",
+    "command": "editor.emmet.action.balanceIn"
+  },
+  {
+    "key": "shift+cmd+i",
+    "command": "editor.emmet.action.balanceOut"
+  },
+  {
+    "key": "cmd+n",
+    "command": "diffMerge.nextDiff",
+    "when": "diffMerge.panelFocused"
+  },
+  {
+    "key": "alt+f5",
+    "command": "-diffMerge.nextDiff",
+    "when": "diffMerge.panelFocused"
+  },
+  {
+    "key": "shift+cmd+n",
+    "command": "diffMerge.prevDiff",
+    "when": "diffMerge.panelFocused"
+  },
+  {
+    "key": "shift+alt+f5",
+    "command": "-diffMerge.prevDiff",
+    "when": "diffMerge.panelFocused"
+  },
+  {
+    "key": "cmd+n",
+    "command": "editor.action.diffReview.next",
+    "when": "isInDiffEditor"
+  },
+  {
+    "key": "f7",
+    "command": "-editor.action.diffReview.next",
+    "when": "isInDiffEditor"
+  },
+  {
+    "key": "shift+cmd+n",
+    "command": "editor.action.diffReview.prev",
+    "when": "isInDiffEditor"
+  },
+  {
+    "key": "shift+f7",
+    "command": "-editor.action.diffReview.prev",
+    "when": "isInDiffEditor"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "toggle.diff.ignoreTrimWhitespace"
+  },
+  {
+    "key": "ctrl+i",
+    "command": "l13Diff.ignoreWhitespace"
+  },
+  {
+    "key": "cmd+f",
+    "command": "actions.find"
+  },
+  {
+    "key": "cmd+f",
+    "command": "-actions.find",
+    "when": "editorFocus || editorIsOpen"
+  },
+  {
+    "key": "cmd+f",
+    "command": "actions.find",
+    "when": "editorFocus || editorIsOpen || diffMerge.panelFocused"
   }
 ]

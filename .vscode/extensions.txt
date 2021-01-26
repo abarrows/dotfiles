@@ -21,6 +21,7 @@ felixfbecker.php-intellisense
 formulahendry.auto-rename-tag
 formulahendry.code-runner
 foxundermoon.shell-format
+gazugafan.vscode-indent-on-paste
 geddski.macros
 gioboa.jira-plugin
 GitHub.vscode-pull-request-github
@@ -30,9 +31,11 @@ IBM.output-colorizer
 jacob-ebey.dotenv-sanitize
 jasonlhy.hungry-delete
 jkjustjoshing.vscode-text-pastry
+jmfirth.vsc-space-block-jumper
 KnisterPeter.vscode-github
 L13RARY.l13-diff
 leizongmin.node-module-intellisense
+letrieu.expand-region
 mhutchie.git-graph
 mikestead.dotenv
 mkaufman.HTMLHint

@@ -29,6 +29,7 @@ gem 'rails_best_practices'
 gem 'traceroute'
 
 gem 'debase-ruby_core_source'
+gem 'htmlbeautifier'
 gem 'shutup'
 gem 'dotenv-rails'
 gem 'rubocop'

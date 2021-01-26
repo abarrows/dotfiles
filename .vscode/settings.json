@@ -80,12 +80,12 @@
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
-      "enabled": true,
       "id": "5de0ffa1-bb1c-4a76-9371-a870197089a9",
-      "monitor": true,
+      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
       "name": "Embed Service",
       "query": "project =\"Embed Service\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
+      "enabled": true,
+      "monitor": true
     },
     {
       "enabled": true,
@@ -136,12 +136,12 @@
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
-      "enabled": true,
       "id": "c7cd7030-fd5e-42e1-b4bd-857e58e22fe2",
-      "monitor": true,
+      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
       "name": "TFS",
       "query": "project = Farside AND status != resolved AND assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
+      "enabled": true,
+      "monitor": true
     }
   ],
   "atlascode.jira.lastCreateSiteAndProject": {
@@ -462,8 +462,7 @@
   "dotfiles.installCommand": "install",
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
+    "source.fixAll.eslint": true
   },
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": true,
@@ -683,9 +682,6 @@
   "solargraph.useBundler": true,
   "sortLines.filterBlankLines": true,
   "sortLines.sortEntireFile": true,
-  "stylelint.config": {
-    "source": "~/.stylelintrc.json"
-  },
   "stylelint.enable": true,
   "stylelint.packageManager": "yarn",
   "sync.autoDownload": true,
@@ -723,5 +719,30 @@
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  }
+  },
+  "stylelint.validate": [
+    "css",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "less",
+    "markdown",
+    "postcss",
+    "sass",
+    "scss",
+    "source.css.styled",
+    "source.markdown.math",
+    "styled-css",
+    "sugarss",
+    "svelte",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "vue-html",
+    "vue-postcss",
+    "xml",
+    "xsl",
+    "erb"
+  ],
+  "liveServer.settings.donotVerifyTags": true
 }
