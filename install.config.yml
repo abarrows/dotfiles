@@ -147,8 +147,8 @@
     '~/Library/Application Support/code/User/snippets':
       path: .vscode/snippets
       create: true
-# - shell:
-#    - code --list-extensions > .vscode/extensions.txt
+- shell:
+    - code --list-extensions > .vscode/extensions.txt
 - vscodefile:
     file: .vscode/extensions.txt
     insiders: false
