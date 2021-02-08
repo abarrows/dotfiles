@@ -59,12 +59,14 @@
     /usr/local/bin/pathChecker.sh: acb_bin/pathChecker.sh
     ~/.bitbucket: version-control/.bitbucket
     ~/.gitconfig:
-      path: version-control/.gitconfig
       force: true
+      path: version-control/.gitconfig
 - shell:
     - echo 'General Version Control - Ready to go...'
 
 # Homebrew General Software and Applications
+- shell:
+    - 'git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --depth=10000'
 - brewfile:
     - Brewfile
 - link:

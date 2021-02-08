@@ -42,10 +42,6 @@
     "when": "editorTextFocus"
   },
   {
-    "key": "cmd+e",
-    "command": "-actions.findWithSelection"
-  },
-  {
     "key": "cmd+shift+e",
     "command": "undo_expand_region",
     "when": "editorTextFocus && editorHasSelection"
@@ -268,16 +264,56 @@
   },
   {
     "key": "cmd+f",
-    "command": "actions.find"
-  },
-  {
-    "key": "cmd+f",
-    "command": "-actions.find",
+    "command": "actions.find",
     "when": "editorFocus || editorIsOpen"
   },
   {
     "key": "cmd+f",
-    "command": "actions.find",
-    "when": "editorFocus || editorIsOpen || diffMerge.panelFocused"
+    "command": "actions.find"
+  },
+  {
+    "key": "cmd+c",
+    "command": "-l13Diff.action.panel.compare",
+    "when": "l13DiffFocus && !l13DiffInputFocus && !l13DiffSearchFocus"
+  },
+  {
+    "key": "alt+cmd+c",
+    "command": "-l13Diff.action.panel.compareAll",
+    "when": "l13DiffFocus && !l13DiffInputFocus && !l13DiffSearchFocus"
+  },
+  {
+    "key": "alt+cmd+c",
+    "command": "-l13Diff.action.search.toggleFindCaseSensitive",
+    "when": "l13DiffFocus && l13DiffSearchFocus"
+  },
+  {
+    "key": "alt+cmd+x",
+    "command": "-l13Diff.action.search.toggleFindConflicts",
+    "when": "l13DiffFocus"
+  },
+  {
+    "key": "alt+cmd+f",
+    "command": "-l13Diff.action.search.toggleFindFiles",
+    "when": "l13DiffFocus"
+  },
+  {
+    "key": "alt+cmd+d",
+    "command": "-l13Diff.action.search.toggleFindFolders",
+    "when": "l13DiffFocus"
+  },
+  {
+    "key": "alt+cmd+o",
+    "command": "-l13Diff.action.search.toggleFindOthers",
+    "when": "l13DiffFocus"
+  },
+  {
+    "key": "alt+cmd+l",
+    "command": "-l13Diff.action.search.toggleFindSymbolicLinks",
+    "when": "l13DiffFocus"
+  },
+  {
+    "key": "alt+cmd+r",
+    "command": "-l13Diff.action.search.toggleFindRegularExpression",
+    "when": "l13DiffFocus && l13DiffSearchFocus"
   }
 ]

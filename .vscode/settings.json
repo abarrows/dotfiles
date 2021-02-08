@@ -8,11 +8,8 @@
     "editor.formatOnSave": true
   },
   "[erb]": {
-    "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -456,7 +453,7 @@
   "debug.allowBreakpointsEverywhere": true,
   "debug.console.fontSize": 16,
   "diffEditor.codeLens": true,
-  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.renderSideBySide": true,
   "docker.images.sortBy": "CreatedTime",
   "dotfiles.installCommand": "install",
@@ -487,10 +484,10 @@
   "editor.tabSize": 2,
   "editor.wordWrap": "bounded",
   "emmet.includeLanguages": {
-    "*.erb": ".html",
     "javascript": "javascriptreact",
-    "sass": ".css",
-    "scss": ".css"
+    "sass": "css",
+    "scss": "css",
+    "erb": "html"
   },
   "eslint.alwaysShowStatus": true,
   "eslint.debug": true,
@@ -502,13 +499,13 @@
   "extensions.closeExtensionDetailsOnViewChange": true,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
-    "*.html.erb": "erb",
     "*.js.erb": "js",
+    "*.html.erb": "erb",
+    "*.erb": "erb",
     "*.zsh": "shellscript",
     ".aliases.zsh": "shellscript",
     ".env.*": "dotenv",
     ".env.example": "dotenv",
-    ".erb": "erb",
     ".zshrc": "shellscript"
   },
   "files.autoSave": "off",
@@ -571,7 +568,7 @@
   "gitlens.views.compare.enabled": true,
   "gitlens.views.repositories.files.layout": "list",
   "gitlens.views.search.enabled": false,
-  "html.format.enable": true,
+  "html.format.enable": false,
   "jira-plugin.baseUrl": "https://amuniversal.atlassian.net",
   "jira-plugin.enableCheckForNotifications": true,
   "jira-plugin.gitIntegration": true,
@@ -702,7 +699,7 @@
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.newWindowDimensions": "maximized",
   "window.restoreWindows": "all",
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 0,
   "workbench.colorTheme": "One Dark Pro",
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.openPositioning": "last",
@@ -744,5 +741,9 @@
     "xsl",
     "erb"
   ],
-  "liveServer.settings.donotVerifyTags": true
+  "liveServer.settings.donotVerifyTags": true,
+  "htmlhint.documentSelector": ["erb", "html", "htm"],
+  "html.format.templating": true,
+  "html.trace.server": "messages",
+  "workbench.editor.enablePreview": true
 }
