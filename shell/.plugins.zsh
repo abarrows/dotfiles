@@ -66,6 +66,15 @@ else
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
 
+# ZSH PLUGIN: zsh-syntax-highlighting
+# https://github.com/zsh-users/zsh-syntax-highlighting
+if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-syntax-highlighting" ]]; then
+  echo 'Plugin should be sourced: zsh-syntax-highlighting.'
+else
+  echo 'Cloning plugin: zsh-syntax-highlighting'
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+fi
+
 # ZSH PLUGIN: zsh-history-substring-search
 # https://github.com/zsh-users/zsh-history-substring-search
 if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-history-substring-search" ]]; then
@@ -85,15 +94,6 @@ if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-nvm" ]]; then
 else
   echo 'Cloning plugin: zsh-nvm'
   git clone "https://github.com/lukechilds/zsh-nvm" "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-nvm"
-fi
-
-# ZSH PLUGIN: zsh-syntax-highlighting
-# https://github.com/zsh-users/zsh-syntax-highlighting
-if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-syntax-highlighting" ]]; then
-  echo 'Plugin should be sourced: zsh-syntax-highlighting.'
-else
-  echo 'Cloning plugin: zsh-syntax-highlighting'
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 fi
 
 # Docker-completions
