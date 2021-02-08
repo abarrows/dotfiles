@@ -105,9 +105,7 @@
     ~/.rubocop.yml: ruby/.rubocop.yml
     ~/.gemrc: ruby/.gemrc
     ~/.mkshrc: ruby/.mkshrc
-    ~/.rvmrc:
-      - force: true
-      - path: ruby/.rvmrc
+    ~/.rvmrc: ruby/.rvmrc
 
 - shell:
     - echo 'Ruby on Rails - Ready to go...'
@@ -149,8 +147,8 @@
     '~/Library/Application Support/code/User/snippets':
       path: .vscode/snippets
       create: true
-- shell:
-    - code --list-extensions > .vscode/extensions.txt
+# - shell:
+#    - code --list-extensions > .vscode/extensions.txt
 - vscodefile:
     file: .vscode/extensions.txt
     insiders: false
