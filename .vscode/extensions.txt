@@ -57,6 +57,7 @@ rebornix.ruby
 redhat.vscode-yaml
 richie5um2.vscode-sort-json
 ritwickdey.LiveServer
+ryu1kn.partial-diff
 sensourceinc.vscode-sql-beautify
 steoates.autoimport
 stkb.rewrap
