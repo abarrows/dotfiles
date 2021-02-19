@@ -1833,9 +1833,9 @@
         "HOMEBREW_VERSION": "2.7.7-118-g55f1bb7",
         "HOMEBREW_PREFIX": "/usr/local",
         "Homebrew/homebrew-core": "e28dc02a547e9b64613a0b5ae6963d7e8d2440a9",
-        "CLT": "12.4.0.0.1.1610135815",
+        "CLT": "",
         "Xcode": "12.4",
-        "macOS": "11.1"
+        "macOS": "11.2.1"
       }
     }
   }
