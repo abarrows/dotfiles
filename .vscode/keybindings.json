@@ -37,16 +37,6 @@
     "command": "workbench.view.explorer"
   },
   {
-    "key": "cmd+e",
-    "command": "expand_region",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "cmd+shift+e",
-    "command": "undo_expand_region",
-    "when": "editorTextFocus && editorHasSelection"
-  },
-  {
     "key": "shift+cmd+e",
     "command": "-workbench.view.explorer"
   },
@@ -225,34 +215,9 @@
     "when": "diffMerge.panelFocused"
   },
   {
-    "key": "shift+cmd+n",
-    "command": "diffMerge.prevDiff",
-    "when": "diffMerge.panelFocused"
-  },
-  {
     "key": "shift+alt+f5",
     "command": "-diffMerge.prevDiff",
     "when": "diffMerge.panelFocused"
-  },
-  {
-    "key": "cmd+n",
-    "command": "editor.action.diffReview.next",
-    "when": "isInDiffEditor"
-  },
-  {
-    "key": "f7",
-    "command": "-editor.action.diffReview.next",
-    "when": "isInDiffEditor"
-  },
-  {
-    "key": "shift+cmd+n",
-    "command": "editor.action.diffReview.prev",
-    "when": "isInDiffEditor"
-  },
-  {
-    "key": "shift+f7",
-    "command": "-editor.action.diffReview.prev",
-    "when": "isInDiffEditor"
   },
   {
     "key": "ctrl+i",
@@ -315,5 +280,63 @@
     "key": "alt+cmd+r",
     "command": "-l13Diff.action.search.toggleFindRegularExpression",
     "when": "l13DiffFocus && l13DiffSearchFocus"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "workbench.action.gotoLine"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "-workbench.action.gotoLine"
+  },
+  {
+    "key": "cmd+e",
+    "command": "expand_region",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "-expand_region",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+cmd+e",
+    "command": "undo_expand_region",
+    "when": "editorHasSelection && editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+w",
+    "command": "-undo_expand_region",
+    "when": "editorHasSelection && editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+right",
+    "command": "-editor.action.smartSelect.expand",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+e",
+    "command": "editor.action.smartSelect.expand",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+cmd+right",
+    "command": "-editor.action.smartSelect.expand",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+cmd+e",
+    "command": "editor.action.smartSelect.shrink",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+left",
+    "command": "-editor.action.smartSelect.shrink",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+cmd+left",
+    "command": "-editor.action.smartSelect.shrink",
+    "when": "editorTextFocus"
   }
 ]

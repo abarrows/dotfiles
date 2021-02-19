@@ -1,10 +1,16 @@
 {
   "[dockerfile]": {
     "editor.defaultFormatter": "ms-azuretools.vscode-docker",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": false
+    },
     "editor.formatOnSave": true
   },
   "[dotenv]": {
     "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": false
+    },
     "editor.formatOnSave": true
   },
   "[erb]": {
@@ -23,26 +29,41 @@
   },
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": false
+    },
     "editor.formatOnSave": true
   },
   "[ruby]": {
     "editor.defaultFormatter": "castwide.solargraph",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": false
+    },
     "editor.formatOnSave": true
   },
   "[shellscript]": {
     "editor.defaultFormatter": "timonwong.shellcheck",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": false
+    },
     "editor.formatOnSave": true
   },
   "[sql]": {
     "editor.defaultFormatter": "sensourceinc.vscode-sql-beautify",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": false
+    },
     "editor.formatOnSave": true
   },
   "[xml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": false
+    },
     "editor.formatOnSave": true
   },
   "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "redhat.vscode-yaml",
     "editor.formatOnSave": true
   },
   "atlascode.bitbucket.enabled": false,
@@ -142,8 +163,8 @@
     }
   ],
   "atlascode.jira.lastCreateSiteAndProject": {
-    "projectKey": "DT",
-    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+    "projectKey": "DT"
   },
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
     "maintenance",
@@ -453,13 +474,12 @@
   "debug.allowBreakpointsEverywhere": true,
   "debug.console.fontSize": 16,
   "diffEditor.codeLens": true,
-  "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": true,
   "docker.images.sortBy": "CreatedTime",
   "dotfiles.installCommand": "install",
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
   },
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": true,
@@ -699,7 +719,7 @@
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.newWindowDimensions": "maximized",
   "window.restoreWindows": "all",
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 1,
   "workbench.colorTheme": "One Dark Pro",
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.openPositioning": "last",
@@ -714,9 +734,6 @@
   "workbench.tree.indent": 4,
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
-  "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
   "stylelint.validate": [
     "css",
     "html",
@@ -745,5 +762,10 @@
   "htmlhint.documentSelector": ["erb", "html", "htm"],
   "html.format.templating": true,
   "html.trace.server": "messages",
-  "workbench.editor.enablePreview": true
+  "yaml.trace.server": "verbose",
+  "yaml.schemas": {
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
+  "gitlens.views.branches.files.layout": "list",
+  "gitlens.views.branches.branches.layout": "list"
 }
