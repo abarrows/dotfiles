@@ -28,11 +28,6 @@
     "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /blameable/"
   },
   {
-    "key": "alt+cmd+g b",
-    "command": "-gitlens.toggleFileBlame",
-    "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /blameable/"
-  },
-  {
     "key": "ctrl+e",
     "command": "workbench.view.explorer"
   },
@@ -237,28 +232,8 @@
     "command": "actions.find"
   },
   {
-    "key": "cmd+c",
-    "command": "-l13Diff.action.panel.compare",
-    "when": "l13DiffFocus && !l13DiffInputFocus && !l13DiffSearchFocus"
-  },
-  {
-    "key": "alt+cmd+c",
-    "command": "-l13Diff.action.panel.compareAll",
-    "when": "l13DiffFocus && !l13DiffInputFocus && !l13DiffSearchFocus"
-  },
-  {
-    "key": "alt+cmd+c",
-    "command": "-l13Diff.action.search.toggleFindCaseSensitive",
-    "when": "l13DiffFocus && l13DiffSearchFocus"
-  },
-  {
     "key": "alt+cmd+x",
     "command": "-l13Diff.action.search.toggleFindConflicts",
-    "when": "l13DiffFocus"
-  },
-  {
-    "key": "alt+cmd+f",
-    "command": "-l13Diff.action.search.toggleFindFiles",
     "when": "l13DiffFocus"
   },
   {
