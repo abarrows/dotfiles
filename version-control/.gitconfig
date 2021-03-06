@@ -9,6 +9,7 @@ ignorecase = false
 excludesfile = ~/version-control/.gitignore
 [init]
 templateDir = ~/version-control/.git-template-directory
+	defaultBranch = production
 [gpg]
 program = gpg2
 [filter "lfs"]

@@ -1,16 +1,16 @@
 {
   "[dockerfile]": {
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
     "editor.formatOnSave": true
   },
   "[dotenv]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
+    "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.formatOnSave": true
   },
   "[erb]": {
@@ -28,38 +28,38 @@
     "editor.formatOnSave": true
   },
   "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
   "[ruby]": {
-    "editor.defaultFormatter": "castwide.solargraph",
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
+    "editor.defaultFormatter": "castwide.solargraph",
     "editor.formatOnSave": true
   },
   "[shellscript]": {
-    "editor.defaultFormatter": "timonwong.shellcheck",
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
+    "editor.defaultFormatter": "timonwong.shellcheck",
     "editor.formatOnSave": true
   },
   "[sql]": {
-    "editor.defaultFormatter": "sensourceinc.vscode-sql-beautify",
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
+    "editor.defaultFormatter": "sensourceinc.vscode-sql-beautify",
     "editor.formatOnSave": true
   },
   "[xml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
   "[yaml]": {
@@ -163,8 +163,8 @@
     }
   ],
   "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
-    "projectKey": "DT"
+    "projectKey": "DT",
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
   },
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
     "maintenance",
@@ -504,10 +504,10 @@
   "editor.tabSize": 2,
   "editor.wordWrap": "bounded",
   "emmet.includeLanguages": {
+    "erb": "html",
     "javascript": "javascriptreact",
     "sass": "css",
-    "scss": "css",
-    "erb": "html"
+    "scss": "css"
   },
   "eslint.alwaysShowStatus": true,
   "eslint.debug": true,
@@ -519,9 +519,9 @@
   "extensions.closeExtensionDetailsOnViewChange": true,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
-    "*.js.erb": "js",
-    "*.html.erb": "erb",
     "*.erb": "erb",
+    "*.html.erb": "erb",
+    "*.js.erb": "js",
     "*.zsh": "shellscript",
     ".aliases.zsh": "shellscript",
     ".env.*": "dotenv",
@@ -529,6 +529,7 @@
     ".zshrc": "shellscript"
   },
   "files.autoSave": "off",
+  "files.defaultLanguage": "${activeEditorLanguage}",
   "files.exclude": {
     "**/.history": true,
     "**/.idea": true,
@@ -585,10 +586,15 @@
     }
   ],
   "gitlens.sortBranchesBy": "date:desc",
+  "gitlens.views.branches.branches.layout": "list",
+  "gitlens.views.branches.files.layout": "list",
   "gitlens.views.compare.enabled": true,
   "gitlens.views.repositories.files.layout": "list",
   "gitlens.views.search.enabled": false,
   "html.format.enable": false,
+  "html.format.templating": true,
+  "html.trace.server": "messages",
+  "htmlhint.documentSelector": ["erb", "html", "htm"],
   "jira-plugin.baseUrl": "https://amuniversal.atlassian.net",
   "jira-plugin.enableCheckForNotifications": true,
   "jira-plugin.gitIntegration": true,
@@ -643,6 +649,7 @@
   "less.validate": false,
   "liveServer.settings.ChromeDebuggingAttachment": false,
   "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.donotVerifyTags": true,
   "liveServer.settings.wait": 500,
   "liveshare.allowGuestDebugControl": true,
   "liveshare.allowGuestTaskControl": true,
@@ -701,39 +708,6 @@
   "sortLines.sortEntireFile": true,
   "stylelint.enable": true,
   "stylelint.packageManager": "yarn",
-  "sync.autoDownload": true,
-  "sync.autoUpload": true,
-  "sync.gist": "bb65fea22ab86d87fce05b89a7f8c426",
-  "terminal.external.osxExec": "iterm.app",
-  "terminal.integrated.confirmOnExit": false,
-  "terminal.integrated.cursorBlinking": true,
-  "terminal.integrated.cursorStyle": "line",
-  "terminal.integrated.enableBell": true,
-  "terminal.integrated.fontFamily": "Hack",
-  "terminal.integrated.fontSize": 16,
-  "terminal.integrated.rendererType": "dom",
-  "terminal.integrated.rightClickBehavior": "default",
-  "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
-  "timeline.excludeSources": [],
-  "todo-tree.tree.showScanModeButton": false,
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "window.newWindowDimensions": "maximized",
-  "window.restoreWindows": "all",
-  "window.zoomLevel": 1,
-  "workbench.colorTheme": "One Dark Pro",
-  "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.openPositioning": "last",
-  "workbench.editor.revealIfOpen": true,
-  "workbench.editor.scrollToSwitchTabs": true,
-  "workbench.editor.showTabs": true,
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.settings.enableNaturalLanguageSearch": false,
-  "workbench.settings.openDefaultKeybindings": true,
-  "workbench.settings.useSplitJSON": true,
-  "workbench.startupEditor": "welcomePage",
-  "workbench.tree.indent": 4,
-  "workbench.view.alwaysShowHeaderActions": true,
-  "yaml.format.singleQuote": true,
   "stylelint.validate": [
     "css",
     "html",
@@ -758,14 +732,41 @@
     "xsl",
     "erb"
   ],
-  "liveServer.settings.donotVerifyTags": true,
-  "htmlhint.documentSelector": ["erb", "html", "htm"],
-  "html.format.templating": true,
-  "html.trace.server": "messages",
-  "yaml.trace.server": "verbose",
+  "sync.autoDownload": true,
+  "sync.autoUpload": true,
+  "sync.gist": "bb65fea22ab86d87fce05b89a7f8c426",
+  "terminal.external.osxExec": "iterm.app",
+  "terminal.integrated.confirmOnExit": false,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.enableBell": true,
+  "terminal.integrated.fontFamily": "Hack",
+  "terminal.integrated.fontSize": 16,
+  "terminal.integrated.rendererType": "dom",
+  "terminal.integrated.rightClickBehavior": "default",
+  "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
+  "timeline.excludeSources": [],
+  "todo-tree.tree.showScanModeButton": false,
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "window.newWindowDimensions": "maximized",
+  "window.restoreWindows": "all",
+  "workbench.colorTheme": "One Dark Pro",
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.openPositioning": "last",
+  "workbench.editor.revealIfOpen": true,
+  "workbench.editor.scrollToSwitchTabs": true,
+  "workbench.editor.showTabs": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.settings.enableNaturalLanguageSearch": false,
+  "workbench.settings.openDefaultKeybindings": true,
+  "workbench.settings.useSplitJSON": true,
+  "workbench.startupEditor": "welcomePage",
+  "workbench.tree.indent": 4,
+  "workbench.view.alwaysShowHeaderActions": true,
+  "yaml.format.singleQuote": true,
   "yaml.schemas": {
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "gitlens.views.branches.files.layout": "list",
-  "gitlens.views.branches.branches.layout": "list"
+  "yaml.trace.server": "verbose",
+  "workbench.editor.enablePreview": false
 }
