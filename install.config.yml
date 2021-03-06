@@ -84,7 +84,7 @@
     ~/.editorconfig: engineering/.editorconfig
     ~/.eslintrc.json: engineering/.eslintrc.json
     ~/.eslintignore: engineering/.eslintignore
-    ~/postcss.config.js: engineering/postcss.config.js
+    # ~/postcss.config.js: engineering/postcss.config.js
     ~/.prettierrc.json: engineering/.prettierrc.json
     ~/.prettierignore: engineering/.prettierignore
     ~/.stylelintrc.json: engineering/.stylelintrc.json
@@ -95,8 +95,6 @@
 - link:
     ~/.nvmrc: node/.nvmrc
     ~/.npmignore: node/.npmignore
-    ~/package.json: engineering/package.json
-    ~/yarn.lock: engineering/yarn.lock
 - shell:
     - echo 'Node/React - Ready to go...'
 
