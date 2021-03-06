@@ -155,6 +155,8 @@ The following tools can be used for improving the confidence of this apps logic 
   /home/codespace/.codespaces/.persistedshare/dotfiles/acb_bin/pathChecker.sh
 - ~/.gitconfig already exists but is a regular file or directory
 
+3. Add global precommit hook.
+
 .gnupg failed to sign commit data when adding .gitconfig. I suspect this has
 to do with having two entities in git or homebrew managing the GPG functionality.
 
