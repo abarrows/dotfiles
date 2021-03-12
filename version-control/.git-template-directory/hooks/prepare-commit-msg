@@ -14,10 +14,11 @@ if [ "$?" -gt "0" ]; then
   exit 0
 fi
 # TODO: Add ability to safeguard branches.
-# # Include any branches for which you wish to disable this script
-# if [ -z "$BRANCHES_TO_SKIP" ]; then
-#   BRANCHES_TO_SKIP=(master develop staging production)
-# fi
+# Include any branches for which you wish to disable this script
+if [ -z "$BRANCHES_TO_SKIP" ]; then
+  BRANCHES_TO_SKIP=(master develop staging production)
+fi
+BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$BRANCH_NAME$")
 # if [[ "$branchName" != "production" && "$branchName" != "master" && "$branchName" != "staging" ]]; then
 #   printf "Incorrect branch name\nPlease use the recommended branch format. Example: story/JIRA-1234/jira-issue-title-hyphenated-and-lowercased."
 # else
@@ -27,7 +28,7 @@ fi
 # Ensure BRANCH_NAME is not empty and is not in a detached HEAD state (i.e. rebase).
 # SKIP_PREPARE_COMMIT_MSG may be used as an escape hatch to disable this hook,
 # while still allowing other githooks to run.
-if [ ! -z "$BRANCH_NAME" ] && [ "$BRANCH_NAME" != "HEAD" ] && [ "$SKIP_PREPARE_COMMIT_MSG" != 1 ]; then
+if [ ! -z "$BRANCH_NAME" ] && ! [[ "$BRANCH_EXCLUDED" -eq 1 ]] && [ "$SKIP_PREPARE_COMMIT_MSG" != 1 ]; then
 
   PREFIX_PATTERN='[a-zA-Z0-9]{1,10}-[0-9]{1,5}'
 
