@@ -6,6 +6,9 @@
 - create:
     - ~/downloads
     - ~/Library/LaunchAgents
+    - ~/.git-template-directory
+    - ~/.git-template-directory/hooks
+    - ~/.git-template-directory/.github
 # Shell - Oh My ZSH
 # TODO: Figure out the command to not copy the .zshrc
 # - shell:
@@ -57,10 +60,13 @@
 - link:
     ~/.acb_bin: acb_bin
     /usr/local/bin/pathChecker.sh: acb_bin/pathChecker.sh
-    ~/.bitbucket: version-control/.bitbucket
     ~/.gitconfig:
       force: true
-      path: version-control/.gitconfig
+      path: version-control/.git-template-directory/.gitconfig
+    ~/.git-template-directory/.github/CODEOWNERS: version-control/.git-template-directory/.github/CODEOWNERS
+    ~/.git-template-directory/hooks/prepare-commit-msg: version-control/.git-template-directory/hooks/prepare-commit-msg
+    ~/.git-template-directory/.gitignore: version-control/.git-template-directory/.gitignore
+    ~/.bitbucket: version-control/.bitbucket
 - shell:
     - echo 'General Version Control - Ready to go...'
 

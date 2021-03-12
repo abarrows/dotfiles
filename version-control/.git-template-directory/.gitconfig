@@ -6,10 +6,10 @@ url = https://github.com/abarrows
 [core]
 editor = code
 ignorecase = false
-excludesfile = ~/version-control/.gitignore
+excludesfile = ~/version-control/.git-template-directory/.gitignore
 [init]
 templateDir = ~/version-control/.git-template-directory
-	defaultBranch = production
+defaultBranch = production
 [gpg]
 program = gpg2
 [filter "lfs"]

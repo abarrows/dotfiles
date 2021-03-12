@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# This precommit hook will inspect branch name and attempt to prepend your
+# commit message with the JIRA Issue key if it is not already in there. (i.e. ABC-123).
+# GLOBAL USAGE: To install this globally,
+# move this into a global location (like your machine's root directory),
+# take note of the path, and execute the following in your terminal:
+# git config --global core.hooksPath /path/to/global/hooks/you/noted
+# In this example this prepare-commit-msg file would go in the folder "/noted"
+
+BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+if [ "$?" -gt "0" ]; then
+  echo 'No branch was available, exiting pre-commit hook.'
+  exit 0
+fi
+# TODO: Add ability to safeguard branches.
+# # Include any branches for which you wish to disable this script
+# if [ -z "$BRANCHES_TO_SKIP" ]; then
+#   BRANCHES_TO_SKIP=(master develop staging production)
+# fi
+# if [[ "$branchName" != "production" && "$branchName" != "master" && "$branchName" != "staging" ]]; then
+#   printf "Incorrect branch name\nPlease use the recommended branch format. Example: story/JIRA-1234/jira-issue-title-hyphenated-and-lowercased."
+# else
+#   echo "Something went wrong with your pre-commit hook.  Could not find a JIRA Issue key in your branch name and your branch is not protected."
+# fi
+
+# Ensure BRANCH_NAME is not empty and is not in a detached HEAD state (i.e. rebase).
+# SKIP_PREPARE_COMMIT_MSG may be used as an escape hatch to disable this hook,
+# while still allowing other githooks to run.
+if [ ! -z "$BRANCH_NAME" ] && [ "$BRANCH_NAME" != "HEAD" ] && [ "$SKIP_PREPARE_COMMIT_MSG" != 1 ]; then
+
+  PREFIX_PATTERN='[a-zA-Z0-9]{1,10}-[0-9]{1,5}'
+
+  [[ $BRANCH_NAME =~ $PREFIX_PATTERN ]]
+
+  # TODO: Add uppercase on the $PREFIX
+  # TODO: Add an optional match to feature/PJT-1234
+  PREFIX=${BASH_REMATCH[0]}
+
+  PREFIX_IN_COMMIT=$(grep -c "\[$PREFIX\]" $1)
+
+  # Ensure PREFIX exists in BRANCH_NAME and is not already present in the commit message
+  if [[ -n "$PREFIX" ]] && ! [[ $PREFIX_IN_COMMIT -ge 1 ]]; then
+    sed -i.bak -e "1s~^~[$PREFIX] ~" $1
+  fi
+
+fi
