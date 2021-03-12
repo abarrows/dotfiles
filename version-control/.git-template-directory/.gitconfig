@@ -24,6 +24,7 @@ rebase = false
 # template = ~/.gitmessage
 [core]
 editor = code --wait
+	hooksPath = ~/.git-template-directory/hooks
 [diff]
 tool = vscode
 [difftool "vscode"]
