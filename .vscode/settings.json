@@ -75,6 +75,14 @@
   "atlascode.jira.jqlList": [
     {
       "enabled": true,
+      "id": "c33593e5-febe-4787-adce-44be66d943ab",
+      "monitor": true,
+      "name": "My Most Recently Created Issues",
+      "query": "reporter = currentUser() AND status != Done ORDER BY updatedDate",
+      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
+    },
+    {
+      "enabled": true,
       "id": "faedfb95-7fef-47c3-a54b-cc397464edf9",
       "monitor": true,
       "name": "Content Admin - My Issues",
@@ -143,14 +151,6 @@
       "monitor": true,
       "name": "Dilbert - My Issues",
       "query": "project = Dilbert AND status != resolved ORDER by rank ASC, priority DESC, updatedDate DESC",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
-    },
-    {
-      "enabled": true,
-      "id": "c33593e5-febe-4787-adce-44be66d943ab",
-      "monitor": true,
-      "name": "My Most Recently Created Issues",
-      "query": "reporter = currentUser() AND status != Done ORDER BY updatedDate",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -768,5 +768,22 @@
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.trace.server": "verbose",
-  "workbench.editor.enablePreview": false
+  "workbench.editor.enablePreview": false,
+  "githubPullRequests.fileListLayout": "flat",
+  "githubIssues.assignWhenWorking": false,
+  "githubIssues.createInsertFormat": "url",
+  "githubPullRequests.queries": [
+    {
+      "label": "Waiting For My Review",
+      "query": "is:open review-requested:${user}"
+    },
+    {
+      "label": "Assigned To Me",
+      "query": "is:open assignee:${user}"
+    },
+    {
+      "label": "Created By Me",
+      "query": "is:open author:${user}"
+    }
+  ]
 }
