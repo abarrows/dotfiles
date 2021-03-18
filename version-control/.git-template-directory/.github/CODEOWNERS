@@ -1,18 +1,16 @@
 # Lines starting with '#' are comments.
-
+# Order is important. The last matching pattern has the most precedence.
+# You can also use email addresses if you prefer.
 # Each line is a file pattern followed by one or more owners.
 
 # These owners will be the default owners for everything in the repo.
+* @abarrows
 
-* @abarrows dcumpton@amuniversal.com ctrble@gmail.com n.d.trost@gmail.com @pmccarthyAMU @kubecode30
+# Front-end Engineering
+*.js *.css *.scss *.erb @abarrows @dcumpton ctrble@gmail.com @NathanTrost @pmccarthyAMU
 
-# Order is important. The last matching pattern has the most precedence.
+# Back-end Engineering
+!*.js !*.css !*.scss @vkieffer-amu @amumark
 
-# So if a pull request only touches javascript files, only these owners
-
-# will be requested to review.
-
-*.rb @vkieffer-amu
-*.rb mcapodagli@amuniversal.com
-
-# You can also use email addresses if you prefer.
+# DevOps
+./* config/** @forrestkc @tburger010 @kubecode30
