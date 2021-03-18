@@ -51,6 +51,8 @@ alias gocomics="cd ~/documents/AMU/repos/amu-digital-products/gocomics5/ && curr
 alias rsgocomics="rails server --port=3001"
 alias tps="cd ~/documents/AMU/repos/amu-digital-products/puzzlesociety/ && currentide"
 alias rstps="rails server --port=3004"
+alias puzzlesociety="cd ~/documents/AMU/repos/amu-digital-products/puzzle-society_ui/ && currentide"
+alias rspuzzlesociety="yarn install && yarn dev"
 alias uu="cd ~/documents/AMU/repos/amu-digital-products/universaluclick/ && currentide"
 alias rsuu="rails server --port=3006"
 alias uexpress="cd ~/documents/AMU/repos/amu-digital-products/uexpress && currentide"
