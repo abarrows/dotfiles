@@ -19,4 +19,4 @@ speedups:
   setter_vs_attr_writer: true
 
 exclude_paths:
-  - "db/schema.rb"
+  - 'db/schema.rb'

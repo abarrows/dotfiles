@@ -8,7 +8,9 @@ AllCops:
     - 'bin/*'
     - 'node_modules/**/*'
     - 'vendor/bundle/**/*'
+    - '.rvm/gems/*'
     - 'db/schema.rb'
+    - 'spec/cassettes/*'
 
 Rails/UnknownEnv:
   Environments:
@@ -19,6 +21,9 @@ Rails/UnknownEnv:
 
 Rails/FilePath:
   EnforcedStyle: slashes
+
+Layout/LineLength:
+  Max: 120
 
 Metrics/AbcSize:
   Max: 20
@@ -33,9 +38,6 @@ Metrics/BlockLength:
     - 'config/**/*'
     - 'db/**/*'
   ExcludedMethods: ['group', 'context']
-
-Metrics/LineLength:
-  Max: 120
 
 Metrics/MethodLength:
   Max: 20

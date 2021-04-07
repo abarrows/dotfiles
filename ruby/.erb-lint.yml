@@ -1,46 +1,8 @@
 ---
 linters:
-  FinalNewline:
-    enabled: true
-    exclude:
-      - '**vendor/bundle/**'
-  RightTrim:
-    enabled: true
-    enforced_style: '-'
-    exclude:
-      - '**vendor/bundle/**'
-  SelfClosingTag:
-    enabled: true
-    enforced_style: 'always'
-    exclude:
-      - '**vendor/bundle/**'
-  AllowedScriptType:
-    enabled: true
-    allowed_types:
-      - 'application/json'
-      - 'text/javascript'
-      - 'text/html'
-    allow_blank: false
-    disallow_inline_scripts: false
-    exclude:
-      - '**vendor/bundle/**'
-  DeprecatedClasses:
-    enabled: true
-    exclude:
-      - '**vendor/bundle/**'
-    # exclude:
-    # - "app/views/shared/deprecated/**"
-    # rule_set:
-    # - deprecated: ['badge[-_\w]*']
-    # suggestion: "Use the ui_badge() component instead."
-  # CustomLinter:
-  # enabled: true
-  # custom_message: We suggest you change this file.
   ErbSafety:
     enabled: true
-    better_html_config: .better-html.yml
-    exclude:
-      - '**vendor/bundle/**'
+    #better_html_config: .better-html.yml
   Rubocop:
     enabled: true
     rubocop_config:
