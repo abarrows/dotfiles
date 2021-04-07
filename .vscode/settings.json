@@ -14,7 +14,7 @@
     "editor.formatOnSave": true
   },
   "[erb]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
     "editor.formatOnSave": true
   },
   "[javascript]": {
@@ -185,23 +185,12 @@
   ],
   "atlascode.outputLevel": "errors",
   "breadcrumbs.enabled": true,
-  "cSpell.enableFiletypes": [
-    "!git-commit",
-    "dockerfile",
-    "dotenv",
-    "env",
-    "erb",
-    "gitignore",
-    "javascript",
-    "log",
-    "perl",
-    "perl6",
-    "powershell",
-    "sql",
-    "vue",
-    "xml",
-    "xsl"
-  ],
+  "codespaces.accountProvider": "GitHub",
+  "codespaces.enableSubmoduleCloning": true,
+  "codespaces.featureSet": "stable",
+  "codespaces.planFilter": "/subscriptions/5479830b-7861-4a1a-b191-1cb538748d7d/resourceGroups/vso-rg-65b0015/providers/Microsoft.VSOnline/plans/vso-plan-eastus",
+  "compareFolders.ignoreFileNameCase": true,
+  "compareFolders.useDiffMerge": true,
   "cSpell.enabledLanguageIds": [
     "asciidoc",
     "c",
@@ -234,6 +223,23 @@
     "yaml",
     "yml"
   ],
+  "cSpell.enableFiletypes": [
+    "!git-commit",
+    "dockerfile",
+    "dotenv",
+    "env",
+    "erb",
+    "gitignore",
+    "javascript",
+    "log",
+    "perl",
+    "perl6",
+    "powershell",
+    "sql",
+    "vue",
+    "xml",
+    "xsl"
+  ],
   "cSpell.ignorePaths": [
     "**/package-lock.json",
     "**/node_modules/**",
@@ -252,6 +258,7 @@
     "Arial",
     "Browserstack",
     "CCPA",
+    "CODEOWNER",
     "Checkmark",
     "Coenraad",
     "Colorstr",
@@ -270,6 +277,7 @@
     "Macromedia's",
     "Matic",
     "Meel",
+    "Metrix",
     "Pageview",
     "Parens",
     "Photoshop",
@@ -284,6 +292,7 @@
     "Sovrn",
     "Steinberg",
     "Styleguide",
+    "Sublicensing",
     "TODOS",
     "Teads",
     "Tensorflow",
@@ -292,6 +301,7 @@
     "VIEWABILITY",
     "Vica",
     "Vqwwq",
+    "WIPO",
     "Waldron",
     "Webistrano",
     "abarrows",
@@ -447,6 +457,7 @@
     "thead",
     "thefarside",
     "titleize",
+    "treosh",
     "truetype",
     "tynt",
     "ubadge",
@@ -464,12 +475,6 @@
     "workhorse",
     "yamllint"
   ],
-  "codespaces.accountProvider": "GitHub",
-  "codespaces.enableSubmoduleCloning": true,
-  "codespaces.featureSet": "stable",
-  "codespaces.planFilter": "/subscriptions/5479830b-7861-4a1a-b191-1cb538748d7d/resourceGroups/vso-rg-65b0015/providers/Microsoft.VSOnline/plans/vso-plan-eastus",
-  "compareFolders.ignoreFileNameCase": true,
-  "compareFolders.useDiffMerge": true,
   "css.validate": false,
   "debug.allowBreakpointsEverywhere": true,
   "debug.console.fontSize": 16,
@@ -519,14 +524,13 @@
   "extensions.closeExtensionDetailsOnViewChange": true,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
-    "*.erb": "erb",
-    "*.html.erb": "erb",
-    "*.js.erb": "js",
-    "*.zsh": "shellscript",
     ".aliases.zsh": "shellscript",
     ".env.*": "dotenv",
     ".env.example": "dotenv",
-    ".zshrc": "shellscript"
+    ".zshrc": "shellscript",
+    "*.erb": "erb",
+    "*.js.erb": "js",
+    "*.zsh": "shellscript"
   },
   "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",
@@ -557,9 +561,27 @@
   "git.inputValidationLength": 200,
   "git.inputValidationSubjectLength": null,
   "git.showPushSuccessNotification": true,
+  "github-actions.org-features": true,
   "github.customPullRequestTitle": true,
   "github.preferedMergeMethod": "merge",
+  "githubIssues.assignWhenWorking": false,
+  "githubIssues.createInsertFormat": "url",
   "githubPullRequests.defaultMergeMethod": "merge",
+  "githubPullRequests.fileListLayout": "flat",
+  "githubPullRequests.queries": [
+    {
+      "label": "Waiting For My Review",
+      "query": "is:open review-requested:${user}"
+    },
+    {
+      "label": "Assigned To Me",
+      "query": "is:open assignee:${user}"
+    },
+    {
+      "label": "Created By Me",
+      "query": "is:open author:${user}"
+    }
+  ],
   "gitlens.advanced.messages": {
     "suppressCommitNotFoundWarning": true,
     "suppressFileNotUnderSourceControlWarning": true,
@@ -569,7 +591,10 @@
   "gitlens.advanced.repositorySearchDepth": 2,
   "gitlens.autolinks": [],
   "gitlens.blame.heatmap.enabled": true,
-  "gitlens.codeLens.scopes": ["document", "containers"],
+  "gitlens.codeLens.scopes": [
+    "document",
+    "containers"
+  ],
   "gitlens.defaultDateFormat": "MMM DD, YYYY",
   "gitlens.gitCommands.closeOnFocusOut": true,
   "gitlens.gitCommands.skipConfirmations": [
@@ -591,10 +616,15 @@
   "gitlens.views.compare.enabled": true,
   "gitlens.views.repositories.files.layout": "list",
   "gitlens.views.search.enabled": false,
+  "gitlens.views.searchAndCompare.files.layout": "list",
   "html.format.enable": false,
   "html.format.templating": true,
   "html.trace.server": "messages",
-  "htmlhint.documentSelector": ["erb", "html", "htm"],
+  "htmlhint.documentSelector": [
+    "erb",
+    "html",
+    "htm"
+  ],
   "jira-plugin.baseUrl": "https://amuniversal.atlassian.net",
   "jira-plugin.enableCheckForNotifications": true,
   "jira-plugin.gitIntegration": true,
@@ -729,8 +759,7 @@
     "vue-html",
     "vue-postcss",
     "xml",
-    "xsl",
-    "erb"
+    "xsl"
   ],
   "sync.autoDownload": true,
   "sync.autoUpload": true,
@@ -746,11 +775,28 @@
   "terminal.integrated.rightClickBehavior": "default",
   "terminal.integrated.shell.osx": "/usr/local/bin/zsh",
   "timeline.excludeSources": [],
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "[ ]",
+    "[x]"
+  ],
+  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
   "todo-tree.tree.showScanModeButton": false,
+  "vs-kubernetes": {
+    "vscode-kubernetes.helm-path.mac": "/Users/abarrows/.vs-kubernetes/tools/helm/darwin-amd64/helm",
+    "vscode-kubernetes.kubectl-path.mac": "/Users/abarrows/.vs-kubernetes/tools/kubectl/kubectl",
+    "vscode-kubernetes.minikube-path.mac": "/Users/abarrows/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+  },
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.newWindowDimensions": "maximized",
   "window.restoreWindows": "all",
+  "window.zoomLevel": 1,
   "workbench.colorTheme": "One Dark Pro",
+  "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.openPositioning": "last",
   "workbench.editor.revealIfOpen": true,
@@ -765,25 +811,7 @@
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "yaml.trace.server": "verbose",
-  "workbench.editor.enablePreview": false,
-  "githubPullRequests.fileListLayout": "flat",
-  "githubIssues.assignWhenWorking": false,
-  "githubIssues.createInsertFormat": "url",
-  "githubPullRequests.queries": [
-    {
-      "label": "Waiting For My Review",
-      "query": "is:open review-requested:${user}"
-    },
-    {
-      "label": "Assigned To Me",
-      "query": "is:open assignee:${user}"
-    },
-    {
-      "label": "Created By Me",
-      "query": "is:open author:${user}"
-    }
-  ]
+  "yaml.trace.server": "verbose"
 }
