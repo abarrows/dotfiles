@@ -1,0 +1,28 @@
+<challenges>
+  <tiles>OCVLNRIAXESTE</tiles>
+  <challenge>
+    <question>Eye parts</question>
+    <answer>IRISES</answer>
+    <indexes>5 6 10 9 10</indexes>
+  </challenge>
+  <challenge>
+    <question>A number obtained from sample data</question>
+    <answer>STATISTIC</answer>
+    <indexes>11 7 11 6 10 11 6 1</indexes>
+  </challenge>
+  <challenge>
+    <question>Medical examiner</question>
+    <answer>CORONER</answer>
+    <indexes>0 5 0 4 9 5</indexes>
+  </challenge>
+  <challenge>
+    <question>Adversary</question>
+    <answer>RIVAL</answer>
+    <indexes>6 2 7 3</indexes>
+  </challenge>
+  <challenge>
+    <question>Glove material</question>
+    <answer>LATEX</answer>
+    <indexes>7 11 12 8</indexes>
+  </challenge>
+</challenges>

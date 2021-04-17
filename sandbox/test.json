@@ -1,0 +1,127 @@
+{
+  "puzzles": [
+    {
+      "date": "10/27/2015",
+      "words": [
+        {
+          "clue": "Involuntary response to a stimulus; any automatic, unthinking reaction (noun)",
+          "display": "**FLEX",
+          "example": "It was an instinctive REFLEX to grab the running child who was chasing a ball into the street.",
+          "hint": "It was an instinctive ________ to grab the running child who was chasing a ball into the street.",
+          "root": "FLEX",
+          "rootmeaning": "Root means 'bend'",
+          "word": "REFLEX"
+        },
+        {
+          "clue": "To bend the knee; to touch one knee to the floor in reverence or worship (verb)",
+          "display": "****FLECT",
+          "example": "When June and Steven GENUFLECT before entering a church pew, the gesture shows reverence.",
+          "hint": "When June and Steven ________ before entering a church pew, the gesture shows reverence.",
+          "root": "FLECT",
+          "rootmeaning": "Root means 'bend",
+          "word": "GENUFLECT"
+        },
+        {
+          "clue": "Modulation of the voice; change in pitch, loudness or tone (noun)",
+          "display": "**FLECT***",
+          "example": "Mrs. Casper altered the INFLECTION in her voice to alert the students to an important statement.",
+          "hint": "Mrs. Casper altered the ________ in her voice to alert the students to an important statement.",
+          "root": "FLECT",
+          "rootmeaning": "Root means 'bend'",
+          "word": "INFLECTION"
+        },
+        {
+          "clue": "Easily bent without breaking; pliable; adaptable (adjective)",
+          "display": "FLEX****",
+          "example": "The thin wire was so FLEXIBLE that Dave easily wound it around the post.",
+          "hint": "The thin wire was so ________ that Dave easily wound it around the post.",
+          "root": "FLEX",
+          "rootmeaning": "Root means 'bend'",
+          "word": "FLEXIBLE"
+        }
+      ]
+    },
+    {
+      "date": "10/29/2015",
+      "words": [
+        {
+          "clue": "Matter that settles at the bottom of a liquid; material deposited by water, wind, etc. (noun)",
+          "display": "SED*****",
+          "example": "Amanda disliked seeing any brownish SEDIMENT at the bottom of her coffee cup.",
+          "hint": "Amanda disliked seeing any brownish ________ at the bottom of her coffee cup.",
+          "root": "SED",
+          "rootmeaning": "Root means 'sit, settle'",
+          "word": "SEDIMENT"
+        },
+        {
+          "clue": "Calm, quiet or composed; undisturbed; serenely deliberate in character (adjective)",
+          "display": "SED***",
+          "example": "The female diplomat has SEDATE manners and is welcomed at various embassies.",
+          "hint": "The female diplomat has  ________ manners and is welcomed at various embassies.",
+          "root": "SED",
+          "rootmeaning": "Root means 'sit, settle'",
+          "word": "SEDATE"
+        },
+        {
+          "clue": "To displace in favor of another: supplant; to force out of use as inferior (verb)",
+          "display": "*****SEDE",
+          "example": "The research lab discovered a new drug to SUPERSEDE a previous, less potent treatment.",
+          "hint": "The research lab discovered a new drug to ________ a previous, less potent treatment.",
+          "root": "SEDE",
+          "rootmeaning": "Root means 'sit, settle'",
+          "word": "SUPERSEDE"
+        },
+        {
+          "clue": "Characterized by inactivity or lack of exercise; doing much sitting; settled (adjective)",
+          "display": "SED******",
+          "example": "Janet took a SEDENTARY job that required her to sit all day at her computer station.",
+          "hint": "Janet took a ________ job that required her to sit all day at her computer station.",
+          "root": "SED",
+          "rootmeaning": "Root means 'sit, settle'",
+          "word": "SEDENTARY"
+        }
+      ]
+    },
+    {
+      "date": "10/30/2015",
+      "words": [
+        {
+          "clue": "Professional who designs buildings and oversees construction; a planner (noun)",
+          "display": "ARCHI****",
+          "example": "Frank Lloyd Wright, a famous ARCHITECT, designed the Marin County Civic Center in San Rafael, California",
+          "hint": "Frank Lloyd Wright, a famous ________, designed the Marin County Civic Center in San Rafael, California.",
+          "root": "ARCHI",
+          "rootmeaning": "Root means 'chief, first, principal'",
+          "word": "ARCHITECT"
+        },
+        {
+          "clue": "Daily written record of personal experiences, observations and thoughts; a journal (noun)",
+          "display": "DI***",
+          "example": "Laura writes in her leather DIARY every evening before she goes to sleep.",
+          "hint": "Laura writes in her leather ________ every evening before she goes to sleep.",
+          "root": "DI",
+          "rootmeaning": "Root means 'day'",
+          "word": "DIARY"
+        },
+        {
+          "clue": "A prisoner; something or someone kept in confinement (noun)",
+          "display": "CAP****",
+          "example": "Jake knows that Gen. Douglas MacArthur was never held CAPTIVE during World War II.",
+          "hint": "Jake knows that Gen. Douglas MacArthur was never held ________ during World War II.",
+          "root": "CAP",
+          "rootmeaning": "Root means 'take, seize, hold'",
+          "word": "CAPTIVE"
+        },
+        {
+          "clue": "To engage in love affairs frivolously or casually (verb)",
+          "display": "PHIL*****",
+          "example": "Who respects a married man who will PHILANDER and refute moral values?",
+          "hint": "Who respects a married man who will ________ and refute moral values?",
+          "root": "PHIL",
+          "rootmeaning": "Root means 'loving, fond'",
+          "word": "PHILANDER"
+        }
+      ]
+    }
+  ]
+}
