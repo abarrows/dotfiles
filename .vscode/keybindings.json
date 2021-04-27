@@ -99,11 +99,11 @@
     "when": "reference-list.hasResult && references-view.canNavigate"
   },
   {
-    "key": "alt+cmd+backspace",
+    "key": "cmd+backspace",
     "command": "editor.emmet.action.removeTag"
   },
   {
-    "key": "cmd+t",
+    "key": "cmd+r",
     "command": "editor.emmet.action.updateTag"
   },
   {
@@ -173,8 +173,13 @@
   },
   {
     "key": "cmd+j",
-    "command": "editor.foldRecursively",
-    "when": "editorTextFocus && foldingEnabled"
+    "command": "editor.emmet.action.splitJoinTag",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+m",
+    "command": "editor.emmet.action.matchTag",
+    "when": "editorTextFocus && !editorReadonly"
   },
   {
     "key": "cmd+shift+j",
@@ -313,5 +318,10 @@
     "key": "ctrl+shift+cmd+left",
     "command": "-editor.action.smartSelect.shrink",
     "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+t",
+    "command": "editor.emmet.action.wrapWithAbbreviation",
+    "when": "editorTextFocus && !editorReadonly"
   }
 ]
