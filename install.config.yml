@@ -94,6 +94,7 @@
     ~/.prettierrc.json: engineering/.prettierrc.json
     ~/.prettierignore: engineering/.prettierignore
     ~/.stylelintrc.json: engineering/.stylelintrc.json
+    ~/.htmlhintrc.json: engineering/.htmlhintrc.json
 - shell:
     - echo 'General Software Engineering - Ready to go...'
 

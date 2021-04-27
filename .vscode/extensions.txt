@@ -1,5 +1,6 @@
 alexdima.copy-relative-path
 aliariff.vscode-erb-beautify
+anweber.vscode-tidyhtml
 arturock.gitstash
 atlassian.atlascode
 bierner.markdown-checkbox
