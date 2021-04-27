@@ -24,7 +24,7 @@ rebase = false
 # template = ~/.gitmessage
 [core]
 editor = code --wait
-	hooksPath = ~/.git-template-directory/hooks
+hooksPath = ~/.git-template-directory/hooks
 [diff]
 tool = vscode
 [difftool "vscode"]
@@ -33,3 +33,5 @@ cmd = code --wait --diff $LOCAL $REMOTE
 tool = vscode
 [mergetool "vscode"]
 cmd = code --wait $MERGED
+[checkout]
+defaultRemote = origin

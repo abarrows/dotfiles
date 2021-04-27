@@ -30,6 +30,7 @@ GitHub.codespaces
 GitHub.vscode-pull-request-github
 Gruntfuggly.todo-tree
 henriiik.docker-linter
+hex-ci.stylelint-plus
 IBM.output-colorizer
 jacob-ebey.dotenv-sanitize
 jasonlhy.hungry-delete
