@@ -1,5 +1,5 @@
 [auth]
-username =abarrows@amuniversal.com
+username =ENV['BITBUCKET_USERNAME']
 password =ENV['BITBUCKET_PASSWORD']
 
 [options]

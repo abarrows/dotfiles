@@ -2,134 +2,39 @@
 
 # DYNAMIC VALUES
 alias currentide="code"
+alias companyFolder="yourCompany"
 
 # PERSONAL SETTINGS
 alias personal="cd ~/documents/AMU/repos/personal"
-alias aw="cd ~/documents/AMU/repos/personal/animatronic-workhorse/animatronic-workhorse && currentide"
-alias dotfiles="cd ~/documents/AMU/repos/personal/dotfiles/ && currentide"
 
 # Team Tools and Settings
 alias teamtools="cd ~/documents/AMU/repos/amu-development-team/team-tools-and-settings && currentide"
-alias workhorsenode="cd ~/documents/AMU/repos/amu-development-team/team-tools-and-settings/dev-ops-scripts/environments/workhorse_node && currentide"
-alias workhorseruby="cd ~/documents/AMU/repos/amu-development-team/team-tools-and-settings/dev-ops-scripts/environments/ruby && currentide"
-alias skeleton="cd ~/documents/AMU/repos/amu-development-team/team-tools-and-settings/boilerplates/ruby_on_rails/skeleton && currentide"
 alias wps='./bin/webpack-dev-server'
-alias comicviewer="cd ~/documents/AMU/repos/amu-digital-technology-prototyping/mobile-friendly-comic-viewer && currentide"
-alias repomigrater="cd ~/documents/AMU/repos/amu-development-team/team-tools-and-settings/dev-ops-scripts/repository_utilities/bitbucket-to-github && currentide"
 alias searchstash=gitsearch
 
-# Security
-#alias security= "cd ~~"
-#alias zed = "open cd /Applications/OWASP ZAP.app"
-#alias arachni= "cd ~/Career_Archive/Resources/Arms/Code_Stock/SECURITY/arachni"
-#alias startarachni="bin/arachni "
-#function startarachni() { bin/arachni "$@" ;}
-
 # Clients
-alias clients="cd ~/documents/AMU/repos/clients"
-alias specificwellness="cd ~/documents/AMU/repos/clients/specific_wellness/ && currentide"
-alias panda="cd ~/documents/AMU/repos/personal/andy-and-paige-wedding/ && currentide"
 
-# AMU General Pathing
-alias repos="cd ~/documents/AMU/repos/"
-alias amudigitalproducts="cd ~/documents/AMU/repos/amu-digital-products"
-alias amudigitalservices="cd ~/documents/AMU/repos/amu-digital-services"
-alias repos="cd ~/documents/AMU/repos/"
-alias amusnippets="cd ~/documents/AMU/repos/amu-snippets"
-alias amudocker="cd ~/documents/AMU/repos/amu-docker/"
-alias amuadmins="cd ~/documents/AMU/repos/amu-admins"
-alias amugems="cd ~/documents/AMU/repos/amu-gems"
-alias prototyping="cd ~/documents/AMU/repos/amu-digital-technology-prototyping"
-alias webpackstatic="cd ~/documents/AMU/repos/amu-digital-technology-prototyping/static-html-webpack-boilerplate && currentide"
+# Personal Pathing
+alias repos="cd ~/documents/${companyFolder}/repos/"
+alias desktop="cd ~/Desktop"
+alias apps="cd /Applications"
+alias code="code ."
+alias code-insiders="open . -a 'Visual Studio Code - Insiders'"
+alias downloads="cd ~/Downloads"
+alias team="cd ~/documents/AMU/repos/amu-development-team/team-tools-and-settings"
+alias prototype="cd ~/documents/AMU/repos/amu-digital-technology-prototyping/"
 
-# AMU Digital Products
-alias dilbert="cd ~/documents/AMU/repos/amu-digital-products/dilbert/ && currentide"
-alias rsdilbert="rails server --port=3013 && ./bin/webpack-dev-server"
-alias doones="cd ~/documents/AMU/repos/amu-digital-products/doonesbury && currentide"
-alias rsdoones="rails server --port=3002"
-alias gocomics="cd ~/documents/AMU/repos/amu-digital-products/gocomics5/ && currentide"
-alias rsgocomics="rails server --port=3001"
-alias tps="cd ~/documents/AMU/repos/amu-digital-products/puzzlesociety/ && currentide"
-alias rstps="rails server --port=3004"
-alias puzzlesociety="cd ~/documents/AMU/repos/amu-digital-products/puzzle-society_ui/ && currentide"
-alias rspuzzlesociety="yarn install && yarn dev"
-alias uu="cd ~/documents/AMU/repos/amu-digital-products/universaluclick/ && currentide"
-alias rsuu="rails server --port=3006"
-alias uexpress="cd ~/documents/AMU/repos/amu-digital-products/uexpress && currentide"
-alias rsuexpress="rails server --port=3010"
-alias farside="cd ~/documents/AMU/repos/amu-digital-products/thefarside/ && currentide"
-alias rsfarside="rails server --port=3020"
-alias gcemail="cd ~/documents/AMU/repos/amu-digital-products/gocomics_daily_pro_email && currentide"
+# Web Applications
 
-# Admins
-alias admincontent="cd ~/documents/AMU/repos/amu-admins/content_admin && currentide"
-alias rsadmincontent="rails server --port=3022"
-alias adminclient="cd ~/documents/AMU/repos/amu-admins/client_admin && currentide"
-alias rsclientadmin="rails server --port=3062"
-alias adminotterloop="cd ~/documents/AMU/repos/amu-admins/otterloop && currentide"
-alias rsadminotterloop="rails server --port=3063"
-alias adminconsumer="cd ~/documents/AMU/repos/amu-admins/consumer_admin && currentide"
-alias rsconsumeradmin="rails server --port=3042"
-alias adminsubscribermail="cd ~/documents/AMU/repos/amu-admins/subscriber_mail_admin && currentide"
-alias rssubscribermailadmin="rails server --port=3080"
+# Web Admins
 
-# Legacy
-alias ug="cd ~/documents/AMU/repos/amu-legacy/uclickgames && currentide"
-alias sherpa="cd ~/documents/AMU/repos/amu-legacy/site_comicssherpa.com/ && currentide"
+# Legacy Applications
 
-# Services
-alias filemover="cd ~/documents/AMU/repos/amu-digital-services/filemover && currentide"
-alias servicecontent="cd ~/documents/AMU/repos/amu-digital-services/webservice_content && currentide"
-alias rsservicecontent="rails s -p '3030'"
-alias serviceasset="cd ~/documents/AMU/repos/amu-digital-services/asset_engine && currentide"
-alias rsserviceasset="rails server --port=3031"
-alias serviceregistration="cd ~/documents/AMU/repos/amu-digital-services/webservice_registration && currentide"
-alias rsserviceregistration="rails server --port=3040"
-alias servicefeatureavatar="cd ~/documents/AMU/repos/amu-digital-services/webservice_feature_avatars && currentide"
-alias rsservicefeatureavatar="rails server --port=3041"
-alias serviceuseravatar="cd ~/documents/AMU/repos/amu-digital-services/webservice_avatars && currentide"
-alias rsserviceuseravatar="rails server --port=3042"
-alias serviceembed="cd ~/documents/AMU/repos/amu-digital-services/embed_service/ && currentide"
-alias rsserviceclient="rails s -p '3050'"
-alias serviceclient="cd ~/documents/AMU/repos/amu-digital-services/go-webservice-client && currentide"
-alias rsserviceembed="rails server --port=3060"
-alias servicegocontent="cd ~/documents/AMU/repos/amu-digital-services/embedded_entertainment/ && currentide"
-alias rsservicegoc="rails server --port=3070"
-alias servicegames="cd ~/documents/AMU/repos/amu-digital-services/amu_games/ && currentide"
-alias rsservicegames="rails server --port=3061"
-alias wwgame="cd ~/documents/AMU/repos/amu-digital-products/wonderword_game && currentide"
-alias servicegamedata="cd ~/documents/AMU/repos/amu-digital-services/webservice_gamedata/ && currentide"
-alias rsservicegamedata="rails server --port=3064"
+# Services and APIs
 
-# Wordpress
-# alias kcgac="cd /Users/andrewbarrows/Career/Clients/KCGAC/3_develop && currentide"
-alias dilbertblog="cd ~/documents/AMU/repos/amu-digital-products/wpengine-dilbertblog"
-alias dailycartoonist="cd ~/documents/AMU/repos/amu-digital-products/devkit/dailycartoonist && currentide"
-alias dailycartoonist="cd ~/documents/AMU/repos/amu-digital-products/devkit/dailycartoonist && currentide && wpe start"
-alias wonderword="cd ~/documents/AMU/repos/amu-digital-products/wonderword && currentide"
-alias rswonderword="cd ~/documents/AMU/repos/amu-digital-products/wonderword && currentide && wpe start"
-alias multiamu="cd ~/documents/AMU/repos/amu-digital-products/multiamu"
-alias ssmultiamu="cd ~/documents/AMU/repos/amu-digital-products/multiamu && currentide && open /Applications/MAMP"
+# Wordpress Products
 
 # Server SSH
-alias syndicate01="ssh abarrows@hfsyndicate201.amuniversal.com"
-alias syndicate02="ssh abarrows@hfsyndicate202.amuniversal.com"
-alias syndicateadmin="ssh abarrows@hfsyndicateadmin202.amuniversal.com"
-alias admintools="ssh abarrows@hfadmintools201.amuniversal.com"
-alias syndicatetemplates="cd /home/mover/template/"
-alias images01="ssh abarrows@hfimages01.amuniversal.com"
-alias images02="ssh abarrows@hfimages02.amuniversal.com"
-alias imagestemplate="cd /usr/local/perlib/ucomics/templates/"
-alias puzzle401="ssh abarrows@hfspuzzleapp401.amuniversal.com"
-alias puzzle402="ssh abarrows@hfspuzzleapp402.amuniversal.com"
-alias stageservices="ssh abarrows@hfstagerailsservices201.amuniversal.com"
-alias stage201="ssh abarrows@hfstagerailsapp201.amuniversal.com"
-alias stage301="ssh abarrows@hfsrailsapp301.amuniversal.com"
-alias stage302="ssh abarrows@hfsrailsapp302.amuniversal.com"
-alias stage303="ssh abarrows@hfsrailsapp303.amuniversal.com"
-alias stage304="ssh abarrows@hfsrailsapp304.amuniversal.com"
-alias dev301="ssh abarrows@hfdrailsapp301.amuniversal.com"
-alias dev302="ssh abarrows@hfdrailsapp302.amuniversal.com"
 
 # PHP Permissions
 alias checkphp="php -i"
@@ -175,16 +80,6 @@ alias vsdebug="rdebug-ide ./bin/rails server puma"
 alias python="/usr/local/bin/python3"
 alias pip="/usr/local/bin/pip3"
 
-# Pathing
-alias desktop="cd ~/Desktop"
-alias apps="cd /Applications"
-alias code="code ."
-alias code-insiders="open . -a 'Visual Studio Code - Insiders'"
-alias downloads="cd ~/Downloads"
-alias team="cd ~/documents/AMU/repos/amu-development-team/team-tools-and-settings"
-alias prototype="cd ~/documents/AMU/repos/amu-digital-technology-prototyping/"
-#   alias drive="cd ~/"
-
 #Bash Stuff
 alias addalias="cd ~/ && currentide .zshrc"
 alias savealias="source ~/.zshrc"
@@ -195,7 +90,7 @@ alias checksshkey='cat ~/.ssh/id_rsa.pub'
 alias checkip='curl ipecho.net/plain ; echo'
 
 # Host File Modification
-alias edithosts="sudo open -a Visual\ Studio\ Code.app /etc/hosts"
+alias edithosts="sudo open -a ${currentide} /etc/hosts"
 
 # Apache Stuff
 alias editapache="cd ~/etc && cd apache2 && edit httpd.conf"
@@ -238,11 +133,5 @@ alias startpg="postgres -D /usr/local/var/postgres"
 
 # Personal Applications
 alias dotfilesinstall="dotfiles && dotfiles/install"
-alias bcsw="cd ~/specific-wellness-dev/"
-# alias rrails server --port=3110"
-alias bcdd="cd ~/driverdocs"
-# alias rrails server --port=3102"
-alias bcaap="cd ~/andyandpaige/"
-# alias rrails server --port=3101"
 
 echo "ZSH/ALIASES: Loaded."

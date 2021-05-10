@@ -691,7 +691,7 @@
   "jira-plugin.workingIssueChangeStatusAfterSelection": true,
   "jira-plugin.workingIssueFilter": "ALL",
   "jira-plugin.workingIssueStatues": "New, In Progress, In Peer Review, In QA Review, Approved",
-  "jira-plugin.workingProject": "",
+  "jira-plugin.workingProject": "SANDBOX",
   "jira-plugin.worklogMinimumTrackingTime": 0,
   "keyboard.layout": "us",
   "l13Diff.ignoreEndOfLine": true,

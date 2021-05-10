@@ -1,10 +1,13 @@
-# dotfiles-and-tooling TODO: THIS IS OUTDATED TBD
+# Software Engineering Onboarding - Dotfiles
 
-This repository is all my personal IDE configuration, settings, tooling, and
-preferences. My ultimate goal here is to recreate my entire Macbook Pro machine
-in the cloud as it relates to development. Something that can be reproduced at
-will and torn down with no repercussions. After some careful thought, this
-process will involve three main levels of configuration and tooling:
+This repository is an stripped down "MVP" like dotfiles repo. It's purpose is
+to offer an automated series of scripts to bootstrap any new software engineer
+with the proper tooling, apps, libraries, and configuration required to
+hit the ground running in less than an hour. In general the execution of these
+scripts and organization is broad to specific. With obviousness any of this is
+flexible enough to be customized or fine-tuned to a specific engineer's
+preference. The point is to get them 80% there even if decide to tweak
+the other 20%.
 
 1. Dotenv
    - Machine level sensitive variables
@@ -20,10 +23,8 @@ process will involve three main levels of configuration and tooling:
      - Workflow Templates
      - Issue Templates
 4. Homebrew
-
-- Default recipes
-- Default casks (iOS apps)
-
+   - Default recipes
+   - Default casks (iOS apps)
 5. Node
    - NVM Version Manager
 6. Yarn
@@ -50,32 +51,21 @@ process will involve three main levels of configuration and tooling:
    - YAML Lint
    - JSON Lint/Sorting
 9. VS Code - Project/Technology Specific
-
-- workspace environment - Workspace Environment for the specific tech stack.
-  IE: RoR, Python, Next.js, etc. This will contain any
-  overrides/modifications to:
+   - workspace environment - Workspace Environment for the specific tech stack.
+   - IE: RoR, Python, Next.js, etc. This will contain any overrides/modifications to:
 
 ## Virtualized Dev Environment
 
 With the emergence of cloud IDE's easing into our workflows, this was the
 original catalyst and still remains my primary goal with organizing my dotfiles.
 The day I can simply open a browser tab and share it to a colleague, environment
-already setup, will the mission complete.
+already setup, will be when this mission is complete.
 
 ### Codespaces
 
-I have been accepted into the beta program for Github's codespaces and have been
-working to virtualize my own professional projects through this technology. A
-starter codespace can be found here:
-https://github.com/microsoft/vscode-dev-containers.git
-
-### Microsoft Codespaces Online
-
-Much of the earlier work in this repo was with the (now deprecated) microsoft
-codespaces. The biggest challenge so far has been limited documentation on this
-changeover between Microsoft and Github. Which settings override which? How
-does it work in a docker container, etc. I digress. The old home for my
-environments are here: https://online.visualstudio.com/environments
+This configuration is intended to be used with Github's codespaces product
+(currently in beta 2021.05.10). I have been
+working on virtualizing my own professional projects through this technology.
 
 ## Ruby on Rails
 
@@ -119,7 +109,7 @@ The following tools can be used for improving the confidence of this apps logic 
    will display the errors/warnings in real time under problems. It also offers
    Intellisense to Ruby, autocomplete, and much more |
    DEPENDENCIES: `gem install solargraph`, VS Code Extension:
-   https://marketplace.visualstudio.com/items?itemName=castwide.solargraph |
+   <https://marketplace.visualstudio.com/items?itemName=castwide.solargraph> |
    USAGE:
    - 1. `bundle exec yard gems && solargraph download-core && solargraph config .`
    - 2. Navigate to the VS Code Command Palette (CMD + Shift + P) Run command:
@@ -130,7 +120,7 @@ The following tools can be used for improving the confidence of this apps logic 
 ### Caveats
 
 1. I discovered some strange caching and pathing issues in RVM and determined it
-   was the bundler zsh plugin: https://rvm.io/support/troubleshooting. Updated
+   was the bundler zsh plugin: <https://rvm.io/support/troubleshooting>. Updated
    on 2020.07.29 2. I have added a debugger file in my gists that outline how to troubleshoot
    uglifier gem woes.
 
@@ -148,27 +138,16 @@ The following tools can be used for improving the confidence of this apps logic 
 - .vs-liveshare-keychain
 - .vs-liveshare-settings.json
 
-2. Address the following to codespaces/dotfile init:
-
-- [cd ~/ && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"]
-- Linking failed /usr/local/bin/pathChecker.sh ->
-  /home/codespace/.codespaces/.persistedshare/dotfiles/acb_bin/pathChecker.sh
-- ~/.gitconfig already exists but is a regular file or directory
-
-3. Add global precommit hook.
-
-.gnupg failed to sign commit data when adding .gitconfig. I suspect this has
-to do with having two entities in git or homebrew managing the GPG functionality.
-
-1. Create multi-stage build for the second level above. IE: Provisioning of 1,
+1. Setup automated .gnupg commit signing.
+2. Create multi-stage build for the second level above. IE: Provisioning of 1,
    2a (global ide settings, linting of js, css, etc.) then 2b.This will inherit from
    2a and will setup all the ruby on rails related IDE settings, linting, etc.
-2. Decide if the workspace level should be language/tech stack specific or
+3. Decide if the workspace level should be language/tech stack specific or
    application specific.
-3. Add the corresponding cloud machine vs code settings for each linter/tool and
+4. Add the corresponding cloud machine vs code settings for each linter/tool and
    double check to ensure there are no other variables that need to accounted
    for so that a team could reliably use it EXACTLY the same.
-4. Document the rest of the linters/tooling
+5. Document the rest of the linters/tooling
    - Bullet
    - Brakeman
    - Simplecov
@@ -180,33 +159,10 @@ to do with having two entities in git or homebrew managing the GPG functionality
 
 ## WORKFLOW INFORMATION
 
-During active development there are three major steps to standardizing efforts.
+During active development there are three major steps to these standardizing efforts.
 In the following order, my code is:
 
 1. Linted and auto-fixed (Es-lint/Stylelint/YAML Lint/Etc.)
 2. Formatted (Editor Config then Prettier)
 3. Any remaining linting errors or manually fixed or formatting that I have not
    yet automated. IE: (Command Palette -> Sort JSON)
-
-Some general caveats here are listed below:
-
-- In order to prevent syntax and code breakage, I have turned off the following:
-  - Format on Type (Since formatting should be done before linting)
-  - Format on Paste (Since formatting should be done before linting)
-- I am using yarn to install the following NPM packages so that linting only
-  lints code quality problems and doesn't bleed into the formatting of code.
-  (Vica versa)
-  1.  stylelint-config-prettier - This allows prettier and stylelint to "play nice"
-      so formatting and linting do not override eachother.
-  2.  eslint-config-prettier - This allows prettier and stylelint to "play nice"
-      so formatting and linting do not override eachother.
-- To verify that both are the linting and formatting of a language is setup
-  correctly, I look in the bottom status bar and click on the following 3 things
-  to ensure it's respective config file is found and that there are no errors:
-  1. Eslint
-  2. Prettier (Checkmark icon showing means it's good)
-  3. Formatting (Checkmark icon showing means it's good)
-
-## DOTFILES TECHNOLOGY INDEX
-
-1.

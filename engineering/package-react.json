@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "description": "Personal VS Code Development Container",
   "author": "Andrew Barrows",
-  "homepage": "https://github.com/abarrows/dotfiles-and-tooling/README.md",
+  "homepage": "https://github.com/abarrows/dotfiles/README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/abarrows/dotfiles-and-tooling"
+    "url": "https://github.com/abarrows/dotfiles"
   },
   "scripts": {},
   "dependencies": {
