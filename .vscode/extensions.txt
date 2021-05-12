@@ -37,6 +37,7 @@ jacob-ebey.dotenv-sanitize
 jasonlhy.hungry-delete
 jkjustjoshing.vscode-text-pastry
 jmfirth.vsc-space-block-jumper
+johnpapa.vscode-peacock
 KnisterPeter.vscode-github
 L13RARY.l13-diff
 leizongmin.node-module-intellisense
