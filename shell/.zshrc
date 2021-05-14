@@ -12,6 +12,7 @@ PATH=:bin/~/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/l
 
 # Path to your oh-my-zsh installation.
 ZSH=$HOME/.oh-my-zsh
+ZSH_DOTENV_FILE=$HOME/.env
 source "$HOME/.theme.zsh"
 source "$HOME/.functions.zsh"
 source "$HOME/.plugins.zsh"

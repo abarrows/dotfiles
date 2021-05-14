@@ -27,6 +27,9 @@
     - 'sh -c $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'
     - echo 'Shell/ZSH - Installing the default Oh My ZSH...'
 - link:
+    ~/.env:
+      force: true
+      path: .env
     ~/.p10k.zsh:
       force: true
       path: shell/.p10k.zsh

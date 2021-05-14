@@ -1,22 +1,22 @@
 #!/usr/bin/env bash
 
 # DYNAMIC VALUES
-current_ide="code"
-current_user="flastname"
-current_company="AMU"
+ide_path=$IDE_PATH
+current_user=$CURRENT_USER
+current_company=$CURRENT_COMPANY
 # PERSONAL SETTINGS
 alias personal="cd ~/documents/\${current_company}/repos/personal"
-alias aw="cd ~/documents/\${current_company}/repos/personal/animatronic-workhorse/animatronic-workhorse && \${current_ide}"
-alias dotfiles="cd ~/documents/\${current_company}/repos/personal/dotfiles/ && \${current_ide}"
+alias aw="cd ~/documents/\${current_company}/repos/personal/animatronic-workhorse/animatronic-workhorse && \${ide_path} ."
+alias dotfiles="cd ~/documents/\${current_company}/repos/personal/dotfiles/ && \${ide_path} ."
 
 # Team Tools and Settings
-alias teamtools="cd ~/documents/\${current_company}/repos/amu-development-team/team-tools-and-settings && \${current_ide}"
-alias workhorsenode="cd ~/documents/\${current_company}/repos/amu-development-team/team-tools-and-settings/dev-ops-scripts/environments/workhorse_node && \${current_ide}"
-alias workhorseruby="cd ~/documents/\${current_company}/repos/amu-development-team/team-tools-and-settings/dev-ops-scripts/environments/ruby && \${current_ide}"
-alias skeleton="cd ~/documents/\${current_company}/repos/amu-development-team/team-tools-and-settings/boilerplates/ruby_on_rails/skeleton && \${current_ide}"
+alias teamtools="cd ~/documents/\${current_company}/repos/amu-development-team/team-tools-and-settings && \${ide_path} ."
+alias workhorsenode="cd ~/documents/\${current_company}/repos/amu-development-team/team-tools-and-settings/dev-ops-scripts/environments/workhorse_node && \${ide_path} ."
+alias workhorseruby="cd ~/documents/\${current_company}/repos/amu-development-team/team-tools-and-settings/dev-ops-scripts/environments/ruby && \${ide_path} ."
+alias skeleton="cd ~/documents/\${current_company}/repos/amu-development-team/team-tools-and-settings/boilerplates/ruby_on_rails/skeleton && \${ide_path} ."
 alias wps='./bin/webpack-dev-server'
-alias comicviewer="cd ~/documents/\${current_company}/repos/amu-digital-technology-prototyping/mobile-friendly-comic-viewer && \${current_ide}"
-alias repomigrater="cd ~/documents/\${current_company}/repos/amu-development-team/team-tools-and-settings/dev-ops-scripts/repository_utilities/bitbucket-to-github && \${current_ide}"
+alias comicviewer="cd ~/documents/\${current_company}/repos/amu-digital-technology-prototyping/mobile-friendly-comic-viewer && \${ide_path} ."
+alias repomigrater="cd ~/documents/\${current_company}/repos/amu-development-team/team-tools-and-settings/dev-ops-scripts/repository_utilities/bitbucket-to-github && \${ide_path} ."
 alias searchstash=gitsearch
 
 # Security
@@ -28,8 +28,8 @@ alias searchstash=gitsearch
 
 # Clients
 alias clients="cd ~/documents/\${current_company}/repos/clients"
-alias specificwellness="cd ~/documents/\${current_company}/repos/clients/specific_wellness/ && \${current_ide}"
-alias panda="cd ~/documents/\${current_company}/repos/personal/andy-and-paige-wedding/ && \${current_ide}"
+alias specificwellness="cd ~/documents/\${current_company}/repos/clients/specific_wellness/ && \${ide_path} ."
+alias panda="cd ~/documents/\${current_company}/repos/personal/andy-and-paige-wedding/ && \${ide_path} ."
 
 # AMU General Pathing
 alias repos="cd ~/documents/\${current_company}/repos/"
@@ -41,76 +41,76 @@ alias amudocker="cd ~/documents/\${current_company}/repos/amu-docker/"
 alias amuadmins="cd ~/documents/\${current_company}/repos/amu-admins"
 alias amugems="cd ~/documents/\${current_company}/repos/amu-gems"
 alias prototyping="cd ~/documents/\${current_company}/repos/amu-digital-technology-prototyping"
-alias webpackstatic="cd ~/documents/\${current_company}/repos/amu-digital-technology-prototyping/static-html-webpack-boilerplate && \${current_ide}"
+alias webpackstatic="cd ~/documents/\${current_company}/repos/amu-digital-technology-prototyping/static-html-webpack-boilerplate && \${ide_path} ."
 
 # AMU Digital Products
-alias dilbert="cd ~/documents/\${current_company}/repos/amu-digital-products/dilbert/ && \${current_ide}"
+alias dilbert="cd ~/documents/\${current_company}/repos/amu-digital-products/dilbert/ && \${ide_path} ."
 alias rsdilbert="rails server --port=3013 && ./bin/webpack-dev-server"
-alias doones="cd ~/documents/\${current_company}/repos/amu-digital-products/doonesbury && \${current_ide}"
+alias doones="cd ~/documents/\${current_company}/repos/amu-digital-products/doonesbury && \${ide_path} ."
 alias rsdoones="rails server --port=3002"
-alias gocomics="cd ~/documents/\${current_company}/repos/amu-digital-products/gocomics5/ && \${current_ide}"
+alias gocomics="cd ~/documents/\${current_company}/repos/amu-digital-products/gocomics5/ && \${ide_path} ."
 alias rsgocomics="rails server --port=3001"
-alias tps="cd ~/documents/\${current_company}/repos/amu-digital-products/puzzlesociety/ && \${current_ide}"
+alias tps="cd ~/documents/\${current_company}/repos/amu-digital-products/puzzlesociety/ && \${ide_path} ."
 alias rstps="rails server --port=3004"
-alias puzzlesociety="cd ~/documents/\${current_company}/repos/amu-digital-products/puzzle-society_ui/ && \${current_ide}"
+alias puzzlesociety="cd ~/documents/\${current_company}/repos/amu-digital-products/puzzle-society_ui/ && \${ide_path} ."
 alias rspuzzlesociety="yarn install && yarn dev"
-alias uu="cd ~/documents/\${current_company}/repos/amu-digital-products/universaluclick/ && \${current_ide}"
+alias uu="cd ~/documents/\${current_company}/repos/amu-digital-products/universaluclick/ && \${ide_path} ."
 alias rsuu="rails server --port=3006"
-alias uexpress="cd ~/documents/\${current_company}/repos/amu-digital-products/uexpress && \${current_ide}"
+alias uexpress="cd ~/documents/\${current_company}/repos/amu-digital-products/uexpress && \${ide_path} ."
 alias rsuexpress="rails server --port=3010"
-alias farside="cd ~/documents/\${current_company}/repos/amu-digital-products/thefarside/ && \${current_ide}"
+alias farside="cd ~/documents/\${current_company}/repos/amu-digital-products/thefarside/ && \${ide_path} ."
 alias rsfarside="rails server --port=3020"
-alias gcemail="cd ~/documents/\${current_company}/repos/amu-digital-products/gocomics_daily_pro_email && \${current_ide}"
+alias gcemail="cd ~/documents/\${current_company}/repos/amu-digital-products/gocomics_daily_pro_email && \${ide_path} ."
 
 # Admins
-alias admincontent="cd ~/documents/\${current_company}/repos/amu-admins/content_admin && \${current_ide}"
+alias admincontent="cd ~/documents/\${current_company}/repos/amu-admins/content_admin && \${ide_path} ."
 alias rsadmincontent="rails server --port=3022"
-alias adminclient="cd ~/documents/\${current_company}/repos/amu-admins/client_admin && \${current_ide}"
+alias adminclient="cd ~/documents/\${current_company}/repos/amu-admins/client_admin && \${ide_path} ."
 alias rsclientadmin="rails server --port=3062"
-alias adminotterloop="cd ~/documents/\${current_company}/repos/amu-admins/otterloop && \${current_ide}"
+alias adminotterloop="cd ~/documents/\${current_company}/repos/amu-admins/otterloop && \${ide_path} ."
 alias rsadminotterloop="rails server --port=3063"
-alias adminconsumer="cd ~/documents/\${current_company}/repos/amu-admins/consumer_admin && \${current_ide}"
+alias adminconsumer="cd ~/documents/\${current_company}/repos/amu-admins/consumer_admin && \${ide_path} ."
 alias rsconsumeradmin="rails server --port=3042"
-alias adminsubscribermail="cd ~/documents/\${current_company}/repos/amu-admins/subscriber_mail_admin && \${current_ide}"
+alias adminsubscribermail="cd ~/documents/\${current_company}/repos/amu-admins/subscriber_mail_admin && \${ide_path} ."
 alias rssubscribermailadmin="rails server --port=3080"
 
 # Legacy
-alias ug="cd ~/documents/\${current_company}/repos/amu-legacy/uclickgames && \${current_ide}"
-alias sherpa="cd ~/documents/\${current_company}/repos/amu-legacy/site_comicssherpa.com/ && \${current_ide}"
+alias ug="cd ~/documents/\${current_company}/repos/amu-legacy/uclickgames && \${ide_path} ."
+alias sherpa="cd ~/documents/\${current_company}/repos/amu-legacy/site_comicssherpa.com/ && \${ide_path} ."
 
 # Services
-alias filemover="cd ~/documents/\${current_company}/repos/amu-digital-services/filemover && \${current_ide}"
-alias servicecontent="cd ~/documents/\${current_company}/repos/amu-digital-services/webservice_content && \${current_ide}"
+alias filemover="cd ~/documents/\${current_company}/repos/amu-digital-services/filemover && \${ide_path} ."
+alias servicecontent="cd ~/documents/\${current_company}/repos/amu-digital-services/webservice_content && \${ide_path} ."
 alias rsservicecontent="rails s -p '3030'"
-alias serviceasset="cd ~/documents/\${current_company}/repos/amu-digital-services/asset_engine && \${current_ide}"
+alias serviceasset="cd ~/documents/\${current_company}/repos/amu-digital-services/asset_engine && \${ide_path} ."
 alias rsserviceasset="rails server --port=3031"
-alias serviceregistration="cd ~/documents/\${current_company}/repos/amu-digital-services/webservice_registration && \${current_ide}"
+alias serviceregistration="cd ~/documents/\${current_company}/repos/amu-digital-services/webservice_registration && \${ide_path} ."
 alias rsserviceregistration="rails server --port=3040"
-alias servicefeatureavatar="cd ~/documents/\${current_company}/repos/amu-digital-services/webservice_feature_avatars && \${current_ide}"
+alias servicefeatureavatar="cd ~/documents/\${current_company}/repos/amu-digital-services/webservice_feature_avatars && \${ide_path} ."
 alias rsservicefeatureavatar="rails server --port=3041"
-alias serviceuseravatar="cd ~/documents/\${current_company}/repos/amu-digital-services/webservice_avatars && \${current_ide}"
+alias serviceuseravatar="cd ~/documents/\${current_company}/repos/amu-digital-services/webservice_avatars && \${ide_path} ."
 alias rsserviceuseravatar="rails server --port=3042"
-alias serviceembed="cd ~/documents/\${current_company}/repos/amu-digital-services/embed_service/ && \${current_ide}"
+alias serviceembed="cd ~/documents/\${current_company}/repos/amu-digital-services/embed_service/ && \${ide_path} ."
 alias rsserviceclient="rails s -p '3050'"
-alias serviceclient="cd ~/documents/\${current_company}/repos/amu-digital-services/go-webservice-client && \${current_ide}"
+alias serviceclient="cd ~/documents/\${current_company}/repos/amu-digital-services/go-webservice-client && \${ide_path} ."
 alias rsserviceembed="rails server --port=3060"
-alias servicegocontent="cd ~/documents/\${current_company}/repos/amu-digital-services/embedded_entertainment/ && \${current_ide}"
+alias servicegocontent="cd ~/documents/\${current_company}/repos/amu-digital-services/embedded_entertainment/ && \${ide_path} ."
 alias rsservicegoc="rails server --port=3070"
-alias servicegames="cd ~/documents/\${current_company}/repos/amu-digital-services/amu_games/ && \${current_ide}"
+alias servicegames="cd ~/documents/\${current_company}/repos/amu-digital-services/amu_games/ && \${ide_path} ."
 alias rsservicegames="rails server --port=3061"
-alias wwgame="cd ~/documents/\${current_company}/repos/amu-digital-products/wonderword_game && \${current_ide}"
-alias servicegamedata="cd ~/documents/\${current_company}/repos/amu-digital-services/webservice_gamedata/ && \${current_ide}"
+alias wwgame="cd ~/documents/\${current_company}/repos/amu-digital-products/wonderword_game && \${ide_path} ."
+alias servicegamedata="cd ~/documents/\${current_company}/repos/amu-digital-services/webservice_gamedata/ && \${ide_path} ."
 alias rsservicegamedata="rails server --port=3064"
 
 # Wordpress
-# alias kcgac="cd /Users/andrewbarrows/Career/Clients/KCGAC/3_develop && \${current_ide}"
+# alias kcgac="cd /Users/andrewbarrows/Career/Clients/KCGAC/3_develop && \${ide_path} ."
 alias dilbertblog="cd ~/documents/\${current_company}/repos/amu-digital-products/wpengine-dilbertblog"
-alias dailycartoonist="cd ~/documents/\${current_company}/repos/amu-digital-products/devkit/dailycartoonist && \${current_ide}"
-alias dailycartoonist="cd ~/documents/\${current_company}/repos/amu-digital-products/devkit/dailycartoonist && \${current_ide} && wpe start"
-alias wonderword="cd ~/documents/\${current_company}/repos/amu-digital-products/wonderword && \${current_ide}"
-alias rswonderword="cd ~/documents/\${current_company}/repos/amu-digital-products/wonderword && \${current_ide} && wpe start"
+alias dailycartoonist="cd ~/documents/\${current_company}/repos/amu-digital-products/devkit/dailycartoonist && \${ide_path} ."
+alias dailycartoonist="cd ~/documents/\${current_company}/repos/amu-digital-products/devkit/dailycartoonist && \${ide_path} . && wpe start"
+alias wonderword="cd ~/documents/\${current_company}/repos/amu-digital-products/wonderword && \${ide_path} ."
+alias rswonderword="cd ~/documents/\${current_company}/repos/amu-digital-products/wonderword && \${ide_path} . && wpe start"
 alias multiamu="cd ~/documents/\${current_company}/repos/amu-digital-products/multiamu"
-alias ssmultiamu="cd ~/documents/\${current_company}/repos/amu-digital-products/multiamu && \${current_ide} && open /Applications/MAMP"
+alias ssmultiamu="cd ~/documents/\${current_company}/repos/amu-digital-products/multiamu && \${ide_path} . && open /Applications/MAMP"
 
 # Server SSH
 alias syndicate01="ssh \${current_user}@hfsyndicate201.amuniversal.com"
@@ -187,7 +187,7 @@ alias prototype="cd ~/documents/\${current_company}/repos/amu-digital-technology
 #   alias drive="cd ~/"
 
 #Bash Stuff
-alias addalias="cd ~/ && \${current_ide} .zshrc"
+alias addalias="cd ~/ && \${ide_path} . .zshrc"
 alias savealias="source ~/.zshrc"
 alias amiroot="who -u"
 alias checkprocesses="ps au"

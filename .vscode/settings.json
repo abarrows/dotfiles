@@ -833,7 +833,7 @@
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.8.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.trace.server": "verbose",
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 0,
   "peacock.affectAccentBorders": true,
   "peacock.affectStatusAndTitleBorders": true,
   "peacock.affectTabActiveBorder": true,
