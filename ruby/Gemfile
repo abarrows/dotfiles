@@ -3,9 +3,9 @@
 source 'https://rubygems.org'
 
 # Core Application
-ruby '2.5.7' # Specified ruby version
-gem 'mysql2', '0.5.2' # Database technology for application
-gem 'rails', '6.0.2.1' # Current framework used for application
+ruby '2.6.5' # Specified ruby version
+gem 'mysql2' # Database technology for application
+gem 'rails' # Current framework used for application
 
 # Environment
 
@@ -15,9 +15,13 @@ gem 'rails', '6.0.2.1' # Current framework used for application
 # gem 'webpacker', '~> 4.2.2' # Preferred Asset Manager used for all client-side assets. Replaces the asset pipeline
 
 # Caching and Performance
-gem 'dalli', '~> 2.7.10' # Preferred client for memcaching to improve the performance of this application
+gem 'dalli' # Preferred client for memcaching to improve the performance of this application
 
 # Errors and Logging
+gem 'pry'
+gem 'pry-byebug'
+gem 'pry-rails'
+gem 'pry-rescue'
 gem 'sentry-raven' # Preferred server error reporting client.
 # NOTE: This application is currently using the cloud instance:
 # https://sentry.io`
