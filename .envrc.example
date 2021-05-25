@@ -2,8 +2,12 @@ CURRENT_USER=# This is your machine username. IE: /Users/jdoe <--
 CURRENT_COMPANY=# This is the folder name of all of your company's repos
 IDE_PATH=# The application folder name for vscode. IE: 'Code - Insiders or Code'
 IDE_BUILD=# The name of vscode that calls the CLI. IE: code --list-extensions or code-insiders --list-extensions.
-BITBUCKET_PASSWORD=# Password for bitbucket account
 GIT_EMAIL_ADDRESS_PROFESSIONAL=# Github email address for professional or organizational teams
-GIT_EMAIL_ADDRESS_KEY=# The key that displays here: https://github.com/settings/keys under your GPG key.
+GIT_EMAIL_ADDRESS_KEY=# The key that displays here:
+https://github.com/settings/keys under your GPG key.
+GIT_EMAIL_ADDRESS_PROFESSIONAL="abarrows@amuniversal.com"
+GIT_EMAIL_ADDRESS_KEY="BDE760D6A0526B62"
+BITBUCKET_USERNAME=# Username for bitbucket username
+BITBUCKET_PASSWORD=# Password or token for bitbucket user
 JIRA_BASE_URL=# This is the url to your team's base jira cloud instance
 JIRA_USER_EMAIL=# This is your jira login email.
