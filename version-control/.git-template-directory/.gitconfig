@@ -6,9 +6,9 @@ url = https://github.com/abarrows
 [core]
 editor = code
 ignorecase = false
-excludesfile = ~/version-control/.git-template-directory/.gitignore
+excludesfile = ~/.git-template-directory/.gitignore
 [init]
-templateDir = ~/version-control/.git-template-directory
+templateDir = ~/.git-template-directory
 defaultBranch = production
 [gpg]
 program = gpg2
