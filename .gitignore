@@ -27,6 +27,7 @@ ruby/.bundle/cache/*
 
 # dotenv
 /.env*
+!/.env*.example
 
 # logfiles and tempfiles
 /log/*
