@@ -14,7 +14,7 @@
     "@babel/preset-env": "^7.4.4",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.8.0",
-    "browserslist": "^4.6.6",
+    "browserslist": "^4.16.5",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^6.0.0",
