@@ -26,7 +26,7 @@ ruby/.bundle/cache/*
 .cache/rubocop_cache/*
 
 # dotenv
-.env
+/.env*
 
 # logfiles and tempfiles
 /log/*
