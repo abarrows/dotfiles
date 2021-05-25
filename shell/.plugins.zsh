@@ -16,7 +16,8 @@
 
 # dotenv
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv
-# DESCRIPTION: Automatically load your project ENV variables from .env file when you cd into project root directory.
+# DESCRIPTION: Automatically load your project ENV variables from .env file when
+# you cd into project root directory.
 
 # git
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
@@ -50,10 +51,10 @@
 # ZSH PLUGIN: zsh-completions
 # https://github.com/zsh-users/zsh-completions
 if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-completions" ]]; then
-  echo 'Plugin should be sourced: zsh-completion.'
+   echo 'Plugin should be sourced: zsh-completion.'
   autoload -U compinit && compinit
 else
-  echo 'Cloning plugin: zsh-completion'
+   echo 'Cloning plugin: zsh-completion'
   git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 fi
 
@@ -107,10 +108,9 @@ fi
 # Final plugins declaration
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  zsh-autosuggestions
   bundler
-  zsh-completions
   dotenv
+  extract
   git
   history
   history-substring-search
@@ -120,6 +120,8 @@ plugins=(
   rake
   ruby
   rvm
+  zsh-autosuggestions
+  zsh-completions
   zsh-syntax-highlighting
   thefuck
   vscode

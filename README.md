@@ -10,7 +10,7 @@ process will involve three main levels of configuration and tooling:
    - Machine level sensitive variables
 2. iTerm 2
    - .zshrc
-     - powerlevel10k Theme
+     - Agnoster
      - Plugins
      - Aliases
      - Custom Bash Functions
@@ -67,7 +67,7 @@ already setup, will the mission complete.
 I have been accepted into the beta program for Github's codespaces and have been
 working to virtualize my own professional projects through this technology. A
 starter codespace can be found here:
-https://github.com/microsoft/vscode-dev-containers.git
+<https://github.com/microsoft/vscode-dev-containers.git>
 
 ### Microsoft Codespaces Online
 
@@ -75,7 +75,7 @@ Much of the earlier work in this repo was with the (now deprecated) microsoft
 codespaces. The biggest challenge so far has been limited documentation on this
 changeover between Microsoft and Github. Which settings override which? How
 does it work in a docker container, etc. I digress. The old home for my
-environments are here: https://online.visualstudio.com/environments
+environments are here: <https://online.visualstudio.com/environments>
 
 ## Ruby on Rails
 
@@ -119,7 +119,7 @@ The following tools can be used for improving the confidence of this apps logic 
    will display the errors/warnings in real time under problems. It also offers
    Intellisense to Ruby, autocomplete, and much more |
    DEPENDENCIES: `gem install solargraph`, VS Code Extension:
-   https://marketplace.visualstudio.com/items?itemName=castwide.solargraph |
+   <https://marketplace.visualstudio.com/items?itemName=castwide.solargraph> |
    USAGE:
    - 1. `bundle exec yard gems && solargraph download-core && solargraph config .`
    - 2. Navigate to the VS Code Command Palette (CMD + Shift + P) Run command:
@@ -130,7 +130,7 @@ The following tools can be used for improving the confidence of this apps logic 
 ### Caveats
 
 1. I discovered some strange caching and pathing issues in RVM and determined it
-   was the bundler zsh plugin: https://rvm.io/support/troubleshooting. Updated
+   was the bundler zsh plugin: <https://rvm.io/support/troubleshooting>. Updated
    on 2020.07.29 2. I have added a debugger file in my gists that outline how to troubleshoot
    uglifier gem woes.
 
@@ -150,7 +150,7 @@ The following tools can be used for improving the confidence of this apps logic 
 
 2. Address the following to codespaces/dotfile init:
 
-- [cd ~/ && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"]
+- [cd ~/ && sh -c "$(curl -fsSL <https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh>)"]
 - Linking failed /usr/local/bin/pathChecker.sh ->
   /home/codespace/.codespaces/.persistedshare/dotfiles/acb_bin/pathChecker.sh
 - ~/.gitconfig already exists but is a regular file or directory
@@ -196,10 +196,10 @@ Some general caveats here are listed below:
 - I am using yarn to install the following NPM packages so that linting only
   lints code quality problems and doesn't bleed into the formatting of code.
   (Vica versa)
-  1.  stylelint-config-prettier - This allows prettier and stylelint to "play nice"
-      so formatting and linting do not override eachother.
-  2.  eslint-config-prettier - This allows prettier and stylelint to "play nice"
-      so formatting and linting do not override eachother.
+  1. stylelint-config-prettier - This allows prettier and stylelint to "play nice"
+     so formatting and linting do not override eachother.
+  2. eslint-config-prettier - This allows prettier and stylelint to "play nice"
+     so formatting and linting do not override eachother.
 - To verify that both are the linting and formatting of a language is setup
   correctly, I look in the bottom status bar and click on the following 3 things
   to ensure it's respective config file is found and that there are no errors:
