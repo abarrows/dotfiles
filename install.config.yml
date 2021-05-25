@@ -5,6 +5,7 @@
 - clean: ['~']
 - create:
     - ~/downloads
+    - ~/downloads/databases
     - ~/Library/LaunchAgents
     - ~/.git-template-directory
     - ~/.git-template-directory/hooks
@@ -27,13 +28,13 @@
     - 'sh -c $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'
     - echo 'Shell/ZSH - Installing the default Oh My ZSH...'
 - link:
-    ~/.env:
+    ~/.envrc:
       force: true
-      path: .env
-    ~/.p10k.zsh:
-      force: true
-      path: shell/.p10k.zsh
-      stdout: true
+      path: .envrc
+    # ~/.p10k.zsh:
+    #   force: true
+    #   path: shell/.p10k.zsh
+    #   stdout: true
     ~/.zlogin:
       force: true
       path: shell/.zlogin
