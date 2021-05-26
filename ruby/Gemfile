@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# eval_gemfile 'Gemfile' # DESCRIPTION: Required for a local environment gemfile with dotfiles and tooling.  DEPENDENCY: Globally install gem: https://github.com/fphilipe/bundler-private_install
+
 source 'https://rubygems.org'
 
 # Core Application
