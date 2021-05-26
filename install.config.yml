@@ -112,9 +112,13 @@
 # Ruby on Rails
 - link:
     ~/.rubocop.yml: ruby/.rubocop.yml
-    ~/.gemrc: ruby/.gemrc
+    ~/.gemrc:
+      force: true
+      path: ruby/.gemrc
     ~/.mkshrc: ruby/.mkshrc
-    ~/.rvmrc: ruby/.rvmrc
+    ~/.rvmrc:
+      force: true
+      path: ruby/.rvmrc
 
 - shell:
     - echo 'Ruby on Rails - Ready to go...'
