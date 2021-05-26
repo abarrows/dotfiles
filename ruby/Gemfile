@@ -8,36 +8,75 @@ gem 'mysql2' # Database technology for application
 gem 'rails' # Current framework used for application
 
 # Environment
+gem 'dotenv-rails' # Private variables so app can securely use.
+gem 'foreman' # Adds ability to chain commands on server start.
 
 # Backend
+gem 'hashids'# Ruby gem to prevent exposing ids to the user
+gem 'hashie' # Collection of tools to improve and extend hashes
+gem 'httparty' # Collection of methods to connect to APIs and URLs
+gem 'json' # Collection of methods for handling JSON
 
 # Frontend
-# gem 'webpacker', '~> 4.2.2' # Preferred Asset Manager used for all client-side assets. Replaces the asset pipeline
+gem 'better_html' # An improved erb templating with more  "html self-aware" and autocorrection
+gem 'webpacker' # Preferred Asset Manager used for all client-side assets. Replaces the asset pipeline
 
 # Caching and Performance
+gem 'bootsnap' # require: false | DESCRIPTION: Optimizes local performance during development
 gem 'dalli' # Preferred client for memcaching to improve the performance of this application
 
 # Errors and Logging
-gem 'pry'
-gem 'pry-byebug'
-gem 'pry-rails'
-gem 'pry-rescue'
 gem 'sentry-raven' # Preferred server error reporting client.
-# NOTE: This application is currently using the cloud instance:
-# https://sentry.io`
+# NOTE: This application is currently using the cloud instance: https://sentry.io`
 
-# Performance and Static Analysis
-gem 'brakeman'
-gem 'fasterer'
-gem 'rails_best_practices'
-gem 'traceroute'
+# SEO
+gem 'meta-tags' # SEO Plugin for Ruby on Rails.  This gem manages meta-tags, social-sharing tags, and more
+gem 'sitemap_generator' # SEO Plugin for customizing the sitemap that gets indexed by major search engines
 
-gem 'debase-ruby_core_source'
-gem 'htmlbeautifier'
-gem 'shutup'
-gem 'dotenv-rails'
-gem 'rubocop'
-gem 'rubocop-performance'
-gem 'rubocop-rails'
-gem 'rubocop-rspec'
-gem 'solargraph'
+# Profiling
+gem 'rack-mini-profiler' # Profiler for db calls and compilation
+
+group :development, :test do
+  gem 'listen' # Listens to file modifications for better notifications of changed files
+  gem 'puma' # Preferred server technology to run concurrent HTTP 1.1 server.
+  gem 'shutup' # require: false | DESCRIPTION: Utility for command line to kill servers.  COMMAND: "shutup"
+
+  # Debugging
+  # gem 'debase' # require: false | DESCRIPTION: VS CODE: Debugging dependency
+  # gem 'ruby-debug-ide' # require: false | DESCRIPTION: VS CODE: Debugging dependency
+  gem 'solargraph' # require: false | DESCRIPTION: VS CODE: Linting and Intellisense
+  gem 'web-console' # require: false | DESCRIPTION: Console on error pages
+
+  # Testing
+  gem 'brakeman' # Security and Vulnerability analyzer to identify breaches in PCI Compliance or weaknesses
+  gem 'capybara' # RSPEC: Dependency for feature/integration tests
+  gem 'capybara-selenium' # RSPEC:CAPYBARA Used with feature testing selenium web drivers.
+  gem 'rails-controller-testing' # Back-end automated tests for controllers
+  gem 'rspec-rails' # RSPEC: Core testing framework for rails
+  gem 'rspec_junit_formatter' # Formatter for testing suite
+  gem 'selenium-webdriver' # RSPEC:CAPYBARA for feature testing easily acrossed browsers.
+  gem 'simplecov', require: false # Preferred Code Coverage Library to visually represent testing coverage
+  gem 'simplecov-console', require: false # SIMPLECOV: Extends simplecov to output directly to the console
+  gem 'timecop' # Time and date related debugging
+  gem 'webdrivers' # RSPEC:CAPYBARA - Adds all supported webdrivers for feature tests.
+
+  # Performance and Static Analysis
+  gem 'bullet' # Checks for N+1 queries and has extra configuration
+  gem 'fasterer' # Checks for performance related opportunities
+  gem 'traceroute' # Static Analyzer - Unused routes
+
+  # Security and Static Analyzers
+  gem 'rails_best_practices' # Code Quality Tool that analyzes code for improvement opportunities.
+
+  # Linting and Static Analyzers
+  gem 'erb_lint', require: false # Linter for erb views
+  gem 'flay', require: false # Analyzer for dead code and structural similarities
+  gem 'htmlbeautifier', require: false # VS CODE/ERB_LINT/RUBOCOP: Lints erb and html
+  gem 'reek', require: false # Analyzes code smells (Code Quality Tool)
+  gem 'rubocop', require: false # RUBOCOP: Main Ruby linter and framework
+  gem 'rubocop-performance', require: false # RUBOCOP: Linter for performance
+  gem 'rubocop-rails' # RUBOCOP: Linter for rails
+  gem 'rubocop-rspec' # RUBOCOP/RSPEC: Linter for automated testing suite
+  gem 'yamllint', require: false # Lints against .yml files for quality and errors
+end
+
