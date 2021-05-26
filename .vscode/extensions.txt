@@ -62,6 +62,7 @@ Pivotal.vscode-manifest-yaml
 PKief.material-icon-theme
 pranaygp.vscode-css-peek
 rebornix.ruby
+redhat.vscode-commons
 redhat.vscode-yaml
 richie5um2.vscode-sort-json
 ritwickdey.LiveServer
