@@ -115,7 +115,9 @@
     ~/.gemrc:
       force: true
       path: ruby/.gemrc
-    ~/.mkshrc: ruby/.mkshrc
+    ~/.mkshrc:
+      force: true
+      path: ruby/.mkshrc
     ~/.rvmrc:
       force: true
       path: ruby/.rvmrc

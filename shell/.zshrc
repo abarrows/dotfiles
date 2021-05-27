@@ -12,7 +12,9 @@ PATH=:bin/~/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/l
 
 # Path to your oh-my-zsh installation.
 ZSH=$HOME/.oh-my-zsh
-ZSH_DOTENV_FILE=$HOME/.env
+ZSH_DOTENV_FILE=$HOME/.envrc
+
+source "$HOME/.envrc"
 source "$HOME/.theme.zsh"
 source "$HOME/.functions.zsh"
 source "$HOME/.plugins.zsh"
@@ -101,13 +103,8 @@ source $ZSH/oh-my-zsh.sh
 # iTerm2 Integration
 [[ ! -f "$HOME/.iterm2_shell_integration.zsh" ]] || source "$HOME/.iterm2_shell_integration.zsh"
 
-# GOOGLE CLOUD SDK
-# shellcheck disable=SC1091
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
-
-# The next line enables shell command completion for gcloud.
-# shellcheck disable=SC1091
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+# RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Python (Not in use.)
 # eval "$(pyenv init -)"
