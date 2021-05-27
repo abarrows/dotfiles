@@ -31,10 +31,10 @@
     ~/.envrc:
       force: true
       path: .envrc
-    # ~/.p10k.zsh:
-    #   force: true
-    #   path: shell/.p10k.zsh
-    #   stdout: true
+    ~/.p10k.zsh:
+      force: true
+      path: shell/.p10k.zsh
+      stdout: true
     ~/.zlogin:
       force: true
       path: shell/.zlogin
