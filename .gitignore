@@ -27,7 +27,7 @@ ruby/.bundle/cache/*
 
 # dotenv
 /.env*
-!/.env*.example
+!/.env*.example**
 
 # logfiles and tempfiles
 /log/*
@@ -90,6 +90,9 @@ config/master.key
 /public/packs-test
 /public/assets
 
+# Ignore compiled storybook directory
+/storybook-static
+
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
@@ -106,7 +109,16 @@ pids
 *.pid.lock
 
 # Dependency directories
-node_modules/
+node_modules
+/.pnp
+.pnp.js
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
 
 # Optional npm cache directory
 .npm
