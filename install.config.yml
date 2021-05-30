@@ -62,8 +62,8 @@
 
 # Version Control
 - link:
-    ~/.acb_bin: acb_bin
-    /usr/local/bin/pathChecker.sh: acb_bin/pathChecker.sh
+    ~/.onboarding_bin: onboarding_bin
+    /usr/local/bin/pathChecker.sh: onboarding_bin/pathChecker.sh
     ~/.gitconfig:
       force: true
       path: version-control/.git-template-directory/.gitconfig
