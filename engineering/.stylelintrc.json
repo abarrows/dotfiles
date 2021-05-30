@@ -1,73 +1,51 @@
 {
-  "extends": ["stylelint-config-recommended-scss", "prettier-stylelint"],
+  "extends": ["stylelint-config-recommended-scss", "stylelint-config-prettier"],
+  "plugins": ["stylelint-no-unsupported-browser-features"],
   "rules": {
-    "indentation": 2,
-    "selector-type-case": "lower",
-    "selector-pseudo-class-case": "lower",
-    "selector-pseudo-element-case": "lower",
-    "property-case": "lower",
-    "function-name-case": "lower",
-    "at-rule-name-case": "lower",
-    "media-feature-name-case": "lower",
-    "value-keyword-case": "lower",
-    "color-hex-case": "lower",
-    "unit-case": "lower",
-    "block-opening-brace-newline-after": "always",
-    "block-closing-brace-newline-before": "always",
-    "no-eol-whitespace": [
-      true,
+    "at-rule-disallowed-list": [
+      "extend",
       {
-        "severity": "warning"
-      }
-    ],
-    "max-nesting-depth": 3,
-    "max-empty-lines": [
-      1,
-      {
-        "ignore": "comments"
-      }
-    ],
-    "rule-empty-line-before": [
-      "always",
-      {
-        "except": [
-          "after-single-line-comment",
-          "inside-block",
-          "inside-block-and-after-rule"
-        ],
-        "ignore": ["after-comment"]
-      }
-    ],
-    "shorthand-property-no-redundant-values": true,
-    "value-no-vendor-prefix": true,
-    "property-no-vendor-prefix": true,
-    "declaration-colon-newline-after": "always-multi-line",
-    "declaration-block-trailing-semicolon": "always",
-    "declaration-block-semicolon-newline-after": "always",
-    "selector-list-comma-newline-after": "always",
-    "selector-max-empty-lines": 0,
-    "selector-max-id": 0,
-    "selector-class-pattern": [
-      "^((?!js-).)*$",
-      {
-        "resolveNestedSelectors": true,
-        "severity": "error",
-        "message": "Don't style js- prefixed classes, those are reserved for JavaScript use only"
+        "message": "No @extend",
+        "severity": "error"
       }
     ],
     "declaration-no-important": [
       true,
       {
-        "severity": "warning",
-        "message": "Avoid usage of !important"
+        "message": "Avoid usage of !important",
+        "severity": "warning"
       }
     ],
-    "at-rule-blacklist": [
-      "extend",
+    "plugin/no-unsupported-browser-features": [
+      true,
       {
-        "severity": "error",
-        "message": "No @extend"
+        "ignore": ["flexbox", "viewport-units"],
+        "severity": "warning"
       }
-    ]
+    ],
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreSelectors": [":export"]
+      }
+    ],
+    "property-no-vendor-prefix": true,
+    "selector-class-pattern": [
+      "^((?!js-).)*$",
+      {
+        "message": "Don't style js- prefixed classes, those are reserved for JavaScript use only",
+        "resolveNestedSelectors": true,
+        "severity": "error"
+      }
+    ],
+    "selector-max-id": 0,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["export"]
+      }
+    ],
+    "shorthand-property-no-redundant-values": true,
+    "value-no-vendor-prefix": true
   }
 }
