@@ -11,3 +11,17 @@ BITBUCKET_USERNAME=# Username for bitbucket username
 BITBUCKET_PASSWORD=# Password or token for bitbucket user
 JIRA_BASE_URL=# This is the url to your team's base jira cloud instance
 JIRA_USER_EMAIL=# This is your jira login email.
+
+# Company Server Addresses
+PRODUCT_SYNDICATION_PRODUCTION= # Server Location
+PRODUCT_SYNDICATION_PRODUCTION_2= # Server Location
+ADMIN_SYNDICATION_PRODUCTION= # Server Location
+SERVICE_IMAGES_PRODUCTION= # Server Location
+PRODUCT_PUZZLESOCIETY_STAGING= # Server Location
+PRODUCT_PUZZLESOCIETY_STAGING= # Server Location
+SERVICE_ALL_STAGING= # Server Location
+PRODUCT_ALL_STAGING= # Server Location
+ADMIN_TOOLS_PRODUCTION= # Server Location
+PRODUCT_LICENSING_STAGING= # Server Location
+PRODUCT_LICENSING_STAGING_2= # Server Location
+PRODUCT_FARSIDE_STAGING= # Server Location
