@@ -5,8 +5,9 @@ IDE_BUILD=# The name of vscode that calls the CLI. IE: code --list-extensions or
 GIT_EMAIL_ADDRESS_PROFESSIONAL=# Github email address for professional or organizational teams
 GIT_EMAIL_ADDRESS_KEY=# The key that displays here:
 https://github.com/settings/keys under your GPG key.
-GIT_EMAIL_ADDRESS_PROFESSIONAL="abarrows@amuniversal.com"
-GIT_EMAIL_ADDRESS_KEY="BDE760D6A0526B62"
+GIT_EMAIL_ADDRESS_PROFESSIONAL=# Email address associated with your company's
+github organization
+GIT_EMAIL_ADDRESS_KEY=# Git email address key
 BITBUCKET_USERNAME=# Username for bitbucket username
 BITBUCKET_PASSWORD=# Password or token for bitbucket user
 JIRA_BASE_URL=# This is the url to your team's base jira cloud instance
