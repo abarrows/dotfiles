@@ -1,6 +1,8 @@
 .drone.yml
 .git
 .gitignore
+.next/
+node_modules/
 Dockerfile
 devcontainer.env
 README.md
