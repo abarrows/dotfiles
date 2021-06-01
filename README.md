@@ -152,7 +152,7 @@ The following tools can be used for improving the confidence of this apps logic 
 
 - [cd ~/ && sh -c "$(curl -fsSL <https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh>)"]
 - Linking failed /usr/local/bin/pathChecker.sh ->
-  /home/codespace/.codespaces/.persistedshare/dotfiles/acb_bin/pathChecker.sh
+  /home/codespace/.codespaces/.persistedshare/dotfiles/onboarding_bin/pathChecker.sh
 - ~/.gitconfig already exists but is a regular file or directory
 
 3. Add global precommit hook.
