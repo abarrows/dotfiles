@@ -35,3 +35,5 @@ tool = vscode
 cmd = code --wait $MERGED
 [checkout]
 defaultRemote = origin
+[fetch]
+	prune = true
