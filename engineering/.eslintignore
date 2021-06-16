@@ -1,3 +1,2 @@
-# Ignore the vendor directory
-vendor
-babel.config.js
+# Add any directories or files to ignore here
+**/vendor

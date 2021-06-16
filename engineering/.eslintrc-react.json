@@ -3,37 +3,83 @@
     "browser": true,
     "es6": true,
     "jest": true,
+    "jquery": false,
     "node": true
   },
-  "extends": ["airbnb", "prettier", "prettier/react"],
-  "globals": {
-    "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
-  },
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:react/recommended",
+    "plugin:compat/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:cypress/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "overrides": [
+    {
+      "files": ["./__tests__/**", "**.test.jsx"],
+      "rules": {
+        "react/jsx-props-no-spreading": "off"
+      }
+    }
+  ],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
-      "jsx": true,
-      "modules": true
+      "jsx": true
     },
-    "ecmaVersion": 2018,
-    "sourceType": "module"
+    "ecmaVersion": 6
   },
-  "plugins": ["react", "prettier"],
+  "plugins": ["babel", "cypress", "react", "jsx-a11y"],
   "rules": {
-    "prettier/prettier": "error",
-    "react/forbid-prop-types": [
-      0,
+    "jsx-a11y/anchor-is-valid": "off", // https://nextjs.org/docs/api-reference/next/link
+    "max-len": [
+      "error",
       {
-        "forbid": ["any"]
+        "code": 120
       }
     ],
-    "react/jsx-filename-extension": [
-      1,
+    "semi": 2
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "."]
+      }
+    },
+    "linkComponents": [
+      // Components used as alternatives to <a> for linking, eg. <Link to={ url } />
+      "Hyperlink",
       {
-        "extensions": [".js", ".jsx", ".es6"]
+        "linkAttribute": "to",
+        "name": "Link"
       }
     ],
-    "react/prop-types": 0
+    "polyfills": [
+      // https://github.com/amilajack/eslint-plugin-compat
+      // Next.js already polyfills a lot, as needed mark them as polyfilled here
+      // Included polyfills: https: //github.com/zeit/next.js/blob/canary/packages/next-polyfill-nomodule/src/index.js
+      "Promise",
+      "Object.values",
+      "fetch"
+    ],
+    "propWrapperFunctions": [
+      // The names of any function used to wrap propTypes, e.g. `forbidExtraProps`. If this isn't set, any propTypes wrapped in a function will be skipped.
+      "forbidExtraProps",
+      {
+        "object": "Object",
+        "property": "freeze"
+      },
+      {
+        "property": "myFavoriteWrapper"
+      }
+    ],
+    "react": {
+      "createClass": "createReactClass", // Regex for Component Factory to use,
+      // default to "createReactClass"
+      "pragma": "React", // Pragma to use, default to "React"
+      "version": "detect" // React version. "detect" automatically picks the version you have installed.
+    }
   }
 }

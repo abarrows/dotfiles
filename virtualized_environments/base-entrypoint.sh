@@ -7,7 +7,7 @@
 # cp .zshrc ~/
 # sudo chown abarrows ~/.zshrc
 # Now source the Oh My Z-Shell file
-echo "Oh My ZSH is now installed with my local .zshrc.  The theme should be powerlevel10k: ${ZSH_THEME}"
+echo "Oh My ZSH is now installed with my local .zshrc.  The theme should be agnoster: ${ZSH_THEME}"
 
 # Echo where we are and that the setup script is taking place.
 echo "We are currently here: ${pwd}"
