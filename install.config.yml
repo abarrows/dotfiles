@@ -10,6 +10,12 @@
     - ~/.git-template-directory
     - ~/.git-template-directory/hooks
     - ~/.git-template-directory/.github
+    - ~/Documents/AMU
+    - ~/Documents/AMU/repos
+    - ~/Documents/AMU/repos/amu-development-team
+    - ~/Documents/AMU/repos/amu-digital-products
+    - ~/Documents/AMU/repos/amu-digital-services
+    - ~/Documents/AMU/repos/amu-admins
 # Shell - Oh My ZSH
 # TODO: Figure out the command to not copy the .zshrc
 # - shell:
