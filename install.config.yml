@@ -29,6 +29,10 @@
 #   path: hammerspoon
 
 # Shell - Custom plugins, themes, aliases, etc.
+# - shell: if [ ! -x ~/.oh-my-zsh ]; then
+#     echo "Installing oh-my-zsh..."
+#     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+#     fi
 - shell:
     - 'cd ~/'
     - 'sh -c $(curl -fsSL
@@ -80,11 +84,13 @@
     ~/.git-template-directory/.gitignore: version-control/.git-template-directory/.gitignore
     ~/.bitbucket: version-control/.bitbucket
 - shell:
+    # Homebrew General Software and Applications
+    # - shell: if [ ! -x /usr/local/bin/brew ]; then
+    #     echo "Installing x86 Homebrew..."
+    #     arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    #     fi
     - echo 'General Version Control - Ready to go...'
-
-# Homebrew General Software and Applications
-- shell:
-    - 'git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --depth=10000'
+    - 'git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --unshallow'
 - brewfile:
     - Brewfile
 - link:
@@ -113,13 +119,14 @@
 - shell:
     - echo 'General Software Engineering - Ready to go...'
 
-# Node / React
+# Javascript and React
 - link:
+    # Node Versions
     ~/.nvmrc: engineering/javascript/.nvmrc
     ~/.npmignore: engineering/javascript/.npmignore
     # General Javascript Linters
-    ~/.eslintrc.json: engineering/formatters/.eslintrc.json
-    ~/.eslintignore: engineering/formatters/.eslintignore
+    ~/.eslintrc.json: engineering/javascript/.eslintrc.json
+    ~/.eslintignore: engineering/javascript/.eslintignore
 - shell:
     - echo 'Node/React - Ready to go...'
 
@@ -131,15 +138,15 @@
     ~/.rvmrc: engineering/ruby/.rvmrc
     ~/.ruby-version: engineering/ruby/.ruby-version
     ~/.ruby-gemset: engineering/ruby/.ruby-gemset
-    ~/.solargraph: engineering/ruby/.solargraph
+    ~/.solargraph.yml: engineering/ruby/.solargraph.yml
 
 - shell:
     - echo 'Ruby on Rails - Ready to go...'
 
 # Python
 - link:
-    ~/Pipfile: python/Pipfile
-    ~/Pipfile.lock: python/Pipfile.lock
+    ~/Pipfile: engineering/python/Pipfile
+    ~/Pipfile.lock: engineering/python/Pipfile.lock
     # ~/.pyenv:
     #   path: python/.pyenv
     #   create: true
@@ -170,9 +177,6 @@
     '~/Library/Application Support/code/User/launch.json':
       path: .vscode/launch.json
       force: true
-    '~/Library/Application Support/code/User/snippets':
-      path: .vscode/snippets
-      create: true
 - shell:
     - code --list-extensions > .vscode/extensions.txt
 - vscodefile:
@@ -183,5 +187,6 @@
 
 - shell:
     - xcode-select --install || true
+    # - source ~/.zshrc
     - echo 'Xcode - Ready to go...'
     - echo 'Sourcing your zshrc! You are ready to rock and roll...'
