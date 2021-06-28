@@ -99,21 +99,27 @@
 
 # General Software Engineering
 - link:
-    ~/.editorconfig: engineering/.editorconfig
-    ~/.eslintrc.json: engineering/.eslintrc.json
-    ~/.eslintignore: engineering/.eslintignore
+    ~/.editorconfig: engineering/formatters/.editorconfig
+
+    # General CSS and Style Linters
+    ~/.stylelintrc.json: engineering/css/.stylelintrc.json
+    ~/.stylelintrcignore: engineering/css/.stylelintrcignore
     # ~/postcss.config.js: engineering/postcss.config.js
-    ~/.prettierrc.json: engineering/.prettierrc.json
-    ~/.prettierignore: engineering/.prettierignore
-    ~/.stylelintrc.json: engineering/.stylelintrc.json
-    ~/.htmlhintrc.json: engineering/.htmlhintrc.json
+
+    # General Formatters
+    ~/.prettierrc.json: engineering/formatters/.prettierrc.json
+    ~/.prettierignore: engineering/formatters/.prettierignore
+    ~/.htmlhintrc.json: engineering/formatters/.htmlhintrc.json
 - shell:
     - echo 'General Software Engineering - Ready to go...'
 
 # Node / React
 - link:
-    ~/.nvmrc: javascript/.nvmrc
-    ~/.npmignore: javascript/.npmignore
+    ~/.nvmrc: engineering/javascript/.nvmrc
+    ~/.npmignore: engineering/javascript/.npmignore
+    # General Javascript Linters
+    ~/.eslintrc.json: engineering/formatters/.eslintrc.json
+    ~/.eslintignore: engineering/formatters/.eslintignore
 - shell:
     - echo 'Node/React - Ready to go...'
 
