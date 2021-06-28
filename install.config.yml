@@ -31,7 +31,9 @@
 # Shell - Custom plugins, themes, aliases, etc.
 - shell:
     - 'cd ~/'
-    - 'sh -c $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'
+    - 'sh -c $(curl -fsSL
+    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'
+    - sudo chmod -R 755 /usr/local/share/zsh
     - echo 'Shell/ZSH - Installing the default Oh My ZSH...'
 - link:
     ~/.envrc:
@@ -110,23 +112,20 @@
 
 # Node / React
 - link:
-    ~/.nvmrc: node/.nvmrc
-    ~/.npmignore: node/.npmignore
+    ~/.nvmrc: javascript/.nvmrc
+    ~/.npmignore: javascript/.npmignore
 - shell:
     - echo 'Node/React - Ready to go...'
 
 # Ruby on Rails
 - link:
-    ~/.rubocop.yml: ruby/.rubocop.yml
-    ~/.gemrc:
-      force: true
-      path: ruby/.gemrc
-    ~/.mkshrc:
-      force: true
-      path: ruby/.mkshrc
-    ~/.rvmrc:
-      force: true
-      path: ruby/.rvmrc
+    ~/.rubocop.yml: engineering/ruby/.rubocop.yml
+    ~/.gemrc: engineering/ruby/.gemrc
+    ~/.mkshrc: engineering/ruby/.mkshrc
+    ~/.rvmrc: engineering/ruby/.rvmrc
+    ~/.ruby-version: engineering/ruby/.ruby-version
+    ~/.ruby-gemset: engineering/ruby/.ruby-gemset
+    ~/.solargraph: engineering/ruby/.solargraph
 
 - shell:
     - echo 'Ruby on Rails - Ready to go...'

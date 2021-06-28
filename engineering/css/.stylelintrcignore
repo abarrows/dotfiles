@@ -1,4 +1,4 @@
 # Add any directories or files to ignore here
-**.next
 **/vendor
-./deployments/charts
+/public/images
+_custom.scss

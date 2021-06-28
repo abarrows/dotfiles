@@ -119,6 +119,7 @@ node_modules
 
 # Production
 /build
+.cache
 
 # Optional npm cache directory
 .npm

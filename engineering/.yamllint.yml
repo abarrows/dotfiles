@@ -1,8 +1,0 @@
-# For all rules
-ignore: |
-  /node_modules/*.yaml
-  /node_modules/*.yml
-  /node_modules/*.yamllint
-  /bin/
-
-extends: default

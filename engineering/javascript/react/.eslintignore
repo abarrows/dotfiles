@@ -1,0 +1,8 @@
+# Ignore the vendor directory
+**.bundle.js
+**/vendor
+.babelrc
+babel.config.js
+.cache
+dist
+node_modules
