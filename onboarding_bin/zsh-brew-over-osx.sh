@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # https://rick.cogley.info/post/use-homebrew-zsh-instead-of-the-osx-default/
 zsh --version \
 which zsh \

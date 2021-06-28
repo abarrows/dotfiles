@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "1. VSCode - Retrieving all extensions..."
 code --list-extensions > .vscode/extensions.json
 

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # TODO: Use git.repo.name and string hyphens and underscores then limit to 14 (which is the current limit)
 # TODO: Daily Cartoonist copy over to daily cartoon as the environment name
 # TODO: Kill any sites that are no longer used.

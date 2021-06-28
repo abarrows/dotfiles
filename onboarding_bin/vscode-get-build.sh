@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # First check if vscode is installed.  NOTE: IDE_PATH is used with
 # dotbot and generating a path for where the symlinked setting files go.

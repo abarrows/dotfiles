@@ -12,7 +12,7 @@ PATH=:bin/~/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/l
 
 # Path to your oh-my-zsh installation.
 ZSH=$HOME/.oh-my-zsh
-ZSH_DOTENV_FILE=$HOME/.envrc
+# ZSH_DOTENV_FILE=$HOME/.envrc
 
 source "$HOME/.envrc"
 source "$HOME/.theme.zsh"
@@ -102,9 +102,6 @@ source $ZSH/oh-my-zsh.sh
 # NON-OH-MY-ZSH EXTENSIONS
 # iTerm2 Integration
 [[ ! -f "$HOME/.iterm2_shell_integration.zsh" ]] || source "$HOME/.iterm2_shell_integration.zsh"
-
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Python (Not in use.)
 # eval "$(pyenv init -)"

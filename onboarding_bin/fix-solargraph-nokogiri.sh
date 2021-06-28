@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # When facing the following error:
 # /Users/abarrows/.rvm/gems/ruby-2.5.3@dilbert/gems/nokogiri-1.10.9/lib/nokogiri.rb:32:in
 # `require': incompatible library version -

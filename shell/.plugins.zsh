@@ -120,13 +120,13 @@ plugins=(
   rake
   ruby
   rvm
-  zsh-autosuggestions
-  zsh-completions
-  zsh-syntax-highlighting
   thefuck
   vscode
   yarn
   vscode
+  zsh-autosuggestions
+  zsh-completions
+  zsh-syntax-highlighting
 )
 
 echo "ZSH/PLUGINS: Loaded."
