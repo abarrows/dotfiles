@@ -15,9 +15,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_DOTENV_FILE=$HOME/.envrc
 
 source "$HOME/.envrc"
-# source "$HOME/.theme.zsh"
+source "$HOME/.theme.zsh"
+source "$HOME/.plugins.zsh"
 source "$HOME/.functions.zsh"
-# source "$HOME/.plugins.zsh"
 source "$HOME/.aliases.zsh"
 
 # OLD PATHING

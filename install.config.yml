@@ -29,12 +29,12 @@
       force: true
       path: shell/.zlogin
       stdout: true
-    # ~/.theme.zsh:
-    #   force: true
-    #   path: shell/.theme.zsh
-    # ~/.plugins.zsh:
-    #   force: true
-    #   path: shell/.plugins.zsh
+    ~/.theme.zsh:
+      force: true
+      path: shell/.theme.zsh
+    ~/.plugins.zsh:
+      force: true
+      path: shell/.plugins.zsh
     ~/.functions.zsh:
       force: true
       path: shell/.functions.zsh
@@ -67,13 +67,13 @@
 #     fi
 # - echo 'General Version Control - Ready to go...'
 # - 'git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --unshallow'
-# - brewfile:
-#     - Brewfile
-# - link:
-#     ~/Brewfile: Brewfile
-#     ~/Brewfile.lock.json: Brewfile.lock.json
-# - shell:
-#     - echo 'General Software and Applications (via homebrew) - Ready to go...'
+- brewfile:
+    - Brewfile
+- link:
+    ~/Brewfile: Brewfile
+    ~/Brewfile.lock.json: Brewfile.lock.json
+- shell:
+    - echo 'General Software and Applications (via homebrew) - Ready to go...'
 
 # Virtualized Environment
 - link:
@@ -160,12 +160,8 @@
     insiders: false
 - shell:
     - echo 'VS Code - Ready to go...'
-#- shell:
-# - xcode-select --install || true
-# - echo 'Xcode - Ready to go...'
-# - source ~/.zshrc
-# - echo 'Sourcing your zshrc! You are ready to rock and roll...'
-# - shell:
-# - source $HOME/.theme.zsh
-# - source $HOME/.plugins.zsh
-# - echo 'Shell/ZSH - Custom theme, plugins, aliases, etc. installed. Ready to go...'
+    - xcode-select --install || true
+    - echo 'Xcode - Ready to go...'
+    - source ~/.zshrc
+    - echo 'Shell/ZSH - Custom theme, plugins, aliases, etc. installed. Ready to go...'
+    - echo 'Sourcing your zshrc! You are ready to rock and roll...'
