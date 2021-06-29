@@ -11,22 +11,14 @@ export LC_ALL=en_US.UTF-8
 PATH=:bin/~/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
-ZSH=$HOME/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 # ZSH_DOTENV_FILE=$HOME/.envrc
 
 source "$HOME/.envrc"
-source "$HOME/.theme.zsh"
+# source "$HOME/.theme.zsh"
 source "$HOME/.functions.zsh"
-source "$HOME/.plugins.zsh"
+# source "$HOME/.plugins.zsh"
 source "$HOME/.aliases.zsh"
-
-# CACHING
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-# fi
 
 # OLD PATHING
 # RVM

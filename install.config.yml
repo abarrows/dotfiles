@@ -16,47 +16,25 @@
     - ~/Documents/AMU/repos/amu-digital-products
     - ~/Documents/AMU/repos/amu-digital-services
     - ~/Documents/AMU/repos/amu-admins
-# Shell - Oh My ZSH
-# TODO: Figure out the command to not copy the .zshrc
-# - shell:
-#     - command: oh-my-zsh/tools/install.sh
-#       force: true
-#       stdout: true
-#       stderr: true
-#       description: Installing oh-my-zsh
-# ~/.hammerspoon:
-#   if: '[ `uname` = Darwin ]'
-#   path: hammerspoon
-
-# Shell - Custom plugins, themes, aliases, etc.
-# - shell: if [ ! -x ~/.oh-my-zsh ]; then
-#     echo "Installing oh-my-zsh..."
-#     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
-#     fi
+# Shell - Oh My ZSH, Custom plugins, themes, aliases, etc.
 - shell:
-    - 'cd ~/'
-    - 'sh -c $(curl -fsSL
-    https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'
-    - sudo chmod -R 755 /usr/local/share/zsh
+    - cd ~/
+    - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
     - echo 'Shell/ZSH - Installing the default Oh My ZSH...'
 - link:
     ~/.envrc:
       force: true
       path: .envrc
-    ~/.p10k.zsh:
-      force: true
-      path: shell/.p10k.zsh
-      stdout: true
     ~/.zlogin:
       force: true
       path: shell/.zlogin
       stdout: true
-    ~/.theme.zsh:
-      force: true
-      path: shell/.theme.zsh
-    ~/.plugins.zsh:
-      force: true
-      path: shell/.plugins.zsh
+    # ~/.theme.zsh:
+    #   force: true
+    #   path: shell/.theme.zsh
+    # ~/.plugins.zsh:
+    #   force: true
+    #   path: shell/.plugins.zsh
     ~/.functions.zsh:
       force: true
       path: shell/.functions.zsh
@@ -69,8 +47,6 @@
     ~/.zshrc:
       force: true
       path: shell/.zshrc
-- shell:
-    - echo 'Shell/ZSH - Custom theme, plugins, aliases, etc. installed. Ready to go...'
 
 # Version Control
 - link:
@@ -83,21 +59,21 @@
     ~/.git-template-directory/hooks/prepare-commit-msg: version-control/.git-template-directory/hooks/prepare-commit-msg
     ~/.git-template-directory/.gitignore: version-control/.git-template-directory/.gitignore
     ~/.bitbucket: version-control/.bitbucket
-- shell:
-    # Homebrew General Software and Applications
-    # - shell: if [ ! -x /usr/local/bin/brew ]; then
-    #     echo "Installing x86 Homebrew..."
-    #     arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    #     fi
-    - echo 'General Version Control - Ready to go...'
-    - 'git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --unshallow'
-- brewfile:
-    - Brewfile
-- link:
-    ~/Brewfile: Brewfile
-    ~/Brewfile.lock.json: Brewfile.lock.json
-- shell:
-    - echo 'General Software and Applications (via homebrew) - Ready to go...'
+# - shell:
+# Homebrew General Software and Applications
+# - shell: if [ ! -x /usr/local/bin/brew ]; then
+#     echo "Installing x86 Homebrew..."
+#     arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+#     fi
+# - echo 'General Version Control - Ready to go...'
+# - 'git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --unshallow'
+# - brewfile:
+#     - Brewfile
+# - link:
+#     ~/Brewfile: Brewfile
+#     ~/Brewfile.lock.json: Brewfile.lock.json
+# - shell:
+#     - echo 'General Software and Applications (via homebrew) - Ready to go...'
 
 # Virtualized Environment
 - link:
@@ -125,8 +101,8 @@
     ~/.nvmrc: engineering/javascript/.nvmrc
     ~/.npmignore: engineering/javascript/.npmignore
     # General Javascript Linters
-    ~/.eslintrc.json: engineering/javascript/.eslintrc.json
-    ~/.eslintignore: engineering/javascript/.eslintignore
+    ~/.eslintrc.json: engineering/javascript/legacy/.eslintrc.json
+    ~/.eslintignore: engineering/javascript/legacy/.eslintignore
 - shell:
     - echo 'Node/React - Ready to go...'
 
@@ -184,9 +160,12 @@
     insiders: false
 - shell:
     - echo 'VS Code - Ready to go...'
-
-- shell:
-    - xcode-select --install || true
-    # - source ~/.zshrc
-    - echo 'Xcode - Ready to go...'
-    - echo 'Sourcing your zshrc! You are ready to rock and roll...'
+#- shell:
+# - xcode-select --install || true
+# - echo 'Xcode - Ready to go...'
+# - source ~/.zshrc
+# - echo 'Sourcing your zshrc! You are ready to rock and roll...'
+# - shell:
+# - source $HOME/.theme.zsh
+# - source $HOME/.plugins.zsh
+# - echo 'Shell/ZSH - Custom theme, plugins, aliases, etc. installed. Ready to go...'
