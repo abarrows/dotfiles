@@ -1,14 +1,14 @@
-* @abarrows @acroth
+* @abarrows
 
 # Front-end Engineering
 *.js *.css *.scss *.erb *.js @abarrows @dcumpton-amu @ctrble @NathanTrost
-# @pmccarthyAMU @acroth
+# @pmccarthyAMU @acroth @wyokyla23
 # *.css @abarrows @dcumpton-amu @ctrble @NathanTrost
-# @pmccarthyAMU @acroth
-# *.scss @abarrows @dcumpton-amu @ctrble @NathanTrost
-# @pmccarthyAMU @acroth
+# @pmccarthyAMU @acroth @wyokyla23
+# *.scss @abarrows @dcumpton-amu @ctrble @NathanTrost @wyokyla23
+# @pmccarthyAMU @acroth @wyokyla23
 # *.erb @abarrows @dcumpton-amu @ctrble @NathanTrost
-# @pmccarthyAMU @acroth
+# @pmccarthyAMU @acroth @wyokyla23
 
 # Back-end Engineering
 !/**/*.css @vkieffer-amu @amumark
