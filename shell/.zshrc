@@ -12,7 +12,7 @@ PATH=:bin/~/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/l
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-# ZSH_DOTENV_FILE=$HOME/.envrc
+ZSH_DOTENV_FILE=$HOME/.envrc
 
 source "$HOME/.envrc"
 source "$HOME/.theme.zsh"
@@ -90,6 +90,9 @@ HIST_STAMPS="yyyy-mm-dd"
 # ZSH_CUSTOM=$ZSH/custom
 
 source $ZSH/oh-my-zsh.sh
+
+# RVM
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # NON-OH-MY-ZSH EXTENSIONS
 # iTerm2 Integration

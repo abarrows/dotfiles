@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Starship Theme
+# Instructions: https://guinuxbr.com/en/posts/zsh+oh-my-zsh+starship/
 # if ! type "$starship" > /dev/null; then
 #   echo 'Cloning the theme: Starship'
 #   sh -c "$(curl -fsSL https://starship.rs/install.sh)"
