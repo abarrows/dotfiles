@@ -41,12 +41,21 @@
     ~/.aliases.zsh:
       force: true
       path: shell/.aliases.zsh
+    ~/com.googlecode.iterm2.plist:
+      force: true
+      path: shell/com.googlecode.iterm2.plist
     ~/.iterm2_shell_integration.zsh:
       force: true
       path: shell/.iterm2_shell_integration.zsh
     ~/.zshrc:
       force: true
       path: shell/.zshrc
+- shell:
+    # iTerm Configuration, Profile, and Settings
+    # Specify the preferences directory
+    - defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/com.googlecode.iterm2.plist"
+    # Tell iTerm2 to use the custom preferences in the directory
+    - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 # Version Control
 - link:
