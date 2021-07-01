@@ -1,3 +1,4 @@
+Extensions installed on Codespaces:
 alexdima.copy-relative-path
 aliariff.vscode-erb-beautify
 anweber.vscode-tidyhtml
@@ -19,7 +20,6 @@ eamodio.gitlens
 EditorConfig.EditorConfig
 EQuimper.react-native-react-redux
 esbenp.prettier-vscode
-felixfbecker.php-intellisense
 formulahendry.auto-rename-tag
 formulahendry.code-runner
 formulahendry.github-actions
@@ -28,6 +28,7 @@ gazugafan.vscode-indent-on-paste
 geddski.macros
 gioboa.jira-plugin
 GitHub.codespaces
+GitHub.github-vscode-theme
 GitHub.vscode-pull-request-github
 Gruntfuggly.todo-tree
 henriiik.docker-linter
@@ -51,7 +52,6 @@ moshfeu.diff-merge
 ms-azuretools.vscode-docker
 ms-kubernetes-tools.vscode-aks-tools
 ms-kubernetes-tools.vscode-kubernetes-tools
-ms-vscode-remote.remote-containers
 ms-vscode.azure-account
 ms-vscode.vs-keybindings
 ms-vsliveshare.vsliveshare
