@@ -1,4 +1,4 @@
-# dotfiles-and-tooling TODO: THIS IS OUTDATED TBD
+# dotfiles-and-tooling
 
 This repository is all my personal IDE configuration, settings, tooling, and
 preferences. My ultimate goal here is to recreate my entire Macbook Pro machine
@@ -177,6 +177,9 @@ to do with having two entities in git or homebrew managing the GPG functionality
    - Rubocop-rails
    - Rubocop-rspec
    - Traceroute
+5. Automate adding iterm profile, keymaps
+6. Automate RVM installation
+7. Drop zsh plugins from the initial ./install command.
 
 ## WORKFLOW INFORMATION
 
