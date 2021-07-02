@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>iconid</key>
+	<string>79228301-9EFC-40D4-9F25-C960F6B91F45</string>
+	<key>iconisuserspecified</key>
+	<true/>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>actionconfig</key>
+			<dict>
+				<key>url</key>
+				<string>https://www.alfredapp.com</string>
+			</dict>
+			<key>actionuid</key>
+			<string>remote.alfred.openurl</string>
+			<key>buttoniconid</key>
+			<string>E4136746-6858-471F-BAF7-20C66D241C74</string>
+			<key>buttonlabel</key>
+			<string></string>
+			<key>itemuid</key>
+			<string>EBDCAC8A-A6D0-4F7B-82E8-6D6166F481C8</string>
+		</dict>
+		<dict>
+			<key>actionconfig</key>
+			<dict>
+				<key>url</key>
+				<string>https://www.facebook.com</string>
+			</dict>
+			<key>actionuid</key>
+			<string>remote.alfred.openurl</string>
+			<key>buttoniconid</key>
+			<string>1EE66457-06C5-4599-80C6-7B1FFDC4D8DB</string>
+			<key>buttonlabel</key>
+			<string></string>
+			<key>itemuid</key>
+			<string>60F7C77D-B0B3-4CB1-B070-BD083E9AE19F</string>
+		</dict>
+		<dict>
+			<key>actionconfig</key>
+			<dict>
+				<key>url</key>
+				<string>https://www.youtube.com</string>
+			</dict>
+			<key>actionuid</key>
+			<string>remote.alfred.openurl</string>
+			<key>buttoniconid</key>
+			<string>D9637D7E-DDEF-4ED7-B8EA-994F183DA75C</string>
+			<key>buttonlabel</key>
+			<string></string>
+			<key>itemuid</key>
+			<string>7A1E9001-09FB-4593-A2B1-F458D39F469D</string>
+		</dict>
+		<dict>
+			<key>actionconfig</key>
+			<dict>
+				<key>resultsubtitle</key>
+				<string>Dashboard page for atlassian products</string>
+				<key>resulttitle</key>
+				<string>Atlassian</string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>https://start.atlassian.com/</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>actionuid</key>
+			<string>remote.alfred.openurl</string>
+			<key>buttoniconid</key>
+			<string>DAAAD599-3DBD-4F1A-B556-3D9F9D2F5EDB</string>
+			<key>buttonlabel</key>
+			<string>Open URL</string>
+			<key>itemuid</key>
+			<string>BA6CE85C-2EE6-475B-850A-42FD0E4D53BA</string>
+		</dict>
+		<dict>
+			<key>actionconfig</key>
+			<dict>
+				<key>resulttitle</key>
+				<string>AMU Jira</string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>https://amuniversal.atlassian.net/secure/BrowseProjects.jspa</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>actionuid</key>
+			<string>remote.alfred.openurl</string>
+			<key>buttoniconid</key>
+			<string>CB839313-48E9-4AC7-8E5C-4D9D585AD60F</string>
+			<key>buttonlabel</key>
+			<string>Open URL</string>
+			<key>itemuid</key>
+			<string>E9F88FC9-5182-4839-87A0-456BDFD11A3D</string>
+		</dict>
+		<dict>
+			<key>actionconfig</key>
+			<dict>
+				<key>resulttitle</key>
+				<string>AMU Wiki</string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>https://amuniversal.atlassian.net/wiki</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>actionuid</key>
+			<string>remote.alfred.openurl</string>
+			<key>buttoniconid</key>
+			<string>44475DF8-C063-4067-8287-3A2C82AAE534</string>
+			<key>buttonlabel</key>
+			<string>Open URL</string>
+			<key>itemuid</key>
+			<string>18665C48-2CF8-4FC0-B331-4DB3C3F5B02E</string>
+		</dict>
+		<dict>
+			<key>actionconfig</key>
+			<dict>
+				<key>resulttitle</key>
+				<string>AMU Bitbucket</string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>https://bitbucket.org/dashboard/overview</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>actionuid</key>
+			<string>remote.alfred.openurl</string>
+			<key>buttoniconid</key>
+			<string>CB0DA241-E9F3-45A3-A3B8-B3EDDC278974</string>
+			<key>buttonlabel</key>
+			<string>Open URL</string>
+			<key>itemuid</key>
+			<string>3A386053-9919-45D8-BA00-B628C9626C15</string>
+		</dict>
+		<dict>
+			<key>actionconfig</key>
+			<dict>
+				<key>resulttitle</key>
+				<string>Google Keep</string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>https://keep.google.com</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>actionuid</key>
+			<string>remote.alfred.openurl</string>
+			<key>buttoniconid</key>
+			<string>90A34BAC-B9F5-434B-B659-BB121A2563AC</string>
+			<key>buttonlabel</key>
+			<string>Open URL</string>
+			<key>itemuid</key>
+			<string>F3CA32F6-9990-4AE4-B37D-85C20F2C1CF0</string>
+		</dict>
+		<dict>
+			<key>actionconfig</key>
+			<dict>
+				<key>resulttitle</key>
+				<string>Sentry Error Reporting</string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>https://sentry.amuniversal.com/</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>actionuid</key>
+			<string>remote.alfred.openurl</string>
+			<key>buttoniconid</key>
+			<string>B3E017DC-B1D3-4AEF-84FA-8D2BB99DB03B</string>
+			<key>buttonlabel</key>
+			<string>Open URL</string>
+			<key>itemuid</key>
+			<string>A067D310-A19C-4A02-8735-A59CCC202CFC</string>
+		</dict>
+		<dict/>
+		<dict/>
+		<dict/>
+		<dict/>
+		<dict/>
+		<dict/>
+		<dict/>
+	</array>
+	<key>subtitle</key>
+	<string>URLs and Custom Searches</string>
+	<key>title</key>
+	<string>Bookmarks</string>
+</dict>
+</plist>

@@ -1,0 +1,8 @@
+{
+  "alfredsnippet" : {
+    "snippet" : "# Summary\n\n\n# Itemized Effort\n1. \n\n# Relevant Issues\n[{clipboard}](https:\/\/amuniversal.atlassian.net\/browse\/{clipboard})",
+    "uid" : "6191A9AE-C2CB-46A2-BC9C-212B3AFEDAB7",
+    "name" : "PR Template",
+    "keyword" : "pr"
+  }
+}

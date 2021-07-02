@@ -57,6 +57,9 @@
     # Tell iTerm2 to use the custom preferences in the directory
     - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
+# Mac OSX
+- link:
+    ~/Alfred.alfredpreferences: operating_system/Alfred.alfredpreferences
 # Version Control
 - link:
     ~/.onboarding_bin: onboarding_bin
