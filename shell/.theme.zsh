@@ -19,6 +19,6 @@
 
 # Default Theme
 
-ZSH_THEME="agnoster"
+export ZSH_THEME="agnoster"
 
 echo "ZSH/THEME: Loaded."
