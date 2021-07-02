@@ -6,8 +6,61 @@ in the cloud as it relates to development. Something that can be reproduced at
 will and torn down with no repercussions. After some careful thought, this
 process will involve three main levels of configuration and tooling:
 
+# What IS included?
+
+The order of execution for the "1 click" solution is very intentional and
+follows a pattern of broad to specific. Each major toolset building on
+the previous. Here are the main toolsets that are installed and setup:
+
+1. Oh-My-ZSH - Extended and fine-tuned command line tools
+2. Git - Team configured version control
+3. Homebrew - Package Manager for Macs
+4. NVM -Node Package Manager
+5. VSCode - Team recommended text editor with settings and tooling
+6. XCode Command Line Tools - Required for many of the programming languages
+
+## What IS NOT included?
+
+- All the company flagship repos checked out in version control
+- Any company applications running locally
+- A stringent requirement to use only these toolsets. This script is not only
+  flexible enough to be customized or fine-tuned to a specific engineer's
+  preference. The point of this utility is to a new engineer "80% there"
+  leaving the other 20% at their descretion. It is highly recommended to
+  challenge and propose better approaches for any of these given toolsets. If
+  there is a better toolsets, configurations, libraries, etc. let's talk about
+  it as a group, weigh the pros and cons, and possibly try it.
+
+## Installation Instructions
+
+Accept invitation from github to join our organization, using your personal
+account is fine.
+
+Setup Git and save in 1password
+`https://github.com/settings/keys`
+
+Download and install Homebrew (alternative article explaining it)
+`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+
+Install “git“ using the command line:
+`brew install git`
+
+Checkout [Onboarding Engineering
+Dotfiles](https://github.com/Andrews-McMeel-Universal/amu-onboarding) locally:
+`git clone git@github.com:Andrews-McMeel-Universal/amu-onboarding.git`
+
+Navigate to the root folder of the above project and using the command line run:
+`git submodule add https://github.com/anishathalye/dotbot`
+`sudo chmod -R 755 /usr/local/share/zsh`
+`./install`
+
+## Detailed List of Toolsets
+
+After the script runs, what exactly did it do and why does it matter?
+
 1. Dotenv
-   - Machine level sensitive variables
+   - Machine level sensitive variables - All application potentially has
+     sensitive values
 2. iTerm 2
    - .zshrc
      - Agnoster

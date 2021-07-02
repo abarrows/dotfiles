@@ -22,7 +22,6 @@
       command: './onboarding_bin/install-oh-my-zsh.sh'
       stdout: true
       stderr: true
-
 - link:
     ~/.envrc:
       force: true
@@ -43,6 +42,12 @@
     ~/.aliases.zsh:
       force: true
       path: shell/.aliases.zsh
+    ~/iterm-profile-abarrows.json:
+      force: true
+      path: shell/iterm-profile-abarrows.json
+    ~/iterm-profile-abarrows.itermkeymap:
+      force: true
+      path: shell/iterm-profile-abarrows.itermkeymap
     ~/com.googlecode.iterm2.plist:
       force: true
       path: shell/com.googlecode.iterm2.plist
@@ -184,6 +189,8 @@
     - echo 'VS Code - Ready to go...'
     - xcode-select --install || true
     - echo 'Xcode - Ready to go...'
+    - echo "[INFO] • iTerm2 profile - Open iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles - Select the profile from ~/iterm-profile-front-end-engineering.json"
+    - echo "[INFO] • iTerm2 keymap - Open iTerm2 -> Preferences -> Keys -> ⚙ Presets... -> Import... Select the keymap from ~/iterm-profile-front-end-engineering.json"
     - source ~/.zshrc
     - echo 'Shell/ZSH - Custom theme, plugins, aliases, etc. installed. Ready to go...'
     - echo 'Sourcing your zshrc! You are ready to rock and roll...'
