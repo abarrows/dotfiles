@@ -26,10 +26,9 @@ brew "gnutls" # Security Dependency GNU Transport Layer Security (TLS) Library
 brew "helm" # Package manager for Kubernetes
 brew "htop" # Utility for viewing command line run processes and logs
 brew "icu4c" # Compiled Library Dependency for unicode and globalization
-brew "imagemagick", link: false # Image manipulation utility for web applications (Legacy)
-brew "imagemagick@6", link: true # Image manipulation utility for web applications
+brew "imagemagick" # Image manipulation utility for web applications
 brew "krb5" # Network authentication protocol
-brew "kubectl" # DevOps dependency for running kubernetes locally.
+# ./brew "kubectl" # DevOps dependency for running kubernetes locally.
 brew "libgcrypt" # Cryptographic library based on the code from GnuPG
 brew "libksba" # Compiled Library Dependency X.509 and CMS library
 brew "libpq" # Database Dependency for Postgres
@@ -39,9 +38,7 @@ brew "memcached" # Performance Caching library for Ruby on Rails
 # brew "microsoft/vscodespaces/codespaces"
 brew "mysql", restart_service: true # Database Dependency for MySQL (Usually used by non-containerized web applications)
 brew "mysql-client" # Database Dependency for MySQL
-brew "mysql@5.6", link: true # Database Utility for older version of MySQL
-brew "mysql@5.7" # Database Utility for newer version of MySQL
-brew "openssl@1.1" # Network Utility for SSL requests
+brew "openssl" # Network Utility for SSL requests
 brew "pgloader" # Database Utility for converting MySQL databases to Postgres M1-INCOMPATIBLE
 brew "pidof" # CL Dependency for displaying PID for a running process
 brew "pipenv" # Python dependency management tool
@@ -78,7 +75,6 @@ cask "google-chrome" # Department approved primary browser
 cask "google-backup-and-sync" # Recommended backup utility for use with google drive
 cask "iterm2" # Front-end team approved command line tool for Mac OSX
 cask "katalon-studio" # Front-end approved browser automation GUI/tool
-cask "local" # Front-end team approved containerized environment tool for wordpress products
 cask "mamp" # Front-end team approved server environment tool for wordpress and general web development
 cask "messenger" # Recommended personal messenger platform
 cask "microsoft-office" # Department approved productivity suite
