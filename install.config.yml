@@ -18,9 +18,11 @@
     - ~/Documents/AMU/repos/amu-admins
 # Shell - Oh My ZSH, Custom plugins, themes, aliases, etc.
 - shell:
-    - cd ~/
-    - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    - echo 'Shell/ZSH - Installing the default Oh My ZSH...'
+    - description: 'Command Line Oh My Zsh - Ready to go...'
+      command: './onboarding_bin/install-oh-my-zsh.sh'
+      stdout: true
+      stderr: true
+
 - link:
     ~/.envrc:
       force: true
@@ -53,13 +55,17 @@
 - shell:
     # iTerm Configuration, Profile, and Settings
     # Specify the preferences directory
-    - defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/com.googlecode.iterm2.plist"
+    - [
+        defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string '~/com.googlecode.iterm2.plist',
+      ]
     # Tell iTerm2 to use the custom preferences in the directory
     - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 # Mac OSX
 - link:
-    ~/Alfred.alfredpreferences: operating_system/Alfred.alfredpreferences
+    ~/Alfred.alfredpreferences:
+      force: true
+      path: operating_system/Alfred.alfredpreferences
 # Version Control
 - link:
     ~/.onboarding_bin: onboarding_bin
@@ -140,6 +146,10 @@
     #   create: true
 - shell:
     - echo 'Python - Ready to go...'
+
+# Wordpress - https://localwp.com/releases/
+# - shell:
+# - sh -c curl -fsSL https://cdn.localwp.com/releases-stable/6.0.0+5444/local-6.0.0-mac.dmg
 
 # Databases
 # TODO: Getting permission error when trying to symlink to LaunchAgents.  Do
