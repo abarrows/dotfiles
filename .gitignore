@@ -203,5 +203,4 @@ atlassian-ide-plugin.xml
 # unique ignores for this project
 connections.xml
 server_instances.xml
-com.googlecode.iterm2.plist
 ruby/.gem*
