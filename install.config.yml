@@ -124,8 +124,8 @@
     ~/.nvmrc: engineering/javascript/.nvmrc
     ~/.npmignore: engineering/javascript/.npmignore
     # General Javascript Linters
-    ~/.eslintrc.json: engineering/javascript/legacy/.eslintrc.json
-    ~/.eslintignore: engineering/javascript/legacy/.eslintignore
+    ~/.eslintrc.json: engineering/javascript/react/.eslintrc.json
+    ~/.eslintignore: engineering/javascript/react/.eslintignore
 - shell:
     - echo 'Node/React - Ready to go...'
 

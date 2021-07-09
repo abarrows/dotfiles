@@ -1,14 +1,19 @@
 {
-  "name": "dotfiles-and-tooling",
-  "version": "0.2.0",
-  "description": "Personal VS Code Development Container",
   "author": "Andrew Barrows",
-  "homepage": "https://github.com/abarrows/dotfiles-and-tooling/README.md",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/abarrows/dotfiles-and-tooling"
+  "dependencies": {
+    "@rails/webpacker": "^3.5",
+    "autotrack": "^0.6.5",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.1.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-airbnb": "^5.0.0",
+    "bootstrap-sass": "^3.3.7",
+    "core-js": "^3.6.5",
+    "expose-loader": "^0.7.5",
+    "global": "^4.4.0",
+    "intersection-observer": "^0.11.0"
   },
-  "scripts": {},
+  "description": "Personal VS Code Development Container",
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.4.4",
@@ -29,17 +34,12 @@
     "stylelint-scss": "^3.6.1",
     "webpack-dev-server": "^3.7.2"
   },
-  "dependencies": {
-    "@rails/webpacker": "^3.5",
-    "autotrack": "^0.6.5",
-    "babel": "^6.23.0",
-    "babel-loader": "^8.1.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-airbnb": "^5.0.0",
-    "bootstrap-sass": "^3.3.7",
-    "core-js": "^3.6.5",
-    "expose-loader": "^0.7.5",
-    "global": "^4.4.0",
-    "intersection-observer": "^0.11.0"
-  }
+  "homepage": "https://github.com/abarrows/dotfiles-and-tooling/README.md",
+  "name": "dotfiles-and-tooling",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abarrows/dotfiles-and-tooling"
+  },
+  "scripts": {},
+  "version": "0.2.0"
 }

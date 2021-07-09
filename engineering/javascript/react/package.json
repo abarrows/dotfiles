@@ -1,13 +1,5 @@
 {
   "author": "Andrew Barrows",
-  "name": "dotfiles-and-tooling",
-  "version": "0.2.0",
-  "description": "Software Engineering Front-end team environment, tools, and global settings",
-  "homepage": "https://github.com/abarrows/dotfiles-and-tooling/README.md",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/abarrows/dotfiles-and-tooling"
-  },
   "dependencies": {
     "@babel/core": "^7.11.6",
     "@babel/helper-regex": "^7.10.5",
@@ -65,6 +57,7 @@
     "yargs-parser": "^13.1.2",
     "yup": "^0.32.9"
   },
+  "description": "Personal VS Code Development Container",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@storybook/addon-actions": "^6.1.17",
@@ -103,23 +96,29 @@
     "stylelint-no-unsupported-browser-features": "^4.0.0",
     "stylelint-scss": "^3.18.0"
   },
+  "homepage": "https://github.com/abarrows/dotfiles-and-tooling/README.md",
+  "name": "${process.env.APPLICATION_NAME}",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abarrows/dotfiles-and-tooling"
+  },
   "scripts": {
     "build": "next build",
-    "build-docker": "docker build --build-arg DEPLOY_ENV=${process.env.DEPLOY_ENV} -t ${process.env.APP_NAME} .",
-    "cy:headless": "yarn build && start-server-and-test start http://localhost:${process.env.APP_PORT} cy:run",
+    "build-docker": "docker build --build-arg DEPLOY_ENV=${process.env.DEPLOY_ENV} -t ${process.env.APPLICATION_NAME} .",
+    "cy:headless": "yarn build && start-server-and-test start http://localhost:${process.env.APPLICATION_PORT} cy:run",
     "cy:open": "yarn cypress open",
     "cy:run": "yarn cypress run",
-    "cy:ui": "start-server-and-test dev http://localhost:${process.env.APP_PORT} cy:open",
+    "cy:ui": "start-server-and-test dev http://localhost:${process.env.APPLICATION_PORT} cy:open",
     "dev": "next",
     "format-all": "prettier --write .",
     "lint:js": "eslint . --fix \"./{src,cypress}/**/*.{js,jsx}\"",
     "lint:styles": "stylelint **/*.scss --fix",
-    "run-docker": "docker run --rm -it -p ${process.env.APP_PORT}:${process.env.APP_PORT} ${process.env.APP_NAME}",
+    "run-docker": "docker run --rm -it -p ${process.env.APPLICATION_PORT}:${process.env.APPLICATION_PORT} ${process.env.APPLICATION_NAME}",
     "start": "next start",
     "storybook:build": "build-storybook",
     "storybook:run": "start-storybook -s ./public -p ${process.env.STORYBOOK_PORT}",
     "test": "jest --verbose",
     "test:ci": "jest --ci"
   },
-  "version": "${process.env.APP_VERSION}"
+  "version": "${process.env.APPLICATION_VERSION}"
 }
