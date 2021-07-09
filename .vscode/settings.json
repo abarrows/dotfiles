@@ -516,8 +516,7 @@
   "dotfiles.installCommand": "install",
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.fixAll.stylelint": true
+    "source.fixAll": true
   },
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": true,
@@ -544,6 +543,7 @@
   "emmet.includeLanguages": {
     "erb": "html",
     "javascript": "javascriptreact",
+    "css": "css",
     "sass": "css",
     "scss": "css"
   },
@@ -555,9 +555,10 @@
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "extensions.closeExtensionDetailsOnViewChange": true,
-  "extensions.ignoreRecommendations": true,
+  "extensions.ignoreRecommendations": false,
   "files.associations": {
     ".aliases.zsh": "shellscript",
+    "Dockerfile*": "dockerfile",
     ".env.*": "dotenv",
     ".env.example": "dotenv",
     ".zshrc": "shellscript",
@@ -584,6 +585,26 @@
     {
       "glob": "heads/release/*",
       "name": "Release"
+    },
+    {
+      "glob": "heads/story/*",
+      "name": "User Stories"
+    },
+    {
+      "glob": "heads/bug/*",
+      "name": "Bugs"
+    },
+    {
+      "glob": "heads/maintenance/*",
+      "name": "Maintenance"
+    },
+    {
+      "glob": "heads/research/*",
+      "name": "Research"
+    },
+    {
+      "glob": "heads/hotfix/*",
+      "name": "Hotfix"
     }
   ],
   "git-graph.dialog.addTag.pushToRemote": true,
@@ -618,9 +639,7 @@
   ],
   "gitlens.advanced.messages": {
     "suppressCommitNotFoundWarning": true,
-    "suppressFileNotUnderSourceControlWarning": true,
-    "suppressShowKeyBindingsNotice": true,
-    "suppressWelcomeNotice": true
+    "suppressFileNotUnderSourceControlWarning": true
   },
   "gitlens.advanced.repositorySearchDepth": 2,
   "gitlens.autolinks": [],
@@ -644,9 +663,7 @@
   "gitlens.sortBranchesBy": "date:desc",
   "gitlens.views.branches.branches.layout": "list",
   "gitlens.views.branches.files.layout": "list",
-  "gitlens.views.compare.enabled": true,
   "gitlens.views.repositories.files.layout": "list",
-  "gitlens.views.search.enabled": false,
   "gitlens.views.searchAndCompare.files.layout": "list",
   "html.format.enable": true,
   "html.format.extraLiners": "none",
@@ -661,6 +678,7 @@
   "jira-plugin.numberOfIssuesInList": 100,
   "jira-plugin.projectKeyMapping": [
     "puzzlesociety=PUZSOC",
+    "puzzlesociety_ui=PUZSOC",
     "gocomics=GOC",
     "dilbert=DILBERT",
     "doonesbury=DOONES",
@@ -697,13 +715,12 @@
   "jira-plugin.trackingTimeModeHybridTimeout": 15,
   "jira-plugin.username": "abarrows@amuniversal.com",
   "jira-plugin.workingIssueAssignees": "CURRENT_USER",
-  "jira-plugin.workingIssueChangeStatusAfterSelection": true,
+  "jira-plugin.workingIssueChangeStatusAfterSelection": false,
   "jira-plugin.workingIssueFilter": "ALL",
   "jira-plugin.workingIssueStatues": "New, In Progress, In Peer Review, In QA Review, Approved",
   "jira-plugin.workingProject": "",
   "jira-plugin.worklogMinimumTrackingTime": 0,
   "keyboard.layout": "us",
-  "l13Diff.ignoreEndOfLine": true,
   "less.validate": false,
   "liveServer.settings.ChromeDebuggingAttachment": false,
   "liveServer.settings.donotShowInfoMsg": true,
@@ -718,7 +735,6 @@
   "peacock.affectAccentBorders": true,
   "peacock.affectStatusAndTitleBorders": true,
   "peacock.affectTabActiveBorder": true,
-  "peacock.color": "#384d54",
   "peacock.elementAdjustments": {
     "statusBar": "lighten",
     "titleBar": "lighten"
@@ -790,8 +806,8 @@
     }
   ],
   "peacock.surpriseMeFromFavoritesOnly": true,
-  "prettier.packageManager": "yarn",
-  "prettier.requireConfig": true,
+  "prettier.requireConfig": false,
+  "prettier.singleQuote": true,
   "problems.decorations.enabled": true,
   "redhat.telemetry.enabled": true,
   "rewrap.autoWrap.enabled": true,
@@ -890,11 +906,6 @@
   ],
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
   "todo-tree.tree.showScanModeButton": false,
-  "vs-kubernetes": {
-    "vscode-kubernetes.helm-path.mac": "/Users/abarrows/.vs-kubernetes/tools/helm/darwin-amd64/helm",
-    "vscode-kubernetes.kubectl-path.mac": "/Users/abarrows/.vs-kubernetes/tools/kubectl/kubectl",
-    "vscode-kubernetes.minikube-path.mac": "/Users/abarrows/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
-  },
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.newWindowDimensions": "maximized",
   "window.restoreWindows": "all",
@@ -911,33 +922,11 @@
   "workbench.settings.openDefaultKeybindings": true,
   "workbench.settings.useSplitJSON": true,
   "workbench.startupEditor": "welcomePage",
-  "workbench.tree.indent": 4,
+  "workbench.tree.indent": 2,
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "http://json.schemastore.org/composer": ["/*"]
   },
-  "yaml.trace.server": "verbose",
-  "workbench.colorCustomizations": {
-    "activityBar.activeBackground": "#4c6973",
-    "activityBar.activeBorder": "#b38ca9",
-    "activityBar.background": "#4c6973",
-    "activityBar.foreground": "#e7e7e7",
-    "activityBar.inactiveForeground": "#e7e7e799",
-    "activityBarBadge.background": "#b38ca9",
-    "activityBarBadge.foreground": "#15202b",
-    "editorGroup.border": "#4c6973",
-    "panel.border": "#4c6973",
-    "sideBar.border": "#4c6973",
-    "statusBar.background": "#4c6973",
-    "statusBar.border": "#4c6973",
-    "statusBar.foreground": "#e7e7e7",
-    "statusBarItem.hoverBackground": "#608592",
-    "tab.activeBorder": "#4c6973",
-    "titleBar.activeBackground": "#4c6973",
-    "titleBar.activeForeground": "#e7e7e7",
-    "titleBar.border": "#4c6973",
-    "titleBar.inactiveBackground": "#4c697399",
-    "titleBar.inactiveForeground": "#e7e7e799"
-  }
+  "yaml.trace.server": "verbose"
 }
