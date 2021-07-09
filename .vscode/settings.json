@@ -924,12 +924,7 @@
   "workbench.startupEditor": "welcomePage",
   "workbench.tree.indent": 2,
   "workbench.view.alwaysShowHeaderActions": true,
-  "yaml.format.singleQuote": true,
-  "yaml.schemas": {
-    "http://json.schemastore.org/composer": [
-      "/*"
-    ],
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
+  "yaml.format.enable": false,
+  "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose"
 }
