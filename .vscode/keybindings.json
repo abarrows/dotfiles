@@ -1,7 +1,8 @@
 [
   {
     "key": "ctrl+cmd+s",
-    "command": "workbench.action.files.saveWithoutFormatting"
+    "command": "workbench.action.files.saveWithoutFormatting",
+    "description": "VS Code should lint and fix first, then format.  Sometimes this does not work correctly or the formatting introduces something wrong.  This command can save the day, as it saves your work without formatting.  This gives you the flexibility to put the file into version control."
   },
   {
     "key": "cmd+k s",
