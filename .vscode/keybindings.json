@@ -89,7 +89,7 @@
     "key": "cmd+k",
     "command": "editor.action.deleteLines",
     "when": "textInputFocus && !editorReadonly"
-"description": "Vital Shortcut for quickly killing the line you are on.  You can be anywhere on the line.",
+"description": "Frequent Shortcut for quickly killing the line you are on.  You can be anywhere on the line.",
   },
   {
     "key": "shift+cmd+k",
@@ -108,23 +108,28 @@
   },
   {
     "key": "cmd+r",
-    "command": "editor.emmet.action.updateTag"
+    "command": "editor.emmet.action.updateTag",
+"description": "Occasional shortcut for changing an HTML tag at the same time.  IE: Switching a div tag to a sidebar tag.",
   },
   {
     "key": "alt+down",
-    "command": "spaceBlockJumper.moveDown"
+    "command": "spaceBlockJumper.moveDown",
+"description": "Frequent Shortcut used to quickly NAVIGATE DOWN by blocks, functions, brackets, etc.  IE: In a long file, you don't want to jump down to the bottom of the page but need to scan dozens of blocks quickly.",
   },
   {
     "key": "alt+up",
-    "command": "spaceBlockJumper.moveUp"
+    "command": "spaceBlockJumper.moveUp",
+"description": "Frequent Shortcut used to quickly NAVIGATE UP by blocks, functions, brackets, etc.  IE: In a long file, you don't want to jump up to the bottom of the page but need to scan dozens of blocks quickly.",
   },
   {
     "key": "shift+alt+down",
-    "command": "spaceBlockJumper.selectDown"
+    "command": "spaceBlockJumper.selectDown",
+    "description": "Frequent Shortcut used to quickly SELECT DOWN on block(s), functions, brackets, etc.  IE: In a long file, you don't want to jump down to the bottom of the page but need to select multiple blocks of code, quickly.",
   },
   {
     "key": "shift+alt+up",
-    "command": "spaceBlockJumper.selectUp"
+    "command": "spaceBlockJumper.selectUp",
+    "description": "Frequent Shortcut used to quickly SELECT UP on block(s), functions, brackets, etc.  IE: In a long file, you don't want to jump up to the bottom of the page but need to select multiple blocks of code, quickly.",
   },
   {
     "key": "alt+down",
