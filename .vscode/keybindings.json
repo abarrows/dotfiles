@@ -5,10 +5,6 @@
     "description": "VS Code should lint and fix first, then format.  Sometimes this does not work correctly or the formatting introduces something wrong.  This command can save the day, as it saves your work without formatting.  This gives you the flexibility to put the file into version control."
   },
   {
-    "key": "cmd+k s",
-    "command": "-workbench.action.files.saveWithoutFormatting"
-  },
-  {
     "key": "ctrl+b",
     "command": "gitlens.toggleFileBlame",
     "when": "editorTextFocus && gitlens:activeFileStatus =~ /blameable/"
@@ -16,7 +12,8 @@
   {
     "key": "ctrl+b",
     "command": "-gitlens.toggleFileBlame",
-    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /blameable/"
+    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /blameable/",
+"description": "This is helpful when in a file and you quickly need to see who worked on a line last and when it was.",
   },
   {
     "key": "ctrl+b",
@@ -30,8 +27,8 @@
   },
   {
     "key": "ctrl+e",
-    "command": "workbench.view.explorer"
-  },
+    "command": "workbench.view.explorer",
+  },"description": "This is helpful to switch back to the project's file structure.",
   {
     "key": "shift+cmd+e",
     "command": "-workbench.view.explorer"
@@ -49,12 +46,14 @@
   {
     "key": "ctrl+left",
     "command": "cursorWordPartLeft",
-    "when": "textInputFocus"
+    "when": "textInputFocus",
+"description": "Vital Shortcut for quickly NAVIGATING horizontally through a line by word which is much faster than by character.",
   },
   {
     "key": "alt+shift+left",
     "command": "cursorWordPartLeftSelect",
     "when": "textInputFocus"
+"description": "Vital Shortcut for quickly SELECTING horizontal through a line by word.",
   },
   {
     "key": "ctrl+right",
@@ -78,16 +77,19 @@
     "key": "shift+cmd+d",
     "command": "editor.action.selectHighlights",
     "when": "editorFocus"
+"description": "TODO",
   },
   {
     "key": "shift+cmd+l",
     "command": "-editor.action.selectHighlights",
     "when": "editorFocus"
+"description": "",
   },
   {
     "key": "cmd+k",
     "command": "editor.action.deleteLines",
     "when": "textInputFocus && !editorReadonly"
+"description": "Vital Shortcut for quickly killing the line you are on.  You can be anywhere on the line.",
   },
   {
     "key": "shift+cmd+k",
@@ -102,6 +104,7 @@
   {
     "key": "cmd+backspace",
     "command": "editor.emmet.action.removeTag"
+"description": "Occasional shortcut for deleting the opening and closing tag that you are currently within.  Helpful when you have a div tag that has s dozens of lines between the opening and closing tags.",
   },
   {
     "key": "cmd+r",
