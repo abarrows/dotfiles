@@ -139,6 +139,14 @@
     "when": "textInputFocus && !editorReadonly"
   },
   {
+    "key": "shift+cmd+w",
+    "command": "workbench.action.closeEditorsInGroup"
+  },
+  {
+    "key": "cmd+k w",
+    "command": "-workbench.action.closeEditorsInGroup"
+  },
+  {
     "key": "ctrl+alt+[",
     "command": "cursorColumnSelectLeft",
     "when": "editorTextFocus"
