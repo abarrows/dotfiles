@@ -11,7 +11,15 @@
     "description": "Frequent Shortcut use for finding a string within a file."
   },
   {
-    "key": "cmd+d",
+    "key": "cmd+alt+d",
+    "command": "editor.action.moveSelectionToNextFindMatch",
+    "when": "editorFocus",
+    "description": "Frequent Shortcut used when searching for selected text, this command will ADD the next occurrence to your selected text.",
+    "example": "If I wanted to find all references of the description key in this JSON array, I would first type cmd+f then type description and hit enter.  Then, by hitting cmd+d multiple times it would add each new occurrence to my selection.  At the end, you can begin typing and navigation the same commands for each occurrence simultaneously.",
+    "default": true
+  },
+  {
+    "key": "cmd+alt+d",
     "command": "editor.action.selectHighlights",
     "when": "editorFocus",
     "description": "Frequent Shortcut used when searching for selected text, this command will ADD the next occurrence to your selected text.",
@@ -335,5 +343,21 @@
     "command": "-editor.emmet.action.balanceOut",
     "description": "Occasional shortcut for smart selecting outward.  By smart, I mean it selects all of a tag, then the parent tag above that.  The drawback is this emmet keybinding only works with a few different languages.",
     "experimental": true
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "merge-conflict.previous"
+  },
+  {
+    "key": "ctrl+shift+down",
+    "command": "merge-conflict.next"
+  },
+  {
+    "key": "ctrl+shift+z",
+    "command": "merge-conflict.accept.current"
+  },
+  {
+    "key": "ctrl+shift+x",
+    "command": "merge-conflict.accept.incoming"
   }
 ]
