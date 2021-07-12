@@ -783,6 +783,8 @@
 			<string>Default</string>
 			<key>Disable Window Resizing</key>
 			<true/>
+			<key>Draw Powerline Glyphs</key>
+			<true/>
 			<key>Flashing Bell</key>
 			<false/>
 			<key>Foreground Color</key>
@@ -853,7 +855,7 @@
 			<key>Screen</key>
 			<integer>1</integer>
 			<key>Scrollback Lines</key>
-			<integer>1000</integer>
+			<integer>3000</integer>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
