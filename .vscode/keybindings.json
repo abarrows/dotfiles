@@ -1,13 +1,293 @@
 [
   {
-    "key": "ctrl+cmd+s",
-    "command": "workbench.action.files.saveWithoutFormatting",
-    "description": "VS Code should lint and fix first, then format.  Sometimes this does not work correctly or the formatting introduces something wrong.  This command can save the day, as it saves your work without formatting.  This gives you the flexibility to put the file into version control."
+    "key": "cmd+f",
+    "command": "actions.find",
+    "when": "editorFocus || editorIsOpen",
+    "description": "Frequent Shortcut use for finding a string within a file."
+  },
+  {
+    "key": "cmd+f",
+    "command": "actions.find",
+    "description": "Frequent Shortcut use for finding a string within a file."
+  },
+  {
+    "key": "cmd+d",
+    "command": "editor.action.selectHighlights",
+    "when": "editorFocus",
+    "description": "Frequent Shortcut used when searching for selected text, this command will ADD the next occurrence to your selected text.",
+    "example": "If I wanted to find all references of the description key in this JSON array, I would first type cmd+f then type description and hit enter.  Then, by hitting cmd+d multiple times it would add each new occurrence to my selection.  At the end, you can begin typing and navigation the same commands for each occurrence simultaneously.",
+    "default": true
+  },
+  {
+    "key": "shift+cmd+l",
+    "command": "-editor.action.selectHighlights",
+    "when": "editorFocus",
+    "description": ""
+  },
+  {
+    "key": "shift+cmd+d",
+    "command": "editor.action.moveSelectionToPreviousFindMatch",
+    "when": "editorFocus && editorHasSelection",
+    "description": "Frequent Shortcut used when searching for selected text, this command will REMOVE the previous occurrence from your selected text.",
+    "example": "If I wanted to find all references of the description key in this JSON array, I would first type cmd+f then type description and hit enter.  Then, if I select one too many cmd+d, I can use this command to subtract the last occurence."
+  },
+  {
+    "key": "shift+cmd+d",
+    "command": "-workbench.view.debug"
+  },
+  {
+    "key": "ctrl+g",
+    "command": "workbench.action.gotoLine",
+    "description": "Occasional Shortcut for quickly jumping directly to a line number.",
+    "tips": "When using the Cmd+P shortcut to jump directly to a file, you can add :XXX at the end of the file name and not only jump into that file but directly to that line.",
+    "default": true
+  },
+  {
+    "key": "alt+left",
+    "command": "cursorWordPartLeft",
+    "when": "textInputFocus",
+    "description": "Frequent Shortcut for quickly NAVIGATING horizontally through a line by word which is much faster than by character."
+  },
+  {
+    "key": "alt+shift+left",
+    "command": "cursorWordPartLeftSelect",
+    "when": "textInputFocus",
+    "description": "Frequent Shortcut for quickly SELECTING horizontally backwards through a line by word.",
+    "example": "If you are trying to cut the first two sentences out of a paragraph of copy, using this shortcut will drastically speed up the process."
+  },
+  {
+    "key": "alt+right",
+    "command": "cursorWordPartRight",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "alt+shift+right",
+    "command": "cursorWordPartRightSelect",
+    "when": "textInputFocus",
+    "description": "Frequent Shortcut used to quickly SELECT horizontally by word.",
+    "example": "If you are trying to cut the first two sentences out of a paragraph of copy, using this shortcut will drastically speed up the process."
+  },
+  {
+    "key": "alt+down",
+    "command": "spaceBlockJumper.moveDown",
+    "description": "Frequent Shortcut used to quickly NAVIGATE DOWN by blocks, functions, brackets, etc.  IE: In a long file, you don't want to jump down to the bottom of the page but need to scan dozens of blocks quickly."
+  },
+  {
+    "key": "alt+down",
+    "command": "-editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+down",
+    "command": "spaceBlockJumper.selectDown",
+    "description": "Frequent Shortcut used to quickly SELECT DOWN on block(s), functions, brackets, etc.  IE: In a long file, you don't want to jump down to the bottom of the page but need to select multiple blocks of code, quickly."
+  },
+  {
+    "key": "shift+alt+down",
+    "command": "-editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "alt+up",
+    "command": "spaceBlockJumper.moveUp",
+    "description": "Frequent Shortcut used to quickly NAVIGATE UP by blocks, functions, brackets, etc.  IE: In a long file, you don't want to jump up to the bottom of the page but need to scan dozens of blocks quickly."
+  },
+  {
+    "key": "alt+up",
+    "command": "-editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "shift+alt+up",
+    "command": "spaceBlockJumper.selectUp",
+    "description": "Frequent Shortcut used to quickly SELECT UP on block(s), functions, brackets, etc.  IE: In a long file, you don't want to jump up to the bottom of the page but need to select multiple blocks of code, quickly."
+  },
+  {
+    "key": "shift+alt+up",
+    "command": "-editor.action.copyLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+alt+up",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus && !editorReadonly",
+    "description": "Frequent shortcut for quickly moving the current line UP to the next line.  It will move whatever was on that line below. IE: This works while having content selected as well, making it very handy to move blocks, components, groups of styles, further UP in the file."
+  },
+  {
+    "key": "ctrl+alt+down",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly",
+    "description": "Frequent shortcut for quickly moving the current line DOWN to the next line.  It will move whatever was on that line below. IE: This works while having content selected as well, making it very handy to move blocks, components, groups of styles, further DOWN in the file."
+  },
+  {
+    "key": "cmd+k",
+    "command": "editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly",
+    "description": "Frequent Shortcut for quickly killing the line you are on.  You can be anywhere on the line."
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "-editor.action.deleteLines",
+    "when": "textInputFocus && !editorReadonly"
+  },
+  {
+    "key": "ctrl+alt+[",
+    "command": "cursorColumnSelectLeft",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "shift+alt+]",
+    "command": "cursorColumnSelectRight",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "cmd+u",
+    "command": "cursorUndo",
+    "description": "Frequent Shortcut for quickly undoing an erronous position change to your cursor.",
+    "example": "You are jumping down instances of a string and go to far, this command can bring you back to the last known cursor position."
+  },
+  {
+    "key": "shift+cmd+u",
+    "command": "cursorRedo",
+    "description": "Frequent Shortcut for quickly redoing your cursor position.",
+    "example": "You are jumping down instances of a string and thought you went too far but need to redo, this command can bring you back to the furthest known cursor position."
+  },
+  {
+    "key": "cmd+e",
+    "command": "expand_region",
+    "when": "editorTextFocus",
+    "description": "Frequent Shortcut used to expand your selection in a smart way.  With each subsequent triggering of the shortcut, it will increase the selection to the current selections parent, then its parent, and so on.  NOTE: This uses the extension expand region and is much more reliable across languages."
+  },
+  {
+    "key": "shift+cmd+e",
+    "command": "-workbench.view.explorer"
+  },
+  {
+    "key": "ctrl+w",
+    "command": "-expand_region",
+    "when": "editorTextFocus",
+    "description": "Frequent Shortcut used to shrink your selection in a smart way.  With each subsequent triggering of the shortcut, it will decrease the selection to the current selections child, then its child, and so on.  NOTE: This uses the Expand Region extension and is much more reliable across languages."
+  },
+  {
+    "key": "cmd+shift+e",
+    "command": "undo_expand_region",
+    "when": "editorHasSelection && editorTextFocus",
+    "description": "Frequent Shortcut used to shrink your selection in a smart way.  With each subsequent triggering of the shortcut, it will decrease the selection to the current selections child, then its child, and so on.  NOTE: This uses the Expand Region extension and is much more reliable across languages."
+  },
+  {
+    "key": "ctrl+shift+w",
+    "command": "-undo_expand_region",
+    "when": "editorHasSelection && editorTextFocus"
+  },
+  {
+    "key": "cmd+backspace",
+    "command": "editor.emmet.action.removeTag",
+    "description": "Occasional shortcut for deleting the opening and closing tag that you are currently within.  Helpful when you have a div tag that has s dozens of lines between the opening and closing tags."
+  },
+  {
+    "key": "cmd+r",
+    "command": "editor.emmet.action.updateTag",
+    "description": "Occasional shortcut for changing an HTML tag at the same time.  IE: Switching a div tag to a sidebar tag."
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus && !editorReadonly",
+    "description": "Occasional shortcut used for duplicating the current lines content on the next line.  IE: If you know you are going to need three variables with similar values, you can use this."
+  },
+  {
+    "key": "cmd+j",
+    "command": "editor.emmet.action.matchTag",
+    "when": "editorTextFocus && !editorReadonly",
+    "description": "Occasional Shortcut used to quickly jump to the opposing start or end tag.",
+    "example": "Within an html file, you want to quickly jump down two hundred lines to the closing div tag."
+  },
+
+  {
+    "key": "cmd+l",
+    "command": "editor.emmet.action.splitJoinTag",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "key": "cmd+t",
+    "command": "editor.emmet.action.wrapWithAbbreviation",
+    "when": "editorTextFocus && !editorReadonly",
+    "description": "Occasional Shortcut for using Emmet abbreviation to create an element around a selected block.",
+    "example": "Within an html file you want to quickly add a div.row around a bootstrap div.col class with a bunch of content within it."
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.view.explorer",
+    "description": "This is helpful to switch back to the project's file structure.",
+    "default": true
+  },
+  {
+    "key": "cmd+5",
+    "command": "workbench.view.debug",
+    "description": "Infrequent Shortcut used to quickly open the debug console panel.",
+    "experimental": true
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.view.explorer",
+    "description": "This is helpful to switch back to the project's file structure.",
+    "default": true
+  },
+  {
+    "key": "cmd+j",
+    "command": "-workbench.action.togglePanel"
+  },
+  {
+    "key": "cmd+shift+j",
+    "command": "editor.unfold",
+    "when": "editorTextFocus && foldingEnabled",
+    "experimental": true
+  },
+  {
+    "key": "cmd+k cmd+[",
+    "command": "-editor.foldRecursively",
+    "when": "editorTextFocus && foldingEnabled",
+    "experimental": true
+  },
+  {
+    "key": "ctrl+shift+down",
+    "command": "workbench.action.compareEditor.nextChange",
+    "when": "editorTextFocus || textCompareEditorVisible",
+    "description": "When reviewing diffs within the source control sidebar, this shortcut quickly navigates to the next changed block.",
+    "example": "If I have three changes to this keybindings file, this shortcut allows to quickly jump hundreds of lines in some cases, directly to the next change."
+  },
+  {
+    "key": "ctrl+shift+down",
+    "command": "diffMerge.nextDiff",
+    "when": "diffMerge.panelFocused"
+  },
+  {
+    "key": "alt+f5",
+    "command": "-workbench.action.compareEditor.nextChange",
+    "when": "editorTextFocus || textCompareEditorVisible"
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "workbench.action.compareEditor.previousChange",
+    "when": "editorTextFocus || textCompareEditorVisible",
+    "description": "When reviewing diffs within the source control sidebar, this shortcut quickly navigates back to the previous changed block.",
+    "example": "If I have three changes to this keybindings file, this shortcut allows to quickly jump back up hundreds of lines in some cases, directly to the previous change you were reviewing."
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "diffMerge.prevDiff",
+    "when": "diffMerge.panelFocused"
+  },
+  {
+    "key": "shift+alt+f5",
+    "command": "-workbench.action.compareEditor.previousChange",
+    "when": "editorTextFocus || textCompareEditorVisible"
   },
   {
     "key": "ctrl+b",
     "command": "gitlens.toggleFileBlame",
-    "when": "editorTextFocus && gitlens:activeFileStatus =~ /blameable/"
+    "when": "editorTextFocus && gitlens:activeFileStatus =~ /blameable/",
+    "description": "This is helpful when in a file and you quickly need to see who worked on a line last and when it was."
   },
   {
     "key": "ctrl+b",
@@ -26,291 +306,34 @@
     "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /blameable/"
   },
   {
-    "key": "ctrl+e",
-    "command": "workbench.view.explorer",
-    "description": "This is helpful to switch back to the project's file structure."
-  },
-  {
-    "key": "shift+cmd+e",
-    "command": "-workbench.view.explorer"
-  },
-  {
-    "key": "ctrl+alt+[",
-    "command": "cursorColumnSelectLeft",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "shift+alt+]",
-    "command": "cursorColumnSelectRight",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+left",
-    "command": "cursorWordPartLeft",
-    "when": "textInputFocus",
-    "description": "Vital Shortcut for quickly NAVIGATING horizontally through a line by word which is much faster than by character."
-  },
-  {
-    "key": "alt+shift+left",
-    "command": "cursorWordPartLeftSelect",
-    "when": "textInputFocus",
-    "description": "Vital Shortcut for quickly SELECTING horizontal through a line by word."
-  },
-  {
-    "key": "ctrl+right",
-    "command": "cursorWordPartRight",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "alt+shift+right",
-    "command": "cursorWordPartRightSelect",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "cmd+5",
-    "command": "workbench.view.debug"
-  },
-  {
-    "key": "shift+cmd+d",
-    "command": "-workbench.view.debug"
-  },
-  {
-    "key": "shift+cmd+d",
-    "command": "editor.action.selectHighlights",
-    "when": "editorFocus",
-    "description": "TODO"
-  },
-  {
-    "key": "shift+cmd+l",
-    "command": "-editor.action.selectHighlights",
-    "when": "editorFocus",
-    "description": ""
-  },
-  {
-    "key": "cmd+k",
-    "command": "editor.action.deleteLines",
-    "when": "textInputFocus && !editorReadonly",
-    "description": "Frequent Shortcut for quickly killing the line you are on.  You can be anywhere on the line."
-  },
-  {
-    "key": "shift+cmd+k",
-    "command": "-editor.action.deleteLines",
-    "when": "textInputFocus && !editorReadonly"
-  },
-  {
     "key": "shift+f4",
     "command": "-references-view.prev",
     "when": "reference-list.hasResult && references-view.canNavigate"
   },
   {
-    "key": "cmd+backspace",
-    "command": "editor.emmet.action.removeTag",
-    "description": "Occasional shortcut for deleting the opening and closing tag that you are currently within.  Helpful when you have a div tag that has s dozens of lines between the opening and closing tags."
+    "key": "ctrl+shift+cmd+left",
+    "command": "editor.action.smartSelect.shrink",
+    "when": "editorTextFocus",
+    "description": "Infrequent Shortcut used when the expand region extension shortcuts do not select the correctly expanded or contracted region.  I am leaving this in here until it is determined that the expand region extension does all expanding/contracting better.",
+    "experimental": true
   },
   {
-    "key": "cmd+r",
-    "command": "editor.emmet.action.updateTag",
-    "description": "Occasional shortcut for changing an HTML tag at the same time.  IE: Switching a div tag to a sidebar tag."
-  },
-  {
-    "key": "alt+down",
-    "command": "spaceBlockJumper.moveDown",
-    "description": "Frequent Shortcut used to quickly NAVIGATE DOWN by blocks, functions, brackets, etc.  IE: In a long file, you don't want to jump down to the bottom of the page but need to scan dozens of blocks quickly."
-  },
-  {
-    "key": "alt+up",
-    "command": "spaceBlockJumper.moveUp",
-    "description": "Frequent Shortcut used to quickly NAVIGATE UP by blocks, functions, brackets, etc.  IE: In a long file, you don't want to jump up to the bottom of the page but need to scan dozens of blocks quickly."
-  },
-  {
-    "key": "shift+alt+down",
-    "command": "spaceBlockJumper.selectDown",
-    "description": "Frequent Shortcut used to quickly SELECT DOWN on block(s), functions, brackets, etc.  IE: In a long file, you don't want to jump down to the bottom of the page but need to select multiple blocks of code, quickly."
-  },
-  {
-    "key": "shift+alt+up",
-    "command": "spaceBlockJumper.selectUp",
-    "description": "Frequent Shortcut used to quickly SELECT UP on block(s), functions, brackets, etc.  IE: In a long file, you don't want to jump up to the bottom of the page but need to select multiple blocks of code, quickly."
-  },
-  {
-    "key": "alt+down",
-    "command": "-editor.action.moveLinesDownAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "shift+alt+up",
-    "command": "-editor.action.copyLinesUpAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "alt+up",
-    "command": "-editor.action.moveLinesUpAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "shift+alt+down",
-    "command": "-editor.action.copyLinesDownAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "shift+cmd+k",
-    "command": "editor.action.copyLinesDownAction",
-    "when": "editorTextFocus && !editorReadonly",
-    "description": "Occasional shortcut used for duplicating the current lines content on the next line.  IE: If you know you are going to need three variables with similar values, you can use this."
-  },
-  {
-    "key": "ctrl+alt+up",
-    "command": "editor.action.moveLinesUpAction",
-    "when": "editorTextFocus && !editorReadonly",
-    "description": "Frequent shortcut for quickly moving the current line UP to the next line.  It will move whatever was on that line below. IE: This works while having content selected as well, making it very handy to move blocks, components, groups of styles, further UP in the file."
-  },
-  {
-    "key": "ctrl+alt+down",
-    "command": "editor.action.moveLinesDownAction",
-    "when": "editorTextFocus && !editorReadonly",
-    "description": "Frequent shortcut for quickly moving the current line DOWN to the next line.  It will move whatever was on that line below. IE: This works while having content selected as well, making it very handy to move blocks, components, groups of styles, further DOWN in the file."
-  },
-  {
-    "key": "cmd+j",
-    "command": "-workbench.action.togglePanel"
-  },
-  {
-    "key": "cmd+j",
-    "command": "editor.emmet.action.matchTag",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "alt+cmd+[",
-    "command": "-editor.fold",
-    "when": "editorTextFocus && foldingEnabled"
-  },
-  {
-    "key": "cmd+j",
-    "command": "editor.emmet.action.splitJoinTag",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "cmd+m",
-    "command": "editor.emmet.action.matchTag",
-    "when": "editorTextFocus && !editorReadonly",
-    "description": "Occasional shortcut for jumping to the beginning or end of a tag.  IE: Within a HTML file with div soup in the outer most sections, this allows you to quickly jump to the end or beginning of a tag when you want to add an element after that matched tag."
-  },
-  {
-    "key": "cmd+shift+j",
-    "command": "editor.unfold",
-    "when": "editorTextFocus && foldingEnabled"
-  },
-  {
-    "key": "cmd+k cmd+[",
-    "command": "-editor.foldRecursively",
-    "when": "editorTextFocus && foldingEnabled"
+    "key": "ctrl+shift+cmd+right",
+    "command": "editor.action.smartSelect.expand",
+    "when": "editorTextFocus",
+    "description": "Infrequent Shortcut used when the expand region extension shortcuts do not select the correctly expanded or contracted region.  I am leaving this in here until it is determined that the expand region extension does all expanding/contracting better.",
+    "experimental": true
   },
   {
     "key": "cmd+i",
-    "command": "editor.emmet.action.balanceIn",
+    "command": "-editor.emmet.action.balanceIn",
     "description": "Occasional shortcut for smart selecting inward.  By smart, I mean it selects all of a tag, then the child tag within that.  The drawback is this emmet keybinding only works with a few different languages. NOTE: You will first need to have content selected with a child for this shortcut to work.",
     "experimental": true
   },
   {
     "key": "shift+cmd+i",
-    "command": "editor.emmet.action.balanceOut",
+    "command": "-editor.emmet.action.balanceOut",
     "description": "Occasional shortcut for smart selecting outward.  By smart, I mean it selects all of a tag, then the parent tag above that.  The drawback is this emmet keybinding only works with a few different languages.",
     "experimental": true
-  },
-  {
-    "key": "cmd+n",
-    "command": "diffMerge.nextDiff",
-    "when": "diffMerge.panelFocused"
-  },
-  {
-    "key": "alt+f5",
-    "command": "-diffMerge.nextDiff",
-    "when": "diffMerge.panelFocused"
-  },
-  {
-    "key": "shift+alt+f5",
-    "command": "-diffMerge.prevDiff",
-    "when": "diffMerge.panelFocused"
-  },
-  {
-    "key": "cmd+f",
-    "command": "actions.find",
-    "when": "editorFocus || editorIsOpen",
-    "description": "Frequent Shortcut use for finding a string within a file."
-  },
-  {
-    "key": "cmd+f",
-    "command": "actions.find",
-    "description": "Frequent Shortcut use for finding a string within a file.",
-    "experimental": true
-  },
-  {
-    "key": "ctrl+l",
-    "command": "workbench.action.gotoLine",
-    "description": "Occasional Shortcut for quickly jumping directly to a line number.",
-    "tips": "When using the Cmd+P shortcut to jump directly to a file, you can add :XXX at the end of the file name and not only jump into that file but directly to that line.",
-    "experimental": true
-  },
-  {
-    "key": "ctrl+g",
-    "command": "-workbench.action.gotoLine"
-  },
-  {
-    "key": "cmd+e",
-    "command": "expand_region",
-    "when": "editorTextFocus",
-    "description": "Frequent Shortcut used to expand your selection in a smart way.  With each subsequent triggering of the shortcut, it will increase the selection to the current selections parent, then its parent, and so on.  NOTE: This uses the extension expand region and is much more reliable across languages."
-  },
-  {
-    "key": "ctrl+w",
-    "command": "-expand_region",
-    "when": "editorTextFocus",
-    "description": "Frequent Shortcut used to shrink your selection in a smart way.  With each subsequent triggering of the shortcut, it will decrease the selection to the current selections child, then its child, and so on.  NOTE: This uses the Expand Region extension and is much more reliable across languages."
-  },
-  {
-    "key": "shift+cmd+e",
-    "command": "undo_expand_region",
-    "when": "editorHasSelection && editorTextFocus",
-    "description": "Frequent Shortcut used to shrink your selection in a smart way.  With each subsequent triggering of the shortcut, it will decrease the selection to the current selections child, then its child, and so on.  NOTE: This uses the Expand Region extension and is much more reliable across languages."
-  },
-  {
-    "key": "ctrl+shift+w",
-    "command": "-undo_expand_region",
-    "when": "editorHasSelection && editorTextFocus"
-  },
-  {
-    "key": "ctrl+shift+right",
-    "command": "-editor.action.smartSelect.expand",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "cmd+e",
-    "command": "editor.action.smartSelect.expand",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+shift+cmd+right",
-    "command": "-editor.action.smartSelect.expand",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "shift+cmd+e",
-    "command": "editor.action.smartSelect.shrink",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+shift+left",
-    "command": "-editor.action.smartSelect.shrink",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "ctrl+shift+cmd+left",
-    "command": "-editor.action.smartSelect.shrink",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "cmd+t",
-    "command": "editor.emmet.action.wrapWithAbbreviation",
-    "when": "editorTextFocus && !editorReadonly"
   }
 ]
