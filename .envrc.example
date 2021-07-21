@@ -1,28 +1,39 @@
-CURRENT_USER=# This is your machine username. IE: /Users/jdoe <--
-CURRENT_COMPANY=# This is the folder name of all of your company's repos
-IDE_PATH=# The application folder name for vscode. IE: 'Code - Insiders or Code'
-IDE_BUILD=# The name of vscode that calls the CLI. IE: code --list-extensions or code-insiders --list-extensions.
+# Dotfiles Environment Variables
+
+# Sensitive Variables
 GIT_EMAIL_ADDRESS_PROFESSIONAL=# Github email address for professional or organizational teams
-GIT_EMAIL_ADDRESS_KEY=# The key that displays here:
+GIT_EMAIL_ADDRESS_PROFESSIONAL_KEY=# The key that displays here:
 https://github.com/settings/keys under your GPG key.
-GIT_EMAIL_ADDRESS_PROFESSIONAL=# Email address associated with your company's
-github organization
-GIT_EMAIL_ADDRESS_KEY=# Git email address key
+
+# Non-Sensitive Variables
+CURRENT_NAME=# This is your reader friendly name IE: "John Doe"
+CURRENT_USER=# This is your machine username. IE: /Users/jdoe
+CURRENT_COMPANY=# This is the folder name of all of your company's repos
+IDE_PATH=# The application folder name for vscode. Example Values: "code" or "code-insiders"
+IDE_BUILD=# The name of vscode that calls the CLI. Example Values: "code" or "code-insiders"
+JIRA_BASE_URL=# This is the url to your team's base jira cloud instance
+JIRA_USER_EMAIL=# This is your jira login email
+APPLICATION_NAME=dotfiles-and-tooling
+APPLICATION_PORT=3000
+APPLICATION_VERSION=0.3.0
+
+# Optional Variables
+GIT_EMAIL_ADDRESS_PERSONAL=# Github email address for professional or organizational teams
+GIT_EMAIL_ADDRESS_PERSONAL_KEY=# The key that displays here - https://github.com/settings/keys under your GPG key.
+
 BITBUCKET_USERNAME=# Username for bitbucket username
 BITBUCKET_PASSWORD=# Password or token for bitbucket user
-JIRA_BASE_URL=# This is the url to your team's base jira cloud instance
-JIRA_USER_EMAIL=# This is your jira login email.
 
-# Company Server Addresses
-PRODUCT_SYNDICATION_PRODUCTION= # Server Location
+# Company Sensitive Server Addresses
+PRODUCT_SYNDICATION_PRODUCTION=   # Server Location
 PRODUCT_SYNDICATION_PRODUCTION_2= # Server Location
-ADMIN_SYNDICATION_PRODUCTION= # Server Location
-SERVICE_IMAGES_PRODUCTION= # Server Location
-PRODUCT_PUZZLESOCIETY_STAGING= # Server Location
-PRODUCT_PUZZLESOCIETY_STAGING= # Server Location
-SERVICE_ALL_STAGING= # Server Location
-PRODUCT_ALL_STAGING= # Server Location
-ADMIN_TOOLS_PRODUCTION= # Server Location
-PRODUCT_LICENSING_STAGING= # Server Location
-PRODUCT_LICENSING_STAGING_2= # Server Location
-PRODUCT_FARSIDE_STAGING= # Server Location
+ADMIN_SYNDICATION_PRODUCTION=     # Server Location
+SERVICE_IMAGES_PRODUCTION=        # Server Location
+PRODUCT_PUZZLESOCIETY_STAGING=    # Server Location
+PRODUCT_PUZZLESOCIETY_STAGING=    # Server Location
+SERVICE_ALL_STAGING=              # Server Location
+PRODUCT_ALL_STAGING=              # Server Location
+ADMIN_TOOLS_PRODUCTION=           # Server Location
+PRODUCT_LICENSING_STAGING=        # Server Location
+PRODUCT_LICENSING_STAGING_2=      # Server Location
+PRODUCT_FARSIDE_STAGING=          # Server Location
