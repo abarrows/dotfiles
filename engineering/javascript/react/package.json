@@ -57,7 +57,7 @@
     "yargs-parser": "^13.1.2",
     "yup": "^0.32.9"
   },
-  "description": "Personal VS Code Development Container",
+  "description": "Software Engineering Front-end team environment, tools, and global settings",
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@storybook/addon-actions": "^6.1.17",
@@ -97,7 +97,9 @@
     "stylelint-scss": "^3.18.0"
   },
   "homepage": "https://github.com/abarrows/dotfiles-and-tooling/README.md",
+  "license": "UNLICENSED",
   "name": "${process.env.APPLICATION_NAME}",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "https://github.com/abarrows/dotfiles-and-tooling"
