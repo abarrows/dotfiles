@@ -63,7 +63,7 @@ After the script runs, what exactly did it do and why does it matter?
      sensitive values
 2. iTerm 2
    - .zshrc
-     - Agnoster
+     - Agnoster Theme (Starship is Optional. See shell/.theme.sh for details.)
      - Plugins
      - Aliases
      - Custom Bash Functions
@@ -103,32 +103,8 @@ After the script runs, what exactly did it do and why does it matter?
    - YAML Lint
    - JSON Lint/Sorting
 9. VS Code - Project/Technology Specific
-
-- workspace environment - Workspace Environment for the specific tech stack.
-  IE: RoR, Python, Next.js, etc. This will contain any
-  overrides/modifications to:
-
-## Virtualized Dev Environment
-
-With the emergence of cloud IDE's easing into our workflows, this was the
-original catalyst and still remains my primary goal with organizing my dotfiles.
-The day I can simply open a browser tab and share it to a colleague, environment
-already setup, will the mission complete.
-
-### Codespaces
-
-I have been accepted into the beta program for Github's codespaces and have been
-working to virtualize my own professional projects through this technology. A
-starter codespace can be found here:
-<https://github.com/microsoft/vscode-dev-containers.git>
-
-### Microsoft Codespaces Online
-
-Much of the earlier work in this repo was with the (now deprecated) microsoft
-codespaces. The biggest challenge so far has been limited documentation on this
-changeover between Microsoft and Github. Which settings override which? How
-does it work in a docker container, etc. I digress. The old home for my
-environments are here: <https://online.visualstudio.com/environments>
+   - workspace environment - Workspace Environment for the specific tech stack.
+   - IE: RoR, Python, Next.js, etc. This will contain any overrides/modifications to:
 
 ## Ruby on Rails
 
