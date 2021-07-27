@@ -36,4 +36,4 @@ cmd = code --wait $MERGED
 [checkout]
 defaultRemote = origin
 [fetch]
-	prune = true
+prune = true
