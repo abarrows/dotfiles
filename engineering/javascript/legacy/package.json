@@ -13,7 +13,7 @@
     "global": "^4.4.0",
     "intersection-observer": "^0.11.0"
   },
-  "description": "Personal VS Code Development Container",
+  "description": "VS Code Development Container",
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.4.4",
