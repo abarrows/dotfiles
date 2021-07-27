@@ -21,9 +21,6 @@ source "$HOME/.functions.zsh"
 source "$HOME/.aliases.zsh"
 
 # OLD PATHING
-# RVM
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# export PATH="$HOME/.rvm/bin:$PATH"
 
 # MYSQL
 #echo 'APPENDING Path: /usr/local/mysql/bin'

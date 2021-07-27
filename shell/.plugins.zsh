@@ -16,8 +16,7 @@
 
 # dotenv
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/dotenv
-# DESCRIPTION: Automatically load your project ENV variables from .env file when
-# you cd into project root directory.
+# DESCRIPTION: Automatically load your project ENV variables from .env file when you cd into project root directory.
 
 # git
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git

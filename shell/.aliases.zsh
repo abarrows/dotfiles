@@ -167,6 +167,7 @@ alias servicegamedata="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-service
 alias rsservicegamedata="RAILS_ENV=development rails s -p 3064"
 
 # Wordpress
+# TODO: Update these with the new paths.
 # alias rsdailycartoonist="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/devkit/dailycartoonist && $IDE_PATH . && wpe start"
 # alias wonderword="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/wonderword && $IDE_PATH ."
 # alias rswonderword="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/wonderword && $IDE_PATH . && wpe start"
