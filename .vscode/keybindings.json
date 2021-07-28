@@ -44,33 +44,39 @@
   {
     "key": "ctrl+g",
     "command": "workbench.action.gotoLine",
-    "description": "Occasional Shortcut for quickly jumping directly to a line number.",
+    "when": "editorFocus && editorHasSelection",
+    "frequency": "Occasional",
+    "description": "Shortcut for quickly jumping directly to a line number.",
     "tips": "When using the Cmd+P shortcut to jump directly to a file, you can add :XXX at the end of the file name and not only jump into that file but directly to that line.",
     "default": true
   },
   {
-    "key": "alt+left",
+    "key": "ctrl+alt+left",
     "command": "cursorWordPartLeft",
     "when": "textInputFocus",
     "frequency": "Frequent",
-    "description": "for quickly NAVIGATING horizontally through a line by word which is much faster than by character."
+    "description": "for quickly NAVIGATING horizontally through a line by word which is much faster than by character.",
+    "default": true
   },
   {
     "key": "alt+shift+left",
-    "command": "cursorWordPartLeftSelect",
+    "command": "cursorWordPartStartLeftSelect",
     "when": "textInputFocus",
     "frequency": "Frequent",
     "description": "for quickly SELECTING horizontally backwards through a line by word.",
     "example": "If you are trying to cut the first two sentences out of a paragraph of copy, using this shortcut will drastically speed up the process."
   },
   {
-    "key": "alt+right",
+    "key": "ctrl+alt+right",
     "command": "cursorWordPartRight",
-    "when": "textInputFocus"
+    "when": "textInputFocus",
+    "frequency": "Frequent",
+    "description": "for quickly NAVIGATING horizontally through a line by word which is much faster than by character.",
+    "default": true
   },
   {
     "key": "alt+shift+right",
-    "command": "cursorWordPartRightSelect",
+    "command": "cursorWordEndRightSelect",
     "when": "textInputFocus",
     "frequency": "Frequent",
     "description": "Used to quickly SELECT horizontally by word.",
@@ -166,24 +172,28 @@
   {
     "key": "cmd+backspace",
     "command": "editor.emmet.action.removeTag",
-    "description": "Occasional shortcut for deleting the opening and closing tag that you are currently within.  Helpful when you have a div tag that has s dozens of lines between the opening and closing tags."
+    "frequency": "Occasional",
+    "description": "Shortcut for deleting the opening and closing tag that you are currently within.  Helpful when you have a div tag that has s dozens of lines between the opening and closing tags."
   },
   {
     "key": "cmd+r",
     "command": "editor.emmet.action.updateTag",
-    "description": "Occasional shortcut for changing an HTML tag at the same time.  IE: Switching a div tag to a sidebar tag."
+    "frequency": "Occasional",
+    "description": "Shortcut for changing an HTML tag at the same time.  IE: Switching a div tag to a sidebar tag."
   },
   {
     "key": "shift+cmd+k",
     "command": "editor.action.copyLinesDownAction",
     "when": "editorTextFocus && !editorReadonly",
-    "description": "Occasional shortcut used for duplicating the current lines content on the next line.  IE: If you know you are going to need three variables with similar values, you can use this."
+    "frequency": "Occasional",
+    "description": "Shortcut used for duplicating the current lines content on the next line.  IE: If you know you are going to need three variables with similar values, you can use this."
   },
   {
     "key": "cmd+j",
     "command": "editor.emmet.action.matchTag",
     "when": "editorTextFocus && !editorReadonly",
-    "description": "Occasional Shortcut used to quickly jump to the opposing start or end tag.",
+    "frequency": "Occasional",
+    "description": "Shortcut used to quickly jump to the opposing start or end tag.",
     "example": "Within an html file, you want to quickly jump down two hundred lines to the closing div tag."
   },
 
@@ -196,7 +206,8 @@
     "key": "cmd+t",
     "command": "editor.emmet.action.wrapWithAbbreviation",
     "when": "editorTextFocus && !editorReadonly",
-    "description": "Occasional Shortcut for using Emmet abbreviation to create an element around a selected block.",
+    "frequency": "Occasional",
+    "description": "Shortcut for using Emmet abbreviation to create an element around a selected block.",
     "example": "Within an html file you want to quickly add a div.row around a bootstrap div.col class with a bunch of content within it."
   },
   {
@@ -402,13 +413,15 @@
   {
     "key": "cmd+i",
     "command": "-editor.emmet.action.balanceIn",
-    "description": "Occasional shortcut for smart selecting inward.  By smart, I mean it selects all of a tag, then the child tag within that.  The drawback is this emmet keybinding only works with a few different languages. NOTE: You will first need to have content selected with a child for this shortcut to work.",
+    "frequency": "Occasional",
+    "description": "Shortcut for smart selecting inward.  By smart, I mean it selects all of a tag, then the child tag within that.  The drawback is this emmet keybinding only works with a few different languages. NOTE: You will first need to have content selected with a child for this shortcut to work.",
     "experimental": true
   },
   {
     "key": "shift+cmd+i",
     "command": "-editor.emmet.action.balanceOut",
-    "description": "Occasional shortcut for smart selecting outward.  By smart, I mean it selects all of a tag, then the parent tag above that.  The drawback is this emmet keybinding only works with a few different languages.",
+    "frequency": "Occasional",
+    "description": "Shortcut for smart selecting outward.  By smart, I mean it selects all of a tag, then the parent tag above that.  The drawback is this emmet keybinding only works with a few different languages.",
     "experimental": true
   },
   {
