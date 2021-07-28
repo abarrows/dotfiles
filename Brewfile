@@ -39,6 +39,7 @@ brew "memcached" # Performance Caching library for Ruby on Rails
 brew "mysql", restart_service: true # Database Dependency for MySQL (Usually used by non-containerized web applications)
 brew "mysql-client" # Database Dependency for MySQL
 brew "openssl" # Network Utility for SSL requests
+brew "pandoc" # Allows for markdown to easily be exported into other formats like word, pdfs, and html
 brew "pgloader" # Database Utility for converting MySQL databases to Postgres M1-INCOMPATIBLE
 brew "pidof" # CL Dependency for displaying PID for a running process
 brew "pipenv" # Python dependency management tool
