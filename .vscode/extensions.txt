@@ -10,11 +10,14 @@ christian-kohler.npm-intellisense
 christian-kohler.path-intellisense
 codespaces-contrib.codeswing
 codezombiech.gitignore
+CoenraadS.bracket-pair-colorizer
 cpylua.language-postcss
 cschleiden.vscode-github-actions
 DavidAnson.vscode-markdownlint
 davidpallinder.rails-test-runner
 dbaeumer.vscode-eslint
+DougFinke.vscode-pandoc
+dsznajder.es7-react-js-snippets
 eamodio.gitlens
 EditorConfig.EditorConfig
 EQuimper.react-native-react-redux
@@ -38,6 +41,7 @@ jasonlhy.hungry-delete
 jkjustjoshing.vscode-text-pastry
 jmfirth.vsc-space-block-jumper
 johnpapa.vscode-peacock
+jpoissonnier.vscode-styled-components
 KnisterPeter.vscode-github
 L13RARY.l13-diff
 leizongmin.node-module-intellisense
@@ -70,6 +74,7 @@ ryu1kn.partial-diff
 sensourceinc.vscode-sql-beautify
 steoates.autoimport
 stkb.rewrap
+streetsidesoftware.code-spell-checker
 stylelint.vscode-stylelint
 svipas.control-snippets
 timonwong.shellcheck
@@ -86,3 +91,4 @@ xabikos.JavaScriptSnippets
 yzhang.markdown-all-in-one
 zhuangtongfa.material-theme
 Zignd.html-css-class-completion
+znck.grammarly
