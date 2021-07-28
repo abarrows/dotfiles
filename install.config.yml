@@ -69,7 +69,6 @@
 # Mac OSX
 - link:
     ~/Alfred.alfredpreferences:
-      force: true
       path: operating_system/Alfred.alfredpreferences
 # Version Control
 - link:
