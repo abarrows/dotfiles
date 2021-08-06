@@ -6,6 +6,7 @@
 - create:
     - ~/downloads
     - ~/downloads/databases
+    - ~/alfred
     - ~/Library/LaunchAgents
     - ~/.git-template-directory
     - ~/.git-template-directory/hooks
@@ -68,8 +69,8 @@
 
 # Mac OSX
 - link:
-    ~/Alfred.alfredpreferences:
-      path: operating_system/Alfred.alfredpreferences
+    ~/.alfred:
+      path: operating_system/alfred
 # Version Control
 - link:
     ~/.onboarding_bin: onboarding_bin
