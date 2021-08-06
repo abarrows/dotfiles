@@ -39,7 +39,8 @@
     "when": "editorFocus && editorHasSelection",
     "frequency": "Frequent",
     "description": "Used when searching for selected text, this command will REMOVE the previous occurrence from your selected text.",
-    "example": "If I wanted to find all references of the description key in this JSON array, I would first type cmd+f then type description and hit enter.  Then, if I select one too many cmd+d, I can use this command to subtract the last occurence."
+    "example": "If I wanted to find all references of the description key in this JSON array, I would first type cmd+f then type description and hit enter.  Then, if I select one too many cmd+d, I can use this command to subtract the last occurence.",
+    "default": false
   },
   {
     "key": "ctrl+g",
@@ -51,96 +52,95 @@
     "default": true
   },
   {
-    "key": "ctrl+alt+left",
-    "command": "cursorWordPartLeft",
-    "when": "textInputFocus",
-    "frequency": "Frequent",
-    "description": "for quickly NAVIGATING horizontally through a line by word which is much faster than by character.",
-    "default": true
-  },
-  {
     "key": "alt+shift+left",
     "command": "cursorWordPartStartLeftSelect",
     "when": "textInputFocus",
     "frequency": "Frequent",
-    "description": "for quickly SELECTING horizontally backwards through a line by word.",
-    "example": "If you are trying to cut the first two sentences out of a paragraph of copy, using this shortcut will drastically speed up the process."
-  },
-  {
-    "key": "ctrl+alt+right",
-    "command": "cursorWordPartRight",
-    "when": "textInputFocus",
-    "frequency": "Frequent",
-    "description": "for quickly NAVIGATING horizontally through a line by word which is much faster than by character.",
+    "description": "For quickly SELECTING horizontally forwards through a line by word.",
+    "example": "If you are trying to cut the first two sentences out of a paragraph of copy, using this shortcut will drastically speed up the process.",
     "default": true
   },
   {
     "key": "alt+shift+right",
-    "command": "cursorWordEndRightSelect",
+    "command": "cursorWordPartRightSelect",
     "when": "textInputFocus",
     "frequency": "Frequent",
-    "description": "Used to quickly SELECT horizontally by word.",
-    "example": "If you are trying to cut the first two sentences out of a paragraph of copy, using this shortcut will drastically speed up the process."
-  },
-  {
-    "key": "alt+down",
-    "command": "spaceBlockJumper.moveDown",
-    "frequency": "Frequent",
-    "description": "Used to quickly NAVIGATE DOWN by blocks, functions, brackets, etc.  IE: In a long file, you don't want to jump down to the bottom of the page but need to scan dozens of blocks quickly."
-  },
-  {
-    "key": "shift+alt+down",
-    "command": "spaceBlockJumper.selectDown",
-    "frequency": "Frequent",
-    "description": "Used to quickly SELECT DOWN on block(s), functions, brackets, etc.  IE: In a long file, you don't want to jump down to the bottom of the page but need to select multiple blocks of code, quickly."
+    "description": "For quickly SELECTING horizontally backwards through a line by word.",
+    "example": "If you are trying to cut the first two sentences out of a paragraph of copy, using this shortcut will drastically speed up the process.",
+    "default": true
   },
   {
     "key": "alt+up",
     "command": "spaceBlockJumper.moveUp",
+    "when": "editorFocus",
     "frequency": "Frequent",
-    "description": "Used to quickly NAVIGATE UP by blocks, functions, brackets, etc.  IE: In a long file, you don't want to jump up to the bottom of the page but need to scan dozens of blocks quickly."
+    "description": "Used to quickly NAVIGATE UP by blocks, functions, brackets, etc.  IE: In a long file, you don't want to jump up to the bottom of the page but need to scan dozens of blocks quickly.",
+    "example": " In a long file, you don't want to jump UP to the top of the page but need to scan dozens of blocks quickly.",
+    "default": false
+  },
+  {
+    "key": "alt+down",
+    "command": "spaceBlockJumper.moveDown",
+    "when": "editorFocus",
+    "frequency": "Frequent",
+    "description": "Used to quickly NAVIGATE DOWN by blocks, functions, brackets, etc.",
+    "example": " In a long file, you don't want to jump down to the bottom of the page but need to scan dozens of blocks quickly.",
+    "default": false
   },
   {
     "key": "shift+alt+up",
     "command": "spaceBlockJumper.selectUp",
+    "when": "editorFocus",
     "frequency": "Frequent",
-    "description": "Used to quickly SELECT UP on block(s), functions, brackets, etc.  IE: In a long file, you don't want to jump up to the bottom of the page but need to select multiple blocks of code, quickly."
+    "description": "Used to quickly SELECT UP on block(s), functions, brackets, etc.",
+    "example": "Used to quickly SELECT UP on block(s), functions, brackets, etc.  IE: In a long file, you don't want to jump down to the bottom of the page but need to select multiple blocks of code, quickly.",
+    "default": false
+  },
+  {
+    "key": "shift+alt+down",
+    "command": "spaceBlockJumper.selectDown",
+    "when": "editorFocus",
+    "frequency": "Frequent",
+    "description": "Used to quickly SELECT DOWN on block(s), functions, brackets, etc.",
+    "example": "Used to quickly SELECT UP on block(s), functions, brackets, etc.  IE: In a long file, you don't want to jump down to the top of the page but need to select multiple blocks of code, quickly.",
+    "default": false
   },
   {
     "key": "ctrl+alt+up",
     "command": "editor.action.moveLinesUpAction",
     "when": "editorTextFocus && !editorReadonly",
     "frequency": "Frequent",
-    "description": "for quickly moving the current line UP to the next line.  It will move whatever was on that line below. IE: This works while having content selected as well, making it very handy to move blocks, components, groups of styles, further UP in the file."
+    "description": "for quickly moving the current line UP to the next line.  It will move whatever was on that line below.",
+    "example": "This works while having content selected as well, making it very handy to move blocks, components, groups of styles, further UP in the file.",
+    "default": false
   },
   {
     "key": "ctrl+alt+down",
     "command": "editor.action.moveLinesDownAction",
     "when": "editorTextFocus && !editorReadonly",
     "frequency": "Frequent",
-    "description": "for quickly moving the current line DOWN to the next line.  It will move whatever was on that line below. IE: This works while having content selected as well, making it very handy to move blocks, components, groups of styles, further DOWN in the file."
+    "description": "for quickly moving the current line DOWN to the next line.  It will move whatever was on that line below.",
+    "example": "This works while having content selected as well, making it very handy to move blocks, components, groups of styles, further DOWN in the file."
   },
   {
     "key": "cmd+k",
     "command": "editor.action.deleteLines",
     "when": "textInputFocus && !editorReadonly",
     "frequency": "Frequent",
-    "description": "for quickly killing the line you are on.  You can be anywhere on the line."
+    "description": "for quickly killing the line you are on.  You can be anywhere on the line.",
+    "example": "Useful for removing a simple var declaration.",
+    "default": false
   },
   {
     "key": "shift+cmd+w",
-    "command": "workbench.action.closeEditorsInGroup"
+    "command": "workbench.action.closeEditorsInGroup",
+    "when": "editorTextFocus",
+    "frequency": "Frequent",
+    "description": "For quickly killing all editor tabs that are active in the editor group.",
+    "example": "After debugging an issue, you have thirty tabs open.  This closes them all immediately.",
+    "default": false
   },
-  {
-    "key": "ctrl+alt+[",
-    "command": "cursorColumnSelectLeft",
-    "when": "editorTextFocus"
-  },
-  {
-    "key": "shift+alt+]",
-    "command": "cursorColumnSelectRight",
-    "when": "editorTextFocus"
-  },
+
   {
     "key": "cmd+u",
     "command": "cursorUndo",
@@ -341,7 +341,6 @@
     "command": "-editor.action.copyLinesDownAction",
     "when": "editorTextFocus && !editorReadonly"
   },
-
   {
     "key": "alt+up",
     "command": "-editor.action.moveLinesUpAction",
@@ -381,6 +380,12 @@
   {
     "key": "cmd+j",
     "command": "-workbench.action.togglePanel"
+  },
+  {
+    "key": "shift+alt+]",
+    "command": "cursorColumnSelectRight",
+    "when": "editorTextFocus",
+    "experimental": true
   },
   {
     "key": "cmd+k cmd+[",
