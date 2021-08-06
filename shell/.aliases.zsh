@@ -62,6 +62,7 @@ alias dockernuke="docker system prune --volumes"
 # Database
 alias checkmysql="mysqladmin version"
 alias startmysql="mysql.server start"
+alias stopmysql="mysql.server stop"
 alias startpg="postgres -D /usr/local/var/postgres"
 
 # PHP
@@ -131,6 +132,8 @@ alias rssyndication="RAILS_ENV=development rails s -p 3006"
 alias thefarside="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/thefarside/ && $IDE_PATH ."
 alias rsthefarside="RAILS_ENV=development rails s -p 3020"
 alias gcemail="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/gocomics_daily_pro_email && $IDE_PATH ."
+alias gamecrossword="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/crossword_game/ && $IDE_PATH . && docker run --rm -it -p 3000:3000 crossword-games"
+alias startgamecrossword="docker build -t crossword-game ."
 
 # Company Admins
 alias admincontent="cd ~/documents/$CURRENT_COMPANY/repos/amu-admins/content_admin && $IDE_PATH ."
