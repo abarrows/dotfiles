@@ -20,6 +20,12 @@
 
 # macOS
 .DS_Store
+operating_system/Alfred.alfredpreferences/*
+!operating_system/Alfred.alfredpreferences/preferences
+!operating_system/Alfred.alfredpreferences/workflows
+!operating_system/Alfred.alfredpreferences/resources
+!operating_system/Alfred.alfredpreferences/snippets/
+!operating_system/Alfred.alfredpreferences/README.md
 
 # command line and dotfiles
 ruby/.bundle/cache/*
