@@ -1,6 +1,6 @@
 #!/bin/bash
 
-extension_count=$(wc -l < /Users/$CURRENT_USER/documents/$CURRENT_COMPANY/repos/amu-development-team/amu-onboarding/.vscode/extensions.txt)
+extension_count=$(wc -l < /Users/"$CURRENT_USER"/documents/"$CURRENT_COMPANY"/repos/personal/dotfiles/engineering/ide/.vscode/extensions.txt)
 echo "The extension count is $extension_count"
 if (( $extension_count > 20 ));
 then
