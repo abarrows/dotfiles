@@ -68,9 +68,46 @@
     - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 # Mac OSX
-- link:
-    ~/.alfred:
-      path: operating_system/alfred
+# - link:
+#     '~/Library/Application Support/Alfred/Alfred.alfredpreferences/preferences/advanced/prefs.plist':
+#     ~/operating_system/Alfred.alfredpreferences/preferences/advanced/prefs.plist
+# - link:
+#     - '~/Library/Application Support/Alfred/Alfred.alfredpreferences/preferences/appearance/options/prefs.plist':
+#     ~/operating_system/Alfred.alfredpreferences/preferences/appearance/options/prefs.plist
+# - link:
+#     '~/Library/Application
+#     Support/Alfred/Alfred.alfredpreferences/preferences/features/1password/prefs.plist':
+#     ~/operating_system/Alfred.alfredpreferences/preferences/features/1password/prefs.plist
+# - link:
+#     '~/Library/Application
+#     Support/Alfred/Alfred.alfredpreferences/preferences/features/clipboard/prefs.plist':
+#     ~/operating_system/Alfred.alfredpreferences/preferences/features/clipboard/prefs.plist
+# - link:
+#     '~/Library/Application
+#     Support/Alfred/Alfred.alfredpreferences/preferences/features/contacts/email/prefs.plist':
+#     ~/operating_system/Alfred.alfredpreferences/preferences/features/contacts/email/prefs.plist
+#     '~/Library/Application
+#     Support/Alfred/Alfred.alfredpreferences/preferences/features/defaultresults/prefs.plist':
+#     ~/operating_system/Alfred.alfredpreferences/preferences/features/defaultresults/prefs.plist
+#     '~/Library/Application
+#     Support/Alfred/Alfred.alfredpreferences/preferences/features/filesearch/actions/prefs.plist':
+#     ~/operating_system/Alfred.alfredpreferences/preferences/features/filesearch/actions/prefs.plist
+#     '~/Library/Application
+#     Support/Alfred/Alfred.alfredpreferences/preferences/features/filesearch/navigation/prefs.plist':
+#     ~/operating_system/Alfred.alfredpreferences/preferences/features/filesearch/navigation/prefs.plist
+#     '~/Library/Application
+#     Support/Alfred/Alfred.alfredpreferences/preferences/features/filesearch/quicklook/prefs.plist':
+#     ~/operating_system/Alfred.alfredpreferences/preferences/features/filesearch/quicklook/prefs.plist
+#     '~/Library/Application
+#     Support/Alfred/Alfred.alfredpreferences/preferences/features/itunes/prefs.plist':
+#     ~/operating_system/Alfred.alfredpreferences/preferences/features/itunes/prefs.plist
+#     '~/Library/Application
+#     Support/Alfred/Alfred.alfredpreferences/preferences/prefs.plist':
+#     ~/operating_system/Alfred.alfredpreferences/preferences/prefs.plist
+#     '~/Library/Application
+#     Support/Alfred/Alfred.alfredpreferences/snippets/Github/info.plist':
+#     ~/operating_system/Alfred.alfredpreferences/snippets/Github/info.plist
+
 # Version Control
 - link:
     ~/.onboarding_bin: onboarding_bin
@@ -169,21 +206,21 @@
 # IDE - VS Code
 - link:
     '~/Library/Application Support/code/User/settings.json':
-      path: .vscode/settings.json
+      path: engineering/ide/.vscode/settings.json
       force: true
     '~/Library/Application Support/code/User/keybindings.json':
-      path: .vscode/keybindings.json
+      path: engineering/ide/.vscode/keybindings.json
       force: true
     '~/Library/Application Support/code/User/tasks.json':
-      path: .vscode/tasks.json
+      path: engineering/ide/.vscode/tasks.json
       force: true
     '~/Library/Application Support/code/User/launch.json':
-      path: .vscode/launch.json
+      path: engineering/ide/.vscode/launch.json
       force: true
 - shell:
-    - code --list-extensions > .vscode/extensions.txt
+    - code --list-extensions > engineering/ide/.vscode/extensions.txt
 - vscodefile:
-    file: .vscode/extensions.txt
+    file: engineering/ide/.vscode/extensions.txt
     insiders: false
 - shell:
     - echo 'VS Code - Ready to go...'
