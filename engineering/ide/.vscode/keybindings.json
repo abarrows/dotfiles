@@ -5,6 +5,7 @@
     "when": "*",
     "frequency": "Frequent",
     "description": "Use for finding a string within a file.",
+    "example": "You are looking for all references of the string - exampleVar - in the current file.  This will display a search bar in the top right of the editor listing out how many references there are.",
     "default": true
   },
   {
@@ -13,6 +14,7 @@
     "when": "*",
     "frequency": "Frequent",
     "description": "to find ANY string across all files within the VS Code project.",
+    "example": "You are looking for all references of the string - exampleVar - This allows you to search through all the files in the workspace and view them.",
     "default": true
   },
   {
@@ -39,7 +41,7 @@
     "when": "editorFocus && editorHasSelection",
     "frequency": "Frequent",
     "description": "Used when searching for selected text, this command will REMOVE the previous occurrence from your selected text.",
-    "example": "If I wanted to find all references of the description key in this JSON array, I would first type cmd+f then type description and hit enter.  Then, if I select one too many cmd+d, I can use this command to subtract the last occurence.",
+    "example": "If I wanted to find all references of the description key in this JSON array, I would first type cmd+f then type description and hit enter.  Then, if I select one too many cmd+d, I can use this command to subtract the last ocurrence.",
     "default": false
   },
   {
@@ -52,11 +54,29 @@
     "default": true
   },
   {
+    "key": "alt+left",
+    "command": "cursorWordLeft",
+    "when": "textInputFocus",
+    "frequency": "Frequent",
+    "description": "For quickly NAVIGATING horizontally to the left through a line, word by word.",
+    "example": "If you are trying to navigate through the first two sentences out of a paragraph, using this shortcut will drastically speed up the process.",
+    "default": true
+  },
+  {
+    "key": "alt+right",
+    "command": "cursorWordRight",
+    "when": "textInputFocus",
+    "frequency": "Frequent",
+    "description": "For quickly NAVIGATING horizontally to the right through a line, word by word.",
+    "example": "If you are trying to navigate through the first two sentences out of a paragraph, using this shortcut will drastically speed up the process.",
+    "default": true
+  },
+  {
     "key": "alt+shift+left",
     "command": "cursorWordPartStartLeftSelect",
     "when": "textInputFocus",
     "frequency": "Frequent",
-    "description": "For quickly SELECTING horizontally forwards through a line by word.",
+    "description": "for quickly SELECTING horizontally backwards through a line by word.",
     "example": "If you are trying to cut the first two sentences out of a paragraph of copy, using this shortcut will drastically speed up the process.",
     "default": true
   },
@@ -65,7 +85,7 @@
     "command": "cursorWordPartRightSelect",
     "when": "textInputFocus",
     "frequency": "Frequent",
-    "description": "For quickly SELECTING horizontally backwards through a line by word.",
+    "description": "For quickly SELECTING horizontally through a line by word.",
     "example": "If you are trying to cut the first two sentences out of a paragraph of copy, using this shortcut will drastically speed up the process.",
     "default": true
   },
@@ -93,7 +113,7 @@
     "when": "editorFocus",
     "frequency": "Frequent",
     "description": "Used to quickly SELECT UP on block(s), functions, brackets, etc.",
-    "example": "Used to quickly SELECT UP on block(s), functions, brackets, etc.  IE: In a long file, you don't want to jump down to the bottom of the page but need to select multiple blocks of code, quickly.",
+    "example": "In a long file, you don't want to jump up to the bottom of the page but need to select multiple blocks of code, quickly.",
     "default": false
   },
   {
@@ -102,7 +122,7 @@
     "when": "editorFocus",
     "frequency": "Frequent",
     "description": "Used to quickly SELECT DOWN on block(s), functions, brackets, etc.",
-    "example": "Used to quickly SELECT UP on block(s), functions, brackets, etc.  IE: In a long file, you don't want to jump down to the top of the page but need to select multiple blocks of code, quickly.",
+    "example": "In a long file, you don't want to jump down to the bottom of the page but need to select multiple blocks of code, quickly.",
     "default": false
   },
   {
@@ -110,8 +130,8 @@
     "command": "editor.action.moveLinesUpAction",
     "when": "editorTextFocus && !editorReadonly",
     "frequency": "Frequent",
-    "description": "for quickly moving the current line UP to the next line.  It will move whatever was on that line below.",
-    "example": "This works while having content selected as well, making it very handy to move blocks, components, groups of styles, further UP in the file.",
+    "description": "For quickly moving the current line UP to the previous line and what was on that previous line will then move to the next line. This works while having content selected as well, making it very handy to move entire blocks, components, groups of styles, etc. (Not just a single line) further UP in the file.",
+    "example": "You realize a javascript variable was instantiated in a function when it should be in the next function UP.  Executing this shortcut will move it UP a line into the function where it should be instantiated.",
     "default": false
   },
   {
@@ -119,8 +139,9 @@
     "command": "editor.action.moveLinesDownAction",
     "when": "editorTextFocus && !editorReadonly",
     "frequency": "Frequent",
-    "description": "for quickly moving the current line DOWN to the next line.  It will move whatever was on that line below.",
-    "example": "This works while having content selected as well, making it very handy to move blocks, components, groups of styles, further DOWN in the file."
+    "description": "For quickly moving the current line DOWN to the next line and what was on that next line will then move to the previous line. This works while having content selected as well, making it very handy to move entire blocks, components, groups of styles, etc. (Not just a single line) further DOWN in the file.",
+    "example": "You realize a javascript variable was instantiated in the global scope.  Executing this shortcut will move it down a line into the function where it should be instantiated.",
+    "default": false
   },
   {
     "key": "cmd+k",
@@ -134,19 +155,19 @@
   {
     "key": "shift+cmd+w",
     "command": "workbench.action.closeEditorsInGroup",
-    "when": "editorTextFocus",
-    "frequency": "Frequent",
-    "description": "For quickly killing all editor tabs that are active in the editor group.",
-    "example": "After debugging an issue, you have thirty tabs open.  This closes them all immediately.",
+    "when": "editorFocus",
+    "frequency": "Occasionally",
+    "description": "This will close all saved editor tabs within your current workspace.",
+    "example": "You were debugging a problem and ended up opening 23 tabs.  This will close all them so you can reopen the one file that matters",
     "default": false
   },
-
   {
     "key": "cmd+u",
     "command": "cursorUndo",
     "frequency": "Frequent",
     "description": "for quickly undoing an erronous position change to your cursor.",
-    "example": "You are jumping down instances of a string and go to far, this command can bring you back to the last known cursor position."
+    "example": "You are jumping down instances of a string and go to far, this command can bring you back to the last known cursor position.",
+    "default": false
   },
   {
     "key": "shift+cmd+u",
@@ -380,12 +401,6 @@
   {
     "key": "cmd+j",
     "command": "-workbench.action.togglePanel"
-  },
-  {
-    "key": "shift+alt+]",
-    "command": "cursorColumnSelectRight",
-    "when": "editorTextFocus",
-    "experimental": true
   },
   {
     "key": "cmd+k cmd+[",
