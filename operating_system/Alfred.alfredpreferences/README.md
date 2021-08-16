@@ -21,3 +21,10 @@ directory are responsible for the following:
    template when a repo does not currently have it.
 7. Turns on "EJECTALL" keyword for ejecting all mountable disks. This is useful
    for external harddrives and other mounted volumes.
+
+## Resources
+
+Other articles and references to get familiarized with this powerful
+productivity tool.
+
+1. <https://stefanzweifel.io/posts/2021/02/03/my-alfred-setup>
