@@ -4,43 +4,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "npm",
-      "label": "webpack: dev server",
-      "script": "start",
-      "promptOnClose": true,
-      "isBackground": true,
-      "problemMatcher": {
-        "owner": "webpack",
-        "severity": "error",
-        "fileLocation": "absolute",
-        "pattern": [
-          {
-            "regexp": "ERROR in (.*)",
-            "file": 1
-          },
-          {
-            "regexp": "\\((\\d+),(\\d+)\\):(.*)",
-            "line": 1,
-            "column": 2,
-            "message": 3
-          }
-        ],
-        "background": {
-          "activeOnStart": true,
-          "beginsPattern": "Compiling\\.\\.\\.",
-          "endsPattern": "Linting complete\\."
-        }
-      }
-    },
-    {
-      "label": "Create sandbox",
+      "label": "RoR: Default Linting and Tooling",
       "type": "shell",
-      "command": "mkdir 'sandbox' && rails new sandbox -G --skip && cd sandbox && bundle install"
-    },
-    {
-      "label": "Delete sandbox",
-      "type": "shell",
-      "command": "cd sandbox && rm -rf * && rm -f .ruby-version"
+      "command": "gem install htmlbeautifier && gem install solargraph && cd ../${workspaceFolderBasename} && bundle install && solargraph download_core && solargraph restartServer && yarn install"
     }
   ]
 }
