@@ -290,7 +290,7 @@
   },
   {
     "key": "ctrl+shift+up",
-    "command": "workbench.action.compareEditor.prevChange",
+    "command": "workbench.action.compareEditor.previousChange",
     "when": "textCompareEditorVisible",
     "description": "When reviewing diffs within the source control sidebar, this shortcut quickly navigates to the PREVIOUSLY changed block.",
     "example": "If I have three diff/merge changes to this keybindings file, this shortcut allows to quickly jump hundreds of lines in some cases, directly to the PREVIOUS change.",
