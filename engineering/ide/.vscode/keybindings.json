@@ -50,7 +50,7 @@
     "when": "editorFocus && editorHasSelection",
     "frequency": "Occasional",
     "description": "Shortcut for quickly jumping directly to a line number.",
-    "tips": "When using the Cmd+P shortcut to jump directly to a file, you can add :XXX at the end of the file name and not only jump into that file but directly to that line.",
+    "example": "When using the Cmd+P shortcut to jump directly to a file, you can add :XXX at the end of the file name and not only jump into that file but directly to that line.",
     "default": true
   },
   {
@@ -165,7 +165,8 @@
     "key": "cmd+u",
     "command": "cursorUndo",
     "frequency": "Frequent",
-    "description": "for quickly undoing an erronous position change to your cursor.",
+    "when": "*",
+    "description": "For quickly undoing an erronous position change to your cursor.",
     "example": "You are jumping down instances of a string and go to far, this command can bring you back to the last known cursor position.",
     "default": false
   },
@@ -173,41 +174,54 @@
     "key": "shift+cmd+u",
     "command": "cursorRedo",
     "frequency": "Frequent",
+    "when": "*",
     "description": "for quickly redoing your cursor position.",
-    "example": "You are jumping down instances of a string and thought you went too far but need to redo, this command can bring you back to the furthest known cursor position."
+    "example": "You are jumping down instances of a string and thought you went too far but need to redo, this command can bring you back to the furthest known cursor position.",
+    "default": false
   },
   {
     "key": "cmd+e",
     "command": "expand_region",
     "when": "editorTextFocus",
     "frequency": "Frequent",
-    "description": "Used to expand your selection in a smart way.  With each subsequent triggering of the shortcut, it will increase the selection to the current selections parent, then its parent, and so on.  NOTE: This uses the extension expand region and is much more reliable across languages."
+    "description": "Used to expand your selection in a smart way.  With each subsequent triggering of the shortcut, it will increase the selection to the current selections parent, then its parent, and so on.  NOTE: This uses the extension expand region and is much more reliable across languages.",
+    "example": "Very useful for expanding in single clicks, everything within a tag, object, or function.  For instance, if you have a DIV soup and you want to make sure you kill the text and all the required divs.",
+    "default": false
   },
   {
     "key": "cmd+shift+e",
     "command": "undo_expand_region",
     "when": "editorHasSelection && editorTextFocus",
     "frequency": "Frequent",
-    "description": "Used to shrink your selection in a smart way.  With each subsequent triggering of the shortcut, it will decrease the selection to the current selections child, then its child, and so on.  NOTE: This uses the Expand Region extension and is much more reliable across languages."
+    "description": "Used to shrink your selection in a smart way.  With each subsequent triggering of the shortcut, it will decrease the selection to the current selections child, then its child, and so on.  NOTE: This uses the Expand Region extension and is much more reliable across languages.",
+    "example": "Very useful if the expansion goes one level too far, this allows you to shrink it one level.",
+    "default": false
   },
   {
     "key": "cmd+backspace",
     "command": "editor.emmet.action.removeTag",
     "frequency": "Occasional",
-    "description": "Shortcut for deleting the opening and closing tag that you are currently within.  Helpful when you have a div tag that has s dozens of lines between the opening and closing tags."
+    "when": "editorFocus",
+    "description": "Shortcut for deleting the opening and closing tag that you are currently within.",
+    "example": "Helpful when you have a div tag that has s dozens of lines between the opening and closing tags.",
+    "default": false
   },
   {
     "key": "cmd+r",
     "command": "editor.emmet.action.updateTag",
     "frequency": "Occasional",
-    "description": "Shortcut for changing an HTML tag at the same time.  IE: Switching a div tag to a sidebar tag."
+    "when": "*",
+    "description": "Shortcut for changing an HTML tag at the same time.",
+    "example": "IE: Switching a div tag to a sidebar tag.",
+    "default": false
   },
   {
     "key": "shift+cmd+k",
     "command": "editor.action.copyLinesDownAction",
     "when": "editorTextFocus && !editorReadonly",
     "frequency": "Occasional",
-    "description": "Shortcut used for duplicating the current lines content on the next line.  IE: If you know you are going to need three variables with similar values, you can use this."
+    "description": "Shortcut used for duplicating the current lines content on the next line.  IE: If you know you are going to need three variables with similar values, you can use this.",
+    "default": false
   },
   {
     "key": "cmd+j",
@@ -215,13 +229,8 @@
     "when": "editorTextFocus && !editorReadonly",
     "frequency": "Occasional",
     "description": "Shortcut used to quickly jump to the opposing start or end tag.",
-    "example": "Within an html file, you want to quickly jump down two hundred lines to the closing div tag."
-  },
-
-  {
-    "key": "cmd+l",
-    "command": "editor.emmet.action.splitJoinTag",
-    "when": "editorTextFocus && !editorReadonly"
+    "example": "Within an html file, you want to quickly jump down two hundred lines to the closing div tag.",
+    "default": false
   },
   {
     "key": "cmd+t",
@@ -229,67 +238,100 @@
     "when": "editorTextFocus && !editorReadonly",
     "frequency": "Occasional",
     "description": "Shortcut for using Emmet abbreviation to create an element around a selected block.",
-    "example": "Within an html file you want to quickly add a div.row around a bootstrap div.col class with a bunch of content within it."
+    "example": "Within an html file you want to quickly add a div.row around a bootstrap div.col class with a bunch of content within it.",
+    "default": true
   },
   {
     "key": "ctrl+e",
     "command": "workbench.view.explorer",
+    "when": "*",
     "description": "This is helpful to switch back to the project's file structure.",
+    "example": "Say you are looking for a specific image, after clicking in one file in an images/ folder, use this shortcut to quickly jump back to the folder you were just in.  The down and up arrow keys allow you to navigate through the files.  Each one can be quickly opened with spacebar.",
     "default": true
   },
   {
-    "key": "cmd+5",
+    "key": "ctrl+5",
     "command": "workbench.view.debug",
-    "frequency": "Infrequent",
-    "description": "Used to quickly open the debug console panel.",
-    "experimental": true
-  },
-  {
-    "key": "ctrl+e",
-    "command": "workbench.view.explorer",
-    "description": "This is helpful to switch back to the project's file structure.",
-    "default": true
-  },
-  {
-    "key": "cmd+shift+j",
-    "command": "editor.unfold",
-    "when": "editorTextFocus && foldingEnabled",
-    "experimental": true
-  },
-  {
-    "key": "ctrl+shift+down",
-    "command": "workbench.action.compareEditor.nextChange",
-    "when": "editorTextFocus || textCompareEditorVisible",
-    "description": "When reviewing diffs within the source control sidebar, this shortcut quickly navigates to the next changed block.",
-    "example": "If I have three changes to this keybindings file, this shortcut allows to quickly jump hundreds of lines in some cases, directly to the next change."
+    "when": "viewContainer.workbench.view.debug.enabled",
+    "description": "Quickly focuses or opens the debug panel.",
+    "example": "Say you are looking for a specific image, after clicking in one file in an images/ folder, use this shortcut to quickly jump back to the folder you were just in.  The down and up arrow keys allow you to navigate through the files.  Each one can be quickly opened with spacebar.",
+    "default": false
   },
   {
     "key": "ctrl+shift+down",
     "command": "diffMerge.nextDiff",
-    "when": "diffMerge.panelFocused"
+    "when": "diffMerge.panelFocused",
+    "description": "When reviewing diffs within the source control sidebar, this shortcut quickly navigates to the NEXT changed block.",
+    "example": "If I have three diff/merge changes to this keybindings file, this shortcut allows to quickly jump hundreds of lines in some cases, directly to the next change."
   },
   {
-    "key": "ctrl+shift+up",
-    "command": "workbench.action.compareEditor.previousChange",
-    "when": "editorTextFocus || textCompareEditorVisible",
-    "description": "When reviewing diffs within the source control sidebar, this shortcut quickly navigates back to the previous changed block.",
-    "example": "If I have three changes to this keybindings file, this shortcut allows to quickly jump back up hundreds of lines in some cases, directly to the previous change you were reviewing."
+    "key": "ctrl+shift+down",
+    "command": "workbench.action.compareEditor.nextChange",
+    "when": "textCompareEditorVisible",
+    "description": "When reviewing diffs within the source control sidebar, this shortcut quickly navigates to the NEXT changed block.",
+    "example": "If I have three diff/merge changes to this keybindings file, this shortcut allows to quickly jump hundreds of lines in some cases, directly to the next change.",
+    "default": false
+  },
+  {
+    "key": "ctrl+shift+down",
+    "command": "merge-conflict.next",
+    "when": "*",
+    "description": "During a merge conflict, this allows you to quickly navigate to the NEXT merge conflict in the file.",
+    "example": "You are merging in staging changes and there are 1000 lines between the current conflict and the next one.  This will quickly jump you DOWN to it.",
+    "default": true
   },
   {
     "key": "ctrl+shift+up",
     "command": "diffMerge.prevDiff",
-    "when": "diffMerge.panelFocused"
+    "when": "diffMerge.panelFocused",
+    "description": "When reviewing diffs within the source control sidebar, this shortcut quickly navigates to the PREVIOUSLY changed block.",
+    "example": "If I have three changes to this keybindings file, this shortcut allows to quickly jump hundreds of lines in some cases, directly to the PREVIOUS change.",
+    "default": false
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "workbench.action.compareEditor.prevChange",
+    "when": "textCompareEditorVisible",
+    "description": "When reviewing diffs within the source control sidebar, this shortcut quickly navigates to the PREVIOUSLY changed block.",
+    "example": "If I have three diff/merge changes to this keybindings file, this shortcut allows to quickly jump hundreds of lines in some cases, directly to the PREVIOUS change.",
+    "default": false
+  },
+  {
+    "key": "ctrl+shift+up",
+    "command": "merge-conflict.previous",
+    "when": "*",
+    "description": "During a merge conflict, this allows you to quickly navigate to the PREVIOUS merge conflict in the file.",
+    "example": "You are merging in staging changes and there are 1000 lines between the current conflict and the previous one.  This will quickly jump you UP to it.",
+    "default": false
+  },
+  {
+    "key": "ctrl+shift+z",
+    "command": "merge-conflict.accept.current",
+    "when": "*",
+    "description": "During a merge conflict, this allows you to quickly accept your current changes over what is attempting to be merged in.",
+    "example": "You are merging in staging changes and want to take those over your own.  You can execute this keybindings and it will select the changes listed below your current code.",
+    "default": false
+  },
+  {
+    "key": "ctrl+shift+x",
+    "command": "merge-conflict.accept.incoming",
+    "when": "*",
+    "description": "During a merge conflict, this allows you to quickly accept the incoming change.",
+    "example": "You are merging in staging changes and want to take those over your own.  You can execute this keybindings and it will select the changes listed below your current code."
   },
   {
     "key": "ctrl+b",
     "command": "gitlens.toggleFileBlame",
     "when": "editorTextFocus && gitlens:activeFileStatus =~ /blameable/",
-    "description": "This is helpful when in a file and you quickly need to see who worked on a line last and when it was."
+    "description": "This is helpful when in a file and you quickly need to see who worked on a line last and when it was.",
+    "example": "Toggle this to quickly scan who did what in a file, when, and their commit message.",
+    "default": false
   },
   {
     "key": "ctrl+b",
     "command": "gitlens.toggleFileBlame",
-    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /blameable/"
+    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /blameable/",
+    "example": "Toggling this, after the above command allows you drill in on a specific line change and see the history even before the latest change."
   },
   {
     "key": "ctrl+b",
@@ -297,54 +339,11 @@
     "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /blameable/"
   },
   {
-    "key": "ctrl+shift+cmd+left",
-    "command": "editor.action.smartSelect.shrink",
-    "when": "editorTextFocus",
-    "frequency": "Infrequent",
-    "description": "Used when the expand region extension shortcuts do not select the correctly expanded or contracted region.  I am leaving this in here until it is determined that the expand region extension does all expanding/contracting better.",
-    "experimental": true
-  },
-  {
-    "key": "ctrl+shift+cmd+right",
-    "command": "editor.action.smartSelect.expand",
-    "when": "editorTextFocus",
-    "frequency": "Infrequent",
-    "description": "Used when the expand region extension shortcuts do not select the correctly expanded or contracted region.  I am leaving this in here until it is determined that the expand region extension does all expanding/contracting better.",
-    "experimental": true
-  },
-  {
-    "key": "ctrl+shift+up",
-    "command": "merge-conflict.previous",
-    "description": "During a merge conflict, this allows you to quickly navigate to the PREVIOUS merge conflict in the file.",
-    "example": "You are merging in staging changes and there are 1000 lines between the current conflict and the previous one.  This will quickly jump you UP to it."
-  },
-  {
-    "key": "ctrl+shift+down",
-    "command": "merge-conflict.next",
-    "description": "During a merge conflict, this allows you to quickly navigate to the NEXT merge conflict in the file.",
-    "example": "You are merging in staging changes and there are 1000 lines between the current conflict and the next one.  This will quickly jump you DOWN to it."
-  },
-  {
-    "key": "ctrl+shift+z",
-    "command": "merge-conflict.accept.current",
-    "description": "During a merge conflict, this allows you to quickly accept your current changes over what is attempting to be merged in.",
-    "example": "You are merging in staging changes and want to take those over your own.  You can execute this keybindings and it will select the changes listed below your current code."
-  },
-  {
-    "key": "ctrl+shift+x",
-    "command": "merge-conflict.accept.incoming",
-    "description": "During a merge conflict, this allows you to quickly accept the incoming change.",
-    "example": "You are merging in staging changes and want to take those over your own.  You can execute this keybindings and it will select the changes listed below your current code."
-  },
-  {
     "key": "cmd+v",
     "command": "editor.action.clipboardPasteAction",
     "when": "*",
-    "description": "To ensure the pasting behavior is uniform across everything, the when value here is set to all situations."
-  },
-  {
-    "key": "shift+cmd+d",
-    "command": "-workbench.view.debug"
+    "description": "To ensure the pasting behavior is uniform across everything, the when value here is set to all situations.",
+    "example": "When an input field is active is certain panes, this ensures you can paste even from the global clipboard."
   },
   {
     "key": "shift+cmd+l",
@@ -406,8 +405,7 @@
     "key": "cmd+k cmd+[",
     "command": "-editor.foldRecursively",
     "when": "editorTextFocus && foldingEnabled",
-    "description": "This command folds the current block you are on and all blocks within it.  It requires that folding is enabled.",
-    "experimental": true
+    "description": "This command folds the current block you are on and all blocks within it.  It requires that folding is enabled."
   },
   {
     "key": "alt+f5",
