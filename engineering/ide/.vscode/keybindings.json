@@ -245,9 +245,27 @@
     "key": "ctrl+e",
     "command": "workbench.view.explorer",
     "when": "*",
+    "frequency": "Occasional",
     "description": "This is helpful to switch back to the project's file structure.",
     "example": "Say you are looking for a specific image, after clicking in one file in an images/ folder, use this shortcut to quickly jump back to the folder you were just in.  The down and up arrow keys allow you to navigate through the files.  Each one can be quickly opened with spacebar.",
     "default": true
+  },
+  {
+    "key": "ctrl+alt+h",
+    "command": "workbench.action.splitEditorRight",
+    "when": "editorFocus",
+    "frequency": "Occasional",
+    "description": "Used to split your current editor in half, leaving the previously opened file in a separate editor group.  This command will open the new group to the LEFT of the active editor.  Think of it as the HORIZONTAL splitter.",
+    "example": "You want to compare two similar files side by side.  Useful when on a traditional wide-screen monitor.",
+    "default": false
+  },
+  {
+    "key": "ctrl+shift+h",
+    "command": "workbench.action.splitEditorDown",
+    "when": "editorFocus",
+    "description": "Used to split your current editor in half, leaving the previously opened file in a separate editor group.  This command will open the new group BELOW the active editor.  Think of it as the VERTICAL splitter.",
+    "example": "You want to compare two similar files side by side.  Useful when on a non-traditional monitor turned vertically long.",
+    "default": false
   },
   {
     "key": "ctrl+5",
