@@ -561,6 +561,8 @@
     "sass": "css",
     "scss": "css"
   },
+  "emmet.showAbbreviationSuggestions": true,
+  "emmet.showSuggestionsAsSnippets": true,
   "eslint.alwaysShowStatus": true,
   "eslint.debug": true,
   "eslint.format.enable": true,
@@ -845,7 +847,5 @@
   "yaml.format.singleQuote": true,
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
-  "redhat.telemetry.enabled": false,
-  "window.zoomLevel": 1
+  "redhat.telemetry.enabled": false
 }
-
