@@ -847,5 +847,6 @@
   "yaml.format.singleQuote": true,
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
+  "yaml.schemas": {},
   "redhat.telemetry.enabled": false
 }

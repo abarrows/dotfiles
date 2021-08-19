@@ -6,6 +6,22 @@ Migrating from TextMate to Atom to now VS Code, I tried to conform to as many
 defaults as I could. The bindings listed in keybindings.json have a benign key
 of "description" and then a value describing when the keybinding is useful.
 
+In the keybindings.json file, you will notice a number of arbitrary key/value
+pairs. These will not impact your VS Code operation. Below are examples with
+descriptions of the information:
+
+```json
+  {
+    "key": "The keyboard command to invoke the shortcut",
+    "command": "This is the VS Code function that is called under the hood",
+    "when": "These are the conditions that have to met for the shortcut to fire.  If these are not met, pressing the shortcut will not invoke.",
+    "frequency": "Options are - Frequent, Ocassional, and Infrequent  Based on common experience, this is how often the respective keybinding is used during normal coding experiences.",
+    "description": "A description of what the keybinding actually does.",
+    "example": "A general example of when and/or how you would use the shortcut.",
+    "default": "Boolean: If true then this is the VS Code keyboard shortcut that comes out of the box.  If default is false, it is a custom binding setup by the Front-end Engineering Manager."
+  },
+```
+
 ## Extensions
 
 Our team builds, maintains, and tests software using [VS
