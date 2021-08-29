@@ -36,54 +36,51 @@ brew 'libtool' # Generic Library Support
 brew 'libyaml' # Compiled Dependency for web applications with Ruby on Rails
 brew 'memcached' # Performance Caching library for Ruby on Rails
 # brew "microsoft/vscodespaces/codespaces"
-brew 'mysql', restart_service: true # Database Dependency for MySQL (Usually used by non-containerized web applications)
-brew 'mysql-client' # Database Dependency for MySQL
-brew 'openssl' # Network Utility for SSL requests
-brew 'pandoc' # Allows for markdown to easily be exported into other formats like word, pdfs, and html
-brew 'pgloader' # Database Utility for converting MySQL databases to Postgres M1-INCOMPATIBLE
-brew 'pidof' # CL Dependency for displaying PID for a running process
-brew 'pipenv' # Python dependency management tool
-brew 'pkg-config' # Library Dependency for managing compile libraries
-brew 'postgresql' # Database System for Postgres
-brew 'romkatv/powerlevel10k/powerlevel10k' # Oh My ZSH theme example
-brew 'protobuf' # Network Dependency for traffic buffering
-brew 'pyenv' # Python version management
-brew 'redis' # Primary Caching Dependency for Back-end Software Engineers
-brew 'shellcheck' # Recommended Command Line Linter and auto-fixing
-brew 'sphinx' # Application Dependency for search functionality in Ruby on Rails (Legacy)
-brew 'thefuck' # Recommended Command Line correction tool for mistyped commands
-brew 'unbound' # Network Dependency for Validating, recursive, DNS resolving
-brew 'webp' # Image Dependency - Image format support for .webp
-brew 'wget' # General Request Utility for Command Line
-brew 'yamllint' # Recommended Linting and auto-fixing tool for yaml
-brew 'yarn' # Front-end team approved package manager
-brew 'zlib' # Image Dependency data compression library
-brew 'zsh' # Default Mac OSX shell
-cask '1password' # Department licensed and approved password manager
-cask 'adobe-creative-cloud' # Department licensed and approved UXD Tools
-cask 'adoptopenjdk'
-cask 'alfred' # Recommended task launcher application for Mac OSX
-cask 'appcleaner' # Recommended utility application for removing Mac OSX programs and apps
-cask 'chiaki'
-cask 'cyberduck' # Recommended GUI for FTP/SFTP transfers
-cask 'docker' # Department approved containerized environment tools
-cask 'dropbox' # Department approved cloud storage for UXD and Design
-cask 'expressvpn' # Department approved VPN for testing geo location
-cask 'firefox' # Front-end team approved browser for our viewing our applications
-cask 'font-fira-code' # Recommended command line icon fonts
-cask 'font-meslo-lg-nerd-font' # Alternative command line icon fonts
-cask 'gemini' # Recommended duplicate remover
-cask 'github' # Department approved version control platform
-cask 'google-chrome' # Department approved primary browser
-cask 'google-backup-and-sync' # Recommended backup utility for use with google drive
-cask 'iterm2' # Front-end team approved command line tool for Mac OSX
-cask 'katalon-studio' # Front-end approved browser automation GUI/tool
-cask 'local' # Used for local Wordpress development on WPEngine hosted applications.
-cask 'mamp' # Front-end team approved server environment tool for wordpress and general web development
-cask 'messenger' # Recommended personal messenger platform
-cask 'microsoft-office' # Department approved productivity suite
-cask 'microsoft-teams' # Department approved communication tool
-# cask "mysqlworkbench" # Front-end team approved database GUI/tool
+brew "mysql", restart_service: true # Database Dependency for MySQL (Usually used by non-containerized web applications)
+brew "mysql-client" # Database Dependency for MySQL
+brew "openssl" # Network Utility for SSL requests
+brew "pandoc" # Allows for markdown to easily be exported into other formats like word, pdfs, and html
+brew "pgloader" # Database Utility for converting MySQL databases to Postgres M1-INCOMPATIBLE
+brew "pidof" # CL Dependency for displaying PID for a running process
+brew "pipenv" # Python dependency management tool
+brew "pkg-config" # Library Dependency for managing compile libraries
+brew "postgresql" # Database System for Postgres
+brew "protobuf" # Network Dependency for traffic buffering
+brew "pyenv" # Python version management
+brew "redis" # Primary Caching Dependency for Back-end Software Engineers
+brew "shellcheck" # Recommended Command Line Linter and auto-fixing
+brew "sphinx" # Application Dependency for search functionality in Ruby on Rails (Legacy)
+brew "thefuck" # Recommended Command Line correction tool for mistyped commands
+brew "unbound" # Network Dependency for Validating, recursive, DNS resolving
+brew "webp" # Image Dependency - Image format support for .webp
+brew "wget" # General Request Utility for Command Line
+brew "yamllint" # Recommended Linting and auto-fixing tool for yaml
+brew "yarn" # Front-end team approved package manager
+brew "zlib" # Image Dependency data compression library
+brew "zsh" # Default Mac OSX shell
+cask "1password" # Department licensed and approved password manager
+cask "adobe-creative-cloud" # Department licensed and approved UXD Tools
+cask "adoptopenjdk"
+cask "alfred" # Recommended task launcher application for Mac OSX
+cask "appcleaner" # Recommended utility application for removing Mac OSX programs and apps
+cask "chiaki"
+cask "cyberduck" # Recommended GUI for FTP/SFTP transfers
+cask "docker" # Department approved containerized environment tools
+cask "dropbox" # Department approved cloud storage for UXD and Design
+cask "expressvpn" # Department approved VPN for testing geo location
+cask "firefox" # Front-end team approved browser for our viewing our applications
+cask "font-fira-code" # Recommended command line icon fonts
+cask "gemini" # Recommended duplicate remover
+cask "github" # Department approved version control platform
+cask "google-chrome" # Department approved primary browser
+cask "google-backup-and-sync" # Recommended backup utility for use with google drive
+cask "iterm2" # Front-end team approved command line tool for Mac OSX
+cask "katalon-studio" # Front-end approved browser automation GUI/tool
+cask "mamp" # Front-end team approved server environment tool for wordpress and general web development
+cask "messenger" # Recommended personal messenger platform
+cask "microsoft-office" # Department approved productivity suite
+cask "microsoft-teams" # Department approved communication tool
+cask "mysqlworkbench" # Front-end team approved database GUI/tool
 cask 'ngrok' # Web development testing an emulation
 cask 'paragon-ntfs' # Recommended utility for managing NTFS windows based drives
 cask 'postman' # Department approved API testing GUI/tool
