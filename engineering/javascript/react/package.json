@@ -98,7 +98,7 @@
   },
   "homepage": "https://github.com/abarrows/dotfiles-and-tooling/README.md",
   "license": "UNLICENSED",
-  "name": "${process.env.APPLICATION_NAME}",
+  "name": "dotfiles-and-tooling",
   "private": false,
   "repository": {
     "type": "git",
