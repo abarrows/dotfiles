@@ -22,6 +22,18 @@ descriptions of the information:
   },
 ```
 
+## Debugging
+
+### Rails
+
+1. Within [/ide/.vscode/launch.json](/ide/.vscode/launch.json), look for the
+   launch task called: **Rails:Start - Development**. In vscode navigate to
+   your debugger icon on the far left (It has a little bug on it) and activate
+   the pane. Click the cogwheel at the top to configure your launch.json tasks.
+   Paste in the launch task previously mentioned and then run it. This can be
+   used in any rails project. (More
+   Information)[https://rahul-arora.medium.com/debugging-ruby-on-rails-server-in-vs-code-819b45113e78]
+
 ## Extensions
 
 Our team builds, maintains, and tests software using [VS
