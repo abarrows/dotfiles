@@ -17,6 +17,19 @@
     - ~/Documents/AMU/repos/amu-digital-products
     - ~/Documents/AMU/repos/amu-digital-services
     - ~/Documents/AMU/repos/amu-admins
+- shell:
+    - xcode-select --install || true
+    - echo 'Xcode - Ready to go...'
+    - echo ''
+- brewfile:
+    - Brewfile
+- link:
+    ~/Brewfile: Brewfile
+    ~/Brewfile.lock.json: Brewfile.lock.json
+- shell:
+    - brew --version
+    - echo 'General Software and Applications (via homebrew) - Ready to go...'
+
 # Shell - Oh My ZSH, Custom plugins, themes, aliases, etc.
 - shell:
     - description: 'Command Line Oh My Zsh - Ready to go...'
@@ -68,6 +81,16 @@
     - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
 
 # Mac OSX
+- shell:
+    # Finder: show hidden files by default
+    - defaults write com.apple.finder AppleShowAllFiles -bool true
+    # Automatically hide and show the Dock
+    - defaults write com.apple.dock autohide -bool true
+    # Display full POSIX path as Finder window title
+    - defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+    # Disable the sound effects on boot
+    # - sudo nvram SystemAudioVolume=" "
+
 # - link:
 #     '~/Library/Application Support/Alfred/Alfred.alfredpreferences/preferences/advanced/prefs.plist':
 #     ~/operating_system/Alfred.alfredpreferences/preferences/advanced/prefs.plist
@@ -119,21 +142,6 @@
     ~/.git-template-directory/hooks/prepare-commit-msg: version-control/.git-template-directory/hooks/prepare-commit-msg
     ~/.git-template-directory/.gitignore: version-control/.git-template-directory/.gitignore
     ~/.bitbucket: version-control/.bitbucket
-# - shell:
-# Homebrew General Software and Applications
-# - shell: if [ ! -x /usr/local/bin/brew ]; then
-#     echo "Installing x86 Homebrew..."
-#     arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-#     fi
-# - echo 'General Version Control - Ready to go...'
-# - 'git -C /usr/local/Homebrew/Library/Taps/homebrew/homebrew-cask fetch --unshallow'
-- brewfile:
-    - Brewfile
-- link:
-    ~/Brewfile: Brewfile
-    ~/Brewfile.lock.json: Brewfile.lock.json
-- shell:
-    - echo 'General Software and Applications (via homebrew) - Ready to go...'
 
 # Virtualized Environment
 - link:
