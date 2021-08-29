@@ -106,7 +106,7 @@
   },
   "scripts": {
     "build": "next build",
-    "build-docker": "docker build --build-arg DEPLOY_ENV=${process.env.DEPLOY_ENV} -t ${process.env.APPLICATION_NAME} .",
+    "build-docker": "docker build --build-arg APPLICATION_ENVIRONMENT=${process.env.APPLICATION_ENVIRONMENT} -t ${process.env.APPLICATION_NAME} .",
     "cy:headless": "yarn build && start-server-and-test start http://localhost:${process.env.APPLICATION_PORT} cy:run",
     "cy:open": "yarn cypress open",
     "cy:run": "yarn cypress run",
@@ -122,5 +122,5 @@
     "test": "jest --verbose",
     "test:ci": "jest --ci"
   },
-  "version": "${process.env.APPLICATION_VERSION}"
+  "version": "0.4.0"
 }
