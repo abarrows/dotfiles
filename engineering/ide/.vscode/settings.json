@@ -33,6 +33,9 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -530,8 +533,7 @@
   "dotfiles.installCommand": "install",
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.fixAll.stylelint": true
+    "source.fixAll": true
   },
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": true,
@@ -553,6 +555,7 @@
   "editor.scrollBeyondLastLine": true,
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "onlySnippets",
+  "editor.snippetSuggestions": "top",
   "editor.tabSize": 2,
   "editor.wordWrap": "bounded",
   "emmet.includeLanguages": {
@@ -811,7 +814,7 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.enableBell": true,
-  "terminal.integrated.fontFamily": "Hack",
+  "terminal.integrated.fontFamily": "Menlo",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.rendererType": "dom",
   "terminal.integrated.rightClickBehavior": "default",
@@ -849,4 +852,5 @@
   "yaml.trace.server": "verbose",
   "yaml.schemas": {},
   "redhat.telemetry.enabled": false
+  "grammarly.debug": true
 }

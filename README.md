@@ -1,37 +1,88 @@
 # dotfiles-and-tooling
 
-This repository is all my personal IDE configuration, settings, tooling, and
-preferences. My ultimate goal here is to recreate my entire Macbook Pro machine
-in the cloud as it relates to development. Something that can be reproduced at
-will and torn down with no repercussions. After some careful thought, this
-process will involve three main levels of configuration and tooling:
+This repository is all my personal machine and software engineering
+configurations, settings, tooling, and preferences. My ultimate goal with this
+repo is:
 
-# What IS included?
+1. To maintain and recreate my personal machine environment with in a single command
+2. Lay ground work for maturing a team dotfiles across software engineering teams.
 
-The order of execution for the "1 click" solution is very intentional and
-follows a pattern of broad to specific. Each major toolset building on
-the previous. Here are the main toolsets that are installed and setup:
+## Table of Contents
 
-1. Oh-My-ZSH - Extended and fine-tuned command line tools
-2. Git - Team configured version control
-3. Homebrew - Package Manager for Macs
-4. NVM -Node Package Manager
-5. VSCode - Team recommended text editor with settings and tooling
-6. XCode Command Line Tools - Required for many of the programming languages
+- [dotfiles-and-tooling](#dotfiles-and-tooling)
+  - [Table of Contents](#table-of-contents)
+  - [What IS included?](#what-is-included)
+    - [Machine Level Provisioning](#machine-level-provisioning)
+      - [Mac Preferences and Setup](#mac-preferences-and-setup)
+      - [Homebrew - Package Manager for Macs](#homebrew---package-manager-for-macs)
+    - [Software Engineering - General](#software-engineering---general)
+      - [Git - Team configured version control](#git---team-configured-version-control)
+      - [Shell - Extended and fine-tuned command line tools](#shell---extended-and-fine-tuned-command-line-tools)
+      - [NVM - Node Package Manager](#nvm---node-package-manager)
+      - [XCode Command Line Tools - Required for many of the programming languages](#xcode-command-line-tools---required-for-many-of-the-programming-languages)
+      - [VSCode - Team recommended text editor with settings and tooling](#vscode---team-recommended-text-editor-with-settings-and-tooling)
+    - [Software Engineering - Specialized Stacks](#software-engineering---specialized-stacks)
+      - [Node](#node)
+      - [React](#react)
+      - [Ruby on Rails](#ruby-on-rails)
+      - [Python](#python)
+      - [Wordpress](#wordpress)
+  - [What IS NOT included?](#what-is-not-included)
+  - [Detailed List of Toolsets](#detailed-list-of-toolsets)
+  - [Ruby on Rails](#ruby-on-rails-1)
+  - [Linting and Code Analysis](#linting-and-code-analysis)
+    - [Caveats](#caveats)
+  - [TODOS](#todos)
+  - [WORKFLOW INFORMATION](#workflow-information)
+  - [DOTFILES TECHNOLOGY INDEX](#dotfiles-technology-index)
+
+## What IS included?
+
+Unsurprisingly, the order of execution is intentional, as many of the
+dependencies build upon each other. Upon installation, there are three main
+levels of configuration and tooling:
+
+### Machine Level Provisioning
+
+#### Mac Preferences and Setup
+
+#### Homebrew - Package Manager for Macs
+
+### Software Engineering - General
+
+#### Git - Team configured version control
+
+#### Shell - Extended and fine-tuned command line tools
+
+1. Oh-My-ZSH
+
+#### NVM - Node Package Manager
+
+#### XCode Command Line Tools - Required for many of the programming languages
+
+#### VSCode - Team recommended text editor with settings and tooling
+
+### Software Engineering - Specialized Stacks
+
+#### Node
+
+#### React
+
+#### Ruby on Rails
+
+#### Python
+
+#### Wordpress
 
 ## What IS NOT included?
 
-- All the company flagship repos checked out in version control
-- Any company applications running locally
-- A stringent requirement to use only these toolsets. This script is not only
-  flexible enough to be customized or fine-tuned to a specific engineer's
-  preference. The point of this utility is to a new engineer "80% there"
-  leaving the other 20% at their descretion. It is highly recommended to
+- All private professional applications checked out in version control
+- All private professional applications running locally
+- An easy button for your machine's environment. If this repo is cloned, it is
+  highly advised to review and tailor the contents to . The point of this utility is to get an engineer "80% there." The other 20% at their descretion. It is highly recommended to
   challenge and propose better approaches for any of these given toolsets. If
   there is a better toolsets, configurations, libraries, etc. let's talk about
-  it as a group, weigh the pros and cons, and possibly try it.
-
-## Installation Instructions
+  it as a group, weigh the pros and cons, and possibly try i## Installation Instructions
 
 Accept invitation from github to join our organization, using your personal
 account is fine.
