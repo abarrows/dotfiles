@@ -636,9 +636,7 @@
   ],
   "gitlens.advanced.messages": {
     "suppressCommitNotFoundWarning": true,
-    "suppressFileNotUnderSourceControlWarning": true,
-    "suppressShowKeyBindingsNotice": true,
-    "suppressWelcomeNotice": true
+    "suppressFileNotUnderSourceControlWarning": true
   },
   "gitlens.advanced.repositorySearchDepth": 2,
   "gitlens.autolinks": [],
@@ -810,7 +808,6 @@
   "sync.autoUpload": true,
   "sync.gist": "bb65fea22ab86d87fce05b89a7f8c426",
   "terminal.external.osxExec": "iterm.app",
-  "terminal.integrated.confirmOnExit": "false",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.enableBell": true,
@@ -851,6 +848,6 @@
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
   "yaml.schemas": {},
-  "redhat.telemetry.enabled": false
+  "redhat.telemetry.enabled": false,
   "grammarly.debug": true
 }
