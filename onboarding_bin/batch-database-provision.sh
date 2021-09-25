@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # WORK IN PROGRESS
-fdatabase_source='dilbert_stage5'
+database_source='dilbert_stage5'
 database_destination='dilbert_test'
 touch ~/downloads/databases/${database_destination}.sql
 ssh -i ~/.ssh/fetch dbfetch@hfstagedb301.amuniversal.com "mysqldump --single-transaction ${database_source}" > ~/downloads/databases/${database_destination}.sql
