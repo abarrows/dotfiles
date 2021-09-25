@@ -20,26 +20,47 @@
 - shell:
     - xcode-select --install || true
     - echo 'Xcode - Ready to go...'
-    - echo ''
-- brewfile:
-    - Brewfile
-- link:
-    ~/Brewfile: Brewfile
-    ~/Brewfile.lock.json: Brewfile.lock.json
-- shell:
-    - brew --version
-    - echo 'General Software and Applications (via homebrew) - Ready to go...'
 
-# Shell - Oh My ZSH, Custom plugins, themes, aliases, etc.
+# Mac OSX
 - shell:
-    - description: 'Command Line Oh My Zsh - Ready to go...'
-      command: './onboarding_bin/install-oh-my-zsh.sh'
-      stdout: true
-      stderr: true
+    - echo '1a. Configuring some Basic Mac Settings...'
+    # Finder: show hidden files by default
+    - defaults write com.apple.finder AppleShowAllFiles -bool true
+    # Automatically hide and show the Dock
+    - defaults write com.apple.dock autohide -bool true
+    # Display full POSIX path as Finder window title
+    - defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+    # Disable the sound effects on boot
+    # - sudo nvram SystemAudioVolume=" "
+
+- shell:
+    - echo '1. Copying over your dotenvrc, and installer scripts to your home directory...'
+
 - link:
     ~/.envrc:
       force: true
       path: .envrc
+    ~/.onboarding_bin: onboarding_bin
+    /usr/local/bin/pathChecker.sh: onboarding_bin/pathChecker.sh
+
+- shell:
+    - chmod +x ~/.onboarding_bin/*.sh
+
+- shell:
+    - description: '2. Installing Homebrew Package Manager for Mac...'
+      command: './onboarding_bin/install-homebrew.sh'
+      stdout: true
+      stderr: true
+- brewfile:
+    - Brewfile.operating_system
+
+# Shell - Oh My ZSH, Custom plugins, themes, aliases, etc.
+- shell:
+    - description: '3. Installing Oh My Zsh Command Line Tools...'
+      command: './onboarding_bin/install-oh-my-zsh.sh'
+      stdout: true
+      stderr: true
+- link:
     ~/.zlogin:
       force: true
       path: shell/.zlogin
@@ -56,6 +77,14 @@
     ~/.aliases.zsh:
       force: true
       path: shell/.aliases.zsh
+    ~/.zshrc:
+      force: true
+      path: shell/.zshrc
+
+# Terminal Settings, Profile, and Configuration
+- shell:
+    - echo '4. Setting up iTerm Profile and Configuration...'
+- link:
     ~/iterm-profile-abarrows.json:
       force: true
       path: shell/iterm-profile-abarrows.json
@@ -68,9 +97,6 @@
     ~/.iterm2_shell_integration.zsh:
       force: true
       path: shell/.iterm2_shell_integration.zsh
-    ~/.zshrc:
-      force: true
-      path: shell/.zshrc
 - shell:
     # iTerm Configuration, Profile, and Settings
     # Specify the preferences directory
@@ -79,62 +105,13 @@
       ]
     # Tell iTerm2 to use the custom preferences in the directory
     - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-
-# Mac OSX
-- shell:
-    # Finder: show hidden files by default
-    - defaults write com.apple.finder AppleShowAllFiles -bool true
-    # Automatically hide and show the Dock
-    - defaults write com.apple.dock autohide -bool true
-    # Display full POSIX path as Finder window title
-    - defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
-    # Disable the sound effects on boot
-    # - sudo nvram SystemAudioVolume=" "
-
-# - link:
-#     '~/Library/Application Support/Alfred/Alfred.alfredpreferences/preferences/advanced/prefs.plist':
-#     ~/operating_system/Alfred.alfredpreferences/preferences/advanced/prefs.plist
-# - link:
-#     - '~/Library/Application Support/Alfred/Alfred.alfredpreferences/preferences/appearance/options/prefs.plist':
-#     ~/operating_system/Alfred.alfredpreferences/preferences/appearance/options/prefs.plist
-# - link:
-#     '~/Library/Application
-#     Support/Alfred/Alfred.alfredpreferences/preferences/features/1password/prefs.plist':
-#     ~/operating_system/Alfred.alfredpreferences/preferences/features/1password/prefs.plist
-# - link:
-#     '~/Library/Application
-#     Support/Alfred/Alfred.alfredpreferences/preferences/features/clipboard/prefs.plist':
-#     ~/operating_system/Alfred.alfredpreferences/preferences/features/clipboard/prefs.plist
-# - link:
-#     '~/Library/Application
-#     Support/Alfred/Alfred.alfredpreferences/preferences/features/contacts/email/prefs.plist':
-#     ~/operating_system/Alfred.alfredpreferences/preferences/features/contacts/email/prefs.plist
-#     '~/Library/Application
-#     Support/Alfred/Alfred.alfredpreferences/preferences/features/defaultresults/prefs.plist':
-#     ~/operating_system/Alfred.alfredpreferences/preferences/features/defaultresults/prefs.plist
-#     '~/Library/Application
-#     Support/Alfred/Alfred.alfredpreferences/preferences/features/filesearch/actions/prefs.plist':
-#     ~/operating_system/Alfred.alfredpreferences/preferences/features/filesearch/actions/prefs.plist
-#     '~/Library/Application
-#     Support/Alfred/Alfred.alfredpreferences/preferences/features/filesearch/navigation/prefs.plist':
-#     ~/operating_system/Alfred.alfredpreferences/preferences/features/filesearch/navigation/prefs.plist
-#     '~/Library/Application
-#     Support/Alfred/Alfred.alfredpreferences/preferences/features/filesearch/quicklook/prefs.plist':
-#     ~/operating_system/Alfred.alfredpreferences/preferences/features/filesearch/quicklook/prefs.plist
-#     '~/Library/Application
-#     Support/Alfred/Alfred.alfredpreferences/preferences/features/itunes/prefs.plist':
-#     ~/operating_system/Alfred.alfredpreferences/preferences/features/itunes/prefs.plist
-#     '~/Library/Application
-#     Support/Alfred/Alfred.alfredpreferences/preferences/prefs.plist':
-#     ~/operating_system/Alfred.alfredpreferences/preferences/prefs.plist
-#     '~/Library/Application
-#     Support/Alfred/Alfred.alfredpreferences/snippets/Github/info.plist':
-#     ~/operating_system/Alfred.alfredpreferences/snippets/Github/info.plist
+    - echo "[TODO] • iTerm2 profile - Open iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles - Select the profile from ~/iterm-profile-front-end-engineering.json"
+    - echo "[TODO] • iTerm2 keymap - Open iTerm2 -> Preferences -> Keys -> ⚙ Presets... -> Import... Select the keymap from ~/iterm-profile-front-end-engineering.json"
 
 # Version Control
+- shell:
+    - echo '5. Setting up Version Control...'
 - link:
-    ~/.onboarding_bin: onboarding_bin
-    /usr/local/bin/pathChecker.sh: onboarding_bin/pathChecker.sh
     ~/.gitconfig:
       force: true
       path: version-control/.git-template-directory/.gitconfig
@@ -154,7 +131,6 @@
     # General CSS and Style Linters
     ~/.stylelintrc.json: engineering/css/.stylelintrc.json
     ~/.stylelintrcignore: engineering/css/.stylelintrcignore
-    # ~/postcss.config.js: engineering/postcss.config.js
 
     # General Formatters
     ~/.prettierrc.json: engineering/formatters/.prettierrc.json
@@ -197,6 +173,13 @@
 - shell:
     - echo 'Python - Ready to go...'
 
+- shell:
+    - echo '6. Installing all MacOSX Machine Libraries and Applications...'
+- brewfile:
+    - Brewfile
+- shell:
+    - brew --version
+    - echo 'General Software and Applications (via homebrew) - Ready to go...'
 # Wordpress - https://localwp.com/releases/
 # - shell:
 # - sh -c curl -fsSL https://cdn.localwp.com/releases-stable/6.0.0+5444/local-6.0.0-mac.dmg
@@ -232,10 +215,6 @@
     insiders: false
 - shell:
     - echo 'VS Code - Ready to go...'
-    - xcode-select --install || true
-    - echo 'Xcode - Ready to go...'
-    - echo "[INFO] • iTerm2 profile - Open iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles - Select the profile from ~/iterm-profile-front-end-engineering.json"
-    - echo "[INFO] • iTerm2 keymap - Open iTerm2 -> Preferences -> Keys -> ⚙ Presets... -> Import... Select the keymap from ~/iterm-profile-front-end-engineering.json"
     - source ~/.zshrc
     - echo 'Shell/ZSH - Custom theme, plugins, aliases, etc. installed. Ready to go...'
     - echo 'Sourcing your zshrc! You are ready to rock and roll...'
