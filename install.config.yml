@@ -1,5 +1,0 @@
-- brewfile:
-    - Brewfile
-- shell:
-    - brew --version
-    - echo 'General Software and Applications (via homebrew) - Ready to go...'

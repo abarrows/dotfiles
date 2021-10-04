@@ -596,7 +596,8 @@
     "*.devops": "ruby",
     "*.erb": "erb",
     "*.js.erb": "js",
-    "*.zsh": "shellscript"
+    "*.zsh": "shellscript",
+    "Brewfile.**": "ruby"
   },
   "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",

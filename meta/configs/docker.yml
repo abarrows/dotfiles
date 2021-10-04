@@ -2,4 +2,4 @@
 - shell:
     - echo "Setting up DevOps - global docker ignore..."
 - link:
-    ~/.dockerignore: virtualized_environments/.dockerignore
+    ~/.dockerignore: devops/.dockerignore
