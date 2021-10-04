@@ -2,7 +2,7 @@
 
 # Default Theme
 
-export ZSH_THEME="agnoster"
+# export ZSH_THEME="agnoster"
 
 # Starship Theme
 # Instructions: https://guinuxbr.com/en/posts/zsh+oh-my-zsh+starship/
