@@ -33,7 +33,7 @@ cask "docker" # REQUIRED - Department approved containerized environment tools
 # cask "dropbox" # RECOMMENDED - Department approved cloud storage for UXD and Design
 cask "expressvpn" # REQUIRED - Department approved VPN for testing geo location
 cask "firefox" # REQUIRED - Front-end team approved browser for our viewing our applications
-# cask "font-fira-code" # RECOMMENDED -  command line icon fonts
+cask "font-fira-code" # RECOMMENDED -  command line icon fonts
 # cask "gemini" # RECOMMENDED - Duplicate remover
 cask "google-chrome" # REQUIRED -  Department approved primary browser
 # cask "google-backup-and-sync" # OPTIONAL - Recommended backup utility for use with google drive
