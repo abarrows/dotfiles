@@ -1,0 +1,7 @@
+# engineering_linting_javascripts - Linking your software engineering linting for eslint on applications like React to your home directory...
+- shell:
+    - echo "Setting up Software Engineering - global linting rules (scripting/javascript/react)..."
+
+- link:
+    ~/.eslintrc.json: engineering/javascripts/react/.eslintrc.json
+    ~/.eslintignore: engineering/javascripts/react/.eslintignore

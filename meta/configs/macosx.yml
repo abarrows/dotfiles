@@ -1,0 +1,14 @@
+# MacOSX - This sets up some sensible defaults for mac machines.  Things like
+# unhiding files and folders, auto-hiding the dock, showing path in the finder
+# title, etc. #TODO: Add windows support for windows-based software engineers
+
+- shell:
+    - echo '2. Setting up Mac OSX - Sensible Default Settings...'
+    # Finder: show hidden files by default
+    - defaults write com.apple.finder AppleShowAllFiles -bool true
+    # Automatically hide and show the Dock
+    - defaults write com.apple.dock autohide -bool true
+    # Display full POSIX path as Finder window title
+    - defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
+    # Disable the sound effects on boot
+    # - sudo nvram SystemAudioVolume=" "

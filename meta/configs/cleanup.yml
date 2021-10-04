@@ -1,0 +1,7 @@
+# cleanup - This finishes the dotfiles onboarding process by reloading your
+# shell.
+
+- shell:
+    - echo '10. Cleaning up - Reloading your shell session and starting...'
+    - source ~/.zshrc
+    - echo 'You are ready to rock and roll!'

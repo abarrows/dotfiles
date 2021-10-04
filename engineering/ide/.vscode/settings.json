@@ -583,7 +583,9 @@
     ".zshrc": "shellscript",
     "*.erb": "erb",
     "*.js.erb": "js",
-    "*.zsh": "shellscript"
+    "*.zsh": "shellscript",
+    "*.devops": "ruby",
+    "*.base": "ruby"
   },
   "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",
@@ -852,5 +854,9 @@
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "redhat.telemetry.enabled": false,
-  "grammarly.debug": true
+  "grammarly.debug": true,
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+    "projectKey": "AMCORP"
+  }
 }

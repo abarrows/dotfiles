@@ -1,13 +1,13 @@
 [submodule "dotbot"]
-  path = dotbot
-	ignore = dirty
-  url = https://github.com/anishathalye/dotbot
+path = meta/dotbot
+ignore = dirty
+url = https://github.com/anishathalye/dotbot
 [submodule "dotbot-brew"]
-	path = dotbot-brew
-	url = https://github.com/d12frosted/dotbot-brew.git
+path = meta/dotbot-brew
+url = https://github.com/d12frosted/dotbot-brew.git
 [submodule "dotbot-vscode"]
-	path = dotbot-vscode
-	url = https://github.com/hujianxin/dotbot-vscode
+path = meta/dotbot-vscode
+url = https://github.com/hujianxin/dotbot-vscode
 [submodule "dotbot-pip"]
-	path = meta/dotbot-pip
-	url = https://github.com/sobolevn/dotbot-pip.git
+path = meta/dotbot-pip
+url = https://github.com/sobolevn/dotbot-pip.git

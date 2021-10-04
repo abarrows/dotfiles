@@ -1,0 +1,55 @@
+cask_args appdir: '/Applications'
+tap 'homebrew/bundle'
+tap 'homebrew/cask'
+tap 'homebrew/cask-fonts'
+tap 'homebrew/core'
+tap 'homebrew/services'
+brew 'direnv' # REQUIRED - BASE/ROR/NODE/
+brew 'freetype' # REQUIRED - BASE/ROR/NODE CL
+brew 'git' # REQUIRED - ROR/NODE/DEVOPS/PYTHON Core version control
+brew 'icu4c' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Compiled Library Dependency for unicode and globalization
+brew "mysql", restart_service: true # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Database Dependency for MySQL (Usually used by non-containerized web applications)
+brew "mysql-client" # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Database Dependency for MySQL
+brew "nvm" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Version manager for node
+brew "openssl@1.1" # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Network Utility for SSL requests
+# brew "pandoc" # OPTIONAL - ROR/NODE/DEVOPS/PYTHON/PG Allows for markdown to easily be exported into other formats like word, pdfs, and html
+# brew "pipenv" # OPTIONAL - PYTHON Python dependency management tool
+# brew "pyenv" # OPTIONAL - PYTHON Python version management
+brew "postgresql" # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
+# brew "redis" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Primary Caching Dependency for Back-end Software Engineers
+brew "shellcheck" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Linter and auto-fixing
+brew "starship" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended platform agnostic shell prompt.
+brew "thefuck" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Command Line correction tool for mistyped commands
+brew "wget" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON General Request Utility for Command Line
+brew "yamllint" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Linting and auto-fixing tool for yaml
+brew "yarn" # REQUIRED - BASE/DEVOPS/ROR/NODE Front-end team approved package manager
+brew "zsh" # REQUIRED - BASE/DEVOPS/ROR/NODE/ Default Mac OSX shell
+cask "1password" # REQUIRED - Department licensed and approved password manager
+# cask "adobe-creative-cloud" # RECOMMENDED - Department licensed and approved UXD Tools
+cask "alfred" # REQUIRED - task launcher application for Mac OSX
+cask "appcleaner" # REQUIRED - utility application for removing Mac OSX programs and apps
+# cask "cyberduck" # RECOMMENDED - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP transfers
+cask "docker" # REQUIRED - Department approved containerized environment tools
+# cask "dropbox" # RECOMMENDED - Department approved cloud storage for UXD and Design
+cask "expressvpn" # REQUIRED - Department approved VPN for testing geo location
+cask "firefox" # REQUIRED - Front-end team approved browser for our viewing our applications
+# cask "font-fira-code" # RECOMMENDED -  command line icon fonts
+# cask "gemini" # RECOMMENDED - Duplicate remover
+cask "google-chrome" # REQUIRED -  Department approved primary browser
+# cask "google-backup-and-sync" # OPTIONAL - Recommended backup utility for use with google drive
+cask "iterm2" # REQUIRED - Front-end team approved command line tool for Mac OSX
+cask "microsoft-office" # REQUIRED - Department approved productivity suite
+cask "microsoft-teams" # REQUIRED - Department approved communication tool
+cask "mysqlworkbench" # REQUIRED - Front-end team approved database GUI/tool
+cask 'ngrok' # REQUIRED - Web development testing an emulation
+cask 'postman' # REQUIRED - Department approved API testing GUI/tool
+# cask 'the-unarchiver' # RECOMMENDED - TAR/ZIP file compression tool
+cask 'visual-studio-code' # REQUIRED -  Digital Technology approved IDE for software engineering
+# cask "katalon-studio" # RECOMMENDED -  Front-end approved browser automation GUI/tool
+cask "mamp" # RECOMMENDED - Front-end team approved server environment tool for wordpress and general web development
+# cask "messenger" # RECOMMENDED - personal messenger platform
+# cask 'slack' # OPTIONAL - Department approved communication tool for specific vendors like sourcepoint
+# cask 'spotify' # RECOMMENDED - Music Service
+# cask 'vlc' # RECOMMENDED - Video format conversion utility
+# cask 'zoom' # RECOMMENDED - Department approved video chat and calls utility
+
