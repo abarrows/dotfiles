@@ -213,10 +213,6 @@
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     }
   ],
-  "atlascode.jira.lastCreateSiteAndProject": {
-    "projectKey": "AMCORP",
-    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
-  },
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
     "maintenance",
     "story",
@@ -565,9 +561,9 @@
   "editor.renderControlCharacters": false,
   "editor.renderIndentGuides": true,
   "editor.scrollBeyondLastLine": true,
-  "editor.snippetSuggestions": "top",
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "onlySnippets",
+  "editor.snippetSuggestions": "top",
   "editor.tabSize": 2,
   "editor.wordWrap": "bounded",
   "emmet.includeLanguages": {
@@ -592,12 +588,11 @@
     ".env.*": "dotenv",
     ".env.example": "dotenv",
     ".zshrc": "shellscript",
-    "*.base": "ruby",
-    "*.devops": "ruby",
     "*.erb": "erb",
     "*.js.erb": "js",
     "*.zsh": "shellscript",
-    "Brewfile.**": "ruby"
+    "*.devops": "ruby",
+    "*.base": "ruby"
   },
   "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",
@@ -679,7 +674,6 @@
   "gitlens.views.repositories.files.layout": "list",
   "gitlens.views.search.enabled": false,
   "gitlens.views.searchAndCompare.files.layout": "list",
-  "grammarly.debug": true,
   "html.format.enable": true,
   "html.format.extraLiners": "none",
   "html.format.templating": true,
@@ -749,7 +743,6 @@
   "npm.packageManager": "yarn",
   "prettier.requireConfig": false,
   "problems.decorations.enabled": true,
-  "redhat.telemetry.enabled": false,
   "rewrap.autoWrap.enabled": true,
   "rewrap.doubleSentenceSpacing": true,
   "ruby.codeCompletion": false,
@@ -862,12 +855,18 @@
   "workbench.tree.indent": 4,
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
-  "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "yaml.schemas": {
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
+  "redhat.telemetry.enabled": false,
+  "grammarly.debug": true,
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+    "projectKey": "AMCORP"
   }
 }
