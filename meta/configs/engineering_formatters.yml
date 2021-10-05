@@ -1,0 +1,10 @@
+# engineering_formatters - Linking your software engineering formatters like
+# editorconfig, prettier, and htmlhint to your home directory...
+- shell:
+    - echo "Setting up Software Engineering - global formatting rules..."
+
+- link:
+    ~/.editorconfig: engineering/formatters/.editorconfig
+    ~/.prettierrc.json: engineering/formatters/.prettierrc.json
+    ~/.prettierignore: engineering/formatters/.prettierignore
+    ~/.htmlhintrc.json: engineering/formatters/.htmlhintrc.json
