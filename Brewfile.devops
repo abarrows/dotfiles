@@ -1,0 +1,24 @@
+cask_args appdir: '/Applications'
+tap 'homebrew/bundle'
+tap 'homebrew/cask'
+tap 'homebrew/cask-fonts'
+tap 'homebrew/core'
+tap 'homebrew/services'
+brew 'act' # RECOMMENDED - DEVOPS Allows for testing Github Actions on your local machine
+brew 'azure-cli' # RECOMMENDED - DEVOPS Used with internal
+brew 'coreutils' # RECOMMENDED - DEVOPS Basic tools for the GNU OS
+brew 'git-lfs' # NOT-USED - DEVOPS Core version control for large files
+brew 'go-jira' # RECOMMENDED - DEVOPS Jira CLI for managing jira issues
+brew 'gnutls' # RECOMMENDED - DEVOPS/PG Security Dependency GNU Transport Layer Security (TLS) Library
+brew 'helm' # RECOMMENDED - DEVOPS Package manager for Kubernetes
+brew 'htop' # RECOMMENDED - DEVOPS Utility for viewing command line run processes and logs
+brew 'krb5' # RECOMMENDED - DEVOPS/PG Network authentication protocol
+brew "kubectl" # RECOMMENDED - DEVOPS dependency for running kubernetes locally.
+brew 'libgcrypt' # RECOMMENDED - DEVOPS/PG Cryptographic library based on the code from GnuPG
+brew 'libksba' # RECOMMENDED - DEVOPS/PG Compiled Library Dependency X.509 and CMS library
+brew 'libpq' # RECOMMENDED - DEVOPS/PG Database Dependency for Postgres
+brew 'libtool' # RECOMMENDED - DEVOPS/PG Generic Library Support
+cask "adoptopenjdk" # OPTIONAL - PG
+cask 'paragon-ntfs' # OPTIONAL -  utility for managing NTFS windows based drives
+brew "pgloader" # OPTIONAL - PG Database Utility for converting MySQL databases to Postgres M1-INCOMPATIBLE
+cask 'vagrant-manager' # RECOMMENDED - Department approved virtual machine GUI/tool

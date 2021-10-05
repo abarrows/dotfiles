@@ -92,10 +92,6 @@ alias vsdebug="rdebug-ide ./bin/rails server puma"
 alias rspecintegration="rails g integration_test $1"
 alias rspeccontroller="rails g controller_test $1"
 
-# Python
-alias python="/usr/local/bin/python3"
-alias pip="/usr/local/bin/pip3"
-
 # Node and Javascript
 alias wpd="./bin/webpack-dev-server"
 

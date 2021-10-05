@@ -1,0 +1,22 @@
+# initialize - This scaffolds out a folder structure for your team or individual situation.
+# By using a uniform broad to specific structure, you can share aliases more
+# easily across multiple teams and assume the same structure, locally.
+
+- shell:
+    - echo '1. Setting up MacOSX - Creating folder structures...'
+
+- create:
+    - ~/downloads
+    - ~/downloads/databases
+    - ~/alfred
+    - ~/Library/LaunchAgents
+    - ~/.git-template-directory
+    - ~/.git-template-directory/hooks
+    - ~/.git-template-directory/.github
+    - ~/Documents/AMU
+    - ~/Documents/AMU/repos
+    - ~/Documents/AMU/repos/amu-development-team
+    - ~/Documents/AMU/repos/amu-digital-products
+    - ~/Documents/AMU/repos/amu-digital-services
+    - ~/Documents/AMU/repos/amu-admins
+    - ~/Documents/AMU/repos/personal

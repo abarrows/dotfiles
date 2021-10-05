@@ -25,7 +25,6 @@ repo is:
       - [Node](#node)
       - [React](#react)
       - [Ruby on Rails](#ruby-on-rails)
-      - [Python](#python)
       - [Wordpress](#wordpress)
   - [What IS NOT included?](#what-is-not-included)
   - [Detailed List of Toolsets](#detailed-list-of-toolsets)
@@ -69,8 +68,6 @@ levels of configuration and tooling:
 #### React
 
 #### Ruby on Rails
-
-#### Python
 
 #### Wordpress
 
@@ -155,7 +152,7 @@ After the script runs, what exactly did it do and why does it matter?
    - JSON Lint/Sorting
 9. VS Code - Project/Technology Specific
    - workspace environment - Workspace Environment for the specific tech stack.
-   - IE: RoR, Python, Next.js, etc. This will contain any overrides/modifications to:
+   - IE: RoR, Next.js, etc. This will contain any overrides/modifications to:
 
 ## Ruby on Rails
 

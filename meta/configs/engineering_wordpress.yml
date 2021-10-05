@@ -1,0 +1,7 @@
+# engineering_wordpress - This sets up and installs wpengine's local development
+# tool called [Local](https://localwp.com/releases/)
+
+- shell:
+    - echo "Setting up Wordpress - Local Environment..."
+# - sh -c curl -fsSL
+#   https://cdn.localwp.com/releases-stable/6.0.0+5444/local-6.0.0-mac.dmg

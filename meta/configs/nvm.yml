@@ -1,0 +1,9 @@
+# nvm - This links your node manager to your home directory so you have the
+# latest version of node and can install other versions as application's require
+# it.
+- shell:
+    - echo "8. Setting up Node - NVM Package Manager..."
+- link:
+    # Node Versions
+    ~/.nvmrc: engineering/javascript/.nvmrc
+    ~/.npmignore: engineering/javascript/.npmignore

@@ -1,0 +1,13 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- shell:
+    - ["git submodule update --init --recursive", "Installing submodules"]
+    - echo "chmod +X /"
+
+- clean: [
+    '~',
+    '~/.config'
+]

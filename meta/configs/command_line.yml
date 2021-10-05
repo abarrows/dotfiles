@@ -1,0 +1,63 @@
+# command_line - This sets up Oh My ZSH, Custom plugins, themes, aliases, etc.
+# and organizes them each into a respective file.  This allows for easier
+# customization for your unique needs. Starship is an agnostic shell that is
+# used by default.
+
+- shell:
+    - description: '6. Setting up Command Line Tools - Oh My ZSH, Plugins,
+    Aliases, and Theme...'
+      command: './onboarding_bin/install-oh-my-zsh.sh'
+      stdout: true
+      stderr: true
+
+- link:
+    ~/.zlogin:
+      force: true
+      path: shell/.zlogin
+      stdout: true
+    ~/.theme.zsh:
+      force: true
+      path: shell/.theme.zsh
+    ~/.plugins.zsh:
+      force: true
+      path: shell/.plugins.zsh
+    ~/.functions.zsh:
+      force: true
+      path: shell/.functions.zsh
+    ~/.aliases.zsh:
+      force: true
+      path: shell/.aliases.zsh
+    ~/.zshrc:
+      force: true
+      path: shell/.zshrc
+
+# Terminal Settings, Profile, and Configuration
+- shell:
+    - echo '4. Setting up iTerm Profile and Configuration...'
+- link:
+    ~/iterm-profile-abarrows.json:
+      force: true
+      path: shell/iterm-profile-abarrows.json
+    ~/iterm-profile-abarrows.itermkeymap:
+      force: true
+      path: shell/iterm-profile-abarrows.itermkeymap
+    ~/com.googlecode.iterm2.plist:
+      force: true
+      path: shell/com.googlecode.iterm2.plist
+    ~/.iterm2_shell_integration.zsh:
+      force: true
+      path: shell/.iterm2_shell_integration.zsh
+
+- shell:
+    # iTerm Configuration, Profile, and Settings
+    # Specify the preferences directory
+    - [
+        defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string '~/',
+      ]
+    # Tell iTerm2 to use the custom preferences in the directory
+    - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+    # TODO: Please complete the two items below to finish the setup process.
+    - echo "[TODO] • iTerm2 profile - Open iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles - Select the profile from ~/iterm-profile-front-end-engineering.json"
+    - echo "[TODO] • iTerm2 keymap - Open iTerm2 -> Preferences -> Keys -> ⚙
+    Presets... -> Import... Select the keymap from
+    ~/iterm-profile-front-end-engineering.json"

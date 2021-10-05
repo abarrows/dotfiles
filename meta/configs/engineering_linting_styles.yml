@@ -1,0 +1,9 @@
+# engineering_linting_styles - Links global stylelint configs and ignores to
+# your home directory.
+
+- shell:
+    - echo "Setting up Software Engineering - global styling linting..."
+
+- link:
+    ~/.stylelintrc.json: engineering/styles/.stylelintrc.json
+    ~/.stylelintrcignore: engineering/styles/.stylelintrcignore

@@ -94,6 +94,3 @@ source $ZSH/oh-my-zsh.sh
 # NON-OH-MY-ZSH EXTENSIONS
 # iTerm2 Integration
 [[ ! -f "$HOME/.iterm2_shell_integration.zsh" ]] || source "$HOME/.iterm2_shell_integration.zsh"
-
-# Python (Not in use.)
-# eval "$(pyenv init -)"

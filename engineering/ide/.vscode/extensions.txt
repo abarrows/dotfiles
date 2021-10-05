@@ -16,6 +16,7 @@ cschleiden.vscode-github-actions
 DavidAnson.vscode-markdownlint
 davidpallinder.rails-test-runner
 dbaeumer.vscode-eslint
+deque-systems.vscode-axe-linter
 DougFinke.vscode-pandoc
 dsznajder.es7-react-js-snippets
 eamodio.gitlens
@@ -70,6 +71,7 @@ redhat.vscode-commons
 redhat.vscode-yaml
 richie5um2.vscode-sort-json
 ritwickdey.LiveServer
+robole.markdown-snippets
 ryu1kn.partial-diff
 sensourceinc.vscode-sql-beautify
 steoates.autoimport

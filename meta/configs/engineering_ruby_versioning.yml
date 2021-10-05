@@ -1,0 +1,10 @@
+# engineering_ruby_versioning - Linking your Ruby on Rails version manager
+# (RVM) to have latest version with a default gemset.
+
+- shell:
+    - echo "Setting up Ruby on Rails - RVM as the version manager..."
+
+- link:
+    ~/.rvmrc: engineering/ruby/.rvmrc
+    ~/.ruby-version: engineering/ruby/.ruby-version
+    ~/.ruby-gemset: engineering/ruby/.ruby-gemset

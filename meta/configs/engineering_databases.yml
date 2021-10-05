@@ -1,0 +1,11 @@
+# engineering_databases - This sets up and configures common database systems
+# like Postgres and Mysql
+
+# TODO: Getting permission error when trying to symlink to LaunchAgents.  Do
+# this manually.
+# - link:
+# '~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist':
+# path: /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
+- shell:
+    - echo "Setting up Software Engineering - Starting Postgres Databases..."
+    - launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
