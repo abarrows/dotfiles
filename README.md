@@ -37,15 +37,24 @@ repo is:
 
 ## What IS included?
 
-Unsurprisingly, the order of execution is intentional, as many of the
-dependencies build upon each other. Upon installation, there are three main
-levels of configuration and tooling:
+This dotfiles repo uses dotbot, a popular framework for organizing dotfiles.  Within the meta folder you will see two important directories:
+1. **configurations/** - Each of these yml files executes a specific aspect of setting up a new or virtualized machine
+2. **profiles/** - Each profile is a simply file that includes certain configurations, offering flexibility out of the box to create your own unique profile of dotfiles.  Common use cases for this would be a personal and professional machine.
 
-### Machine Level Provisioning
+#### Initialize
+Creation of foundational directories that will be used in later operation.  
+   - Github template directories
+   - Organized folders for different types of repositories
+
 
 #### Mac Preferences and Setup
+Sensible defaults and settings like:
+- Showing hidden files in finder
+- Autohiding the dock
+- Showing the path in finder
 
-#### Homebrew - Package Manager for Macs
+#### Homebrew_base - Package Manager for Macs
+Using the dotbot plugin dotbot-brew, a homebrew bundle file called Brewfile.base lists a collection of libraries and casks (applications) that will be used for most technical stacks on a new machine.  This is obviously something that should be highly personalized and is tailored for my React / Ruby on Rails environments.
 
 ### Software Engineering - General
 
