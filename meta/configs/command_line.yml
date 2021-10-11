@@ -35,12 +35,12 @@
 - shell:
     - echo '4. Setting up iTerm Profile and Configuration...'
 - link:
-    ~/iterm-profile-abarrows.json:
+    ~/iterm-profile-dotfiles.json:
       force: true
-      path: shell/iterm-profile-abarrows.json
-    ~/iterm-profile-abarrows.itermkeymap:
+      path: shell/iterm-profile-dotfiles.json
+    ~/iterm-profile-dotfiles.itermkeymap:
       force: true
-      path: shell/iterm-profile-abarrows.itermkeymap
+      path: shell/iterm-profile-dotfiles.itermkeymap
     ~/com.googlecode.iterm2.plist:
       force: true
       path: shell/com.googlecode.iterm2.plist
@@ -57,7 +57,8 @@
     # Tell iTerm2 to use the custom preferences in the directory
     - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
     # TODO: Please complete the two items below to finish the setup process.
-    - echo "[TODO] • iTerm2 profile - Open iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles - Select the profile from ~/iterm-profile-front-end-engineering.json"
-    - echo "[TODO] • iTerm2 keymap - Open iTerm2 -> Preferences -> Keys -> ⚙
-    Presets... -> Import... Select the keymap from
-    ~/iterm-profile-front-end-engineering.json"
+    - echo "[TODO] • iTerm2 profile - Open iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles
+    - Select the profile from ~/iterm-profile-front-end-engineering.json"
+    - echo "[TODO] • Click Other Actions... -> Set as Default"
+    - echo "[TODO] • iTerm2 keymap - Open iTerm2 -> Preferences -> Keys -> ⚙ Presets... ->
+    - echo "[TODO] • Import... Select the keymap from ~/iterm-profile-front-end-engineering.json"
