@@ -868,5 +868,6 @@
   "atlascode.jira.lastCreateSiteAndProject": {
     "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
     "projectKey": "AMCORP"
-  }
+  },
+  "terminal.integrated.defaultProfile.osx": "zsh"
 }
