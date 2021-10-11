@@ -242,6 +242,15 @@
     "default": true
   },
   {
+    "key": "ctrl+cmd+s",
+    "command": "workbench.action.files.saveWithoutFormatting",
+    "when": "*",
+    "frequency": "Occasional",
+    "description": "This command is helpful when unintended formatting is applied to a file.  Saving without formatting allows for you to troubleshoot if the problem resides on the save/linting side or the formatting side.",
+    "example": "While updating a YML file, you save and notice that a new value is incorrectly indented.  By using this command, you realize that the formatter is set to bash scripts instead of YML.",
+    "default": true
+  },
+  {
     "key": "ctrl+e",
     "command": "workbench.view.explorer",
     "when": "*",
@@ -463,5 +472,9 @@
   {
     "key": "cmd+v",
     "command": "-editor.action.clipboardPasteAction"
+  },
+  {
+    "key": "cmd+k s",
+    "command": "-workbench.action.files.saveWithoutFormatting"
   }
 ]
