@@ -34,7 +34,7 @@
     "next": "^10.0.4",
     "next-seo": "^4.15.0",
     "next-transpile-modules": "^4.1.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.1.1",
     "node-forge": "^0.10.0",
     "null-loader": "^4.0.1",
     "object-path": "^0.11.5",
