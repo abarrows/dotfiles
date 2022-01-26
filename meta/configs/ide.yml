@@ -17,10 +17,8 @@
     '~/Library/Application Support/code/User/launch.json':
       path: engineering/ide/.vscode/launch.json
       force: true
-# TODO: Need to apply an if statement in the event that the extension count is
-# less than 5 extensions.
 - shell:
-    - code --list-extensions > engineering/ide/.vscode/extensions.txt
-- vscodefile:
-    file: engineering/ide/.vscode/extensions.txt
-    insiders: false
+    - description: 'Installing VSCode Extensions...'
+      command: './onboarding_bin/vscode-install-extensions-from-team.sh'
+      stdout: true
+      stderr: true
