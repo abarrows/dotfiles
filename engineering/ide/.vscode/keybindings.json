@@ -72,8 +72,26 @@
     "default": true
   },
   {
+    "key": "ctrl+alt+left",
+    "command": "cursorWordPartStartLeft",
+    "when": "textInputFocus",
+    "frequency": "Frequent",
+    "description": "For quickly NAVIGATING horizontally to the left through a line, word by word.",
+    "example": "If you are trying to navigate through the first two sentences out of a paragraph, using this shortcut will drastically speed up the process.",
+    "default": true
+  },
+  {
+    "key": "ctrl+alt+right",
+    "command": "cursorWordPartRight",
+    "when": "textInputFocus",
+    "frequency": "Frequent",
+    "description": "For quickly NAVIGATING horizontally to the right through a line, word by word.",
+    "example": "If you are trying to navigate through the first two sentences out of a paragraph, using this shortcut will drastically speed up the process.",
+    "default": true
+  },
+  {
     "key": "alt+shift+left",
-    "command": "cursorWordPartStartLeftSelect",
+    "command": "cursorWordStartLeftSelect",
     "when": "textInputFocus",
     "frequency": "Frequent",
     "description": "for quickly SELECTING horizontally backwards through a line by word.",
@@ -82,7 +100,7 @@
   },
   {
     "key": "alt+shift+right",
-    "command": "cursorWordPartRightSelect",
+    "command": "cursorWordRightSelect",
     "when": "textInputFocus",
     "frequency": "Frequent",
     "description": "For quickly SELECTING horizontally through a line by word.",
@@ -198,7 +216,7 @@
     "default": false
   },
   {
-    "key": "cmd+backspace",
+    "key": "cmd+shift+backspace",
     "command": "editor.emmet.action.removeTag",
     "frequency": "Occasional",
     "when": "editorFocus",
@@ -251,9 +269,9 @@
     "default": true
   },
   {
-    "key": "ctrl+e",
+    "key": "shift+cmd+1",
     "command": "workbench.view.explorer",
-    "when": "*",
+    "when": "viewContainer.workbench.view.explorer.enabled",
     "frequency": "Occasional",
     "description": "This is helpful to switch back to the project's file structure.",
     "example": "Say you are looking for a specific image, after clicking in one file in an images/ folder, use this shortcut to quickly jump back to the folder you were just in.  The down and up arrow keys allow you to navigate through the files.  Each one can be quickly opened with spacebar.",
@@ -474,7 +492,43 @@
     "command": "-editor.action.clipboardPasteAction"
   },
   {
+    "key": "ctrl+alt+left",
+    "command": "cursorWordPartStartLeft",
+    "when": "textInputFocus",
+    "frequency": "Frequent",
+    "description": "For quickly NAVIGATING horizontally to the left through a line, word by word.",
+    "example": "If you are trying to navigate through the first two sentences out of a paragraph, using this shortcut will drastically speed up the process.",
+    "default": true
+  },
+  {
+    "key": "ctrl+alt+right",
+    "command": "cursorWordPartRight",
+    "when": "textInputFocus",
+    "frequency": "Frequent",
+    "description": "For quickly NAVIGATING horizontally to the right through a line, word by word.",
+    "example": "If you are trying to navigate through the first two sentences out of a paragraph, using this shortcut will drastically speed up the process.",
+    "default": true
+  },
+  {
+    "key": "ctrl+cmd+s",
+    "command": "workbench.action.files.saveWithoutFormatting",
+    "when": "*",
+    "frequency": "Occasional",
+    "description": "This command is helpful when unintended formatting is applied to a file.  Saving without formatting allows for you to troubleshoot if the problem resides on the save/linting side or the formatting side.",
+    "example": "While updating a YML file, you save and notice that a new value is incorrectly indented.  By using this command, you realize that the formatter is set to bash scripts instead of YML.",
+    "default": true
+  },
+  {
     "key": "cmd+k s",
     "command": "-workbench.action.files.saveWithoutFormatting"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "-cursorLineEnd",
+    "when": "textInputFocus"
+  },
+  {
+    "key": "shift+cmd+2",
+    "command": "atlascode.showExploreSettings"
   }
 ]

@@ -80,7 +80,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
-    "editor.defaultFormatter": "timonwong.shellcheck",
+    "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.formatOnSave": true
   },
   "[sql]": {
@@ -121,7 +121,7 @@
       "id": "c33593e5-febe-4787-adce-44be66d943ab",
       "monitor": true,
       "name": "My Most Recently Created Issues",
-      "query": "reporter = currentUser() AND status != Done ORDER BY updatedDate",
+      "query": "reporter = currentUser() AND status != Done ORDER BY updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -211,6 +211,14 @@
       "name": "TFS",
       "query": "project = Farside AND status != resolved AND assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
+    },
+    {
+      "id": "34cf15a8-b627-435e-8e92-4deec1da8891",
+      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+      "name": "All Recent Issues",
+      "query": "resolution != Done and updatedDate > endOfDay(-30d)",
+      "enabled": true,
+      "monitor": true
     }
   ],
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
@@ -301,17 +309,20 @@
     "abarrows",
     "adlightning",
     "Adserver",
+    "adslot",
     "adsystem",
     "ajaxloader",
     "alfred",
     "alfredpreferences",
     "AMU",
+    "amudebug",
     "amuniversal",
     "AMUs",
     "amzn",
     "andrewbarrows",
     "animationend",
     "animatronic",
+    "Apim",
     "appnexus",
     "apstag",
     "Arial",
@@ -319,6 +330,7 @@
     "autoformat",
     "AUTOML",
     "autotrack",
+    "autoupdate",
     "beerslider",
     "bitbucket",
     "browser",
@@ -331,6 +343,7 @@
     "captcha",
     "CCPA",
     "Checkmark",
+    "chinthakagodawita",
     "CODEOWNER",
     "Coenraad",
     "Colorstr",
@@ -352,6 +365,7 @@
     "database",
     "datalayer",
     "datepicker",
+    "dearabby",
     "dependencies",
     "destructable",
     "dev",
@@ -373,6 +387,7 @@
     "fasterer",
     "favicons",
     "FLSA",
+    "FREESTAR",
     "gamedata",
     "gemfile",
     "gemrc",
@@ -386,6 +401,7 @@
     "haspopup",
     "hfmysql",
     "hfstagedb",
+    "hmarr",
     "hsforms",
     "hspa",
     "hubspot",
@@ -415,6 +431,7 @@
     "Metrix",
     "mixins",
     "mkshrc",
+    "mockdate",
     "MONTHNAMES",
     "multisize",
     "museo",
@@ -451,6 +468,7 @@
     "profile",
     "progid",
     "pubads",
+    "pubfig",
     "pubmatic",
     "Puzzazz",
     "puzzlesociety",
@@ -669,7 +687,6 @@
   ],
   "gitlens.sortBranchesBy": "date:desc",
   "gitlens.views.branches.branches.layout": "list",
-  "gitlens.views.branches.files.layout": "list",
   "gitlens.views.compare.enabled": true,
   "gitlens.views.repositories.files.layout": "list",
   "gitlens.views.search.enabled": false,
@@ -679,7 +696,6 @@
   "html.format.templating": true,
   "html.trace.server": "messages",
   "htmlhint.documentSelector": ["erb", "html", "htm"],
-  "jira-plugin.baseUrl": "https://amuniversal.atlassian.net",
   "jira-plugin.enableCheckForNotifications": true,
   "jira-plugin.gitIntegration": true,
   "jira-plugin.groupTaskAndSubtasks": true,
@@ -721,12 +737,11 @@
     "mobile-friendly-comic-viewer=SANDBOX"
   ],
   "jira-plugin.trackingTimeModeHybridTimeout": 15,
-  "jira-plugin.username": "abarrows@amuniversal.com",
   "jira-plugin.workingIssueAssignees": "CURRENT_USER",
   "jira-plugin.workingIssueChangeStatusAfterSelection": true,
   "jira-plugin.workingIssueFilter": "ALL",
   "jira-plugin.workingIssueStatues": "New, In Progress, In Peer Review, In QA Review, Approved",
-  "jira-plugin.workingProject": "SANDBOX",
+  "jira-plugin.workingProject": "",
   "jira-plugin.worklogMinimumTrackingTime": 0,
   "keyboard.layout": "us",
   "l13Diff.ignoreEndOfLine": true,
@@ -847,7 +862,6 @@
   "workbench.editor.revealIfOpen": true,
   "workbench.editor.scrollToSwitchTabs": true,
   "workbench.editor.showTabs": true,
-  "workbench.iconTheme": "material-icon-theme",
   "workbench.settings.enableNaturalLanguageSearch": false,
   "workbench.settings.openDefaultKeybindings": true,
   "workbench.settings.useSplitJSON": true,
@@ -861,7 +875,7 @@
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.9.1/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "redhat.telemetry.enabled": false,
   "grammarly.debug": true,
@@ -869,5 +883,16 @@
     "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
     "projectKey": "AMCORP"
   },
-  "terminal.integrated.defaultProfile.osx": "zsh"
+  "git.ignoreRebaseWarning": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": false,
+    "markdown": false
+  }
 }
