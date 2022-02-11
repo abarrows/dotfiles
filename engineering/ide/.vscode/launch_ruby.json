@@ -1,0 +1,74 @@
+{
+  "configurations": [
+    {
+      // Setup debug binding IP and port.
+      "args": ["s", "-b", "0.0.0.0", "-p", "3000"],
+      // Current dir using env variable input in tasks.json
+      "cwd": "${workspaceRoot}/sandbox",
+      "name": "New Rails App",
+      "postDebugTask": "Delete sandbox",
+      // run bundle install before rails server
+      "preLaunchTask": "Create sandbox",
+      "program": "bin/rails",
+      "request": "launch",
+      "type": "Ruby"
+    },
+    {
+      "args": ["server", "-p", "3013"],
+      "cwd": "${workspaceRoot}",
+      "env": {
+        "DEBUG": "1",
+        "RUBY_VERSION": "2.5.3",
+        "USER": "abarrows"
+      },
+      "name": "Start Server: Application",
+      "pathToBundler": "/Users/${USER}/.rvm/gems/ruby-${RUBY_VERSION}@application/wrappers/bundle",
+      "pathToRDebugIDE": "/Users/${USER}/.rvm/gems/ruby-${RUBY_VERSION}@application/gems/ruby-debug-ide-0.6.1",
+      "program": "${workspaceRoot}/bin/rails",
+      "request": "launch",
+      "showDebuggerOutput": true,
+      "type": "Ruby",
+      "useBundler": true
+    },
+    {
+      "args": ["start"],
+      "cwd": "${workspaceFolder}",
+      "name": "Start Foreman",
+      "program": "${workspacefolder}/bin/foreman",
+      "request": "launch",
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": " on http://localhost:([0-9]+)",
+        "uriFormat": "http://localhost:%s"
+      },
+      "type": "Ruby",
+      "useBundler": true
+    },
+    {
+      "args": ["server", "-p", "3000"],
+      "name": "Rails:Start - Development",
+      "program": "${workspaceRoot}/bin/rails",
+      "request": "launch",
+      "type": "Ruby"
+    },
+    {
+      "args": ["exec", "rails", "s", "-p=3013"],
+      "cwd": "${workspaceRoot}",
+      "name": "Debug All Files",
+      "program": "${workspaceRoot}/bin/bundle",
+      "request": "launch",
+      "type": "Ruby"
+    },
+    {
+      "cwd": "${workspaceRoot}",
+      "name": "Debug Local File",
+      "program": "${file}",
+      "request": "launch",
+      "type": "Ruby"
+    }
+  ],
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0"
+}
