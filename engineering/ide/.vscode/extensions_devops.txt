@@ -1,0 +1,9 @@
+cschleiden.vscode-github-actions
+formulahendry.github-actions
+henriiik.docker-linter
+KnisterPeter.vscode-github
+me-dutour-mathieu.vscode-github-actions
+ms-azuretools.vscode-docker
+ms-kubernetes-tools.vscode-aks-tools
+ms-kubernetes-tools.vscode-kubernetes-tools
+ms-vscode-remote.remote-containers

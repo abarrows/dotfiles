@@ -1,0 +1,11 @@
+christian-kohler.npm-intellisense
+davidpallinder.rails-test-runner
+dsznajder.es7-react-js-snippets
+EQuimper.react-native-react-redux
+jpoissonnier.vscode-styled-components
+leizongmin.node-module-intellisense
+richie5um2.vscode-sort-json
+steoates.autoimport
+traBpUkciP.vscode-npm-scripts
+wix.vscode-import-cost
+xabikos.JavaScriptSnippets
