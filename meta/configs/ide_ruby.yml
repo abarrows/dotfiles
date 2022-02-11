@@ -2,20 +2,25 @@
 # extensions.
 
 - shell:
-    - echo "9. Installing VS Code and extensions - Ruby provisioning settings, keybindings, snippets, etc. "
+    - echo "9. Installing VS Code and extensions - Provisioning settings, keybindings, snippets, etc."
 
 - link:
     '~/Library/Application Support/code/User/settings.json':
-      path: engineering/ide/.vscode/settings.json
+      path: engineering/ruby/ide/.vscode/settings.json
       force: true
-    '~/Library/Application Support/code/User/tasks_ruby.json':
-      path: engineering/ide/.vscode/tasks_ruby.json
+    '~/Library/Application Support/code/User/keybindings.json':
+      path: engineering/ruby/ide/.vscode/keybindings.json
       force: true
-    '~/Library/Application Support/code/User/launch_ruby.json':
-      path: engineering/ide/.vscode/launch_ruby.json
+    '~/Library/Application Support/code/User/tasks.json':
+      path: engineering/ruby/ide/.vscode/tasks.json
       force: true
+    '~/Library/Application Support/code/User/launch.json':
+      path: engineering/ruby/ide/.vscode/launch.json
+      force: true
+# TODO: Need to apply an if statement in the event that the extension count is
+# less than 5 extensions.
 - shell:
-    - description: 'Installing VSCode Extensions...'
-      command: './onboarding_bin/vscode-install-extensions-ruby.sh'
-      stdout: true
-      stderr: true
+    - code --list-extensions > engineering/ruby/ide/.vscode/extensions.txt
+- vscodefile:
+    file: engineering/ide/ruby/.vscode/extensions.txt
+    insiders: false
