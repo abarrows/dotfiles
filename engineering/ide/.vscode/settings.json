@@ -28,7 +28,7 @@
       "source.fixAll": true,
       "tidyHtml.formatOnSave": true
     },
-    "editor.defaultFormatter": "anweber.vscode-tidyhtml"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[gitignore]": {
     "editor.codeActionsOnSave": {
@@ -576,6 +576,7 @@
   "editor.hover.delay": 200,
   "editor.largeFileOptimizations": false,
   "editor.minimap.enabled": false,
+  "editor.guides.bracketPairs": "active",
   "editor.renderControlCharacters": false,
   "editor.renderIndentGuides": true,
   "editor.scrollBeyondLastLine": true,
@@ -642,6 +643,7 @@
   "git.inputValidationSubjectLength": null,
   "git.showPushSuccessNotification": true,
   "github-actions.org-features": true,
+  "editor.bracketPairColorization.enabled": true,
   "github.customPullRequestTitle": true,
   "github.preferedMergeMethod": "merge",
   "githubIssues.assignWhenWorking": false,
@@ -875,7 +877,7 @@
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "redhat.telemetry.enabled": false,
   "grammarly.debug": true,
@@ -893,6 +895,8 @@
     "*": true,
     "yaml": true,
     "plaintext": false,
-    "markdown": false
-  }
+    "markdown": false,
+    "javascriptreact": true
+  },
+  "liveshare.presence": true
 }
