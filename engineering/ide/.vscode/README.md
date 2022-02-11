@@ -26,7 +26,7 @@ descriptions of the information:
 
 ### Rails
 
-1. Within [/ide/.vscode/launch.json](/ide/.vscode/launch.json), look for the
+1. Within [/ide/.vscode/launch_ruby.json](/ide/.vscode/launch_ruby.json), look for the
    launch task called: **Rails:Start - Development**. In vscode navigate to
    your debugger icon on the far left (It has a little bug on it) and activate
    the pane. Click the cogwheel at the top to configure your launch.json tasks.
