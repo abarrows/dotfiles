@@ -9,8 +9,6 @@ brew 'dotenv-linter' # REQUIRED - BASE/ROR/NODE/
 brew 'freetype' # REQUIRED - BASE/ROR/NODE CL
 brew 'git' # REQUIRED - ROR/NODE/DEVOPS/PYTHON Core version control
 brew 'icu4c' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Compiled Library Dependency for unicode and globalization
-brew "mysql", restart_service: true # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Database Dependency for MySQL (Usually used by non-containerized web applications)
-brew "mysql-client" # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Database Dependency for MySQL
 brew "nvm" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Version manager for node
 brew "openssl@1.1" # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Network Utility for SSL requests
 # brew "pandoc" # OPTIONAL - ROR/NODE/DEVOPS/PYTHON/PG Allows for markdown to easily be exported into other formats like word, pdfs, and html
@@ -20,7 +18,7 @@ brew "postgresql" # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
 # brew "redis" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Primary Caching Dependency for Back-end Software Engineers
 brew "shellcheck" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Linter and auto-fixing
 brew "starship" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended platform agnostic shell prompt.
-brew "thefuck" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Command Line correction tool for mistyped commands
+brew "thefuck" # RECOMMENDED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Command Line correction tool for mistyped commands
 brew "wget" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON General Request Utility for Command Line
 brew "yamllint" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Linting and auto-fixing tool for yaml
 brew "yarn" # REQUIRED - BASE/DEVOPS/ROR/NODE Front-end team approved package manager
@@ -29,7 +27,7 @@ cask "1password" # REQUIRED - Department licensed and approved password manager
 cask "adobe-creative-cloud" # RECOMMENDED - Department licensed and approved UXD Tools
 cask "alfred" # REQUIRED - task launcher application for Mac OSX
 cask "appcleaner" # REQUIRED - utility application for removing Mac OSX programs and apps
-# cask "cyberduck" # OPTIONAL - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP transfers
+# cask "cyberduck" # RECOMMENDED - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP transfers
 cask "docker" # REQUIRED - Department approved containerized environment tools
 cask "dropbox" # OPTIONAL - Department approved cloud storage for UXD and Design
 cask "expressvpn" # REQUIRED - Department approved VPN for testing geo location
