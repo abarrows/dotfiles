@@ -384,6 +384,13 @@
     "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /blameable/"
   },
   {
+    "key": "cmd+v",
+    "command": "editor.action.clipboardPasteAction",
+    "when": "*",
+    "description": "To ensure the pasting behavior is uniform across everything, the when value here is set to all situations.",
+    "example": "When an input field is active is certain panes, this ensures you can paste even from the global clipboard."
+  },
+  {
     "key": "shift+cmd+l",
     "command": "-editor.action.selectHighlights",
     "when": "editorFocus",
@@ -479,6 +486,10 @@
     "frequency": "Occasional",
     "description": "Shortcut for smart selecting outward.  By smart, I mean it selects all of a tag, then the parent tag above that.  The drawback is this emmet keybinding only works with a few different languages.",
     "experimental": true
+  },
+  {
+    "key": "cmd+v",
+    "command": "-editor.action.clipboardPasteAction"
   },
   {
     "key": "ctrl+alt+left",
