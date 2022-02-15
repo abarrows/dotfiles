@@ -5,6 +5,3 @@ url = https://github.com/anishathalye/dotbot
 [submodule "dotbot-brew"]
 path = meta/dotbot-brew
 url = https://github.com/d12frosted/dotbot-brew.git
-[submodule "dotbot-vscode"]
-path = meta/dotbot-vscode
-url = https://github.com/hujianxin/dotbot-vscode
