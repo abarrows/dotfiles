@@ -27,7 +27,9 @@ cask "1password" # REQUIRED - Department licensed and approved password manager
 cask "adobe-creative-cloud" # RECOMMENDED - Department licensed and approved UXD Tools
 cask "alfred" # REQUIRED - task launcher application for Mac OSX
 cask "appcleaner" # REQUIRED - utility application for removing Mac OSX programs and apps
-# cask "cyberduck" # RECOMMENDED - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP transfers
+# cask "cyberduck" # RECOMMENDED - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP
+# transfers
+cask "browserstacklocal" # REQUIRED - Used for local testing of browsers
 cask "docker" # REQUIRED - Department approved containerized environment tools
 cask "dropbox" # OPTIONAL - Department approved cloud storage for UXD and Design
 cask "expressvpn" # REQUIRED - Department approved VPN for testing geo location

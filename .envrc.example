@@ -1,5 +1,15 @@
 # Dotfiles Environment Variables
 
+# Instructions: First save a copy of this file in the root directory of the
+project or run this command in your terminal.
+# cp .envrc.example .envrc && open .envrc
+# Note: If you have hidden files turned off, the .envrc.example and .envrc files
+may not appear to show up.
+# As you fill these values out, remember to put the values in double quotes and
+no spaces before or after the equals.
+# IE: Correct - VARIABLE="value"
+# Incorrect - VARIABLE = 'value'
+
 # Sensitive Variables
 GIT_EMAIL_ADDRESS_PROFESSIONAL=# Github email address for professional or organizational teams
 GIT_EMAIL_ADDRESS_PROFESSIONAL_KEY=# The key that displays here:
@@ -7,8 +17,10 @@ https://github.com/settings/keys under your GPG key.
 
 # Non-Sensitive Variables
 CURRENT_NAME=# This is your reader friendly name IE: "John Doe"
-CURRENT_USER=# This is your machine username. IE: /Users/jdoe
-CURRENT_COMPANY=# This is the folder name of all of your company's repos
+CURRENT_USER=# This is your machine username. IE: first initial and last name is
+most common like jdoe
+CURRENT_COMPANY=# This is the folder name of all of your company's repos. This
+is used in generating the folder structure for your projects. IE: "AMU"
 IDE_PATH=# The application folder name for vscode. Example Values: "code" or "code-insiders"
 IDE_BUILD=# The name of vscode that calls the CLI. Example Values: "code" or "code-insiders"
 JIRA_BASE_URL=# This is the url to your team's base jira cloud instance
