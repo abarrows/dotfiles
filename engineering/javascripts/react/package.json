@@ -31,7 +31,7 @@
     "js-cookie": "^2.2.1",
     "meow": "^8.0.0",
     "moment": "^2.29.1",
-    "next": "^10.0.4",
+    "next": "^12.1.0",
     "next-seo": "^4.15.0",
     "next-transpile-modules": "^4.1.0",
     "node-fetch": "^2.6.1",
