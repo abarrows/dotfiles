@@ -457,6 +457,7 @@
     "plist",
     "plusplus",
     "polyfill",
+    "postbuild",
     "postload",
     "Prebid",
     "precompilation",
@@ -876,9 +877,6 @@
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
   "redhat.telemetry.enabled": false,
   "grammarly.debug": true,
   "atlascode.jira.lastCreateSiteAndProject": {
@@ -897,6 +895,5 @@
     "plaintext": false,
     "markdown": false,
     "javascriptreact": true
-  },
-  "liveshare.presence": true
+  }
 }
