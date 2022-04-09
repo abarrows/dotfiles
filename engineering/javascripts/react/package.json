@@ -30,7 +30,7 @@
     "is_js": "^0.9.0",
     "js-cookie": "^2.2.1",
     "meow": "^8.0.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "next": "^10.0.4",
     "next-seo": "^4.15.0",
     "next-transpile-modules": "^4.1.0",
