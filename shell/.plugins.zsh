@@ -9,7 +9,6 @@
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 
-
 # BUILT-IN OH-MY-ZSH PLUGINS
 # bundler
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/bundler
@@ -34,8 +33,8 @@
 # rake
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/rake
 
-# rvm
-# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/rvm
+# rbenv
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/rbenv/rbenv.plugin.zsh
 
 # Yarn
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/yarn
@@ -43,17 +42,15 @@
 # VSCode
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/vscode
 
-
-
 # CUSTOM INSTALLED PLUGINS
 
 # ZSH PLUGIN: zsh-completions
 # https://github.com/zsh-users/zsh-completions
 if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-completions" ]]; then
-   # echo 'Plugin should be sourced: zsh-completion.'
+  # echo 'Plugin should be sourced: zsh-completion.'
   autoload -U compinit && compinit
 else
-   echo 'Cloning plugin: zsh-completion'
+  echo 'Cloning plugin: zsh-completion'
   git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-completions
 fi
 
@@ -102,8 +99,6 @@ fi
 # Docker-helpers
 # https://github.com/unixorn/docker-helpers.zsh
 
-
-
 # Final plugins declaration
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
@@ -117,8 +112,8 @@ plugins=(
   zsh-nvm
   osx
   rake
+  rbenv
   ruby
-  rvm
   thefuck
   vscode
   yarn

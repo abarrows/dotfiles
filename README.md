@@ -12,9 +12,9 @@ repo is:
 - [dotfiles-and-tooling](#dotfiles-and-tooling)
   - [Table of Contents](#table-of-contents)
   - [What IS included?](#what-is-included)
-    - [Machine Level Provisioning](#machine-level-provisioning)
+      - [Initialize](#initialize)
       - [Mac Preferences and Setup](#mac-preferences-and-setup)
-      - [Homebrew - Package Manager for Macs](#homebrew---package-manager-for-macs)
+      - [Homebrew_base - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
     - [Software Engineering - General](#software-engineering---general)
       - [Git - Team configured version control](#git---team-configured-version-control)
       - [Shell - Extended and fine-tuned command line tools](#shell---extended-and-fine-tuned-command-line-tools)
@@ -30,31 +30,35 @@ repo is:
   - [Detailed List of Toolsets](#detailed-list-of-toolsets)
   - [Ruby on Rails](#ruby-on-rails-1)
   - [Linting and Code Analysis](#linting-and-code-analysis)
-    - [Caveats](#caveats)
   - [TODOS](#todos)
   - [WORKFLOW INFORMATION](#workflow-information)
   - [DOTFILES TECHNOLOGY INDEX](#dotfiles-technology-index)
 
 ## What IS included?
 
-This dotfiles repo uses dotbot, a popular framework for organizing dotfiles.  Within the meta folder you will see two important directories:
+This dotfiles repo uses dotbot, a popular framework for organizing dotfiles. Within the meta folder you will see two important directories:
+
 1. **configurations/** - Each of these yml files executes a specific aspect of setting up a new or virtualized machine
-2. **profiles/** - Each profile is a simply file that includes certain configurations, offering flexibility out of the box to create your own unique profile of dotfiles.  Common use cases for this would be a personal and professional machine.
+2. **profiles/** - Each profile is a simply file that includes certain configurations, offering flexibility out of the box to create your own unique profile of dotfiles. Common use cases for this would be a personal and professional machine.
 
 #### Initialize
-Creation of foundational directories that will be used in later operation.  
-   - Github template directories
-   - Organized folders for different types of repositories
 
+Creation of foundational directories that will be used in later operation.
+
+- Github template directories
+- Organized folders for different types of repositories
 
 #### Mac Preferences and Setup
+
 Sensible defaults and settings like:
+
 - Showing hidden files in finder
 - Autohiding the dock
 - Showing the path in finder
 
 #### Homebrew_base - Package Manager for Macs
-Using the dotbot plugin dotbot-brew, a homebrew bundle file called Brewfile.base lists a collection of libraries and casks (applications) that will be used for most technical stacks on a new machine.  This is obviously something that should be highly personalized and is tailored for my React / Ruby on Rails environments.
+
+Using the dotbot plugin dotbot-brew, a homebrew bundle file called Brewfile.base lists a collection of libraries and casks (applications) that will be used for most technical stacks on a new machine. This is obviously something that should be highly personalized and is tailored for my React / Ruby on Rails environments.
 
 ### Software Engineering - General
 
@@ -213,13 +217,6 @@ The following tools can be used for improving the confidence of this apps logic 
    - 3. Open a .rb file and you should begin seeing rubocop and many of the other linters listed
         above) errors within the VS Code _problems_ pane.
 
-### Caveats
-
-1. I discovered some strange caching and pathing issues in RVM and determined it
-   was the bundler zsh plugin: <https://rvm.io/support/troubleshooting>. Updated
-   on 2020.07.29 2. I have added a debugger file in my gists that outline how to troubleshoot
-   uglifier gem woes.
-
 ## TODOS
 
 1. Check the following dotfiles for ingestion or discarding:
@@ -227,14 +224,13 @@ The following tools can be used for improving the confidence of this apps logic 
 - .phpls
 - .profile
 - .rnd
-- .rvmrc
 - .solargraph
 - .vagrant.d
 - .viminfo
 - .vs-liveshare-keychain
 - .vs-liveshare-settings.json
 
-2. Address the following to codespaces/dotfile init:
+1. Address the following to codespaces/dotfile init:
 
 - [cd ~/ && sh -c "$(curl -fsSL <https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh>)"]
 - Linking failed /usr/local/bin/pathChecker.sh ->
@@ -264,7 +260,7 @@ to do with having two entities in git or homebrew managing the GPG functionality
    - Rubocop-rspec
    - Traceroute
 5. Automate adding iterm profile, keymaps
-6. Automate RVM installation
+6. Automate RBENV installation
 7. Drop zsh plugins from the initial ./install command.
 
 ## WORKFLOW INFORMATION

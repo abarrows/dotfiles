@@ -1,15 +1,12 @@
 #!/bin/bash
 
-# This script will NOT use the version controlled list of extensions from the
-# team and assumes you have your own list of extensions installed.  NOTE: This
-# is typically only used by the maintainer or in circumstances where an engineer
-# wants to record their own VS code extensions.
-
+# This script will use the version controlled list of extensions from the team
+# in order to bootstrap your vs code install.
 # Use IDE_PATH if you are getting your ide dynamically.
-echo "1. VSCode - Retrieving all extensions..."
-code --list-extensions > ../engineering/ide/.vscode/extensions.txt
+# echo "1. VSCode - Retrieving all extensions..."
+# code --list-extensions > ../engineering/ide/.vscode/extensions.txt
 
-echo "2. VSCode - Parsing all extensions..."
+echo "1. VSCode - Retrieving all base extensions from team dotfiles in version control..."
 while read -r my_extension; do
   code --install-extension "$my_extension"
 done <engineering/ide/.vscode/extensions.txt

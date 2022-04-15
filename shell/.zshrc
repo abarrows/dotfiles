@@ -33,9 +33,6 @@ source "$HOME/.aliases.zsh"
 #echo "EXPORT: PREPENDING Path: /usr/local/sbin (yarn)"
 #export PATH="$(yarn global bin):$PATH"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#echo "EXPORT: APPENDING Path: /usr/local/sbin (rvm)"
-
 # GENERAL SETTINGS
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -86,8 +83,9 @@ HIST_STAMPS="yyyy-mm-dd"
 
 source $ZSH/oh-my-zsh.sh
 
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# RBENV
+export PATH="$HOME/.rbenv/bin:$PATH"
+if which rbenv >/dev/null; then eval "$(rbenv init -)"; fi
 
 # NON-OH-MY-ZSH EXTENSIONS
 # iTerm2 Integration

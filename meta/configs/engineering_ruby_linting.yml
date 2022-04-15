@@ -8,5 +8,4 @@
 - link:
     ~/.rubocop.yml: engineering/ruby/.rubocop.yml
     ~/.gemrc: engineering/ruby/.gemrc
-    ~/.mkshrc: engineering/ruby/.mkshrc
     ~/.solargraph.yml: engineering/ruby/.solargraph.yml

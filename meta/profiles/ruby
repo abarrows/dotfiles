@@ -2,5 +2,6 @@ homebrew_ruby
 security
 engineering_ruby_versioning
 engineering_ruby_linting
+engineering_ruby_dependencies
 ide_ruby
 cleanup_ruby

@@ -488,7 +488,9 @@
     "roxot",
     "rspec",
     "rubocop",
+    "rvm",
     "rvmrc",
+    "rbenv",
     "s",
     "scottadamssays",
     "sharethrough",
@@ -895,5 +897,15 @@
     "plaintext": false,
     "markdown": false,
     "javascriptreact": true
-  }
+  },
+  "yaml.schemas": {
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.11/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
+  "vs-kubernetes": {
+    "vscode-kubernetes.helm-path.mac": "/Users/abarrows/.vs-kubernetes/tools/helm/darwin-amd64/helm",
+    "vscode-kubernetes.kubectl-path.mac": "/Users/abarrows/.vs-kubernetes/tools/kubectl/kubectl",
+    "vscode-kubernetes.minikube-path.mac": "/Users/abarrows/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+  },
+  "githubPullRequests.createOnPublishBranch": "never",
+  "window.zoomLevel": 1
 }

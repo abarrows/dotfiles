@@ -82,7 +82,7 @@ alias findassets="y Rails.application.config.assets.paths"
 alias sphinxindex="rake ts:index"
 alias sphinxrebuild="rake ts:rebuild"
 alias sphinx="rake ts:index && rake ts:rebuild"
-alias gemglobal="rvm @global do gem install $1"
+alias gemglobal="rbenv @global do gem install $1"
 
 # Rails
 alias rclear="rake assets:clean && rake tmp:clear"
@@ -106,6 +106,7 @@ alias clients="cd ~/documents/$CURRENT_COMPANY/repos/clients"
 alias team="cd ~/documents/$CURRENT_COMPANY/repos/amu-development-team && $IDE_PATH ."
 alias teamtools="cd ~/documents/$CURRENT_COMPANY/repos/amu-development-team/team-tools-and-settings && $IDE_PATH ."
 alias teamonboarding="cd ~/documents/$CURRENT_COMPANY/repos/amu-development-team/amu-onboarding/ && $IDE_PATH ."
+alias teamuitemplate="cd ~/documents/$CURRENT_COMPANY/repos/amu-development-team/k8sapp_ui_template/ && $IDE_PATH ."
 alias teamstandards="cd ~/documents/$CURRENT_COMPANY/repos/amu-development-team/amu-code_standards/ && $IDE_PATH ."
 
 # Company Prototyping and Research
@@ -117,6 +118,8 @@ alias doonesbury="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/doo
 alias rsdoonesbury="RAILS_ENV=development rails s -p 3002"
 alias gocomics="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/gocomics5/ && $IDE_PATH ."
 alias rsgocomics="RAILS_ENV=development rails s -p 3001"
+alias uigocomics="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/gocomics_ui/ && $IDE_PATH ."
+alias rsuigocomics="yarn install && yarn dev"
 alias oldpuzzlesociety="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/puzzlesociety/ && $IDE_PATH ."
 alias rsoldpuzzlesociety="RAILS_ENV=development rails s -p 3004"
 alias uipuzzlesociety="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/puzzle-society_ui/ && $IDE_PATH ."
