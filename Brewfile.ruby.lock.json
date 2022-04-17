@@ -5,13 +5,13 @@
         "revision": "2c9486cbd821179f148d0702b89d827cb12e377e"
       },
       "homebrew/cask": {
-        "revision": "7928ab0cdb4dabedf89f859ddada9883674fbc72"
+        "revision": "08b790af02b477bd540b56fbf84394306af428b4"
       },
       "homebrew/cask-fonts": {
         "revision": "3c539792cc8bf44bef44d80690b4174bade9f890"
       },
       "homebrew/core": {
-        "revision": "31925014726b2e9576626bc40aab33f4a752e850"
+        "revision": "9d3a94461cd8e5cbc0f2a0da4d292bb768e3aeee"
       },
       "homebrew/services": {
         "revision": "b27900ebb8f0c07133b82130053e2b2910bad8bc"
@@ -606,6 +606,20 @@
             }
           }
         }
+      },
+      "rbenv-default-gems": {
+        "version": "1.0.0_1",
+        "bottle": {
+          "rebuild": 1,
+          "root_url": "https://ghcr.io/v2/homebrew/core",
+          "files": {
+            "all": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/rbenv-default-gems/blobs/sha256:1e1fdba37bf88db84ae56cd101d333b958c3adfab8b0e4515838cf5c3ad6b753",
+              "sha256": "1e1fdba37bf88db84ae56cd101d333b958c3adfab8b0e4515838cf5c3ad6b753"
+            }
+          }
+        }
       }
     }
   },
@@ -622,7 +636,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.4.6-83-g589c136",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "31925014726b2e9576626bc40aab33f4a752e850",
+        "Homebrew/homebrew-core": "9d3a94461cd8e5cbc0f2a0da4d292bb768e3aeee",
         "CLT": "12.5.0.22.11",
         "Xcode": "13.3.1",
         "macOS": "12.3.1"

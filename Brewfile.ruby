@@ -15,6 +15,7 @@ brew "mysql", restart_service: true # REQUIRED - ROR/DEVOPS/PYTHON/PG Database D
 brew "mysql-client" # REQUIRED - ROR/DEVOPS/PYTHON/PG Database Dependency for MySQL
 brew "pidof" # RECOMMENDED - ROR CL Dependency for displaying PID for a running process
 brew "rbenv" # REQUIRED - ROR Ruby Version Manager that replaces RVM
+brew "rbenv-default-gems" # RECOMMENDED - ROR Ruby Version Manager default gems for all projects.
 brew "ruby-build" # REQUIRED - ROR Dependency for rbenv
 brew "solargraph" # RECOMMENDED - ROR debugging and language server for Ruby on Rails
 brew "sphinx" # RECOMMENDED - ROR Application Dependency for search functionality in Ruby on Rails (Legacy)
