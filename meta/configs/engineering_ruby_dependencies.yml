@@ -3,6 +3,4 @@
 
 - shell:
     - echo "Installing the bundler gem and then the global RoR gems..."
-    - gem install bundler -g
-    - pwd
-    - bundle install --system
+    - rbenv install -l

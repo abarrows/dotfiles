@@ -14,7 +14,8 @@ echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >>~/.zshrc
 # Step 3: Reload shell so RBENV is initialized
 exec zsh
 
-# Step 4b: For Intel-based Macs
+# Step 4b: Install the latest version of Ruby
+# Step 5a: Finish it all up.
 # OPTIONAL: If path issues arise, try this:
 # echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >>~/.zshrc
 source ~/.zshrc

@@ -7,3 +7,4 @@
 - link:
     ~/.ruby-version: engineering/ruby/.ruby-version
     ~/.ruby-gemset: engineering/ruby/.ruby-gemset
+    ~/.rbenv/default-gems: engineering/ruby/default-gems
