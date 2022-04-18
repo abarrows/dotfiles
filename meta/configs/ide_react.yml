@@ -2,7 +2,7 @@
 # extensions.
 
 - shell:
-    - echo "9. Installing VS Code and extensions - Provisioning settings, keybindings, snippets, etc."
+    - echo "9. Installing VS Code and React extensions - Provisioning settings, keybindings, snippets, etc."
 
 - link:
     '~/Library/Application Support/code/User/settings.json':
@@ -12,12 +12,13 @@
       path: engineering/ide/.vscode/keybindings.json
       force: true
     '~/Library/Application Support/code/User/launch.json':
-      path: engineering/ide/.vscode/launch.json
+      path: engineering/ide/.vscode/launch_base.json
       force: true
 # TODO: Need to apply an if statement in the event that the extension count is
 # less than 5 extensions.
+# TODO: Take out the vscode extension.
 - shell:
     - description: 'Installing VSCode Extensions...'
-      command: './onboarding_bin/vscode-install-extensions-from-team.sh'
+      command: './onboarding_bin/vscode-install-extensions-react.sh'
       stdout: true
       stderr: true

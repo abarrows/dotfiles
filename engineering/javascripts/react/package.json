@@ -98,7 +98,7 @@
   },
   "homepage": "https://github.com/abarrows/dotfiles-and-tooling/README.md",
   "license": "UNLICENSED",
-  "name": "dotfiles-and-tooling",
+  "name": "${process.env.APPLICATION_NAME}",
   "private": false,
   "repository": {
     "type": "git",
@@ -122,5 +122,5 @@
     "test": "jest --verbose",
     "test:ci": "jest --ci"
   },
-  "version": "0.4.0"
+  "version": "${process.env.APP_VERSION}"
 }

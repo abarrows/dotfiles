@@ -7,6 +7,11 @@
       "label": "RoR: Fix Platform Support for Gemfile.lock",
       "type": "shell",
       "command": "bundle lock --add-platform x86_64-linux"
+    },
+    {
+      "label": "RoR: Default Linting and Tooling",
+      "type": "shell",
+      "command": "gem install htmlbeautifier && gem install solargraph && cd ../${workspaceFolderBasename} && bundle install && solargraph download_core && solargraph restartServer && yarn install"
     }
   ]
 }

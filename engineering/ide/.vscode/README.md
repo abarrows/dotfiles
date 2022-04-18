@@ -26,7 +26,7 @@ descriptions of the information:
 
 ### Rails
 
-1. Within [/ide/.vscode/launch_ruby.json](/ide/.vscode/launch_ruby.json), look for the
+1. Within [/ide/.vscode/launch.json](/ide/.vscode/launch.json), look for the
    launch task called: **Rails:Start - Development**. In vscode navigate to
    your debugger icon on the far left (It has a little bug on it) and activate
    the pane. Click the cogwheel at the top to configure your launch.json tasks.
@@ -37,12 +37,14 @@ descriptions of the information:
 ## Extensions
 
 Our team builds, maintains, and tests software using [VS
-Code](https://code.visualstudio.com/download) The following items are b brought
+Code](https://code.visualstudio.com/download) The following items are brought
 over during our dotfiles onboarding script:
 
 1. Snippets - Helpful _gist-like_ executable scripts for the tech stacks we use.
 2. Extensions - By using one of the dotbot plugins called _dotbot-vscode_, it
-   automatically will install the ide, install our default extensions. During
+   automatically will install the ide, install our default extensions. You will
+   be prompted several times to allow access back to JIRA, github, and a couple
+   other cross platform integrations. During
    this process, the script first Below are a number of helpful VS
    Code extensions, if he decides to try it:
 

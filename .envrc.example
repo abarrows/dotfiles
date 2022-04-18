@@ -22,7 +22,8 @@ most common like jdoe
 CURRENT_COMPANY=# This is the folder name of all of your company's repos. This
 is used in generating the folder structure for your projects. IE: "AMU"
 IDE_PATH=# The application folder name for vscode. Example Values: "code" or "code-insiders"
-IDE_BUILD=# The name of vscode that calls the CLI. Example Values: "code" or "code-insiders"
+IDE_BUILD=# This relates to the specific profile in this repo.  Populate it with
+the tech stack you intend to install.  IE - base (default), react, ruby, or devops
 JIRA_BASE_URL=# This is the url to your team's base jira cloud instance
 JIRA_USER_EMAIL=# This is your jira login email
 APPLICATION_NAME=dotfiles-and-tooling

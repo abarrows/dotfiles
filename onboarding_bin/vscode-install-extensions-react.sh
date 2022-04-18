@@ -9,9 +9,9 @@
 # echo "1. VSCode - Retrieving all extensions..."
 # code --list-extensions >../engineering/ide/.vscode/extensions.txt
 
-echo "1. VSCode - Retrieving all Ruby extensions from team dotfiles in version control..."
+echo "2. VSCode - Parsing all React extensions..."
 while read -r my_extension; do
   code --install-extension "$my_extension"
-done <engineering/ide/.vscode/extensions_ruby.txt
+done <engineering/ide/.vscode/extensions_react.txt
 
-echo "\n\n\n3. VSCode - Ruby extensions are all done!"
+echo "\n\n\n3. VSCode - React extensions are all done!"

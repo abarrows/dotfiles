@@ -5,6 +5,7 @@
     - echo "Setting up Ruby on Rails - RBENV as the version manager..."
 
 - link:
+    ~/.rvmrc: engineering/ruby/.rvmrc
     ~/.ruby-version: engineering/ruby/.ruby-version
     ~/.ruby-gemset: engineering/ruby/.ruby-gemset
     ~/.rbenv/default-gems: engineering/ruby/default-gems

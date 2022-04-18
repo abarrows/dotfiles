@@ -741,6 +741,7 @@
     "team-tools-and-settings=DT",
     "mobile-friendly-comic-viewer=SANDBOX"
   ],
+  "jira-plugin.username": "abarrows@amuniversal.com",
   "jira-plugin.trackingTimeModeHybridTimeout": 15,
   "jira-plugin.workingIssueAssignees": "CURRENT_USER",
   "jira-plugin.workingIssueChangeStatusAfterSelection": true,
@@ -898,6 +899,7 @@
     "markdown": false,
     "javascriptreact": true
   },
+  "liveshare.presence": true,
   "yaml.schemas": {
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.11/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
@@ -909,5 +911,6 @@
   "githubPullRequests.createOnPublishBranch": "never",
   "window.zoomLevel": 1,
   "l13Diff.openInNewDiffPanel": true,
-  "l13Diff.openToSide": true
+  "l13Diff.openToSide": true,
+  "l13Diff.confirmCopy": false
 }

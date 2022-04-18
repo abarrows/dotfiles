@@ -7,3 +7,6 @@ if [ ! -x /usr/local/bin/brew ]; then
 else
   echo "Homebrew IS already installed."
 fi
+
+# Set permissions back to the user.
+sudo chown -R $(whoami) $(brew --prefix)/*
