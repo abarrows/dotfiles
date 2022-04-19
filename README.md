@@ -16,11 +16,28 @@ repo is:
     - [Mac Preferences and Setup](#mac-preferences-and-setup)
     - [Homebrew_base - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
     - [Software Engineering - General](#software-engineering---general)
-      - [Git - Team configured version control](#git---team-configured-version-control)
       - [Shell - Extended and fine-tuned command line tools](#shell---extended-and-fine-tuned-command-line-tools)
       - [NVM - Node Package Manager](#nvm---node-package-manager)
       - [XCode Command Line Tools - Required for many of the programming languages](#xcode-command-line-tools---required-for-many-of-the-programming-languages)
       - [VSCode - Team recommended text editor with settings and tooling](#vscode---team-recommended-text-editor-with-settings-and-tooling)
+    - [Software Engineering - Specialized Stacks](#software-engineering---specialized-stacks)
+      - [Node](#node)
+      - [React](#react)
+      - [Ruby on Rails](#ruby-on-rails)
+      - [Wordpress](#wordpress)
+  - [What IS NOT included?](#what-is-not-included)
+  - [Pre-Installation Instructions](#pre-installation-instructions)
+  - [Detailed List of Toolsets](#detailed-list-of-toolsets)
+  - [Ruby on Rails](#ruby-on-rails-1)
+  - [Linting and Code Analysis](#linting-and-code-analysis)
+  - [TODOS](#todos)
+  - [How are Linters and Formatters Applied?](#how-are-linters-and-formatters-applied)
+  - [WORKFLOW INFORMATION](#workflow-information)
+    \*\*\*\*- [Git - Team configured version control](#git---team-configured-version-control)
+    - [Shell - Extended and fine-tuned command line tools](#shell---extended-and-fine-tuned-command-line-tools)
+    - [NVM - Node Package Manager](#nvm---node-package-manager)
+    - [XCode Command Line Tools - Required for many of the programming languages](#xcode-command-line-tools---required-for-many-of-the-programming-languages)
+    - [VSCode - Team recommended text editor with settings and tooling](#vscode---team-recommended-text-editor-with-settings-and-tooling)
     - [Software Engineering - Specialized Stacks](#software-engineering---specialized-stacks)
       - [Node](#node)
       - [React](#react)
@@ -62,7 +79,34 @@ Using the dotbot plugin dotbot-brew, a homebrew bundle file called Brewfile.base
 
 ### Software Engineering - General
 
-#### Git - Team configured version control
+1. Initialize - Sets up uniform folder structure for repos and tooling.
+2. macosx - Sensible defaults settings for a new Mac OSX machine.
+3. Homebrew - Installation of homebrew, the common packages we use for software
+   engineering, and mac applications that we use within the front-end team.
+4. Security - Copies your .envrc file with your sensitive information like git
+   tokens. This also provisions your read/write permissions that are required
+   for the onboarding process.
+5. Command Line and Shell Configuration - Sets up common team defaults within
+   iTerm (our preferred command line tool). Also adds oh-my-zsh, a few recommended
+   plugins, the starship theme, and a variety of aliases that are dynamically
+   created based on your .envrc file.
+6. Version Control - Also fueled by your .envrc values, this sets up some
+   .github defaults like a .gitignore template, some sensible default settings
+   to how the team operates, and a copy of team related git files to be familiar
+   with like CODEOWNERS, pull_request_template.yml, pre-commit hook for use with
+   JIRA, etc.
+7. NVM - Node version manager with our default version.
+8. IDE - Sets up VS Code and copies over some base settings of:
+   1. Extensions recommended to use on any UI project
+   2. Keybindings that are highly recommended. Each binding has some helpful
+      information explaining it's use-case and how often it is used.
+   3. Launch Actions and Tasks - Scaffolded tasks to start things like the
+      debugger, server, or running other jobs related to an application.
+9. Cleanup - This outputs a final message and re-sources your .zshrc file.
+   NOTE: If errors occur, it may just be related to steps that you may have
+   already taken before the onboarding script was executed. If these main steps
+   did not at least start and end then please raise an issue with your
+   onboarding guide.
 
 #### Shell - Extended and fine-tuned command line tools
 
@@ -86,20 +130,23 @@ Using the dotbot plugin dotbot-brew, a homebrew bundle file called Brewfile.base
 
 ## What IS NOT included?
 
-- All private professional applications checked out in version control
-- All private professional applications running locally
-- An easy button for your machine's environment. If this repo is cloned, it is
-  highly advised to review and tailor the contents to . The point of this utility is to get an engineer "80% there." The other 20% at their descretion. It is highly recommended to
-  challenge and propose better approaches for any of these given toolsets. If
-  there is a better toolsets, configurations, libraries, etc. let's talk about
-  it as a group, weigh the pros and cons, and possibly try i## Installation Instructions
+- All the company flagship repos checked out in version control
+- Any company applications running locally
+
+## Pre-Installation Instructions
 
 Accept invitation from github to join our organization, using your personal
-account is fine.
+account is fine. Just please be sure to navigate into your [email
+settings](https://github.com/settings/emails) and add your corporate email
+address. IE: _flastname@amuniversal.com_
 
-Setup Git and save in 1password
-`https://github.com/settings/keys`
+Once you are apart of the organization and have your corporate email account
+linked, head over to setup your [Personal Access
+Tokens](https://github.com/settings/tokens). Set one up specifically for AMU.
+IE: _AMU_ONBOARDING_PAT_. Copy this token and safely store it into a password
+manager like [1Password](https://1password.com/).
 
+**NEEDS 2022 UPDATES FROM HERE DOWN**
 Download and install Homebrew (alternative article explaining it)
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
@@ -166,8 +213,6 @@ After the script runs, what exactly did it do and why does it matter?
 9. VS Code - Project/Technology Specific
    - workspace environment - Workspace Environment for the specific tech stack.
    - IE: RoR, Next.js, etc. This will contain any overrides/modifications to:
-
-## Ruby on Rails
 
 ## Linting and Code Analysis
 
@@ -241,6 +286,20 @@ The following tools can be used for improving the confidence of this apps logic 
   - Rubocop-rspec
   - Traceroute
 
+## How are Linters and Formatters Applied?
+
+During active development there are three major steps that occur upon saving a
+file. In the following order, our code (in any language) will do the following
+in this order:
+
+1. Automatically Linted and auto-fixed if possible (Es-lint/Stylelint/YAML Lint/Etc.)
+2. The file's code is then formatted (Prettier, htmltidy, htmlhint)
+3. MANUAL: Check the "Problems" tab in the terminal info panel and fix any remaining
+   linting errors or any extra formatting IE: (Command Palette -> Sort JSON)
+
+_Note: If formatting is not desired, you can skip this by using the keyboard
+shortcut Ctrl + Cmd + S. This will "Save File without Formatting"_
+
 ## WORKFLOW INFORMATION
 
 During active development there are three major steps to standardizing efforts.
@@ -269,7 +328,3 @@ Some general caveats here are listed below:
   1. Eslint
   2. Prettier (Checkmark icon showing means it's good)
   3. Formatting (Checkmark icon showing means it's good)
-
-## DOTFILES TECHNOLOGY INDEX
-
-1.
