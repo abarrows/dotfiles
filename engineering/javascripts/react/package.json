@@ -92,13 +92,13 @@
     "start-server-and-test": "1.11.6",
     "stylelint": "^13.6.1",
     "stylelint-config-prettier": "^8.0.2",
-    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-config-recommended-scss": "^6.0.0",
     "stylelint-no-unsupported-browser-features": "^4.0.0",
     "stylelint-scss": "^3.18.0"
   },
   "homepage": "https://github.com/abarrows/dotfiles-and-tooling/README.md",
   "license": "UNLICENSED",
-  "name": "${process.env.APPLICATION_NAME}",
+  "name": "dotfiles-and-tooling",
   "private": false,
   "repository": {
     "type": "git",
@@ -122,5 +122,5 @@
     "test": "jest --verbose",
     "test:ci": "jest --ci"
   },
-  "version": "${process.env.APP_VERSION}"
+  "version": "${process.env.APPLICATION_VERSION}"
 }

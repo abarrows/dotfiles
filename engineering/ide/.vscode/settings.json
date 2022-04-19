@@ -901,7 +901,7 @@
   },
   "liveshare.presence": true,
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.11/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "vs-kubernetes": {
     "vscode-kubernetes.helm-path.mac": "/Users/abarrows/.vs-kubernetes/tools/helm/darwin-amd64/helm",

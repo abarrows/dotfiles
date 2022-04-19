@@ -3,5 +3,5 @@
     - echo "Setting up Software Engineering - global linting rules (scripting/javascript/react)..."
 
 - link:
-    ~/.eslintrc.json: engineering/javascripts/react/.eslintrc.json
+    ~/.eslintrc.js: engineering/javascripts/react/.eslintrc.js
     ~/.eslintignore: engineering/javascripts/react/.eslintignore

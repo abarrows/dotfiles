@@ -18,9 +18,9 @@ const {
   SENTRY_DSN,
   SENTRY_ORG,
   SENTRY_PROJECT,
-  APP_VERSION,
+  APPLICATION_VERSION,
   NODE_ENV,
-  SENTRY_AUTH_TOKEN
+  SENTRY_AUTH_TOKEN,
 } = process.env;
 
 module.exports = withSourceMaps({
@@ -56,7 +56,7 @@ module.exports = withSourceMaps({
       SENTRY_ORG &&
       SENTRY_PROJECT &&
       SENTRY_AUTH_TOKEN &&
-      APP_VERSION &&
+      APPLICATION_VERSION &&
       NODE_ENV === 'production'
     ) {
       config.plugins.push(
@@ -65,7 +65,7 @@ module.exports = withSourceMaps({
           ignore: ['node_modules'],
           urlPrefix: '~/_next',
           stripPrefix: ['webpack://_N_E/'],
-          release: `${APP_VERSION}`
+          release: `${APPLICATION_VERSION}`,
         })
       );
     }
@@ -89,10 +89,10 @@ module.exports = withSourceMaps({
       include: new RegExp(`\\${path.sep}prebid\\.js`),
       use: {
         loader: 'babel-loader',
-        options: require('prebid.js/.babelrc.js')
-      }
+        options: require('prebid.js/.babelrc.js'),
+      },
     });
 
     return config;
-  }
+  },
 });

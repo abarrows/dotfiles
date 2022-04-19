@@ -2,25 +2,43 @@
   "extends": ["stylelint-config-recommended-scss", "stylelint-config-prettier"],
   "plugins": ["stylelint-no-unsupported-browser-features"],
   "rules": {
-    "at-rule-disallowed-list": [
-      "extend",
+    "shorthand-property-no-redundant-values": true,
+    "value-no-vendor-prefix": true,
+    "property-no-vendor-prefix": true,
+    "selector-max-id": 0,
+    "selector-class-pattern": [
+      "^((?!js-).)*$",
       {
-        "message": "No @extend",
-        "severity": "error"
+        "resolveNestedSelectors": true,
+        "severity": "error",
+        "message": "Don't style js- prefixed classes, those are reserved for JavaScript use only"
       }
     ],
     "declaration-no-important": [
       true,
       {
-        "message": "Avoid usage of !important",
-        "severity": "warning"
+        "severity": "warning",
+        "message": "Avoid usage of !important"
+      }
+    ],
+    "at-rule-disallowed-list": [
+      "extend",
+      {
+        "severity": "error",
+        "message": "No @extend"
       }
     ],
     "plugin/no-unsupported-browser-features": [
       true,
       {
-        "ignore": ["flexbox", "viewport-units"],
-        "severity": "warning"
+        "severity": "warning",
+        "ignore": ["flexbox", "viewport-units"]
+      }
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["export"]
       }
     ],
     "property-no-unknown": [
@@ -28,24 +46,6 @@
       {
         "ignoreSelectors": [":export"]
       }
-    ],
-    "property-no-vendor-prefix": true,
-    "selector-class-pattern": [
-      "^((?!js-).)*$",
-      {
-        "message": "Don't style js- prefixed classes, those are reserved for JavaScript use only",
-        "resolveNestedSelectors": true,
-        "severity": "error"
-      }
-    ],
-    "selector-max-id": 0,
-    "selector-pseudo-class-no-unknown": [
-      true,
-      {
-        "ignorePseudoClasses": ["export"]
-      }
-    ],
-    "shorthand-property-no-redundant-values": true,
-    "value-no-vendor-prefix": true
+    ]
   }
 }

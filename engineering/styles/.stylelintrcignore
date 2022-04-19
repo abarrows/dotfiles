@@ -1,4 +1,4 @@
 # Add any directories or files to ignore here
-**/vendor
+
 /public/images
-_custom.scss
+\_custom.scss
