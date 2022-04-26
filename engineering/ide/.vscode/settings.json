@@ -892,10 +892,6 @@
   },
   "redhat.telemetry.enabled": false,
   "grammarly.debug": true,
-  "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
-    "projectKey": "AMCORP"
-  },
   "git.ignoreRebaseWarning": true,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -909,9 +905,6 @@
     "javascriptreact": true
   },
   "liveshare.presence": true,
-  "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
   "vs-kubernetes": {
     "vscode-kubernetes.helm-path.mac": "/Users/abarrows/.vs-kubernetes/tools/helm/darwin-amd64/helm",
     "vscode-kubernetes.kubectl-path.mac": "/Users/abarrows/.vs-kubernetes/tools/kubectl/kubectl",
@@ -924,5 +917,10 @@
   "l13Diff.confirmCopy": false,
   "github-actions.workflows.pinned.refresh.enabled": true,
   "github-actions.org-features": true,
-  "github-actions.workflows.pinned.workflows": []
+  "github-actions.workflows.pinned.workflows": [],
+  "atlascode.offlineMode": true,
+  "yaml.schemas": {
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
+  "diffEditor.ignoreTrimWhitespace": false
 }
