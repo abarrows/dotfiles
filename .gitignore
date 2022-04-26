@@ -205,6 +205,7 @@ atlassian-ide-plugin.xml
 # !.vscode/tasks.json
 # !.vscode/launch.json
 # !.vscode/extensions.json
+/.vscode/settings.json
 *devcontainer.env
 
 ###################
