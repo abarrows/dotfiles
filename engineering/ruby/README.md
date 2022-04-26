@@ -17,7 +17,6 @@ repo is:
     - [Homebrew - Package Manager for Macs](#homebrew---package-manager-for-macs)
       - [RBENV - Ruby Version Manager](#rbenv---ruby-version-manager)
   - [Linting and Code Analysis](#linting-and-code-analysis)
-    - [Caveats](#caveats)
   - [TODOS](#todos)
 
 ## What IS included?
@@ -91,8 +90,6 @@ The following tools can be used for improving the confidence of this apps logic 
         `Restart Solargraph`
    - 3. Open a .rb file and you should begin seeing rubocop and many of the other linters listed
         above) errors within the VS Code _problems_ pane.
-
-### Caveats
 
 ## TODOS
 
