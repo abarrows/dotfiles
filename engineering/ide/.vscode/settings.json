@@ -500,6 +500,7 @@
     "rubocop",
     "rvm",
     "rvmrc",
+    "rbenv",
     "s",
     "scottadamssays",
     "sharethrough",
@@ -656,6 +657,7 @@
   "git.inputValidationLength": 200,
   "git.inputValidationSubjectLength": null,
   "git.showPushSuccessNotification": true,
+  "github-actions.org-features": true,
   "editor.bracketPairColorization.enabled": true,
   "github.customPullRequestTitle": true,
   "github.preferedMergeMethod": "merge",
@@ -921,6 +923,5 @@
   "atlascode.offlineMode": true,
   "yaml.schemas": {
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
-  "diffEditor.ignoreTrimWhitespace": false
+  }
 }
