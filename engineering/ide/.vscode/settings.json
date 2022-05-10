@@ -493,6 +493,7 @@
     "rubocop",
     "rvm",
     "rvmrc",
+    "rbenv",
     "s",
     "scottadamssays",
     "sharethrough",
@@ -585,6 +586,7 @@
   "editor.minimap.enabled": false,
   "editor.guides.bracketPairs": "active",
   "editor.renderControlCharacters": false,
+  "editor.renderIndentGuides": true,
   "editor.scrollBeyondLastLine": true,
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "onlySnippets",
@@ -873,6 +875,10 @@
   },
   "redhat.telemetry.enabled": false,
   "grammarly.debug": true,
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+    "projectKey": "AMCORP"
+  },
   "git.ignoreRebaseWarning": true,
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

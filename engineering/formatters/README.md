@@ -13,8 +13,6 @@ increases legibility, reduces editing time (auto formatting to the rescue!),
 makes manually addressing merge conflicts easier, and can even reveal code
 structure problems before testing.
 
-## How are Linters and Formatters Applied?
-
 During active development there are three major steps that occur upon saving a
 file. In the following order, our code (in any language) will do the following
 in this order:

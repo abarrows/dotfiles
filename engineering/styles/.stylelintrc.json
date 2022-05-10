@@ -2,43 +2,25 @@
   "extends": ["stylelint-config-recommended-scss", "stylelint-config-prettier"],
   "plugins": ["stylelint-no-unsupported-browser-features"],
   "rules": {
-    "shorthand-property-no-redundant-values": true,
-    "value-no-vendor-prefix": true,
-    "property-no-vendor-prefix": true,
-    "selector-max-id": 0,
-    "selector-class-pattern": [
-      "^((?!js-).)*$",
+    "at-rule-disallowed-list": [
+      "extend",
       {
-        "resolveNestedSelectors": true,
-        "severity": "error",
-        "message": "Don't style js- prefixed classes, those are reserved for JavaScript use only"
+        "message": "No @extend",
+        "severity": "error"
       }
     ],
     "declaration-no-important": [
       true,
       {
-        "severity": "warning",
-        "message": "Avoid usage of !important"
-      }
-    ],
-    "at-rule-disallowed-list": [
-      "extend",
-      {
-        "severity": "error",
-        "message": "No @extend"
+        "message": "Avoid usage of !important",
+        "severity": "warning"
       }
     ],
     "plugin/no-unsupported-browser-features": [
       true,
       {
-        "severity": "warning",
-        "ignore": ["flexbox", "viewport-units"]
-      }
-    ],
-    "selector-pseudo-class-no-unknown": [
-      true,
-      {
-        "ignorePseudoClasses": ["export"]
+        "ignore": ["flexbox", "viewport-units"],
+        "severity": "warning"
       }
     ],
     "property-no-unknown": [
@@ -46,6 +28,24 @@
       {
         "ignoreSelectors": [":export"]
       }
-    ]
+    ],
+    "property-no-vendor-prefix": true,
+    "selector-class-pattern": [
+      "^((?!js-).)*$",
+      {
+        "message": "Don't style js- prefixed classes, those are reserved for JavaScript use only",
+        "resolveNestedSelectors": true,
+        "severity": "error"
+      }
+    ],
+    "selector-max-id": 0,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["export"]
+      }
+    ],
+    "shorthand-property-no-redundant-values": true,
+    "value-no-vendor-prefix": true
   }
 }
