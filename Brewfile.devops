@@ -23,5 +23,5 @@ brew "mysql-client" # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Database Dependency f
 # cask "adoptopenjdk" # OPTIONAL - PG
 # cask 'paragon-ntfs' # OPTIONAL -  utility for managing NTFS windows based drives
 # brew "pgloader" # OPTIONAL - PG Database Utility for converting MySQL databases to Postgres M1-INCOMPATIBLE
-brew "powershell" # OPTIONAL - DEVOPS/PYTHON/NODE/ROR/PG Powershell for managing Windows
+# cask "powershell" # OPTIONAL - DEVOPS/PYTHON/NODE/ROR/PG Powershell for managing Windows
 # cask 'vagrant-manager' # RECOMMENDED - Department approved virtual machine GUI/tool
