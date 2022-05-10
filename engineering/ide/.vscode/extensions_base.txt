@@ -1,3 +1,4 @@
+adobe.xd
 alexdima.copy-relative-path
 anweber.vscode-tidyhtml
 atlassian.atlascode
@@ -13,7 +14,6 @@ eamodio.gitlens
 EditorConfig.EditorConfig
 esbenp.prettier-vscode
 foxundermoon.shell-format
-gazugafan.vscode-indent-on-paste
 gioboa.jira-plugin
 GitHub.codespaces
 GitHub.vscode-pull-request-github

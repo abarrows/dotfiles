@@ -129,7 +129,7 @@
       "id": "486d46cd-29a5-47e7-b5cb-7bdf9625be72",
       "monitor": true,
       "name": "My amuniversal Issues",
-      "query": "assignee = currentUser() and status != resolved ORDER BY rank ASC, priority DESC",
+      "query": "assignee = currentUser() and status != resolved ORDER by rank DESC, priority ASC, updatedDate DESC, priority DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -145,7 +145,7 @@
       "id": "110bea68-bd07-43aa-b1bc-2512556cd473",
       "monitor": true,
       "name": "TPS - My Issues",
-      "query": "project =\"PUZSOC\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "query": "project =\"PUZSOC\" AND status != resolved and assignee = currentUser() ORDER by rank DESC, priority ASC, updatedDate DESC, priority DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -153,7 +153,7 @@
       "id": "02142ed5-c4d7-41af-a082-7e16cb33dada",
       "monitor": true,
       "name": "Games/Embed - Issues",
-      "query": "project =\"AMU Games\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "query": "project =\"AMU Games\" AND status != resolved and assignee = currentUser() ORDER by rank DESC, priority ASC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -161,7 +161,7 @@
       "id": "5de0ffa1-bb1c-4a76-9371-a870197089a9",
       "monitor": true,
       "name": "Embed Service",
-      "query": "project =\"Embed Service\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "query": "project =\"Embed Service\" AND status != resolved and assignee = currentUser() ORDER by rank DESC, priority ASC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -169,15 +169,7 @@
       "id": "a41f9986-a92a-4936-93f3-e653e95f2ae7",
       "monitor": true,
       "name": "Doonesbury - My Issues",
-      "query": "project = \"DOONES\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
-    },
-    {
-      "enabled": true,
-      "id": "486d46cd-29a5-47e7-b5cb-7bdf9625be72",
-      "monitor": true,
-      "name": "My amuniversal Issues",
-      "query": "assignee = currentUser() and status != resolved ORDER BY rank ASC, priority DESC",
+      "query": "project = \"DOONES\" AND status != resolved and assignee = currentUser() ORDER by rank DESC, priority ASC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -185,7 +177,7 @@
       "id": "6fbe3fdb-a368-413f-a5ca-5a1692a2892e",
       "monitor": true,
       "name": "GoComics - My Issues",
-      "query": "project in (\"GoComics [2017]\", \"GoComics [2021]\") AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "query": "project in (\"GoComics [2017]\", \"GoComics 6.0\") AND status != resolved and assignee = currentUser() ORDER by rank DESC, priority ASC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -201,7 +193,7 @@
       "id": "dbf335f1-eb46-42b5-b25e-2f357b6ab7a1",
       "monitor": true,
       "name": "Dilbert - My Issues",
-      "query": "project = Dilbert AND status != resolved ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "query": "project = Dilbert AND status != resolved ORDER by rank DESC, priority ASC, updatedDate DESC, priority DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -209,7 +201,7 @@
       "id": "c7cd7030-fd5e-42e1-b4bd-857e58e22fe2",
       "monitor": true,
       "name": "TFS",
-      "query": "project = Farside AND status != resolved AND assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "query": "project = Farside AND status != resolved AND assignee = currentUser() ORDER by rank DESC, priority ASC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -404,6 +396,7 @@
     "gsub",
     "gsutil",
     "haspopup",
+    "hexcode",
     "hfmysql",
     "hfstagedb",
     "hmarr",
@@ -500,7 +493,6 @@
     "rubocop",
     "rvm",
     "rvmrc",
-    "rbenv",
     "s",
     "scottadamssays",
     "sharethrough",
@@ -593,7 +585,6 @@
   "editor.minimap.enabled": false,
   "editor.guides.bracketPairs": "active",
   "editor.renderControlCharacters": false,
-  "editor.renderIndentGuides": true,
   "editor.scrollBeyondLastLine": true,
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "onlySnippets",
@@ -720,7 +711,7 @@
   "jira-plugin.numberOfIssuesInList": 100,
   "jira-plugin.projectKeyMapping": [
     "puzzlesociety=PUZSOC",
-    "gocomics=GOC",
+    "gocomics 5.0=GOC",
     "dilbert=DILBERT",
     "doonesbury=DOONES",
     "dailycartoonist=WP",
@@ -751,7 +742,8 @@
     "uclick-contentsherpa-gem=SHERPA",
     "uclick-admin-assets-gem=CONADMIN",
     "team-tools-and-settings=DT",
-    "mobile-friendly-comic-viewer=SANDBOX"
+    "mobile-friendly-comic-viewer=SANDBOX",
+    "gocomics-6.0=GOCOMICS"
   ],
   "jira-plugin.username": "abarrows@amuniversal.com",
   "jira-plugin.trackingTimeModeHybridTimeout": 15,
@@ -826,26 +818,13 @@
   "stylelint.packageManager": "yarn",
   "stylelint.validate": [
     "css",
-    "html",
-    "javascript",
-    "javascriptreact",
     "less",
-    "markdown",
     "postcss",
     "sass",
     "scss",
     "source.css.styled",
     "source.markdown.math",
-    "styled-css",
-    "sugarss",
-    "svelte",
-    "typescript",
-    "typescriptreact",
-    "vue",
-    "vue-html",
-    "vue-postcss",
-    "xml",
-    "xsl"
+    "styled-css"
   ],
   "sync.autoDownload": true,
   "sync.autoUpload": true,
@@ -923,5 +902,15 @@
   "atlascode.offlineMode": true,
   "yaml.schemas": {
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  }
+  },
+  "xd.authorName": "Andrew Barrows",
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+    "projectKey": "AMCORP"
+  },
+  "jira-plugin.baseUrl": "https://atlassian.amuniversal.com",
+  "atlascode.jira.explorer.fetchAllQueryResults": true,
+  "editor.guides.indentation": true,
+  "git.pruneOnFetch": true,
+  "xd.globalEditor": true
 }
