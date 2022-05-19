@@ -1,7 +1,7 @@
 [user]
 name = Andrew Barrows
 email = abarrows@amuniversal.com
-signingkey = BDE760D6A0526B62
+signingkey = 5745BEA2FDDDAC45
 url = https://github.com/abarrows
 [core]
 editor = code
@@ -11,7 +11,7 @@ excludesfile = ~/.git-template-directory/.gitignore
 templateDir = ~/.git-template-directory
 defaultBranch = production
 [gpg]
-program = gpg2
+program = /usr/local/bin/gpg
 [filter "lfs"]
 clean = git-lfs clean -- %f
 smudge = git-lfs smudge -- %f
@@ -20,7 +20,7 @@ required = true
 [pull]
 rebase = false
 [commit]
-# gpgsign = true
+gpgsign = true
 # template = ~/.gitmessage
 [core]
 editor = code --wait
