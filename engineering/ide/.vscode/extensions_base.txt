@@ -1,5 +1,4 @@
 alexdima.copy-relative-path
-anweber.vscode-tidyhtml
 atlassian.atlascode
 bmalehorn.shell-syntax
 christian-kohler.path-intellisense
