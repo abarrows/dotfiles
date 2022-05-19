@@ -15,10 +15,9 @@
       path: engineering/ide/.vscode/tasks.json
       force: true
     '~/Library/Application Support/code/User/launch.json':
-      path: engineering/ide/.vscode/launch.json
+      path: engineering/ide/.vscode/launch_base.json
       force: true
 - shell:
     - description: 'Installing VSCode Extensions...'
       command: './onboarding_bin/vscode-install-extensions-from-team.sh'
-      stdout: true
       stderr: true
