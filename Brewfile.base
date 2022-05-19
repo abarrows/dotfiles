@@ -9,11 +9,13 @@ brew 'dotenv-linter' # REQUIRED - BASE/ROR/NODE/
 brew 'freetype' # REQUIRED - BASE/ROR/NODE CL
 brew 'git' # REQUIRED - ROR/NODE/DEVOPS/PYTHON Core version control
 brew 'icu4c' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Compiled Library Dependency for unicode and globalization
+brew 'gnupg' # REQUIRED - Needed for signing your commits with github.
 brew "nvm" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Version manager for node
 brew "openssl@1.1" # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Network Utility for SSL requests
 # brew "pandoc" # OPTIONAL - ROR/NODE/DEVOPS/PYTHON/PG Allows for markdown to easily be exported into other formats like word, pdfs, and html
 # brew "pipenv" # OPTIONAL - PYTHON Python dependency management tool
 # brew "pyenv" # OPTIONAL - PYTHON Python version management
+brew "pinentry-mac" # REQUIRED - The other dependency used for signed commits on mac.
 brew "postgresql" # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
 # brew "redis" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Primary Caching Dependency for Back-end Software Engineers
 brew "shellcheck" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Linter and auto-fixing
@@ -31,14 +33,15 @@ cask "appcleaner" # REQUIRED - utility application for removing Mac OSX programs
 cask "docker" # REQUIRED - Department approved containerized environment tools
 cask "dropbox" # OPTIONAL - Department approved cloud storage for UXD and Design
 cask "expressvpn" # REQUIRED - Department approved VPN for testing geo location
-cask "firefox" # REQUIRED - Front-end team approved browser for our viewing our applications
+# cask "firefox" # REQUIRED - Front-end team approved browser for our viewing our applications
 cask "font-fira-code" # RECOMMENDED -  command line icon fonts
 cask "font-fira-code-nerd-font" # RECOMMENDED - command line icon fonts for viewing icons in Starship, agnoster, P10k, or iterm.
 cask "gemini" # RECOMMENDED - Duplicate remover
-cask "google-chrome" # REQUIRED -  Department approved primary browser
-cask "google-backup-and-sync" # OPTIONAL - Recommended backup utility for use with google drive
+cask "gpg-suite" # REQUIRED - Allows for setting up signed commits with github.
+# cask "google-chrome" # REQUIRED -  Department approved primary browser
+# cask "google-backup-and-sync" # OPTIONAL - Recommended backup utility for use with google drive
 cask "iterm2" # REQUIRED - Front-end team approved command line tool for Mac OSX
-cask "microsoft-office" # REQUIRED - Department approved productivity suite
+# cask "microsoft-office" # REQUIRED - Department approved productivity suite
 cask "microsoft-teams" # REQUIRED - Department approved communication tool
 cask "mysqlworkbench" # REQUIRED - Front-end team approved database GUI/tool
 cask 'ngrok' # REQUIRED - Web development testing an emulation
