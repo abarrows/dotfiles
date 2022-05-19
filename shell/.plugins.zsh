@@ -115,7 +115,7 @@ plugins=(
   history-substring-search
   nvm
   zsh-nvm
-  osx
+  macos
   rake
   ruby
   rvm

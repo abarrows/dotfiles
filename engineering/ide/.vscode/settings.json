@@ -578,7 +578,6 @@
   "editor.minimap.enabled": false,
   "editor.guides.bracketPairs": "active",
   "editor.renderControlCharacters": false,
-  "editor.renderIndentGuides": true,
   "editor.scrollBeyondLastLine": true,
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "onlySnippets",
@@ -638,6 +637,7 @@
   "git-graph.openToTheRepoOfTheActiveTextEditorDocument": true,
   "git.autofetch": true,
   "git.confirmSync": false,
+  "git.enableCommitSigning": true,
   "git.enableSmartCommit": true,
   "git.inputValidationLength": 200,
   "git.inputValidationSubjectLength": null,
@@ -877,7 +877,7 @@
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "redhat.telemetry.enabled": false,
   "grammarly.debug": true,
@@ -898,5 +898,7 @@
     "markdown": false,
     "javascriptreact": true
   },
-  "liveshare.presence": true
+  "liveshare.presence": true,
+  "editor.guides.indentation": true,
+  "window.zoomLevel": 1
 }
