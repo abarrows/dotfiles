@@ -6,7 +6,6 @@ tap 'homebrew/core'
 tap 'homebrew/services'
 brew "coreutils" # REQUIRED - ROR/DEVOPS Required to build ruby containers and new ruby version binaries.
 brew "cmake" # RECOMMENDED - ROR/DEVOPS
-brew "gnupg" # REQUIRED - ROR/DEVOPS Required for RVM (Ruby Version Manager)
 brew 'imagemagick' # RECOMMENDED - ROR Image manipulation utility for web applications
 brew 'libyaml' # RECOMMENDED - ROR/DEVOPS Compiled Dependency for web applications with Ruby on Rails
 brew 'memcached' # RECOMMENDED - ROR Performance Caching library for Ruby on Rails
