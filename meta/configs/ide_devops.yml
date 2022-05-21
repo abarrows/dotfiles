@@ -1,0 +1,10 @@
+# ide - A base configuration. This installs vs code, sets up team settings, snippets, keybindings, and
+# extensions.
+
+- shell:
+    - echo "9. Installing VS Code and extensions - Provisioning settings, keybindings, snippets, etc."
+# TODO: Need to apply an if statement in the event that the extension count is
+# less than 5 extensions.
+- shell:
+    - description: 'Installing VSCode Extensions...'
+      command: './onboarding_bin/vscode-install-extensions-devops.sh'

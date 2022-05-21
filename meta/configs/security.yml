@@ -9,9 +9,6 @@
     ~/.envrc:
       force: true
       path: .envrc
-    ~/.onboarding_bin: onboarding_bin
-    /usr/local/bin/pathChecker.sh: onboarding_bin/pathChecker.sh
-
-- shell:
-    - chmod +x ~/.onboarding_bin/*.sh
-    - chmod -R +x .
+    ~/.onboarding_bin:
+      force: true
+      path: ./onboarding_bin
