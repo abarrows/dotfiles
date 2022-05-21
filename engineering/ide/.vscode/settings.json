@@ -19,10 +19,10 @@
     "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.formatOnSave": true
   },
-  "[erb]": {
-    "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
-    "editor.formatOnSave": true
-  },
+  // "[erb]": {
+  //   "editor.defaultFormatter": "aliariff.vscode-erb-beautify",
+  //   "editor.formatOnSave": true
+  // },
   "[html]": {
     "editor.codeActionsOnSave": {
       "source.fixAll": true,
@@ -44,6 +44,9 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
@@ -67,7 +70,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
-    "editor.defaultFormatter": "castwide.solargraph",
+    // "editor.defaultFormatter": "castwide.solargraph",
     "editor.formatOnSave": true
   },
   "[scss]": {
@@ -87,7 +90,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
-    "editor.defaultFormatter": "sensourceinc.vscode-sql-beautify",
+    // "editor.defaultFormatter": "sensourceinc.vscode-sql-beautify",
     "editor.formatOnSave": true
   },
   "[xml]": {
@@ -849,7 +852,7 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.enableBell": true,
-  "terminal.integrated.fontFamily": "Menlo",
+  "terminal.integrated.fontFamily": "Fira Mono for Powerline",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.rendererType": "dom",
   "terminal.integrated.rightClickBehavior": "default",
@@ -887,9 +890,6 @@
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
   "redhat.telemetry.enabled": false,
   "grammarly.debug": true,
   "atlascode.jira.lastCreateSiteAndProject": {
@@ -910,6 +910,17 @@
     "javascriptreact": true
   },
   "liveshare.presence": true,
+  "window.zoomLevel": 1,
+  "github.customPullRequestDescription": "gitEditor",
+  "jira-plugin.username": "abarrows@amuniversal.com",
+  "githubPullRequests.createOnPublishBranch": "never",
+  "yaml.schemas": {
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
+  "xd.authorName": "Andrew Barrows",
+  "jira-plugin.baseUrl": "https://atlassian.amuniversal.com",
+  "atlascode.jira.explorer.fetchAllQueryResults": true,
   "editor.guides.indentation": true,
-  "window.zoomLevel": 1
+  "git.pruneOnFetch": true,
+  "xd.globalEditor": true
 }

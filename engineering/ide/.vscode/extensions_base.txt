@@ -15,6 +15,7 @@ foxundermoon.shell-format
 gazugafan.vscode-indent-on-paste
 gioboa.jira-plugin
 GitHub.codespaces
+GitHub.copilot
 GitHub.vscode-pull-request-github
 jmfirth.vsc-space-block-jumper
 L13RARY.l13-diff
