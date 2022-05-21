@@ -1,19 +1,45 @@
-* @abarrows
+# General Front-end Engineering
+*                               @Andrews-McMeel-Universal/front-end-engineers
 
-# Front-end Engineering
-*.js *.css *.scss *.erb *.js @abarrows @dcumpton-amu @ctrble @NathanTrost
-# @pmccarthyAMU @acroth @wyokyla23
-# *.css @abarrows @dcumpton-amu @ctrble @NathanTrost
-# @pmccarthyAMU @acroth @wyokyla23
-# *.scss @abarrows @dcumpton-amu @ctrble @NathanTrost @wyokyla23
-# @pmccarthyAMU @acroth @wyokyla23
-# *.erb @abarrows @dcumpton-amu @ctrble @NathanTrost
-# @pmccarthyAMU @acroth @wyokyla23
+# Product Specific Front-end Engineering
+# TODO-ONBOARDING: Update below to target the product specific github team
+# that will be the ones to review.  IE: If this were for GoComics, you would
+# update the @front-end-engineers below to be @front-end-engineers-gocomics
+
+.storybook/**                   @Andrews-McMeel-Universal/front-end-engineers
+jest**                          @Andrews-McMeel-Universal/front-end-engineers
+public/**                       @Andrews-McMeel-Universal/front-end-engineers
+*.js                            @Andrews-McMeel-Universal/front-end-engineers
+*.css                           @Andrews-McMeel-Universal/front-end-engineers
+*.scss                          @Andrews-McMeel-Universal/front-end-engineers
+*.sass                          @Andrews-McMeel-Universal/front-end-engineers
+*.otf                           @Andrews-McMeel-Universal/front-end-engineers
+*.eot                           @Andrews-McMeel-Universal/front-end-engineers
+*.ttf                           @Andrews-McMeel-Universal/front-end-engineers
+*.woff*                         @Andrews-McMeel-Universal/front-end-engineers
+*.svg                           @Andrews-McMeel-Universal/front-end-engineers
+*.jpg                           @Andrews-McMeel-Universal/front-end-engineers
+*.jpeg                          @Andrews-McMeel-Universal/front-end-engineers
+*.gif                           @Andrews-McMeel-Universal/front-end-engineers
+*.png                           @Andrews-McMeel-Universal/front-end-engineers
+*.ico                           @Andrews-McMeel-Universal/front-end-engineers
+.browserslistrc*                @Andrews-McMeel-Universal/front-end-engineers
+src/**                          @Andrews-McMeel-Universal/front-end-engineers
+**.eslint**                     @Andrews-McMeel-Universal/front-end-engineers
+**.prettier**                   @Andrews-McMeel-Universal/front-end-engineers
+**.stylelint**                  @Andrews-McMeel-Universal/front-end-engineers
+**/src/assets/**                @Andrews-McMeel-Universal/front-end-engineers
+**/src/src/**                   @Andrews-McMeel-Universal/front-end-engineers
+**/src/amu/**                   @Andrews-McMeel-Universal/front-end-engineers
 
 # Back-end Engineering
-!/**/*.css @vkieffer-amu @amumark
-!/**/*.scss @vkieffer-amu @amumark
-!/**/*.js @vkieffer-amu @amumark
+data/**                         @Andrews-McMeel-Universal/front-end-engineers @Andrews-McMeel-Universal/back-end-engineers
 
 # DevOps
-/config/** @forrestkc @tburger010 @kubecode30
+.nvmrc*                         @Andrews-McMeel-Universal/front-end-engineers @Andrews-McMeel-Universal/devops-engineers
+.gitignore                      @Andrews-McMeel-Universal/front-end-engineers @Andrews-McMeel-Universal/devops-engineers
+.env**                          @Andrews-McMeel-Universal/front-end-engineers @Andrews-McMeel-Universal/devops-engineers
+.github/**                      @Andrews-McMeel-Universal/front-end-engineers @Andrews-McMeel-Universal/devops-engineers
+Dockerfile*                      @Andrews-McMeel-Universal/front-end-engineers @Andrews-McMeel-Universal/devops-engineers
+docker-compose*                 @Andrews-McMeel-Universal/front-end-engineers @Andrews-McMeel-Universal/devops-engineers
+deployments/**                  @Andrews-McMeel-Universal/front-end-engineers @Andrews-McMeel-Universal/devops-engineers

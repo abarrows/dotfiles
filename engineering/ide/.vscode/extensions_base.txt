@@ -16,7 +16,6 @@ gazugafan.vscode-indent-on-paste
 gioboa.jira-plugin
 GitHub.codespaces
 GitHub.vscode-pull-request-github
-hex-ci.stylelint-plus
 jmfirth.vsc-space-block-jumper
 L13RARY.l13-diff
 letrieu.expand-region
