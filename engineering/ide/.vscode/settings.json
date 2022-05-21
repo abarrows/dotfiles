@@ -47,11 +47,15 @@
     "editor.codeActionsOnSave": {
       "source.fixAll": true
     },
+    "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    }
   },
   "[less]": {
     "editor.codeActionsOnSave": {
