@@ -12,9 +12,9 @@ repo is:
 - [dotfiles-and-tooling](#dotfiles-and-tooling)
   - [Table of Contents](#table-of-contents)
   - [What IS included?](#what-is-included)
-    - [Machine Level Provisioning](#machine-level-provisioning)
-      - [Mac Preferences and Setup](#mac-preferences-and-setup)
-      - [Homebrew - Package Manager for Macs](#homebrew---package-manager-for-macs)
+    - [Initialize](#initialize)
+    - [Mac Preferences and Setup](#mac-preferences-and-setup)
+    - [Homebrew_base - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
     - [Software Engineering - General](#software-engineering---general)
       - [Git - Team configured version control](#git---team-configured-version-control)
       - [Shell - Extended and fine-tuned command line tools](#shell---extended-and-fine-tuned-command-line-tools)
@@ -37,24 +37,30 @@ repo is:
 
 ## What IS included?
 
-This dotfiles repo uses dotbot, a popular framework for organizing dotfiles.  Within the meta folder you will see two important directories:
+This dotfiles repo uses dotbot, a popular framework for organizing dotfiles. Within the meta folder you will see two important directories:
+
 1. **configurations/** - Each of these yml files executes a specific aspect of setting up a new or virtualized machine
-2. **profiles/** - Each profile is a simply file that includes certain configurations, offering flexibility out of the box to create your own unique profile of dotfiles.  Common use cases for this would be a personal and professional machine.
+2.
+3. **profiles/** - Each profile is a simply file that includes certain configurations, offering flexibility out of the box to create your own unique profile of dotfiles. Common use cases for this would be a personal and professional machine.
 
 #### Initialize
-Creation of foundational directories that will be used in later operation.  
-   - Github template directories
-   - Organized folders for different types of repositories
 
+Creation of foundational directories that will be used in later operation.
+
+- Github template directories
+- Organized folders for different types of repositories
 
 #### Mac Preferences and Setup
+
 Sensible defaults and settings like:
+
 - Showing hidden files in finder
 - Autohiding the dock
 - Showing the path in finder
 
 #### Homebrew_base - Package Manager for Macs
-Using the dotbot plugin dotbot-brew, a homebrew bundle file called Brewfile.base lists a collection of libraries and casks (applications) that will be used for most technical stacks on a new machine.  This is obviously something that should be highly personalized and is tailored for my React / Ruby on Rails environments.
+
+Using the dotbot plugin dotbot-brew, a homebrew bundle file called Brewfile.base lists a collection of libraries and casks (applications) that will be used for most technical stacks on a new machine. This is obviously something that should be highly personalized and is tailored for my React / Ruby on Rails environments.
 
 ### Software Engineering - General
 

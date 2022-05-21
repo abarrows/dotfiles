@@ -856,7 +856,7 @@
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.enableBell": true,
-  "terminal.integrated.fontFamily": "Fira Mono for Powerline",
+  "terminal.integrated.fontFamily": "Fira Code",
   "terminal.integrated.fontSize": 16,
   "terminal.integrated.rendererType": "dom",
   "terminal.integrated.rightClickBehavior": "default",
