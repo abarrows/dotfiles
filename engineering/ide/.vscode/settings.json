@@ -597,6 +597,12 @@
   "editor.largeFileOptimizations": false,
   "editor.minimap.enabled": false,
   "editor.guides.bracketPairs": "active",
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "off",
+    "strings": "off"
+  },
+  "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",<>?",
   "editor.renderControlCharacters": false,
   "editor.scrollBeyondLastLine": true,
   "editor.suggestSelection": "first",
@@ -612,6 +618,7 @@
   },
   "emmet.showAbbreviationSuggestions": true,
   "emmet.showSuggestionsAsSnippets": true,
+  "emmet.triggerExpansionOnTab": true,
   "eslint.alwaysShowStatus": true,
   "eslint.debug": true,
   "eslint.format.enable": true,
@@ -901,7 +908,6 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "diffEditor.ignoreTrimWhitespace": false,
   "editor.inlineSuggest.enabled": true,
   "github.copilot.enable": {
     "*": true,
@@ -923,5 +929,6 @@
   "atlascode.jira.explorer.fetchAllQueryResults": true,
   "editor.guides.indentation": true,
   "git.pruneOnFetch": true,
-  "xd.globalEditor": true
+  "xd.globalEditor": true,
+  "diffEditor.ignoreTrimWhitespace": false
 }
