@@ -32,7 +32,6 @@ Pivotal.vscode-manifest-yaml
 pranaygp.vscode-css-peek
 redhat.vscode-yaml
 richie5um2.vscode-sort-json
-ritwickdey.live-sass
 ritwickdey.LiveServer
 robole.markdown-snippets
 ryu1kn.partial-diff
