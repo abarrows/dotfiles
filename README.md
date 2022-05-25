@@ -12,9 +12,9 @@ repo is:
 - [dotfiles-and-tooling](#dotfiles-and-tooling)
   - [Table of Contents](#table-of-contents)
   - [What IS included?](#what-is-included)
-    - [Initialize](#initialize)
-    - [Mac Preferences and Setup](#mac-preferences-and-setup)
-    - [Homebrew_base - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
+      - [Initialize](#initialize)
+      - [Mac Preferences and Setup](#mac-preferences-and-setup)
+      - [Homebrew_base - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
     - [Software Engineering - General](#software-engineering---general)
       - [Git - Team configured version control](#git---team-configured-version-control)
       - [Shell - Extended and fine-tuned command line tools](#shell---extended-and-fine-tuned-command-line-tools)
@@ -30,7 +30,6 @@ repo is:
   - [Detailed List of Toolsets](#detailed-list-of-toolsets)
   - [Ruby on Rails](#ruby-on-rails-1)
   - [Linting and Code Analysis](#linting-and-code-analysis)
-    - [Caveats](#caveats)
   - [TODOS](#todos)
   - [WORKFLOW INFORMATION](#workflow-information)
   - [DOTFILES TECHNOLOGY INDEX](#dotfiles-technology-index)
@@ -219,13 +218,6 @@ The following tools can be used for improving the confidence of this apps logic 
    - 3. Open a .rb file and you should begin seeing rubocop and many of the other linters listed
         above) errors within the VS Code _problems_ pane.
 
-### Caveats
-
-1. I discovered some strange caching and pathing issues in RVM and determined it
-   was the bundler zsh plugin: <https://rvm.io/support/troubleshooting>. Updated
-   on 2020.07.29 2. I have added a debugger file in my gists that outline how to troubleshoot
-   uglifier gem woes.
-
 ## TODOS
 
 1. Check the following dotfiles for ingestion or discarding:
@@ -233,14 +225,13 @@ The following tools can be used for improving the confidence of this apps logic 
 - .phpls
 - .profile
 - .rnd
-- .rvmrc
 - .solargraph
 - .vagrant.d
 - .viminfo
 - .vs-liveshare-keychain
 - .vs-liveshare-settings.json
 
-2. Address the following to codespaces/dotfile init:
+1. Address the following to codespaces/dotfile init:
 
 - [cd ~/ && sh -c "$(curl -fsSL <https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh>)"]
 - Linking failed /usr/local/bin/pathChecker.sh ->
@@ -270,8 +261,7 @@ to do with having two entities in git or homebrew managing the GPG functionality
    - Rubocop-rspec
    - Traceroute
 5. Automate adding iterm profile, keymaps
-6. Automate RVM installation
-7. Drop zsh plugins from the initial ./install command.
+6. Drop zsh plugins from the initial ./install command.
 
 ## WORKFLOW INFORMATION
 

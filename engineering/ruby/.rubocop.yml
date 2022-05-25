@@ -8,6 +8,7 @@ AllCops:
     - 'bin/*'
     - 'node_modules/**/*'
     - 'vendor/bundle/**/*'
+    - '.rbenv/gems/*'
     - '.rvm/gems/*'
     - 'db/schema.rb'
     - 'spec/cassettes/*'

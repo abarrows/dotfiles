@@ -116,7 +116,7 @@ alias dilbert="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/dilber
 alias rsdilbert="RAILS_ENV=development rails s -p 3013 && ./bin/webpack-dev-server"
 alias doonesbury="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/doonesbury && $IDE_PATH ."
 alias rsdoonesbury="RAILS_ENV=development rails s -p 3002"
-alias gocomics="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/gocomics5/ && $IDE_PATH ."
+alias gocomics="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/gocomics/ && $IDE_PATH ."
 alias rsgocomics="RAILS_ENV=development rails s -p 3001"
 alias uigocomics="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/gocomics_ui/ && $IDE_PATH ."
 alias rsuigocomics="yarn install && yarn dev"

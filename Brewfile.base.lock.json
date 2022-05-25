@@ -5,13 +5,13 @@
         "revision": "9bb10e7c1032abc2e15bf72002a58232d8c072dc"
       },
       "homebrew/cask": {
-        "revision": "78dcb495ada560e772c5c3d8ab29a483dace4db2"
+        "revision": "87f8cee3c7fe49822104d5c0d8dae963887319fb"
       },
       "homebrew/cask-fonts": {
-        "revision": "5e352b0070c210ec898ee151380076478ec35fea"
+        "revision": "43e1a1a4f2702fe4283131a1a154b728d637ef55"
       },
       "homebrew/core": {
-        "revision": "81d8e4b53960b078f7b4b99a046e048795318427"
+        "revision": "cfec363d2441a03041127e1f5a1e48c49609bc7d"
       },
       "homebrew/services": {
         "revision": "7ca25997ef98c0c02f8d4694c535751fa0c8e835"
@@ -657,7 +657,7 @@
         }
       },
       "alfred": {
-        "version": "4.6.5,1299",
+        "version": "4.6.6,1303",
         "options": {
           "full_name": "alfred",
           "args": {
@@ -828,7 +828,7 @@
         }
       },
       "zoom": {
-        "version": "5.10.4.6592",
+        "version": "5.10.6.7526",
         "options": {
           "full_name": "zoom",
           "args": {
@@ -852,7 +852,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.4.11",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "81d8e4b53960b078f7b4b99a046e048795318427",
+        "Homebrew/homebrew-core": "cfec363d2441a03041127e1f5a1e48c49609bc7d",
         "CLT": "13.0.0.0.1.1627064638",
         "Xcode": "13.2.1",
         "macOS": "12.3"

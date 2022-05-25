@@ -32,8 +32,8 @@
         "USER": "abarrows",
         "RUBY_VERSION": "2.5.3"
       },
-      "pathToRDebugIDE": "/Users/${USER}/.rvm/gems/ruby-${RUBY_VERSION}@application/gems/ruby-debug-ide-0.6.1",
-      "pathToBundler": "/Users/${USER}/.rvm/gems/ruby-${RUBY_VERSION}@application/wrappers/bundle"
+      "pathToRDebugIDE": "/Users/${USER}/.rbenv/gems/ruby-${RUBY_VERSION}@application/gems/ruby-debug-ide-0.6.1",
+      "pathToBundler": "/Users/${USER}/.rbenv/gems/ruby-${RUBY_VERSION}@application/wrappers/bundle"
     },
     {
       "name": "Start Foreman",

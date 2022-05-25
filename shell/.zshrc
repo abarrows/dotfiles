@@ -34,8 +34,10 @@ source "$HOME/.aliases.zsh"
 #echo "EXPORT: PREPENDING Path: /usr/local/sbin (yarn)"
 #export PATH="$(yarn global bin):$PATH"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#echo "EXPORT: APPENDING Path: /usr/local/sbin (rvm)"
+# Add RBENV to PATH for scripting. Make sure this is the last PATH variable change.
+eval "$(rbenv init - zsh)"
+# For M1 Macs Only when installing Rbenv
+CFLAGS="-Wno-error=implicit-function-declaration" RUBY_CONFIGURE_OPTS='--with-readline-dir=/usr/local/opt/readline/' arch -x86_64 rbenv install 2.4.2
 
 # GENERAL SETTINGS
 # Uncomment the following line to use case-sensitive completion.
@@ -86,9 +88,6 @@ HIST_STAMPS="yyyy-mm-dd"
 # ZSH_CUSTOM=$ZSH/custom
 
 source $ZSH/oh-my-zsh.sh
-
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # NON-OH-MY-ZSH EXTENSIONS
 # iTerm2 Integration

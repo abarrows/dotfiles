@@ -15,7 +15,7 @@ repo is:
   - [Table of Contents](#table-of-contents)
   - [What IS included?](#what-is-included)
     - [Homebrew - Package Manager for Macs](#homebrew---package-manager-for-macs)
-      - [RVM - Ruby Version Manager](#rvm---ruby-version-manager)
+      - [RBENV - Ruby Version Manager](#rbenv---ruby-version-manager)
   - [Linting and Code Analysis](#linting-and-code-analysis)
     - [Caveats](#caveats)
   - [TODOS](#todos)
@@ -39,10 +39,10 @@ examples of those packages are:
 4. PID
 5. Sphinx
 
-#### RVM - Ruby Version Manager
+#### RBENV - Ruby Version Manager
 
-This standalone configuration sets up a default .rvm version to be used with the
-RVM package. To install this use the instructions found in [./onboarding_bin/install-rvm.sh](./onboarding_bin/install-rvm.sh)
+This standalone configuration sets up a default .ruby-version version to be used with the
+RBENV package. To install this use the instructions found in [./onboarding_bin/install-rbenv.sh](./onboarding_bin/install-rbenv.sh)
 
 ## Linting and Code Analysis
 

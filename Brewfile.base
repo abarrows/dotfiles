@@ -19,6 +19,8 @@ brew "pinentry-mac" # REQUIRED - The other dependency used for signed commits on
 brew "postgresql" # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
 # brew "redis" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Primary Caching Dependency for Back-end Software Engineers
 brew "shellcheck" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Linter and auto-fixing
+brew "shfmt" # OPTIONAL - BASE/ROR/NODE/DEVOPS/PYTHON Linter for shell scripts
+
 brew "starship" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended platform agnostic shell prompt.
 brew "thefuck" # RECOMMENDED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Command Line correction tool for mistyped commands
 brew "wget" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON General Request Utility for Command Line
