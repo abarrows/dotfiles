@@ -7,7 +7,6 @@
     - description: '6. Setting up Command Line Tools - Oh My ZSH, Plugins,
     Aliases, and Theme...'
       command: './onboarding_bin/install-oh-my-zsh.sh'
-      stdout: true
       stderr: true
 
 - link:
@@ -57,8 +56,8 @@
     # Tell iTerm2 to use the custom preferences in the directory
     - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
     # TODO: Please complete the two items below to finish the setup process.
-    - echo "[TODO] • iTerm2 profile - Open iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles
-    - Select the profile from ~/iterm-profile-front-end-engineering.json"
-    - echo "[TODO] • Click Other Actions... -> Set as Default"
-    - echo "[TODO] • iTerm2 keymap - Open iTerm2 -> Preferences -> Keys -> ⚙ Presets... ->
-    - echo "[TODO] • Import... Select the keymap from ~/iterm-profile-front-end-engineering.json"
+    # - echo "[TODO] • iTerm2 profile - Open iTerm2 -> Preferences -> Profiles -> Other Actions -> Import JSON Profiles
+    # - Select the profile from ~/iterm-profile-front-end-engineering.json"
+    # - echo "[TODO] • Click Other Actions... -> Set as Default"
+    # - echo "[TODO] • iTerm2 keymap - Open iTerm2 -> Preferences -> Keys -> ⚙ Presets... ->
+    # - echo "[TODO] • Import... Select the keymap from ~/iterm-profile-front-end-engineering.json"

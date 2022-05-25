@@ -82,7 +82,8 @@
   },
   "[shellscript]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll.stylelint": false
+      "source.fixAll.stylelint": false,
+      "source.fixAll.shellcheck": true
     },
     "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.formatOnSave": true
@@ -816,6 +817,7 @@
   "shellcheck.enable": true,
   "shellcheck.enableQuickFix": true,
   "shellcheck.run": "onSave",
+  "shellcheck.ignoreFileSchemes": ["git", "gitfs"],
   "shellcheck.useWorkspaceRootAsCwd": true,
   "shellformat.effectLanguages": [
     "shellscript",
