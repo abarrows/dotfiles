@@ -1,6 +1,35 @@
 {
   "configurations": [
     {
+      "configurations": [
+        {
+          "command": "npm run dev",
+          "name": "Next.js: debug server-side",
+          "request": "launch",
+          "type": "node-terminal"
+        },
+        {
+          "name": "Next.js: debug client-side",
+          "request": "launch",
+          "type": "pwa-chrome",
+          "url": "http://localhost:3000"
+        },
+        {
+          "command": "npm run dev",
+          "console": "integratedTerminal",
+          "name": "Next.js: debug full stack",
+          "request": "launch",
+          "serverReadyAction": {
+            "action": "debugWithChrome",
+            "pattern": "started server on .+, url: (https?://.+)",
+            "uriFormat": "%s"
+          },
+          "type": "node-terminal"
+        }
+      ],
+      "version": "0.2.0"
+    },
+    {
       // Setup debug binding IP and port.
       "args": ["s", "-b", "0.0.0.0", "-p", "3000"],
       // Current dir using env variable input in tasks.json
