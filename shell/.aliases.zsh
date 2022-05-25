@@ -128,7 +128,7 @@ alias uiuexpress="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/uex
 alias rsuiuexpress="yarn install && PORT=3006 yarn dev"
 alias syndication="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/universaluclick/ && $IDE_PATH ."
 alias rssyndication="RAILS_ENV=development rails s -p 3006"
-alias thefarside="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/thefarside/ && $IDE_PATH ."
+alias thefarside="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/the-far-side && $IDE_PATH ."
 alias rsthefarside="RAILS_ENV=development rails s -p 3020"
 alias gcemail="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/gocomics_daily_pro_email && $IDE_PATH ."
 alias gamecrossword="cd ~/documents/$CURRENT_COMPANY/repos/amu-digital-products/crossword_game/ && $IDE_PATH . && docker run --rm -it -p 3000:3000 crossword-games"
