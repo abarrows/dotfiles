@@ -15,7 +15,7 @@
     {
       "command": "npm run dev",
       "console": "integratedTerminal",
-      "name": "Next.js: debug full stack",
+      "name": "Next.js: Debug full stack",
       "request": "launch",
       "serverReadyAction": {
         "action": "debugWithChrome",
