@@ -1,29 +1,43 @@
 {
-  "version": "0.2.0",
   "configurations": [
     {
+      "command": "npm run dev",
       "name": "Next.js: debug server-side",
-      "type": "node-terminal",
       "request": "launch",
-      "command": "npm run dev"
+      "type": "node-terminal"
     },
     {
       "name": "Next.js: debug client-side",
-      "type": "pwa-chrome",
       "request": "launch",
+      "type": "pwa-chrome",
       "url": "http://localhost:3000"
     },
     {
-      "name": "Next.js: debug full stack",
-      "type": "node-terminal",
-      "request": "launch",
       "command": "npm run dev",
       "console": "integratedTerminal",
+      "name": "Next.js: debug full stack",
+      "request": "launch",
       "serverReadyAction": {
+        "action": "debugWithChrome",
         "pattern": "started server on .+, url: (https?://.+)",
-        "uriFormat": "%s",
-        "action": "debugWithChrome"
-      }
+        "uriFormat": "%s"
+      },
+      "type": "node-terminal"
+    },
+    {
+      "args": ["${fileBasenameNoExtension}", "--runInBand", "--no-cache"],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceRoot}",
+      "env": {
+        "CI": "true"
+      },
+      "internalConsoleOptions": "neverOpen",
+      "name": "Debug: Jest Single Unit Test",
+      "protocol": "inspector",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/jest",
+      "type": "node"
     }
-  ]
+  ],
+  "version": "0.2.0"
 }

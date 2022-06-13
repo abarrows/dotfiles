@@ -388,6 +388,7 @@
     "dximagetransform",
     "eachother",
     "editorconfig",
+    "elif",
     "envrc",
     "erblint",
     "falsey",
@@ -454,6 +455,7 @@
     "noscript",
     "npmignore",
     "nvmrc",
+    "offcanvas",
     "onebyaol",
     "onedisplay",
     "onemobile",
@@ -506,7 +508,6 @@
     "rubocop",
     "rvm",
     "rvmrc",
-    "rbenv",
     "s",
     "scottadamssays",
     "sharethrough",
@@ -578,6 +579,7 @@
   "diffEditor.codeLens": true,
   "docker.images.sortBy": "CreatedTime",
   "dotfiles.installCommand": "install",
+  "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
   "editor.accessibilitySupport": "off",
   "editor.codeActionsOnSave": {
     "source.fixAll": true
@@ -919,7 +921,6 @@
     "javascriptreact": true
   },
   "liveshare.presence": true,
-  "window.zoomLevel": 1,
   "github.customPullRequestDescription": "gitEditor",
   "jira-plugin.username": "abarrows@amuniversal.com",
   "githubPullRequests.createOnPublishBranch": "never",
@@ -932,5 +933,5 @@
   "editor.guides.indentation": true,
   "git.pruneOnFetch": true,
   "xd.globalEditor": true,
-  "diffEditor.ignoreTrimWhitespace": false
+  "window.zoomLevel": 2
 }
