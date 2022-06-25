@@ -34,10 +34,11 @@ source "$HOME/.aliases.zsh"
 #echo "EXPORT: PREPENDING Path: /usr/local/sbin (yarn)"
 #export PATH="$(yarn global bin):$PATH"
 
-# Add RBENV to PATH for scripting. Make sure this is the last PATH variable change.
-eval "$(rbenv init - zsh)"
+# Add RBENV to PATH for scripting. Make sure this is the last PATH variable
+# change.
 # For M1 Macs Only when installing Rbenv
-CFLAGS="-Wno-error=implicit-function-declaration" RUBY_CONFIGURE_OPTS='--with-readline-dir=/usr/local/opt/readline/' arch -x86_64 rbenv install 2.4.2
+CFLAGS="-Wno-error=implicit-function-declaration"
+eval "$(rbenv init - zsh)"
 
 # GENERAL SETTINGS
 # Uncomment the following line to use case-sensitive completion.

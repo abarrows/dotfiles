@@ -581,6 +581,7 @@
   "dotfiles.installCommand": "install",
   "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
   "editor.accessibilitySupport": "off",
+  "editor.autoClosingBrackets": "always",
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
@@ -616,6 +617,8 @@
   "emmet.includeLanguages": {
     "erb": "html",
     "javascript": "javascriptreact",
+    "typescript": "typescriptreact",
+    "javascript": "javascriptreact",
     "sass": "css",
     "scss": "css"
   },
@@ -636,7 +639,7 @@
     ".env.*": "dotenv",
     ".env.example": "dotenv",
     ".zshrc": "shellscript",
-    "*.erb": "erb",
+    "*.erb": "html",
     "*.js.erb": "js",
     "*.zsh": "shellscript",
     "*.devops": "ruby",
@@ -648,7 +651,6 @@
     "**/.history": true,
     "**/.idea": true,
     "**/log/**.log": true,
-    "**/node_modules/**": true,
     "**/public/assets**": true,
     "**/public/packs**": true,
     "**/tmp/**": true
