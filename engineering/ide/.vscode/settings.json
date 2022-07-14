@@ -190,7 +190,7 @@
       "id": "6fbe3fdb-a368-413f-a5ca-5a1692a2892e",
       "monitor": true,
       "name": "GoComics - My Issues",
-      "query": "project in (\"GoComics [2017]\", \"GoComics [2021]\") AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "query": "project in (\"GOCOMICS\") AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -579,6 +579,7 @@
   "diffEditor.codeLens": true,
   "docker.images.sortBy": "CreatedTime",
   "dotfiles.installCommand": "install",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
   "editor.accessibilitySupport": "off",
   "editor.autoClosingBrackets": "always",
@@ -594,19 +595,20 @@
   "editor.fontFamily": "monaco",
   "editor.fontLigatures": true,
   "editor.fontSize": 16,
-  "editor.formatOnPaste": false,
+  "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "editor.hover.delay": 200,
   "editor.largeFileOptimizations": false,
   "editor.minimap.enabled": false,
-  "editor.guides.bracketPairs": "active",
+  "editor.guides.bracketPairs": "true",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.highlightActiveIndentation": true,
   "editor.quickSuggestions": {
     "other": "on",
     "comments": "off",
     "strings": "off"
   },
-  "editor.wordSeparators": "`~!@#$%^&*()=+[{]}\\|;:'\",<>?",
   "editor.renderControlCharacters": false,
   "editor.scrollBeyondLastLine": true,
   "editor.suggestSelection": "first",
@@ -616,7 +618,6 @@
   "editor.wordWrap": "bounded",
   "emmet.includeLanguages": {
     "erb": "html",
-    "javascript": "javascriptreact",
     "typescript": "typescriptreact",
     "javascript": "javascriptreact",
     "sass": "css",
@@ -815,6 +816,7 @@
   "search.exclude": {
     "**/.history/**": true
   },
+  "search.collapseResults": "alwaysCollapse",
   "search.globalFindClipboard": true,
   "search.quickOpen.includeHistory": false,
   "search.useIgnoreFiles": false,
@@ -885,7 +887,18 @@
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.newWindowDimensions": "maximized",
   "window.restoreWindows": "all",
-  "workbench.colorTheme": "One Dark Pro",
+  "workbench.colorCustomizations": {
+    "[One Dark Pro]": {
+      "editorBracketHighlight.foreground1": "#E6E6E6",
+      "editorBracketHighlight.foreground2": "#FF75B5",
+      "editorBracketHighlight.foreground3": "#19f9d8",
+      "editorBracketHighlight.foreground4": "#B084EB",
+      "editorBracketHighlight.foreground5": "#45A9F9",
+      "editorBracketHighlight.foreground6": "#FFB86C",
+      "editorBracketHighlight.unexpectedBracket.foreground": "#FF2C6D"
+    }
+  },
+  "editor.guides.bracketPairsHorizontal": true,
   "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.openPositioning": "last",
@@ -935,5 +948,17 @@
   "editor.guides.indentation": true,
   "git.pruneOnFetch": true,
   "xd.globalEditor": true,
-  "window.zoomLevel": 2
+  "window.zoomLevel": 2,
+  "autoimport.showNotifications": true,
+  "path-intellisense.autoSlashAfterDirectory": true,
+  "github.autoPublish": true,
+  "autoimport.filesToScan": "**/*.{js,jsx,ts,tsx}",
+  "javascript.preferences.importModuleSpecifier": "project-relative",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.tokenColorCustomizations": {},
+  "oneDarkPro.color": {
+    "chalky": "#cdcdcd"
+  },
+  "prettier.enableDebugLogs": true,
+  "prettier.useEditorConfig": false
 }
