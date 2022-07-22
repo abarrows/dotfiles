@@ -1,0 +1,28 @@
+rules:
+  aria-allowed-role: true
+  aria-required-attr: true
+  aria-roles: true
+  aria-valid-attr: true
+  aria-valid-attr-value: true
+  blink: true
+  document-title: true
+  duplicate-id: true
+  empty-heading: true
+  heading-order: true
+  html-has-lang: true
+  image-redundant-alt: true
+  label: true
+  marquee: true
+  scope-attr-valid: true
+  tabindex: true
+  no-interactive-element-to-noninteractive-role: true
+  interactive-supports-focus: true
+  click-events-have-key-events: true
+  no-noninteractive-element-to-interactive-role: true
+  no-static-element-interactions: true
+  mouse-events-have-key-events: true
+  no-autofocus: true
+  anchor-is-valid: true
+
+tags:
+  - wcag2aa
