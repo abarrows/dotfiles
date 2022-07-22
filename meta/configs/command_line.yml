@@ -4,10 +4,8 @@
 # used by default.
 
 - shell:
-    - description: '6. Setting up Command Line Tools - Oh My ZSH, Plugins,
-    Aliases, and Theme...'
+    - description: '6. Setting up Command Line Tools - Oh My ZSH, Plugins, Aliases, and Theme...'
       command: './onboarding_bin/install-oh-my-zsh.sh'
-      stderr: true
 
 - link:
     ~/.zlogin:

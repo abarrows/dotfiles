@@ -1,6 +1,0 @@
-[auth]
-username =ENV['BITBUCKET_USERNAME']
-password =ENV['BITBUCKET_PASSWORD']
-
-[options]
-protocol = 'https'

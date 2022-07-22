@@ -5,8 +5,6 @@
 - shell:
     - description: '3. Installing Homebrew Package Manager - Base Packages...'
       command: './onboarding_bin/install-homebrew.sh'
-      stdout: true
-      stderr: true
 
 - brewfile:
     - Brewfile.base

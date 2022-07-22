@@ -26,7 +26,8 @@ ruby/.bundle/cache/*
 .cache/rubocop_cache/*
 
 # dotenv
-.env
+/.env*
+!/.env*.example**
 
 # logfiles and tempfiles
 /log/*
@@ -72,9 +73,12 @@ config/master.key
 /.bundle
 /vendor/bundle
 
+# Ruby on Rails
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
 
+# Python
+.venv/*
 # Ignore pow environment settings
 .powenv
 
@@ -85,6 +89,9 @@ config/master.key
 /public/packs
 /public/packs-test
 /public/assets
+
+# Ignore compiled storybook directory
+/storybook-static
 
 # Ignore uploaded files in development
 /storage/*
@@ -102,7 +109,17 @@ pids
 *.pid.lock
 
 # Dependency directories
-node_modules/
+node_modules
+/.pnp
+.pnp.js
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
+.cache
 
 # Optional npm cache directory
 .npm
@@ -174,9 +191,12 @@ atlassian-ide-plugin.xml
 # !.vscode/tasks.json
 # !.vscode/launch.json
 # !.vscode/extensions.json
-devcontainer.dev
+*devcontainer.env
 
 ###################
 
 # Project Specific
 # unique ignores for this project
+connections.xml
+server_instances.xml
+ruby/.gem*

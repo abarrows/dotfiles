@@ -2,19 +2,19 @@
   "entries": {
     "tap": {
       "homebrew/bundle": {
-        "revision": "48497882863432d8f0bd7dd6727df325a0f00b35"
+        "revision": "8ec900f210c925f4b4731b0f359b0808ca132285"
       },
       "homebrew/cask": {
-        "revision": "ed8e07eb85a44514c7a249691d7521cf6fd26323"
+        "revision": "fcdc487246ea0997c3bfd707e08144820e8477f6"
       },
       "homebrew/cask-fonts": {
-        "revision": "7cbfd3169028ddcf26987436ed039b62caabb993"
+        "revision": "85239d934569154a2e4c754125b9727d17804d01"
       },
       "homebrew/core": {
-        "revision": "5305e8346a7892a1ebadc2d545b0452fe4833638"
+        "revision": "3b83af33cd2bf9e394e3a3c8a323c4d934850b3a"
       },
       "homebrew/services": {
-        "revision": "0b653a3102b15789885b5d4fdb38b0930a8fd342"
+        "revision": "b167b4279698e0bbf1a00a81bd9c209cbf9bab69"
       }
     },
     "brew": {
@@ -673,7 +673,7 @@
     },
     "cask": {
       "1password": {
-        "version": "8.7.3",
+        "version": "8.8.0",
         "options": {
           "full_name": "1password",
           "args": {
@@ -718,7 +718,7 @@
         }
       },
       "dropbox": {
-        "version": "152.4.4880",
+        "version": "153.4.3932",
         "options": {
           "full_name": "dropbox",
           "args": {
@@ -727,7 +727,7 @@
         }
       },
       "expressvpn": {
-        "version": "11.3.0.67753",
+        "version": "11.4.0.68315",
         "options": {
           "full_name": "expressvpn",
           "args": {
@@ -799,7 +799,7 @@
         }
       },
       "postman": {
-        "version": "9.22.2",
+        "version": "9.25.0",
         "options": {
           "full_name": "postman",
           "args": {
@@ -808,7 +808,7 @@
         }
       },
       "visual-studio-code": {
-        "version": "1.69.1",
+        "version": "1.69.2",
         "options": {
           "full_name": "visual-studio-code",
           "args": {
@@ -862,7 +862,7 @@
         }
       },
       "zoom": {
-        "version": "5.11.1.8356",
+        "version": "5.11.3.9065",
         "options": {
           "full_name": "zoom",
           "args": {
@@ -893,12 +893,12 @@
   "system": {
     "macos": {
       "monterey": {
-        "HOMEBREW_VERSION": "3.5.4",
+        "HOMEBREW_VERSION": "3.5.6",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "5305e8346a7892a1ebadc2d545b0452fe4833638",
-        "CLT": "13.0.0.0.1.1627064638",
-        "Xcode": "13.2.1",
-        "macOS": "12.3"
+        "Homebrew/homebrew-core": "3b83af33cd2bf9e394e3a3c8a323c4d934850b3a",
+        "CLT": "13.4.0.0.1.1651278267",
+        "Xcode": "13.4",
+        "macOS": "12.4"
       }
     }
   }

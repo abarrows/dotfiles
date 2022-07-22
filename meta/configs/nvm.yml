@@ -4,6 +4,9 @@
 - shell:
     - echo "8. Setting up Node - NVM Package Manager..."
 - link:
-    # Node Versions
-    ~/.nvmrc: engineering/javascripts/.nvmrc
-    ~/.npmignore: engineering/javascripts/.npmignore
+    ~/.nvmrc:
+      path: engineering/javascripts/.nvmrc
+      relink: true
+    ~/.npmignore:
+      path: engineering/javascripts/.npmignore
+      relink: true

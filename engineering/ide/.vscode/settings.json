@@ -602,8 +602,7 @@
   "editor.hover.delay": 200,
   "editor.largeFileOptimizations": false,
   "editor.minimap.enabled": false,
-  "editor.guides.bracketPairs": "true",
-  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
   "editor.guides.highlightActiveIndentation": true,
   "editor.quickSuggestions": {
     "other": "on",
