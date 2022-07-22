@@ -5,5 +5,7 @@
     - echo "Setting up Software Engineering - global styling linting..."
 
 - link:
-    ~/.stylelintrc.json: engineering/styles/.stylelintrc.json
-    ~/.stylelintrcignore: engineering/styles/.stylelintrcignore
+    ~/stylelint.config.js:
+      path: engineering/styles/stylelint.config.js
+    ~/.stylelintrcignore:
+      path: engineering/styles/.stylelintrcignore

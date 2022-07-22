@@ -73,7 +73,7 @@ Copy the following three files and paste
 them into the root directory of your project. The files below are our team's
 default configuration and rule set:
 
-- `[.stylelintrc.json](.stylelintrc.json)`
+- `[stylelint.config.js](stylelint.config.js)`
 - `[.stylelintrcignore](.stylelintrcignore)`
 - `[../formatters/.prettierrc.json](../formatters/.prettierrc.json)`
 - `[../formatters/.prettierrcignore.json](../formatters/.prettierrcignore.json)`
