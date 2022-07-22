@@ -564,6 +564,7 @@
     "viminfo",
     "Vqwwq",
     "Waldron",
+    "webcomics",
     "webfont",
     "Webistrano",
     "webpacker",
@@ -917,7 +918,7 @@
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "redhat.telemetry.enabled": false,
+  "redhat.telemetry.enabled": true,
   "grammarly.debug": true,
   "atlascode.jira.lastCreateSiteAndProject": {
     "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
@@ -948,7 +949,6 @@
   "editor.guides.indentation": true,
   "git.pruneOnFetch": true,
   "xd.globalEditor": true,
-  "window.zoomLevel": 2,
   "autoimport.showNotifications": true,
   "path-intellisense.autoSlashAfterDirectory": true,
   "github.autoPublish": true,
@@ -960,5 +960,7 @@
     "chalky": "#cdcdcd"
   },
   "prettier.enableDebugLogs": true,
-  "prettier.useEditorConfig": false
+  "prettier.useEditorConfig": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "window.zoomLevel": 2
 }

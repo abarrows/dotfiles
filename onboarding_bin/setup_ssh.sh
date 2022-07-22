@@ -23,10 +23,10 @@ touch ~/.ssh/config
 
 # Step 7. Add the following to that file
 # NOTE: Only add UseKeychain yes if using a passphrase
-# Host *
-#   AddKeysToAgent yes
-#   IdentityFile ~/.ssh/id_ed25519
-#   UseKeychain yes
+Host *
+AddKeysToAgent yes
+IdentityFile ~/.ssh/id_ed25519
+UseKeychain yes
 
 # Step 8. Add the ssh key.
 ssh-add ~/.ssh/id_ed25519
