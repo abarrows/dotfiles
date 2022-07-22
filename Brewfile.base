@@ -41,7 +41,7 @@ cask "font-fira-code-nerd-font" # RECOMMENDED - command line icon fonts for view
 cask "gemini" # RECOMMENDED - Duplicate remover
 cask "gpg-suite" # REQUIRED - Allows for setting up signed commits with github.
 # cask "google-chrome" # REQUIRED -  Department approved primary browser
-cask "google-backup-and-sync" # OPTIONAL - Recommended backup utility for use with google drive
+cask "google-drive" # OPTIONAL - Recommended backup utility for use with google drive
 cask "iterm2" # REQUIRED - Front-end team approved command line tool for Mac OSX
 # cask "microsoft-office" # REQUIRED - Department approved productivity suite
 cask "microsoft-teams" # REQUIRED - Department approved communication tool
