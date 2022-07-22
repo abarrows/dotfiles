@@ -14,7 +14,6 @@ EditorConfig.EditorConfig
 esbenp.prettier-vscode
 foxundermoon.shell-format
 gazugafan.vscode-indent-on-paste
-gioboa.jira-plugin
 GitHub.codespaces
 GitHub.vscode-pull-request-github
 jmfirth.vsc-space-block-jumper
