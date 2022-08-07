@@ -13,10 +13,10 @@
     - ~/.git-template-directory
     - ~/.git-template-directory/hooks
     - ~/.git-template-directory/.github
-    - ~/Documents/AMU
-    - ~/Documents/AMU/repos
-    - ~/Documents/AMU/repos/amu-development-team
-    - ~/Documents/AMU/repos/amu-digital-products
-    - ~/Documents/AMU/repos/amu-digital-services
-    - ~/Documents/AMU/repos/amu-admins
-    - ~/Documents/AMU/repos/personal
+    - ~/AMU
+    - ~/AMU/repos
+    - ~/AMU/repos/amu-development-team
+    - ~/AMU/repos/amu-digital-products
+    - ~/AMU/repos/amu-digital-services
+    - ~/AMU/repos/amu-admins
+    - ~/AMU/repos/personal

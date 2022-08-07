@@ -2,16 +2,16 @@
   "entries": {
     "tap": {
       "homebrew/bundle": {
-        "revision": "8ec900f210c925f4b4731b0f359b0808ca132285"
+        "revision": "4756e4c4cf95485c5ea4da27375946c1dac2c71d"
       },
       "homebrew/cask": {
-        "revision": "fcdc487246ea0997c3bfd707e08144820e8477f6"
+        "revision": "640b8af665f679c5b7e0420e170a1d0961b51063"
       },
       "homebrew/cask-fonts": {
-        "revision": "85239d934569154a2e4c754125b9727d17804d01"
+        "revision": "d2960efcd211a23f5ffb8277439307b07104e728"
       },
       "homebrew/core": {
-        "revision": "3b83af33cd2bf9e394e3a3c8a323c4d934850b3a"
+        "revision": "3d2972b437c6819d5673c5db5cac5e96a467cf78"
       },
       "homebrew/services": {
         "revision": "b167b4279698e0bbf1a00a81bd9c209cbf9bab69"
@@ -682,7 +682,7 @@
         }
       },
       "adobe-creative-cloud": {
-        "version": "5.7.0.1307",
+        "version": "5.8.0.592",
         "options": {
           "full_name": "adobe-creative-cloud",
           "args": {
@@ -691,7 +691,7 @@
         }
       },
       "alfred": {
-        "version": "5.0,2057",
+        "version": "5.0.1,2067",
         "options": {
           "full_name": "alfred",
           "args": {
@@ -709,7 +709,7 @@
         }
       },
       "docker": {
-        "version": "4.10.1,82475",
+        "version": "4.11.1,84025",
         "options": {
           "full_name": "docker",
           "args": {
@@ -718,7 +718,7 @@
         }
       },
       "dropbox": {
-        "version": "153.4.3932",
+        "version": "154.4.5363",
         "options": {
           "full_name": "dropbox",
           "args": {
@@ -727,7 +727,7 @@
         }
       },
       "expressvpn": {
-        "version": "11.4.0.68315",
+        "version": "11.5.0.69008",
         "options": {
           "full_name": "expressvpn",
           "args": {
@@ -781,7 +781,7 @@
         }
       },
       "mysqlworkbench": {
-        "version": "8.0.29",
+        "version": "8.0.30",
         "options": {
           "full_name": "mysqlworkbench",
           "args": {
@@ -799,7 +799,7 @@
         }
       },
       "postman": {
-        "version": "9.25.0",
+        "version": "9.25.2",
         "options": {
           "full_name": "postman",
           "args": {
@@ -808,7 +808,7 @@
         }
       },
       "visual-studio-code": {
-        "version": "1.69.2",
+        "version": "1.70.0",
         "options": {
           "full_name": "visual-studio-code",
           "args": {
@@ -844,7 +844,7 @@
         }
       },
       "spotify": {
-        "version": "1.1.89.862,94554d24,16",
+        "version": "1.1.91.824,07f1e963,9",
         "options": {
           "full_name": "spotify",
           "args": {
@@ -880,7 +880,7 @@
         }
       },
       "google-drive": {
-        "version": "60.0.2",
+        "version": "61.0.3",
         "options": {
           "full_name": "google-drive",
           "args": {
@@ -893,9 +893,9 @@
   "system": {
     "macos": {
       "monterey": {
-        "HOMEBREW_VERSION": "3.5.6",
+        "HOMEBREW_VERSION": "3.5.8",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "3b83af33cd2bf9e394e3a3c8a323c4d934850b3a",
+        "Homebrew/homebrew-core": "3d2972b437c6819d5673c5db5cac5e96a467cf78",
         "CLT": "13.4.0.0.1.1651278267",
         "Xcode": "13.4",
         "macOS": "12.4"

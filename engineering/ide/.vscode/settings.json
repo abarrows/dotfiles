@@ -381,6 +381,7 @@
     "devops",
     "dfptest",
     "dilbertcomics",
+    "dismissable",
     "DISQUS",
     "dotenvrc",
     "dotfiles",
@@ -793,6 +794,7 @@
   "merge-conflict.autoNavigateNextConflict.enabled": true,
   "npm.packageManager": "yarn",
   "prettier.requireConfig": false,
+  "prettier.jsonEnable": [],
   "problems.decorations.enabled": true,
   "rewrap.autoWrap.enabled": true,
   "rewrap.doubleSentenceSpacing": true,
@@ -947,7 +949,6 @@
   "atlascode.jira.explorer.fetchAllQueryResults": true,
   "editor.guides.indentation": true,
   "git.pruneOnFetch": true,
-  "xd.globalEditor": true,
   "autoimport.showNotifications": true,
   "path-intellisense.autoSlashAfterDirectory": true,
   "github.autoPublish": true,
@@ -960,6 +961,7 @@
   },
   "prettier.enableDebugLogs": true,
   "prettier.useEditorConfig": false,
-  "diffEditor.ignoreTrimWhitespace": false,
-  "window.zoomLevel": 2
+  "diffEditor.ignoreTrimWhitespace": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "xd.globalEditor": true
 }
