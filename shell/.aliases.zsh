@@ -109,6 +109,8 @@ alias teamtools="cd ~/$CURRENT_COMPANY/repos/amu-development-team/team-tools-and
 alias teamonboarding="cd ~/$CURRENT_COMPANY/repos/amu-development-team/amu-onboarding/ && $IDE_PATH ."
 alias teamuitemplate="cd ~/$CURRENT_COMPANY/repos/amu-development-team/k8sapp_ui_template/ && $IDE_PATH ."
 alias teamstandards="cd ~/$CURRENT_COMPANY/repos/amu-development-team/amu-code_standards/ && $IDE_PATH ."
+alias teammatrix="cd ~/$CURRENT_COMPANY/repos/amu-digital-team/dungeons-and-developers-2nd-edition/ && $IDE_PATH ."
+alias teamworkflows="cd ~/$CURRENT_COMPANY/repos/amu-digital-team/reusable_workflows && $IDE_PATH ."
 
 # Company Prototyping and Research
 
@@ -134,6 +136,7 @@ alias rsthefarside="RAILS_ENV=development rails s -p 3020"
 alias gcemail="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/gocomics_daily_pro_email && $IDE_PATH ."
 alias gamecrossword="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/crossword_game/ && $IDE_PATH . && docker run --rm -it -p 3000:3000 crossword-games"
 alias startgamecrossword="docker build -t crossword-game ."
+alias gamethematik="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/thematik_game/ && $IDE_PATH ."
 
 # Company Admins
 alias admincontent="cd ~/$CURRENT_COMPANY/repos/amu-admins/content_admin && $IDE_PATH ."
@@ -153,6 +156,7 @@ alias servicecontent="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/webservic
 alias rsservicecontent="rails s -p '3030'"
 alias serviceasset="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/asset_engine && $IDE_PATH ."
 alias rsserviceasset="RAILS_ENV=development rails s -p 3031"
+alias serviceb2c="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/azure-b2c_auth && $IDE_PATH ."
 # alias serviceregistration="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/webservice_registration && $IDE_PATH ."
 # alias rsserviceregistration="RAILS_ENV=development rails s -p 3040"
 alias servicefeatureavatar="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/webservice_feature_avatars && $IDE_PATH ."
