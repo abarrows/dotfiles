@@ -18,7 +18,9 @@ brew 'libgcrypt' # RECOMMENDED - DEVOPS/PG Cryptographic library based on the co
 brew 'libksba' # RECOMMENDED - DEVOPS/PG Compiled Library Dependency X.509 and CMS library
 brew 'libpq' # RECOMMENDED - DEVOPS/PG Database Dependency for Postgres
 brew 'libtool' # RECOMMENDED - DEVOPS/PG Generic Library Support
+brew 'mysql' # RECOMMENDED - DEVOPS/PG Database Dependency for MySQLx
 cask "adoptopenjdk" # OPTIONAL - PG
 cask 'paragon-ntfs' # OPTIONAL -  utility for managing NTFS windows based drives
 brew "pgloader" # OPTIONAL - PG Database Utility for converting MySQL databases to Postgres M1-INCOMPATIBLE
+cask "powershell" # RECOMMENDED - DEVOPS Powershell for managing Windows
 cask 'vagrant-manager' # RECOMMENDED - Department approved virtual machine GUI/tool
