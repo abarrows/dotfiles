@@ -46,9 +46,9 @@ cask "iterm2" # REQUIRED - Front-end team approved command line tool for Mac OSX
 # cask "microsoft-office" # REQUIRED - Department approved productivity suite
 cask "microsoft-teams" # REQUIRED - Department approved communication tool
 cask "mysqlworkbench" # REQUIRED - Front-end team approved database GUI/tool
-cask 'ngrok' # REQUIRED - Web development testing an emulation
+# cask 'ngrok' # REQUIRED - Web development testing an emulation
 cask 'postman' # REQUIRED - Department approved API testing GUI/tool
-# cask 'the-unarchiver' # RECOMMENDED - TAR/ZIP file compression tool
+cask 'the-unarchiver' # RECOMMENDED - TAR/ZIP file compression tool
 cask 'visual-studio-code' # REQUIRED -  Digital Technology approved IDE for software engineering
 # cask "katalon-studio" # RECOMMENDED -  Front-end approved browser automation GUI/tool
 cask "mamp" # RECOMMENDED - Front-end team approved server environment tool for wordpress and general web development

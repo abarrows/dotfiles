@@ -358,6 +358,7 @@
     "changefreq",
     "Checkmark",
     "chinthakagodawita",
+    "choco",
     "CODEOWNER",
     "codespaces",
     "Coenraad",
@@ -449,6 +450,7 @@
     "labelledby",
     "lastmod",
     "lazyloading",
+    "lcov",
     "leaderboard",
     "Leaderboards",
     "linkedin",
@@ -577,6 +579,7 @@
     "treosh",
     "Triplelift",
     "truetype",
+    "ttab",
     "tynt",
     "ubadge",
     "uclick",
@@ -985,9 +988,14 @@
   },
   "prettier.enableDebugLogs": true,
   "prettier.useEditorConfig": false,
-  "diffEditor.ignoreTrimWhitespace": false,
   "security.workspace.trust.untrustedFiles": "open",
   "xd.globalEditor": true,
   "window.zoomLevel": 3,
-  "cssModules.pathAlias": {}
+  "cssModules.pathAlias": {},
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+    "projectKey": "AMCORP"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "githubPullRequests.pullBranch": "never"
 }
