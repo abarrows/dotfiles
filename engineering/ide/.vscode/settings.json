@@ -237,6 +237,7 @@
     "ISSUE:",
     "TODO -"
   ],
+  "atlascode.outputLevel": "errors",
   "breadcrumbs.enabled": true,
   "codespaces.accountProvider": "GitHub",
   "codespaces.enableSubmoduleCloning": true,
@@ -904,6 +905,7 @@
   "workbench.tree.indent": 4,
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
+  "yaml.trace.server": "verbose",
   "[ignore]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
@@ -946,7 +948,7 @@
   "cssModules.pathAlias": {},
   "atlascode.jira.lastCreateSiteAndProject": {
     "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
-    "projectKey": ""
+    "projectKey": "AMCORP"
   },
   "diffEditor.ignoreTrimWhitespace": false,
   "githubPullRequests.pullBranch": "never",
@@ -959,32 +961,5 @@
     "vscode-kubernetes.minikube-path.linux": "/home/codespace/.local/state/vs-kubernetes/tools/minikube/linux-amd64/minikube"
   },
   "terminal.integrated.enableMultiLinePasteWarning": false,
-  "dev.containers.logLevel": "trace",
-  "yaml.schemaStore.enable": true,
-  "yaml.trace.server": "verbose",
-  "atlascode.bitbucket.contextMenus.enabled": false,
-  "atlascode.bitbucket.explorer.enabled": false,
-  "atlascode.bitbucket.explorer.nestFilesEnabled": false,
-  "atlascode.bitbucket.explorer.notifications.pullRequestCreated": false,
-  "atlascode.bitbucket.explorer.refreshInterval": 0,
-  "atlascode.bitbucket.explorer.relatedBitbucketIssues.enabled": false,
-  "atlascode.bitbucket.explorer.relatedJiraIssues.enabled": false,
-  "atlascode.bitbucket.explorer.showReviewedPullRequests": false,
-  "atlascode.bitbucket.issues.explorerEnabled": false,
-  "atlascode.bitbucket.issues.monitorEnabled": false,
-  "atlascode.bitbucket.pipelines.branchFilters": [],
-  "atlascode.bitbucket.pipelines.explorerEnabled": false,
-  "atlascode.bitbucket.pipelines.hideEmpty": false,
-  "atlascode.bitbucket.pipelines.monitorEnabled": false,
-  "atlascode.bitbucket.preferredRemotes": [],
-  "atlascode.bitbucket.statusbar.enabled": false,
-  "atlascode.bitbucket.statusbar.showLogin": false,
-  "atlascode.bitbucket.statusbar.showProduct": false,
-  "atlascode.bitbucket.statusbar.showUser": false,
-  "atlascode.offlineMode": true,
-  "atlascode.onlineCheckerUrls": ["https://www.atlassian.com"],
-  "atlascode.useNewAuth": true,
-  "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  }
+  "dev.containers.logLevel": "trace"
 }
