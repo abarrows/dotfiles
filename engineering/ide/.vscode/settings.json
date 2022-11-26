@@ -67,7 +67,6 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
-    // "editor.defaultFormatter": "castwide.solargraph",
     "editor.formatOnSave": true
   },
   "[scss]": {
@@ -88,7 +87,6 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
-    // "editor.defaultFormatter": "sensourceinc.vscode-sql-beautify",
     "editor.formatOnSave": true
   },
   "[xml]": {
