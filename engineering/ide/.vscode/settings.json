@@ -946,7 +946,7 @@
   "cssModules.pathAlias": {},
   "atlascode.jira.lastCreateSiteAndProject": {
     "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
-    "projectKey": "AMCORP"
+    "projectKey": ""
   },
   "diffEditor.ignoreTrimWhitespace": false,
   "githubPullRequests.pullBranch": "never",
@@ -960,6 +960,7 @@
   },
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "dev.containers.logLevel": "trace",
+  "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
   "atlascode.bitbucket.contextMenus.enabled": false,
   "atlascode.bitbucket.explorer.enabled": false,
@@ -982,8 +983,8 @@
   "atlascode.bitbucket.statusbar.showUser": false,
   "atlascode.offlineMode": true,
   "atlascode.onlineCheckerUrls": ["https://www.atlassian.com"],
+  "atlascode.useNewAuth": true,
   "yaml.schemas": {
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
-  "atlascode.useNewAuth": true
+  }
 }
