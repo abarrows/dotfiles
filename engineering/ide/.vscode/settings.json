@@ -981,9 +981,6 @@
   "github.customPullRequestDescription": "gitEditor",
   "jira-plugin.username": "abarrows@amuniversal.com",
   "githubPullRequests.createOnPublishBranch": "never",
-  "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
   "xd.authorName": "Andrew Barrows",
   "jira-plugin.baseUrl": "https://atlassian.amuniversal.com",
   "atlascode.jira.explorer.fetchAllQueryResults": true,
