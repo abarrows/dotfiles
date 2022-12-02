@@ -9,6 +9,6 @@
 echo "2. VSCode - Parsing all extensions..."
 while read -r my_extension; do
   code --install-extension "$my_extension"
-done <engineering/ide/.vscode/extensions.txt
+done <engineering/ide/.vscode/extensions_base.txt
 
 echo "\n\n\n3. VSCode - All done!"

@@ -2,7 +2,6 @@ alexdima.copy-relative-path
 aliariff.vscode-erb-beautify
 arturock.gitstash
 atlassian.atlascode
-bierner.markdown-checkbox
 bmalehorn.shell-syntax
 castwide.solargraph
 cbrevik.toggle-format-on-save
@@ -21,7 +20,6 @@ felixfbecker.php-intellisense
 formulahendry.auto-rename-tag
 formulahendry.code-runner
 geddski.macros
-gioboa.jira-plugin
 GitHub.vscode-pull-request-github
 Gruntfuggly.todo-tree
 henriiik.docker-linter
@@ -47,7 +45,6 @@ ms-vsliveshare.vsliveshare-pack
 ms-vsonline.vsonline
 msjsdiag.debugger-for-chrome
 nhoizey.gremlins
-Pivotal.vscode-manifest-yaml
 PKief.material-icon-theme
 pranaygp.vscode-css-peek
 rebornix.ruby
@@ -61,7 +58,6 @@ streetsidesoftware.code-spell-checker
 stylelint.vscode-stylelint
 svipas.control-snippets
 timonwong.shellcheck
-tomoki1207.pdf
 traBpUkciP.vscode-npm-scripts
 Tyriar.sort-lines
 VisualStudioExptTeam.vscodeintellicode

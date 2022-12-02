@@ -108,18 +108,6 @@ Description: Bringing the power of Jira and Bitbucket to VS Code - With Atlassia
 Version: 2.8.3
 Publisher: Atlassian
 VS Marketplace Link: <https://marketplace.visualstudio.com/items?itemName=Atlassian.atlascode>
-Name: Jira Plugin
-Id: gioboa.jira-plugin
-Description: Manage your on-premises/cloud Jira in vscode
-Version: 0.22.2
-Publisher: gioboa
-VS Marketplace Link: <https://marketplace.visualstudio.com/items?itemName=gioboa.jira-plugin>
-Name: Jira Plugin
-Id: gioboa.jira-plugin
-Description: Manage your on-premises/cloud Jira in vscode
-Version: 0.22.2
-Publisher: gioboa
-VS Marketplace Link: <https://marketplace.visualstudio.com/items?itemName=gioboa.jira-plugin>
 Name: Live Server
 Id: ritwickdey.liveserver
 Description: Launch a development local Server with live reload feature for static & dynamic pages
