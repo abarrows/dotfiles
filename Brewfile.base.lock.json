@@ -5,13 +5,13 @@
         "revision": "5216bbdd9d47b1cb01c0d2cb656de32540ada95d"
       },
       "homebrew/cask": {
-        "revision": "af2225febd3caecdb46046d9dc0f8f6c8e73481c"
+        "revision": "6ea3b6a8b5b1e7e8ae82ea9154137e61a6bbec4f"
       },
       "homebrew/cask-fonts": {
-        "revision": "3a39d3e1102f91d7218dca118935d59a9f255e03"
+        "revision": "4892a9d47d09d9653362b2eced7f8ea63328c865"
       },
       "homebrew/core": {
-        "revision": "4ee206cd11786e74890014f34689f7a021716040"
+        "revision": "2373eb83ab7398a3d6c777ecf2c030eb1fab821d"
       },
       "homebrew/services": {
         "revision": "88788e6314506b662f971f43af119c641190a4c8"
@@ -954,7 +954,7 @@
         }
       },
       "postman": {
-        "version": "10.1.2",
+        "version": "10.5.2",
         "options": {
           "full_name": "postman",
           "args": {
@@ -1017,7 +1017,7 @@
         }
       },
       "zoom": {
-        "version": "5.12.8.12565",
+        "version": "5.12.9.13190",
         "options": {
           "full_name": "zoom",
           "args": {
@@ -1059,7 +1059,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.6.12",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "4ee206cd11786e74890014f34689f7a021716040",
+        "Homebrew/homebrew-core": "2373eb83ab7398a3d6c777ecf2c030eb1fab821d",
         "CLT": "14.0.0.0.1.1661618636",
         "Xcode": "14.1",
         "macOS": "12.6"

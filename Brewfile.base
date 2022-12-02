@@ -35,12 +35,12 @@ cask "appcleaner" # REQUIRED - utility application for removing Mac OSX programs
 cask "docker" # REQUIRED - Department approved containerized environment tools
 cask "dropbox" # OPTIONAL - Department approved cloud storage for UXD and Design
 cask "expressvpn" # REQUIRED - Department approved VPN for testing geo location
-# cask "firefox" # REQUIRED - Front-end team approved browser for our viewing our applications
+cask "firefox" # REQUIRED - Front-end team approved browser for our viewing our applications
 cask "font-fira-code" # RECOMMENDED -  command line icon fonts
 cask "font-fira-code-nerd-font" # RECOMMENDED - command line icon fonts for viewing icons in Starship, agnoster, P10k, or iterm.
 cask "gemini" # RECOMMENDED - Duplicate remover
 cask "gpg-suite" # REQUIRED - Allows for setting up signed commits with github.
-# cask "google-chrome" # REQUIRED -  Department approved primary browser
+cask "google-chrome" # REQUIRED -  Department approved primary browser
 cask "google-drive" # OPTIONAL - Recommended backup utility for use with google drive
 cask "iterm2" # REQUIRED - Front-end team approved command line tool for Mac OSX
 # cask "microsoft-office" # REQUIRED - Department approved productivity suite
