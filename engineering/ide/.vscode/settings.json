@@ -920,7 +920,7 @@
     "*": true,
     "yaml": true,
     "plaintext": false,
-    "markdown": false,
+    "markdown": true,
     "javascriptreact": true
   },
   "liveshare.presence": true,
@@ -961,5 +961,12 @@
     "vscode-kubernetes.minikube-path.linux": "/home/codespace/.local/state/vs-kubernetes/tools/minikube/linux-amd64/minikube"
   },
   "terminal.integrated.enableMultiLinePasteWarning": false,
-  "dev.containers.logLevel": "trace"
+  "dev.containers.logLevel": "trace",
+  "yaml.schemas": {
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  },
+  "liveshare.diagnosticMode": true,
+  "settingsSync.ignoredExtensions": [
+    "ms-vscode-remote.remote-containers"
+  ]
 }
