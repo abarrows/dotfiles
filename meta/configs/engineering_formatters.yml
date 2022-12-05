@@ -2,7 +2,6 @@
 # editorconfig, prettier, and htmlhint to your home directory...
 - shell:
     - echo "Setting up Software Engineering - global formatting rules..."
-
 - link:
     ~/.editorconfig: engineering/formatters/.editorconfig
     ~/.prettierrc.json: engineering/formatters/.prettierrc.json

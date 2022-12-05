@@ -1,4 +1,10 @@
 # Add any directories or files to ignore here
-**.next
-**/vendor
-./deployments/charts
+**.bundle.js
+**.js.map
+.cache/
+.github/
+.git/
+.next
+build/
+deployments/
+storybook-static

@@ -1,5 +1,15 @@
 # Dotfiles Environment Variables
 
+# Instructions: First save a copy of this file in the root directory of the
+project or run this command in your terminal.
+# cp .envrc.example .envrc && open .envrc
+# Note: If you have hidden files turned off, the .envrc.example and .envrc files
+may not appear to show up.
+# As you fill these values out, remember to put the values in double quotes and
+no spaces before or after the equals.
+# IE: Correct - VARIABLE="value"
+# Incorrect - VARIABLE = 'value'
+
 # Sensitive Variables
 GIT_EMAIL_ADDRESS_PROFESSIONAL=# Github email address for professional or organizational teams
 GIT_EMAIL_ADDRESS_PROFESSIONAL_KEY=# The key that displays here:

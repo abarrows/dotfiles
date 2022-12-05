@@ -28,7 +28,8 @@ brew "yamllint" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Linting and
 brew "yarn" # REQUIRED - BASE/DEVOPS/ROR/NODE Front-end team approved package manager
 brew "zsh" # REQUIRED - BASE/DEVOPS/ROR/NODE/ Default Mac OSX shell
 cask "1password" # REQUIRED - Department licensed and approved password manager
-cask "adobe-creative-cloud" # RECOMMENDED - Department licensed and approved UXD Tools
+# cask "adobe-creative-cloud" # RECOMMENDED - Department licensed and approved
+# UXD Tools - This is installed via DevOps provisioning.
 cask "alfred" # REQUIRED - task launcher application for Mac OSX
 cask "appcleaner" # REQUIRED - utility application for removing Mac OSX programs and apps
 # cask "cyberduck" # RECOMMENDED - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP transfers
