@@ -27,10 +27,9 @@ echo "${CONFIGS}"
 
 "${BASE_DIR}/${META_DIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASE_DIR}" -c "${META_DIR}/${BASE_CONFIG}${CONFIG_SUFFIX}"
 
-for config in ${CONFIGS} ${@}; do
+for config in ${CONFIGS} "${@}"; do
   echo -e "\nConfigure $config"
   "${BASE_DIR}/${META_DIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASE_DIR}" \
-    --plugin-dir "${META_DIR}/dotbot-vscode" \
     --plugin-dir "${META_DIR}/dotbot-brew" -c "${META_DIR}/${CONFIG_DIR}/${config}${CONFIG_SUFFIX}"
 done
 

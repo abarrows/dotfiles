@@ -19,8 +19,6 @@ brew "pinentry-mac" # REQUIRED - The other dependency used for signed commits on
 brew "postgresql" # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
 # brew "redis" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Primary Caching Dependency for Back-end Software Engineers
 brew "shellcheck" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Linter and auto-fixing
-brew "shfmt" # OPTIONAL - BASE/ROR/NODE/DEVOPS/PYTHON Linter for shell scripts
-
 brew "starship" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended platform agnostic shell prompt.
 brew "thefuck" # RECOMMENDED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Command Line correction tool for mistyped commands
 brew "wget" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON General Request Utility for Command Line
@@ -28,11 +26,13 @@ brew "yamllint" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Linting and
 brew "yarn" # REQUIRED - BASE/DEVOPS/ROR/NODE Front-end team approved package manager
 brew "zsh" # REQUIRED - BASE/DEVOPS/ROR/NODE/ Default Mac OSX shell
 cask "1password" # REQUIRED - Department licensed and approved password manager
-# cask "adobe-creative-cloud" # RECOMMENDED - Department licensed and approved
+cask "adobe-creative-cloud" # RECOMMENDED - Department licensed and approved
 # UXD Tools - This is installed via DevOps provisioning.
 cask "alfred" # REQUIRED - task launcher application for Mac OSX
 cask "appcleaner" # REQUIRED - utility application for removing Mac OSX programs and apps
-# cask "cyberduck" # RECOMMENDED - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP transfers
+# cask "cyberduck" # RECOMMENDED - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP
+# transfers
+# cask "browserstacklocal" # OPTIONAL - Used for local testing of browsers
 cask "docker" # REQUIRED - Department approved containerized environment tools
 cask "dropbox" # OPTIONAL - Department approved cloud storage for UXD and Design
 cask "expressvpn" # REQUIRED - Department approved VPN for testing geo location
@@ -41,18 +41,17 @@ cask "font-fira-code" # RECOMMENDED -  command line icon fonts
 cask "font-fira-code-nerd-font" # RECOMMENDED - command line icon fonts for viewing icons in Starship, agnoster, P10k, or iterm.
 cask "gemini" # RECOMMENDED - Duplicate remover
 cask "gpg-suite" # REQUIRED - Allows for setting up signed commits with github.
-cask "google-chrome" # REQUIRED -  Department approved primary browser
+cask "google-chrome" || true # REQUIRED -  Department approved primary browser
 cask "google-drive" # OPTIONAL - Recommended backup utility for use with google drive
 cask "iterm2" # REQUIRED - Front-end team approved command line tool for Mac OSX
-# cask "microsoft-office" # REQUIRED - Department approved productivity suite
-cask "microsoft-teams" # REQUIRED - Department approved communication tool
+cask "microsoft-office" || true # REQUIRED - Department approved productivity suite
+cask "microsoft-teams" || true # REQUIRED - Department approved communication tool
 cask "mysqlworkbench" # REQUIRED - Front-end team approved database GUI/tool
-# cask 'ngrok' # REQUIRED - Web development testing an emulation
 cask 'postman' # REQUIRED - Department approved API testing GUI/tool
 cask 'the-unarchiver' # RECOMMENDED - TAR/ZIP file compression tool
-cask 'visual-studio-code' # REQUIRED -  Digital Technology approved IDE for software engineering
+cask 'visual-studio-code' || true # REQUIRED -  Digital Technology approved IDE for software engineering
 # cask "katalon-studio" # RECOMMENDED -  Front-end approved browser automation GUI/tool
-cask "mamp" # RECOMMENDED - Front-end team approved server environment tool for wordpress and general web development
+# cask "mamp" # RECOMMENDED - Front-end team approved server environment tool for wordpress and general web development
 cask "messenger" # RECOMMENDED - personal messenger platform
 cask 'slack' # OPTIONAL - Department approved communication tool for specific vendors like sourcepoint
 cask 'spotify' # RECOMMENDED - Music Service

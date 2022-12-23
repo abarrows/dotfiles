@@ -11,9 +11,13 @@ brew 'libyaml' # RECOMMENDED - ROR/DEVOPS Compiled Dependency for web applicatio
 brew 'memcached' # RECOMMENDED - ROR Performance Caching library for Ruby on Rails
 brew "mysql", restart_service: true # REQUIRED - ROR/DEVOPS/PYTHON/PG Database Dependency for MySQL (Usually used by non-containerized web applications)
 brew "mysql-client" # REQUIRED - ROR/DEVOPS/PYTHON/PG Database Dependency for MySQL
-brew "pidof" # RECOMMENDED - ROR CL Dependency for displaying PID for a running
-process
-brew "rbenv" # REQUIRED - This is used to install Ruby version manager
-brew "ruby-build" # REQUIRED - This is the package library for ruby gems
+brew "openssl" # REQUIRED - ROR/DEVOPS/PYTHON/PG Database Dependency for MySQL
+brew "pidof" # RECOMMENDED - ROR CL Dependency for displaying PID for a running process
+brew "rbenv" # REQUIRED - ROR Ruby Version Manager that replaces RVM
+brew "rbenv-default-gems" # RECOMMENDED - ROR Ruby Version Manager default gems for all projects.
+brew "readline" # REQUIRED - ROR/DEVOPS/PYTHON/PG Database Dependency for MySQL
+brew "ruby-build" # REQUIRED - ROR Dependency for rbenv
+brew "solargraph" # RECOMMENDED - ROR debugging and language server for Ruby on Rails
 brew "sphinx" # RECOMMENDED - ROR Application Dependency for search functionality in Ruby on Rails (Legacy)
+brew "shfmt" # OPTIONAL - BASE/ROR/NODE/DEVOPS/PYTHON Linter for shell scripts
 brew "zlib" # NOT-USED Image Dependency data compression library

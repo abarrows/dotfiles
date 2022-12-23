@@ -1,0 +1,10 @@
+---
+# cleanup - This finishes the dotfiles onboarding process
+# by reloading your shell.
+
+- shell:
+    - description: 'Installing bundler gem...'
+      command: './onboarding_bin/install-bundler.sh'
+    - echo '10. Cleaning up - Reloading your shell session and starting...'
+    - source ~/.zshrc
+    - echo 'You are ready to rock and roll!'

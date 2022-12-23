@@ -9,7 +9,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
+    "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.formatOnSave": true
   },
   "[dotenv]": {
@@ -67,6 +67,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
   "[scss]": {
@@ -97,7 +98,7 @@
     "editor.formatOnSave": true
   },
   "[yaml]": {
-    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
   "atlascode.bitbucket.enabled": false,
@@ -184,7 +185,7 @@
       "id": "6fbe3fdb-a368-413f-a5ca-5a1692a2892e",
       "monitor": true,
       "name": "GoComics - My Issues",
-      "query": "project in (\"GOCOMICS\") AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "query": "project in (\"GOCOMICS\") AND resolution = Unresolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -357,6 +358,7 @@
     "chinthakagodawita",
     "choco",
     "CODEOWNER",
+    "CODEOWNERS",
     "CODESPACE",
     "codespaces",
     "Coenraad",
@@ -434,6 +436,8 @@
     "hmarr",
     "hsforms",
     "hspa",
+    "htmlhint",
+    "htmlhintrc",
     "hubspot",
     "iefix",
     "iframe",
@@ -448,6 +452,7 @@
     "jquery",
     "junit",
     "keychain",
+    "keymap",
     "keyvaultname",
     "labelledby",
     "lastmod",
@@ -470,6 +475,7 @@
     "msapplication",
     "multisize",
     "museo",
+    "mxcl",
     "navigationlinks",
     "Navs",
     "nextjs",
@@ -919,7 +925,7 @@
   "github.copilot.enable": {
     "*": true,
     "yaml": true,
-    "plaintext": false,
+    "plaintext": true,
     "markdown": true,
     "javascriptreact": true
   },
@@ -960,13 +966,14 @@
   "vs-kubernetes": {
     "vscode-kubernetes.minikube-path.linux": "/home/codespace/.local/state/vs-kubernetes/tools/minikube/linux-amd64/minikube"
   },
-  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.enableMultiLinePasteWarning": true,
   "dev.containers.logLevel": "trace",
   "yaml.schemas": {
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "liveshare.diagnosticMode": true,
-  "settingsSync.ignoredExtensions": [
-    "ms-vscode-remote.remote-containers"
-  ]
+  "settingsSync.ignoredExtensions": ["ms-vscode-remote.remote-containers"],
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }

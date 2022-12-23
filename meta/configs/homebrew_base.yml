@@ -1,6 +1,8 @@
-# homebrew_base - A base configuration. This uses brew bundle to install a number of basic machine
-# libraries as well as a number of default applications, you would want with any
-# MacOSX machine.
+---
+# homebrew_base - A base configuration. This uses brew bundle
+# to install a number of basic machine
+# libraries as well as a number of default applications,
+# you would want with any MacOSX machine.
 
 - shell:
     - description: '3. Installing Homebrew Package Manager - Base Packages...'

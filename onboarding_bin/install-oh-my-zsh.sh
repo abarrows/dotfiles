@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO: Force this in case.
+
 if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
   echo "Oh my Zsh IS already installed.  Current Theme: $ZSH_THEME"
 else

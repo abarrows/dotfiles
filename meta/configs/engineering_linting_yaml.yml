@@ -1,7 +1,9 @@
-# engineering_yaml - Linking your YAML default linting and formatting
+---
+# engineering_yaml -
+# Linking your YAML default linting
+# and formatting
 
-- shell:
-    - echo "Setting up Software Engineering - YAML linting and formatting rules..."
+- shell: echo "Setting up Software Engineering \n YAML linting and formatting rules..."
 
 - link:
-    ~/.yamllint.yml: engineering/yaml/.yamllint.yml
+        ~/.yamllint.yml: engineering/yaml/.yamllint.yml

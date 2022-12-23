@@ -1,8 +1,11 @@
-# ide - A base configuration. This installs vs code, sets up team settings, snippets, keybindings, and
+---
+# ide - A base configuration. This installs vs code,
+# sets up team settings, snippets, keybindings, and
 # extensions.
 
 - shell:
-    - echo "9. Installing VS Code and extensions - Provisioning settings, keybindings, snippets, etc."
+    - echo "9. Installing VS Code and extensions \n
+      Provisioning settings, keybindings, snippets, etc."
 
 - link:
     '~/Library/Application Support/code/User/settings.json':
@@ -17,7 +20,8 @@
     '~/Library/Application Support/code/User/launch.json':
       path: engineering/ide/.vscode/launch_ruby.json
       force: true
-# TODO: Need to apply an if statement in the event that the extension count is
+# TODO: Need to apply an if statement
+# in the event that the extension count is
 # less than 5 extensions.
 - shell:
     - description: 'Installing VSCode Extensions...'

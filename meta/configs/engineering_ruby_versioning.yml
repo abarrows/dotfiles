@@ -1,9 +1,12 @@
-# engineering_ruby_versioning - Linking your Ruby on Rails version manager
+---
+# engineering_ruby_versioning
+# Linking your Ruby on Rails version manager
 # (RBENV) to have latest version with a default gemset.
 
 - shell:
-    - echo "Setting up Ruby on Rails - RBENV as the version manager..."
+      - echo "Setting up Ruby on Rails \n
+        RBENV as the version manager..."
 
 - link:
-    ~/.ruby-version: engineering/ruby/.ruby-version
-    ~/.ruby-gemset: engineering/ruby/.ruby-gemset
+      ~/.ruby-version: engineering/ruby/.ruby-version
+      ~/.ruby-gemset: engineering/ruby/.ruby-gemset

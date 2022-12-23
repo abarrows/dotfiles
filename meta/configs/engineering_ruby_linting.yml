@@ -1,11 +1,15 @@
-# engineering_ruby_linting - Linking your Ruby on Rails default linting rubocop
-# rules along with defaults for solargraph.  Solargraph aggregates a number of
-# linters, formatters, and autocorrection tools under one language server.
+---
+# engineering_ruby_linting
+# Linking your Ruby on Rails default linting rubocop
+# rules along with defaults for solargraph.
+# Solargraph aggregates a number of linters, formatters,
+# and autocorrection tools under one language server.
 
 - shell:
-    - echo "Setting up Ruby on Rails - global linting and formatting rules..."
+      - echo "Setting up Ruby on Rails \n
+        global linting and formatting rules..."
 
 - link:
-    ~/.rubocop.yml: engineering/ruby/.rubocop.yml
-    ~/.gemrc: engineering/ruby/.gemrc
-    ~/.solargraph.yml: engineering/ruby/.solargraph.yml
+      ~/.rubocop.yml: engineering/ruby/.rubocop.yml
+      ~/.gemrc: engineering/ruby/.gemrc
+      ~/.solargraph.yml: engineering/ruby/.solargraph.yml

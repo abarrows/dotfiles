@@ -1,6 +1,7 @@
+---
 # Many software engineering tools and compiled libraries require X Code
 # developer tools on a MacOSX machine.
 
 - shell:
-    - echo '4. Setting up Mac OSX - Installing XCode Developer Tools...'
-    - xcode-select --install || true
+      - echo '4. Setting up Mac OSX - Installing XCode Developer Tools...'
+      - xcode-select --install || true
