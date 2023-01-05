@@ -54,17 +54,17 @@
 - shell:
     # iTerm Configuration, Profile, and Settings
     # Specify the preferences directory
-    - defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string '~/',
+    - defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string '~/'
 
     # Tell iTerm2 to use the custom preferences in the directory
-    - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true,
+    - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
     # TODO: Please complete the two items below to finish the setup process.
-    - echo "[TODO] • iTerm2 profile - Open iTerm2 -> Preferences"
+    - echo "[TODO] iTerm2 profile - Open iTerm2 -> Preferences"
     - echo "-> Profiles -> Other Actions -> Import JSON Profiles"
     - echo "Select the profile from \n
       ~/iterm-profile-front-end-engineering.json"
-    - echo "[TODO] • Click Other Actions... -> \n Set as Default"
-    - echo "[TODO] • iTerm2 keymap - Open iTerm2 \n
-      -> Preferences -> Keys -> ⚙ Presets... ->"
-    - echo "[TODO] • Import... Select the keymap \n
+    - echo "[TODO] Click Other Actions... -> \n Set as Default"
+    - echo "[TODO] iTerm2 keymap - Open iTerm2 \n
+      -> Preferences -> Keys -> Presets... ->"
+    - echo "[TODO] Import... Select the keymap \n
       from ~/iterm-profile-front-end-engineering.json"

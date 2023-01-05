@@ -3,23 +3,24 @@
 # sets up team settings, snippets, keybindings,
 # and extensions.
 
-- shell: echo "9. Installing VS Code and extensions \n
-    Provisioning settings, keybindings, snippets, etc."
+- shell:
+    - echo "9. Installing VS Code and extensions"
+    - echo "Provisioning settings, keybindings, snippets, etc."
 
 - link:
-    '~/Library/Application Support/code/User/settings.json':
+    "~/Library/Application Support/code/User/settings.json":
       path: engineering/ide/.vscode/settings.json
       force: true
-    '~/Library/Application Support/code/User/keybindings.json':
+    "~/Library/Application Support/code/User/keybindings.json":
       path: engineering/ide/.vscode/keybindings.json
       force: true
-    '~/Library/Application Support/code/User/tasks.json':
+    "~/Library/Application Support/code/User/tasks.json":
       path: engineering/ide/.vscode/tasks.json
       force: true
-    '~/Library/Application Support/code/User/launch.json':
+    "~/Library/Application Support/code/User/launch.json":
       path: engineering/ide/.vscode/launch_base.json
       force: true
 - shell:
-    - description: 'Installing VSCode Extensions...'
-      command: './onboarding_bin/vscode-install-extensions-from-team.sh'
+    - description: "Installing VSCode Extensions..."
+      command: "./onboarding_bin/vscode-install-extensions-from-team.sh"
       stderr: true
