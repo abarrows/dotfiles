@@ -3,16 +3,16 @@
 /* eslint-disable func-names */
 /* eslint-disable no-param-reassign */
 
-const path = require('path');
+const path = require("path");
 
 // Use the hidden-source-map option when you don't want the source maps to be
 // publicly available on the servers, only to the error reporting
-const withSourceMaps = require('@zeit/next-source-maps')();
+const withSourceMaps = require("@zeit/next-source-maps")();
 
 // Use the SentryWebpack plugin to upload the source maps during build step
-const SentryWebpackPlugin = require('@sentry/webpack-plugin');
+const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 
-const getRedirects = require('./redirects/getRedirects');
+const getRedirects = require("./redirects/getRedirects");
 
 const {
   SENTRY_DSN,
@@ -20,7 +20,7 @@ const {
   SENTRY_PROJECT,
   APP_VERSION,
   NODE_ENV,
-  SENTRY_AUTH_TOKEN
+  SENTRY_AUTH_TOKEN,
 } = process.env;
 
 module.exports = withSourceMaps({
@@ -43,7 +43,7 @@ module.exports = withSourceMaps({
     // So ask Webpack to replace @sentry/node imports with @sentry/browser when
     // building the browser's bundle
     if (!options.isServer) {
-      config.resolve.alias['@sentry/node'] = '@sentry/browser';
+      config.resolve.alias["@sentry/node"] = "@sentry/browser";
     }
 
     /// When all the Sentry configuration env variables are available/configured
@@ -57,15 +57,15 @@ module.exports = withSourceMaps({
       SENTRY_PROJECT &&
       SENTRY_AUTH_TOKEN &&
       APP_VERSION &&
-      NODE_ENV === 'production'
+      NODE_ENV === "production"
     ) {
       config.plugins.push(
         new SentryWebpackPlugin({
-          include: '.next',
-          ignore: ['node_modules'],
-          urlPrefix: '~/_next',
-          stripPrefix: ['webpack://_N_E/'],
-          release: `${APP_VERSION}`
+          include: ".next",
+          ignore: ["node_modules"],
+          urlPrefix: "~/_next",
+          stripPrefix: ["webpack://_N_E/"],
+          release: `${APP_VERSION}`,
         })
       );
     }
@@ -75,10 +75,10 @@ module.exports = withSourceMaps({
     config.entry = async () => {
       const entries = await originalEntry();
       if (
-        entries['main.js'] &&
-        !entries['main.js'].includes('./client/polyfills.js')
+        entries["main.js"] &&
+        !entries["main.js"].includes("./client/polyfills.js")
       ) {
-        entries['main.js'].unshift('./client/polyfills.js');
+        entries["main.js"].unshift("./client/polyfills.js");
       }
       return entries;
     };
@@ -88,11 +88,11 @@ module.exports = withSourceMaps({
       test: /.js$/,
       include: new RegExp(`\\${path.sep}prebid\\.js`),
       use: {
-        loader: 'babel-loader',
-        options: require('prebid.js/.babelrc.js')
-      }
+        loader: "babel-loader",
+        options: require("prebid.js/.babelrc.js"),
+      },
     });
 
     return config;
-  }
+  },
 });

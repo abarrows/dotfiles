@@ -23,8 +23,9 @@ alias checkpath="print -l PATH"
 alias addalias="dotfiles && $IDE_PATH shell/.aliases.zsh"
 alias savealias="source ~/.zshrc"
 alias amiroot="who -u"
-alias checkprocesses="ps au"
+alias checkprocesses="lsof -i:3000"
 alias killbg='kill ${${(v)jobstates##*:*:}%=*}'
+alias killpid='kill -9 $1'
 alias checksshkey='cat ~/.ssh/id_rsa.pub'
 alias checkip='curl ipecho.net/plain ; echo'
 alias edithosts="sudo open -a Visual\ Studio\ Code.app /etc/hosts"
@@ -172,7 +173,14 @@ alias rsservicegocontent="RAILS_ENV=development rails s -p 3070"
 alias servicegames="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/amu_games/ && $IDE_PATH ."
 alias servicegamedata="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/webservice_gamedata/ && $IDE_PATH ."
 alias rsservicegamedata="RAILS_ENV=development rails s -p 3064"
-
+alias servicetextparser="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/text-parser_gem/ && $IDE_PATH ."
+alias rsservicetextparser="bundle install && rake build && gem inabox pkg/uclick-textparser-$1.gem"
+alias serviceuucontentsystem="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/text-parser_gem/ && $IDE_PATH ."
+alias rsserviceuucontentsystem="bundle install && rake build && gem inabox pkg/uucontentsystem-$1.gem"
+alias servicegamedata="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/webservice_gamedata/ && $IDE_PATH ."
+alias rsservicegamedata="RAILS_ENV=development rails s -p 3064"
+alias teamreusableworkflows="cd ~/$CURRENT_COMPANY/repos/amu-development-team/reusable_workflows/ && $IDE_PATH ."
+alias rsteamreusableworkflows="yarn dev"
 # Wordpress
 # TODO: Update these with the new paths.
 # alias rsdailycartoonist="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/devkit/dailycartoonist && $IDE_PATH . && wpe start"

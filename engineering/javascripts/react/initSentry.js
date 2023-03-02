@@ -1,36 +1,36 @@
-import * as Sentry from '@sentry/node';
+import * as Sentry from "@sentry/node";
 
 // based on https://github.com/vercel/next.js/tree/f1f529096a8062b525dd5af1d8e533ce9a6f3ddc/examples/with-sentry-simple
 const initSentry = () => {
   if (process.env.NEXT_PUBLIC_SENTRY_DSN) {
     Sentry.init({
-      enabled: process.env.NODE_ENV === 'production',
+      enabled: process.env.NODE_ENV === "production",
       dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
       environment: process.env.NEXT_PUBLIC_DEPLOY_ENV,
       release: `${process.env.NEXT_PUBLIC_APP_VERSION}`,
       // https://docs.sentry.io/platforms/javascript/configuration/filtering/#decluttering-sentry
       ignoreErrors: [
         // Random plugins/extensions
-        'top.GLOBALS',
+        "top.GLOBALS",
         // See: http://blog.errorception.com/2012/03/tale-of-unfindable-js-error.html
-        'originalCreateNotification',
-        'canvas.contentDocument',
-        'MyApp_RemoveAllHighlights',
-        'http://tt.epicplay.com',
+        "originalCreateNotification",
+        "canvas.contentDocument",
+        "MyApp_RemoveAllHighlights",
+        "http://tt.epicplay.com",
         "Can't find variable: ZiteReader",
-        'jigsaw is not defined',
-        'ComboSearch is not defined',
-        'http://loading.retry.widdit.com/',
-        'atomicFindClose',
+        "jigsaw is not defined",
+        "ComboSearch is not defined",
+        "http://loading.retry.widdit.com/",
+        "atomicFindClose",
         // Facebook borked
-        'fb_xd_fragment',
+        "fb_xd_fragment",
         // ISP "optimizing" proxy - `Cache-Control: no-transform` seems to
         // reduce this. (thanks @acdha)
         // See http://stackoverflow.com/questions/4113268
-        'bmi_SafeAddOnload',
-        'EBCallBackMessageReceived',
+        "bmi_SafeAddOnload",
+        "EBCallBackMessageReceived",
         // See http://toolbar.conduit.com/Developer/HtmlAndGadget/Methods/JSInjection.aspx
-        'conduitPage',
+        "conduitPage",
       ],
       denyUrls: [
         // Facebook flakiness

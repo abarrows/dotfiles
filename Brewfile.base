@@ -43,7 +43,7 @@ cask "font-fira-code" # RECOMMENDED -  command line icon fonts
 cask "font-fira-code-nerd-font" # RECOMMENDED - command line icon fonts for viewing icons in Starship, agnoster, P10k, or iterm.
 cask "gemini" # RECOMMENDED - Duplicate remover
 cask "gpg-suite" # REQUIRED - Allows for setting up signed commits with github.
-# cask "google-chrome", return: true # REQUIRED -  Department approved primary browser
+# cask "google-chrome" # REQUIRED -  Department approved primary browser
 # NOTE: These come preinstalled, uncheck if you have done a factory reset.
 cask "google-drive" # OPTIONAL - Recommended backup utility for use with google drive
 cask "iterm2" # REQUIRED - Front-end team approved command line tool for Mac OSX
@@ -51,7 +51,7 @@ cask "microsoft-office" || true # REQUIRED - Department approved productivity su
 cask "microsoft-teams" || true # REQUIRED - Department approved communication tool
 cask "mysqlworkbench" # REQUIRED - Front-end team approved database GUI/tool
 cask 'postman' # REQUIRED - Department approved API testing GUI/tool
-cask 'the-unarchiver' # RECOMMENDED - TAR/ZIP file compression tool
+# cask 'the-unarchiver' # RECOMMENDED - TAR/ZIP file compression tool
 cask 'visual-studio-code' || true # REQUIRED -  Digital Technology approved IDE for software engineering
 # cask "katalon-studio" # RECOMMENDED -  Front-end approved browser automation GUI/tool
 # cask "mamp" # RECOMMENDED - Front-end team approved server environment tool for wordpress and general web development

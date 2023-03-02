@@ -10,9 +10,9 @@
 //   styled-jsx
 
 module.exports = {
-  presets: ['next/babel'],
+  presets: ["next/babel"],
   plugins: [
-    require('@babel/plugin-syntax-dynamic-import').default,
-    require('babel-plugin-dynamic-import-node')
-  ]
+    require("@babel/plugin-syntax-dynamic-import").default,
+    require("babel-plugin-dynamic-import-node"),
+  ],
 };

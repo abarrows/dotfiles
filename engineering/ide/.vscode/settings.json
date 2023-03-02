@@ -41,13 +41,18 @@
   },
   "[json]": {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "source.fixAll.sortJSON": true
+    }
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.fixAll": true
+      "source.fixAll": true,
+      "source.fixAll.sortJSON": true
     }
   },
   "[less]": {
@@ -57,9 +62,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[markdown]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.stylelint": false
-    },
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
@@ -637,7 +639,7 @@
     "source.fixAll": true
   },
   "editor.cursorBlinking": "smooth",
-  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorStyle": "line",
   "editor.emptySelectionClipboard": false,
   "editor.fastScrollSensitivity": 10,
@@ -771,7 +773,7 @@
   "gitlens.sortBranchesBy": "date:desc",
   "gitlens.views.branches.branches.layout": "list",
   "gitlens.views.compare.enabled": true,
-  "gitlens.views.repositories.files.layout": "list",
+  "gitlens.views.repositories.files.layout": "tree",
   "gitlens.views.search.enabled": false,
   "gitlens.views.searchAndCompare.files.layout": "list",
   "html.format.enable": true,
@@ -793,7 +795,6 @@
   "merge-conflict.autoNavigateNextConflict.enabled": true,
   "npm.packageManager": "yarn",
   "prettier.requireConfig": false,
-  "prettier.jsonEnable": [],
   "problems.decorations.enabled": true,
   "rewrap.autoWrap.enabled": true,
   "rewrap.doubleSentenceSpacing": true,
@@ -950,13 +951,7 @@
   "prettier.useEditorConfig": false,
   "security.workspace.trust.untrustedFiles": "open",
   "xd.globalEditor": true,
-  "window.zoomLevel": 3,
   "cssModules.pathAlias": {},
-  "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
-    "projectKey": "AMCORP"
-  },
-  "diffEditor.ignoreTrimWhitespace": false,
   "githubPullRequests.pullBranch": "never",
   "terminal.integrated.allowChords": false,
   "debug.terminal.clearBeforeReusing": true,
@@ -969,11 +964,37 @@
   "terminal.integrated.enableMultiLinePasteWarning": true,
   "dev.containers.logLevel": "trace",
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-2.10.12/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-3.0.2/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "liveshare.diagnosticMode": true,
   "settingsSync.ignoredExtensions": ["ms-vscode-remote.remote-containers"],
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "window.zoomLevel": 1,
+  "playwright.reuseBrowser": true,
+  "l13Diff.confirmCopy": false,
+  "l13Diff.confirmDelete": false,
+  "sortJSON.orderOverride": [
+    "name",
+    "label",
+    "description",
+    "author",
+    "homepage",
+    "type",
+    "version",
+    "license",
+    "private",
+    "repository",
+    "productkey",
+    "keyvaultprefix",
+    "browserslist",
+    "scripts",
+    "args",
+    "command"
+  ],
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+    "projectKey": "AMCORP"
   }
 }
