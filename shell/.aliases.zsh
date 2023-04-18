@@ -23,7 +23,8 @@ alias checkpath="print -l PATH"
 alias addalias="dotfiles && $IDE_PATH shell/.aliases.zsh"
 alias savealias="source ~/.zshrc"
 alias amiroot="who -u"
-alias checkprocesses="lsof -i:3000"
+alias checkprocess="lsof -i:3000"
+alias killprocess='kill -9 $1'
 alias killbg='kill ${${(v)jobstates##*:*:}%=*}'
 alias killpid='kill -9 $1'
 alias checksshkey='cat ~/.ssh/id_rsa.pub'
