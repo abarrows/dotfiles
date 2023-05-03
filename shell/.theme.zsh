@@ -6,7 +6,7 @@
 
 # Starship Theme
 # Instructions: https://guinuxbr.com/en/posts/zsh+oh-my-zsh+starship/
-if [[ -f "/opt/homebrew/bin/starship" ]]; then
+if [[ -f "/usr/local/bin/starship" || -f "/opt/homebrew/bin/starship" ]]; then
   echo 'Theme should be sourced: Starship.'
   eval "$(starship init zsh)"
 else
