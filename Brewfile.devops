@@ -7,6 +7,7 @@ tap 'homebrew/services'
 brew 'act' # RECOMMENDED - DEVOPS Allows for testing Github Actions on your local machine
 brew 'azure-cli' # RECOMMENDED - DEVOPS Used with internal
 brew 'coreutils' # RECOMMENDED - DEVOPS Basic tools for the GNU OS
+brew 'gh' # RECOMMENDED - DEVOPS Github CLI
 brew 'git-lfs' # NOT-USED - DEVOPS Core version control for large files
 brew 'go-jira' # RECOMMENDED - DEVOPS Jira CLI for managing jira issues
 brew 'gnutls' # RECOMMENDED - DEVOPS/PG Security Dependency GNU Transport Layer Security (TLS) Library

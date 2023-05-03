@@ -9,7 +9,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
     },
-    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
     "editor.formatOnSave": true
   },
   "[dotenv]": {
@@ -815,6 +815,7 @@
       "useBundler": true
     }
   },
+  "ruby.useBundler": true,
   "ruby.useLanguageServer": true,
   "scm.alwaysShowActions": true,
   "scm.diffDecorations": "gutter",
@@ -975,7 +976,6 @@
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "window.zoomLevel": 2,
   "playwright.reuseBrowser": true,
   "l13Diff.confirmCopy": false,
   "l13Diff.confirmDelete": false,
@@ -1018,5 +1018,6 @@
   "atlascode.onlineCheckerUrls": [
     "https://amuniversal.atlassian.ne",
     "https://github.com/Andrews-McMeel-Universal"
-  ]
+  ],
+  "window.zoomLevel": 2
 }
