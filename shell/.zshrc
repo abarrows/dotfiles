@@ -6,8 +6,7 @@ export LC_ALL=en_US.UTF-8
 export GPG_TTY=$(tty)
 
 # PATHING
-# If you come from bash you might have to change your $PATH.
-PATH=:bin/~/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/sbin:$PATH
+export PATH="$HOME/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/usr/sbin:/sbin:/usr/local/sbin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
