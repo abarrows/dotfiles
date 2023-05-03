@@ -7,6 +7,7 @@ tap 'homebrew/services'
 brew 'direnv' # REQUIRED - BASE/ROR/NODE/
 brew 'dotenv-linter' # REQUIRED - BASE/ROR/NODE/
 brew 'freetype' # REQUIRED - BASE/ROR/NODE CL
+brew 'gh' # REQUIRED - BASE/ROR/NODE/DEVOPS Github CLI
 brew 'git' # REQUIRED - ROR/NODE/DEVOPS/PYTHON Core version control
 brew 'icu4c' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Compiled Library Dependency for unicode and globalization
 brew 'gnupg' # REQUIRED - Needed for signing your commits with github.
