@@ -44,7 +44,7 @@ alias gitreset="git reset --hard HEAD"
 alias updatesubmodule="git pull --recurse-submodules && git submodule update --remote --recursive"
 alias gpull="\$updatesubmodule && git pull --all"
 alias removegit="rm -rf .git"
-alias syncbranches="git branch -r | awk '{print $1}' | sed 's/^origin\///' | grep -Fv -f <(git branch -vv | grep origin | awk '{print $1}' | sed 's/^origin\///') | xargs git branch -d"
+alias prunebranches="~/.onboarding_bin/prune-merged-in-branches.sh"
 
 # Apache
 alias editapache="cd ~/etc && cd apache2 && edit httpd.conf"
