@@ -40,6 +40,7 @@ cask "dropbox" # OPTIONAL - Department approved cloud storage for UXD and Design
 cask "expressvpn" # REQUIRED - Department approved VPN for testing geo location
 # cask "firefox", return: true # REQUIRED - Front-end team approved browser for our viewing our applications
 # NOTE: These come preinstalled, uncheck if you have done a factory reset.
+cask "figma" # RECOMMENDED - As an alternative to illustrator and sketch.
 cask "font-fira-code" # RECOMMENDED -  command line icon fonts
 cask "font-fira-code-nerd-font" # RECOMMENDED - command line icon fonts for viewing icons in Starship, agnoster, P10k, or iterm.
 cask "gemini" # RECOMMENDED - Duplicate remover
@@ -48,6 +49,7 @@ cask "gpg-suite" # REQUIRED - Allows for setting up signed commits with github.
 # NOTE: These come preinstalled, uncheck if you have done a factory reset.
 cask "google-drive" # OPTIONAL - Recommended backup utility for use with google drive
 cask "iterm2" # REQUIRED - Front-end team approved command line tool for Mac OSX
+cask "inkscape" # RECOMMENDED - Front-end team approved vector graphics editor
 cask "microsoft-office" || true # REQUIRED - Department approved productivity suite
 cask "microsoft-teams" || true # REQUIRED - Department approved communication tool
 cask "mysqlworkbench" # REQUIRED - Front-end team approved database GUI/tool
