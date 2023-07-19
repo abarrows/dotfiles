@@ -44,7 +44,7 @@ alias gitreset="git reset --hard HEAD"
 alias updatesubmodule="git pull --recurse-submodules && git submodule update --remote --recursive"
 alias gpull="\$updatesubmodule && git pull --all"
 alias removegit="rm -rf .git"
-alias syncbranches="git branch -r | awk '{print $1}' | egrep -v -f /dev/fd/0 <(git branch -vv | grep origin) | awk '{print $1}' | xargs git branch -d"
+alias syncbranches="git branch -r | awk '{print $1}' | sed 's/^origin\///' | grep -Fv -f <(git branch -vv | grep origin | awk '{print $1}' | sed 's/^origin\///') | xargs git branch -d"
 
 # Apache
 alias editapache="cd ~/etc && cd apache2 && edit httpd.conf"

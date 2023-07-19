@@ -83,9 +83,6 @@ fi
 
 # ZSH PLUGIN: zsh-nvm
 # https://github.com/lukechilds/zsh-nvm
-export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
-export NVM_AUTO_USE=true
 if [[ -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-nvm" ]]; then
   # echo 'Plugin should be sourced: zsh-nvm.'
 else

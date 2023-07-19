@@ -19,13 +19,6 @@
     "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.formatOnSave": true
   },
-  "[html]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "tidyHtml.formatOnSave": true
-    },
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "[gitignore]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
@@ -33,27 +26,40 @@
     "editor.defaultFormatter": "timonwong.shellcheck",
     "editor.formatOnSave": true
   },
+  "[html]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true,
+      "tidyHtml.formatOnSave": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.fixAll": true,
       "source.fixAll.sortJSON": true
-    }
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.fixAll": true,
       "source.fixAll.sortJSON": true
-    }
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true
   },
   "[less]": {
     "editor.codeActionsOnSave": {
@@ -64,6 +70,9 @@
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
+  },
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[ruby]": {
     "editor.codeActionsOnSave": {
@@ -80,8 +89,8 @@
   },
   "[shellscript]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll.stylelint": false,
-      "source.fixAll.shellcheck": true
+      "source.fixAll.shellcheck": true,
+      "source.fixAll.stylelint": false
     },
     "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.formatOnSave": true
@@ -91,6 +100,9 @@
       "source.fixAll.stylelint": false
     },
     "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[xml]": {
     "editor.codeActionsOnSave": {
@@ -103,126 +115,138 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },
+  "atlascode.bitbucket.contextMenus.enabled": false,
   "atlascode.bitbucket.enabled": false,
+  "atlascode.bitbucket.explorer.enabled": false,
+  "atlascode.bitbucket.explorer.notifications.pullRequestCreated": false,
+  "atlascode.bitbucket.pipelines.explorerEnabled": false,
+  "atlascode.bitbucket.pipelines.hideEmpty": false,
+  "atlascode.bitbucket.pipelines.monitorEnabled": false,
+  "atlascode.enableHttpsTunnel": true,
   "atlascode.helpExplorerEnabled": false,
   "atlascode.jira.enabled": true,
   "atlascode.jira.explorer.assignedIssueJql": "assignee=currentUser() and resolution = Unresolved",
   "atlascode.jira.explorer.enabled": true,
+  "atlascode.jira.explorer.fetchAllQueryResults": true,
   "atlascode.jira.explorer.nestSubtasks": true,
   "atlascode.jira.jqlList": [
     {
+      "name": "My Most Recent Updated Issues",
       "enabled": true,
       "id": "2e252f74-65ff-4411-b0ac-5fb625fc34ef",
       "monitor": true,
-      "name": "My Most Recent Updated Issues",
       "query": "assignee = currentUser() and status != resolved ORDER BY updated DESC, priority DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "My Most Recently Created Issues",
       "enabled": true,
       "id": "c33593e5-febe-4787-adce-44be66d943ab",
       "monitor": true,
-      "name": "My Most Recently Created Issues",
       "query": "reporter = currentUser() AND status != Done ORDER BY updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "My amuniversal Issues",
       "enabled": true,
       "id": "486d46cd-29a5-47e7-b5cb-7bdf9625be72",
       "monitor": true,
-      "name": "My amuniversal Issues",
       "query": "assignee = currentUser() and status != resolved ORDER BY rank ASC, priority DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Content Admin - My Issues",
       "enabled": true,
       "id": "faedfb95-7fef-47c3-a54b-cc397464edf9",
       "monitor": true,
-      "name": "Content Admin - My Issues",
       "query": "project = \"CONADMIN\" and assignee = currentUser() ",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "TPS - My Issues",
       "enabled": true,
       "id": "110bea68-bd07-43aa-b1bc-2512556cd473",
       "monitor": true,
-      "name": "TPS - My Issues",
       "query": "project =\"PUZSOC\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Games/Embed - Issues",
       "enabled": true,
       "id": "02142ed5-c4d7-41af-a082-7e16cb33dada",
       "monitor": true,
-      "name": "Games/Embed - Issues",
       "query": "project =\"AMU Games\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Embed Service",
       "enabled": true,
       "id": "5de0ffa1-bb1c-4a76-9371-a870197089a9",
       "monitor": true,
-      "name": "Embed Service",
       "query": "project =\"Embed Service\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Doonesbury - My Issues",
       "enabled": true,
       "id": "a41f9986-a92a-4936-93f3-e653e95f2ae7",
       "monitor": true,
-      "name": "Doonesbury - My Issues",
       "query": "project = \"DOONES\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "My amuniversal Issues",
       "enabled": true,
       "id": "486d46cd-29a5-47e7-b5cb-7bdf9625be72",
       "monitor": true,
-      "name": "My amuniversal Issues",
       "query": "assignee = currentUser() and status != resolved ORDER BY rank ASC, priority DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "GoComics - My Issues",
       "enabled": true,
       "id": "6fbe3fdb-a368-413f-a5ca-5a1692a2892e",
       "monitor": true,
-      "name": "GoComics - My Issues",
       "query": "project in (\"GOCOMICS\") AND resolution = Unresolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Uexpress- My Issues",
       "enabled": true,
       "id": "1b3ae036-7577-419f-9d72-393c91180dff",
       "monitor": true,
-      "name": "Uexpress- My Issues",
       "query": "project = Uexpress AND status != resolved AND assignee = currentUser() ",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Dilbert - My Issues",
       "enabled": true,
       "id": "dbf335f1-eb46-42b5-b25e-2f357b6ab7a1",
       "monitor": true,
-      "name": "Dilbert - My Issues",
       "query": "project = Dilbert AND status != resolved ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "TFS",
       "enabled": true,
       "id": "c7cd7030-fd5e-42e1-b4bd-857e58e22fe2",
       "monitor": true,
-      "name": "TFS",
       "query": "project = Farside AND status != resolved AND assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
-      "id": "34cf15a8-b627-435e-8e92-4deec1da8891",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
       "name": "All Recent Issues",
-      "query": "resolution != Done and updatedDate > endOfDay(-30d)",
       "enabled": true,
-      "monitor": true
+      "id": "34cf15a8-b627-435e-8e92-4deec1da8891",
+      "monitor": true,
+      "query": "resolution != Done and updatedDate > endOfDay(-30d)",
+      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     }
   ],
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "projectKey": "AMCORP",
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
+  },
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
     "maintenance",
     "story",
@@ -239,14 +263,31 @@
     "ISSUE:",
     "TODO -"
   ],
+  "atlascode.onlineCheckerUrls": [
+    "https://amuniversal.atlassian.ne",
+    "https://github.com/Andrews-McMeel-Universal"
+  ],
   "atlascode.outputLevel": "debug",
+  "autoimport.filesToScan": "**/*.{js,jsx,ts,tsx}",
+  "autoimport.showNotifications": true,
   "breadcrumbs.enabled": true,
-  "codespaces.accountProvider": "GitHub",
-  "codespaces.enableSubmoduleCloning": true,
-  "codespaces.featureSet": "stable",
-  "codespaces.planFilter": "/subscriptions/5479830b-7861-4a1a-b191-1cb538748d7d/resourceGroups/vso-rg-65b0015/providers/Microsoft.VSOnline/plans/vso-plan-eastus",
-  "compareFolders.ignoreFileNameCase": true,
-  "compareFolders.useDiffMerge": true,
+  "cSpell.enableFiletypes": [
+    "!git-commit",
+    "dockerfile",
+    "dotenv",
+    "env",
+    "erb",
+    "gitignore",
+    "javascript",
+    "log",
+    "perl",
+    "perl6",
+    "powershell",
+    "sql",
+    "vue",
+    "xml",
+    "xsl"
+  ],
   "cSpell.enabledLanguageIds": [
     "asciidoc",
     "c",
@@ -279,23 +320,6 @@
     "yaml",
     "yml"
   ],
-  "cSpell.enableFiletypes": [
-    "!git-commit",
-    "dockerfile",
-    "dotenv",
-    "env",
-    "erb",
-    "gitignore",
-    "javascript",
-    "log",
-    "perl",
-    "perl6",
-    "powershell",
-    "sql",
-    "vue",
-    "xml",
-    "xsl"
-  ],
   "cSpell.ignorePaths": [
     "**/package-lock.json",
     "**/node_modules/**",
@@ -324,6 +348,7 @@
     "amudebug",
     "amuniversal",
     "AMUs",
+    "amustagecache",
     "amzn",
     "andrewbarrows",
     "animationend",
@@ -335,6 +360,7 @@
     "artboard",
     "atlascode",
     "authenticatable",
+    "autodocs",
     "autofetch",
     "autoformat",
     "autoimport",
@@ -344,6 +370,7 @@
     "azureb",
     "azuretools",
     "beerslider",
+    "birthdate",
     "bitbucket",
     "browser",
     "browserslist",
@@ -359,6 +386,7 @@
     "Checkmark",
     "chinthakagodawita",
     "choco",
+    "cmsassets",
     "CODEOWNER",
     "CODEOWNERS",
     "CODESPACE",
@@ -369,10 +397,12 @@
     "Comixology",
     "commentable",
     "compat",
+    "compon",
     "comscore",
     "CONADMIN",
     "Confiant",
     "content",
+    "contentassets",
     "cookieconsent",
     "cookiefy",
     "corejs",
@@ -393,6 +423,7 @@
     "dev",
     "devcontainer",
     "devcontainers",
+    "developmentamub",
     "devops",
     "dfptest",
     "dilbertcomics",
@@ -432,6 +463,7 @@
     "gsub",
     "gsutil",
     "haspopup",
+    "heartofthecity",
     "hexcode",
     "hfmysql",
     "hfstagedb",
@@ -480,13 +512,16 @@
     "mxcl",
     "navigationlinks",
     "Navs",
+    "NEXTAUTH",
     "nextjs",
     "nodelist",
     "noninteractive",
     "noopener",
     "noscript",
+    "npmcheckrc",
     "npmignore",
     "nvmrc",
+    "odata",
     "offcanvas",
     "ommit",
     "ommitting",
@@ -494,6 +529,7 @@
     "onedisplay",
     "onemobile",
     "onmicrosoft",
+    "openapi",
     "opentype",
     "openx",
     "otterloop",
@@ -568,6 +604,7 @@
     "Sovrn",
     "Steinberg",
     "stickybits",
+    "strapi",
     "strnativekey",
     "Styleguide",
     "stylelint",
@@ -612,6 +649,7 @@
     "Vercel",
     "Vica",
     "VIEWABILITY",
+    "viewports",
     "viminfo",
     "VINDICIA",
     "Vqwwq",
@@ -629,22 +667,33 @@
     "yamllint",
     "zindex"
   ],
+  "codespaces.accountProvider": "GitHub",
+  "codespaces.enableSubmoduleCloning": true,
+  "codespaces.featureSet": "stable",
+  "codespaces.planFilter": "/subscriptions/5479830b-7861-4a1a-b191-1cb538748d7d/resourceGroups/vso-rg-65b0015/providers/Microsoft.VSOnline/plans/vso-plan-eastus",
+  "compareFolders.ignoreFileNameCase": true,
+  "compareFolders.useDiffMerge": true,
   "css.validate": false,
+  "cssModules.pathAlias": {},
   "debug.allowBreakpointsEverywhere": true,
   "debug.console.fontSize": 16,
+  "debug.terminal.clearBeforeReusing": true,
+  "dev.containers.logLevel": "trace",
   "diffEditor.codeLens": true,
   "docker.images.sortBy": "CreatedTime",
   "dotfiles.installCommand": "install",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
   "editor.accessibilitySupport": "off",
   "editor.autoClosingBrackets": "always",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": true,
+    "source.fixAll.sortJSON": true
   },
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorStyle": "line",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.emptySelectionClipboard": false,
   "editor.fastScrollSensitivity": 10,
   "editor.find.autoFindInSelection": "never",
@@ -654,52 +703,57 @@
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
+  "editor.guides.bracketPairs": true,
+  "editor.guides.bracketPairsHorizontal": true,
+  "editor.guides.highlightActiveIndentation": true,
+  "editor.guides.indentation": true,
   "editor.hover.delay": 200,
+  "editor.inlineSuggest.enabled": true,
   "editor.largeFileOptimizations": false,
   "editor.minimap.enabled": false,
-  "editor.guides.bracketPairs": true,
-  "editor.guides.highlightActiveIndentation": true,
   "editor.quickSuggestions": {
-    "other": "on",
     "comments": "off",
+    "other": "on",
     "strings": "off"
   },
   "editor.renderControlCharacters": false,
   "editor.scrollBeyondLastLine": true,
+  "editor.snippetSuggestions": "top",
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "onlySnippets",
-  "editor.snippetSuggestions": "top",
   "editor.tabSize": 2,
+  "editor.tokenColorCustomizations": {},
+  "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
   "editor.wordWrap": "bounded",
   "emmet.includeLanguages": {
     "erb": "html",
-    "typescript": "typescriptreact",
     "javascript": "javascriptreact",
     "sass": "css",
-    "scss": "css"
+    "scss": "css",
+    "typescript": "typescriptreact"
   },
   "emmet.showAbbreviationSuggestions": true,
   "emmet.showSuggestionsAsSnippets": true,
   "emmet.triggerExpansionOnTab": true,
-  "eslint.alwaysShowStatus": true,
   "eslint.debug": true,
   "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
-  "eslint.packageManager": "yarn",
+  "eslint.run": "onSave",
+  "eslint.useESLintClass": true,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "extensions.closeExtensionDetailsOnViewChange": true,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
-    ".aliases.zsh": "shellscript",
-    ".env.*": "dotenv",
-    ".env.example": "dotenv",
-    ".zshrc": "shellscript",
+    "*.base": "ruby",
+    "*.devops": "ruby",
     "*.erb": "erb",
     "*.js.erb": "js",
     "*.zsh": "shellscript",
-    "*.devops": "ruby",
-    "*.base": "ruby"
+    ".aliases.zsh": "shellscript",
+    ".env.*": "dotenv",
+    ".env.example": "dotenv",
+    ".zshrc": "shellscript"
   },
   "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",
@@ -717,26 +771,39 @@
   "gistpad.playgrounds.stylesheetLanguage": "scss",
   "git-graph.customBranchGlobPatterns": [
     {
-      "glob": "heads/release/*",
-      "name": "Release"
+      "name": "Release",
+      "glob": "heads/release/*"
     }
   ],
   "git-graph.dialog.addTag.pushToRemote": true,
+  "git-graph.dialog.fetchRemote.prune": true,
   "git-graph.openToTheRepoOfTheActiveTextEditorDocument": true,
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
+  "git.ignoreRebaseWarning": true,
   "git.inputValidationLength": 200,
   "git.inputValidationSubjectLength": null,
+  "git.pruneOnFetch": true,
   "git.showPushSuccessNotification": true,
   "github-actions.org-features": true,
-  "editor.bracketPairColorization.enabled": true,
+  "github.autoPublish": true,
+  "github.copilot.enable": {
+    "*": true,
+    "javascriptreact": true,
+    "markdown": true,
+    "plaintext": true,
+    "yaml": true
+  },
+  "github.customPullRequestDescription": "gitEditor",
   "github.customPullRequestTitle": true,
   "github.preferedMergeMethod": "merge",
   "githubIssues.assignWhenWorking": false,
   "githubIssues.createInsertFormat": "url",
+  "githubPullRequests.createOnPublishBranch": "never",
   "githubPullRequests.defaultMergeMethod": "merge",
   "githubPullRequests.fileListLayout": "flat",
+  "githubPullRequests.pullBranch": "never",
   "githubPullRequests.queries": [
     {
       "label": "Waiting For My Review",
@@ -770,23 +837,28 @@
   ],
   "gitlens.remotes": [
     {
-      "domain": "github.com/Andrews-McMeel-Universal/",
       "name": "Andrews McMeel Universal",
-      "type": "GitHub"
+      "type": "GitHub",
+      "domain": "github.com/Andrews-McMeel-Universal/"
     }
   ],
   "gitlens.sortBranchesBy": "date:desc",
   "gitlens.views.branches.branches.layout": "list",
+  "gitlens.views.branches.showBranchComparison": false,
   "gitlens.views.compare.enabled": true,
-  "gitlens.views.repositories.files.layout": "tree",
+  "gitlens.views.repositories.files.layout": "list",
   "gitlens.views.search.enabled": false,
   "gitlens.views.searchAndCompare.files.layout": "list",
+  "grammarly.debug": true,
   "html.format.enable": true,
   "html.format.extraLiners": "none",
   "html.format.templating": true,
   "html.trace.server": "messages",
   "htmlhint.documentSelector": ["erb", "html", "htm"],
+  "javascript.preferences.importModuleSpecifier": "non-relative",
   "keyboard.layout": "us",
+  "l13Diff.confirmCopy": false,
+  "l13Diff.confirmDelete": false,
   "l13Diff.ignoreEndOfLine": true,
   "less.validate": false,
   "liveServer.settings.ChromeDebuggingAttachment": false,
@@ -796,11 +868,21 @@
   "liveshare.allowGuestDebugControl": true,
   "liveshare.allowGuestTaskControl": true,
   "liveshare.diagnosticLogging": true,
+  "liveshare.diagnosticMode": true,
+  "liveshare.presence": true,
   "markdown.preview.fontSize": 16,
   "merge-conflict.autoNavigateNextConflict.enabled": true,
   "npm.packageManager": "yarn",
+  "oneDarkPro.color": {
+    "chalky": "#cdcdcd"
+  },
+  "path-intellisense.autoSlashAfterDirectory": true,
+  "playwright.reuseBrowser": false,
+  "prettier.enableDebugLogs": true,
   "prettier.requireConfig": false,
+  "prettier.useEditorConfig": false,
   "problems.decorations.enabled": true,
+  "redhat.telemetry.enabled": false,
   "rewrap.autoWrap.enabled": true,
   "rewrap.doubleSentenceSpacing": true,
   "ruby.codeCompletion": false,
@@ -821,17 +903,19 @@
   "scm.diffDecorations": "gutter",
   "scm.diffDecorationsGutterVisibility": "always",
   "scss.validate": false,
+  "search.collapseResults": "alwaysCollapse",
   "search.exclude": {
     "**/.history/**": true
   },
-  "search.collapseResults": "alwaysCollapse",
   "search.globalFindClipboard": true,
   "search.quickOpen.includeHistory": false,
   "search.useIgnoreFiles": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "settingsSync.ignoredExtensions": ["ms-vscode-remote.remote-containers"],
   "shellcheck.enable": true,
   "shellcheck.enableQuickFix": true,
-  "shellcheck.run": "onSave",
   "shellcheck.ignoreFileSchemes": ["git", "gitfs"],
+  "shellcheck.run": "onSave",
   "shellcheck.useWorkspaceRootAsCwd": true,
   "shellformat.effectLanguages": [
     "shellscript",
@@ -848,6 +932,37 @@
   "solargraph.autoformat": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
+  "sortJSON.orderOverride": [
+    "openapi",
+    "info",
+    "externalDocs",
+    "servers",
+    "tags",
+    "paths",
+    "components",
+    "name",
+    "label",
+    "description",
+    "author",
+    "homepage",
+    "type",
+    "version",
+    "license",
+    "private",
+    "repository",
+    "productkey",
+    "keyvaultprefix",
+    "browserslist",
+    "scripts",
+    "args",
+    "command",
+    "b2c-gc-development",
+    "b2c-gc-staging",
+    "b2c-gc-production",
+    "b2c-tps-development",
+    "b2c-tps-staging",
+    "b2c-tps-production"
+  ],
   "sortLines.filterBlankLines": true,
   "sortLines.sortEntireFile": true,
   "stylelint.enable": true,
@@ -873,10 +988,16 @@
   "sync.autoUpload": true,
   "sync.gist": "bb65fea22ab86d87fce05b89a7f8c426",
   "terminal.external.osxExec": "iterm.app",
+  "terminal.integrated.allowChords": false,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.drawBoldTextInBrightColors": false,
   "terminal.integrated.enableBell": true,
+  "terminal.integrated.enableMultiLinePasteWarning": true,
+  "terminal.integrated.fontFamily": "monospace",
   "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontWeight": "normal",
+  "terminal.integrated.gpuAcceleration": "off",
   "terminal.integrated.rendererType": "dom",
   "terminal.integrated.rightClickBehavior": "default",
   "todo-tree.general.tags": [
@@ -890,9 +1011,13 @@
   ],
   "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
   "todo-tree.tree.showScanModeButton": false,
+  "vs-kubernetes": {
+    "vscode-kubernetes.minikube-path.linux": "/home/codespace/.local/state/vs-kubernetes/tools/minikube/linux-amd64/minikube"
+  },
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.newWindowDimensions": "maximized",
   "window.restoreWindows": "all",
+  "window.zoomLevel": 1,
   "workbench.colorCustomizations": {
     "[One Dark Pro]": {
       "editorBracketHighlight.foreground1": "#E6E6E6",
@@ -904,7 +1029,7 @@
       "editorBracketHighlight.unexpectedBracket.foreground": "#FF2C6D"
     }
   },
-  "editor.guides.bracketPairsHorizontal": true,
+  "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.openPositioning": "last",
   "workbench.editor.revealIfOpen": true,
@@ -916,108 +1041,11 @@
   "workbench.startupEditor": "welcomePage",
   "workbench.tree.indent": 4,
   "workbench.view.alwaysShowHeaderActions": true,
-  "yaml.format.singleQuote": true,
-  "yaml.trace.server": "verbose",
-  "[ignore]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "redhat.telemetry.enabled": false,
-  "grammarly.debug": true,
-  "git.ignoreRebaseWarning": true,
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "editor.inlineSuggest.enabled": true,
-  "github.copilot.enable": {
-    "*": true,
-    "yaml": true,
-    "plaintext": true,
-    "markdown": true,
-    "javascriptreact": true
-  },
-  "liveshare.presence": true,
-  "github.customPullRequestDescription": "gitEditor",
-  "githubPullRequests.createOnPublishBranch": "never",
   "xd.authorName": "Andrew Barrows",
-  "atlascode.jira.explorer.fetchAllQueryResults": true,
-  "editor.guides.indentation": true,
-  "git.pruneOnFetch": true,
-  "autoimport.showNotifications": true,
-  "path-intellisense.autoSlashAfterDirectory": true,
-  "github.autoPublish": true,
-  "autoimport.filesToScan": "**/*.{js,jsx,ts,tsx}",
-  "javascript.preferences.importModuleSpecifier": "non-relative",
-  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-  "editor.tokenColorCustomizations": {},
-  "oneDarkPro.color": {
-    "chalky": "#cdcdcd"
-  },
-  "prettier.enableDebugLogs": true,
-  "prettier.useEditorConfig": false,
-  "security.workspace.trust.untrustedFiles": "open",
   "xd.globalEditor": true,
-  "cssModules.pathAlias": {},
-  "githubPullRequests.pullBranch": "never",
-  "terminal.integrated.allowChords": false,
-  "debug.terminal.clearBeforeReusing": true,
-  "terminal.integrated.drawBoldTextInBrightColors": false,
-  "terminal.integrated.fontWeight": "normal",
-  "terminal.integrated.gpuAcceleration": "off",
-  "vs-kubernetes": {
-    "vscode-kubernetes.minikube-path.linux": "/home/codespace/.local/state/vs-kubernetes/tools/minikube/linux-amd64/minikube"
-  },
-  "terminal.integrated.enableMultiLinePasteWarning": true,
-  "dev.containers.logLevel": "trace",
+  "yaml.format.singleQuote": true,
   "yaml.schemas": {
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-3.0.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "liveshare.diagnosticMode": true,
-  "settingsSync.ignoredExtensions": ["ms-vscode-remote.remote-containers"],
-  "[properties]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format"
-  },
-  "playwright.reuseBrowser": true,
-  "l13Diff.confirmCopy": false,
-  "l13Diff.confirmDelete": false,
-  "sortJSON.orderOverride": [
-    "name",
-    "label",
-    "description",
-    "author",
-    "homepage",
-    "type",
-    "version",
-    "license",
-    "private",
-    "repository",
-    "productkey",
-    "keyvaultprefix",
-    "browserslist",
-    "scripts",
-    "args",
-    "command",
-    "b2c-gc-development",
-    "b2c-gc-staging",
-    "b2c-gc-production",
-    "b2c-tps-development",
-    "b2c-tps-staging",
-    "b2c-tps-production"
-  ],
-  "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
-    "projectKey": "AMCORP"
-  },
-  "workbench.editor.enablePreview": false,
-  "atlascode.bitbucket.contextMenus.enabled": false,
-  "atlascode.bitbucket.explorer.enabled": false,
-  "atlascode.bitbucket.explorer.notifications.pullRequestCreated": false,
-  "atlascode.bitbucket.pipelines.explorerEnabled": false,
-  "atlascode.bitbucket.pipelines.hideEmpty": false,
-  "atlascode.bitbucket.pipelines.monitorEnabled": false,
-  "atlascode.enableHttpsTunnel": true,
-  "atlascode.onlineCheckerUrls": [
-    "https://amuniversal.atlassian.ne",
-    "https://github.com/Andrews-McMeel-Universal"
-  ],
-  "window.zoomLevel": 2
+  "yaml.trace.server": "verbose"
 }

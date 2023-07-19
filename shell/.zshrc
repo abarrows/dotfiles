@@ -4,6 +4,9 @@
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export GPG_TTY=$(tty)
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
+export NVM_AUTO_USE=true
 
 # PATHING
 export PATH="$HOME/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/usr/sbin:/sbin:/usr/local/sbin:$PATH"
