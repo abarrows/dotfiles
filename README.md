@@ -1,20 +1,21 @@
-# dotfiles-and-tooling
+# AMU Onboarding - dotfiles-and-tooling
 
-This repository is all my personal machine and software engineering
-configurations, settings, tooling, and preferences. My ultimate goal with this
-repo is:
-
-1. To maintain and recreate my personal machine environment with in a single command
-2. Lay ground work for maturing a team dotfiles across software engineering teams.
+This repository is a standardized dotfiles repo for new
+software engineers or contractors who will be mainly working on the front-end. It's purpose is
+to offer a close to "1 click" solution which completely provision a new machine in under two
+hours. There is a base profile and then more specific profiles depending on the
+tech stack that you will be working in. By the end of running our base profile
+and the tech stack of your choice, the new engineer should have almost everything required
+to optimally work on any UI application within an ecosystem of products and services.
 
 ## Table of Contents
 
-- [dotfiles-and-tooling](#dotfiles-and-tooling)
+- [AMU Onboarding - dotfiles-and-tooling](#amu-onboarding---dotfiles-and-tooling)
   - [Table of Contents](#table-of-contents)
   - [What IS included?](#what-is-included)
-      - [Initialize](#initialize)
-      - [Mac Preferences and Setup](#mac-preferences-and-setup)
-      - [Homebrew_base - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
+    - [Initialize](#initialize)
+    - [Mac Preferences and Setup](#mac-preferences-and-setup)
+    - [Homebrew_base - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
     - [Software Engineering - General](#software-engineering---general)
       - [Git - Team configured version control](#git---team-configured-version-control)
       - [Shell - Extended and fine-tuned command line tools](#shell---extended-and-fine-tuned-command-line-tools)
@@ -109,7 +110,7 @@ Install “git“ using the command line:
 
 Checkout [Onboarding Engineering
 Dotfiles](https://github.com/Andrews-McMeel-Universal/amu-onboarding) locally:
-`git clone git@github.com:Andrews-McMeel-Universal/amu-onboarding.git`
+`git clone git@github.com:abarrows/dotfiles.git`
 
 Navigate to the root folder of the above project and using the command line run:
 `git submodule add https://github.com/anishathalye/dotbot`
