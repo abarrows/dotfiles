@@ -131,121 +131,121 @@
   "atlascode.jira.explorer.nestSubtasks": true,
   "atlascode.jira.jqlList": [
     {
+      "name": "My Most Recent Updated Issues",
       "enabled": true,
       "id": "2e252f74-65ff-4411-b0ac-5fb625fc34ef",
       "monitor": true,
-      "name": "My Most Recent Updated Issues",
       "query": "assignee = currentUser() and status != resolved ORDER BY updated DESC, priority DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "My Most Recently Created Issues",
       "enabled": true,
       "id": "c33593e5-febe-4787-adce-44be66d943ab",
       "monitor": true,
-      "name": "My Most Recently Created Issues",
       "query": "reporter = currentUser() AND status != Done ORDER BY updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "My amuniversal Issues",
       "enabled": true,
       "id": "486d46cd-29a5-47e7-b5cb-7bdf9625be72",
       "monitor": true,
-      "name": "My amuniversal Issues",
       "query": "assignee = currentUser() and status != resolved ORDER BY rank ASC, priority DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Content Admin - My Issues",
       "enabled": true,
       "id": "faedfb95-7fef-47c3-a54b-cc397464edf9",
       "monitor": true,
-      "name": "Content Admin - My Issues",
       "query": "project = \"CONADMIN\" and assignee = currentUser() ",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "TPS - My Issues",
       "enabled": true,
       "id": "110bea68-bd07-43aa-b1bc-2512556cd473",
       "monitor": true,
-      "name": "TPS - My Issues",
       "query": "project =\"PUZSOC\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Games/Embed - Issues",
       "enabled": true,
       "id": "02142ed5-c4d7-41af-a082-7e16cb33dada",
       "monitor": true,
-      "name": "Games/Embed - Issues",
       "query": "project =\"AMU Games\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Embed Service",
       "enabled": true,
       "id": "5de0ffa1-bb1c-4a76-9371-a870197089a9",
       "monitor": true,
-      "name": "Embed Service",
       "query": "project =\"Embed Service\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Doonesbury - My Issues",
       "enabled": true,
       "id": "a41f9986-a92a-4936-93f3-e653e95f2ae7",
       "monitor": true,
-      "name": "Doonesbury - My Issues",
       "query": "project = \"DOONES\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "My amuniversal Issues",
       "enabled": true,
       "id": "486d46cd-29a5-47e7-b5cb-7bdf9625be72",
       "monitor": true,
-      "name": "My amuniversal Issues",
       "query": "assignee = currentUser() and status != resolved ORDER BY rank ASC, priority DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "GoComics - My Issues",
       "enabled": true,
       "id": "6fbe3fdb-a368-413f-a5ca-5a1692a2892e",
       "monitor": true,
-      "name": "GoComics - My Issues",
       "query": "project in (\"GOCOMICS\") AND resolution = Unresolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Uexpress- My Issues",
       "enabled": true,
       "id": "1b3ae036-7577-419f-9d72-393c91180dff",
       "monitor": true,
-      "name": "Uexpress- My Issues",
       "query": "project = Uexpress AND status != resolved AND assignee = currentUser() ",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Dilbert - My Issues",
       "enabled": true,
       "id": "dbf335f1-eb46-42b5-b25e-2f357b6ab7a1",
       "monitor": true,
-      "name": "Dilbert - My Issues",
       "query": "project = Dilbert AND status != resolved ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "TFS",
       "enabled": true,
       "id": "c7cd7030-fd5e-42e1-b4bd-857e58e22fe2",
       "monitor": true,
-      "name": "TFS",
       "query": "project = Farside AND status != resolved AND assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
-      "id": "34cf15a8-b627-435e-8e92-4deec1da8891",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
       "name": "All Recent Issues",
-      "query": "resolution != Done and updatedDate > endOfDay(-30d)",
       "enabled": true,
-      "monitor": true
+      "id": "34cf15a8-b627-435e-8e92-4deec1da8891",
+      "monitor": true,
+      "query": "resolution != Done and updatedDate > endOfDay(-30d)",
+      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     }
   ],
   "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
-    "projectKey": "AMCORP"
+    "projectKey": "AMCORP",
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
   },
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
     "maintenance",
@@ -271,6 +271,14 @@
   "autoimport.filesToScan": "**/*.{js,jsx,ts,tsx,css,scss}",
   "autoimport.showNotifications": true,
   "breadcrumbs.enabled": true,
+  // "debug.javascript.autoAttachFilter": "smart",
+  // "debug.javascript.autoAttachSmartPattern": [
+  //   "${workspaceFolder}/**",
+  //   "!**/node_modules/**",
+  //   "**/$KNOWN_TOOLS$/**",
+  //   "**yarn .*"
+  // ],
+  "cSpell.autoFormatConfigFile": true,
   "cSpell.enableFiletypes": [
     "!git-commit",
     "dockerfile",
@@ -683,11 +691,15 @@
   "compareFolders.useDiffMerge": true,
   "css.validate": false,
   "cssModules.pathAlias": {},
-  "debug.allowBreakpointsEverywhere": true,
+  "debug.allowBreakpointsEverywhere": false,
+  "debug.autoExpandLazyVariables": true,
   "debug.console.fontSize": 16,
+  "debug.openExplorerOnEnd": true,
   "debug.terminal.clearBeforeReusing": true,
+  "debug.toolBarLocation": "docked",
   "dev.containers.logLevel": "trace",
   "diffEditor.codeLens": true,
+  "diffEditor.ignoreTrimWhitespace": false,
   "docker.images.sortBy": "CreatedTime",
   "dotfiles.installCommand": "install",
   "editor.accessibilitySupport": "off",
@@ -786,6 +798,10 @@
   "git-graph.dialog.addTag.pushToRemote": true,
   "git-graph.dialog.fetchRemote.prune": true,
   "git-graph.openToTheRepoOfTheActiveTextEditorDocument": true,
+  // "debug.javascript.terminalOptions": {
+  //   "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
+  // },
+  "git.autoStash": true,
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
@@ -811,6 +827,7 @@
   "githubPullRequests.createOnPublishBranch": "never",
   "githubPullRequests.defaultMergeMethod": "merge",
   "githubPullRequests.fileListLayout": "flat",
+  "githubPullRequests.pullBranch": "always",
   "githubPullRequests.queries": [
     {
       "label": "Waiting For My Review",
@@ -850,10 +867,14 @@
     }
   ],
   "gitlens.sortBranchesBy": "date:desc",
-  "gitlens.views.branches.branches.layout": "list",
+  "gitlens.statusBar.enabled": false,
+  "gitlens.views.branches.reveal": false,
   "gitlens.views.branches.showBranchComparison": false,
   "gitlens.views.compare.enabled": true,
+  "gitlens.views.contributors.avatars": false,
+  "gitlens.views.repositories.branches.showBranchComparison": false,
   "gitlens.views.repositories.files.layout": "list",
+  "gitlens.views.repositories.showIncomingActivity": false,
   "gitlens.views.search.enabled": false,
   "gitlens.views.searchAndCompare.files.layout": "list",
   "grammarly.debug": true,
@@ -884,7 +905,8 @@
     "chalky": "#cdcdcd"
   },
   "path-intellisense.autoSlashAfterDirectory": true,
-  "playwright.reuseBrowser": true,
+  "playwright.reuseBrowser": false,
+  "playwright.showTrace": false,
   "prettier.enableDebugLogs": true,
   "prettier.requireConfig": false,
   "prettier.useEditorConfig": false,
@@ -912,16 +934,16 @@
   "scss.validate": false,
   "search.collapseResults": "alwaysCollapse",
   "search.exclude": {
-    "src/design-system-package/dist/**": true,
-    "**/_design_tokens.js": true,
     "**/.git": true,
-    "**/.next": true,
-    "**/node_modules": true,
-    "**trace.zip": true,
-    "**/tmp": true,
     "**/.history/**": true,
+    "**/.next": true,
+    "**/.yarn/cache": true,
+    "**/_design_tokens.js": true,
+    "**/node_modules": true,
     "**/storybook-static": true,
-    "**/.yarn/cache": true
+    "**/tmp": true,
+    "**trace.zip": true,
+    "src/design-system-package/dist/**": true
   },
   "search.globalFindClipboard": true,
   "search.quickOpen.includeHistory": false,
@@ -1009,12 +1031,12 @@
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.drawBoldTextInBrightColors": false,
   "terminal.integrated.enableBell": true,
-  "terminal.integrated.enableMultiLinePasteWarning": true,
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.fontFamily": "monospace",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.fontWeight": "normal",
   "terminal.integrated.gpuAcceleration": "off",
-  "terminal.integrated.rendererType": "dom",
   "terminal.integrated.rightClickBehavior": "default",
   "todo-tree.general.tags": [
     "BUG",
@@ -1033,6 +1055,7 @@
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.newWindowDimensions": "maximized",
   "window.restoreWindows": "all",
+  "window.zoomLevel": 2,
   "workbench.colorCustomizations": {
     "[One Dark Pro]": {
       "editorBracketHighlight.foreground1": "#E6E6E6",
@@ -1060,16 +1083,7 @@
   "xd.globalEditor": true,
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///home/node/.vscode-remote/extensions/atlassian.atlascode-3.0.4/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-3.0.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "yaml.trace.server": "verbose",
-  "playwright.showTrace": false,
-  "githubPullRequests.pullBranch": "always",
-  "gitlens.views.contributors.avatars": false,
-  // "debug.javascript.autoAttachFilter": "smart",
-  "cSpell.autoFormatConfigFile": true,
-  "debug.autoExpandLazyVariables": true,
-  "git.autoStash": true,
-  "debug.openExplorerOnEnd": true,
-  "window.zoomLevel": 1
+  "yaml.trace.server": "verbose"
 }
