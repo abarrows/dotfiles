@@ -1,6 +1,7 @@
 # Dotfiles Environment Variables
 
-# Instructions - First save a copy of this file in the root directory.
+# Instructions
+# First save a copy of this file in the root directory.
 # Run the command listed below:
 # cp .envrc.example .envrc && open .envrc
 # If hidden files are not turned on, run

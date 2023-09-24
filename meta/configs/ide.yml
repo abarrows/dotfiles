@@ -22,5 +22,5 @@
       force: true
 - shell:
     - description: "Installing VSCode Extensions..."
-      command: "./onboarding_bin/vscode-install-extensions-from-team.sh"
+      command: "./onboarding_bin/manage-vs-code-extensions.sh"
       stderr: true

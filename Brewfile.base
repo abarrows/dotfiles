@@ -25,9 +25,9 @@ brew "thefuck" # RECOMMENDED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Command L
 brew "wget" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON General Request Utility for Command Line
 brew "yamllint" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Linting and auto-fixing tool for yaml
 brew "yarn" # REQUIRED - BASE/DEVOPS/ROR/NODE Front-end team approved package manager
-brew "zsh" # REQUIRED - BASE/DEVOPS/ROR/NODE/ Default Mac OSX shell
-cask "1password" # REQUIRED - Department licensed and approved password manager
-cask "adobe-creative-cloud" # RECOMMENDED - Department licensed and approved
+brew "zsh" || true # REQUIRED - BASE/DEVOPS/ROR/NODE/ Default Mac OSX shell
+cask "1password" || true # REQUIRED - Department licensed and approved password manager
+cask "adobe-creative-cloud" || true # RECOMMENDED - Department licensed and approved
 # UXD Tools - This is installed via DevOps provisioning.
 cask "alfred" # REQUIRED - task launcher application for Mac OSX
 cask "appcleaner" # REQUIRED - utility application for removing Mac OSX programs and apps
@@ -38,7 +38,7 @@ cask "disk-drill" # RECOMMENDED - Duplicate file finder and storage visualizer.
 cask "docker" # REQUIRED - Department approved containerized environment tools
 cask "dropbox" # OPTIONAL - Department approved cloud storage for UXD and Design
 cask "expressvpn" # REQUIRED - Department approved VPN for testing geo location
-# cask "firefox", return: true # REQUIRED - Front-end team approved browser for our viewing our applications
+# cask "firefox" || true # REQUIRED - Front-end team approved browser for our viewing our applications
 # NOTE: These come preinstalled, uncheck if you have done a factory reset.
 cask "figma" # RECOMMENDED - As an alternative to illustrator and sketch.
 cask "font-fira-code" # RECOMMENDED -  command line icon fonts
