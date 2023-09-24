@@ -243,6 +243,7 @@
       "monitor": true
     }
   ],
+  "atlascode.jira.statusbar.showUser": false,
   "atlascode.jira.lastCreateSiteAndProject": {
     "projectKey": "AMCORP",
     "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
@@ -783,7 +784,8 @@
     "**/log/**.log": true,
     "**/public/assets**": true,
     "**/public/packs**": true,
-    "**/tmp/**": true
+    "**/tmp/**": true,
+    "**/var/folders/**": true
   },
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
@@ -798,9 +800,9 @@
   "git-graph.dialog.addTag.pushToRemote": true,
   "git-graph.dialog.fetchRemote.prune": true,
   "git-graph.openToTheRepoOfTheActiveTextEditorDocument": true,
-  // "debug.javascript.terminalOptions": {
-  //   "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
-  // },
+  "debug.javascript.terminalOptions": {
+    "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
+  },
   "git.autoStash": true,
   "git.autofetch": true,
   "git.confirmSync": false,
@@ -1038,20 +1040,6 @@
   "terminal.integrated.fontWeight": "normal",
   "terminal.integrated.gpuAcceleration": "off",
   "terminal.integrated.rightClickBehavior": "default",
-  "todo-tree.general.tags": [
-    "BUG",
-    "HACK",
-    "FIXME",
-    "TODO",
-    "XXX",
-    "[ ]",
-    "[x]"
-  ],
-  "todo-tree.regex.regex": "(//|#|<!--|;|/\\*|^|^\\s*(-|\\d+.))\\s*($TAGS)",
-  "todo-tree.tree.showScanModeButton": false,
-  "vs-kubernetes": {
-    "vscode-kubernetes.minikube-path.linux": "/home/codespace/.local/state/vs-kubernetes/tools/minikube/linux-amd64/minikube"
-  },
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.newWindowDimensions": "maximized",
   "window.restoreWindows": "all",
@@ -1079,8 +1067,6 @@
   "workbench.startupEditor": "welcomePage",
   "workbench.tree.indent": 4,
   "workbench.view.alwaysShowHeaderActions": true,
-  "xd.authorName": "Andrew Barrows",
-  "xd.globalEditor": true,
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-3.0.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"

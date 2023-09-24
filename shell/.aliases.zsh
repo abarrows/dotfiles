@@ -120,8 +120,6 @@ alias teamworkflows="cd ~/$CURRENT_COMPANY/repos/amu-digital-team/reusable_workf
 # Company Prototyping and Research
 
 # Company Digital Products
-alias dilbert="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/dilbert/ && $IDE_PATH ."
-alias rsdilbert="RAILS_ENV=development rails s -p 3013 && ./bin/webpack-dev-server"
 alias doonesbury="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/doonesbury && $IDE_PATH ."
 alias rsdoonesbury="RAILS_ENV=development rails s -p 3002"
 alias gocomics="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/gocomics/ && $IDE_PATH ."
@@ -194,21 +192,5 @@ alias rsteamreusableworkflows="yarn dev"
 # alias ssmultiamu="cd
 # ~/$CURRENT_COMPANY/repos/amu-digital-products/multiamu && $IDE_PATH
 # . && open /Applications/MAMP"
-
-# Server SSH
-alias sshsyndicateproduction="ssh $CURRENT_USER@$PRODUCT_SYNDICATION_PRODUCTION"
-alias sshsyndicateproduction2="ssh $CURRENT_USER@$PRODUCT_SYNDICATION_PRODUCTION_2"
-alias syndicateadminproduction="ssh $CURRENT_USER@$ADMIN_SYNDICATION_PRODUCTION"
-alias syndicatetemplates="cd /home/mover/template/"
-alias sshorangetoolproduction="ssh $CURRENT_USER@$SERVICE_GOCONTENT_PRODUCTION"
-alias sshorangetoolproduction2="ssh $CURRENT_USER@$ADMIN_SYNDICATION_PRODUCTION"
-alias orangetooltemplates="cd /usr/local/perlib/ucomics/templates/"
-alias sshpuzzlesocietystaging="ssh $CURRENT_USER@$PRODUCT_PUZZLESOCIETY_STAGING"
-alias sshpuzzlesocietystaging2="ssh $CURRENT_USER@$PRODUCT_PUZZLESOCIETY_STAGING_2"
-alias sshgocontentstaging="ssh $CURRENT_USER@$SERVICE_GOCONTENT_STAGING"
-alias sshadminproduction="ssh $CURRENT_USER@$ADMIN_TOOLS_PRODUCTION"
-alias sshlicensingstage1="ssh $CURRENT_USER@$PRODUCT_LICENSING_STAGING"
-alias sshlicensingstage2="ssh $CURRENT_USER@$PRODUCT_LICENSING_STAGING_2"
-alias sshfarsides="ssh $CURRENT_USER@$PRODUCT_FARSIDE_STAGING"
 
 echo "ZSH/ALIASES: Loaded."

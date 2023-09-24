@@ -110,7 +110,6 @@ plugins=(
   macos
   rake
   ruby
-  rbenv
   thefuck
   vscode
   yarn

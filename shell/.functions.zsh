@@ -23,28 +23,4 @@ function gitsearch() {
   done | grep -e "$searchCrit"
 }
 
-#function startarachni() { bin/arachni "$@" ;}
-
-function foremanstop() {
-  "kill $(redis | sidekiq | unicorn | puma | webrick | webpack | foreman) | grep -v grep | awk '{print $2}')"
-}
-function checkport() {
-  "lsof -i $1"
-}
-function killjob() {
-  kill -9 "$1"
-}
-
-function killport() {
-  lsof -ti tcp:"$1" | xargs kill
-}
-
-function ownfile() {
-  chmod 755 "$1"
-}
-
-function ownfolder() {
-  chmod -R 755 "$1"
-}
-
 echo "ZSH/FUNCTIONS: Loaded."

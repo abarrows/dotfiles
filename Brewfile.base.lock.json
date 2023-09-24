@@ -5,13 +5,13 @@
         "revision": "94906ca5e163030827764cae2c87602c54aef047"
       },
       "homebrew/cask": {
-        "revision": "a07d8872143a2f4dedb9c3a89e173a7e32ed5db4"
+        "revision": "e8ccfc054b0e4df9cb52401c82a380a78f1bb9c3"
       },
       "homebrew/cask-fonts": {
-        "revision": "77a4a27c1fbdc87e0e3f3efeb7233527b1687908"
+        "revision": "6e69d926449a59537a5bcdf1aa5b503e8b92060a"
       },
       "homebrew/core": {
-        "revision": "afdf01062e8b7f67ae44e76bc5a55252186f1166"
+        "revision": "9eab69536fefcfa5d3e273551590280638a5ec1c"
       },
       "homebrew/services": {
         "revision": "221a5b3ec3adc9fd37652015f1fa16933ed07a22"
@@ -504,6 +504,11 @@
           "rebuild": 2,
           "root_url": "https://ghcr.io/v2/homebrew/core",
           "files": {
+            "arm64_sonoma": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/thefuck/blobs/sha256:088b22d1fce236f7a2d8c37ae19dd05bcfdb669a441b117c28e865c7cb946cf3",
+              "sha256": "088b22d1fce236f7a2d8c37ae19dd05bcfdb669a441b117c28e865c7cb946cf3"
+            },
             "arm64_ventura": {
               "cellar": ":any_skip_relocation",
               "url": "https://ghcr.io/v2/homebrew/core/thefuck/blobs/sha256:c0de3ebd0766c538d124f74270a91730c8e3e083656e61f09b6e3edb837caf0b",
@@ -518,6 +523,11 @@
               "cellar": ":any_skip_relocation",
               "url": "https://ghcr.io/v2/homebrew/core/thefuck/blobs/sha256:d94b1731b44013b526e005137ce28d06484966c41b99e20003d5d40fbbc753a1",
               "sha256": "d94b1731b44013b526e005137ce28d06484966c41b99e20003d5d40fbbc753a1"
+            },
+            "sonoma": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/thefuck/blobs/sha256:146518f2b0e6653764c2a64b37fb19fc24293a1f28865f9fd19727237817be39",
+              "sha256": "146518f2b0e6653764c2a64b37fb19fc24293a1f28865f9fd19727237817be39"
             },
             "ventura": {
               "cellar": ":any_skip_relocation",
@@ -1021,7 +1031,7 @@
         }
       },
       "dropbox": {
-        "version": "182.4.6427",
+        "version": "183.4.7058",
         "options": {
           "full_name": "dropbox",
           "args": {
@@ -1102,7 +1112,7 @@
         }
       },
       "postman": {
-        "version": "10.18.4",
+        "version": "10.18.6",
         "options": {
           "full_name": "postman",
           "args": {

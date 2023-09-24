@@ -7,10 +7,10 @@ tap 'homebrew/services'
 brew 'act' # RECOMMENDED - DEVOPS Allows for testing Github Actions on your local machine
 brew 'azure-cli' # RECOMMENDED - DEVOPS Used with internal
 brew 'coreutils' # RECOMMENDED - DEVOPS Basic tools for the GNU OS
-brew 'gh' # RECOMMENDED - DEVOPS Github CLI
 brew 'git-lfs' # NOT-USED - DEVOPS Core version control for large files
 brew 'go-jira' # RECOMMENDED - DEVOPS Jira CLI for managing jira issues
 brew 'gnutls' # RECOMMENDED - DEVOPS/PG Security Dependency GNU Transport Layer Security (TLS) Library
+brew 'hadolint' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Used to lint Dockerfiles../
 brew 'helm' # RECOMMENDED - DEVOPS Package manager for Kubernetes
 brew 'htop' # RECOMMENDED - DEVOPS Utility for viewing command line run processes and logs
 brew 'krb5' # RECOMMENDED - DEVOPS/PG Network authentication protocol
@@ -25,17 +25,3 @@ cask "adoptopenjdk" # OPTIONAL - PG
 # brew "mysql-client" # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Database Dependency for MySQL
 # # cask "adoptopenjdk" # OPTIONAL - PG
 cask "powershell" # RECOMMENDED - DEVOPS Powershell for managing Windows
-
-# Security Applications and Tools
-# Codename SCNR (Formerly known as Arachni Security Scanner)
-# https://ecsypno.com/products/scnr
-# bash -c "$(curl -sSL https://get.ecsypno.com/scnr)"
-
-# Grabber - Web Application Scanner
-# https://github.com/avaneeshd/grabber
-
-# Sonar Qube - Code Quality and Security
-# https://formulae.brew.sh/formula/sonarqube
-
-# sql_map_project
-# https://formulae.brew.sh/formula/sqlmap

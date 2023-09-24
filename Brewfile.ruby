@@ -7,7 +7,7 @@ tap 'homebrew/services'
 brew "coreutils" # REQUIRED - ROR/DEVOPS Required to build ruby containers and new ruby version binaries.
 brew "cmake" # RECOMMENDED - ROR/DEVOPS
 # brew "openjdk" # RECOMMENDED - Used within some of our legacy gems
-brew 'imagemagick' # RECOMMENDED - ROR Image manipulation utility for web applications
+# brew 'imagemagick' # RECOMMENDED - ROR Image manipulation utility for web applications
 brew 'libyaml' # RECOMMENDED - ROR/DEVOPS Compiled Dependency for web applications with Ruby on Rails
 brew 'memcached' # RECOMMENDED - ROR Performance Caching library for Ruby on Rails
 brew "mysql", restart_service: true # REQUIRED - ROR/DEVOPS/PYTHON/PG Database Dependency for MySQL (Usually used by non-containerized web applications)

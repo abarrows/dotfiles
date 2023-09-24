@@ -7,7 +7,7 @@ const initSentry = () => {
       enabled: process.env.NODE_ENV === "production",
       dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
       environment: process.env.NEXT_PUBLIC_DEPLOY_ENV,
-      release: `${process.env.NEXT_PUBLIC_APP_VERSION}`,
+      release: `${process.env.NEXT_PUBLIC_APPLICATION_VERSION}`,
       // https://docs.sentry.io/platforms/javascript/configuration/filtering/#decluttering-sentry
       ignoreErrors: [
         // Random plugins/extensions
