@@ -7,6 +7,7 @@
   },
   "[dockerfile]": {
     "editor.codeActionsOnSave": {
+      "source.fixAll.shellcheck": true,
       "source.fixAll.stylelint": false
     },
     "editor.defaultFormatter": "ms-azuretools.vscode-docker",
@@ -14,6 +15,7 @@
   },
   "[dotenv]": {
     "editor.codeActionsOnSave": {
+      "source.fixAll.shellcheck": true,
       "source.fixAll.stylelint": false
     },
     "editor.defaultFormatter": "foxundermoon.shell-format",
