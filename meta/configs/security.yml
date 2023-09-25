@@ -7,7 +7,7 @@
 # Secondly, it makes the onboarding_bin
 # and your dotfiles executable.
 - shell:
-    - echo '5. Setting up Scripts and Security \n
+    - echo -e '5. Setting up Scripts and Security \n
       Copying over personalized environment variables and bin scripts...'
 
 - link:

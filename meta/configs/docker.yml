@@ -1,6 +1,6 @@
 ---
 # docker - Sets up some basic docker defaults for virtualized environments.
 - shell:
-      - echo "Setting up DevOps - global docker ignore..."
+    - echo "Setting up DevOps - global docker ignore..."
 - link:
-      ~/.dockerignore: devops/.dockerignore
+    ~/.dockerignore: devops/.dockerignore

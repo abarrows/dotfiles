@@ -3,5 +3,5 @@
 # developer tools on a MacOSX machine.
 
 - shell:
-      - echo '4. Setting up Mac OSX - Installing XCode Developer Tools...'
-      - xcode-select --install || true
+    - echo -e '4. Setting up Mac OSX - Installing XCode Developer Tools...'
+    - xcode-select --install || true

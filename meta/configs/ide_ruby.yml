@@ -4,7 +4,7 @@
 # extensions.
 
 - shell:
-    - echo "9. Installing VS Code and extensions \n
+    - echo -e "9. Installing VS Code and extensions \n
       Provisioning settings, keybindings, snippets, etc."
 
 - link:

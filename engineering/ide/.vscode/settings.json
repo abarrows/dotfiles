@@ -1068,5 +1068,8 @@
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
   "yaml.schemaStore.enable": true,
-  "yaml.trace.server": "verbose"
+  "yaml.trace.server": "verbose",
+  "yaml.schemas": {
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-3.0.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+  }
 }

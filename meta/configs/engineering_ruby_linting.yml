@@ -6,10 +6,9 @@
 # and autocorrection tools under one language server.
 
 - shell:
-      - echo "Setting up Ruby on Rails \n
-        global linting and formatting rules..."
+    - echo -e "Setting up Ruby on Rails \n global linting and formatting rules..."
 
 - link:
-      ~/.rubocop.yml: engineering/ruby/.rubocop.yml
-      ~/.gemrc: engineering/ruby/.gemrc
-      ~/.solargraph.yml: engineering/ruby/.solargraph.yml
+    ~/.rubocop.yml: engineering/ruby/.rubocop.yml
+    ~/.gemrc: engineering/ruby/.gemrc
+    ~/.solargraph.yml: engineering/ruby/.solargraph.yml

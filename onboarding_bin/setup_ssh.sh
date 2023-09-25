@@ -5,7 +5,7 @@
 # rm -rf ~/.ssh/
 
 # Step 1.  Create an initial SSH key value pair
-ssh-keygen -t ed25519 -C abarrows@amuniversal.com
+ssh-keygen -t ed25519 -C jdoe@amuniversal.com
 
 # Step 2. Press enter on the file location.
 

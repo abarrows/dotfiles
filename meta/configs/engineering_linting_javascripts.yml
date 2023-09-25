@@ -5,8 +5,8 @@
 # to your home directory...
 
 - shell: echo "Setting up Software Engineering \n
-        global linting rules (scripting/javascript/react)..."
+    global linting rules (scripting/javascript/react)..."
 
 - link:
-        ~/.eslintrc.json: engineering/javascripts/react/.eslintrc.json
-        ~/.eslintignore: engineering/javascripts/react/.eslintignore
+    ~/.eslintrc.json: engineering/javascripts/react/.eslintrc.json
+    ~/.eslintignore: engineering/javascripts/react/.eslintignore
