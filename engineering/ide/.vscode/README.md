@@ -36,12 +36,14 @@ descriptions of the information:
 
 ## Extensions
 
+*Needs to be cross checked with extensions_base.txt and updated for 2023*
+
 Our team builds, maintains, and tests software using [VS
 Code](https://code.visualstudio.com/download) The following items are brought
 over during our dotfiles onboarding script:
 
-1. Snippets - Helpful _gist-like_ executable scripts for the tech stacks we use.
-2. Extensions - By using one of the dotbot plugins called _dotbot-vscode_, it
+1. Snippets - Helpful *gist-like* executable scripts for the tech stacks we use.
+2. Extensions - By using one of the dotbot plugins called *dotbot-vscode*, it
    automatically will install the ide, install our default extensions. You will
    be prompted several times to allow access back to JIRA, github, and a couple
    other cross platform integrations. During
@@ -74,12 +76,6 @@ Description: Integrates ESLint JavaScript into VS Code.
 Version: 2.1.13
 Publisher: Dirk Baeumer
 VS Marketplace Link: <https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint>
-Name: Git Graph
-Id: mhutchie.git-graph
-Description: View a Git Graph of your repository, and perform Git actions from the graph.
-Version: 1.27.0
-Publisher: mhutchie
-VS Marketplace Link: <https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph>
 Name: GitLens — Git supercharged
 Id: eamodio.gitlens
 Description: Supercharge the Git capabilities built into Visual Studio Code — Visualize code authorship at a glance via Git blame annotations and code lens, seamlessly navigate and explore Git repositories, gain valuable insights via powerful comparison commands, and so much more
@@ -92,18 +88,6 @@ Description: VS Code integration for HTMLHint - A Static Code Analysis Tool for 
 Version: 0.10.0
 Publisher: Mike Kaufman
 VS Marketplace Link: <https://marketplace.visualstudio.com/items?itemName=mkaufman.HTMLHint>
-Name: Import Cost
-Id: wix.vscode-import-cost
-Description: Display import/require package size in the editor
-Version: 2.12.0
-Publisher: Wix
-VS Marketplace Link: <https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost>
-Name: JavaScript (ES6) code snippets
-Id: xabikos.javascriptsnippets
-Description: Code snippets for JavaScript in ES6 syntax
-Version: 1.8.0
-Publisher: charalampos karypidis
-VS Marketplace Link: <https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets>
 Name: Jira and Bitbucket (Official)
 Id: atlassian.atlascode
 Description: Bringing the power of Jira and Bitbucket to VS Code - With Atlassian for VS Code you can create and view issues, start work on issues, create pull requests, do code reviews, start builds, get build statuses and more!
@@ -122,18 +106,6 @@ Description: Real-time collaborative development from the comfort of your favori
 Version: 1.0.3121
 Publisher: Microsoft
 VS Marketplace Link: <https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare>
-Name: Live Share Audio
-Id: ms-vsliveshare.vsliveshare-audio
-Description: Adds audio calling capabilities to Visual Studio Live Share
-Version: 0.1.91
-Publisher: Microsoft
-VS Marketplace Link: <https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare-audio>
-Name: Live Share Extension Pack
-Id: ms-vsliveshare.vsliveshare-pack
-Description: Collection of extensions that enable real-time collaborative development with VS Live Share.
-Version: 0.4.0
-Publisher: Microsoft
-VS Marketplace Link: <https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare-pack>
 Name: markdownlint
 Id: davidanson.vscode-markdownlint
 Description: Markdown linting and style checking for Visual Studio Code
