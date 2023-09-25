@@ -8,5 +8,5 @@
 # '~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist':
 # path: /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
 - shell:
-      - echo "Setting up Software Engineering - Starting Postgres Databases..."
-      - launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+    - echo "Setting up Software Engineering - Starting Postgres Databases..."
+    - launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist

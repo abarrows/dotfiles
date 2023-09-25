@@ -8,4 +8,4 @@ while read -r my_extension; do
   code --install-extension "$my_extension"
 done <engineering/ide/.vscode/extensions_devops.txt
 
-echo "\n\n\n3. VSCode - DevOps extensions are all done!"
+echo -e "\n\n\n3. VSCode - DevOps extensions are all done!"

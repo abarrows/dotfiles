@@ -14,4 +14,4 @@ while read -r my_extension; do
   code --install-extension "$my_extension"
 done <engineering/ide/.vscode/extensions_ruby.txt
 
-echo "\n\n\n3. VSCode - Ruby extensions are all done!"
+echo -e "\n\n\n3. VSCode - Ruby extensions are all done!"

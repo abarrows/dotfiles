@@ -1,7 +1,7 @@
+adobe.xd
 atlassian.atlascode
 bmalehorn.shell-syntax
 christian-kohler.path-intellisense
-cpylua.language-postcss
 DavidAnson.vscode-markdownlint
 dbaeumer.vscode-eslint
 deque-systems.vscode-axe-linter
@@ -9,6 +9,9 @@ eamodio.gitlens
 esbenp.prettier-vscode
 foxundermoon.shell-format
 GitHub.codespaces
+GitHub.copilot
+GitHub.copilot-chat
+github.vscode-github-actions
 GitHub.vscode-pull-request-github
 HTMLHint.vscode-htmlhint
 jmfirth.vsc-space-block-jumper
@@ -16,6 +19,7 @@ L13RARY.l13-diff
 letrieu.expand-region
 mikestead.dotenv
 moshfeu.diff-merge
+ms-playwright.playwright
 ms-vscode.vs-keybindings
 pranaygp.vscode-css-peek
 redhat.vscode-yaml
@@ -27,5 +31,6 @@ stkb.rewrap
 streetsidesoftware.code-spell-checker
 stylelint.vscode-stylelint
 timonwong.shellcheck
+tomoki1207.pdf
 Tyriar.sort-lines
 yzhang.markdown-all-in-one

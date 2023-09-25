@@ -9,4 +9,4 @@
     # ~/.editorconfig: engineering/formatters/.editorconfig
     ~/.prettierrc.json: engineering/formatters/.prettierrc.json
     ~/.prettierignore: engineering/formatters/.prettierignore
-    ~/.htmlhintrc.json: engineering/formatters/.htmlhintrc.json
+    ~/.htmlhintrc: engineering/formatters/.htmlhintrc

@@ -1,16 +1,13 @@
 module.exports = {
   root: true,
-  plugins: ['babel', 'cypress', 'chai-friendly', 'react', 'jsx-a11y'],
+  plugins: ['babel', 'chai-friendly', 'react', 'jsx-a11y'],
   extends: [
     'airbnb',
     'airbnb/hooks',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:cypress/recommended',
-    'prettier',
     'plugin:storybook/recommended',
     'plugin:storybook/csf',
-    'plugin:storybook/csf-strict',
   ],
   parser: 'babel-eslint',
   parserOptions: {
@@ -96,10 +93,10 @@ module.exports = {
     react: {
       createClass: 'createReactClass',
       // Regex for Component Factory to use,
-      // default to "createReactClass"
+      // default to 'createReactClass'
       pragma: 'React',
-      // Pragma to use, default to "React"
-      version: 'detect', // React version. "detect" automatically picks the version you have installed.
+      // Pragma to use, default to 'React'
+      version: 'detect', // React version. 'detect' automatically picks the version you have installed.
     },
     propWrapperFunctions: [
       // The names of any function used to wrap propTypes,
