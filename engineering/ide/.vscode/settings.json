@@ -793,15 +793,6 @@
   "files.trimTrailingWhitespace": true,
   "gistpad.playgrounds.showConsole": true,
   "gistpad.playgrounds.stylesheetLanguage": "scss",
-  "git-graph.customBranchGlobPatterns": [
-    {
-      "name": "Release",
-      "glob": "heads/release/*"
-    }
-  ],
-  "git-graph.dialog.addTag.pushToRemote": true,
-  "git-graph.dialog.fetchRemote.prune": true,
-  "git-graph.openToTheRepoOfTheActiveTextEditorDocument": true,
   "debug.javascript.terminalOptions": {
     "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
   },
@@ -892,6 +883,8 @@
   "l13Diff.confirmCopy": false,
   "l13Diff.confirmDelete": false,
   "l13Diff.ignoreEndOfLine": true,
+  "l13Diff.openInNewDiffPanel": true,
+  "l13Diff.openToSide": true,
   "less.validate": false,
   "liveServer.settings.ChromeDebuggingAttachment": false,
   "liveServer.settings.donotShowInfoMsg": true,
@@ -942,7 +935,10 @@
     "**/.git": true,
     "**/.history/**": true,
     "**/.next": true,
+    "**/.coverage": true,
     "**/.yarn/cache": true,
+    "**/yarn-error.log": true,
+    "**/src/design-system-package/assets/": true,
     "**/_design_tokens.js": true,
     "**/node_modules": true,
     "**/storybook-static": true,
@@ -1071,8 +1067,6 @@
   "workbench.tree.indent": 4,
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
-  "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-3.0.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  },
+  "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose"
 }
