@@ -20,6 +20,7 @@ source "$HOME/.theme.zsh"
 source "$HOME/.plugins.zsh"
 source "$HOME/.functions.zsh"
 source "$HOME/.aliases.zsh"
+source "$HOME/.m1-fixes.zsh"
 
 # OLD PATHING
 
@@ -35,18 +36,6 @@ source "$HOME/.aliases.zsh"
 # Yarn
 #echo "EXPORT: PREPENDING Path: /usr/local/sbin (yarn)"
 #export PATH="$(yarn global bin):$PATH"
-
-# Add RBENV to PATH for scripting. Make sure this is the last PATH variable
-# change.
-# For M1 Macs Only when installing Rbenv
-CFLAGS="-Wno-error=implicit-function-declaration"
-eval "$(rbenv init - zsh)"
-
-# Mysql OpenSSL and M1 fix
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 
 # GENERAL SETTINGS
 # Uncomment the following line to use case-sensitive completion.
