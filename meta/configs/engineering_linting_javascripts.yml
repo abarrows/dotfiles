@@ -1,12 +1,18 @@
 ---
+# NOTE - This yaml indentation is correct.
 # engineering_linting_javascripts -
 # Linking your software engineering linting
 # for eslint on applications like React
 # to your home directory...
 
-- shell: echo "Setting up Software Engineering \n
-    global linting rules (scripting/javascript/react)..."
+- shell:
+    - echo "Setting up Software Engineering global linting rules"
+    - echo "This includes scripting, javascript, react."
 
 - link:
-    ~/.eslintrc.json: engineering/javascripts/react/.eslintrc.json
-    ~/.eslintignore: engineering/javascripts/react/.eslintignore
+    ~/.eslintrc.js:
+      relink: true
+      path: engineering/javascripts/react/.eslintrc.js
+    ~/.eslintignore:
+      relink: true
+      path: engineering/javascripts/react/.eslintignore

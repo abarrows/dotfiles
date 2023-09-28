@@ -4,8 +4,8 @@
 # and extensions.
 
 - shell:
-    - echo "9. Installing VS Code and extensions"
-    - echo "Provisioning settings, keybindings, snippets, etc."
+    - echo -e "9. Installing VS Code and extensions"
+    - echo -e "Provisioning settings, keybindings, snippets, etc."
 
 - link:
     '~/Library/Application Support/code/User/settings.json':
@@ -13,9 +13,6 @@
       force: true
     '~/Library/Application Support/code/User/keybindings.json':
       path: engineering/ide/.vscode/keybindings.json
-      force: true
-    '~/Library/Application Support/code/User/tasks.json':
-      path: engineering/ide/.vscode/tasks.json
       force: true
     '~/Library/Application Support/code/User/launch.json':
       path: engineering/ide/.vscode/launch_base.json

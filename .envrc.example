@@ -30,7 +30,7 @@ IDE_PATH="code"
 # This is the url to your team's base jira cloud instance
 JIRA_BASE_URL="https://atlassian.amuniversal.com"
 # This is your jira login email and should match your git email
-JIRA_USER_EMAIL=# "jdoe@amuniversal.com"
+# JIRA_USER_EMAIL="jdoe@amuniversal.com"
 APPLICATION_NAME=dotfiles-and-tooling
 APPLICATION_PORT=3000
 APPLICATION_VERSION=0.5.0

@@ -7,20 +7,17 @@
 # the same structure, locally.
 
 - shell:
-    - echo '1. Setting up MacOSX - Creating folder structures...'
+      - echo '1. Setting up MacOSX - Creating folder structures...'
 
 - create:
-    - ~/downloads
-    - ~/downloads/databases
-    - ~/alfred
-    - ~/Library/LaunchAgents
-    - ~/.git-template-directory
-    - ~/.git-template-directory/hooks
-    - ~/.git-template-directory/.github
-    - ~/AMU
-    - ~/AMU/repos
-    - ~/AMU/repos/amu-development-team
-    - ~/AMU/repos/amu-digital-products
-    - ~/AMU/repos/amu-digital-services
-    - ~/AMU/repos/amu-admins
-    - ~/AMU/repos/personal
+      - ~/Library/LaunchAgents
+      - ~/.git-template-directory
+      - ~/.git-template-directory/hooks
+      - ~/.git-template-directory/.github
+      - ~/AMU
+      - ~/AMU/repos
+      - ~/AMU/repos/amu-development-team
+      - ~/AMU/repos/amu-digital-products
+      - ~/AMU/repos/amu-digital-services
+      - ~/AMU/repos/amu-admins
+      - ~/AMU/repos/personal

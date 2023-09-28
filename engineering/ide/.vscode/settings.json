@@ -39,6 +39,9 @@
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "[javascript]": {
+    "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascriptreact]": {
@@ -103,9 +106,9 @@
     },
     "editor.formatOnSave": true
   },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+  // "[typescript]": {
+  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
+  // },
   "[xml]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
@@ -114,7 +117,7 @@
     "editor.formatOnSave": true
   },
   "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "redhat.vscode-yaml",
     "editor.formatOnSave": true
   },
   "atlascode.bitbucket.contextMenus.enabled": false,
@@ -627,6 +630,7 @@
     "strnativekey",
     "Styleguide",
     "stylelint",
+    "stylelintignore",
     "stylesheet",
     "stylesheets",
     "subcription",

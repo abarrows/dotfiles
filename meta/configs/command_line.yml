@@ -5,8 +5,8 @@
 # used by default.
 
 - shell:
-    - description: "6. Setting up Command Line Tools"
-      command: "./onboarding_bin/install-oh-my-zsh.sh"
+    - description: '6. Setting up Command Line Tools'
+      command: './onboarding_bin/install-oh-my-zsh.sh'
 
 - link:
     ~/.zlogin:
@@ -32,6 +32,9 @@
     ~/.zshrc:
       force: true
       path: shell/.zshrc
+    ~/.m1-fixes.zsh:
+      force: true
+      path: shell/.m1-fixes.zsh
 
 # Terminal Settings, Profile, and Configuration
 # TODO: Add zsh to restart shell

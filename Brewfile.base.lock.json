@@ -2,19 +2,19 @@
   "entries": {
     "tap": {
       "homebrew/bundle": {
-        "revision": "94906ca5e163030827764cae2c87602c54aef047"
+        "revision": "b32fd2218254a8c9c5d1a0212c4903cc550bdd4f"
       },
       "homebrew/cask": {
-        "revision": "1ad6e1e2542fb653e019c71b03e4715764d595c8"
+        "revision": "f398e64fd4c822c4f26ad75d7ce16c75014708db"
       },
       "homebrew/cask-fonts": {
-        "revision": "6e69d926449a59537a5bcdf1aa5b503e8b92060a"
+        "revision": "971fd2b5cb79c358a6347d4f2c3eaf134bcaf5cb"
       },
       "homebrew/core": {
-        "revision": "85b20f74f8ad40577713b1384b00fecf9e035875"
+        "revision": "f9f6e9a6b1bbddd9aa6d35bc5bcf62751645ec33"
       },
       "homebrew/services": {
-        "revision": "6efa53e4c8c63eb533d632f29c398afa30b94ab6"
+        "revision": "dcb50f33098d78fd6316038e1cbdfffff892c9b5"
       }
     },
     "brew": {
@@ -460,6 +460,11 @@
           "rebuild": 0,
           "root_url": "https://ghcr.io/v2/homebrew/core",
           "files": {
+            "arm64_sonoma": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/starship/blobs/sha256:76b5c5e6388e5e978e3f361fb4a09424ced5c68e152c1dacf1fe152c54b17d24",
+              "sha256": "76b5c5e6388e5e978e3f361fb4a09424ced5c68e152c1dacf1fe152c54b17d24"
+            },
             "arm64_ventura": {
               "cellar": ":any_skip_relocation",
               "url": "https://ghcr.io/v2/homebrew/core/starship/blobs/sha256:3a4007d531448fabfc3a001c3e6d766e23be6110de120f6717c984b861ce3ae8",
@@ -474,6 +479,11 @@
               "cellar": ":any_skip_relocation",
               "url": "https://ghcr.io/v2/homebrew/core/starship/blobs/sha256:8a58e85e1e647cec4290336f29db4b2ba1e1f8814128ab5eed05ecff4cffa3bf",
               "sha256": "8a58e85e1e647cec4290336f29db4b2ba1e1f8814128ab5eed05ecff4cffa3bf"
+            },
+            "sonoma": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/starship/blobs/sha256:153b8a3ddedf3830315b12c8af6a5c694eb632280c6a8e932d105c0abd9f5309",
+              "sha256": "153b8a3ddedf3830315b12c8af6a5c694eb632280c6a8e932d105c0abd9f5309"
             },
             "ventura": {
               "cellar": ":any_skip_relocation",
@@ -1015,7 +1025,7 @@
         }
       },
       "adobe-creative-cloud": {
-        "version": "5.11.0.522.1",
+        "version": "6.0.0.571",
         "options": {
           "full_name": "adobe-creative-cloud",
           "args": {
@@ -1060,7 +1070,7 @@
         }
       },
       "expressvpn": {
-        "version": "11.41.0.77955",
+        "version": "11.42.0.78076",
         "options": {
           "full_name": "expressvpn",
           "args": {
@@ -1159,7 +1169,7 @@
         }
       },
       "messenger": {
-        "version": "195.0.0.4.225",
+        "version": "196.0.0.4.210",
         "options": {
           "full_name": "messenger",
           "args": {
@@ -1177,7 +1187,7 @@
         }
       },
       "spotify": {
-        "version": "1.2.20.1218,02aff7a4,246",
+        "version": "1.2.21.1104,42cf0a50,307",
         "options": {
           "full_name": "spotify",
           "args": {
@@ -1249,7 +1259,7 @@
         }
       },
       "figma": {
-        "version": "116.12.2",
+        "version": "116.13.3",
         "options": {
           "full_name": "figma",
           "args": {

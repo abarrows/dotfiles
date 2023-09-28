@@ -3,8 +3,9 @@
 # sets up team settings, snippets, keybindings, and
 # extensions.
 
-- shell: echo "9. Installing VS Code and extensions
-- shell: echo " Provisioning settings, keybindings, snippets, etc."
+- shell:
+    - echo -e "9. Installing VS Code and extensions
+    - echo -e " Provisioning settings, keybindings, snippets, etc."
 # TODO: Need to apply an if statement in the event that the extension count is
 # less than 5 extensions.
 - shell:

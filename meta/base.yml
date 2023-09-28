@@ -7,10 +7,10 @@
       stderr: true
 
 - shell:
-    - ["git submodule update --init --recursive", "Installing submodules"]
-    - ["zsh", "resourcing the zshrc."]
+    - ['git submodule update --init --recursive', 'Installing submodules']
+    - ['zsh', 'resourcing the zshrc.']
 
-- clean: ["~"]
+- clean: ['~']
 
 - shell:
     - echo "Cleaning the config directory."
