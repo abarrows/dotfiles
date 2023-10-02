@@ -6,8 +6,10 @@ if [[ $(uname -m) == "arm64" ]]; then
 
   # For M1 Macs Only when installing Rbenv
   CFLAGS="-Wno-error=implicit-function-declaration"
-  eval "$(rbenv init - zsh)"
-
+  # Check if rbenv has been installed
+  if type rbenv >/dev/null 2>&1; then
+    eval "$(rbenv init - zsh)"
+  fi
   # Mysql OpenSSL and M1 fix
   export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
   export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
