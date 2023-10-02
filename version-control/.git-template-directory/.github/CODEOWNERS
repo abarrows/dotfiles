@@ -3,9 +3,6 @@
 
 # Product Specific Front-end Engineering
 
-# that will be the ones to review.  IE: If this were for GoComics, you would
-# update the @front-end-engineers below to be @front-end-engineers-gocomics
-
 .storybook/**                   @Andrews-McMeel-Universal/front-end-engineers
 jest**                          @Andrews-McMeel-Universal/front-end-engineers
 public/**                       @Andrews-McMeel-Universal/front-end-engineers

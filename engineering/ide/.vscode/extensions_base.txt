@@ -30,6 +30,7 @@ ms-vscode.remote-explorer
 ms-vscode.remote-server
 ms-vscode.vs-keybindings
 ms-vsliveshare.vsliveshare-pack
+PKief.material-icon-theme
 pranaygp.vscode-css-peek
 redhat.vscode-yaml
 richie5um2.vscode-sort-json

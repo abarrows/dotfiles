@@ -40,13 +40,13 @@
   },
   "[javascript]": {
     "editor.codeActionsOnSave": {
-    "source.fixAll": true,
+      "source.fixAll.eslint": true
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascriptreact]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll": true
+      "source.fixAll.eslint": true
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -106,9 +106,12 @@
     },
     "editor.formatOnSave": true
   },
-  // "[typescript]": {
-  //   "editor.defaultFormatter": "esbenp.prettier-vscode"
-  // },
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[xml]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": false
@@ -120,13 +123,7 @@
     "editor.defaultFormatter": "redhat.vscode-yaml",
     "editor.formatOnSave": true
   },
-  "atlascode.bitbucket.contextMenus.enabled": false,
   "atlascode.bitbucket.enabled": false,
-  "atlascode.bitbucket.explorer.enabled": false,
-  "atlascode.bitbucket.explorer.notifications.pullRequestCreated": false,
-  "atlascode.bitbucket.pipelines.explorerEnabled": false,
-  "atlascode.bitbucket.pipelines.hideEmpty": false,
-  "atlascode.bitbucket.pipelines.monitorEnabled": false,
   "atlascode.enableHttpsTunnel": true,
   "atlascode.helpExplorerEnabled": false,
   "atlascode.jira.enabled": true,
@@ -136,74 +133,74 @@
   "atlascode.jira.explorer.nestSubtasks": true,
   "atlascode.jira.jqlList": [
     {
+      "name": "My Most Recent Updated Issues",
       "enabled": true,
       "id": "2e252f74-65ff-4411-b0ac-5fb625fc34ef",
       "monitor": true,
-      "name": "My Most Recent Updated Issues",
       "query": "assignee = currentUser() and status != resolved ORDER BY updated DESC, priority DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "My Most Recently Created Issues",
       "enabled": true,
       "id": "c33593e5-febe-4787-adce-44be66d943ab",
       "monitor": true,
-      "name": "My Most Recently Created Issues",
       "query": "reporter = currentUser() AND status != Done ORDER BY updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "My amuniversal Issues",
       "enabled": true,
       "id": "486d46cd-29a5-47e7-b5cb-7bdf9625be72",
       "monitor": true,
-      "name": "My amuniversal Issues",
       "query": "assignee = currentUser() and status != resolved ORDER BY rank ASC, priority DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Content Admin - My Issues",
       "enabled": true,
       "id": "faedfb95-7fef-47c3-a54b-cc397464edf9",
       "monitor": true,
-      "name": "Content Admin - My Issues",
       "query": "project = \"CONADMIN\" and assignee = currentUser() ",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Puzzlesociety.com - My Issues",
       "enabled": true,
       "id": "110bea68-bd07-43aa-b1bc-2512556cd473",
       "monitor": true,
-      "name": "TPS - My Issues",
       "query": "project =\"PUZSOC\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Games/Embed - Issues",
       "enabled": true,
       "id": "02142ed5-c4d7-41af-a082-7e16cb33dada",
       "monitor": true,
-      "name": "Games/Embed - Issues",
       "query": "project =\"AMU Games\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Embed Service",
       "enabled": true,
       "id": "5de0ffa1-bb1c-4a76-9371-a870197089a9",
       "monitor": true,
-      "name": "Embed Service",
       "query": "project =\"Embed Service\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Doonesbury - My Issues",
       "enabled": true,
       "id": "a41f9986-a92a-4936-93f3-e653e95f2ae7",
       "monitor": true,
-      "name": "Doonesbury - My Issues",
       "query": "project = \"DOONES\" AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "My amuniversal Issues",
       "enabled": true,
       "id": "486d46cd-29a5-47e7-b5cb-7bdf9625be72",
       "monitor": true,
-      "name": "My amuniversal Issues",
       "query": "assignee = currentUser() and status != resolved ORDER BY rank ASC, priority DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
@@ -211,48 +208,34 @@
       "enabled": true,
       "id": "6fbe3fdb-a368-413f-a5ca-5a1692a2892e",
       "monitor": true,
-      "name": "GoComics - My Issues",
-      "query": "project in (\"GOCOMICS\") AND resolution = Unresolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
+      "query": "project in (\"GoComics [2017]\", \"GoComics [2021]\") AND status != resolved and assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
+      "name": "Uexpress- My Issues",
       "enabled": true,
       "id": "1b3ae036-7577-419f-9d72-393c91180dff",
       "monitor": true,
-      "name": "Uexpress- My Issues",
       "query": "project = Uexpress AND status != resolved AND assignee = currentUser() ",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
-      "enabled": true,
-      "id": "dbf335f1-eb46-42b5-b25e-2f357b6ab7a1",
-      "monitor": true,
-      "name": "Dilbert - My Issues",
-      "query": "project = Dilbert AND status != resolved ORDER by rank ASC, priority DESC, updatedDate DESC",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
-    },
-    {
+      "name": "TheFarside.com - My Issues",
       "enabled": true,
       "id": "c7cd7030-fd5e-42e1-b4bd-857e58e22fe2",
       "monitor": true,
-      "name": "TFS",
       "query": "project = Farside AND status != resolved AND assignee = currentUser() ORDER by rank ASC, priority DESC, updatedDate DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
-      "id": "34cf15a8-b627-435e-8e92-4deec1da8891",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
       "name": "All Recent Issues",
-      "query": "resolution != Done and updatedDate > endOfDay(-30d)",
       "enabled": true,
-      "monitor": true
+      "id": "34cf15a8-b627-435e-8e92-4deec1da8891",
+      "monitor": true,
+      "query": "resolution != Done and updatedDate > endOfDay(-30d)",
+      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     }
   ],
-  "atlascode.jira.statusbar.showUser": false,
-  "atlascode.jira.lastCreateSiteAndProject": {
-    "projectKey": "AMCORP",
-    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
-  },
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
     "maintenance",
     "story",
@@ -262,6 +245,7 @@
     "research"
   ],
   "atlascode.jira.startWorkBranchTemplate.customTemplate": "{{{prefix}}}/{{{issueKey}}}/{{{summary}}}",
+  "atlascode.jira.statusbar.showUser": false,
   "atlascode.jira.todoIssues.triggers": [
     "TODO:",
     "BUG:",
@@ -270,7 +254,7 @@
     "TODO -"
   ],
   "atlascode.onlineCheckerUrls": [
-    "https://amuniversal.atlassian.ne",
+    "https://amuniversal.atlassian.net",
     "https://github.com/Andrews-McMeel-Universal"
   ],
   "atlascode.outputLevel": "debug",
@@ -443,7 +427,6 @@
     "developmentamub",
     "devops",
     "dfptest",
-    "dilbertcomics",
     "dismissable",
     "DISQUS",
     "DOONES",
@@ -701,12 +684,17 @@
   "debug.allowBreakpointsEverywhere": false,
   "debug.autoExpandLazyVariables": true,
   "debug.console.fontSize": 16,
+  "debug.javascript.terminalOptions": {
+    "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
+  },
   "debug.openExplorerOnEnd": true,
   "debug.terminal.clearBeforeReusing": true,
   "debug.toolBarLocation": "docked",
   "dev.containers.logLevel": "trace",
   "diffEditor.codeLens": true,
+  "diffEditor.experimental.showMoves": true,
   "diffEditor.ignoreTrimWhitespace": false,
+  "diffEditor.renderSideBySide": true,
   "docker.images.sortBy": "CreatedTime",
   "dotfiles.installCommand": "install",
   "editor.accessibilitySupport": "off",
@@ -797,9 +785,6 @@
   "files.trimTrailingWhitespace": true,
   "gistpad.playgrounds.showConsole": true,
   "gistpad.playgrounds.stylesheetLanguage": "scss",
-  "debug.javascript.terminalOptions": {
-    "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
-  },
   "git.autoStash": true,
   "git.autofetch": true,
   "git.confirmSync": false,
@@ -897,21 +882,18 @@
   "liveshare.allowGuestDebugControl": true,
   "liveshare.allowGuestTaskControl": true,
   "liveshare.diagnosticLogging": true,
-  "liveshare.diagnosticMode": true,
   "liveshare.presence": true,
   "markdown.preview.fontSize": 16,
   "merge-conflict.autoNavigateNextConflict.enabled": true,
   "npm.packageManager": "yarn",
-  "oneDarkPro.color": {
-    "chalky": "#cdcdcd"
-  },
+
   "path-intellisense.autoSlashAfterDirectory": true,
   "playwright.reuseBrowser": false,
   "playwright.showTrace": false,
   "prettier.enableDebugLogs": true,
+  "prettier.singleQuote": true,
   // "prettier.requireConfig": true,
   "prettier.useEditorConfig": false,
-  "prettier.singleQuote": true,
   "problems.decorations.enabled": true,
   "redhat.telemetry.enabled": false,
   "rewrap.autoWrap.enabled": true,
@@ -936,17 +918,17 @@
   "scss.validate": false,
   "search.collapseResults": "alwaysCollapse",
   "search.exclude": {
+    "**/.coverage": true,
     "**/.git": true,
     "**/.history/**": true,
     "**/.next": true,
-    "**/.coverage": true,
     "**/.yarn/cache": true,
-    "**/yarn-error.log": true,
-    "**/src/design-system-package/assets/": true,
     "**/_design_tokens.js": true,
     "**/node_modules": true,
+    "**/src/design-system-package/assets/": true,
     "**/storybook-static": true,
     "**/tmp": true,
+    "**/yarn-error.log": true,
     "**trace.zip": true,
     "src/design-system-package/dist/**": true
   },
@@ -1048,15 +1030,13 @@
   "window.restoreWindows": "all",
   "window.zoomLevel": 2,
   "workbench.colorCustomizations": {
-    "[One Dark Pro]": {
-      "editorBracketHighlight.foreground1": "#E6E6E6",
-      "editorBracketHighlight.foreground2": "#FF75B5",
-      "editorBracketHighlight.foreground3": "#19f9d8",
-      "editorBracketHighlight.foreground4": "#B084EB",
-      "editorBracketHighlight.foreground5": "#45A9F9",
-      "editorBracketHighlight.foreground6": "#FFB86C",
-      "editorBracketHighlight.unexpectedBracket.foreground": "#FF2C6D"
-    }
+    "editorBracketHighlight.foreground1": "#E6E6E6",
+    "editorBracketHighlight.foreground2": "#FF75B5",
+    "editorBracketHighlight.foreground3": "#19f9d8",
+    "editorBracketHighlight.foreground4": "#B084EB",
+    "editorBracketHighlight.foreground5": "#45A9F9",
+    "editorBracketHighlight.foreground6": "#FFB86C",
+    "editorBracketHighlight.unexpectedBracket.foreground": "#FF2C6D"
   },
   "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
@@ -1072,8 +1052,8 @@
   "workbench.view.alwaysShowHeaderActions": true,
   "yaml.format.singleQuote": true,
   "yaml.schemaStore.enable": true,
-  "yaml.trace.server": "verbose",
   "yaml.schemas": {
     "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-3.0.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  }
+  },
+  "yaml.trace.server": "verbose"
 }

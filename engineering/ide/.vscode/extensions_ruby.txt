@@ -1,5 +1,6 @@
 aliariff.vscode-erb-beautify
 castwide.solargraph
+davidpallinder.rails-test-runner
 rebornix.ruby
 sensourceinc.vscode-sql-beautify
 vortizhe.simple-ruby-erb

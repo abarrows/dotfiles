@@ -1,21 +1,38 @@
 module.exports = {
   root: true,
-  plugins: ['babel', 'chai-friendly', 'react', 'jsx-a11y'],
+  plugins: [
+    'babel',
+    'chai-friendly',
+    'react',
+    'jsx-a11y',
+    '@typescript-eslint',
+  ],
   extends: [
     'airbnb',
     'airbnb/hooks',
+    'next/core-web-vitals',
     'plugin:react/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:storybook/recommended',
+    'prettier',
     'plugin:storybook/csf',
+    'plugin:storybook/recommended',
+    'plugin:storybook/csf-strict',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
   ],
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
-    ecmaVersion: 6,
+    requireConfigFile: false,
     ecmaFeatures: {
       jsx: true,
     },
+    ecmaVersion: 2021,
+    sourceType: 'module',
+    babelOptions: {
+      presets: ['@babel/preset-react'],
+    },
   },
+  ignorePatterns: ['src/design-system-package/dist/**', '**/_design_tokens.js'],
   env: {
     jest: true,
     browser: true,
@@ -24,6 +41,7 @@ module.exports = {
     jquery: false,
   },
   rules: {
+    '@next/next/no-img-element': 1,
     'max-len': [
       'error',
       {
@@ -57,9 +75,10 @@ module.exports = {
       // globs allow using devDependencies in story and test files
       {
         devDependencies: [
-          '**/*.{spec,stories,test}.js',
+          '{jest,.storybook,src/stories}/**/*',
+          '**/*.{spec,stories,test}.js*',
+          'jest.*.js',
           'webpack.config.js',
-          '{.jest,.storybook,cypress}/**/*',
         ],
       },
     ],
