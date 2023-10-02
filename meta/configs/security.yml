@@ -10,6 +10,10 @@
     - echo -e '5. Setting up Scripts and Security \n
       Copying over personalized environment variables and bin scripts...'
 
+- shell:
+    - echo 'Setting permissions on the onboarding_bin...'
+    - chmod +x ./onboarding_bin
+
 - link:
     ~/.envrc:
       force: true
