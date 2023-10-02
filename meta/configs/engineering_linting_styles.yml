@@ -8,7 +8,7 @@
     ~/stylelint.config.js:
       relink: true
       path: engineering/styles/stylelint.config.js
-    ~/.stylelintignore:
+    ~/.stylelintrcignore:
       force: true
       relink: true
-      path: engineering/styles/.stylelintignore
+      path: engineering/styles/.stylelintrcignore

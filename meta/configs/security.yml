@@ -12,7 +12,7 @@
 
 - shell:
     - echo 'Setting permissions on the onboarding_bin...'
-    - chmod +x ./onboarding_bin
+    - chmod +x ./onboarding_bin/*
 
 - link:
     ~/.envrc:
