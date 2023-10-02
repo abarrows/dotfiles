@@ -5,13 +5,13 @@
         "revision": "d667f405b583c422a8e4b55a73a56c9bcd8b5986"
       },
       "homebrew/cask": {
-        "revision": "4552c2f73aaf6798c1a411bdea709d5c60216d93"
+        "revision": "b560eddffa3ca394ce5e3e3b8dc7a2bd77e73c96"
       },
       "homebrew/cask-fonts": {
         "revision": "beebb2553957d65516296527e87ec99bf52589e1"
       },
       "homebrew/core": {
-        "revision": "8a9fcbcf5cdb35aaa8e0a7e87892fa32a64bb77a"
+        "revision": "f0bac9a7e3f8adaa3a9ed228aee3a51f32ce9447"
       },
       "homebrew/services": {
         "revision": "dcb50f33098d78fd6316038e1cbdfffff892c9b5"
@@ -1115,7 +1115,7 @@
         }
       },
       "microsoft-teams": {
-        "version": "1.6.00.24065",
+        "version": "1.6.00.26463",
         "options": {
           "full_name": "microsoft-teams",
           "args": {
