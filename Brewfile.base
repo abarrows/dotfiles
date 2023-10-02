@@ -63,4 +63,4 @@ cask "messenger" # RECOMMENDED - personal messenger platform
 cask 'spotify' # RECOMMENDED - Music Service
 cask 'vlc' # RECOMMENDED - Video format conversion utility
 cask 'zoom' # RECOMMENDED - Department approved video chat and calls utility
-
+cask '1password-cli' # RECOMMENDED - Useful for integrating with alfred and vaults.
