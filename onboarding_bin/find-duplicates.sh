@@ -1,4 +1,4 @@
-# #!/bin/bash
+#!/bin/bash
 
 # if [ -z "$1" ]; then
 #   echo "Please provide a  || exitfolder path to check for duplicates"

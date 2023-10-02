@@ -8,7 +8,8 @@ git commit -m "Remove dotbot submodule"
 git submodule add https://github.com/anishathalye/dotbot
 
 # Then update the .gitmodules file with the new path to the submodule ie:
-path="meta/dotbot"
+# path="meta/dotbot"
+path="dotbot"
 
 # Commit the changes
 git add .gitmodules meta/dotbot && git commit -m "Re-add dotbot submodule" && git push
