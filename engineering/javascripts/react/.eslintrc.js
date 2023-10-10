@@ -1,5 +1,4 @@
 module.exports = {
-  root: true,
   plugins: [
     'babel',
     'chai-friendly',
