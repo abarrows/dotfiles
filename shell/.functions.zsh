@@ -3,6 +3,10 @@
 # DEBUGGING SCRIPTS
 
 # FUNCTIONS
+function checkprocess() {
+  local port="${1:-3000}" # Use the provided argument or default to 3000
+  lsof -i:"$port"
+}
 
 function mirrororigin() {
   printf "%s\n" "1. ...Checking if repo exists in personal github"
