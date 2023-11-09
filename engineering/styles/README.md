@@ -97,10 +97,10 @@ on styling code:
 1. _Yarn Scripts within the package.json_ - Below are examples of common scripts
    that can be ran at the command line to lint stylesheet code:
 
-```json
-"lint:styles": "stylelint **/*.scss --fix",
-"format-all": "prettier --write .",
-```
+    ```json
+    "lint:styles": "stylelint **/*.scss --fix",
+    "format-all": "prettier --write .",
+    ```
 
 2. _Pre-Commit Hooks_ - Some projects, automatically run scripts like the above
    example immediately before committing and pushing code changes. This keeps
