@@ -9,9 +9,24 @@ export NVM_COMPLETION=true
 export NVM_AUTO_USE=true
 
 # PATHING
-export PATH="$HOME/bin:/usr/local/opt/libxslt/bin:/usr/local/bin:/usr/sbin:/sbin:/usr/local/sbin:$PATH"
 
-# Path to your oh-my-zsh installation.
+# Chat GPT Recommendation after prompting.
+# Homebrew path - Prioritize Homebrew binaries.
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Your personal bin directory.
+export PATH="$HOME/bin:$PATH"
+
+# Legacy system-wide binaries.
+export PATH="/usr/local/bin:$PATH"
+
+# The system paths are implicitly included, but can be specified if needed.
+# export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+
+# Finally, if you have a specific path for Yarn or other tools, append them at the end.
+# export PATH="$PATH:$YARN_PATH"
+
+# Path to your oh-my-z/opt/homebrew/binsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_DOTENV_FILE=$HOME/.envrc
 
@@ -20,7 +35,7 @@ source "$HOME/.theme.zsh"
 source "$HOME/.plugins.zsh"
 source "$HOME/.functions.zsh"
 source "$HOME/.aliases.zsh"
-source "$HOME/.m1-fixes.zsh"
+# source "$HOME/.m1-fixes.zsh"
 
 # OLD PATHING
 
