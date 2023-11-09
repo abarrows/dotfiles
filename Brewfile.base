@@ -24,7 +24,7 @@ brew "starship" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended platform
 brew "thefuck" # RECOMMENDED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Command Line correction tool for mistyped commands
 brew "wget" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON General Request Utility for Command Line
 brew "yamllint" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Linting and auto-fixing tool for yaml
-brew "yarn" # REQUIRED - BASE/DEVOPS/ROR/NODE Front-end team approved package manager
+# brew "yarn" # REQUIRED - BASE/DEVOPS/ROR/NODE Front-end team approved package manager
 brew "zsh" || true # REQUIRED - BASE/DEVOPS/ROR/NODE/ Default Mac OSX shell
 cask "1password" || true # REQUIRED - Department licensed and approved password manager
 cask "adobe-creative-cloud" || true # RECOMMENDED - Department licensed and approved
@@ -37,6 +37,7 @@ cask "appcleaner" # REQUIRED - utility application for removing Mac OSX programs
 cask "disk-drill" # RECOMMENDED - Duplicate file finder and storage visualizer.
 cask "docker" # REQUIRED - Department approved containerized environment tools
 cask "dropbox" # OPTIONAL - Department approved cloud storage for UXD and Design
+cask "edge" # REQUIRED - Department approved browser for Bing AI Chat
 cask "expressvpn" # REQUIRED - Department approved VPN for testing geo location
 # cask "firefox" || true # REQUIRED - Front-end team approved browser for our viewing our applications
 # NOTE: These come preinstalled, uncheck if you have done a factory reset.
@@ -55,6 +56,7 @@ cask "microsoft-teams" || true # REQUIRED - Department approved communication to
 cask "mysqlworkbench" # REQUIRED - Front-end team approved database GUI/tool
 cask 'postman' # REQUIRED - Department approved API testing GUI/tool
 # cask 'the-unarchiver' # RECOMMENDED - TAR/ZIP file compression tool
+cask 'vincelwt-chatgpt' # RECOMMENDED - AI Chat service
 cask 'visual-studio-code' || true # REQUIRED -  Digital Technology approved IDE for software engineering
 # cask "katalon-studio" # RECOMMENDED -  Front-end approved browser automation GUI/tool
 # cask "mamp" # RECOMMENDED - Front-end team approved server environment tool for wordpress and general web development
