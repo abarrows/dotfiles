@@ -2,11 +2,11 @@
 
 [Stylelint](https://stylelint.io/) is a CSS/SCSS static code analyzer that is customizable and compatible with most code editors. We're particular about our stylesheets, so read on for how to get Stylelint working for you.
 
-### Prerequisites
+## Prerequisites
 
 _NOTE: All Prerequisites are included with the amu-onboarding ./install script._
 
-1. [NVM]()
+1. [NVM](https://github.com/nvm-sh/nvm)(Node Version Management)
 2. [Yarn](https://yarnpkg.com/) (The project should have a package.json file.)
 3. [VS Code](https://code.visualstudio.com/download)
 4. [VS Code Stylelint Extension](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
