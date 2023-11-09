@@ -6,9 +6,7 @@
     - echo "Setting up Software Engineering - global styling linting..."
 - link:
     ~/stylelint.config.js:
-      relink: true
-      path: engineering/styles/stylelint.config.js
+      path: stylelint.config.js
     ~/.stylelintrcignore:
-      force: true
-      relink: true
-      path: engineering/styles/.stylelintrcignore
+      path: .stylelintrcignore
+      # path: engineering/styles/.stylelintrcignore

@@ -1,7 +1,7 @@
 - defaults:
     link:
-      relink: true
       create: true
+      relink: true
     shell:
       stdout: true
       stderr: true
@@ -10,7 +10,11 @@
     - ['git submodule update --init --recursive', 'Installing submodules']
     - ['zsh', 'resourcing the zshrc.']
 
-- clean: ['~']
+- clean:
+    ~/:
+      force: true
+    ~/.config:
+      recursive: true
 
 - shell:
     - echo "Cleaning the config directory."
