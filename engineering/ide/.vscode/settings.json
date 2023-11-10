@@ -685,10 +685,7 @@
   "debug.autoExpandLazyVariables": true,
   "debug.console.fontSize": 16,
   "debug.javascript.terminalOptions": {
-    "skipFiles": [
-      "<node_internals>/**",
-      "**/node_modules/**"
-    ]
+    "skipFiles": ["<node_internals>/**", "**/node_modules/**"]
   },
   "debug.openExplorerOnEnd": true,
   "debug.terminal.clearBeforeReusing": true,
@@ -788,6 +785,14 @@
   "files.trimTrailingWhitespace": true,
   "gistpad.playgrounds.showConsole": true,
   "gistpad.playgrounds.stylesheetLanguage": "scss",
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.hg/store/**": true,
+    "**/storybook-static/**": true,
+    "**/.next/**": true
+  },
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
@@ -840,10 +845,7 @@
   "gitlens.advanced.repositorySearchDepth": 2,
   "gitlens.autolinks": [],
   "gitlens.blame.heatmap.enabled": true,
-  "gitlens.codeLens.scopes": [
-    "document",
-    "containers"
-  ],
+  "gitlens.codeLens.scopes": ["document", "containers"],
   "gitlens.defaultDateFormat": "MMM DD, YYYY",
   "gitlens.gitCommands.closeOnFocusOut": true,
   "gitlens.gitCommands.skipConfirmations": [
@@ -869,17 +871,13 @@
   "gitlens.views.repositories.files.layout": "list",
   "gitlens.views.repositories.showIncomingActivity": false,
   "gitlens.views.search.enabled": false,
-  "gitlens.views.searchAndCompare.files.layout": "list",
+  "gitlens.views.searchAndCompare.files.layout": "tree",
   "grammarly.debug": true,
   "html.format.enable": true,
   "html.format.extraLiners": "none",
   "html.format.templating": true,
   "html.trace.server": "messages",
-  "htmlhint.documentSelector": [
-    "erb",
-    "html",
-    "htm"
-  ],
+  "htmlhint.documentSelector": ["erb", "html", "htm"],
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "keyboard.layout": "us",
   "l13Diff.confirmCopy": false,
@@ -949,15 +947,10 @@
   "search.quickOpen.includeHistory": false,
   "search.useIgnoreFiles": false,
   "security.workspace.trust.untrustedFiles": "open",
-  "settingsSync.ignoredExtensions": [
-    "ms-vscode-remote.remote-containers"
-  ],
+  "settingsSync.ignoredExtensions": ["ms-vscode-remote.remote-containers"],
   "shellcheck.enable": true,
   "shellcheck.enableQuickFix": true,
-  "shellcheck.ignoreFileSchemes": [
-    "git",
-    "gitfs"
-  ],
+  "shellcheck.ignoreFileSchemes": ["git", "gitfs"],
   "shellcheck.run": "onSave",
   "shellcheck.useWorkspaceRootAsCwd": true,
   "shellformat.effectLanguages": [
@@ -1071,7 +1064,9 @@
   "yaml.format.singleQuote": true,
   "yaml.schemaStore.enable": true,
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-3.0.6/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-3.0.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "yaml.trace.server": "verbose"
+  "yaml.trace.server": "verbose",
+  "atlascode.jira.explorer.refreshInterval": 0,
+  "workbench.editor.showTabs": "multiple"
 }
