@@ -1,0 +1,24 @@
+changelog:
+  categories:
+    - title: 🌐 General Changes
+      labels:
+        - "*"
+      exclude:
+        authors:
+          - dependabot
+        labels:
+          - sync
+          - devops
+    - title: 🔨 DevOps Changes
+      labels:
+        - devops
+      exclude:
+        labels:
+          - dependencies
+          - sync
+    - title: 🔄 Template Syncs
+      labels:
+        - sync
+    - title: ⬆️ Dependencies
+      labels:
+        - dependencies

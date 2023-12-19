@@ -1,9 +1,0 @@
-# Supported browsers
-# If you change this config please visit this URL, update the settings, and replace with new URL:
-# https://browserslist.dev/?q=Pj0gMSUgYW5kIGxhc3QgMyBtYWpvciB2ZXJzaW9ucywgbm90IElFIDExLCBub3Qgb3BfbWluaSBhbGwsIG5vdCBkZWFkLCBtYWludGFpbmVkIG5vZGUgdmVyc2lvbnM%3D
-
->= 1% and last 3 major versions
-not IE 11
-not op_mini all
-not dead
-maintained node versions

@@ -1,0 +1,16 @@
+extends: default
+indentation: 2
+line-length: 120
+
+rules:
+  min-spaces-from-content: 1
+  truthy:
+    check-keys: false
+  document-start:
+    present: false
+
+ignore: |
+  /node_modules/*.yaml
+  /node_modules/*.yml
+  /node_modules/*.yamllint
+  /bin/

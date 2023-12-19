@@ -34,6 +34,7 @@ cask "appcleaner" # REQUIRED - utility application for removing Mac OSX programs
 # cask "cyberduck" # RECOMMENDED - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP
 # transfers
 # cask "browserstacklocal" # OPTIONAL - Used for local testing of browsers
+cask "dbeaver-community" # OPTIONAL - BASE/ROR/NODE/DEVOPS
 cask "disk-drill" # RECOMMENDED - Duplicate file finder and storage visualizer.
 cask "docker" # REQUIRED - Department approved containerized environment tools
 cask "dropbox" # OPTIONAL - Department approved cloud storage for UXD and Design

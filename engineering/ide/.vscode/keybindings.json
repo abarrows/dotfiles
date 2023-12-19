@@ -453,6 +453,11 @@
     "description": "This command folds the current block you are on and all blocks within it.  It requires that folding is enabled."
   },
   {
+    "key": "shift+cmd+g",
+    "command": "editor.action.previousMatchFindAction",
+    "when": "editorFocus"
+  },
+  {
     "key": "alt+f5",
     "command": "-workbench.action.compareEditor.nextChange",
     "when": "editorTextFocus || textCompareEditorVisible"
@@ -530,5 +535,15 @@
   {
     "key": "shift+cmd+2",
     "command": "atlascode.showExploreSettings"
+  },
+  {
+    "key": "alt+cmd+i",
+    "command": "workbench.action.chat.open",
+    "when": "hasChatProvider"
+  },
+  {
+    "key": "ctrl+cmd+i",
+    "command": "-workbench.action.chat.open",
+    "when": "hasChatProvider"
   }
 ]

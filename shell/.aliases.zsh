@@ -170,7 +170,7 @@ alias serviceembed="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/embed_servi
 alias rsserviceembed="RAILS_ENV=development rails s -p 3060"
 alias serviceclient="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/go-webservice-client && $IDE_PATH ."
 alias rsserviceclient="rails s -p '3050'"
-alias servicegocontent="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/gocontent_services/ && $IDE_PATH ."
+alias servicegocontent="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/gocontent_service/ && $IDE_PATH ."
 alias rsservicegocontent="RAILS_ENV=development rails s -p 3070"
 alias servicegames="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/amu_games/ && $IDE_PATH ."
 alias servicegamedata="cd ~/$CURRENT_COMPANY/repos/amu-digital-services/webservice_gamedata/ && $IDE_PATH ."

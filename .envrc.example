@@ -31,9 +31,6 @@ IDE_PATH="code"
 JIRA_BASE_URL="https://atlassian.amuniversal.com"
 # This is your jira login email and should match your git email
 # JIRA_USER_EMAIL="jdoe@amuniversal.com"
-APPLICATION_NAME=dotfiles-and-tooling
-APPLICATION_PORT=3000
-APPLICATION_VERSION=0.5.0
 
 # Optional Variables
 GIT_EMAIL_ADDRESS_PERSONAL=# Your private Github email address used for personal projects

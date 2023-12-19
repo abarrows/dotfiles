@@ -1,0 +1,85 @@
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: 'github-actions'
+    directory: '.github/'
+    schedule:
+      interval: 'weekly'
+      day: 'monday'
+    labels:
+      - 'devops'
+      - 'dependencies'
+    open-pull-requests-limit: 10
+    commit-message:
+      # Prefix all commit messages with 'github-actions'
+      prefix: 'github-actions'
+
+  - package-ecosystem: 'docker'
+    directory: '/'
+    ignore:
+      - dependency-name: node
+      - dependency-name: ruby
+      - dependency-name: dotnet/sdk
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
+    schedule:
+      interval: 'monthly'
+      day: 'monday'
+    labels:
+      - 'dependencies'
+      - 'devops'
+    open-pull-requests-limit: 10
+    commit-message:
+      # Prefix all commit messages with 'docker'
+      prefix: 'docker'
+
+  - package-ecosystem: 'npm' # for yarn
+    directory: '/' # Look for `package.json` and `lock` files in the `root` directory
+    schedule:
+      interval: 'monthly'
+      day: 'monday'
+    labels:
+      - 'front-end'
+      - 'dependencies'
+    versioning-strategy: increase
+    open-pull-requests-limit: 10
+    commit-message:
+      # Prefix all commit messages with 'npm'
+      prefix: 'npm'
+
+  - package-ecosystem: bundler
+    directory: '/'
+    schedule:
+      interval: 'monthly'
+      day: 'monday'
+    ignore:
+      - dependency-name: nokogiri
+        versions:
+          - '> 1.12.0'
+      - dependency-name: '*'
+        update-types:
+          ['version-update:semver-major', 'version-update:semver-minor']
+    labels:
+      - 'dependencies'
+    open-pull-requests-limit: 10
+    commit-message:
+      # Prefix all commit messages with 'bundler'
+      prefix: 'bundler'
+
+  - package-ecosystem: 'nuget'
+    directory: '/'
+    schedule:
+      interval: 'monthly'
+      day: 'monday'
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
+    labels:
+      - 'back-end'
+      - 'dependencies'
+    open-pull-requests-limit: 10
+    commit-message:
+      # Prefix all commit messages with 'nuget'
+      prefix: 'nuget'

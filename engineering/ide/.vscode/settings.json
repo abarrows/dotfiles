@@ -30,8 +30,8 @@
   },
   "[html]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll": true,
-      "tidyHtml.formatOnSave": true
+      "source.fixAll": "explicit",
+      "tidyHtml.formatOnSave": "explicit"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -702,8 +702,8 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
-    "source.fixAll.sortJSON": true
+    "source.fixAll": "explicit",
+    "source.fixAll.sortJSON": "explicit"
   },
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": "on",
@@ -733,7 +733,6 @@
   },
   "editor.renderControlCharacters": false,
   "editor.scrollBeyondLastLine": true,
-  "editor.snippetSuggestions": "top",
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "onlySnippets",
   "editor.tabSize": 2,
@@ -755,6 +754,13 @@
   "eslint.lintTask.enable": true,
   "eslint.run": "onSave",
   "eslint.useESLintClass": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    "typescript",
+    "typescriptreact"
+  ],
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "extensions.closeExtensionDetailsOnViewChange": true,
@@ -768,7 +774,8 @@
     ".aliases.zsh": "shellscript",
     ".env.*": "dotenv",
     ".env.example": "dotenv",
-    ".zshrc": "shellscript"
+    ".zshrc": "shellscript",
+    ".browserslistrc": "dockerfile"
   },
   "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",
@@ -899,7 +906,7 @@
   "npm.packageManager": "yarn",
   "path-intellisense.autoSlashAfterDirectory": true,
   "playwright.reuseBrowser": false,
-  "playwright.showTrace": false,
+  "playwright.showTrace": true,
   "prettier.enableDebugLogs": true,
   "prettier.singleQuote": true,
   // "prettier.requireConfig": true,
@@ -1027,19 +1034,18 @@
   "terminal.integrated.allowChords": false,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
-  "terminal.integrated.drawBoldTextInBrightColors": false,
   "terminal.integrated.enableBell": true,
   "terminal.integrated.enableMultiLinePasteWarning": false,
   "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.fontFamily": "monospace",
-  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontSize": 16,
   "terminal.integrated.fontWeight": "normal",
-  "terminal.integrated.gpuAcceleration": "off",
   "terminal.integrated.rightClickBehavior": "default",
+  "typescript.validate.enable": true,
+  "typescript.suggest.completeFunctionCalls": true,
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "window.newWindowDimensions": "maximized",
   "window.restoreWindows": "all",
-  "window.zoomLevel": 2,
   "workbench.colorCustomizations": {
     "editorBracketHighlight.foreground1": "#E6E6E6",
     "editorBracketHighlight.foreground2": "#FF75B5",
@@ -1064,9 +1070,101 @@
   "yaml.format.singleQuote": true,
   "yaml.schemaStore.enable": true,
   "yaml.schemas": {
-    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-3.0.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/abarrows/.vscode/extensions/atlassian.atlascode-3.0.9/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.trace.server": "verbose",
   "atlascode.jira.explorer.refreshInterval": 0,
-  "workbench.editor.showTabs": "multiple"
+  "workbench.editor.showTabs": "multiple",
+  "diffEditor.useInlineViewWhenSpaceIsLimited": false,
+  "terminal.integrated.enableImages": true,
+  "terminal.integrated.ignoreProcessNames": ["starship", "oh-my-posh", "bash"],
+  "terminal.integrated.macOptionClickForcesSelection": true,
+  "terminal.integrated.minimumContrastRatio": 5,
+  "terminal.integrated.profiles.osx": {
+    "bash": {
+      "path": "bash",
+      "args": ["-l"],
+      "icon": "terminal-bash"
+    },
+    "zsh": {
+      "path": "zsh",
+      "args": ["-l"]
+    },
+    "fish": {
+      "path": "fish",
+      "args": ["-l"]
+    },
+    "tmux": {
+      "path": "tmux",
+      "icon": "terminal-tmux"
+    },
+    "pwsh": {
+      "path": "pwsh",
+      "icon": "terminal-powershell"
+    }
+  },
+  "[powershell]": {
+    "editor.defaultFormatter": "ms-vscode.powershell"
+  },
+  "terminal.integrated.wordSeparators": "()[]{}',\"`─‘’|",
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6",
+    "projectKey": "AGS"
+  },
+  "[css][less][scss]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "explicit"
+    }
+  },
+  "[dockerfile][dotenv][shellscript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.shellcheck": "explicit",
+      "source.fixAll.stylelint": "never"
+    }
+  },
+  "[javascript][javascriptreact][typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    }
+  },
+  "[json][jsonc]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.fixAll.sortJSON": "explicit"
+    }
+  },
+  "[gitignore][ruby][sql][xml]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "never"
+    }
+  },
+  "explorer.confirmPasteNative": false,
+  "window.zoomLevel": 2,
+  "terminal.integrated.defaultProfile.linux": "sh",
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "bash",
+      "icon": "terminal-bash"
+    },
+    "zsh": {
+      "path": "zsh"
+    },
+    "fish": {
+      "path": "fish"
+    },
+    "tmux": {
+      "path": "tmux",
+      "icon": "terminal-tmux"
+    },
+    "pwsh": {
+      "path": "pwsh",
+      "icon": "terminal-powershell"
+    },
+    "ash": {
+      "path": "/bin/ash"
+    },
+    "sh": {
+      "path": "/bin/sh"
+    }
+  }
 }
