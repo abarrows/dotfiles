@@ -38,7 +38,7 @@ cask "dbeaver-community" # OPTIONAL - BASE/ROR/NODE/DEVOPS
 cask "disk-drill" # RECOMMENDED - Duplicate file finder and storage visualizer.
 cask "docker" # REQUIRED - Department approved containerized environment tools
 cask "dropbox" # OPTIONAL - Department approved cloud storage for UXD and Design
-cask "edge" # REQUIRED - Department approved browser for Bing AI Chat
+
 cask "expressvpn" # REQUIRED - Department approved VPN for testing geo location
 # cask "firefox" || true # REQUIRED - Front-end team approved browser for our viewing our applications
 # NOTE: These come preinstalled, uncheck if you have done a factory reset.
@@ -53,11 +53,12 @@ cask "google-drive" # OPTIONAL - Recommended backup utility for use with google 
 cask "iterm2" # REQUIRED - Front-end team approved command line tool for Mac OSX
 cask "inkscape" # RECOMMENDED - Front-end team approved vector graphics editor
 cask "microsoft-office" || true # REQUIRED - Department approved productivity suite
+cask "microsoft-edge" # REQUIRED - Corporate approved browser for using CoPilot.
 cask "microsoft-teams" || true # REQUIRED - Department approved communication tool
 cask "mysqlworkbench" # REQUIRED - Front-end team approved database GUI/tool
 cask 'postman' # REQUIRED - Department approved API testing GUI/tool
 # cask 'the-unarchiver' # RECOMMENDED - TAR/ZIP file compression tool
-cask 'vincelwt-chatgpt' # RECOMMENDED - AI Chat service
+# cask 'vincelwt-chatgpt' # RECOMMENDED - AI Chat service
 cask 'visual-studio-code' || true # REQUIRED -  Digital Technology approved IDE for software engineering
 # cask "katalon-studio" # RECOMMENDED -  Front-end approved browser automation GUI/tool
 # cask "mamp" # RECOMMENDED - Front-end team approved server environment tool for wordpress and general web development
