@@ -1,7 +1,6 @@
 cask_args appdir: '/Applications'
 tap 'homebrew/bundle'
 tap 'homebrew/cask-fonts'
-tap 'homebrew/core'
 tap 'homebrew/services'
 brew "coreutils" # REQUIRED - ROR/DEVOPS Required to build ruby containers and new ruby version binaries.
 brew "cmake" # RECOMMENDED - ROR/DEVOPS

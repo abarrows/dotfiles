@@ -1,7 +1,6 @@
 cask_args appdir: '/Applications'
 tap 'homebrew/bundle'
 tap 'homebrew/cask-fonts'
-tap 'homebrew/core'
 tap 'homebrew/services'
 brew 'direnv' # REQUIRED - BASE/ROR/NODE/
 brew 'dotenv-linter' # REQUIRED - BASE/ROR/NODE/

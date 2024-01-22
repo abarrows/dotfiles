@@ -1,7 +1,6 @@
 cask_args appdir: '/Applications'
 tap 'homebrew/bundle'
 tap 'homebrew/cask-fonts'
-tap 'homebrew/core'
 tap 'homebrew/services'
 brew 'act' # RECOMMENDED - DEVOPS Allows for testing Github Actions on your local machine
 brew 'azure-cli' # RECOMMENDED - DEVOPS Used with internal
