@@ -1,6 +1,5 @@
 cask_args appdir: '/Applications'
 tap 'homebrew/bundle'
-tap 'homebrew/cask'
 tap 'homebrew/cask-fonts'
 tap 'homebrew/core'
 tap 'homebrew/services'
@@ -12,7 +11,7 @@ brew 'git' # REQUIRED - ROR/NODE/DEVOPS/PYTHON Core version control
 brew 'icu4c' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Compiled Library Dependency for unicode and globalization
 brew 'gnupg' # REQUIRED - Needed for signing your commits with github.
 brew "nvm" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Version manager for node
-brew "openssl@1.1" # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Network Utility for SSL requests
+brew "openssl" # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Network Utility for SSL requests
 # brew "pandoc" # OPTIONAL - ROR/NODE/DEVOPS/PYTHON/PG Allows for markdown to easily be exported into other formats like word, pdfs, and html
 # brew "pipenv" # OPTIONAL - PYTHON Python dependency management tool
 # brew "pyenv" # OPTIONAL - PYTHON Python version management
@@ -21,7 +20,6 @@ brew "postgresql" # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
 # brew "redis" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Primary Caching Dependency for Back-end Software Engineers
 brew "shellcheck" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Linter and auto-fixing
 brew "starship" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended platform agnostic shell prompt.
-brew "thefuck" # RECOMMENDED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Command Line correction tool for mistyped commands
 brew "wget" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON General Request Utility for Command Line
 brew "yamllint" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Linting and auto-fixing tool for yaml
 # brew "yarn" # REQUIRED - BASE/DEVOPS/ROR/NODE Front-end team approved package manager

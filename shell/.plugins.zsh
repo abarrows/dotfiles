@@ -27,9 +27,6 @@
 # osx
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/osx
 
-# thefuck
-# https://github.com/laggardkernel/zsh-thefuck
-
 # rake
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/rake
 
@@ -110,7 +107,6 @@ plugins=(
   macos
   rake
   ruby
-  thefuck
   vscode
   yarn
   vscode
