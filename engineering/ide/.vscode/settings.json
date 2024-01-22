@@ -15,7 +15,7 @@
       "source.fixAll.shellcheck": true,
       "source.fixAll.stylelint": false
     },
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
+    "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.formatOnSave": true
   },
   "[dockerfile][dotenv][shellscript]": {
@@ -82,7 +82,6 @@
   },
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
-    "editor.formatOnSave": true
   },
   "[powershell]": {
     "editor.defaultFormatter": "ms-vscode.powershell",
@@ -784,6 +783,8 @@
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmPasteNative": false,
+  "extensions.autoCheckUpdates": true,
+  "extensions.autoUpdate": true,
   "extensions.closeExtensionDetailsOnViewChange": true,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
