@@ -8,6 +8,3 @@
     ~/.nvmrc:
       path: engineering/javascripts/.nvmrc
       relink: true
-    ~/.npmignore:
-      path: engineering/javascripts/.npmignore
-      relink: true
