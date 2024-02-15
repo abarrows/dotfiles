@@ -171,6 +171,16 @@
     "default": false
   },
   {
+    "key": "cmd+u",
+    "command": "workbench.action.chat.startVoiceChat",
+    "when": "!voiceChatInProgress"
+  },
+  {
+    "key": "cmd+u",
+    "command": "workbench.action.chat.stopListeningAndSubmit",
+    "when": "voiceChatInProgress"
+  },
+  {
     "key": "shift+cmd+w",
     "command": "workbench.action.closeEditorsInGroup",
     "when": "editorFocus",

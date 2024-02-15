@@ -23,4 +23,4 @@ brew "pgloader" # OPTIONAL - PG Database Utility for converting MySQL databases 
 cask "adoptopenjdk" # OPTIONAL - PG
 # brew "mysql-client" # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Database Dependency for MySQL
 # # cask "adoptopenjdk" # OPTIONAL - PG
-cask "powershell" # RECOMMENDED - DEVOPS Powershell for managing Windows
+
