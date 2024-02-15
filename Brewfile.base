@@ -49,10 +49,11 @@ cask "gpg-suite" # REQUIRED - Allows for setting up signed commits with github.
 cask "google-drive" # OPTIONAL - Recommended backup utility for use with google drive
 cask "iterm2" # REQUIRED - Front-end team approved command line tool for Mac OSX
 cask "inkscape" # RECOMMENDED - Front-end team approved vector graphics editor
-cask "microsoft-office" || true # REQUIRED - Department approved productivity suite
+# cask "microsoft-office" || true # REQUIRED - Department approved productivity suite
 cask "microsoft-edge" # REQUIRED - Corporate approved browser for using CoPilot.
 cask "microsoft-teams" || true # REQUIRED - Department approved communication tool
 cask "mysqlworkbench" # REQUIRED - Front-end team approved database GUI/tool
+cask "onedrive" # REQUIRED - Department approved cloud storage for UXD and Design
 cask 'postman' # REQUIRED - Department approved API testing GUI/tool
 # cask 'the-unarchiver' # RECOMMENDED - TAR/ZIP file compression tool
 # cask 'vincelwt-chatgpt' # RECOMMENDED - AI Chat service
@@ -60,7 +61,9 @@ cask 'visual-studio-code' || true # REQUIRED -  Digital Technology approved IDE 
 # cask "katalon-studio" # RECOMMENDED -  Front-end approved browser automation GUI/tool
 # cask "mamp" # RECOMMENDED - Front-end team approved server environment tool for wordpress and general web development
 cask "messenger" # RECOMMENDED - personal messenger platform
-# cask 'slack' # OPTIONAL - Department approved communication tool for specific vendors like sourcepoint
+# cask 'slack' # OPTIONAL - Department approved communication tool for specific
+# vendors like sourcepoint
+cask "powershell" # RECOMMENDED - DEVOPS Powershell for managing Windows
 cask 'spotify' # RECOMMENDED - Music Service
 cask 'vlc' # RECOMMENDED - Video format conversion utility
 cask 'zoom' # RECOMMENDED - Department approved video chat and calls utility
