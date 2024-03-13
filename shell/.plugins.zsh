@@ -107,6 +107,7 @@ plugins=(
   macos
   rake
   ruby
+  rbenv
   vscode
   yarn
   vscode
