@@ -1,12 +1,10 @@
 ---
-# homebrew_ruby - A Ruby on Rails configuration.
+# homebrew_devops - A DevOps configuration.
 # This uses brew bundle to install a number of
-# Ruby packages and required libraries.
+# DevOps packages and required libraries.
 
 - shell:
-    - description: '3. Installing Homebrew Package Manager - Base Packages...'
-      command: './onboarding_bin/install-homebrew.sh'
+    - description: '3. Installing Homebrew Package Manager - DevOps Packages...'
+      command: brew bundle --file=Brewfile.devops
+      stdout: true
       stderr: true
-
-- brewfile:
-    - Brewfile.devops

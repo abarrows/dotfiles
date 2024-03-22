@@ -15,7 +15,7 @@ to optimally work on any UI application within an ecosystem of products and serv
   - [What IS included?](#what-is-included)
     - [Initialize](#initialize)
     - [Mac Preferences and Setup](#mac-preferences-and-setup)
-    - [Homebrew_base - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
+    - [Homebrew\_base - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
     - [Software Engineering - General](#software-engineering---general)
       - [Git - Team configured version control](#git---team-configured-version-control)
       - [Shell - Extended and fine-tuned command line tools](#shell---extended-and-fine-tuned-command-line-tools)
@@ -40,8 +40,7 @@ to optimally work on any UI application within an ecosystem of products and serv
 This dotfiles repo uses dotbot, a popular framework for organizing dotfiles. Within the meta folder you will see two important directories:
 
 1. **configurations/** - Each of these yml files executes a specific aspect of setting up a new or virtualized machine
-2.
-3. **profiles/** - Each profile is a simply file that includes certain configurations, offering flexibility out of the box to create your own unique profile of dotfiles. Common use cases for this would be a personal and professional machine.
+2. **profiles/** - Each profile is a simply file that includes certain configurations, offering flexibility out of the box to create your own unique profile of dotfiles. Common use cases for this would be a personal and professional machine.
 
 #### Initialize
 

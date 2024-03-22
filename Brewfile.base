@@ -12,7 +12,6 @@ brew 'icu4c' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Compiled Library Dependenc
 brew 'gnupg' # REQUIRED - Needed for signing your commits with github.
 brew "nvm" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Version manager for node
 brew "openssl" # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Network Utility for SSL requests
-brew "openjdk" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON/PG Java Development Kit
 # brew "pandoc" # OPTIONAL - ROR/NODE/DEVOPS/PYTHON/PG Allows for markdown to easily be exported into other formats like word, pdfs, and html
 # brew "pipenv" # OPTIONAL - PYTHON Python dependency management tool
 # brew "pyenv" # OPTIONAL - PYTHON Python version management
@@ -34,7 +33,6 @@ cask "appcleaner" # REQUIRED - utility application for removing Mac OSX programs
 # cask "cyberduck" # RECOMMENDED - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP
 # transfers
 # cask "browserstacklocal" # OPTIONAL - Used for local testing of browsers
-cask "dbeaver-community" # OPTIONAL - BASE/ROR/NODE/DEVOPS
 cask "disk-drill" # RECOMMENDED - Duplicate file finder and storage visualizer.
 cask "docker" # REQUIRED - Department approved containerized environment tools
 cask "dropbox" # OPTIONAL - Department approved cloud storage for UXD and Design
@@ -53,7 +51,7 @@ cask "google-drive" # OPTIONAL - Recommended backup utility for use with google 
 cask "iterm2" # REQUIRED - Front-end team approved command line tool for Mac OSX
 cask "inkscape" # RECOMMENDED - Front-end team approved vector graphics editor
 # cask "microsoft-office" || true # REQUIRED - Department approved productivity suite
-cask "microsoft-edge" # REQUIRED - Corporate approved browser for using CoPilot.
+cask "microsoft-edge" # REQUIRED - Corporate approved browser for using CoPilot and browser testing.
 cask "microsoft-teams" || true # REQUIRED - Department approved communication tool
 cask "mysqlworkbench" # REQUIRED - Front-end team approved database GUI/tool
 cask "onedrive" # REQUIRED - Department approved cloud storage for UXD and Design
@@ -69,5 +67,6 @@ cask "messenger" # RECOMMENDED - personal messenger platform
 cask "powershell" # RECOMMENDED - DEVOPS Powershell for managing Windows
 cask 'spotify' # RECOMMENDED - Music Service
 cask 'vlc' # RECOMMENDED - Video format conversion utility
+cask 'warp' # RECOMMENDED - Team preferred command prompt for Mac OSX
 cask 'zoom' # RECOMMENDED - Department approved video chat and calls utility
 cask '1password-cli' # RECOMMENDED - Useful for integrating with alfred and vaults.

@@ -4,7 +4,7 @@
 # and formatting
 
 - shell:
-        - echo -e "Setting up Software Engineering \n YAML linting and formatting rules..."
+    - echo -e "Setting up Software Engineering \n YAML linting and formatting rules..."
 
 - link:
-        # ~/.yamllint.yml: engineering/yaml/.yamllint.yml
+    ~/.yamllint.yml: engineering/yaml/.yamllint.yml

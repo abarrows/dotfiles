@@ -9,7 +9,8 @@
 - link:
     # ~/.editorconfig: engineering/formatters/.editorconfig
     ~/.prettierrc.js:
-      path: engineering/formatters/.prettierrc.config.js
+      force: true
+      path: engineering/formatters/.prettierrc.js
     ~/.prettierignore:
       path: engineering/formatters/.prettierignore
     ~/.htmlhintrc:

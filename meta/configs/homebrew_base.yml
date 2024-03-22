@@ -5,8 +5,13 @@
 # you would want with any MacOSX machine.
 
 - shell:
-    - description: '3. Installing Homebrew Package Manager - Base Packages...'
+    - description: '3. Installing Homebrew Package Manager...'
       command: './onboarding_bin/install-homebrew.sh'
+      stdout: true
+      stderr: true
 
-- brewfile:
-    - Brewfile.base
+- shell:
+    - description: '3. Installing Homebrew Package Manager - Base Packages...'
+      command: brew bundle --file=Brewfile.base
+      stdout: true
+      stderr: true

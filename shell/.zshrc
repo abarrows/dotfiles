@@ -35,7 +35,7 @@ source "$HOME/.theme.zsh"
 source "$HOME/.plugins.zsh"
 source "$HOME/.functions.zsh"
 source "$HOME/.aliases.zsh"
-# source "$HOME/.m1-fixes.zsh"
+# source "$HOME/.m1-mysql-fixes.zsh"
 
 # OLD PATHING
 

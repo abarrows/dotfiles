@@ -4,10 +4,7 @@
 # Ruby packages and required libraries.
 
 - shell:
-    - description: '3. Installing Homebrew Package Manager - Base Packages...'
-      command: './onboarding_bin/install-homebrew.sh'
+    - description: '3. Installing Homebrew Package Manager - Ruby Packages...'
+      command: brew bundle --file=Brewfile.ruby
       stdout: true
       stderr: true
-
-- brewfile:
-    - Brewfile.ruby

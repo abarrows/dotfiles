@@ -555,5 +555,35 @@
     "key": "ctrl+cmd+i",
     "command": "-workbench.action.chat.open",
     "when": "hasChatProvider"
-  }
+  },
+  { "key": "cmd+r",           "command": "workbench.action.reopenClosedEditor" },
+  {
+    "key": "cmd+y",
+    "command": "editor.debug.action.showDebugHover",
+    "when": "editorTextFocus && inDebugMode"
+  },
+  {
+    "key": "ctrl+alt+cmd+i",
+    "command": "editor.action.inlineSuggest.trigger",
+    "when": "config.github.copilot.inlineSuggest.enable && editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible"
+  },
+  {
+    "key": "alt+\\",
+    "command": "-editor.action.inlineSuggest.trigger",
+    "when": "config.github.copilot.inlineSuggest.enable && editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible"
+  },
+  {
+    "key": "ctrl+alt+cmd+/",
+    "command": "github.copilot.terminal.explainTerminalSelectionContextMenu"
+  },
+  {
+    "key": "alt+cmd+i",
+    "command": "-workbench.action.toggleDevTools",
+    "when": "isDevelopment"
+  },
+  {
+    "key": "shift+cmd+u",
+    "command": "workbench.panel.chat.view.copilot.toggleVisibility",
+    "when": "github.copilot.activated || !github.copilot.activated"
+  },
 ]

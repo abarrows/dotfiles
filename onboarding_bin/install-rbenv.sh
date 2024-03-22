@@ -10,7 +10,7 @@ rbenv init
 
 # Step 3: Add rbenv to PATH by adding this into your .zshrc file:
 #??? echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
-eval "$(rbenv init - zsh)"
+eval $(rbenv init - zsh)
 
 # Step 4: Install global ruby version
 rbenv install 3.0.3

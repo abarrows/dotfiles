@@ -32,9 +32,9 @@
     ~/.zshrc:
       force: true
       path: shell/.zshrc
-    ~/.m1-fixes.zsh:
+    ~/.m1-mysql-fixes.zsh:
       force: true
-      path: shell/.m1-fixes.zsh
+      path: shell/.m1-mysql-fixes.zsh
 
 # Terminal Settings, Profile, and Configuration
 # TODO: Add zsh to restart shell

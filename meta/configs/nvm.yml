@@ -3,8 +3,11 @@
 # latest version of node and can install other versions as application's require
 # it.
 - shell:
-    - echo "8. Setting up Node - NVM Package Manager..."
+      - echo "8. Setting up Node - NVM Package Manager..."
 - link:
-    ~/.nvmrc:
-      path: engineering/javascripts/.nvmrc
-      relink: true
+      ~/.nvmrc:
+          path: engineering/javascripts/.nvmrc
+          relink: true
+      ~/.npmignore:
+          path: engineering/javascripts/.npmignore
+          relink: true

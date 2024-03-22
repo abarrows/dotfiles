@@ -1,6 +1,0 @@
-# engineering_ruby_dependencies - This sets up the bundler gem and installs
-# global gems.  To see more instructions see here:
-
-- shell:
-    - echo "Installing the bundler gem and then the global RoR gems..."
-    - rbenv install -l

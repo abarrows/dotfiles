@@ -63,7 +63,7 @@ gpg -k
 #sec rsa4096/######## YYYY-MM-DD [SC] [expires: YYYY-MM-DD]
 
 # Step 10. Set gpgsign program path NOTE: Take --global out if you have multiple .gitconfig files.
-# git config --global user.signingkey <your key id from step 9, should still be in your clipboard>
+git config --global user.signingkey '**your key id from step 9, should still be in your clipboard**'
 
 # Step 11. Set gpgsign program path NOTE: Take --global out if you have multiple .gitconfig files.
 git config --global gpg.program "$(which gpg2)"
@@ -72,7 +72,7 @@ git config --global gpg.program "$(which gpg2)"
 git config --global commit.gpgsign true
 
 # Step 13. The export command below gives you the key you add to GitHub
-# gpg --armor --export <your key id from step 9, should still be in your clipboard>
+gpg --armor --export '**your key id from step 9, should still be in your clipboard**'
 
 # Step 14. Copy the GPG fingerprint and store it safely in a password manager
 # like 1password or last pass.  It will start and end like this:

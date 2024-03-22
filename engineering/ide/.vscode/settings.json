@@ -69,7 +69,8 @@
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit",
       "source.fixAll.sortJSON": "explicit"
-    }
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[less]": {
     "editor.codeActionsOnSave": {
@@ -78,6 +79,9 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[markdown]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.markdownlint": "explicit"
+    },
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
   "[powershell]": {
@@ -137,23 +141,7 @@
       "id": "2e252f74-65ff-4411-b0ac-5fb625fc34ef",
       "monitor": true,
       "name": "My Most Recent Updated Issues",
-      "query": "assignee = currentUser() and status != resolved ORDER BY updated DESC, priority DESC",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
-    },
-    {
-      "enabled": true,
-      "id": "c33593e5-febe-4787-adce-44be66d943ab",
-      "monitor": true,
-      "name": "My Most Recently Created Issues",
-      "query": "reporter = currentUser() AND status != Done ORDER BY updatedDate DESC",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
-    },
-    {
-      "enabled": true,
-      "id": "486d46cd-29a5-47e7-b5cb-7bdf9625be72",
-      "monitor": true,
-      "name": "My amuniversal Issues",
-      "query": "assignee = currentUser() and status != resolved ORDER BY rank ASC, priority DESC",
+      "query": "assignee = currentUser() and status != resolved ORDER BY priority ASC, updated ASC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -200,8 +188,8 @@
       "enabled": true,
       "id": "486d46cd-29a5-47e7-b5cb-7bdf9625be72",
       "monitor": true,
-      "name": "My amuniversal Issues",
-      "query": "assignee = currentUser() and status != resolved ORDER BY rank ASC, priority DESC",
+      "name": "My Amuniversal Issues",
+      "query": "assignee = currentUser() and status != resolved ORDER BY Rank DESC",
       "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
     },
     {
@@ -754,7 +742,6 @@
   "editor.guides.indentation": true,
   "editor.hover.delay": 200,
   "editor.largeFileOptimizations": false,
-  "editor.minimap.enabled": false,
   "editor.quickSuggestions": {
     "comments": "off",
     "other": "on",
@@ -1132,7 +1119,6 @@
     "editorBracketHighlight.foreground6": "#FFB86C",
     "editorBracketHighlight.unexpectedBracket.foreground": "#FF2C6D"
   },
-  "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.openPositioning": "last",
   "workbench.editor.revealIfOpen": true,
@@ -1186,4 +1172,8 @@
   "github.copilot.enable": {
     "*": true
   },
+  "gitlens.views.remotes.branches.layout": "list",
+  "editor.minimap.enabled": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.editor.enablePreview": false
 }
