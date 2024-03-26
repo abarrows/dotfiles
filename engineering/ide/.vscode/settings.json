@@ -1174,6 +1174,5 @@
   },
   "gitlens.views.remotes.branches.layout": "list",
   "editor.minimap.enabled": false,
-  "diffEditor.ignoreTrimWhitespace": false,
-  "workbench.editor.enablePreview": false
+  "diffEditor.ignoreTrimWhitespace": false
 }
