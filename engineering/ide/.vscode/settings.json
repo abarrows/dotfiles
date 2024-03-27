@@ -1040,13 +1040,13 @@
   "sync.autoDownload": true,
   "sync.autoUpload": true,
   "sync.gist": "bb65fea22ab86d87fce05b89a7f8c426",
-  "terminal.external.osxExec": "iTerm.app",
+  "terminal.external.osxExec": "Warp.app",
   "terminal.integrated.allowChords": false,
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.enableImages": true,
-  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "always",
   "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.fontFamily": "monospace",
   "terminal.integrated.fontSize": 16,
@@ -1174,5 +1174,8 @@
   },
   "gitlens.views.remotes.branches.layout": "list",
   "editor.minimap.enabled": false,
-  "diffEditor.ignoreTrimWhitespace": false
+  "diffEditor.ignoreTrimWhitespace": false,
+  "terminal.external.linuxExec": "",
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.defaultProfile.osx": "zsh"
 }
