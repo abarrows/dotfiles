@@ -1,4 +1,4 @@
-# AMU Onboarding - dotfiles-and-tooling
+# Team Onboarding - dotfiles-and-tooling
 
 This repository is a standardized dotfiles repo for new
 software engineers or contractors who will be mainly working on the front-end. It's purpose is
@@ -10,7 +10,7 @@ to optimally work on any UI application within an ecosystem of products and serv
 
 ## Table of Contents
 
-- [AMU Onboarding - dotfiles-and-tooling](#amu-onboarding---dotfiles-and-tooling)
+- [Team Onboarding - dotfiles-and-tooling](#team-onboarding---dotfiles-and-tooling)
   - [Table of Contents](#table-of-contents)
   - [What IS included?](#what-is-included)
     - [Initialize](#initialize)
@@ -108,7 +108,7 @@ Install “git“ using the command line:
 `brew install git`
 
 Checkout [Onboarding Engineering
-Dotfiles](https://github.com/Andrews-McMeel-Universal/amu-onboarding) locally:
+Dotfiles](https://github.com/abarrows/amu-onboarding) locally:
 `git clone git@github.com:abarrows/dotfiles.git`
 
 Navigate to the root folder of the above project and using the command line run:

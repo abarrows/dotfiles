@@ -28,9 +28,9 @@ CURRENT_COMPANY="AMU"
 # The application folder name for vscode.
 IDE_PATH="code"
 # This is the url to your team's base jira cloud instance
-JIRA_BASE_URL="https://atlassian.amuniversal.com"
+JIRA_BASE_URL="https://atlassian.examplecompany.com"
 # This is your jira login email and should match your git email
-# JIRA_USER_EMAIL="jdoe@amuniversal.com"
+# JIRA_USER_EMAIL="jdoe@exampledomain.com"
 
 # Optional Variables
 GIT_EMAIL_ADDRESS_PERSONAL=# Your private Github email address used for personal projects
