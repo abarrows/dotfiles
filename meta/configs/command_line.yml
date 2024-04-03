@@ -20,6 +20,8 @@
     ~/.theme.zsh:
       force: true
       path: shell/.theme.zsh
+    ~/.starship.zsh:
+      path: shell/starship.zsh
     ~/.plugins.zsh:
       force: true
       path: shell/.plugins.zsh

@@ -35,6 +35,7 @@ source "$HOME/.theme.zsh"
 source "$HOME/.plugins.zsh"
 source "$HOME/.functions.zsh"
 source "$HOME/.aliases.zsh"
+source "$HOME/.starship.zsh"
 # source "$HOME/.m1-mysql-fixes.zsh"
 
 # OLD PATHING
@@ -104,4 +105,6 @@ source $ZSH/oh-my-zsh.sh
 
 # NON-OH-MY-ZSH EXTENSIONS
 # iTerm2 Integration
-[[ ! -f "$HOME/.iterm2_shell_integration.zsh" ]] || source "$HOME/.iterm2_shell_integration.zsh"
+# [[ ! -f "$HOME/.iterm2_shell_integration.zsh" ]] || source
+# "$HOME/.iterm2_shell_integration.zsh"
+printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh" }}\x9c'
