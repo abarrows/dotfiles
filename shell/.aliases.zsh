@@ -17,6 +17,7 @@ alias repos="cd ~/$CURRENT_COMPANY/repos/"
 
 # General Shell Operation
 alias ls="ls -al"
+alias du="docker compose up --build"
 alias dockerdestroy="docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi -f $(docker images -a -q) && docker builder prune -f && docker volume prune -f && docker system prune -f && docker networ
 k prune -f"
 alias brewlist="brew list --versions"
@@ -126,6 +127,8 @@ alias doonesbury="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/doonesbury &&
 alias rsdoonesbury="RAILS_ENV=development rails s -p 3002"
 alias gocomics="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/gocomics/ && $IDE_PATH ."
 alias rsgocomics="RAILS_ENV=development rails s -p 3001"
+alias storegocomics="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/gocomics-store/ && $IDE_PATH ."
+alias storegocomics="RAILS_ENV=development rails s -p 3001"
 alias uigocomics="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/gocomics_ui/ && $IDE_PATH ."
 alias devuigocomics="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/gocomics_ui/ && $IDE_PATH . && yarn install && yarn dev"
 alias oldpuzzlesociety="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/puzzlesociety/ && $IDE_PATH ."
@@ -134,7 +137,7 @@ alias uipuzzlesociety="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/puzzle-s
 alias devuipuzzlesociety="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/puzzle-society_ui/ && $IDE_PATH . && yarn install && yarn dev"
 alias uiuexpress="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/uexpress_ui && $IDE_PATH ."
 alias rsuiuexpress="yarn install && PORT=3006 yarn dev"
-alias syndication="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/universaluclick/ && $IDE_PATH ."
+alias syndication="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/syndication/ && $IDE_PATH && open http://localhost:3006"
 alias rssyndication="RAILS_ENV=development rails s -p 3006"
 alias thefarside="cd ~/$CURRENT_COMPANY/repos/amu-digital-products/the-far-side && $IDE_PATH ."
 alias rsthefarside="RAILS_ENV=development rails s -p 3020"
