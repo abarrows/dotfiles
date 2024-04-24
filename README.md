@@ -1,4 +1,4 @@
-# Team Onboarding - dotfiles-and-tooling
+# Team Onboarding Dotfiles and Tooling
 
 This repository is a standardized dotfiles repo for new
 software engineers or contractors who will be mainly working on the front-end. It's purpose is
