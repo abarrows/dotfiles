@@ -35,6 +35,9 @@ ruby/.bundle/cache/*
 /.env*
 !/.env*.example**
 
+# # Version Control
+# .gitconfig
+
 # logfiles and tempfiles
 /log/*
 /tmp/*
