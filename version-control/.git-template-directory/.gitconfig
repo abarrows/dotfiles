@@ -1,39 +1,35 @@
+
 [user]
-name = Andrew Barrows
-email = abarrows@amuniversal.com
-signingkey = 5745BEA2FDDDAC45
-url = https://github.com/abarrows
-[core]
-editor = code
-ignorecase = false
-excludesfile = ~/.git-template-directory/.gitignore
-[init]
-templateDir = ~/.git-template-directory
-defaultBranch = production
-[gpg]
-program = /usr/local/bin/gpg
-[filter "lfs"]
-clean = git-lfs clean -- %f
-smudge = git-lfs smudge -- %f
-process = git-lfs filter-process
-required = true
-[pull]
-rebase = false
+	name = acbarrows
+	email = acbarrows@gmail.com
+	url = https://www.github.com/acbarrows
+	signingkey = 163952A510639BC3
 [commit]
-gpgsign = true
-# template = ~/.gitmessage
+	gpgsign = true
 [core]
-editor = code --wait
-hooksPath = ~/.git-template-directory/hooks
+	editor = code --wait
+	ignorecase = false
+	excludesfile = $HOME/.git-template-directory/.gitignore
+	hooksPath = $HOME/.git-template-directory/hooks
+[init]
+	templateDir = /Users/acbarrows/.git-template-directory
+	defaultBranch = main
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = false
 [diff]
-tool = vscode
+	tool = vscode
 [difftool "vscode"]
-cmd = code --wait --diff $LOCAL $REMOTE
+	cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
-tool = vscode
+	tool = vscode
 [mergetool "vscode"]
-cmd = code --wait $MERGED
+	cmd = code --wait $MERGED
 [checkout]
-defaultRemote = origin
+	defaultRemote = origin
 [fetch]
-prune = true
+	prune = true
