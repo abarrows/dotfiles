@@ -55,15 +55,22 @@ gpg --full-gen-key
 # Confirm all this: o
 
 # Step 8. List your keys
-gpg -k
+gpg --list-secret-keys --keyid-format=long
 
-# Step 9. Find the key you just made and copy what is after rsa4096 and paste it
-# into the two scripts below (step 10. and 11.)
-#gpg -K --keyid-format SHORT
-#sec rsa4096/######## YYYY-MM-DD [SC] [expires: YYYY-MM-DD]
+# You will see something that resembles this:
+
+# /Users/johndoe/.gnupg/secring.gpg
+# -------------------------------
+# sec   4096R/**1234567890ABCDEF** 2024-04-26 [expires: 2027-04-26]
+# uid                            John Doe (Personal) <
+#
+# Step 9. You will need to copy the key after 4096R/ (inside the asterisks) in
+# this case it would be 1234567890ABCDEF.  Paste this into the next command.
+gpg --armor --export 163952A510639BC3
+# Prints the GPG key ID, in ASCII armor format
 
 # Step 10. Set gpgsign program path NOTE: Take --global out if you have multiple .gitconfig files.
-git config --global user.signingkey '**your key id from step 9, should still be in your clipboard**'
+git config --global user.signingkey '163952A510639BC3'
 
 # Step 11. Set gpgsign program path NOTE: Take --global out if you have multiple .gitconfig files.
 git config --global gpg.program "$(which gpg2)"
@@ -94,3 +101,5 @@ git commit -S -s -m "My Signed Commit."
 # IMPORTANT CAVEAT: If you are testing locally on a repo that was originally
 # cloned using https, gpg signed commits will likely fail.  The safe bet is to
 # do a fresh clone of a repo using ssh, to test your first signed commit.
+# Check if your git config is correctly set globally
+git config --global --list
