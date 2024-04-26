@@ -15,8 +15,8 @@
 # }
 
 # # Specify the three folders to search
-# folder1="/Users/abarrows/offline-acbarrows"
-# folder2="/Users/abarrows/Library/CloudStorage/OneDrive-AndrewsMcMeelUniversal/Personal/Commercial Media"
+# folder1="/Users/acbarrows/offline-acbarrows"
+# folder2="/Users/acbarrows/Library/CloudStorage/OneDrive-AndrewsMcMeelUniversal/Personal/Commercial Media"
 
 # # Iterate through each file in the directory
 # for file in *; do

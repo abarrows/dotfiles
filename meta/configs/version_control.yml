@@ -2,15 +2,17 @@
 - shell:
     - echo '7. Setting up Version Control - Gitconfig and template repo...'
 - link:
-    ~/.gitconfig:
-      path: version-control/.git-template-directory/.gitconfig
-      relink: true
     ~/.git-template-directory/.github/CODEOWNERS:
       path: version-control/.git-template-directory/.github/CODEOWNERS
       relink: true
-    ~/.git-template-directory/hooks/prepare-commit-msg:
-      path: version-control/.git-template-directory/hooks/prepare-commit-msg
-      relink: true
+    # Leave out if no not using atlassian.
+    # ~/.git-template-directory/hooks/prepare-commit-msg:
+    #   path: version-control/.git-template-directory/hooks/prepare-commit-msg
+    #   relink: true
     ~/.git-template-directory/.gitignore:
       path: version-control/.git-template-directory/.gitignore
       relink: true
+
+- shell:
+    - description: '8. Globally Configuring Git based on environment variables...'
+      command: ./onboarding_bin/setup_git.sh

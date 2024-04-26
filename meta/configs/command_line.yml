@@ -37,39 +37,46 @@
     ~/.m1-mysql-fixes.zsh:
       force: true
       path: shell/.m1-mysql-fixes.zsh
-
-# Terminal Settings, Profile, and Configuration
+- shell:
+    - echo "Setting up Warp and opening the app..."
+    - open /Applications/Warp.app
+    - echo "Warp is now open. Please sign in to your account."
+# NOTE: Uncomment out the logic below if your
+# preference is to use iTerm over warp.
 # TODO: Add zsh to restart shell
-- shell:
-    - echo '4. Setting up iTerm Profile and Configuration...'
-- link:
-    ~/iterm-profile-dotfiles.json:
-      force: true
-      path: shell/iterm-profile-dotfiles.json
-    ~/iterm-profile-dotfiles.itermkeymap:
-      force: true
-      path: shell/iterm-profile-dotfiles.itermkeymap
-    ~/com.googlecode.iterm2.plist:
-      force: true
-      path: shell/com.googlecode.iterm2.plist
-    ~/.iterm2_shell_integration.zsh:
-      force: true
-      path: shell/.iterm2_shell_integration.zsh
+# - shell:
+#     - echo '4. Setting up iTerm Profile and Configuration...'
+# - link:
+#     ~/iterm-profile-dotfiles.json:
+#       force: true
+#       path: shell/iterm-profile-dotfiles.json
+#     ~/iterm-profile-dotfiles.itermkeymap:
+#       force: true
+#       path: shell/iterm-profile-dotfiles.itermkeymap
+#     ~/com.googlecode.iterm2.plist:
+#       force: true
+#       path: shell/com.googlecode.iterm2.plist
+#     ~/.iterm2_shell_integration.zsh:
+#       force: true
+#       path: shell/.iterm2_shell_integration.zsh
+# - shell:
+#     # iTerm Configuration, Profile, and Settings
+#     # Specify the preferences directory
+#     - defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string '~/'
 
-- shell:
-    # iTerm Configuration, Profile, and Settings
-    # Specify the preferences directory
-    - defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string '~/'
-
-    # Tell iTerm2 to use the custom preferences in the directory
-    - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-    # TODO: Please complete the two items below to finish the setup process.
-    - echo "[TODO] iTerm2 profile - Open iTerm2 -> Preferences"
-    - echo "-> Profiles -> Other Actions -> Import JSON Profiles"
-    - echo "Select the profile from \n
-      ~/iterm-profile-front-end-engineering.json"
-    - echo "[TODO] Click Other Actions... -> \n Set as Default"
-    - echo "[TODO] iTerm2 keymap - Open iTerm2 \n
-      -> Preferences -> Keys -> Presets... ->"
-    - echo "[TODO] Import... Select the keymap \n
-      from ~/iterm-profile-front-end-engineering.json"
+#     # Tell iTerm2 to use the custom preferences in the directory
+#     - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder
+#       -bool true
+#     - echo "Reloading the shell to apply the changes..."
+# - shell:
+#     - source ~/.zshrc
+#     # TODO: Please complete the two items below to finish the setup process.
+#     - echo "[TODO] iTerm2 profile - Open iTerm2 -> Preferences"
+#     - echo "-> Profiles -> Other Actions -> Import JSON Profiles"
+#     - echo "Select the profile from \n
+#       ~/iterm-profile-front-end-engineering.json"
+#     - echo "[TODO] Click Other Actions... -> \n Set as Default"
+#     - echo "[TODO] iTerm2 keymap - Open iTerm2 \n
+#       -> Preferences -> Keys -> Presets... ->"
+#     - echo "[TODO] Import... Select the keymap \n
+#       from ~/iterm-profile-front-end-engineering.json"

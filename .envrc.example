@@ -24,7 +24,7 @@ CURRENT_NAME=# "Jane Doe"
 # This is your machine username. IE: /Users/jdoe
 CURRENT_USER=# "jdoe"
 # This is the folder name of all of your company's repos
-CURRENT_COMPANY="AMU"
+CURRENT_COMPANY="Career"
 # The application folder name for vscode.
 IDE_PATH="code"
 # This is the url to your team's base jira cloud instance

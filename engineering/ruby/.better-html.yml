@@ -1,5 +1,5 @@
 ---
-# AMU: We can discuss these as a group.
+# TODO: We can discuss these as a group.
 # partial_tag_name_pattern: Regex to validate foo in <foo>. Defaults to /\A[a-z0-9\-\:]+\z/.
 # partial_attribute_name_pattern: Regex to validate bar in <foo bar=1>. Defaults to /\A[a-zA-Z0-9\-\:]+\z/.
 # allow_single_quoted_attributes: When true, <foo bar='1'> is valid syntax. Defaults to true.

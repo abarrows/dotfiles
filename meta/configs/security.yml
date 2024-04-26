@@ -18,6 +18,7 @@
     ~/.envrc:
       force: true
       path: .envrc
-    ~/.onboarding_bin:
+    ~/onboarding_bin:
       force: true
+      relink: true
       path: ./onboarding_bin

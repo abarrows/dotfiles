@@ -14,13 +14,21 @@ directory are responsible for the following:
 3. Sets up integration with 1password so passwords don't require opening the
    1password app.
 4. Enables the global clipboard and snippets feature so they can be opened using
-   CMD+c and CMD+v, respectively.
+   _CMD+c and CMD+v_, respectively.
 5. Enables a number of other file types and search types so Alfred can retrieve
    virtually anything from it's searchbar.
 6. Enables snippets and adds one example for pasting in our pull request
    template when a repo does not currently have it.
 7. Turns on "EJECTALL" keyword for ejecting all mountable disks. This is useful
    for external harddrives and other mounted volumes.
+
+## Optional Manual Configurations
+
+1. Replacing Mac _Spotlight_ keyboard shortcut key so Alfred's shortcut can be
+   mapped to _Cmd+Spacebar_.
+2. Setting up your fingerprint security settings.
+3. Opening 1password and using your emergency kit to get access to all your credentials.
+4. Logging into chrome to retrieve bookmarks and preferences.
 
 ## Resources
 
