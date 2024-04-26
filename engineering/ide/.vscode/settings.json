@@ -2,12 +2,6 @@
   "[css]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": "explicit"
-    },
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[css][less][scss]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.stylelint": "explicit"
     }
   },
   "[dockerfile]": {
@@ -95,9 +89,10 @@
   },
   "[markdown]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll.markdownlint": "explicit"
+      "source.fixAll.stylelint": "never"
     },
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "editor.formatOnSave": true
   },
   "[powershell]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -266,6 +261,7 @@
   "cSpell.language": "en,en-GB",
   "cSpell.maxDuplicateProblems": 2,
   "cSpell.userWords": [
+    "AARP",
     "abarrows",
     "activeitems",
     "adlightning",
@@ -320,6 +316,7 @@
     "captcha",
     "castwide",
     "CCPA",
+    "Centriq",
     "changefreq",
     "Checkmark",
     "chinthakagodawita",
@@ -346,6 +343,7 @@
     "convo",
     "cookieconsent",
     "cookiefy",
+    "COPA",
     "corejs",
     "cropperjs",
     "crossorigin",
@@ -443,6 +441,7 @@
     "keymap",
     "keymaps",
     "keyvaultname",
+    "keyvaultprefix",
     "labelledby",
     "langchain",
     "lastmod",
@@ -542,6 +541,7 @@
     "readystate",
     "recaptcha",
     "reenable",
+    "reimagined",
     "rellax",
     "repo",
     "rgba",
@@ -965,13 +965,11 @@
   "sort-json.settings.preserveUnicodeString": false,
   "sortLines.filterBlankLines": true,
   "sortLines.sortEntireFile": true,
-  "stylelint.enable": true,
   "stylelint.packageManager": "yarn",
   "stylelint.validate": [
     "css",
     "html",
     "less",
-    "markdown",
     "postcss",
     "sass",
     "scss",

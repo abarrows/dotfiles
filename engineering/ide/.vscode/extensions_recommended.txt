@@ -15,7 +15,6 @@ moshfeu.compare-folders
 ms-vscode.azure-account
 ms-vsliveshare.vsliveshare
 ms-vsliveshare.vsliveshare-audio
-ms-vsliveshare.vsliveshare-pack
 nhoizey.gremlins
 Pivotal.vscode-manifest-yaml
 PKief.material-icon-theme

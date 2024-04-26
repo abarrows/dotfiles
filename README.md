@@ -10,7 +10,7 @@ to optimally work on any UI application within an ecosystem of products and serv
 
 ## Table of Contents
 
-- [Team Onboarding - dotfiles-and-tooling](#team-onboarding---dotfiles-and-tooling)
+- [Team Onboarding Dotfiles and Tooling](#team-onboarding-dotfiles-and-tooling)
   - [Table of Contents](#table-of-contents)
   - [What IS included?](#what-is-included)
     - [Initialize](#initialize)
@@ -107,8 +107,7 @@ Download and install Homebrew (alternative article explaining it)
 Install “git“ using the command line:
 `brew install git`
 
-Checkout [Onboarding Engineering
-Dotfiles](https://github.com/abarrows/amu-onboarding) locally:
+Checkout [this Dotfiles Repo](https://github.com/abarrows/dotfiles) locally:
 `git clone git@github.com:abarrows/dotfiles.git`
 
 Navigate to the root folder of the above project and using the command line run:
