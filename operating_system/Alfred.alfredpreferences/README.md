@@ -24,11 +24,21 @@ directory are responsible for the following:
 
 ## Optional Manual Configurations
 
-1. Replacing Mac _Spotlight_ keyboard shortcut key so Alfred's shortcut can be
-   mapped to _Cmd+Spacebar_.
+1. Check for any Software Updates to make sure you are up to date.
 2. Setting up your fingerprint security settings.
 3. Opening 1password and using your emergency kit to get access to all your credentials.
 4. Logging into chrome to retrieve bookmarks and preferences.
+5. Log into cloud providers like Google Drive, Dropbox, or Onedrive.
+6. Log into the Mac iOS App Store and/or iTunes.
+7. Setup Internet Accounts like Outlook or Google with respective settings.
+8. Setup gestures for hot corners and other trackpad features to display things
+   like notifications,your desktop, or application widgets.
+9. Configure networking settings like order of connections, VPNs, and/or
+   autojoining networks.
+10. Notifications and focus settings, adopt Digital Minimalism (I recommend
+   reading the book as well) and guard against distractions.
+11. Replacing Mac _Spotlight_ keyboard shortcut key so Alfred's shortcut can be
+   mapped to _Cmd+Spacebar_.
 
 ## Resources
 
