@@ -106,6 +106,7 @@ alias personal="cd ~/$CURRENT_COMPANY/repos/personal"
 alias dotfiles="cd ~/$CURRENT_COMPANY/repos/development-team/dotfiles/ && $IDE_PATH ."
 alias typescriptplayground="cd ~/$CURRENT_COMPANY/repos/personal/typescript-playground/ && $IDE_PATH ."
 alias nextjsplayground="cd ~/$CURRENT_COMPANY/repos/personal/nextjs-playground/ && $IDE_PATH ."
+alias personalresume="cd ~/$CURRENT_COMPANY/repos/personal/resume/ && $IDE_PATH ."
 
 # Clients
 alias clients="cd ~/$CURRENT_COMPANY/repos/clients"
