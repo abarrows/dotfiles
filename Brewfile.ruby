@@ -8,7 +8,6 @@ brew "cmake" # RECOMMENDED - ROR/DEVOPS
 brew 'libyaml' # RECOMMENDED - ROR/DEVOPS Compiled Dependency for web applications with Ruby on Rails
 brew 'memcached' # RECOMMENDED - ROR Performance Caching library for Ruby on Rails
 # brew "mysql", restart_service: true # REQUIRED - ROR/DEVOPS/PYTHON/PG Database
-Dependency for MySQL (Usually used by non-containerized web applications)
 brew "mysql" # REQUIRED - ROR/DEVOPS/PYTHON/PG Database Dependency for MySQL
 brew "mysql-client" # REQUIRED - ROR/DEVOPS/PYTHON/PG Database Dependency for MySQL
 # brew "openjdk" # RECOMMENDED - Used within some of our legacy gems
