@@ -74,7 +74,7 @@
       "editor.formatOnSave": "explicit",
       "source.fixAll": "explicit"
     },
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "j-brooke.fracturedjsonvsc"
   },
   "[less]": {
     "editor.codeActionsOnSave": {
@@ -92,7 +92,8 @@
       "source.fixAll.stylelint": "never"
     },
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.wrappingStrategy": "advanced"
   },
   "[powershell]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -114,7 +115,10 @@
     "editor.defaultFormatter": "bung87.rails"
   },
   "[scminput]": {
-    "editor.rulers": [50, 72],
+    "editor.rulers": [
+      50,
+      72
+    ],
     "editor.wordWrap": "off"
   },
   "[scss]": {
@@ -430,6 +434,7 @@
     "iterm",
     "itermkeymap",
     "javascripts",
+    "JCCC",
     "jcurl",
     "jdoe",
     "jforce",
@@ -727,7 +732,6 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.confirmPasteNative": false,
   "extensions.autoCheckUpdates": true,
-  "extensions.autoUpdate": true,
   "extensions.closeExtensionDetailsOnViewChange": true,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
@@ -741,7 +745,6 @@
     ".env.example": "dotenv",
     ".zshrc": "shellscript"
   },
-  "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",
   "files.exclude": {
     "**/.history": true,
@@ -778,10 +781,11 @@
   "git.showPushSuccessNotification": true,
   "github-actions.org-features": true,
   "github.autoPublish": true,
+  "github.copilot.editor.enableAutoCompletions": true,
   "github.copilot.enable": {
     "*": true,
-    "plaintext": false,
     "markdown": true,
+    "plaintext": false,
     "scminput": false
   },
   "github.customPullRequestDescription": "gitEditor",
@@ -816,7 +820,10 @@
   "gitlens.advanced.repositorySearchDepth": 2,
   "gitlens.autolinks": [],
   "gitlens.blame.heatmap.enabled": true,
-  "gitlens.codeLens.scopes": ["containers", "document"],
+  "gitlens.codeLens.scopes": [
+    "containers",
+    "document"
+  ],
   "gitlens.defaultDateFormat": "MMM DD, YYYY",
   "gitlens.gitCommands.closeOnFocusOut": true,
   "gitlens.gitCommands.skipConfirmations": [
@@ -843,7 +850,10 @@
   "html.format.extraLiners": "none",
   "html.format.templating": true,
   "html.trace.server": "messages",
-  "htmlhint.documentSelector": ["htm", "html"],
+  "htmlhint.documentSelector": [
+    "htm",
+    "html"
+  ],
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "keyboard.layout": "us",
   "l13Diff.confirmCopy": false,
@@ -860,6 +870,7 @@
   "liveshare.allowGuestTaskControl": true,
   "liveshare.diagnosticLogging": true,
   "liveshare.presence": true,
+  "markdown.experimental.updateLinksOnPaste": true,
   "markdown.preview.fontSize": 16,
   "merge-conflict.autoNavigateNextConflict.enabled": true,
   "npm.packageManager": "yarn",
@@ -870,6 +881,7 @@
   "prettier.singleQuote": true,
   // "prettier.requireConfig": true,
   "prettier.useEditorConfig": false,
+  "prisma.showPrismaDataPlatformNotification": false,
   "problems.decorations.enabled": true,
   "redhat.telemetry.enabled": false,
   "remote.forwardOnOpen": false,
@@ -878,7 +890,9 @@
   "ruby.useLanguageServer": true,
   "rubyLsp.enableExperimentalFeatures": true,
   "rubyLsp.featuresConfiguration": {},
-  "rubyLsp.rubyVersionManager": "rbenv",
+  "rubyLsp.rubyVersionManager": {
+    "identifier": "rbenv"
+  },
   "scm.alwaysShowActions": true,
   "scm.diffDecorations": "gutter",
   "scm.diffDecorationsGutterVisibility": "always",
@@ -904,10 +918,15 @@
   "search.useIgnoreFiles": false,
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
-  "settingsSync.ignoredExtensions": ["ms-vscode-remote.remote-containers"],
+  "settingsSync.ignoredExtensions": [
+    "ms-vscode-remote.remote-containers"
+  ],
   "shellcheck.enable": true,
   "shellcheck.enableQuickFix": true,
-  "shellcheck.ignoreFileSchemes": ["git", "gitfs"],
+  "shellcheck.ignoreFileSchemes": [
+    "git",
+    "gitfs"
+  ],
   "shellcheck.run": "onSave",
   "shellcheck.useWorkspaceRootAsCwd": true,
   "shellformat.effectLanguages": [
@@ -998,7 +1017,7 @@
   "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.enableImages": true,
-  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
   "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.enableVisualBell": true,
   "terminal.integrated.fontFamily": "monospace",
@@ -1034,12 +1053,16 @@
   },
   "terminal.integrated.profiles.osx": {
     "bash": {
-      "args": ["-l"],
+      "args": [
+        "-l"
+      ],
       "icon": "terminal-bash",
       "path": "bash"
     },
     "fish": {
-      "args": ["-l"],
+      "args": [
+        "-l"
+      ],
       "path": "fish"
     },
     "pwsh": {
@@ -1051,7 +1074,9 @@
       "path": "tmux"
     },
     "zsh": {
-      "args": ["-l"],
+      "args": [
+        "-l"
+      ],
       "path": "zsh"
     }
   },
