@@ -172,13 +172,13 @@
   },
   {
     "command": "workbench.action.chat.startVoiceChat",
-    "key"    : "cmd+u"                               ,
-    "when"   : "!voiceChatInProgress"
+    "key": "cmd+u",
+    "when": "!voiceChatInProgress"
   },
   {
     "command": "workbench.action.chat.stopListeningAndSubmit",
-    "key"    : "cmd+u"                                       ,
-    "when"   : "voiceChatInProgress"
+    "key": "cmd+u",
+    "when": "voiceChatInProgress"
   },
   {
     "command": "workbench.action.closeEditorsInGroup",
@@ -408,31 +408,37 @@
   },
   {
     "command": "-editor.action.moveLinesDownAction",
-    "key"    : "alt+down"                          ,
-    "when"   : "editorTextFocus && !editorReadonly"
+    "key": "alt+down",
+    "when": "editorTextFocus && !editorReadonly"
   },
   {
     "command": "-editor.action.copyLinesDownAction",
-    "key"    : "shift+alt+down"                    ,
-    "when"   : "editorTextFocus && !editorReadonly"
+    "key": "shift+alt+down",
+    "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "command": "-editor.action.moveLinesUpAction"  ,
-    "key"    : "alt+up"                            ,
-    "when"   : "editorTextFocus && !editorReadonly"
+    "command": "-editor.action.moveLinesUpAction",
+    "key": "alt+up",
+    "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "command": "-editor.action.copyLinesUpAction"  ,
-    "key"    : "shift+alt+up"                      ,
-    "when"   : "editorTextFocus && !editorReadonly"
+    "command": "-editor.action.copyLinesUpAction",
+    "key": "shift+alt+up",
+    "when": "editorTextFocus && !editorReadonly"
   },
   {
-    "command": "-editor.action.deleteLines"       ,
-    "key"    : "shift+cmd+k"                      ,
-    "when"   : "textInputFocus && !editorReadonly"
+    "command": "-editor.action.deleteLines",
+    "key": "shift+cmd+k",
+    "when": "textInputFocus && !editorReadonly"
   },
-  {"command": "-workbench.action.closeEditorsInGroup", "key": "cmd+k w"},
-  {"command": "-workbench.view.explorer", "key": "shift+cmd+e"},
+  {
+    "command": "-workbench.action.closeEditorsInGroup",
+    "key": "cmd+k w"
+  },
+  {
+    "command": "-workbench.view.explorer",
+    "key": "shift+cmd+e"
+  },
   {
     "command": "-expand_region",
     "description": "Used to shrink your selection in a smart way.  With each subsequent triggering of the shortcut, it will decrease the selection to the current selections child, then its child, and so on.  NOTE: This uses the Expand Region extension and is much more reliable across languages.",
@@ -442,11 +448,14 @@
     "when": "editorTextFocus"
   },
   {
-    "command": "-undo_expand_region"                  ,
-    "key"    : "ctrl+shift+w"                         ,
-    "when"   : "editorHasSelection && editorTextFocus"
+    "command": "-undo_expand_region",
+    "key": "ctrl+shift+w",
+    "when": "editorHasSelection && editorTextFocus"
   },
-  {"command": "-workbench.action.togglePanel", "key": "cmd+j"},
+  {
+    "command": "-workbench.action.togglePanel",
+    "key": "cmd+j"
+  },
   {
     "command": "-editor.foldRecursively",
     "description": "This command folds the current block you are on and all blocks within it.  It requires that folding is enabled.",
@@ -455,18 +464,18 @@
   },
   {
     "command": "editor.action.previousMatchFindAction",
-    "key"    : "shift+cmd+g"                          ,
-    "when"   : "editorFocus"
+    "key": "shift+cmd+g",
+    "when": "editorFocus"
   },
   {
-    "command": "-workbench.action.compareEditor.nextChange" ,
-    "key"    : "alt+f5"                                     ,
-    "when"   : "editorTextFocus || textCompareEditorVisible"
+    "command": "-workbench.action.compareEditor.nextChange",
+    "key": "alt+f5",
+    "when": "editorTextFocus || textCompareEditorVisible"
   },
   {
     "command": "-workbench.action.compareEditor.previousChange",
-    "key"    : "shift+alt+f5"                                  ,
-    "when"   : "editorTextFocus || textCompareEditorVisible"
+    "key": "shift+alt+f5",
+    "when": "editorTextFocus || textCompareEditorVisible"
   },
   {
     "command": "-gitlens.toggleFileBlame",
@@ -475,9 +484,9 @@
     "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /blameable/"
   },
   {
-    "command": "-references-view.prev"                                  ,
-    "key"    : "shift+f4"                                               ,
-    "when"   : "reference-list.hasResult && references-view.canNavigate"
+    "command": "-references-view.prev",
+    "key": "shift+f4",
+    "when": "reference-list.hasResult && references-view.canNavigate"
   },
   {
     "command": "-editor.emmet.action.balanceIn",
@@ -493,7 +502,10 @@
     "experimental": true,
     "frequency": "Occasional"
   },
-  {"command": "-editor.action.clipboardPasteAction", "key": "cmd+v"},
+  {
+    "command": "-editor.action.clipboardPasteAction",
+    "key": "cmd+v"
+  },
   {
     "command": "cursorWordPartStartLeft",
     "description": "For quickly NAVIGATING horizontally to the left through a line, word by word.",
@@ -523,21 +535,34 @@
   },
   {
     "command": "-workbench.action.files.saveWithoutFormatting",
-    "key"    : "cmd+k s"
+    "key": "cmd+k s"
   },
-  {"command": "-cursorLineEnd", "key": "ctrl+e", "when": "textInputFocus"},
-  {"command": "atlascode.showExploreSettings", "key": "shift+cmd+2"},
-  {"command": "workbench.action.chat.open", "key": "alt+cmd+i"},
+  {
+    "command": "-cursorLineEnd",
+    "key": "ctrl+e",
+    "when": "textInputFocus"
+  },
+  {
+    "command": "atlascode.showExploreSettings",
+    "key": "shift+cmd+2"
+  },
+  {
+    "command": "workbench.action.chat.open",
+    "key": "alt+cmd+i"
+  },
   {
     "command": "-workbench.action.chat.open",
-    "key"    : "ctrl+cmd+i"                 ,
-    "when"   : "hasChatProvider"
+    "key": "ctrl+cmd+i",
+    "when": "hasChatProvider"
   },
-  {"command": "workbench.action.reopenClosedEditor", "key": "cmd+r"},
+  {
+    "command": "workbench.action.reopenClosedEditor",
+    "key": "cmd+r"
+  },
   {
     "command": "editor.debug.action.showDebugHover",
-    "key"    : "cmd+y"                             ,
-    "when"   : "editorTextFocus && inDebugMode"
+    "key": "cmd+y",
+    "when": "editorTextFocus && inDebugMode"
   },
   {
     "command": "editor.action.inlineSuggest.trigger",
@@ -551,19 +576,29 @@
   },
   {
     "command": "github.copilot.terminal.explainTerminalSelectionContextMenu",
-    "key"    : "ctrl+alt+cmd+/"
+    "key": "ctrl+alt+cmd+/"
   },
   {
     "command": "-workbench.action.toggleDevTools",
-    "key"    : "alt+cmd+i"                       ,
-    "when"   : "isDevelopment"
+    "key": "alt+cmd+i",
+    "when": "isDevelopment"
   },
   {
-    "command": "workbench.panel.chat.view.copilot.toggleVisibility"   ,
-    "key"    : "shift+cmd+u"                                          ,
-    "when"   : "github.copilot.activated || !github.copilot.activated"
+    "command": "workbench.panel.chat.view.copilot.toggleVisibility",
+    "key": "shift+cmd+u",
+    "when": "github.copilot.activated || !github.copilot.activated"
   },
-  {"key": "alt+cmd+n", "command": "workbench.action.newWindow"},
-  {"key": "shift+cmd+n", "command": "-workbench.action.newWindow"},
-  {"key": "cmd+n", "command": "explorer.newFolder", "when": "sideBarFocus"}
+  {
+    "command": "workbench.action.newWindow",
+    "key": "alt+cmd+n"
+  },
+  {
+    "command": "-workbench.action.newWindow",
+    "key": "shift+cmd+n"
+  },
+  {
+    "command": "explorer.newFolder",
+    "key": "cmd+n",
+    "when": "sideBarFocus"
+  }
 ]

@@ -65,7 +65,7 @@
     "editor.codeActionsOnSave": {
       "editor.formatOnSave": "explicit",
       "source.fixAll": "explicit",
-      "source.fixAll.sort-json": "explicit"
+      "source.fixAll.sort-json": "always"
     }
     // "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -73,8 +73,7 @@
     "editor.codeActionsOnSave": {
       "editor.formatOnSave": "explicit",
       "source.fixAll": "explicit"
-    },
-    "editor.defaultFormatter": "j-brooke.fracturedjsonvsc"
+    }
   },
   "[less]": {
     "editor.codeActionsOnSave": {
@@ -88,12 +87,7 @@
     }
   },
   "[markdown]": {
-    "editor.codeActionsOnSave": {
-      "source.fixAll.stylelint": "never"
-    },
-    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
-    "editor.formatOnSave": true,
-    "editor.wrappingStrategy": "advanced"
+    "editor.formatOnType": false
   },
   "[powershell]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
@@ -115,10 +109,7 @@
     "editor.defaultFormatter": "bung87.rails"
   },
   "[scminput]": {
-    "editor.rulers": [
-      50,
-      72
-    ],
+    "editor.rulers": [50, 72],
     "editor.wordWrap": "off"
   },
   "[scss]": {
@@ -286,6 +277,7 @@
     "amustagecache",
     "amzn",
     "andrewbarrows",
+    "andybarrows",
     "animationend",
     "animatronic",
     "Apim",
@@ -309,6 +301,7 @@
     "beerslider",
     "birthdate",
     "bitbucket",
+    "Bressler",
     "browser",
     "browserslist",
     "browserslistrc",
@@ -325,6 +318,7 @@
     "Checkmark",
     "chinthakagodawita",
     "choco",
+    "CIWD",
     "classname",
     "cmsassets",
     "CODEOWNER",
@@ -493,6 +487,7 @@
     "onedisplay",
     "onemobile",
     "onmicrosoft",
+    "Onpage",
     "openai",
     "openapi",
     "opentelemetry",
@@ -519,6 +514,7 @@
     "precommit",
     "precompilation",
     "precompile",
+    "precomposed",
     "Preconnect",
     "prefered",
     "prefetch",
@@ -645,7 +641,6 @@
   "css.validate": false,
   "cssModules.pathAlias": {},
   "debug.allowBreakpointsEverywhere": false,
-  "debug.autoExpandLazyVariables": true,
   "debug.console.fontSize": 16,
   "debug.javascript.terminalOptions": {
     "skipFiles": [
@@ -683,7 +678,7 @@
   "editor.fontSize": 12,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "editor.formatOnType": true,
+  "editor.formatOnType": false,
   "editor.guides.bracketPairs": true,
   "editor.guides.bracketPairsHorizontal": true,
   "editor.guides.highlightActiveIndentation": true,
@@ -745,6 +740,7 @@
     ".env.example": "dotenv",
     ".zshrc": "shellscript"
   },
+  "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",
   "files.exclude": {
     "**/.history": true,
@@ -764,7 +760,6 @@
     "**/node_modules/*/**": true,
     "**/storybook-static/**": true
   },
-  "fracturedjsonvsc.v3.PreserveBlankLines": true,
   "gistpad.playgrounds.showConsole": true,
   "gistpad.playgrounds.stylesheetLanguage": "scss",
   "git.autofetch": true,
@@ -820,10 +815,7 @@
   "gitlens.advanced.repositorySearchDepth": 2,
   "gitlens.autolinks": [],
   "gitlens.blame.heatmap.enabled": true,
-  "gitlens.codeLens.scopes": [
-    "containers",
-    "document"
-  ],
+  "gitlens.codeLens.scopes": ["containers", "document"],
   "gitlens.defaultDateFormat": "MMM DD, YYYY",
   "gitlens.gitCommands.closeOnFocusOut": true,
   "gitlens.gitCommands.skipConfirmations": [
@@ -850,10 +842,7 @@
   "html.format.extraLiners": "none",
   "html.format.templating": true,
   "html.trace.server": "messages",
-  "htmlhint.documentSelector": [
-    "htm",
-    "html"
-  ],
+  "htmlhint.documentSelector": ["htm", "html"],
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "keyboard.layout": "us",
   "l13Diff.confirmCopy": false,
@@ -871,21 +860,29 @@
   "liveshare.diagnosticLogging": true,
   "liveshare.presence": true,
   "markdown.experimental.updateLinksOnPaste": true,
+  "markdown.extension.completion.enabled": true,
+  "markdown.extension.print.theme": "dark",
   "markdown.preview.fontSize": 16,
+  "markdown.server.log": "debug",
+  "markdown.validate.unusedLinkDefinitions.enabled": "warning",
+  "markdownlint.run": "onSave",
   "merge-conflict.autoNavigateNextConflict.enabled": true,
   "npm.packageManager": "yarn",
   "path-intellisense.autoSlashAfterDirectory": true,
   "playwright.reuseBrowser": false,
   "playwright.showTrace": true,
   "prettier.enableDebugLogs": true,
+  "prettier.proseWrap": "never",
   "prettier.singleQuote": true,
   // "prettier.requireConfig": true,
   "prettier.useEditorConfig": false,
   "prisma.showPrismaDataPlatformNotification": false,
   "problems.decorations.enabled": true,
+  "proselint.enabled": false,
   "redhat.telemetry.enabled": false,
   "remote.forwardOnOpen": false,
   "rewrap.autoWrap.enabled": true,
+  "rewrap.autoWrap.notification": "text",
   "rewrap.doubleSentenceSpacing": true,
   "ruby.useLanguageServer": true,
   "rubyLsp.enableExperimentalFeatures": true,
@@ -918,15 +915,10 @@
   "search.useIgnoreFiles": false,
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
-  "settingsSync.ignoredExtensions": [
-    "ms-vscode-remote.remote-containers"
-  ],
+  "settingsSync.ignoredExtensions": ["ms-vscode-remote.remote-containers"],
   "shellcheck.enable": true,
   "shellcheck.enableQuickFix": true,
-  "shellcheck.ignoreFileSchemes": [
-    "git",
-    "gitfs"
-  ],
+  "shellcheck.ignoreFileSchemes": ["git", "gitfs"],
   "shellcheck.run": "onSave",
   "shellcheck.useWorkspaceRootAsCwd": true,
   "shellformat.effectLanguages": [
@@ -1053,16 +1045,12 @@
   },
   "terminal.integrated.profiles.osx": {
     "bash": {
-      "args": [
-        "-l"
-      ],
+      "args": ["-l"],
       "icon": "terminal-bash",
       "path": "bash"
     },
     "fish": {
-      "args": [
-        "-l"
-      ],
+      "args": ["-l"],
       "path": "fish"
     },
     "pwsh": {
@@ -1074,14 +1062,12 @@
       "path": "tmux"
     },
     "zsh": {
-      "args": [
-        "-l"
-      ],
+      "args": ["-l"],
       "path": "zsh"
     }
   },
   "terminal.integrated.rightClickBehavior": "default",
-  "terminal.integrated.shellIntegration.suggestEnabled": true,
+  "terminal.integrated.shellIntegration.enabled": true,
   "terminal.integrated.wordSeparators": "()[]{}',\"`─‘’|",
   "typescript.suggest.completeFunctionCalls": true,
   "typescript.validate.enable": true,
@@ -1110,6 +1096,7 @@
   "workbench.startupEditor": "welcomePage",
   "workbench.tree.indent": 4,
   "workbench.view.alwaysShowHeaderActions": true,
+  "yaml.format.proseWrap": "never",
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
     "file:///Users/acbarrows/.vscode/extensions/atlassian.atlascode-3.0.10/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"

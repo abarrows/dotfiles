@@ -103,8 +103,7 @@ HIST_STAMPS="yyyy-mm-dd"
 
 source $ZSH/oh-my-zsh.sh
 
-# NON-OH-MY-ZSH EXTENSIONS
-# iTerm2 Integration
-# [[ ! -f "$HOME/.iterm2_shell_integration.zsh" ]] || source
-# "$HOME/.iterm2_shell_integration.zsh"
-printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh" }}\x9c'
+# printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh" }}\x9c'
+
+# Load Angular CLI autocompletion.
+# source <(ng completion script)

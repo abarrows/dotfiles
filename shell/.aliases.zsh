@@ -103,10 +103,14 @@ alias wpd="./bin/webpack-dev-server"
 
 # Personal
 alias personal="cd ~/$CURRENT_COMPANY/repos/personal"
+alias chatwithacb="cd ~/$CURRENT_COMPANY/repos/personal/chatwithacb && $IDE_PATH ."
+# material-skilltree
+alias skilltree="cd ~/$CURRENT_COMPANY/repos/personal/skilltree-ui && $IDE_PATH ."
 alias dotfiles="cd ~/$CURRENT_COMPANY/repos/development-team/dotfiles/ && $IDE_PATH ."
 alias typescriptplayground="cd ~/$CURRENT_COMPANY/repos/personal/typescript-playground/ && $IDE_PATH ."
 alias nextjsplayground="cd ~/$CURRENT_COMPANY/repos/personal/nextjs-playground/ && $IDE_PATH ."
 alias personalresume="cd ~/$CURRENT_COMPANY/repos/personal/resume/ && $IDE_PATH ."
+alias resume="cd ~/$CURRENT_COMPANY/repos/personal/resume/ && $IDE_PATH ."
 
 # Clients
 alias clients="cd ~/$CURRENT_COMPANY/repos/clients"

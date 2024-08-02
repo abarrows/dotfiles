@@ -1,4 +1,5 @@
 adobe.xd
+angular.ng-template
 atlassian.atlascode
 bmalehorn.shell-syntax
 christian-kohler.path-intellisense
