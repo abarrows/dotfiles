@@ -31,6 +31,9 @@
     ~/.aliases.zsh:
       force: true
       path: shell/.aliases.zsh
+    ~/.config/starship.toml:
+      force: true
+      path: shell/starship.toml
     ~/.zshrc:
       force: true
       path: shell/.zshrc

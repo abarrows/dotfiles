@@ -2,3 +2,8 @@
 if [ -r "/opt/homebrew/bin/brew" ]; then
   eval $(/opt/homebrew/bin/brew shellenv)
 fi
+if [[ $- == *i* ]] && [ -t 0 ]; then
+  echo "This is an interactive shell"
+else
+  echo "This is not an interactive shell"
+fi

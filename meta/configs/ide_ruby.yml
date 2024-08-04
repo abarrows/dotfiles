@@ -4,8 +4,7 @@
 # extensions.
 
 - shell:
-    - echo -e "9. Installing VS Code and extensions \n
-      Provisioning settings, keybindings, snippets, etc."
+    - echo -e "9. Installing VS Code and extensions \n Provisioning settings, keybindings, snippets, etc."
 
 - link:
     '~/Library/Application Support/code/User/settings.json':
@@ -23,6 +22,9 @@
 # TODO: Need to apply an if statement
 # in the event that the extension count is
 # less than 5 extensions.
+- shell:
+    - description: 'Install solargraph and Ruby Language Server.'
+      command: 'gem install solargraph && solargraph download-core'
 - shell:
     - description: 'Installing VSCode Extensions...'
       command: './onboarding_bin/vscode-install-extensions-ruby.sh'

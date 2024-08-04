@@ -7,6 +7,8 @@ export GPG_TTY=$(tty)
 export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 export NVM_AUTO_USE=true
+# Next line is needed due to a bug with Warp.
+SPACESHIP_PROMPT_ASYNC="FALSE"
 
 # PATHING
 
@@ -36,7 +38,6 @@ source "$HOME/.plugins.zsh"
 source "$HOME/.functions.zsh"
 source "$HOME/.aliases.zsh"
 source "$HOME/.starship.zsh"
-# source "$HOME/.m1-mysql-fixes.zsh"
 
 # OLD PATHING
 
@@ -101,9 +102,9 @@ HIST_STAMPS="yyyy-mm-dd"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=$ZSH/custom
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
-# printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh" }}\x9c'
+# source "$HOME/.m1-mysql-fixes.zsh"
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
