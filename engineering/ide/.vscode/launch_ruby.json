@@ -47,7 +47,7 @@
       "cwd": "${workspaceRoot}",
       "env": {
         "DEBUG": "1",
-        "RUBY_VERSION": "2.5.3",
+        "RUBY_VERSION": "3.3.0",
         "USER": "abarrows"
       },
       "name": "Start Server: Application",

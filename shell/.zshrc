@@ -28,6 +28,12 @@ export PATH="/usr/local/bin:$PATH"
 # Finally, if you have a specific path for Yarn or other tools, append them at the end.
 # export PATH="$PATH:$YARN_PATH"
 
+# Setup for ruby and rbenv with guard clause.
+if command -v rbenv >/dev/null 2>&1; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
+
 # Path to your oh-my-z/opt/homebrew/binsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_DOTENV_FILE=$HOME/.envrc

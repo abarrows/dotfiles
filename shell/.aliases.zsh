@@ -107,6 +107,8 @@ alias chatwithacb="cd ~/$CURRENT_COMPANY/repos/personal/chat-wit-hacb && $IDE_PA
 # material-skilltree
 alias skilltree="cd ~/$CURRENT_COMPANY/repos/personal/skilltree-ui && $IDE_PATH ."
 alias dotfiles="cd ~/$CURRENT_COMPANY/repos/development-team/dotfiles/ && $IDE_PATH ."
+alias dotnetskills="cd ~/$CURRENT_COMPANY/repos/personal/dot-net-api-skills-framework/ && $IDE_PATH ."
+alias acmepullrequest="cd ~/$CURRENT_COMPANY/repos/personal/acme-pull-request/ && $IDE_PATH ."
 alias typescriptplayground="cd ~/$CURRENT_COMPANY/repos/personal/typescript-playground/ && $IDE_PATH ."
 alias nextjsplayground="cd ~/$CURRENT_COMPANY/repos/personal/nextjs-playground/ && $IDE_PATH ."
 alias personalresume="cd ~/$CURRENT_COMPANY/repos/personal/resume/ && $IDE_PATH ."

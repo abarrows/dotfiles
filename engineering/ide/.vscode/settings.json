@@ -106,7 +106,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": "never"
     },
-    "editor.defaultFormatter": "bung87.rails"
+    "editor.defaultFormatter": "castwide.solargraph"
   },
   "[scminput]": {
     "editor.rulers": [50, 72],
@@ -258,6 +258,7 @@
   "cSpell.userWords": [
     "AARP",
     "abarrows",
+    "acbarrows",
     "activeitems",
     "adlightning",
     "Adserver",
@@ -280,11 +281,13 @@
     "andybarrows",
     "animationend",
     "animatronic",
+    "apidescription",
     "Apim",
     "appnexus",
     "apstag",
     "Arial",
     "artboard",
+    "aspnetcore",
     "atlascode",
     "authenticatable",
     "autodocs",
@@ -292,6 +295,7 @@
     "autoformat",
     "Autohiding",
     "autoimport",
+    "autolinks",
     "Automations",
     "AUTOML",
     "autotrack",
@@ -368,6 +372,7 @@
     "dfptest",
     "dismissable",
     "DISQUS",
+    "donot",
     "DOONES",
     "dotbot",
     "dotenvrc",
@@ -398,6 +403,7 @@
     "gamedata",
     "gemfile",
     "gemrc",
+    "getdocument",
     "gistpad",
     "gnupg",
     "gocomics",
@@ -405,6 +411,7 @@
     "googlecode",
     "googletag",
     "Graffle",
+    "grammarly",
     "gsub",
     "gsutil",
     "hadolint",
@@ -453,6 +460,7 @@
     "Macbook",
     "Macromedia",
     "Macromedia's",
+    "manuelpuyol",
     "Matic",
     "Meel",
     "Metrix",
@@ -467,6 +475,8 @@
     "mxcl",
     "navigationlinks",
     "Navs",
+    "netstandard",
+    "Newtonsoft",
     "NEXTAUTH",
     "nextjs",
     "nodelist",
@@ -475,6 +485,7 @@
     "noscript",
     "npmcheckrc",
     "npmignore",
+    "nupkg",
     "nvmrc",
     "odata",
     "Offboarding",
@@ -525,6 +536,7 @@
     "productkey",
     "profile",
     "progid",
+    "proselint",
     "pubads",
     "pubfig",
     "pubmatic",
@@ -551,9 +563,11 @@
     "roxot",
     "rspec",
     "rubocop",
+    "runtimeconfig",
     "rvm",
     "rvmrc",
     "s",
+    "scminput",
     "scottadamssays",
     "sensourceinc",
     "sharethrough",
@@ -584,6 +598,8 @@
     "submodules",
     "svgr",
     "svgs",
+    "swaggerui",
+    "Swashbuckle",
     "swiper",
     "tabindex",
     "tagid",
@@ -936,6 +952,7 @@
   "solargraph.autoformat": true,
   "solargraph.diagnostics": true,
   "solargraph.formatting": true,
+  "solargraph.useBundler": false,
   "sort-json.settings.orderOverrideKeys": [
     "advancedSkills",
     "args",
@@ -1102,5 +1119,8 @@
     "file:///Users/acbarrows/.vscode/extensions/atlassian.atlascode-3.0.10/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.schemaStore.enable": true,
-  "yaml.trace.server": "verbose"
+  "yaml.trace.server": "verbose",
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  }
 }

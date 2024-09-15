@@ -7,3 +7,9 @@ if [[ $- == *i* ]] && [ -t 0 ]; then
 else
   echo "This is not an interactive shell"
 fi
+
+# Setup for ruby and rbenv
+if command -v rbenv >/dev/null 2>&1; then
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi

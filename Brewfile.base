@@ -1,77 +1,79 @@
-cask_args appdir: '/Applications'
+cask_args appdir: '/Applications' # rubocop:disable Naming/FileName
 tap 'homebrew/bundle'
 tap 'homebrew/cask-fonts'
 tap 'homebrew/services'
-brew 'direnv' # REQUIRED - BASE/ROR/NODE/
+brew 'direnv'        # REQUIRED - BASE/ROR/NODE/
 brew 'dotenv-linter' # REQUIRED - BASE/ROR/NODE/
-brew 'freetype' # REQUIRED - BASE/ROR/NODE CL
-brew 'gh' # REQUIRED - BASE/ROR/NODE/DEVOPS Github CLI
-brew 'git' # REQUIRED - ROR/NODE/DEVOPS/PYTHON Core version control
-brew 'hadolint' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Used to lint Dockerfiles../
-brew 'icu4c' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Compiled Library Dependency for unicode and globalization
-brew 'gnupg' # REQUIRED - Needed for signing your commits with github.
-brew 'mongosh' # RECOMMENDED - Commonly used with nosql projects.
-brew "nvm" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Version manager for node
-brew "openssl" # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Network Utility for SSL requests
-brew "pandoc" # OPTIONAL - ROR/NODE/DEVOPS/PYTHON/PG Allows for markdown to easily be exported into other formats like word, pdfs, and html
-brew "pipx" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended package manager for python
-brew "pyenv" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended package manager for python
+brew 'freetype'      # REQUIRED - BASE/ROR/NODE CL
+brew 'gh'            # REQUIRED - BASE/ROR/NODE/DEVOPS Github CLI
+brew 'git'           # REQUIRED - ROR/NODE/DEVOPS/PYTHON Core version control
+brew 'hadolint'      # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Used to lint Dockerfiles../
+brew 'icu4c'         # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Compiled Library Dependency for unicode and globalization
+brew 'gnupg'         # REQUIRED - Needed for signing your commits with github.
+brew 'mongosh'       # RECOMMENDED - Commonly used with nosql projects.
+brew 'nvm'           # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Version manager for node
+brew 'openssl'       # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Network Utility for SSL requests
+brew 'pandoc'        # OPTIONAL - ROR/NODE/DEVOPS/PYTHON/PG Allows for markdown to easily exported to word, pdfs, & html
+brew 'pipx'          # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended package manager for python
+brew 'pyenv'         # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended package manager for python
 
-brew "pinentry-mac" # REQUIRED - The other dependency used for signed commits on mac.
-brew "postgresql@14" # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
+brew 'pinentry-mac'  # REQUIRED - The other dependency used for signed commits on mac.
+brew 'postgresql@14' # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
 # brew "redis" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Primary Caching Dependency for Back-end Software Engineers
-brew "shellcheck" # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Linter and auto-fixing
-brew "starship" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended platform agnostic shell prompt.
-brew "wget" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON General Request Utility for Command Line
-brew "yamllint" # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Linting and auto-fixing tool for yaml
+brew 'shellcheck' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Linter and auto-fixing
+brew 'starship'   # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended platform agnostic shell prompt.
+brew 'wget'       # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON General Request Utility for Command Line
+brew 'yamllint'   # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Linting and auto-fixing tool for yaml
 # brew "yarn" # REQUIRED - BASE/DEVOPS/ROR/NODE Front-end team approved package manager
-brew "zsh" || true # REQUIRED - BASE/DEVOPS/ROR/NODE/ Default Mac OSX shell
-brew "zstd" # Recommended - BASE/DEVOPS/ROR/NODE/ Compression utility
-cask "1password" || true # REQUIRED - Department licensed and approved password manager
-cask "adobe-creative-cloud" || true # RECOMMENDED - Department licensed and approved
+brew 'zsh' || true                  # REQUIRED - BASE/DEVOPS/ROR/NODE/ Default Mac OSX shell
+brew 'zstd'                         # Recommended - BASE/DEVOPS/ROR/NODE/ Compression utility
+cask '1password' || true            # REQUIRED - Department licensed and approved password manager
+cask 'adobe-creative-cloud' || true # RECOMMENDED - Department licensed and approved
 # UXD Tools - This is installed via DevOps provisioning.
-cask "alfred" # REQUIRED - task launcher application for Mac OSX
-cask "appcleaner" # REQUIRED - utility application for removing Mac OSX programs and apps
+cask 'alfred'     # REQUIRED - task launcher application for Mac OSX
+cask 'appcleaner' # REQUIRED - utility application for removing Mac OSX programs and apps
 # cask "cyberduck" # RECOMMENDED - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP
 # transfers
 # cask "browserstacklocal" # OPTIONAL - Used for local testing of browsers
-cask "disk-drill" # RECOMMENDED - Duplicate file finder and storage visualizer.
-cask "docker" # REQUIRED - Department approved containerized environment tools
-cask "dropbox" # OPTIONAL - Department approved cloud storage for UXD and Design
+cask 'cursor' # EXPERIMENTAL - New AI focused competitor to VS Code
+cask 'disk-drill' # RECOMMENDED - Duplicate file finder and storage visualizer.
+cask 'docker'     # REQUIRED - Department approved containerized environment tools
+cask 'dropbox'    # OPTIONAL - Department approved cloud storage for UXD and Design
 
-cask "expressvpn" # REQUIRED - Department approved VPN for testing geo location
-cask "firefox" || true # REQUIRED - Front-end team approved browser for our viewing our applications
+cask 'expressvpn'      # REQUIRED - Department approved VPN for testing geo location
+cask 'firefox' || true # REQUIRED - Front-end team approved browser for our viewing our applications
 # NOTE: These come preinstalled, uncheck if you have done a factory reset.
-cask "figma" # RECOMMENDED - As an alternative to illustrator and sketch.
-cask "font-fira-code" # RECOMMENDED -  command line icon fonts
-cask "font-fira-code-nerd-font" # RECOMMENDED - command line icon fonts for viewing icons in Starship, agnoster, P10k, or iterm.
-cask "gemini" # RECOMMENDED - Duplicate remover
-cask "gpg-suite" # REQUIRED - Allows for setting up signed commits with github.
-cask "google-chrome" # REQUIRED -  Department approved primary browser
-cask "google-drive" # OPTIONAL - Recommended backup utility for use with google drive
-cask 'font-noto-color-emoji' # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Emoji font for command line
+cask 'figma'                    # RECOMMENDED - As an alternative to illustrator and sketch.
+cask 'font-fira-code'           # RECOMMENDED -  command line icon fonts
+cask 'font-fira-code-nerd-font' # RECOMMENDED - command line icon fonts for viewing icons in Starship.
+cask 'gemini'                   # RECOMMENDED - Duplicate remover
+cask 'gpg-suite'                # REQUIRED - Allows for setting up signed commits with github.
+cask 'google-chrome'            # REQUIRED -  Department approved primary browser
+cask 'google-drive'             # OPTIONAL - Recommended backup utility for use with google drive
+cask 'font-noto-color-emoji'    # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Emoji font for command line
 # cask "iterm2" # OPTIONAL - Front-end team approved command line tool for Mac OSX
-cask "inkscape" # RECOMMENDED - Front-end team approved vector graphics editor
+cask 'inkscape' # RECOMMENDED - Front-end team approved vector graphics editor
 # cask "microsoft-office" || true # REQUIRED - Department approved productivity
 # suite
-cask "karabiner-elements" # RECOMMENDED - Useful for remapping keys on Mac OSX when external keyboards do not quite match.
-cask "lm-studio" # RECOMMENDED - Private local Large Language Model.
+cask 'karabiner-elements' # RECOMMENDED - Useful for remapping keys on Mac OSX.
+cask 'lm-studio'          # RECOMMENDED - Private local Large Language Model.
 # IE: F keys require fn + key on one keyboard and not the other.
-cask "microsoft-edge" # REQUIRED - Corporate approved browser for using CoPilot and browser testing.
-cask "microsoft-teams" || true # REQUIRED - Department approved communication tool
-cask "mysqlworkbench" # REQUIRED - Front-end team approved database GUI/tool
-cask "onedrive" # REQUIRED - Department approved cloud storage for UXD and Design
-cask 'postman' # REQUIRED - Department approved API testing GUI/tool
+cask 'microsoft-edge'          # REQUIRED - Corporate approved browser for using CoPilot and browser testing.
+cask 'microsoft-teams' || true # REQUIRED - Department approved communication tool
+cask 'mysqlworkbench'          # REQUIRED - Front-end team approved database GUI/tool
+cask 'onedrive'                # REQUIRED - Department approved cloud storage for UXD and Design
+cask 'postman'                 # REQUIRED - Department approved API testing GUI/tool
 # cask 'the-unarchiver' # RECOMMENDED - TAR/ZIP file compression tool
+cask 'dotnet-sdk' # REQUIRED - DEVOPS Microsoft .NET Core SDK
 cask 'visual-studio-code' || true # REQUIRED -  Digital Technology approved IDE for software engineering
 # cask "katalon-studio" # RECOMMENDED -  Front-end approved browser automation GUI/tool
 # cask "mamp" # RECOMMENDED - Front-end team approved server environment tool for wordpress and general web development
-cask "messenger" # RECOMMENDED - personal messenger platform
+cask 'messenger' # RECOMMENDED - personal messenger platform
 # cask 'slack' # OPTIONAL - Department approved communication tool for specific
 # vendors like sourcepoint
-cask "powershell" # RECOMMENDED - DEVOPS Powershell for managing Windows
-cask 'spotify' # RECOMMENDED - Music Service
-cask 'vlc' # RECOMMENDED - Video format conversion utility
-cask 'warp' # RECOMMENDED - Team preferred command prompt for Mac OSX
-cask 'zoom' # REQUIRED - Department approved video chat and calls utility
+cask 'powershell'    # RECOMMENDED - DEVOPS Powershell for managing Windows
+cask 'spotify'       # RECOMMENDED - Music Service
+cask 'vlc'           # RECOMMENDED - Video format conversion utility
+cask 'warp'          # RECOMMENDED - Team preferred command prompt for Mac OSX
+cask 'zoom'          # REQUIRED - Department approved video chat and calls utility
 cask '1password-cli' # RECOMMENDED - Useful for integrating with alfred and vaults.

@@ -24,7 +24,7 @@
 # less than 5 extensions.
 - shell:
     - description: 'Install solargraph and Ruby Language Server.'
-      command: 'gem install solargraph && solargraph download-core'
+      command: 'gem install solargraph rubocop && rbenv rehash'
 - shell:
     - description: 'Installing VSCode Extensions...'
       command: './onboarding_bin/vscode-install-extensions-ruby.sh'

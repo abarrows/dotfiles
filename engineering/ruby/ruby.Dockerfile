@@ -3,7 +3,7 @@
 #-------------------------------------------------------------------------------------------------------------
 
 # Update the VARIANT arg in devcontainer.json to pick a Ruby version: 2, 2.7, 2.6, 2.5
-ARG VARIANT=2.7
+ARG VARIANT=3.3
 FROM ruby:${VARIANT} AS cloud-machine-ruby
 
 # This Dockerfile adds a non-root user with sudo access. Use the "remoteUser"
