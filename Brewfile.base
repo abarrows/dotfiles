@@ -18,6 +18,7 @@ brew 'pipx'          # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended packag
 brew 'pyenv'         # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended package manager for python
 
 brew 'pinentry-mac'  # REQUIRED - The other dependency used for signed commits on mac.
+brew 'pipx' # RECOMMENDED Used for installing Python packages.
 brew 'postgresql@14' # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
 # brew "redis" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Primary Caching Dependency for Back-end Software Engineers
 brew 'shellcheck' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Linter and auto-fixing

@@ -13,3 +13,9 @@ if command -v rbenv >/dev/null 2>&1; then
   export PATH="$HOME/.rbenv/bin:$PATH"
   eval "$(rbenv init -)"
 fi
+
+# Add .NET Core SDK tools
+export PATH="$PATH:$HOME/.dotnet/tools"
+
+# Created by `pipx` on 2024-09-29 16:51:26
+export PATH="$PATH:/Users/acbarrows/.local/bin"
