@@ -1,16 +1,5 @@
 # Dotfiles Environment Variables
 
-# Instructions
-# First save a copy of this file in the root directory.
-# Run the command listed below:
-# cp .envrc.example .envrc && open .envrc
-# If hidden files are not turned on, run
-# defaults write com.apple.finder AppleShowAllFiles -bool true
-# Use double quotes on values
-# Do not include spaces.
-# IE: Correct - VARIABLE="value"
-# Incorrect - VARIABLE = value
-
 # Sensitive Variables
 # Github email address for professional or organizational teams
 GIT_EMAIL_ADDRESS_PROFESSIONAL="jdoe@acmecompany.com"
@@ -20,9 +9,9 @@ GIT_EMAIL_ADDRESS_PERSONAL_KEY=# Your professional SSH long form key.
 
 # Non-Sensitive Variables
 # This is your reader friendly name
-CURRENT_NAME=# "Jane Doe"
+CURRENT_NAME="Jane Doe"
 # This is your machine username. IE: /Users/jdoe
-CURRENT_USER=# "jdoe"
+CURRENT_USER="jdoe"
 # This is the folder name of all of your company's repos
 CURRENT_COMPANY="Career"
 # The application folder name for vscode.
