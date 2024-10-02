@@ -126,9 +126,10 @@ alias teamstandards="cd ~/$CURRENT_COMPANY/repos/development-team/code_standards
 alias teammatrix="cd ~/$CURRENT_COMPANY/repos/digital-team/dungeons-and-developers-2nd-edition/ && $IDE_PATH ."
 alias teamworkflows="cd ~/$CURRENT_COMPANY/repos/digital-team/reusable_workflows && $IDE_PATH ."
 
-# Company Prototyping and Research
+# Company Company Digital Products
+alias digitalproducts="cd ~/$CURRENT_COMPANY/repos/digital-products"
 
-# Company Digital Products
+# Previous Company Digital Products
 alias doonesbury="cd ~/$CURRENT_COMPANY/repos/digital-products/doonesbury && $IDE_PATH ."
 alias rsdoonesbury="RAILS_ENV=development rails s -p 3002"
 alias gocomics="cd ~/$CURRENT_COMPANY/repos/digital-products/gocomics/ && $IDE_PATH ."
