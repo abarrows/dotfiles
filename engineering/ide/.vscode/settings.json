@@ -158,8 +158,16 @@
       "name": "All Recent Issues",
       "enabled": true,
       "monitor": true,
-      "query": "resolution != Done and updatedDate > endOfDay(-30d)",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
+      "query": "updatedDate > endOfDay(-30d)",
+      "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c"
+    },
+    {
+      "id": "1b0060e4-feec-4697-94ee-ad0e90c8a004",
+      "enabled": true,
+      "name": "My retailsuccess Issues",
+      "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
+      "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c",
+      "monitor": true
     }
   ],
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
@@ -170,7 +178,7 @@
     "research",
     "story"
   ],
-  "atlascode.jira.startWorkBranchTemplate.customTemplate": "{{{prefix}}}/{{{issueKey}}}/{{{summary}}}",
+  "atlascode.jira.startWorkBranchTemplate.customTemplate": "feature/{{{issueKey}}}-{{{summary}}}",
   "atlascode.jira.statusbar.showUser": false,
   "atlascode.jira.todoIssues.triggers": [
     "BUG:",
@@ -1116,11 +1124,12 @@
   "yaml.format.proseWrap": "never",
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///Users/acbarrows/.vscode/extensions/atlassian.atlascode-3.0.10/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.0.10/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
   "[csharp]": {
     "editor.defaultFormatter": "ms-dotnettools.csharp"
-  }
+  },
+  "git.enableCommitSigning": true
 }

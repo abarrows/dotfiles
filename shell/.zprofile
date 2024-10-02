@@ -19,3 +19,9 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 
 # Created by `pipx` on 2024-09-29 16:51:26
 export PATH="$PATH:/Users/acbarrows/.local/bin"
+
+# NVM Support for interactive and non-interactive shells.
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
+export NVM_AUTOLOAD=true
+export NVM_AUTO_USE=true

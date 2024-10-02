@@ -2,7 +2,7 @@
   "entries": {
     "tap": {
       "homebrew/bundle": {
-        "revision": "ea9d90e4a2a986897444fe5abd2a4a968bc8e9cb"
+        "revision": "2bb4d7062eecb3dcd5007c71691e32483107c250"
       },
       "homebrew/cask": {
         "revision": "85a5b82a1285b172838c601dd09a9f4e14f5dafd"
@@ -14,7 +14,7 @@
         "revision": "df2f4f306d822f9a3a61e9cbfda67ed8a15f23cd"
       },
       "homebrew/services": {
-        "revision": "94054ceff87df29652756e4a7a58953d6f1251b6"
+        "revision": "5e5e076745873c406dd4b94149de3c3ed30b6a6c"
       }
     },
     "brew": {
@@ -836,40 +836,40 @@
         }
       },
       "gh": {
-        "version": "2.57.0",
+        "version": "2.58.0",
         "bottle": {
           "rebuild": 0,
           "root_url": "https://ghcr.io/v2/homebrew/core",
           "files": {
             "arm64_sequoia": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/gh/blobs/sha256:a17392cfb2be6f7a0a4631991120fa4445844bde0695d71b49d58ea563d5f8df",
-              "sha256": "a17392cfb2be6f7a0a4631991120fa4445844bde0695d71b49d58ea563d5f8df"
+              "url": "https://ghcr.io/v2/homebrew/core/gh/blobs/sha256:f3cb6b84271ebd44425139e995f6c11fb8405c73b8eebba18a2155895670e1f3",
+              "sha256": "f3cb6b84271ebd44425139e995f6c11fb8405c73b8eebba18a2155895670e1f3"
             },
             "arm64_sonoma": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/gh/blobs/sha256:a17392cfb2be6f7a0a4631991120fa4445844bde0695d71b49d58ea563d5f8df",
-              "sha256": "a17392cfb2be6f7a0a4631991120fa4445844bde0695d71b49d58ea563d5f8df"
+              "url": "https://ghcr.io/v2/homebrew/core/gh/blobs/sha256:f3cb6b84271ebd44425139e995f6c11fb8405c73b8eebba18a2155895670e1f3",
+              "sha256": "f3cb6b84271ebd44425139e995f6c11fb8405c73b8eebba18a2155895670e1f3"
             },
             "arm64_ventura": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/gh/blobs/sha256:a17392cfb2be6f7a0a4631991120fa4445844bde0695d71b49d58ea563d5f8df",
-              "sha256": "a17392cfb2be6f7a0a4631991120fa4445844bde0695d71b49d58ea563d5f8df"
+              "url": "https://ghcr.io/v2/homebrew/core/gh/blobs/sha256:f3cb6b84271ebd44425139e995f6c11fb8405c73b8eebba18a2155895670e1f3",
+              "sha256": "f3cb6b84271ebd44425139e995f6c11fb8405c73b8eebba18a2155895670e1f3"
             },
             "sonoma": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/gh/blobs/sha256:c35d927c3d530c8024662987d34dde754b76e65b69ce2ab32850ad2acb800b44",
-              "sha256": "c35d927c3d530c8024662987d34dde754b76e65b69ce2ab32850ad2acb800b44"
+              "url": "https://ghcr.io/v2/homebrew/core/gh/blobs/sha256:8b8a4655d289d7cef3471bb479dcf1bd3665440c3c9fa4412ac5f6e02450f849",
+              "sha256": "8b8a4655d289d7cef3471bb479dcf1bd3665440c3c9fa4412ac5f6e02450f849"
             },
             "ventura": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/gh/blobs/sha256:ee67b4ecaf27b815f29ae80c82388a4fb43254ba2c9ca840795fe05404e04814",
-              "sha256": "ee67b4ecaf27b815f29ae80c82388a4fb43254ba2c9ca840795fe05404e04814"
+              "url": "https://ghcr.io/v2/homebrew/core/gh/blobs/sha256:c98643a52ed2ea1afab0bea2c4168b1d045bd21b2eef22c68e5706de7dc59c81",
+              "sha256": "c98643a52ed2ea1afab0bea2c4168b1d045bd21b2eef22c68e5706de7dc59c81"
             },
             "x86_64_linux": {
               "cellar": ":any_skip_relocation",
-              "url": "https://ghcr.io/v2/homebrew/core/gh/blobs/sha256:6bc9b576888e05f56fbf74239901ad3b118ce6fe943d99639fefbd3075dda9ee",
-              "sha256": "6bc9b576888e05f56fbf74239901ad3b118ce6fe943d99639fefbd3075dda9ee"
+              "url": "https://ghcr.io/v2/homebrew/core/gh/blobs/sha256:9b9c42f277d56692ac8a13af727eb71b6ad912c58700f0646d1e3a233586bba6",
+              "sha256": "9b9c42f277d56692ac8a13af727eb71b6ad912c58700f0646d1e3a233586bba6"
             }
           }
         }
@@ -1318,7 +1318,7 @@
     },
     "cask": {
       "1password": {
-        "version": "8.10.44",
+        "version": "8.10.46",
         "options": {
           "full_name": "1password",
           "args": {
@@ -1363,7 +1363,7 @@
         }
       },
       "dropbox": {
-        "version": "208.4.5824",
+        "version": "209.4.3647",
         "options": {
           "full_name": "dropbox",
           "args": {
@@ -1372,7 +1372,7 @@
         }
       },
       "expressvpn": {
-        "version": "11.59.0.83862",
+        "version": "11.60.0.84830",
         "options": {
           "full_name": "expressvpn",
           "args": {
@@ -1417,7 +1417,7 @@
         }
       },
       "microsoft-teams": {
-        "version": "24231.509.3122.5539",
+        "version": "24244.507.3125.3475",
         "options": {
           "full_name": "microsoft-teams",
           "args": {
@@ -1444,7 +1444,7 @@
         }
       },
       "postman": {
-        "version": "11.14.0",
+        "version": "11.15.0",
         "options": {
           "full_name": "postman",
           "args": {
@@ -1525,7 +1525,7 @@
         }
       },
       "google-drive": {
-        "version": "97.0",
+        "version": "98.0",
         "options": {
           "full_name": "google-drive",
           "args": {
@@ -1597,7 +1597,7 @@
         }
       },
       "microsoft-edge": {
-        "version": "129.0.2792.65,1077769e-236a-4f55-801d-2f782881fe18",
+        "version": "129.0.2792.65,bf888f74-1ef1-46a1-b7b8-8ce7d7799243",
         "options": {
           "full_name": "microsoft-edge",
           "args": {
@@ -1633,7 +1633,7 @@
         }
       },
       "firefox": {
-        "version": "130.0.1",
+        "version": "131.0",
         "options": {
           "full_name": "firefox",
           "args": {
@@ -1687,7 +1687,7 @@
         }
       },
       "dotnet-sdk": {
-        "version": "8.0.402,0fb159d5-d255-43ad-bd15-6f8b0787b884,841e854f82f94d29d70980f7775212b7",
+        "version": "8.0.402,b98e1dbc-5ba2-446c-b294-0cd01392a91d,13afc1c75aa0baa437f4710a2a6cb2e9",
         "options": {
           "full_name": "dotnet-sdk",
           "args": {
@@ -1725,12 +1725,12 @@
         "macOS": "13.4"
       },
       "sonoma": {
-        "HOMEBREW_VERSION": "4.3.21",
-        "HOMEBREW_PREFIX": "/opt/homebrew",
+        "HOMEBREW_VERSION": "4.4.0",
+        "HOMEBREW_PREFIX": "/usr/local",
         "Homebrew/homebrew-core": "api",
-        "CLT": "15.3.0.0.1.1708646388",
-        "Xcode": "15.4",
-        "macOS": "14.6.1"
+        "CLT": "16.0.0.0.1.1724870825",
+        "Xcode": "16.0",
+        "macOS": "14.7"
       },
       "sequoia": {
         "HOMEBREW_VERSION": "4.3.21",

@@ -5,7 +5,7 @@
 GIT_EMAIL_ADDRESS_PROFESSIONAL="jdoe@acmecompany.com"
 # Please setup first by following these instructions:
 # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
-GIT_EMAIL_ADDRESS_PERSONAL_KEY=# Your professional SSH long form key.
+CURRENT_USER_GPG_KEY=# Your professional SSH long form key.
 
 # Non-Sensitive Variables
 # This is your reader friendly name
@@ -23,6 +23,6 @@ JIRA_BASE_URL="https://atlassian.examplecompany.com"
 
 # Optional Variables
 GIT_EMAIL_ADDRESS_PERSONAL=# Your private Github email address used for personal projects
-GIT_EMAIL_ADDRESS_PERSONAL_KEY=# Your personal SSH long form key.
+CURRENT_USER_GPG_KEY=# Your personal SSH long form key.
 # Please setup first by following these instructions:
 # https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
