@@ -1,4 +1,7 @@
 {
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
   "[css]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": "explicit"
@@ -158,27 +161,27 @@
       "name": "All Recent Issues",
       "enabled": true,
       "monitor": true,
-      "query": "updatedDate > endOfDay(-30d)",
+      "query": "project = Wayroo AND updatedDate > endOfDay(-30d)",
       "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c"
     },
     {
-      "id": "1b0060e4-feec-4697-94ee-ad0e90c8a004",
+      "id": "b1a112fa-aff7-4e65-98e6-250ee55f6ff8",
+      "name": "My Most Recent Issues",
       "enabled": true,
-      "name": "My retailsuccess Issues",
-      "query": "assignee = currentUser() AND resolution = Unresolved ORDER BY lastViewed DESC",
-      "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c",
-      "monitor": true
+      "monitor": true,
+      "query": "assignee = currentUser()",
+      "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c"
     }
   ],
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
-    "bug",
+    "bugfix",
+    "feature",
     "hotfix",
     "maintenance",
     "release",
-    "research",
-    "story"
+    "research"
   ],
-  "atlascode.jira.startWorkBranchTemplate.customTemplate": "feature/{{{issueKey}}}-{{{summary}}}",
+  "atlascode.jira.startWorkBranchTemplate.customTemplate": "{{{prefix}}}/{{{issueKey}}}/{{{summary}}}",
   "atlascode.jira.statusbar.showUser": false,
   "atlascode.jira.todoIssues.triggers": [
     "BUG:",
@@ -332,6 +335,7 @@
     "choco",
     "CIWD",
     "classname",
+    "clsx",
     "cmsassets",
     "CODEOWNER",
     "CODEOWNERS",
@@ -435,6 +439,7 @@
     "htmlhint",
     "htmlhintrc",
     "hubspot",
+    "ianvs",
     "iefix",
     "iframe",
     "Imgur",
@@ -456,6 +461,7 @@
     "keymaps",
     "keyvaultname",
     "keyvaultprefix",
+    "knip",
     "labelledby",
     "langchain",
     "lastmod",
@@ -465,6 +471,7 @@
     "Leaderboards",
     "linkedin",
     "liveshare",
+    "Luci",
     "Macbook",
     "Macromedia",
     "Macromedia's",
@@ -612,6 +619,7 @@
     "tabindex",
     "tagid",
     "tailwindcss",
+    "tanstack",
     "tbody",
     "tcfapi",
     "tcloaded",
@@ -735,8 +743,6 @@
   "emmet.showAbbreviationSuggestions": true,
   "emmet.showSuggestionsAsSnippets": true,
   "emmet.triggerExpansionOnTab": true,
-  "eslint.debug": true,
-  "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
   "eslint.run": "onSave",
   "eslint.useESLintClass": true,
@@ -744,6 +750,7 @@
     "html",
     "javascript",
     "javascriptreact",
+    "json",
     "typescript",
     "typescriptreact"
   ],
@@ -789,6 +796,7 @@
   "git.autofetch": true,
   "git.autoStash": true,
   "git.confirmSync": false,
+  "git.enableCommitSigning": true,
   "git.enableSmartCommit": true,
   "git.ignoreRebaseWarning": true,
   "git.inputValidationLength": 200,
@@ -1128,8 +1136,5 @@
   },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
-  "[csharp]": {
-    "editor.defaultFormatter": "ms-dotnettools.csharp"
-  },
-  "git.enableCommitSigning": true
+  "eslint.useFlatConfig": true
 }
