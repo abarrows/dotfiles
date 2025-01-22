@@ -71,37 +71,11 @@ if [[ ! -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-history-substring-search" ]];
   git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-history-substring-search
 fi
 
-# ZSH PLUGIN: zsh-nvm
-# Variables needed before loading plugin.
-export NVM_COMPLETION=true
-export NVM_AUTO_USE=true
-export NVM_AUTOLOAD=true
-export NVM_LAZY_LOAD=true
-
 # https://github.com/lukechilds/zsh-nvm
 if [[ ! -r "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-nvm" ]]; then
   echo 'Cloning plugin: zsh-nvm'
   git clone "https://github.com/lukechilds/zsh-nvm" "${ZSH_CUSTOM:-$ZSH/custom}/plugins/zsh-nvm"
 fi
-# Setup nvm autoloader before the call to oh-my-zsh.
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-
-# Function to install the required Node.js version if not already installed
-load_nvmrc() {
-  if [ -f .nvmrc ]; then
-    local nvm_version
-    nvm_version=$(<.nvmrc)
-    if ! nvm ls "$nvm_version" >/dev/null 2>&1; then
-      nvm install "$nvm_version"
-    fi
-    nvm use "$nvm_version"
-  fi
-}
-
-# Call the function to load the required Node.js version
-load_nvmrc
 
 # Docker-completions
 # https://github.com/chr-fritz/docker-completion.zsh
@@ -109,26 +83,4 @@ load_nvmrc
 # Docker-helpers
 # https://github.com/unixorn/docker-helpers.zsh
 
-# Final plugins declaration
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  bundler
-  dotenv
-  extract
-  git
-  history
-  history-substring-search
-  zsh-nvm
-  macos
-  rake
-  ruby
-  rbenv
-  vscode
-  yarn
-  vscode
-  zsh-autosuggestions
-  zsh-completions
-  zsh-syntax-highlighting
-)
-
-echo "ZSH/PLUGINS: Loaded."
+echo "ZSH/PLUGINS: Installed."

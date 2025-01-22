@@ -60,7 +60,7 @@
   },
   "[javascript][javascriptreact][typescript][typescriptreact]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "always"
+      "source.fixAll.eslint": "explicit"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -95,9 +95,9 @@
   "[powershell]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
-  },
+  // "[prisma]": {
+  //   "editor.defaultFormatter": "Prisma.prisma"
+  // },
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
@@ -108,8 +108,8 @@
   "[ruby]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": "never"
-    },
-    "editor.defaultFormatter": "castwide.solargraph"
+    }
+    // "editor.defaultFormatter": "castwide.solargraph"
   },
   "[scminput]": {
     "editor.rulers": [50, 72],
@@ -145,7 +145,7 @@
   "accessibility.signals.terminalBell": {
     "sound": "on"
   },
-  "accessibility.voice.keywordActivation": "chatInView",
+  "accessibility.voice.keywordActivation": "chatInContext",
   "atlascode.bitbucket.enabled": false,
   "atlascode.enableHttpsTunnel": true,
   "atlascode.helpExplorerEnabled": false,
@@ -158,30 +158,23 @@
   "atlascode.jira.jqlList": [
     {
       "id": "34cf15a8-b627-435e-8e92-4deec1da8891",
-      "name": "All Recent Issues",
+      "name": "My Issues",
       "enabled": true,
       "monitor": true,
-      "query": "project = Wayroo AND updatedDate > endOfDay(-30d)",
-      "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c"
-    },
-    {
-      "id": "b1a112fa-aff7-4e65-98e6-250ee55f6ff8",
-      "name": "My Most Recent Issues",
-      "enabled": true,
-      "monitor": true,
-      "query": "assignee = currentUser()",
+      "query": "assignee = currentUser() AND (resolution = Unresolved AND status != Abandoned)",
       "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c"
     }
   ],
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
-    "bugfix",
+    "bug",
     "feature",
     "hotfix",
     "maintenance",
     "release",
-    "research"
+    "research",
+    "bugfix"
   ],
-  "atlascode.jira.startWorkBranchTemplate.customTemplate": "{{{prefix}}}/{{{issueKey}}}/{{{summary}}}",
+  "atlascode.jira.startWorkBranchTemplate.customTemplate": "{{{prefix}}}/{{{issueKey}}}-{{{summary}}}",
   "atlascode.jira.statusbar.showUser": false,
   "atlascode.jira.todoIssues.triggers": [
     "BUG:",
@@ -400,6 +393,7 @@
     "elif",
     "envrc",
     "erblint",
+    "erronous",
     "esbenp",
     "falsey",
     "Farside",
@@ -428,6 +422,7 @@
     "gsutil",
     "hadolint",
     "haspopup",
+    "Havent",
     "heartofthecity",
     "hexcode",
     "hfmysql",
@@ -453,6 +448,7 @@
     "jdoe",
     "jforce",
     "jquery",
+    "jsbarcode",
     "Jumpstart",
     "junit",
     "KCDC",
@@ -505,6 +501,7 @@
     "odata",
     "Offboarding",
     "offcanvas",
+    "oidc",
     "okrs",
     "ommit",
     "ommitting",
@@ -519,6 +516,7 @@
     "opentelemetry",
     "opentype",
     "openx",
+    "ordertablerecord",
     "otel",
     "otterloop",
     "Pageview",
@@ -698,6 +696,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },
+  "editor.pasteAs.preferences": ["uri.path.absolute", "text.updateImports"],
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorStyle": "line",
@@ -740,12 +739,12 @@
     "scss": "css",
     "typescript": "typescriptreact"
   },
-  "emmet.showAbbreviationSuggestions": true,
+  "emmet.showAbbreviationSuggestions": false,
   "emmet.showSuggestionsAsSnippets": true,
   "emmet.triggerExpansionOnTab": true,
   "eslint.lintTask.enable": true,
   "eslint.run": "onSave",
-  "eslint.useESLintClass": true,
+  "eslint.useESLintClass": false,
   "eslint.validate": [
     "html",
     "javascript",
@@ -789,6 +788,8 @@
     "**/.hg/store/**": true,
     "**/.next/**": true,
     "**/node_modules/*/**": true,
+    "**/dist/**": true,
+    "**/.git/**": true,
     "**/storybook-static/**": true
   },
   "gistpad.playgrounds.showConsole": true,
@@ -808,6 +809,10 @@
   "git.showPushSuccessNotification": true,
   "github-actions.org-features": true,
   "github.autoPublish": true,
+  "github.copilot.commitMessageGeneration": true,
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    { "file": ".github/copilot-instructions-commit-message.md" }
+  ],
   "github.copilot.editor.enableAutoCompletions": true,
   "github.copilot.enable": {
     "*": true,
@@ -899,10 +904,10 @@
   "markdown.validate.unusedLinkDefinitions.enabled": "warning",
   "markdownlint.run": "onSave",
   "merge-conflict.autoNavigateNextConflict.enabled": true,
-  "npm.packageManager": "yarn",
+  "npm.packageManager": "npm",
   "path-intellisense.autoSlashAfterDirectory": true,
   "playwright.reuseBrowser": false,
-  "playwright.showTrace": true,
+  "playwright.showTrace": false,
   "prettier.enableDebugLogs": true,
   "prettier.proseWrap": "never",
   "prettier.singleQuote": true,
@@ -917,7 +922,6 @@
   "rewrap.autoWrap.notification": "text",
   "rewrap.doubleSentenceSpacing": true,
   "ruby.useLanguageServer": true,
-  "rubyLsp.enableExperimentalFeatures": true,
   "rubyLsp.featuresConfiguration": {},
   "rubyLsp.rubyVersionManager": {
     "identifier": "rbenv"
@@ -1009,7 +1013,6 @@
     "type",
     "version"
   ],
-  "sort-json.settings.preserveUnicodeString": false,
   "sortLines.filterBlankLines": true,
   "sortLines.sortEntireFile": true,
   "stylelint.packageManager": "yarn",
@@ -1132,9 +1135,39 @@
   "yaml.format.proseWrap": "never",
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.0.10/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.2.2/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
-  "eslint.useFlatConfig": true
+  "window.confirmSaveUntitledWorkspace": false,
+  "eslint.debug": true,
+  "terminal.integrated.env.osx": {},
+  "gitlens.views.scm.grouped.views": {
+    "commits": false,
+    "branches": false,
+    "remotes": true,
+    "stashes": false,
+    "tags": false,
+    "worktrees": false,
+    "contributors": false,
+    "repositories": true,
+    "searchAndCompare": true,
+    "launchpad": false
+  },
+  "rubyLsp.featureFlags": {
+    "all": true
+  },
+  "chat.editing.alwaysSaveWithGeneratedChanges": true,
+  "scm.diffDecorationsIgnoreTrimWhitespace": "true",
+  "l13Diff.ignoreTrimWhitespace": "on",
+  "gitlens.blame.ignoreWhitespace": true,
+  "gitlens.advanced.fileHistoryShowAllBranches": true,
+  "terminal.integrated.fontLigatures": true,
+  "diffEditor.renderSideBySide": true,
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c",
+    "projectKey": "AUT"
+  },
+  "application.shellEnvironmentResolutionTimeout": 20,
+  "diffEditor.hideUnchangedRegions.enabled": true
 }

@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Onboarding Initialize Scripts
 alias alwaysstartmysql="brew services start mysql"
 alias generatekey="ls ~/.ssh/*.pub"
@@ -18,8 +16,8 @@ alias repos="cd ~/$CURRENT_COMPANY/repos/"
 # General Shell Operation
 alias ls="ls -al"
 alias du="docker compose up --build"
-alias dockerdestroy="docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi -f $(docker images -a -q) && docker builder prune -f && docker volume prune -f && docker system prune -f && docker networ
-k prune -f"
+# alias dockerdestroy="docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi -f $(docker images -a -q) && docker builder prune -f && docker volume prune -f && docker system prune -f && docker networ
+# k prune -f"
 alias brewlist="brew list --versions"
 alias zplugins="cd ~/.oh-my-zsh/custom/plugins"
 alias checkpath="print -l PATH"
@@ -34,9 +32,6 @@ alias checksshkey='cat ~/.ssh/id_rsa.pub'
 alias checkip='curl ipecho.net/plain ; echo'
 alias edithosts="sudo open -a Visual\ Studio\ Code.app /etc/hosts"
 
-# NPM Packages
-alias nr="npm run $1"
-
 # Version Control
 alias gs="git status"
 alias glog="git log --pretty=format:'%h was %an, %ar, message: %s'"
@@ -46,7 +41,7 @@ alias gremove="git rm -f "
 alias gpush="git push origin --all"
 alias gitreset="git reset --hard HEAD"
 alias updatesubmodule="git pull --recurse-submodules && git submodule update --remote --recursive"
-alias gpull="\$updatesubmodule && git pull --all"
+# alias gpull="\$updatesubmodule && git pull --all"
 alias removegit="rm -rf .git"
 alias prunebranches="$HOME/.onboarding_bin/prune-merged-in-branches.sh"
 
@@ -129,85 +124,5 @@ alias uitemplate="cd ~/$CURRENT_COMPANY/repos/development-team/template-nextjs-u
 alias teamstandards="cd ~/$CURRENT_COMPANY/repos/development-team/code_standards/ && $IDE_PATH ."
 alias teammatrix="cd ~/$CURRENT_COMPANY/repos/digital-team/dungeons-and-developers-2nd-edition/ && $IDE_PATH ."
 alias teamworkflows="cd ~/$CURRENT_COMPANY/repos/digital-team/reusable_workflows && $IDE_PATH ."
-
-# Company Digital Products
-alias uilucimanage="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Management.UI/ && $IDE_PATH ."
-alias digitalproducts="cd ~/$CURRENT_COMPANY/repos/digital-products"
-
-# Previous Company Digital Products
-alias doonesbury="cd ~/$CURRENT_COMPANY/repos/personal/doonesbury && $IDE_PATH ."
-alias rsdoonesbury="RAILS_ENV=development rails s -p 3002"
-alias gocomics="cd ~/$CURRENT_COMPANY/repos/personal/gocomics/ && $IDE_PATH ."
-alias rsgocomics="RAILS_ENV=development rails s -p 3001"
-alias storegocomics="cd ~/$CURRENT_COMPANY/repos/personal/gocomics-store/ && $IDE_PATH ."
-alias storegocomics="RAILS_ENV=development rails s -p 3001"
-alias uigocomics="cd ~/$CURRENT_COMPANY/repos/personal/gocomics_ui/ && $IDE_PATH ."
-alias devuigocomics="cd ~/$CURRENT_COMPANY/repos/personal/gocomics_ui/ && $IDE_PATH . && yarn install && yarn dev"
-alias oldpuzzlesociety="cd ~/$CURRENT_COMPANY/repos/personal/puzzlesociety/ && $IDE_PATH ."
-alias rsoldpuzzlesociety="RAILS_ENV=development rails s -p 3004"
-alias uipuzzlesociety="cd ~/$CURRENT_COMPANY/repos/personal/puzzle-society_ui/ && $IDE_PATH ."
-alias devuipuzzlesociety="cd ~/$CURRENT_COMPANY/repos/personal/puzzle-society_ui/ && $IDE_PATH . && yarn install && yarn dev"
-alias uiuexpress="cd ~/$CURRENT_COMPANY/repos/personal/uexpress_ui && $IDE_PATH ."
-alias rsuiuexpress="yarn install && PORT=3006 yarn dev"
-alias syndication="cd ~/$CURRENT_COMPANY/repos/personal/syndication/ && $IDE_PATH && open http://localhost:3006"
-alias rssyndication="RAILS_ENV=development rails s -p 3006"
-alias thefarside="cd ~/$CURRENT_COMPANY/repos/personal/the-far-side && $IDE_PATH ."
-alias rsthefarside="RAILS_ENV=development rails s -p 3020"
-alias gcemail="cd ~/$CURRENT_COMPANY/repos/personal/gocomics_daily_pro_email && $IDE_PATH ."
-alias gamecrossword="cd ~/$CURRENT_COMPANY/repos/personal/crossword_game/ && $IDE_PATH . && docker run --rm -it -p 3000:3000 crossword-games"
-alias startgamecrossword="docker build -t crossword-game ."
-alias gamethematik="cd ~/$CURRENT_COMPANY/repos/personal/thematik_game/ && $IDE_PATH ."
-
-# Company Admins
-alias admincontent="cd ~/$CURRENT_COMPANY/repos/admins/content_admin && $IDE_PATH ."
-alias rsadmincontent="RAILS_ENV=development rails s -p 3022"
-alias adminclient="cd ~/$CURRENT_COMPANY/repos/admins/client_admin && $IDE_PATH ."
-alias rsadminclient="RAILS_ENV=development rails s -p 3062"
-alias adminucp="cd ~/$CURRENT_COMPANY/repos/admins/ucp && $IDE_PATH ."
-alias rsadminucp="RAILS_ENV=development rails s -p 3063"
-alias adminconsumer="cd ~/$CURRENT_COMPANY/repos/admins/consumer_admin && $IDE_PATH ."
-alias rsadminconsumer="RAILS_ENV=development rails s -p 3042"
-alias adminsubscribermail="cd ~/$CURRENT_COMPANY/repos/admins/subscriber_mail_admin && $IDE_PATH ."
-alias rsadminsubscribermail="RAILS_ENV=development rails s -p 3080"
-
-# Company Web Services
-alias filemover="cd ~/$CURRENT_COMPANY/repos/digital-services/file-mover && $IDE_PATH ."
-alias servicecontent="cd ~/$CURRENT_COMPANY/repos/digital-services/webservice_content && $IDE_PATH ."
-alias rsservicecontent="rails s -p '3030'"
-alias serviceasset="cd ~/$CURRENT_COMPANY/repos/digital-services/asset_engine && $IDE_PATH ."
-alias rsserviceasset="RAILS_ENV=development rails s -p 3031"
-alias serviceb2c="cd ~/$CURRENT_COMPANY/repos/digital-services/azure-b2c_auth && $IDE_PATH ."
-# alias serviceregistration="cd ~/$CURRENT_COMPANY/repos/digital-services/webservice_registration && $IDE_PATH ."
-# alias rsserviceregistration="RAILS_ENV=development rails s -p 3040"
-alias servicefeatureavatar="cd ~/$CURRENT_COMPANY/repos/digital-services/webservice_feature_avatars && $IDE_PATH ."
-alias rsservicefeatureavatar="RAILS_ENV=development rails s -p 3041"
-alias serviceuseravatar="cd ~/$CURRENT_COMPANY/repos/digital-services/webservice_avatars && $IDE_PATH ."
-alias rsserviceuseravatar="RAILS_ENV=development rails s -p 3042"
-alias serviceembed="cd ~/$CURRENT_COMPANY/repos/digital-services/embed_service/ && $IDE_PATH ."
-alias rsserviceembed="RAILS_ENV=development rails s -p 3060"
-alias serviceclient="cd ~/$CURRENT_COMPANY/repos/digital-services/go-webservice-client && $IDE_PATH ."
-alias rsserviceclient="rails s -p '3050'"
-alias servicegocontent="cd ~/$CURRENT_COMPANY/repos/digital-services/gocontent_service/ && $IDE_PATH ."
-alias rsservicegocontent="RAILS_ENV=development rails s -p 3070"
-alias servicegames="cd ~/$CURRENT_COMPANY/repos/digital-services/amu_games/ && $IDE_PATH ."
-alias servicegamedata="cd ~/$CURRENT_COMPANY/repos/digital-services/webservice_gamedata/ && $IDE_PATH ."
-alias rsservicegamedata="RAILS_ENV=development rails s -p 3064"
-alias servicetextparser="cd ~/$CURRENT_COMPANY/repos/digital-services/text-parser_gem/ && $IDE_PATH ."
-alias rsservicetextparser="bundle install && rake build && gem inabox pkg/uclick-textparser-$1.gem"
-alias serviceuucontentsystem="cd ~/$CURRENT_COMPANY/repos/digital-services/text-parser_gem/ && $IDE_PATH ."
-alias rsserviceuucontentsystem="bundle install && rake build && gem inabox pkg/uucontentsystem-$1.gem"
-alias servicegamedata="cd ~/$CURRENT_COMPANY/repos/digital-services/webservice_gamedata/ && $IDE_PATH ."
-alias rsservicegamedata="RAILS_ENV=development rails s -p 3064"
-alias teamreusableworkflows="cd ~/$CURRENT_COMPANY/repos/development-team/reusable_workflows/ && $IDE_PATH ."
-alias rsteamreusableworkflows="yarn dev"
-# Wordpress
-# TODO: Update these with the new paths.
-# alias rsdailycartoonist="cd ~/$CURRENT_COMPANY/repos/digital-products/devkit/dailycartoonist && $IDE_PATH . && wpe start"
-# alias wonderword="cd ~/$CURRENT_COMPANY/repos/digital-products/wonderword && $IDE_PATH ."
-# alias rswonderword="cd ~/$CURRENT_COMPANY/repos/digital-products/wonderword && $IDE_PATH . && wpe start"
-# alias multiamu="cd ~/$CURRENT_COMPANY/repos/digital-products/multiamu"
-# alias ssmultiamu="cd
-# ~/$CURRENT_COMPANY/repos/digital-products/multiamu && $IDE_PATH
-# . && open /Applications/MAMP"
 
 echo "ZSH/ALIASES: Loaded."
