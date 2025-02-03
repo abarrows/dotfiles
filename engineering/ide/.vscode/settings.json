@@ -161,7 +161,7 @@
       "name": "My Issues",
       "enabled": true,
       "monitor": true,
-      "query": "assignee = currentUser() AND (resolution = Unresolved AND status != Abandoned)",
+      "query": "assignee = currentUser() AND (resolution = Unresolved AND status != Abandoned) AND (status != \"PO Acceptance\")",
       "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c"
     }
   ],
@@ -684,6 +684,7 @@
   "debug.toolBarLocation": "docked",
   "dev.containers.logLevel": "trace",
   "diffEditor.codeLens": true,
+  "diffEditor.experimental.showMoves": false,
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.useInlineViewWhenSpaceIsLimited": false,
   "docker.composeCommand": "docker compose",
@@ -810,6 +811,11 @@
   "github-actions.org-features": true,
   "github.autoPublish": true,
   "github.copilot.commitMessageGeneration": true,
+  "github.copilot.chat.generateTests.codeLens": true,
+  "github.copilot.chat.temporalContext.enabled": true,
+  "github.copilot.chat.testGeneration.instructions": [
+    { "file": ".github/copilot-instructions-automated-testing.md" }
+  ],
   "github.copilot.chat.commitMessageGeneration.instructions": [
     { "file": ".github/copilot-instructions-commit-message.md" }
   ],
@@ -828,7 +834,7 @@
   "githubIssues.createInsertFormat": "url",
   "githubPullRequests.createOnPublishBranch": "never",
   "githubPullRequests.defaultMergeMethod": "merge",
-  "githubPullRequests.fileListLayout": "flat",
+  "githubPullRequests.fileListLayout": "tree",
   "githubPullRequests.pullBranch": "never",
   "githubPullRequests.queries": [
     {
@@ -849,6 +855,8 @@
     "suppressCommitNotFoundWarning": true,
     "suppressFileNotUnderSourceControlWarning": true
   },
+  "gitlens.worktrees.defaultLocation": "",
+  "gitlens.plusFeatures.enabled": false,
   "gitlens.advanced.repositorySearchDepth": 2,
   "gitlens.autolinks": [],
   "gitlens.blame.heatmap.enabled": true,
@@ -1135,7 +1143,7 @@
   "yaml.format.proseWrap": "never",
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.2.2/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.4.0/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
@@ -1163,11 +1171,13 @@
   "gitlens.blame.ignoreWhitespace": true,
   "gitlens.advanced.fileHistoryShowAllBranches": true,
   "terminal.integrated.fontLigatures": true,
-  "diffEditor.renderSideBySide": true,
+  "diffEditor.renderSideBySide": false,
   "atlascode.jira.lastCreateSiteAndProject": {
     "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c",
     "projectKey": "AUT"
   },
   "application.shellEnvironmentResolutionTimeout": 20,
-  "diffEditor.hideUnchangedRegions.enabled": true
+  "geminicodeassist.project": "retail-success-449215",
+  "githubPullRequests.pushBranch": "always",
+  "git.openRepositoryInParentFolders": "prompt"
 }
