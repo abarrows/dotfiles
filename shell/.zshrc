@@ -14,14 +14,14 @@ export GPG_TTY=$(tty)
 
 # Chat GPT Recommendation after prompting.
 # Homebrew path - Prioritize Homebrew binaries.
-# M1 ONLY
-# export PATH="/opt/homebrew/bin:$PATH"
-
-# Your personal bin directory.
-export PATH="$HOME/bin:$PATH"
-
-# Legacy system-wide binaries.
-export PATH="/usr/local/bin:$PATH"
+# Determine the architecture and set the Homebrew path accordingly
+if [[ "$(uname -m)" == "arm64" ]]; then
+  # M1 Mac
+  export PATH="/opt/homebrew/bin:$PATH"
+else
+  # Intel Mac
+  export PATH="/usr/local/bin:$PATH"
+fi
 
 # The system paths are implicitly included, but can be specified if needed.
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"

@@ -1,33 +1,5 @@
 #!/usr/bin/env bash
 
-# Detect the architecture of the mac (arm64 is for M1 Macs, x86_64 is for Intel Macs)
-arch_name="$(uname -m)"
-
-# Check if homebrew is installed and if not, install it.
-if [[ ! -r "/usr/local/bin/brew" && ! -r "/opt/homebrew/bin/brew" ]]; then
-  echo "Homebrew is NOT already installed."
-
-  if [ "${arch_name}" = "arm64" ]; then
-    # M1 Macs
-    arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  elif [ "${arch_name}" = "x86_64" ]; then
-    # Intel Macs
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  else
-    echo "Unknown architecture: ${arch_name}"
-    exit 1
-  fi
-
-else
-  echo "Homebrew IS already installed."
-fi
-
-# Optionally, set permissions back to the user if needed.
-sudo chown -R $(whoami) $(brew --prefix)/*
-
-# Prompt for secrets
-#!/usr/bin/env bash
-
 echo "Setting up your environment..."
 
 # Git Email
@@ -75,9 +47,7 @@ echo "Current value: [$JIRA_USER_EMAIL]"
 read -rp "Enter your JIRA_USER_EMAIL: " userInput
 JIRA_USER_EMAIL="${userInput:-$JIRA_USER_EMAIL}"
 
-cd ~/ &&
-  mkdir -p "$COMPANY_NAME/repos/development-team" &&
-  cd "$COMPANY_NAME/repos/development-team" && gh init && gh repo clone "${CURRENT_USER_GITHUB_URL}/dotfiles" && cd "dotfiles" && cat <<EOF >.envrc
+cat <<EOF >.envrc
 #!/usr/bin/env bash
 
 # Dotfiles Environment Variables (Generated)
@@ -96,4 +66,4 @@ CURRENT_USER_GPG_KEY="${CURRENT_USER_GPG_KEY}"
 JIRA_USER_EMAIL="${JIRA_USER_EMAIL}"
 EOF
 
-echo ".envrc has been created or updated." && open .envrc
+echo ".envrc has been created or updated."
