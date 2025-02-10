@@ -200,55 +200,55 @@
   //   "**yarn .*"
   // ],
   "cSpell.autoFormatConfigFile": true,
-  "cSpell.enabledLanguageIds": [
-    "asciidoc",
-    "c",
-    "cpp",
-    "csharp",
-    "css",
-    "git-commit",
-    "go",
-    "handlebars",
-    "html",
-    "jade",
-    "java",
-    "javascriptreact",
-    "json",
-    "jsonc",
-    "latex",
-    "less",
-    "markdown",
-    "php",
-    "plaintext",
-    "pug",
-    "python",
-    "restructuredtext",
-    "rust",
-    "scala",
-    "scss",
-    "text",
-    "typescript",
-    "typescriptreact",
-    "yaml",
-    "yml"
-  ],
-  "cSpell.enableFiletypes": [
-    "!git-commit",
-    "dockerfile",
-    "dotenv",
-    "env",
-    "erb",
-    "gitignore",
-    "javascript",
-    "log",
-    "perl",
-    "perl6",
-    "powershell",
-    "sql",
-    "vue",
-    "xml",
-    "xsl"
-  ],
+  // "cSpell.enabledLanguageIds": [
+  //   "asciidoc",
+  //   "c",
+  //   "cpp",
+  //   "csharp",
+  //   "css",
+  //   "git-commit",
+  //   "go",
+  //   "handlebars",
+  //   "html",
+  //   "jade",
+  //   "java",
+  //   "javascriptreact",
+  //   "json",
+  //   "jsonc",
+  //   "latex",
+  //   "less",
+  //   "markdown",
+  //   "php",
+  //   "plaintext",
+  //   "pug",
+  //   "python",
+  //   "restructuredtext",
+  //   "rust",
+  //   "scala",
+  //   "scss",
+  //   "text",
+  //   "typescript",
+  //   "typescriptreact",
+  //   "yaml",
+  //   "yml"
+  // ],
+  "cSpell.enabledFileTypes": {
+    "!git-commit": true,
+    "dockerfile": true,
+    "dotenv": true,
+    "env": true,
+    "erb": true,
+    "gitignore": true,
+    "javascript": true,
+    "log": true,
+    "perl": true,
+    "perl6": true,
+    "powershell": true,
+    "sql": true,
+    "vue": true,
+    "xml": true,
+    "xsl": true
+  },
   "cSpell.ignorePaths": [
     "**/.git/objects/**",
     "**/node_modules/**",
@@ -729,7 +729,29 @@
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "onlySnippets",
   "editor.tabSize": 2,
-  "editor.tokenColorCustomizations": {},
+  "editor.tokenColorCustomizations": {
+    "[*Light*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#000"
+          }
+        }
+      ]
+    },
+    "[*Dark*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#fff"
+          }
+        }
+      ]
+    },
+    "textMateRules": []
+  },
   "editor.unicodeHighlight.ambiguousCharacters": false,
   "editor.unicodeHighlight.invisibleCharacters": false,
   "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
@@ -769,7 +791,8 @@
     ".browserslistrc": "dockerfile",
     ".env.*": "dotenv",
     ".env.example": "dotenv",
-    ".zshrc": "shellscript"
+    ".zshrc": "shellscript",
+    ".env*": "dotenv"
   },
   "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",
@@ -808,11 +831,11 @@
   "git.pruneOnFetch": true,
   "git.pullBeforeCheckout": true,
   "git.showPushSuccessNotification": true,
-  "github-actions.org-features": true,
-  "github.autoPublish": true,
-  "github.copilot.commitMessageGeneration": true,
+  // "github.copilot.chat.edits.temporalContext.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true,
+  "github.copilot.chat.search.semanticTextResults": true,
+  // "github.copilot.nextEditSuggestions.enabled": true,
   "github.copilot.chat.generateTests.codeLens": true,
-  "github.copilot.chat.temporalContext.enabled": true,
   "github.copilot.chat.testGeneration.instructions": [
     { "file": ".github/copilot-instructions-automated-testing.md" }
   ],
@@ -1143,7 +1166,7 @@
   "yaml.format.proseWrap": "never",
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.4.0/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.4.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
@@ -1171,7 +1194,7 @@
   "gitlens.blame.ignoreWhitespace": true,
   "gitlens.advanced.fileHistoryShowAllBranches": true,
   "terminal.integrated.fontLigatures": true,
-  "diffEditor.renderSideBySide": false,
+  "diffEditor.renderSideBySide": true,
   "atlascode.jira.lastCreateSiteAndProject": {
     "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c",
     "projectKey": "AUT"
@@ -1179,5 +1202,7 @@
   "application.shellEnvironmentResolutionTimeout": 20,
   "geminicodeassist.project": "retail-success-449215",
   "githubPullRequests.pushBranch": "always",
-  "git.openRepositoryInParentFolders": "prompt"
+  "git.openRepositoryInParentFolders": "prompt",
+  "diffEditor.maxComputationTime": 0,
+  "dotenv.enableAutocloaking": false
 }
