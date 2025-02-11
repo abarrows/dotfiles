@@ -7,17 +7,18 @@
 # the same structure, locally.
 
 - shell:
-        - echo '1. Setting up MacOSX - Creating folder structures...'
+    - echo '1. Setting up MacOSX - Creating folder structures...'
+    - source '.envrc'
 
 - create:
-        #   - ~/Library/LaunchAgents
-        - ~/.git-template-directory
-        - ~/.git-template-directory/hooks
-        - ~/.git-template-directory/.github
-        - ~/$CURRENT_COMPANY
-        - ~/$CURRENT_COMPANY/repos
-        - ~/$CURRENT_COMPANY/repos/development-team
-        - ~/$CURRENT_COMPANY/repos/digital-products
-        - ~/$CURRENT_COMPANY/repos/digital-services
-        - ~/$CURRENT_COMPANY/repos/admins
-        - ~/$CURRENT_COMPANY/repos/personal
+    #   - ~/Library/LaunchAgents
+    - '~/.git-template-directory'
+    - '~/.git-template-directory/hooks'
+    - '~/.git-template-directory/.github'
+    - '~/Retail-Success'
+    - '~/Retail-Success/repos'
+    - '~/Retail-Success/repos/development-team'
+    - '~/Retail-Success/repos/digital-products'
+    - '~/Retail-Success/repos/digital-services'
+    - '~/Retail-Success/repos/admins'
+    - '~/Retail-Success/repos/personal'

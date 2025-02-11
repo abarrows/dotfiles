@@ -1,4 +1,7 @@
 {
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
   "[css]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": "explicit"
@@ -57,7 +60,7 @@
   },
   "[javascript][javascriptreact][typescript][typescriptreact]": {
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "always"
+      "source.fixAll.eslint": "explicit"
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -92,9 +95,9 @@
   "[powershell]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
-  },
+  // "[prisma]": {
+  //   "editor.defaultFormatter": "Prisma.prisma"
+  // },
   "[properties]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
@@ -105,8 +108,8 @@
   "[ruby]": {
     "editor.codeActionsOnSave": {
       "source.fixAll.stylelint": "never"
-    },
-    "editor.defaultFormatter": "castwide.solargraph"
+    }
+    // "editor.defaultFormatter": "castwide.solargraph"
   },
   "[scminput]": {
     "editor.rulers": [50, 72],
@@ -142,7 +145,7 @@
   "accessibility.signals.terminalBell": {
     "sound": "on"
   },
-  "accessibility.voice.keywordActivation": "chatInView",
+  "accessibility.voice.keywordActivation": "chatInContext",
   "atlascode.bitbucket.enabled": false,
   "atlascode.enableHttpsTunnel": true,
   "atlascode.helpExplorerEnabled": false,
@@ -155,22 +158,23 @@
   "atlascode.jira.jqlList": [
     {
       "id": "34cf15a8-b627-435e-8e92-4deec1da8891",
-      "name": "All Recent Issues",
+      "name": "My Issues",
       "enabled": true,
       "monitor": true,
-      "query": "resolution != Done and updatedDate > endOfDay(-30d)",
-      "siteId": "6002c11a-0ab3-4e92-b2d1-eb97960ab7a6"
+      "query": "assignee = currentUser() AND (resolution = Unresolved AND status != Abandoned) AND (status != \"PO Acceptance\")",
+      "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c"
     }
   ],
   "atlascode.jira.startWorkBranchTemplate.customPrefixes": [
     "bug",
+    "feature",
     "hotfix",
     "maintenance",
     "release",
     "research",
-    "story"
+    "bugfix"
   ],
-  "atlascode.jira.startWorkBranchTemplate.customTemplate": "{{{prefix}}}/{{{issueKey}}}/{{{summary}}}",
+  "atlascode.jira.startWorkBranchTemplate.customTemplate": "{{{prefix}}}/{{{issueKey}}}-{{{summary}}}",
   "atlascode.jira.statusbar.showUser": false,
   "atlascode.jira.todoIssues.triggers": [
     "BUG:",
@@ -196,55 +200,55 @@
   //   "**yarn .*"
   // ],
   "cSpell.autoFormatConfigFile": true,
-  "cSpell.enabledLanguageIds": [
-    "asciidoc",
-    "c",
-    "cpp",
-    "csharp",
-    "css",
-    "git-commit",
-    "go",
-    "handlebars",
-    "html",
-    "jade",
-    "java",
-    "javascriptreact",
-    "json",
-    "jsonc",
-    "latex",
-    "less",
-    "markdown",
-    "php",
-    "plaintext",
-    "pug",
-    "python",
-    "restructuredtext",
-    "rust",
-    "scala",
-    "scss",
-    "text",
-    "typescript",
-    "typescriptreact",
-    "yaml",
-    "yml"
-  ],
-  "cSpell.enableFiletypes": [
-    "!git-commit",
-    "dockerfile",
-    "dotenv",
-    "env",
-    "erb",
-    "gitignore",
-    "javascript",
-    "log",
-    "perl",
-    "perl6",
-    "powershell",
-    "sql",
-    "vue",
-    "xml",
-    "xsl"
-  ],
+  // "cSpell.enabledLanguageIds": [
+  //   "asciidoc",
+  //   "c",
+  //   "cpp",
+  //   "csharp",
+  //   "css",
+  //   "git-commit",
+  //   "go",
+  //   "handlebars",
+  //   "html",
+  //   "jade",
+  //   "java",
+  //   "javascriptreact",
+  //   "json",
+  //   "jsonc",
+  //   "latex",
+  //   "less",
+  //   "markdown",
+  //   "php",
+  //   "plaintext",
+  //   "pug",
+  //   "python",
+  //   "restructuredtext",
+  //   "rust",
+  //   "scala",
+  //   "scss",
+  //   "text",
+  //   "typescript",
+  //   "typescriptreact",
+  //   "yaml",
+  //   "yml"
+  // ],
+  "cSpell.enabledFileTypes": {
+    "!git-commit": true,
+    "dockerfile": true,
+    "dotenv": true,
+    "env": true,
+    "erb": true,
+    "gitignore": true,
+    "javascript": true,
+    "log": true,
+    "perl": true,
+    "perl6": true,
+    "powershell": true,
+    "sql": true,
+    "vue": true,
+    "xml": true,
+    "xsl": true
+  },
   "cSpell.ignorePaths": [
     "**/.git/objects/**",
     "**/node_modules/**",
@@ -324,6 +328,7 @@
     "choco",
     "CIWD",
     "classname",
+    "clsx",
     "cmsassets",
     "CODEOWNER",
     "CODEOWNERS",
@@ -388,6 +393,7 @@
     "elif",
     "envrc",
     "erblint",
+    "erronous",
     "esbenp",
     "falsey",
     "Farside",
@@ -416,6 +422,7 @@
     "gsutil",
     "hadolint",
     "haspopup",
+    "Havent",
     "heartofthecity",
     "hexcode",
     "hfmysql",
@@ -427,6 +434,7 @@
     "htmlhint",
     "htmlhintrc",
     "hubspot",
+    "ianvs",
     "iefix",
     "iframe",
     "Imgur",
@@ -440,6 +448,7 @@
     "jdoe",
     "jforce",
     "jquery",
+    "jsbarcode",
     "Jumpstart",
     "junit",
     "KCDC",
@@ -448,6 +457,7 @@
     "keymaps",
     "keyvaultname",
     "keyvaultprefix",
+    "knip",
     "labelledby",
     "langchain",
     "lastmod",
@@ -457,6 +467,7 @@
     "Leaderboards",
     "linkedin",
     "liveshare",
+    "Luci",
     "Macbook",
     "Macromedia",
     "Macromedia's",
@@ -490,6 +501,7 @@
     "odata",
     "Offboarding",
     "offcanvas",
+    "oidc",
     "okrs",
     "ommit",
     "ommitting",
@@ -504,6 +516,7 @@
     "opentelemetry",
     "opentype",
     "openx",
+    "ordertablerecord",
     "otel",
     "otterloop",
     "Pageview",
@@ -604,6 +617,7 @@
     "tabindex",
     "tagid",
     "tailwindcss",
+    "tanstack",
     "tbody",
     "tcfapi",
     "tcloaded",
@@ -670,6 +684,7 @@
   "debug.toolBarLocation": "docked",
   "dev.containers.logLevel": "trace",
   "diffEditor.codeLens": true,
+  "diffEditor.experimental.showMoves": false,
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.useInlineViewWhenSpaceIsLimited": false,
   "docker.composeCommand": "docker compose",
@@ -682,6 +697,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },
+  "editor.pasteAs.preferences": ["uri.path.absolute", "text.updateImports"],
   "editor.cursorBlinking": "smooth",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorStyle": "line",
@@ -713,7 +729,29 @@
   "editor.suggestSelection": "first",
   "editor.tabCompletion": "onlySnippets",
   "editor.tabSize": 2,
-  "editor.tokenColorCustomizations": {},
+  "editor.tokenColorCustomizations": {
+    "[*Light*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#000"
+          }
+        }
+      ]
+    },
+    "[*Dark*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#fff"
+          }
+        }
+      ]
+    },
+    "textMateRules": []
+  },
   "editor.unicodeHighlight.ambiguousCharacters": false,
   "editor.unicodeHighlight.invisibleCharacters": false,
   "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?",
@@ -724,18 +762,17 @@
     "scss": "css",
     "typescript": "typescriptreact"
   },
-  "emmet.showAbbreviationSuggestions": true,
+  "emmet.showAbbreviationSuggestions": false,
   "emmet.showSuggestionsAsSnippets": true,
   "emmet.triggerExpansionOnTab": true,
-  "eslint.debug": true,
-  "eslint.format.enable": true,
   "eslint.lintTask.enable": true,
   "eslint.run": "onSave",
-  "eslint.useESLintClass": true,
+  "eslint.useESLintClass": false,
   "eslint.validate": [
     "html",
     "javascript",
     "javascriptreact",
+    "json",
     "typescript",
     "typescriptreact"
   ],
@@ -754,7 +791,8 @@
     ".browserslistrc": "dockerfile",
     ".env.*": "dotenv",
     ".env.example": "dotenv",
-    ".zshrc": "shellscript"
+    ".zshrc": "shellscript",
+    ".env*": "dotenv"
   },
   "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",
@@ -774,6 +812,8 @@
     "**/.hg/store/**": true,
     "**/.next/**": true,
     "**/node_modules/*/**": true,
+    "**/dist/**": true,
+    "**/.git/**": true,
     "**/storybook-static/**": true
   },
   "gistpad.playgrounds.showConsole": true,
@@ -781,6 +821,7 @@
   "git.autofetch": true,
   "git.autoStash": true,
   "git.confirmSync": false,
+  "git.enableCommitSigning": true,
   "git.enableSmartCommit": true,
   "git.ignoreRebaseWarning": true,
   "git.inputValidationLength": 200,
@@ -790,8 +831,17 @@
   "git.pruneOnFetch": true,
   "git.pullBeforeCheckout": true,
   "git.showPushSuccessNotification": true,
-  "github-actions.org-features": true,
-  "github.autoPublish": true,
+  // "github.copilot.chat.edits.temporalContext.enabled": true,
+  "github.copilot.chat.languageContext.typescript.enabled": true,
+  "github.copilot.chat.search.semanticTextResults": true,
+  // "github.copilot.nextEditSuggestions.enabled": true,
+  "github.copilot.chat.generateTests.codeLens": true,
+  "github.copilot.chat.testGeneration.instructions": [
+    { "file": ".github/copilot-instructions-automated-testing.md" }
+  ],
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    { "file": ".github/copilot-instructions-commit-message.md" }
+  ],
   "github.copilot.editor.enableAutoCompletions": true,
   "github.copilot.enable": {
     "*": true,
@@ -807,7 +857,7 @@
   "githubIssues.createInsertFormat": "url",
   "githubPullRequests.createOnPublishBranch": "never",
   "githubPullRequests.defaultMergeMethod": "merge",
-  "githubPullRequests.fileListLayout": "flat",
+  "githubPullRequests.fileListLayout": "tree",
   "githubPullRequests.pullBranch": "never",
   "githubPullRequests.queries": [
     {
@@ -828,6 +878,8 @@
     "suppressCommitNotFoundWarning": true,
     "suppressFileNotUnderSourceControlWarning": true
   },
+  "gitlens.worktrees.defaultLocation": "",
+  "gitlens.plusFeatures.enabled": false,
   "gitlens.advanced.repositorySearchDepth": 2,
   "gitlens.autolinks": [],
   "gitlens.blame.heatmap.enabled": true,
@@ -883,10 +935,10 @@
   "markdown.validate.unusedLinkDefinitions.enabled": "warning",
   "markdownlint.run": "onSave",
   "merge-conflict.autoNavigateNextConflict.enabled": true,
-  "npm.packageManager": "yarn",
+  "npm.packageManager": "npm",
   "path-intellisense.autoSlashAfterDirectory": true,
   "playwright.reuseBrowser": false,
-  "playwright.showTrace": true,
+  "playwright.showTrace": false,
   "prettier.enableDebugLogs": true,
   "prettier.proseWrap": "never",
   "prettier.singleQuote": true,
@@ -901,7 +953,6 @@
   "rewrap.autoWrap.notification": "text",
   "rewrap.doubleSentenceSpacing": true,
   "ruby.useLanguageServer": true,
-  "rubyLsp.enableExperimentalFeatures": true,
   "rubyLsp.featuresConfiguration": {},
   "rubyLsp.rubyVersionManager": {
     "identifier": "rbenv"
@@ -993,7 +1044,6 @@
     "type",
     "version"
   ],
-  "sort-json.settings.preserveUnicodeString": false,
   "sortLines.filterBlankLines": true,
   "sortLines.sortEntireFile": true,
   "stylelint.packageManager": "yarn",
@@ -1116,11 +1166,43 @@
   "yaml.format.proseWrap": "never",
   "yaml.format.singleQuote": true,
   "yaml.schemas": {
-    "file:///Users/acbarrows/.vscode/extensions/atlassian.atlascode-3.0.10/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.4.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
-  "[csharp]": {
-    "editor.defaultFormatter": "ms-dotnettools.csharp"
-  }
+  "window.confirmSaveUntitledWorkspace": false,
+  "eslint.debug": true,
+  "terminal.integrated.env.osx": {},
+  "gitlens.views.scm.grouped.views": {
+    "commits": false,
+    "branches": false,
+    "remotes": true,
+    "stashes": false,
+    "tags": false,
+    "worktrees": false,
+    "contributors": false,
+    "repositories": true,
+    "searchAndCompare": true,
+    "launchpad": false
+  },
+  "rubyLsp.featureFlags": {
+    "all": true
+  },
+  "chat.editing.alwaysSaveWithGeneratedChanges": true,
+  "scm.diffDecorationsIgnoreTrimWhitespace": "true",
+  "l13Diff.ignoreTrimWhitespace": "on",
+  "gitlens.blame.ignoreWhitespace": true,
+  "gitlens.advanced.fileHistoryShowAllBranches": true,
+  "terminal.integrated.fontLigatures": true,
+  "diffEditor.renderSideBySide": true,
+  "atlascode.jira.lastCreateSiteAndProject": {
+    "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c",
+    "projectKey": "AUT"
+  },
+  "application.shellEnvironmentResolutionTimeout": 20,
+  "geminicodeassist.project": "retail-success-449215",
+  "githubPullRequests.pushBranch": "always",
+  "git.openRepositoryInParentFolders": "prompt",
+  "diffEditor.maxComputationTime": 0,
+  "dotenv.enableAutocloaking": false
 }

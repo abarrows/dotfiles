@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Onboarding Initialize Scripts
 alias alwaysstartmysql="brew services start mysql"
 alias generatekey="ls ~/.ssh/*.pub"
@@ -17,9 +15,10 @@ alias repos="cd ~/$CURRENT_COMPANY/repos/"
 
 # General Shell Operation
 alias ls="ls -al"
+alias cnpm="rm -rf node_modules && package-lock.json && npm install --cache-clean"
 alias du="docker compose up --build"
-alias dockerdestroy="docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi -f $(docker images -a -q) && docker builder prune -f && docker volume prune -f && docker system prune -f && docker networ
-k prune -f"
+# alias dockerdestroy="docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi -f $(docker images -a -q) && docker builder prune -f && docker volume prune -f && docker system prune -f && docker networ
+# k prune -f"
 alias brewlist="brew list --versions"
 alias zplugins="cd ~/.oh-my-zsh/custom/plugins"
 alias checkpath="print -l PATH"
@@ -43,7 +42,7 @@ alias gremove="git rm -f "
 alias gpush="git push origin --all"
 alias gitreset="git reset --hard HEAD"
 alias updatesubmodule="git pull --recurse-submodules && git submodule update --remote --recursive"
-alias gpull="\$updatesubmodule && git pull --all"
+# alias gpull="\$updatesubmodule && git pull --all"
 alias removegit="rm -rf .git"
 alias prunebranches="$HOME/.onboarding_bin/prune-merged-in-branches.sh"
 
@@ -103,7 +102,7 @@ alias wpd="./bin/webpack-dev-server"
 
 # Personal
 alias personal="cd ~/$CURRENT_COMPANY/repos/personal"
-alias chatwithacb="cd ~/$CURRENT_COMPANY/repos/personal/chat-wit-hacb && $IDE_PATH ."
+alias chatwithacb="cd ~/$CURRENT_COMPANY/repos/personal/chat-with-acb && $IDE_PATH ."
 # material-skilltree
 alias skilltree="cd ~/$CURRENT_COMPANY/repos/personal/skilltree-ui && $IDE_PATH ."
 alias dotfiles="cd ~/$CURRENT_COMPANY/repos/development-team/dotfiles/ && $IDE_PATH ."
@@ -122,35 +121,40 @@ alias team="cd ~/$CURRENT_COMPANY/repos/development-team && $IDE_PATH ."
 alias teamtools="cd ~/$CURRENT_COMPANY/repos/development-team/team-tools-and-settings && $IDE_PATH ."
 alias teamonboarding="cd ~/$CURRENT_COMPANY/repos/development-team/onboarding/ && $IDE_PATH ."
 alias teamuitemplate="cd ~/$CURRENT_COMPANY/repos/development-team/template-nextjs-ui/ && $IDE_PATH ."
+alias uitemplate="cd ~/$CURRENT_COMPANY/repos/development-team/template-nextjs-ui/ && $IDE_PATH ."
 alias teamstandards="cd ~/$CURRENT_COMPANY/repos/development-team/code_standards/ && $IDE_PATH ."
 alias teammatrix="cd ~/$CURRENT_COMPANY/repos/digital-team/dungeons-and-developers-2nd-edition/ && $IDE_PATH ."
 alias teamworkflows="cd ~/$CURRENT_COMPANY/repos/digital-team/reusable_workflows && $IDE_PATH ."
 
-# Company Prototyping and Research
-
 # Company Digital Products
-alias doonesbury="cd ~/$CURRENT_COMPANY/repos/digital-products/doonesbury && $IDE_PATH ."
+alias uilucimanage="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Management.UI/ && $IDE_PATH ."
+alias uiluciinvoice="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.InvoicePortal.UI/ && $IDE_PATH ."
+alias uilucishopping="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Shopping.UI/ && $IDE_PATH ."
+alias digitalproducts="cd ~/$CURRENT_COMPANY/repos/digital-products"
+
+# Previous Company Digital Products
+alias doonesbury="cd ~/$CURRENT_COMPANY/repos/personal/doonesbury && $IDE_PATH ."
 alias rsdoonesbury="RAILS_ENV=development rails s -p 3002"
-alias gocomics="cd ~/$CURRENT_COMPANY/repos/digital-products/gocomics/ && $IDE_PATH ."
+alias gocomics="cd ~/$CURRENT_COMPANY/repos/personal/gocomics/ && $IDE_PATH ."
 alias rsgocomics="RAILS_ENV=development rails s -p 3001"
-alias storegocomics="cd ~/$CURRENT_COMPANY/repos/digital-products/gocomics-store/ && $IDE_PATH ."
+alias storegocomics="cd ~/$CURRENT_COMPANY/repos/personal/gocomics-store/ && $IDE_PATH ."
 alias storegocomics="RAILS_ENV=development rails s -p 3001"
-alias uigocomics="cd ~/$CURRENT_COMPANY/repos/digital-products/gocomics_ui/ && $IDE_PATH ."
-alias devuigocomics="cd ~/$CURRENT_COMPANY/repos/digital-products/gocomics_ui/ && $IDE_PATH . && yarn install && yarn dev"
-alias oldpuzzlesociety="cd ~/$CURRENT_COMPANY/repos/digital-products/puzzlesociety/ && $IDE_PATH ."
+alias uigocomics="cd ~/$CURRENT_COMPANY/repos/personal/gocomics_ui/ && $IDE_PATH ."
+alias devuigocomics="cd ~/$CURRENT_COMPANY/repos/personal/gocomics_ui/ && $IDE_PATH . && yarn install && yarn dev"
+alias oldpuzzlesociety="cd ~/$CURRENT_COMPANY/repos/personal/puzzlesociety/ && $IDE_PATH ."
 alias rsoldpuzzlesociety="RAILS_ENV=development rails s -p 3004"
-alias uipuzzlesociety="cd ~/$CURRENT_COMPANY/repos/digital-products/puzzle-society_ui/ && $IDE_PATH ."
-alias devuipuzzlesociety="cd ~/$CURRENT_COMPANY/repos/digital-products/puzzle-society_ui/ && $IDE_PATH . && yarn install && yarn dev"
-alias uiuexpress="cd ~/$CURRENT_COMPANY/repos/digital-products/uexpress_ui && $IDE_PATH ."
+alias uipuzzlesociety="cd ~/$CURRENT_COMPANY/repos/personal/puzzle-society_ui/ && $IDE_PATH ."
+alias devuipuzzlesociety="cd ~/$CURRENT_COMPANY/repos/personal/puzzle-society_ui/ && $IDE_PATH . && yarn install && yarn dev"
+alias uiuexpress="cd ~/$CURRENT_COMPANY/repos/personal/uexpress_ui && $IDE_PATH ."
 alias rsuiuexpress="yarn install && PORT=3006 yarn dev"
-alias syndication="cd ~/$CURRENT_COMPANY/repos/digital-products/syndication/ && $IDE_PATH && open http://localhost:3006"
+alias syndication="cd ~/$CURRENT_COMPANY/repos/personal/syndication/ && $IDE_PATH && open http://localhost:3006"
 alias rssyndication="RAILS_ENV=development rails s -p 3006"
-alias thefarside="cd ~/$CURRENT_COMPANY/repos/digital-products/the-far-side && $IDE_PATH ."
+alias thefarside="cd ~/$CURRENT_COMPANY/repos/personal/the-far-side && $IDE_PATH ."
 alias rsthefarside="RAILS_ENV=development rails s -p 3020"
-alias gcemail="cd ~/$CURRENT_COMPANY/repos/digital-products/gocomics_daily_pro_email && $IDE_PATH ."
-alias gamecrossword="cd ~/$CURRENT_COMPANY/repos/digital-products/crossword_game/ && $IDE_PATH . && docker run --rm -it -p 3000:3000 crossword-games"
+alias gcemail="cd ~/$CURRENT_COMPANY/repos/personal/gocomics_daily_pro_email && $IDE_PATH ."
+alias gamecrossword="cd ~/$CURRENT_COMPANY/repos/personal/crossword_game/ && $IDE_PATH . && docker run --rm -it -p 3000:3000 crossword-games"
 alias startgamecrossword="docker build -t crossword-game ."
-alias gamethematik="cd ~/$CURRENT_COMPANY/repos/digital-products/thematik_game/ && $IDE_PATH ."
+alias gamethematik="cd ~/$CURRENT_COMPANY/repos/personal/thematik_game/ && $IDE_PATH ."
 
 # Company Admins
 alias admincontent="cd ~/$CURRENT_COMPANY/repos/admins/content_admin && $IDE_PATH ."

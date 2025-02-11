@@ -1,26 +1,27 @@
+#!/usr/bin/env bash
+
 # DEBUGGING SCRIPTS
 
 # LOCAL
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export GPG_TTY=$(tty)
-export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
-export NVM_AUTO_USE=true
+
 # Next line is needed due to a bug with Warp.
-SPACESHIP_PROMPT_ASYNC="FALSE"
+# SPACESHIP_PROMPT_ASYNC="FALSE"
 
 # PATHING
 
 # Chat GPT Recommendation after prompting.
 # Homebrew path - Prioritize Homebrew binaries.
-export PATH="/opt/homebrew/bin:$PATH"
-
-# Your personal bin directory.
-export PATH="$HOME/bin:$PATH"
-
-# Legacy system-wide binaries.
-export PATH="/usr/local/bin:$PATH"
+# Determine the architecture and set the Homebrew path accordingly
+if [[ "$(uname -m)" == "arm64" ]]; then
+  # M1 Mac
+  export PATH="/opt/homebrew/bin:$PATH"
+else
+  # Intel Mac
+  export PATH="/usr/local/bin:$PATH"
+fi
 
 # The system paths are implicitly included, but can be specified if needed.
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
@@ -35,8 +36,8 @@ if command -v rbenv >/dev/null 2>&1; then
 fi
 
 # Path to your oh-my-z/opt/homebrew/binsh installation.
-export ZSH="$HOME/.oh-my-zsh"
 ZSH_DOTENV_FILE=$HOME/.envrc
+export ZSH="$HOME/.oh-my-zsh"
 
 source "$HOME/.envrc"
 source "$HOME/.theme.zsh"
@@ -105,12 +106,57 @@ COMPLETION_WAITING_DOTS="true"
 # see 'man strftime' for details.
 HIST_STAMPS="yyyy-mm-dd"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=$ZSH/custom
+# Load nvm automatically (optional)
+# source "$HOME/plugins-initialize.sh"
 
-# source $ZSH/oh-my-zsh.sh
+# ZSH PLUGIN: zsh-nvm
+# Variables needed before loading plugin.
+export NVM_COMPLETION=true
+export NVM_AUTO_USE=true
+export NVM_AUTOLOAD=true
+export NVM_LAZY_LOAD=true
+
+# Setup nvm autoloader before the call to oh-my-zsh.
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+# Docker-completions
+# https://github.com/chr-fritz/docker-completion.zsh
+
+# Docker-helpers
+# https://github.com/unixorn/docker-helpers.zsh
+
+# Final plugins declaration
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+  bundler
+  dotenv
+  extract
+  git
+  history
+  history-substring-search
+  zsh-nvm
+  macos
+  rake
+  ruby
+  rbenv
+  vscode
+  zsh-autosuggestions
+  zsh-completions
+  zsh-syntax-highlighting
+)
+
+echo "ZSH/PLUGINS: Loaded."
+
+# Load Oh My Zsh
+source $ZSH/oh-my-zsh.sh
 
 # source "$HOME/.m1-mysql-fixes.zsh"
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
+
+PATH=~/.console-ninja/.bin:$PATH
+# Added by Windsurf
+export PATH="/Users/andyb/.codeium/windsurf/bin:$PATH"
