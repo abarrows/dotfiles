@@ -40,7 +40,7 @@
     "description": "Used when searching for selected text, this command will REMOVE the previous occurrence from your selected text.",
     "key": "shift+cmd+d",
     "default": false,
-    "example": "If I wanted to find all references of the description key in this JSON array, I would first type cmd+f then type description and hit enter.  Then, if I select one too many cmd+d, I can use this command to subtract the last ocurrence.",
+    "example": "If I wanted to find all references of the description key in this JSON array, I would first type cmd+f then type description and hit enter.  Then, if I select one too many cmd+d, I can use this command to subtract the last occurrence.",
     "frequency": "Frequent",
     "when": "editorFocus && editorHasSelection"
   },
@@ -212,7 +212,7 @@
     "description": "Used to expand your selection in a smart way.  With each subsequent triggering of the shortcut, it will increase the selection to the current selections parent, then its parent, and so on.  NOTE: This uses the extension expand region and is much more reliable across languages.",
     "key": "cmd+e",
     "default": false,
-    "example": "Very useful for expanding in single clicks, everything within a tag, object, or function.  For instance, if you have a DIV soup and you want to make sure you kill the text and all the required divs.",
+    "example": "Very useful for expanding in single apostrophes, everything within a tag, object, or function.  For instance, if you have a DIV soup and you want to make sure you kill the text and all the required divs.",
     "frequency": "Frequent",
     "when": "editorTextFocus"
   },

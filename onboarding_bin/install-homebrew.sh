@@ -23,4 +23,4 @@ else
 fi
 
 # Optionally, set permissions back to the user if needed.
-# sudo chown -R $(whoami) $(brew --prefix)/*
+sudo chown -R $(whoami) $(brew --prefix)/*

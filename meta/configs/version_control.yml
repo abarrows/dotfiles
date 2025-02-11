@@ -13,6 +13,6 @@
       path: version-control/.git-template-directory/.gitignore
       relink: true
 
-- shell:
-    - description: '8. Globally Configuring Git based on environment variables...'
-      command: ./onboarding_bin/setup_git.sh
+# - shell:
+#     - description: '8. Globally Configuring Git based on environment variables...'
+#       command: ./onboarding_bin/setup_git.sh
