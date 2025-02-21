@@ -1,0 +1,41 @@
+# General
+.cache/
+.git/
+
+
+# GitHub Actions Workflows
+.github/
+
+# Helm
+deployments/**/templates/
+**/values.yaml
+
+# Docker
+docker-compose.yml
+
+# Node.js
+.next
+build/
+coverage/
+playwright-report/
+test-results/
+**.js.map
+**.bundle.js
+storybook-static
+src/helpers/utilities/tokens/_design_tokens.js
+
+# WordPress
+wp-content/
+
+# Games
+*Game/
+
+# Dotnet
+*Service/
+*.Library/
+*.Tests/
+*.WebAPI/
+*.sln
+*.csproj
+*.lutconfig
+.editorconfig

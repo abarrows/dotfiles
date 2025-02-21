@@ -1,4 +1,4 @@
-# Version Control
+---
 - shell:
     - echo '7. Setting up Version Control - Gitconfig and template repo...'
 - link:
@@ -12,7 +12,11 @@
     ~/.git-template-directory/.gitignore:
       path: version-control/.git-template-directory/.gitignore
       relink: true
-
-# - shell:
+    ~/.ssh:
+      force: true
+      path: engineering/security/.ssh/config
+      relink: true
+# Version Control
+# - shell: null
 #     - description: '8. Globally Configuring Git based on environment variables...'
 #       command: ./onboarding_bin/setup_git.sh

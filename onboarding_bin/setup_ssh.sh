@@ -18,8 +18,13 @@ eval "$(ssh-agent -s)"
 # Step 5. Check if ssh agent is already created.
 ~/.ssh/config
 
-# Step 6. Create file if it is not there.
-touch ~/.ssh/config
+# Example
+
+# Step 6. Create file if it is not there.  Use the
+# engineering/security/.ssh/config file as a template.
+# NOTE: The UseKeychain yes and AddKeysToAgent yes
+# are what vscode needs to save the ssh key to the keychain.
+edit ~/.ssh/config
 
 # Step 7. Add the following to that file
 # NOTE: Only add UseKeychain yes if using a passphrase

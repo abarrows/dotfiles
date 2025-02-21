@@ -44,8 +44,10 @@ brew install cask "gpg-suite" &&
 # Real name: John Doe
 # (Your human friendly name written out.)
 #
-# Email address: jdoe@domain.com
-# (NOTE: Use the github no-reply email address or your primary email address.)
+# ⚠️ IMPORTANT: For the email address, do NOT use any example email shown in command history!
+# Email address: your.github.email@domain.com
+# (Use your GitHub-provided no-reply email or your verified GitHub email address.
+# You can find your GitHub no-reply email at: https://github.com/settings/emails)
 #
 # Comment: Personal
 # (This will show up in parenthesis next to your name. Choose

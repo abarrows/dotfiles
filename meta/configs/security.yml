@@ -1,24 +1,23 @@
 ---
-# security - First, imports your sensitive env variables
-# into the session so your personalized information
-# is safely considered.
-# Things like gitconfig, file pathing, jira credentials
-# etc. use these variables.
-# Secondly, it makes the onboarding_bin
-# and your dotfiles executable.
 - shell:
-    - echo -e '5. Setting up Scripts and Security \n
-      Copying over personalized environment variables and bin scripts...'
-
-- shell:
-    - echo 'Setting permissions on the onboarding_bin...'
-    - chmod +x ./onboarding_bin/*
-
+    - echo -e '5. Setting up Scripts and Security'
+    - echo -e 'Copying over environment variables...'
+    # security - First, imports your sensitive env variables
+    # into the session so your personalized information
+    # is safely considered.
+    # Things like gitconfig, file pathing, jira credentials
+    # etc. use these variables.
+    # Secondly, it makes the onboarding_bin
+    # and your dotfiles executable.
+# - shell:
+# - echo 'Setting permissions on the onboarding_bin...'
+# - chmod +x ./onboarding_bin/*
+# - link:
+#     force: true
+#     path: ./onboarding_bin
+#     relink: true
 - link:
     ~/.envrc:
       force: true
       path: .envrc
-    ~/onboarding_bin:
-      force: true
       relink: true
-      path: ./onboarding_bin

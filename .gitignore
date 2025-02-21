@@ -37,6 +37,7 @@ ruby/.bundle/cache/*
 
 # # Version Control
 # .gitconfig
+*gpg_key.asc
 
 # logfiles and tempfiles
 /log/*
