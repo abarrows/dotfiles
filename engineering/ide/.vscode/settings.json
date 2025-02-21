@@ -147,7 +147,7 @@
   },
   "yaml.format.enable": true,
   "yaml.format.singleQuote": true,
-  "yaml.format.proseWrap": "preserve",
+  "yaml.format.proseWrap": "always",
   "yaml.format.printWidth": 80,
   "yaml.format.bracketSpacing": true,
   "accessibility.voice.keywordActivation": "chatInContext",
@@ -201,8 +201,8 @@
   "typescript.suggest.includeCompletionsForModuleExports": true,
   "vscode-yaml-sort.indent": 2,
   "vscode-yaml-sort.extensions": ["yaml", "yml"],
-  "editor.autoClosingQuotes": "always",
-  "editor.autoIndent": "full",
+  "editor.autoClosingQuotes": "languageDefined",
+  "editor.autoIndent": "advanced",
   "editor.autoSurround": "languageDefined",
   "atlascode.outputLevel": "debug",
   "autoimport.filesToScan": "**/*.{js,jsx,ts,tsx,css,scss}",
@@ -719,7 +719,7 @@
     "source.fixAll": "explicit"
   },
   "editor.pasteAs.preferences": ["uri.path.absolute", "text.updateImports"],
-  "editor.cursorBlinking": "smooth",
+  "editor.cursorBlinking": "expand",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorStyle": "line",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -1219,7 +1219,6 @@
   "diffEditor.maxComputationTime": 0,
   "dotenv.enableAutocloaking": false,
   "yaml.schemas": {
-    "https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json": "file:///Users/andyb/Retail-Success/repos/development-team/dotfiles/meta/configs/security.yml",
     "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.4.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   }
 }
