@@ -130,6 +130,8 @@ alias teamworkflows="cd ~/$CURRENT_COMPANY/repos/digital-team/reusable_workflows
 alias uilucimanage="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Management.UI/ && $IDE_PATH ."
 alias uiluciinvoice="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.InvoicePortal.UI/ && $IDE_PATH ."
 alias uilucishopping="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Shopping.UI/ && $IDE_PATH ."
+alias teampipelines="cd ~/$CURRENT_COMPANY/repos/development-team/Luci.Pipelines/ && $IDE_PATH ."
+alias teampipelinestemplates="cd ~/$CURRENT_COMPANY/repos/development-team/Luci.PipelineTemplates/ && $IDE_PATH ."
 alias digitalproducts="cd ~/$CURRENT_COMPANY/repos/digital-products"
 
 # Previous Company Digital Products

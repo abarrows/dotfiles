@@ -139,17 +139,19 @@
     },
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true
+  "yaml.format.singleQuote": false,
+  "yaml.format.proseWrap": "never",
+  "yaml.schemas": {
+    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.4.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
-  "yaml.format.enable": true,
-  "yaml.format.singleQuote": true,
-  "yaml.format.proseWrap": "always",
-  "yaml.format.printWidth": 80,
-  "yaml.format.bracketSpacing": true,
+  "yaml.schemaStore.enable": true,
+  "yaml.trace.server": "verbose",
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "accessibility.signals.terminalBell": {
+    "sound": "on"
+  },
   "accessibility.voice.keywordActivation": "chatInContext",
   "atlascode.bitbucket.enabled": false,
   "atlascode.enableHttpsTunnel": true,
@@ -676,6 +678,7 @@
     "VINDICIA",
     "Vqwwq",
     "Waldron",
+    "Wayroo",
     "WCAG",
     "webcomics",
     "webfont",
@@ -813,9 +816,7 @@
     ".env.*": "dotenv",
     ".env.example": "dotenv",
     ".zshrc": "shellscript",
-    ".env*": "dotenv",
-    ".yaml": "yaml",
-    ".yml": "yaml"
+    ".env*": "dotenv"
   },
   "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",
@@ -1217,8 +1218,5 @@
   "githubPullRequests.pushBranch": "always",
   "git.openRepositoryInParentFolders": "prompt",
   "diffEditor.maxComputationTime": 0,
-  "dotenv.enableAutocloaking": false,
-  "yaml.schemas": {
-    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.4.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
-  }
+  "dotenv.enableAutocloaking": false
 }
