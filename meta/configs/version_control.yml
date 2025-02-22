@@ -12,10 +12,9 @@
     ~/.git-template-directory/.gitignore:
       path: version-control/.git-template-directory/.gitignore
       relink: true
-    ~/.ssh:
-      force: true
-      path: engineering/security/.ssh/config
-      relink: true
+    # ~/.ssh/config:
+    #   path: engineering/security/.ssh/config
+    #   relink: true
 # Version Control
 # - shell: null
 #     - description: '8. Globally Configuring Git based on environment variables...'
