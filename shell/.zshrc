@@ -158,5 +158,6 @@ source $ZSH/oh-my-zsh.sh
 # source <(ng completion script)
 
 PATH=~/.console-ninja/.bin:$PATH
+
 # Added by Windsurf
 export PATH="/Users/andyb/.codeium/windsurf/bin:$PATH"

@@ -15,7 +15,7 @@ alias repos="cd ~/$CURRENT_COMPANY/repos/"
 
 # General Shell Operation
 alias ls="ls -al"
-alias cnpm="rm -rf node_modules && package-lock.json && npm install --cache-clean"
+alias cnpm="rm -rf node_modules && rm -rf package-lock.json && npm install --cache-clean"
 alias du="docker compose up --build"
 # alias dockerdestroy="docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi -f $(docker images -a -q) && docker builder prune -f && docker volume prune -f && docker system prune -f && docker networ
 # k prune -f"
@@ -42,6 +42,15 @@ alias gremove="git rm -f "
 alias gpush="git push origin --all"
 alias gitreset="git reset --hard HEAD"
 alias updatesubmodule="git pull --recurse-submodules && git submodule update --remote --recursive"
+
+# Node Commands
+alias nl="npm run lint"
+alias setup="npm i && npm run start"
+alias check="npm i & npm run lint & npm run test:update & npm run build && rm -rf build && echo 'All checks passed!  Get that PR up there!"
+alias nt="npm run test"
+alias ntu="npm run test:update"
+alias nb="npm run build"
+alias ns="npm run start"
 # alias gpull="\$updatesubmodule && git pull --all"
 alias removegit="rm -rf .git"
 alias prunebranches="$HOME/.onboarding_bin/prune-merged-in-branches.sh"
@@ -125,6 +134,7 @@ alias uitemplate="cd ~/$CURRENT_COMPANY/repos/development-team/template-nextjs-u
 alias teamstandards="cd ~/$CURRENT_COMPANY/repos/development-team/code_standards/ && $IDE_PATH ."
 alias teammatrix="cd ~/$CURRENT_COMPANY/repos/digital-team/dungeons-and-developers-2nd-edition/ && $IDE_PATH ."
 alias teamworkflows="cd ~/$CURRENT_COMPANY/repos/digital-team/reusable_workflows && $IDE_PATH ."
+alias uiemail="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.EmailTemplates && $IDE_PATH ."
 
 # Company Digital Products
 alias uilucimanage="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Management.UI/ && $IDE_PATH ."
@@ -133,6 +143,9 @@ alias uilucishopping="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Shopping
 alias teampipelines="cd ~/$CURRENT_COMPANY/repos/development-team/Luci.Pipelines/ && $IDE_PATH ."
 alias teampipelinestemplates="cd ~/$CURRENT_COMPANY/repos/development-team/Luci.PipelineTemplates/ && $IDE_PATH ."
 alias digitalproducts="cd ~/$CURRENT_COMPANY/repos/digital-products"
+# Execute the following commands sequentially, each opening a new warp terminal
+# tab: uilucimanage uilucishopping uiluciinvoice uiemail
+alias rsuis="open -na 'Warp' --args --new-tab -e 'zsh -c \"uilucimanage\"' & open -na 'Warp' --args --new-tab -e 'zsh -c \"uilucishopping\"' & open -na 'Warp' --args --new-tab -e 'zsh -c \"uiluciinvoice\"' & open -na 'Warp' --args --new-tab -e 'zsh -c \"uiemail\"'"
 
 # Previous Company Digital Products
 alias doonesbury="cd ~/$CURRENT_COMPANY/repos/personal/doonesbury && $IDE_PATH ."

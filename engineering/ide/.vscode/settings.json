@@ -142,7 +142,7 @@
   "yaml.format.singleQuote": false,
   "yaml.format.proseWrap": "never",
   "yaml.schemas": {
-    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.4.7/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.6.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
@@ -278,7 +278,8 @@
     "**/package-lock.json",
     "**/vscode-extension/**",
     ".vscode",
-    "coverage/**"
+    "coverage/**",
+    "**/**/swagger.json"
   ],
   "cSpell.language": "en,en-GB",
   "cSpell.maxDuplicateProblems": 2,
@@ -291,6 +292,7 @@
     "Adserver",
     "adslot",
     "adsystem",
+    "Aejay",
     "ajaxloader",
     "alfred",
     "alfredpreferences",
@@ -333,6 +335,7 @@
     "birthdate",
     "bitbucket",
     "Bressler",
+    "Briaan",
     "browser",
     "browserslist",
     "browserslistrc",
@@ -374,6 +377,7 @@
     "cookieconsent",
     "cookiefy",
     "COPA",
+    "copycssmjmlwrappers",
     "corejs",
     "cropperjs",
     "crossorigin",
@@ -494,11 +498,13 @@
     "Macbook",
     "Macromedia",
     "Macromedia's",
+    "makecssmjml",
     "manuelpuyol",
     "Matic",
     "Meel",
     "Metrix",
     "mixins",
+    "mjml",
     "mkshrc",
     "mockdate",
     "MONTHNAMES",
@@ -557,6 +563,7 @@
     "postbuild",
     "postload",
     "postsetup",
+    "PPCP",
     "Prebid",
     "precommit",
     "precompilation",
@@ -594,6 +601,7 @@
     "rellax",
     "repo",
     "rgba",
+    "rifically",
     "roboto",
     "rootonym",
     "roxot",
@@ -661,6 +669,7 @@
     "trivago",
     "truetype",
     "ttab",
+    "Tveg",
     "tynt",
     "ubadge",
     "uclick",
@@ -807,6 +816,7 @@
   "extensions.closeExtensionDetailsOnViewChange": true,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
+    "*ci.yaml": "azure-pipelines",
     "*.base": "ruby",
     "*.devops": "ruby",
     "*.js.erb": "js",
@@ -866,7 +876,7 @@
   "github.copilot.chat.commitMessageGeneration.instructions": [
     { "file": ".github/copilot-instructions-commit-message.md" }
   ],
-  "github.copilot.editor.enableAutoCompletions": true,
+  "github.copilot.enableCodeActions": true,
   "github.copilot.enable": {
     "*": true,
     "markdown": true,
@@ -1172,7 +1182,6 @@
     "editorBracketHighlight.foreground6": "#FFB86C",
     "editorBracketHighlight.unexpectedBracket.foreground": "#FF2C6D"
   },
-  "workbench.editor.enablePreview": false,
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.openPositioning": "last",
   "workbench.editor.revealIfOpen": true,
@@ -1209,14 +1218,15 @@
   "gitlens.advanced.fileHistoryShowAllBranches": true,
   "terminal.integrated.fontLigatures": true,
   "diffEditor.renderSideBySide": true,
-  "atlascode.jira.lastCreateSiteAndProject": {
-    "siteId": "31a389db-299e-4351-a43b-20f6a9aa378c",
-    "projectKey": "AUT"
-  },
   "application.shellEnvironmentResolutionTimeout": 20,
   "geminicodeassist.project": "retail-success-449215",
   "githubPullRequests.pushBranch": "always",
   "git.openRepositoryInParentFolders": "prompt",
   "diffEditor.maxComputationTime": 0,
-  "dotenv.enableAutocloaking": false
+  "dotenv.enableAutocloaking": false,
+  "cSpell.checkVSCodeSystemFiles": true,
+  "cSpell.allowCompoundWords": true,
+  "cSpell.logLevel": "Warning",
+  "workbench.editor.enablePreview": false,
+  "github.copilot.nextEditSuggestions.enabled": true
 }
