@@ -111,6 +111,7 @@ alias wpd="./bin/webpack-dev-server"
 
 # Personal
 alias personal="cd ~/$CURRENT_COMPANY/repos/personal"
+alias ai-prompts="cd ~/$CURRENT_COMPANY/repos/personal/fabric && $IDE_PATH ."
 alias chatwithacb="cd ~/$CURRENT_COMPANY/repos/personal/chat-with-acb && $IDE_PATH ."
 # material-skilltree
 alias skilltree="cd ~/$CURRENT_COMPANY/repos/personal/skilltree-ui && $IDE_PATH ."
@@ -134,6 +135,7 @@ alias uitemplate="cd ~/$CURRENT_COMPANY/repos/development-team/template-nextjs-u
 alias teamstandards="cd ~/$CURRENT_COMPANY/repos/development-team/code_standards/ && $IDE_PATH ."
 alias teammatrix="cd ~/$CURRENT_COMPANY/repos/digital-team/dungeons-and-developers-2nd-edition/ && $IDE_PATH ."
 alias teamworkflows="cd ~/$CURRENT_COMPANY/repos/digital-team/reusable_workflows && $IDE_PATH ."
+alias uilucisupport="cd ~/$CURRENT_COMPANY/repos/digital-products/RetailSuccess.Support && $IDE_PATH ."
 alias uiemail="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.EmailTemplates && $IDE_PATH ."
 
 # Company Digital Products
