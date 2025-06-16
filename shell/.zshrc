@@ -109,6 +109,11 @@ HIST_STAMPS="yyyy-mm-dd"
 # Load nvm automatically (optional)
 # source "$HOME/plugins-initialize.sh"
 
+# Golang environment variables
+export GOROOT=$(brew --prefix go)/libexec
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
+
 # ZSH PLUGIN: zsh-nvm
 # Variables needed before loading plugin.
 export NVM_COMPLETION=true
@@ -161,3 +166,8 @@ PATH=~/.console-ninja/.bin:$PATH
 
 # Added by Windsurf
 export PATH="/Users/andyb/.codeium/windsurf/bin:$PATH"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/andyb/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
