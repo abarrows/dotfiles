@@ -142,7 +142,7 @@
   "yaml.format.singleQuote": false,
   "yaml.format.proseWrap": "never",
   "yaml.schemas": {
-    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.6.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///home/codespace/.vscode-remote/extensions/atlassian.atlascode-3.8.2/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
@@ -156,7 +156,6 @@
   "atlascode.bitbucket.enabled": false,
   "atlascode.enableHttpsTunnel": true,
   "atlascode.helpExplorerEnabled": false,
-  "atlascode.jira.enabled": true,
   "atlascode.jira.explorer.assignedIssueJql": "assignee=currentUser() and resolution = Unresolved",
   "atlascode.jira.explorer.enabled": true,
   "atlascode.jira.explorer.fetchAllQueryResults": true,

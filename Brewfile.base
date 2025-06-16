@@ -1,6 +1,7 @@
 cask_args appdir: '/Applications' # rubocop:disable Naming/FileName
 tap 'homebrew/bundle'
 tap 'homebrew/services'
+brew
 brew 'direnv'        # REQUIRED - BASE/ROR/NODE/
 brew 'dotenv-linter' # REQUIRED - BASE/ROR/NODE/
 brew 'freetype'      # REQUIRED - BASE/ROR/NODE CL
@@ -36,6 +37,7 @@ cask 'appcleaner' # REQUIRED - utility application for removing Mac OSX programs
 # cask "cyberduck" # RECOMMENDED - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP
 # transfers
 # cask "browserstacklocal" # OPTIONAL - Used for local testing of browsers
+brew 'claude' # RECOMMENDED - AI Code plan and executor
 cask 'cursor' # EXPERIMENTAL - New AI focused competitor to VS Code
 cask 'disk-drill' # RECOMMENDED - Duplicate file finder and storage visualizer.
 cask 'docker'     # REQUIRED - Department approved containerized environment tools
