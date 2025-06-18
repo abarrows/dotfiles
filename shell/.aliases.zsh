@@ -36,6 +36,7 @@ alias edithosts="sudo open -a Visual\ Studio\ Code.app /etc/hosts"
 # Version Control
 alias gs="git status"
 alias glog="git log --pretty=format:'%h was %an, %ar, message: %s'"
+alias gpatch="~/Retail-Success/repos/development-team/dotfiles/onboarding_bin/patch-branch.sh"
 alias gadd="git add ."
 alias gaddu="git add -u"
 alias gremove="git rm -f "
@@ -81,6 +82,8 @@ alias startpg="postgres -D /usr/local/var/postgres"
 
 # PHP
 alias checkphp="php -i"
+
+# Python
 
 # Ruby
 # Use gem shutup for killing persistent rails servers
@@ -131,12 +134,13 @@ alias team="cd ~/$CURRENT_COMPANY/repos/development-team && $IDE_PATH ."
 alias teamtools="cd ~/$CURRENT_COMPANY/repos/development-team/team-tools-and-settings && $IDE_PATH ."
 alias teamonboarding="cd ~/$CURRENT_COMPANY/repos/development-team/onboarding/ && $IDE_PATH ."
 alias teamuitemplate="cd ~/$CURRENT_COMPANY/repos/development-team/template-nextjs-ui/ && $IDE_PATH ."
-alias uitemplate="cd ~/$CURRENT_COMPANY/repos/development-team/template-nextjs-ui/ && $IDE_PATH ."
+alias uitemplate="cd ~/$CURRENT_COMPANY/repos/personal/template-nextjs-ui/ && $IDE_PATH ."
 alias teamstandards="cd ~/$CURRENT_COMPANY/repos/development-team/code_standards/ && $IDE_PATH ."
 alias teammatrix="cd ~/$CURRENT_COMPANY/repos/digital-team/dungeons-and-developers-2nd-edition/ && $IDE_PATH ."
 alias teamworkflows="cd ~/$CURRENT_COMPANY/repos/digital-team/reusable_workflows && $IDE_PATH ."
 alias uilucisupport="cd ~/$CURRENT_COMPANY/repos/digital-products/RetailSuccess.Support && $IDE_PATH ."
 alias uiemail="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.EmailTemplates && $IDE_PATH ."
+alias apimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Luci.Management.Api && $IDE_PATH ."
 
 # Company Digital Products
 alias uilucimanage="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Management.UI/ && $IDE_PATH ."

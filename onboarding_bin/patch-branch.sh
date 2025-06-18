@@ -1,4 +1,7 @@
 #!/bin/bash
+#description: This shell script takes a single parameter and creates a new branch/worktree, applies your changes, adds them so you can quickly commit and raise a pr.
+
+# Below is the script to execute:
 
 set -e
 
@@ -10,37 +13,49 @@ if [ -z "$BRANCH_NAME" ]; then
 fi
 
 # Detect clipboard tool
+
 if command -v pbpaste &>/dev/null; then
   CLIP_CMD="pbpaste"
 elif command -v xclip &>/dev/null; then
   CLIP_CMD="xclip -selection clipboard -o"
+elif [ -z "$CLIP_CMD" ]; then
+  echo "❌ Clipboard cannot be empty"
+  exit 1
 else
   echo "❌ Clipboard tool not found (requires pbpaste or xclip)"
   exit 1
 fi
 
+# AI is to examine the diff changes and generate a summary to be used for the commit message.
+
 # Ensure WindSurf exists
+
 if ! command -v windsurf &>/dev/null; then
   echo "❌ WindSurf not found in PATH"
   exit 1
 fi
 
 # Set worktree path predictably based on branch name
+
 WORKTREE_DIR="$(git rev-parse --show-toplevel)/.git-worktrees/$BRANCH_NAME"
 
 # Fetch latest from origin
-echo "📦 Fetching origin/develop..."
-git fetch origin develop
+default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@' || git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)
+echo "$default_branch"
+echo "📦 Fetching origin/$default_branch..."
+git fetch origin "$default_branch"
 
 # Create worktree if it doesn't exist already
+
 if [ -d "$WORKTREE_DIR" ]; then
-  echo "♻️  Reusing existing worktree at $WORKTREE_DIR"
+  echo "♻️ Reusing existing worktree at $WORKTREE_DIR"
 else
   echo "🧪 Creating worktree '$BRANCH_NAME' at $WORKTREE_DIR"
-  git worktree add --detach "$WORKTREE_DIR" origin/develop
+  git worktree add --detach "$WORKTREE_DIR" origin/"$default_branch"
 fi
 
 # Move into the worktree
+
 pushd "$WORKTREE_DIR" >/dev/null
 
 echo "🌿 Checking for existing branch: $BRANCH_NAME"

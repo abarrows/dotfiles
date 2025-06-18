@@ -142,7 +142,7 @@
   "yaml.format.singleQuote": false,
   "yaml.format.proseWrap": "never",
   "yaml.schemas": {
-    "file:///home/codespace/.vscode-remote/extensions/atlassian.atlascode-3.8.2/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.8.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
@@ -1227,5 +1227,8 @@
   "cSpell.allowCompoundWords": true,
   "cSpell.logLevel": "Warning",
   "workbench.editor.enablePreview": false,
-  "github.copilot.nextEditSuggestions.enabled": true
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "containers.images.sortBy": "CreatedTime",
+  "containers.composeCommand": "docker compose",
+  "docker.extension.enableComposeLanguageServer": false
 }
