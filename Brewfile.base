@@ -64,7 +64,8 @@ cask 'karabiner-elements' # RECOMMENDED - Useful for remapping keys on Mac OSX.
 # cask 'lm-studio'          # RECOMMENDED - Private local Large Language Model.
 # IE: F keys require fn + key on one keyboard and not the other.
 cask 'microsoft-edge'          # REQUIRED - Corporate approved browser for using CoPilot and browser testing.
-# cask 'microsoft-teams' # REQUIRED - Department approved communication tool
+cask 'microsoft-teams' # REQUIRED - Department approved communication tool
+cask 'microsoft-outlook'         # REQUIRED - Department approved email client
 cask 'mysqlworkbench'          # REQUIRED - Front-end team approved database GUI/tool
 cask 'onedrive'                # REQUIRED - Department approved cloud storage for UXD and Design
 cask 'postman'                 # REQUIRED - Department approved API testing GUI/tool

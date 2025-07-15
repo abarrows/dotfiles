@@ -142,7 +142,7 @@
   "yaml.format.singleQuote": false,
   "yaml.format.proseWrap": "never",
   "yaml.schemas": {
-    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.8.3/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
@@ -719,7 +719,6 @@
   "diffEditor.experimental.showMoves": false,
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.useInlineViewWhenSpaceIsLimited": false,
-  "docker.composeCommand": "docker compose",
   "docker.images.sortBy": "CreatedTime",
   "dotfiles.installCommand": "install",
   "editor.accessibilitySupport": "off",
@@ -894,6 +893,10 @@
   "githubPullRequests.pullBranch": "never",
   "githubPullRequests.queries": [
     {
+      "label": "Local Pull Request Branches",
+      "query": "default"
+    },
+    {
       "label": "Waiting For My Review",
       "query": "repo:${owner}/${repository} is:open review-requested:${user}"
     },
@@ -904,6 +907,10 @@
     {
       "label": "Created By Me",
       "query": "repo:${owner}/${repository} is:open author:${user}"
+    },
+    {
+      "label": "All Open",
+      "query": "default"
     }
   ],
   "gitlens.advanced.messages": {
