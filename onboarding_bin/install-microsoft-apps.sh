@@ -30,8 +30,7 @@ case "$(uname -s)" in
         echo "This script only supports macOS and Windows."
         exit 1
         ;;
-esacd
-
+esac
 echo "================================================="
 
 # Function to install and use Homebrew (macOS)
