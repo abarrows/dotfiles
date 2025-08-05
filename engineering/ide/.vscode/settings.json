@@ -142,7 +142,7 @@
   "yaml.format.singleQuote": false,
   "yaml.format.proseWrap": "never",
   "yaml.schemas": {
-    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.8.5/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.8.8/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
@@ -717,7 +717,7 @@
   "dev.containers.logLevel": "trace",
   "diffEditor.codeLens": true,
   "diffEditor.experimental.showMoves": false,
-  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.useInlineViewWhenSpaceIsLimited": false,
   "docker.images.sortBy": "CreatedTime",
   "dotfiles.installCommand": "install",
@@ -1237,5 +1237,7 @@
   "github.copilot.nextEditSuggestions.enabled": true,
   "containers.images.sortBy": "CreatedTime",
   "containers.composeCommand": "docker compose",
-  "docker.extension.enableComposeLanguageServer": false
+  "docker.extension.enableComposeLanguageServer": false,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1"
 }

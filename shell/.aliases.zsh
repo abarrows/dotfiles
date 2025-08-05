@@ -140,7 +140,7 @@ alias teammatrix="cd ~/$CURRENT_COMPANY/repos/digital-team/dungeons-and-develope
 alias teamworkflows="cd ~/$CURRENT_COMPANY/repos/digital-team/reusable_workflows && $IDE_PATH ."
 alias uilucisupport="cd ~/$CURRENT_COMPANY/repos/digital-products/RetailSuccess.Support && $IDE_PATH ."
 alias uiemail="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.EmailTemplates && $IDE_PATH ."
-alias apimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Luci.Management.Api && $IDE_PATH ."
+alias apimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Management.Api && $IDE_PATH ."
 
 # Company Digital Products
 alias uilucimanage="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Management.UI/ && $IDE_PATH ."
