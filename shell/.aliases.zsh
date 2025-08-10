@@ -9,7 +9,7 @@ alias dotfilesinstall="dotfiles && dotfiles/install"
 alias desktop="cd ~/Desktop"
 alias apps="cd /Applications"
 alias code="$IDE_PATH ."
-alias code-insiders="open . -a 'Visual Studio Code - Insiders'"
+alias vscode="open . -a 'Visual Studio Code'"
 alias downloads="cd ~/Downloads"
 alias repos="cd ~/$CURRENT_COMPANY/repos/"
 
@@ -139,6 +139,7 @@ alias teamstandards="cd ~/$CURRENT_COMPANY/repos/development-team/code_standards
 alias teammatrix="cd ~/$CURRENT_COMPANY/repos/digital-team/dungeons-and-developers-2nd-edition/ && $IDE_PATH ."
 alias teamworkflows="cd ~/$CURRENT_COMPANY/repos/digital-team/reusable_workflows && $IDE_PATH ."
 alias uilucisupport="cd ~/$CURRENT_COMPANY/repos/digital-products/RetailSuccess.Support && $IDE_PATH ."
+alias rsgithub="cd ~/$CURRENT_COMPANY/repos/development-team/.github && $IDE_PATH ."
 alias uiemail="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.EmailTemplates && $IDE_PATH ."
 alias apimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Management.Api && $IDE_PATH ."
 
