@@ -38,6 +38,7 @@ cask 'appcleaner' # REQUIRED - utility application for removing Mac OSX programs
 # transfers
 # cask "browserstacklocal" # OPTIONAL - Used for local testing of browsers
 brew 'claude' # RECOMMENDED - AI Code plan and executor
+brew 'gemini-cli' # RECOMMENDED - Google Gemini AI CLI tool
 cask 'cursor' # EXPERIMENTAL - New AI focused competitor to VS Code
 cask 'disk-drill' # RECOMMENDED - Duplicate file finder and storage visualizer.
 cask 'docker'     # REQUIRED - Department approved containerized environment tools
