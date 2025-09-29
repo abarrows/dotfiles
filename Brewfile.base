@@ -1,3 +1,6 @@
+# rubocop:disable Naming/FileName
+# frozen_string_literal: true
+
 cask_args appdir: '/Applications' # rubocop:disable Naming/FileName
 tap 'homebrew/bundle'
 tap 'homebrew/services'
@@ -22,7 +25,7 @@ brew 'pipx' # RECOMMENDED Used for installing Python packages.
 brew 'postgresql@14' # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
 # brew "redis" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Primary Caching Dependency for Back-end Software Engineers
 brew 'shellcheck' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Linter and auto-fixing
-brew 'shfmt'    # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Formatter
+brew 'shfmt' # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Formatter
 brew 'starship'   # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended platform agnostic shell prompt.
 brew 'wget'       # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON General Request Utility for Command Line
 brew 'yamllint'   # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Linting and auto-fixing tool for yaml
@@ -62,12 +65,12 @@ cask 'inkscape' # RECOMMENDED - Front-end team approved vector graphics editor
 # cask "microsoft-office" || true # REQUIRED - Department approved productivity
 # suite
 cask 'karabiner-elements' # RECOMMENDED - Useful for remapping keys on Mac OSX.
-cask 'lm-studio'          # RECOMMENDED - Private local Large Language Model.
+# cask 'lm-studio'          # RECOMMENDED - Private local Large Language Model.
 # IE: F keys require fn + key on one keyboard and not the other.
-cask 'microsoft-edge'          # REQUIRED - Corporate approved browser for using CoPilot and browser testing.
+cask 'microsoft-edge'  # REQUIRED - Corporate approved browser for using CoPilot and browser testing.
 cask 'microsoft-teams' # REQUIRED - Department approved communication tool
-cask 'microsoft-outlook'         # REQUIRED - Department approved email client
-cask 'mysqlworkbench'          # REQUIRED - Front-end team approved database GUI/tool
+cask 'microsoft-outlook' # REQUIRED - Department approved email client
+cask 'mysqlworkbench' # REQUIRED - Front-end team approved database GUI/tool
 cask 'onedrive'                # REQUIRED - Department approved cloud storage for UXD and Design
 cask 'postman'                 # REQUIRED - Department approved API testing GUI/tool
 # cask 'the-unarchiver' # RECOMMENDED - TAR/ZIP file compression tool
