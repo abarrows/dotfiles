@@ -62,7 +62,7 @@ cask 'inkscape' # RECOMMENDED - Front-end team approved vector graphics editor
 # cask "microsoft-office" || true # REQUIRED - Department approved productivity
 # suite
 cask 'karabiner-elements' # RECOMMENDED - Useful for remapping keys on Mac OSX.
-# cask 'lm-studio'          # RECOMMENDED - Private local Large Language Model.
+cask 'lm-studio'          # RECOMMENDED - Private local Large Language Model.
 # IE: F keys require fn + key on one keyboard and not the other.
 cask 'microsoft-edge'          # REQUIRED - Corporate approved browser for using CoPilot and browser testing.
 cask 'microsoft-teams' # REQUIRED - Department approved communication tool
