@@ -4,7 +4,9 @@ tap 'homebrew/cask-fonts'
 tap 'homebrew/services'
 brew "coreutils" # REQUIRED - ROR/DEVOPS Required to build ruby containers and new ruby version binaries.
 brew "cmake" # RECOMMENDED - ROR/DEVOPS
-# brew 'imagemagick' # RECOMMENDED - ROR Image manipulation utility for web # applications (Currently has problems as of 2022.03.24)
+# brew 'imagemagick' # RECOMMENDED - ROR Image manipulation utility for web #
+# applications
+# (Currently has problems as of 2022.03.24)
 brew 'libyaml' # RECOMMENDED - ROR/DEVOPS Compiled Dependency for web applications with Ruby on Rails
 brew 'memcached' # RECOMMENDED - ROR Performance Caching library for Ruby on Rails
 # brew "mysql", restart_service: true # REQUIRED - ROR/DEVOPS/PYTHON/PG Database

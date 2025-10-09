@@ -4,7 +4,6 @@
 cask_args appdir: '/Applications' # rubocop:disable Naming/FileName
 tap 'homebrew/bundle'
 tap 'homebrew/services'
-brew
 brew 'direnv'        # REQUIRED - BASE/ROR/NODE/
 brew 'dotenv-linter' # REQUIRED - BASE/ROR/NODE/
 brew 'freetype'      # REQUIRED - BASE/ROR/NODE CL
@@ -85,6 +84,6 @@ cask 'powershell'    # RECOMMENDED - DEVOPS Powershell for managing Windows
 cask 'spotify'       # RECOMMENDED - Music Service
 cask 'vlc'           # RECOMMENDED - Video format conversion utility
 cask 'warp'          # RECOMMENDED - Team preferred command prompt for Mac OSX
-cask 'windsurf'      # RECOMMENDED - Alternative to vs code
-cask 'zoom'          # REQUIRED - Department approved video chat and calls utility
+cask 'windsurf' # RECOMMENDED - Alternative to vs code
+cask 'zoom' # REQUIRED - Department approved video chat and calls utility
 cask '1password-cli' # RECOMMENDED - Useful for integrating with alfred and vaults.

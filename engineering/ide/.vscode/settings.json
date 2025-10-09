@@ -142,7 +142,7 @@
   "yaml.format.singleQuote": false,
   "yaml.format.proseWrap": "never",
   "yaml.schemas": {
-    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.8.18/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    "file:///Users/andyb/.vscode/extensions/atlassian.atlascode-3.8.20/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
   },
   "yaml.schemaStore.enable": true,
   "yaml.trace.server": "verbose",
@@ -1237,8 +1237,9 @@
   "containers.images.sortBy": "CreatedTime",
   "containers.composeCommand": "docker compose",
   "docker.extension.enableComposeLanguageServer": false,
-  "gitlens.ai.model": "vscode",
+  "gitlens.ai.model": "gitkraken",
   "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "gitlens.ai.gitkraken.model": "gemini:gemini-2.0-flash",
   "[dockercompose]": {
     "editor.insertSpaces": true,
     "editor.tabSize": 2,
