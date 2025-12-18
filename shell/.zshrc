@@ -164,6 +164,9 @@ source $ZSH/oh-my-zsh.sh
 
 PATH=~/.console-ninja/.bin:$PATH
 
+# Increase file descriptor limit for development tools
+ulimit -n 10240
+
 # Added by Windsurf
 export PATH="/Users/andyb/.codeium/windsurf/bin:$PATH"
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
