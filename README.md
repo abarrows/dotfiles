@@ -8,16 +8,15 @@ tech stack that you will be working in. By the end of running our base profile
 and the tech stack of your choice, the new engineer should have almost everything required
 to optimally work on any UI application within an ecosystem of products and services.
 
-
-
 ## Table of Contents
 
 - [Team Onboarding Dotfiles and Tooling](#team-onboarding-dotfiles-and-tooling)
   - [Table of Contents](#table-of-contents)
   - [What IS included?](#what-is-included)
-    - [Initialize](#initialize)
-    - [Mac Preferences and Setup](#mac-preferences-and-setup)
-    - [Homebrew\_base - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
+  - [Pre-Onboarding](#pre-onboarding)
+      - [Initialize](#initialize)
+      - [Mac Preferences and Setup](#mac-preferences-and-setup)
+      - [Homebrew\_base - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
     - [Software Engineering - General](#software-engineering---general)
       - [Git - Team configured version control](#git---team-configured-version-control)
       - [Shell - Extended and fine-tuned command line tools](#shell---extended-and-fine-tuned-command-line-tools)
@@ -45,13 +44,15 @@ This dotfiles repo uses dotbot, a popular framework for organizing dotfiles. Wit
 2. **profiles/** - Each profile is a simply file that includes certain configurations, offering flexibility out of the box to create your own unique profile of dotfiles. Common use cases for this would be a personal and professional machine.
 
 ## Pre-Onboarding
+
 With a new machine, there are a few things that need to be ran manually (for now).
-1. X-Code Tools - Run the command: ```sudo xcodebuild -license accept```
-2. Homebrew Installation - ```bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &&
- brew install git && brew install gh```
-3. Verify your user has permissions over the homebrew and related directories.  For Non-M1 Macs use: ```sudo chown -R $(whoami) /usr/local/*```
-4. Authenticate with Github CLI by following the prompts after executing - ```gh auth login```
-5. Create directory for this repo using this script found here - ```./onboarding_bin/setup_```
+
+1. X-Code Tools - Run the command: `sudo xcodebuild -license accept`
+2. Homebrew Installation - `bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &&
+brew install git && brew install gh`
+3. Verify your user has permissions over the homebrew and related directories. For Non-M1 Macs use: `sudo chown -R $(whoami) /usr/local/*`
+4. Authenticate with Github CLI by following the prompts after executing - `gh auth login`
+5. Create directory for this repo using this script found here - `./onboarding_bin/setup_`
 
 #### Initialize
 
