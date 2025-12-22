@@ -77,7 +77,6 @@ cask 'dotnet-sdk' # REQUIRED - DEVOPS Microsoft .NET Core SDK
 cask 'visual-studio-code' || true # REQUIRED -  Digital Technology approved IDE for software engineering
 # cask "katalon-studio" # RECOMMENDED -  Front-end approved browser automation GUI/tool
 # cask "mamp" # RECOMMENDED - Front-end team approved server environment tool for wordpress and general web development
-cask 'messenger' # RECOMMENDED - personal messenger platform
 # cask 'slack' # OPTIONAL - Department approved communication tool for specific
 # vendors like sourcepoint
 cask 'powershell'    # RECOMMENDED - DEVOPS Powershell for managing Windows
