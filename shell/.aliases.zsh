@@ -138,6 +138,7 @@ alias uitemplate="cd ~/$CURRENT_COMPANY/repos/development-team/template-nextjs-u
 alias teamstandards="cd ~/$CURRENT_COMPANY/repos/development-team/code_standards/ && $IDE_PATH ."
 alias teammatrix="cd ~/$CURRENT_COMPANY/repos/digital-team/dungeons-and-developers-2nd-edition/ && $IDE_PATH ."
 alias teamworkflows="cd ~/$CURRENT_COMPANY/repos/digital-team/reusable_workflows && $IDE_PATH ."
+alias appluciandroid="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Android && $IDE_PATH ."
 alias uilucisupport="cd ~/$CURRENT_COMPANY/repos/digital-products/RetailSuccess.Support && $IDE_PATH ."
 alias rsgithub="cd ~/$CURRENT_COMPANY/repos/development-team/.github && $IDE_PATH ."
 alias uiemail="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.EmailTemplates && $IDE_PATH ."
