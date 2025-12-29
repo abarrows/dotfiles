@@ -100,6 +100,7 @@ alias sphinxindex="rake ts:index"
 alias sphinxrebuild="rake ts:rebuild"
 alias sphinx="rake ts:index && rake ts:rebuild"
 alias gemglobal="rbenv @global do gem install $1"
+alias commit="git add . && git commit -m $1"
 
 # Rails
 alias rclear="rake assets:clean && rake tmp:clear"
