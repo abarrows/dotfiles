@@ -39,13 +39,14 @@ cask 'appcleaner' # REQUIRED - utility application for removing Mac OSX programs
 # cask "cyberduck" # RECOMMENDED - BASE/ROR/NODE/DEVOPS GUI for FTP/SFTP
 # transfers
 # cask "browserstacklocal" # OPTIONAL - Used for local testing of browsers
-brew 'claude' # RECOMMENDED - AI Code plan and executor
+brew 'claudekit' # RECOMMENDED - AI Code plan and executor
 brew 'gemini-cli' # RECOMMENDED - Google Gemini AI CLI tool
 cask 'cursor' # EXPERIMENTAL - New AI focused competitor to VS Code
 cask 'disk-drill' # RECOMMENDED - Duplicate file finder and storage visualizer.
 cask 'docker'     # REQUIRED - Department approved containerized environment tools
 cask 'dropbox'    # OPTIONAL - Department approved cloud storage for UXD and Design
 
+cask 'dotnet-sdk' # REQUIRED - DEVOPS Microsoft .NET Core SDK
 cask 'expressvpn'      # REQUIRED - Department approved VPN for testing geo location
 cask 'firefox' || true # REQUIRED - Front-end team approved browser for our viewing our applications
 # NOTE: These come preinstalled, uncheck if you have done a factory reset.
@@ -59,7 +60,8 @@ cask 'windsurf'                 # RECOMMENDED - General AI Chatbot
 # cask 'google-chrome'            # REQUIRED -  Department approved primary browser
 cask 'google-drive'             # OPTIONAL - Recommended backup utility for use with google drive
 cask 'font-noto-color-emoji'    # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Emoji font for command line
-# cask "iterm2" # OPTIONAL - Front-end team approved command line tool for Mac OSX
+# cask "iterm2" # OPTIONAL - Front-end team approved command line tool for Mac
+# OSX
 cask 'inkscape' # RECOMMENDED - Front-end team approved vector graphics editor
 # cask "microsoft-office" || true # REQUIRED - Department approved productivity
 # suite
@@ -73,7 +75,7 @@ cask 'mysqlworkbench' # REQUIRED - Front-end team approved database GUI/tool
 cask 'onedrive'                # REQUIRED - Department approved cloud storage for UXD and Design
 cask 'postman'                 # REQUIRED - Department approved API testing GUI/tool
 # cask 'the-unarchiver' # RECOMMENDED - TAR/ZIP file compression tool
-cask 'dotnet-sdk' # REQUIRED - DEVOPS Microsoft .NET Core SDK
+cask 'raycast' # OPTIONAL - Task launcher application for Mac OSX
 cask 'visual-studio-code' || true # REQUIRED -  Digital Technology approved IDE for software engineering
 # cask "katalon-studio" # RECOMMENDED -  Front-end approved browser automation GUI/tool
 # cask "mamp" # RECOMMENDED - Front-end team approved server environment tool for wordpress and general web development
