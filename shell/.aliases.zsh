@@ -144,6 +144,7 @@ alias uilucisupport="cd ~/$CURRENT_COMPANY/repos/digital-products/RetailSuccess.
 alias rsgithub="cd ~/$CURRENT_COMPANY/repos/development-team/.github && $IDE_PATH ."
 alias uiemail="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.EmailTemplates && $IDE_PATH ."
 alias apimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Management.Api && $IDE_PATH ."
+alias servicelucimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Management.Api && $IDE_PATH ."
 
 # Company Digital Products
 alias uilucimanage="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Management.UI/ && $IDE_PATH ."
@@ -151,6 +152,7 @@ alias uiluciinvoice="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.InvoicePo
 alias uilucishopping="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Shopping.UI/ && $IDE_PATH ."
 alias teampipelines="cd ~/$CURRENT_COMPANY/repos/development-team/Luci.Pipelines/ && $IDE_PATH ."
 alias teampipelinestemplates="cd ~/$CURRENT_COMPANY/repos/development-team/Luci.PipelineTemplates/ && $IDE_PATH ."
+alias uiportalautomation="cd ~/$CURRENT_COMPANY/repos/digital-products/OnlinePortalAutomation/ && $IDE_PATH ."
 alias digitalproducts="cd ~/$CURRENT_COMPANY/repos/digital-products"
 # Execute the following commands sequentially, each opening a new warp terminal
 # tab: uilucimanage uilucishopping uiluciinvoice uiemail
@@ -193,7 +195,9 @@ alias adminsubscribermail="cd ~/$CURRENT_COMPANY/repos/admins/subscriber_mail_ad
 alias rsadminsubscribermail="RAILS_ENV=development rails s -p 3080"
 
 # Company Web Services
-alias filemover="cd ~/$CURRENT_COMPANY/repos/digital-services/file-mover && $IDE_PATH ."
+
+## RS
+alias servicelucimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Management.Api && $IDE_PATH ."
 alias servicecontent="cd ~/$CURRENT_COMPANY/repos/digital-services/webservice_content && $IDE_PATH ."
 alias rsservicecontent="rails s -p '3030'"
 alias serviceasset="cd ~/$CURRENT_COMPANY/repos/digital-services/asset_engine && $IDE_PATH ."
