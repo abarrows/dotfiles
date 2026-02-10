@@ -165,7 +165,7 @@ source $ZSH/oh-my-zsh.sh
 PATH=~/.console-ninja/.bin:$PATH
 
 # Increase file descriptor limit for development tools
-ulimit -n 10240
+ulimit -n 65536
 
 # Added by Windsurf
 export PATH="/Users/andyb/.codeium/windsurf/bin:$PATH"

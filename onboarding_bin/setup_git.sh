@@ -32,6 +32,7 @@ setup_gitconfig() {
     echo "Retrieved GPG key setting up signed commits."
     git config --global commit.gpgsign "true"
     git config --global user.signingkey "${CURRENT_USER_GPG_KEY}"
+    git config --global gpg.program "$(which gpg)"
   else
     echo "Warning: Both CURRENT_USER and either CURRENT_USER_GPG_KEY or CURRENT_USER_GPG_KEY environment variables are required."
     exit 1

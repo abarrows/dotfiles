@@ -15,7 +15,7 @@ alias repos="cd ~/$CURRENT_COMPANY/repos/"
 
 # General Shell Operation
 alias ls="ls -al"
-alias cnpm="rm -rf node_modules && rm -rf package-lock.json && npm install --cache-clean"
+alias cnpm="rm -rf node_modules && rm -rf package-lock.json && npm install --cache-clean d --os=linux --os=darwin --cpu=x64 --cpu=arm64"
 alias du="docker compose up --build"
 # alias dockerdestroy="docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi -f $(docker images -a -q) && docker builder prune -f && docker volume prune -f && docker system prune -f && docker networ
 # k prune -f"

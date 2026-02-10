@@ -27,6 +27,7 @@ brew 'shellcheck' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command L
 brew 'shfmt' # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Formatter
 brew 'starship'   # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended platform agnostic shell prompt.
 brew 'wget'       # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON General Request Utility for Command Line
+brew 'awscli'     # REQUIRED - BASE/NODE/DEVOPS AWS Command Line Interface for deploying Storybook to S3 and managing AWS resources
 brew 'yamllint'   # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Recommended Linting and auto-fixing tool for yaml
 # brew "yarn" # REQUIRED - BASE/DEVOPS/ROR/NODE Front-end team approved package manager
 brew 'zsh' || true                  # REQUIRED - BASE/DEVOPS/ROR/NODE/ Default Mac OSX shell
