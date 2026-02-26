@@ -1,0 +1,101 @@
+# Wingetfile.base
+# Windows equivalent of Brewfile.base for provisioning a new Windows machine.
+# Used by windows-setup.ps1 to install packages via winget (Windows Package Manager).
+#
+# Format: <PackageId> [# PRIORITY - PROFILE Comment]
+# Run with: windows-setup.ps1
+#
+# Winget package IDs can be discovered via: winget search <name>
+
+# --- Version Control & CLI ---
+GitHub.cli                   # REQUIRED - BASE/ROR/NODE/DEVOPS Github CLI
+Git.Git                      # REQUIRED - ROR/NODE/DEVOPS/PYTHON Core version control
+GnuPG.Gpg4win                # REQUIRED - Needed for signing your commits with github (replaces gnupg + gpg-suite + pinentry-mac)
+
+# --- Shell & Terminal ---
+Microsoft.PowerShell         # REQUIRED - Cross-platform PowerShell (pwsh)
+Warp.Warp                    # RECOMMENDED - Team preferred command prompt (Windows support)
+JanDeDobbeleer.OhMyPosh      # RECOMMENDED - Cross-platform shell prompt, Starship equivalent on Windows
+
+# --- Node / Python Version Management ---
+CoreyButler.NVMforWindows    # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Version manager for node (replaces nvm)
+pyenv-win.pyenv-win          # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Version manager for Python (replaces pyenv)
+Python.Python.3              # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Python runtime (used by pipx/pyenv)
+# AppInstallerCLI.pipx       # REQUIRED - Install pipx separately via pip after Python is available
+
+# --- Database ---
+PostgreSQL.PostgreSQL         # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
+MongoDB.Shell                # RECOMMENDED - Commonly used with nosql projects (replaces mongosh)
+Oracle.MySQLWorkbench        # REQUIRED - Front-end team approved database GUI/tool
+
+# --- Network & Security ---
+wget.wget                    # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON General Request Utility for Command Line
+OpenSSL.Light                # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Network Utility for SSL requests (replaces openssl)
+
+# --- Linting & Code Quality ---
+hadolint.hadolint            # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Used to lint Dockerfiles
+mvdan.shfmt                  # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Command Line Formatter (replaces shfmt)
+koalaman.shellcheck          # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Command Line Linter (replaces shellcheck)
+adrienverge.yamllint         # REQUIRED - BASE/DEVOPS/ROR/NODE/PYTHON Linting tool for yaml (replaces yamllint)
+# dotenv-linter: install via cargo - cargo install dotenv-linter
+
+# --- Dev Tools ---
+direnv.direnv                # REQUIRED - BASE/ROR/NODE/ Environment variable management (replaces direnv)
+Microsoft.DotNet.SDK.8       # REQUIRED - DEVOPS Microsoft .NET Core SDK (replaces dotnet-sdk cask)
+Amazon.AWSCLI                # REQUIRED - BASE/NODE/DEVOPS AWS Command Line Interface
+Pandoc.Pandoc                # OPTIONAL - ROR/NODE/DEVOPS/PYTHON/PG Markdown export utility (replaces pandoc)
+
+# --- AI Tools ---
+Anthropic.ClaudeCode         # RECOMMENDED - AI Claude Code / CLI (replaces claude-code cask)
+Google.GeminiCLI             # RECOMMENDED - Google Gemini AI CLI tool (replaces gemini-cli)
+
+# --- Containers ---
+Docker.DockerDesktop         # REQUIRED - Department approved containerized environment tools
+
+# --- IDEs & Editors ---
+Microsoft.VisualStudioCode   # REQUIRED - Digital Technology approved IDE for software engineering
+Codeium.Windsurf             # RECOMMENDED - Alternative AI-focused IDE (replaces windsurf cask)
+Anysphere.Cursor             # EXPERIMENTAL - New AI focused competitor to VS Code (replaces cursor cask)
+
+# --- Browsers ---
+Mozilla.Firefox              # REQUIRED - Front-end team approved browser
+Microsoft.Edge               # REQUIRED - Corporate approved browser for CoPilot and browser testing
+
+# --- Productivity & Communication ---
+Microsoft.Teams              # REQUIRED - Department approved communication tool
+Microsoft.OutlookForWindows  # REQUIRED - Department approved email client
+Zoom.Zoom                    # REQUIRED - Department approved video chat and calls utility
+1password.1password          # REQUIRED - Department licensed and approved password manager
+AgileBits.1PasswordCLI       # RECOMMENDED - Useful for integrating with vaults and CLI workflows
+JetBrains.Toolbox            # OPTIONAL - Launcher for JetBrains IDEs (no Alfred equivalent on Windows; use PowerToys Run)
+Microsoft.PowerToys          # RECOMMENDED - Replaces Alfred/Raycast as task launcher on Windows
+
+# --- Cloud Storage ---
+Microsoft.OneDrive           # REQUIRED - Department approved cloud storage
+Dropbox.Dropbox              # OPTIONAL - Department approved cloud storage for UXD and Design
+Google.GoogleDrive           # OPTIONAL - Recommended backup utility for use with Google Drive
+
+# --- API & Testing ---
+Postman.Postman              # REQUIRED - Department approved API testing GUI/tool
+
+# --- Design ---
+Figma.Figma                  # RECOMMENDED - As an alternative to illustrator and sketch
+Inkscape.Inkscape            # RECOMMENDED - Front-end team approved vector graphics editor
+
+# --- VPN ---
+ExpressVPN.ExpressVPN        # REQUIRED - Department approved VPN for testing geo location
+
+# --- AI Chatbots ---
+Anthropic.Claude             # RECOMMENDED - General AI Chatbot (replaces chatgpt/claude casks)
+OpenAI.ChatGPT               # RECOMMENDED - General AI Chatbot
+
+# --- Media & Utilities ---
+VideoLAN.VLC                 # RECOMMENDED - Video format conversion utility
+Spotify.Spotify              # RECOMMENDED - Music Service
+7zip.7zip                    # RECOMMENDED - TAR/ZIP file compression tool (replaces the-unarchiver)
+Piriform.Recuva              # RECOMMENDED - File recovery utility (replaces disk-drill; install Disk Drill for Windows if preferred)
+
+# --- Fonts ---
+# Install Nerd Fonts via: scoop bucket add nerd-fonts && scoop install FiraCode-NF
+# Or manually from: https://www.nerdfonts.com/font-downloads
+# Replaces: font-fira-code, font-fira-code-nerd-font, font-noto-color-emoji
