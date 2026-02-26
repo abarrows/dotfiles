@@ -1,4 +1,3 @@
-#Requires -RunAsAdministrator
 <#
 .SYNOPSIS
     Windows machine provisioning script - equivalent of Brewfile.base for macOS.
