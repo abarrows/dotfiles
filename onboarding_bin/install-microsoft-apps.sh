@@ -99,65 +99,59 @@ install_with_homebrew() {
     fi
 }
 
-# Function to install and use Chocolatey (Windows)
-install_with_chocolatey() {
-    echo "🍫 Using Chocolatey for Windows installation..."
+# Function to install using winget (Windows)
+# winget ships with Windows 10 1809+ and Windows 11 via App Installer.
+# It requires no external bootstrap URL, avoiding proxy/DNS resolution errors.
+install_with_winget() {
+    echo "📦 Using winget for Windows installation..."
 
-    # Check if Chocolatey is installed
-    if ! command -v choco &> /dev/null; then
-        echo "❌ Chocolatey is not installed. Installing Chocolatey..."
-        echo "Please run the following command in an Administrator PowerShell:"
-        echo "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
-        echo ""
-        echo "After installing Chocolatey, please run this script again."
+    # Check if winget is available
+    if ! command -v winget &> /dev/null; then
+        echo "❌ winget is not installed."
+        echo "Install 'App Installer' from the Microsoft Store, or download the latest release from:"
+        echo "  https://github.com/microsoft/winget-cli/releases"
+        echo "Then re-run this script."
         exit 1
     else
-        echo "✅ Chocolatey found, proceeding with installation..."
+        echo "✅ winget found, proceeding with installation..."
     fi
 
-    # Update Chocolatey
-    echo "🔄 Updating Chocolatey..."
-    if ! choco upgrade chocolatey -y; then
-        echo "⚠️  Warning: Could not update Chocolatey, continuing anyway..."
-    fi
+    # Accept source agreements non-interactively
+    winget source update --disable-interactivity 2>/dev/null || true
 
-    # Install Microsoft Outlook (using a simpler approach)
-    echo "📧 Installing Microsoft Outlook..."
-    if choco install microsoft-365-apps-business -y 2>/dev/null; then
-        echo "✅ Microsoft Outlook installed successfully"
-    else
-        echo "⚠️  Microsoft Outlook is already installed or installation failed"
-    fi
+    winget_install() {
+        local pkg="$1"
+        local label="$2"
+        echo "  Installing ${label}..."
+        if winget install --id "${pkg}" --exact --silent \
+            --accept-package-agreements --accept-source-agreements 2>/dev/null; then
+            echo "✅ ${label} installed successfully"
+        else
+            echo "⚠️  ${label} is already installed or installation failed"
+        fi
+    }
+
+    # Install Microsoft Outlook
+    echo "� Installing Microsoft Outlook..."
+    winget_install "Microsoft.OutlookForWindows" "Microsoft Outlook"
 
     # Install Microsoft Teams
     echo "💬 Installing Microsoft Teams..."
-    if choco install microsoft-teams -y 2>/dev/null; then
-        echo "✅ Microsoft Teams installed successfully"
-    else
-        echo "⚠️  Microsoft Teams is already installed or installation failed"
-    fi
+    winget_install "Microsoft.Teams" "Microsoft Teams"
 
-    # Install CCleaner (Windows equivalent of AppCleaner)
-    echo "🧹 Installing CCleaner..."
-    if choco install ccleaner -y 2>/dev/null; then
-        echo "✅ CCleaner installed successfully"
-    else
-        echo "⚠️  CCleaner is already installed or installation failed"
-    fi
+    # Install Bulk Crap Uninstaller (open-source AppCleaner equivalent)
+    echo "🧹 Installing Bulk Crap Uninstaller..."
+    winget_install "Klocman.BulkCrapUninstaller" "Bulk Crap Uninstaller"
 
     echo "🎉 Installation process complete!"
     echo "================================================="
     echo "All applications have been processed."
     echo "You can find these applications in your Start Menu or search for them."
 
-    # Launch CCleaner
     echo "⚠️  IMPORTANT BACKUP REMINDER:"
     echo "Before uninstalling Slack and any Google App, be sure to backup any conversations, attachments, and/or reocurring meetings, google drive files."
     echo ""
-    echo "🚀 Launching CCleaner..."
-    if ! cmd.exe /c start ccleaner 2>/dev/null; then
-        echo "⚠️  Could not automatically launch CCleaner. Please launch it manually from Start Menu."
-    fi
+    echo "🚀 To launch Bulk Crap Uninstaller, search for it in the Start Menu."
 }
 
 # Execute based on detected OS
@@ -166,7 +160,7 @@ case "$OS" in
         install_with_homebrew
         ;;
     "Windows")
-        install_with_chocolatey
+        install_with_winget
         ;;
     *)
         echo "❌ Unsupported operating system: $OS"
