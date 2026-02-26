@@ -17,8 +17,16 @@
       1. Windows 10 1809+ or Windows 11
       2. winget (App Installer) - available from the Microsoft Store or:
          https://github.com/microsoft/winget-cli/releases
-      3. Run this script from an elevated (Administrator) PowerShell session.
+      3. No need to manually run as Administrator - the script self-elevates.
 #>
+
+# ── Self-elevation ─────────────────────────────────────────────────────────────
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)) {
+    Write-Host "Restarting as Administrator..." -ForegroundColor Yellow
+    $ps = if (Get-Command pwsh -ErrorAction SilentlyContinue) { "pwsh" } else { "powershell" }
+    Start-Process $ps -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$PSCommandPath`"" -Verb RunAs
+    exit
+}
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Continue"   # Log failures but keep going, matching brew bundle behavior
