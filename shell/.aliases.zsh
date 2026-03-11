@@ -115,7 +115,7 @@ alias wpd="./bin/webpack-dev-server"
 
 # Personal
 alias personal="cd ~/$CURRENT_COMPANY/repos/personal"
-alias ai-prompts="cd ~/$CURRENT_COMPANY/repos/personal/fabric && $IDE_PATH ."
+alias aiprompts="cd ~/$CURRENT_COMPANY/repos/personal/fabric && $IDE_PATH ."
 alias chatwithacb="cd ~/$CURRENT_COMPANY/repos/personal/chat-with-acb && $IDE_PATH ."
 # material-skilltree
 alias skilltree="cd ~/$CURRENT_COMPANY/repos/personal/skilltree-ui && $IDE_PATH ."
