@@ -5,31 +5,175 @@
 	url = https://www.github.com/acbarrows
 	signingkey = 163952A510639BC3
 [commit]
-	gpgsign = true
+    # Automatically sign all commits with your GPG key (requires user.signingkey to be set)
+    # Ensures commit authenticity and enables verified badges on GitHub/GitLab
+    gpgsign = true
+
 [core]
-	editor = code --wait
-	ignorecase = false
-	excludesfile = $HOME/.git-template-directory/.gitignore
-	hooksPath = $HOME/.git-template-directory/hooks
+    # Use Windsurf as the default editor for commit messages, interactive rebases, etc.
+    # --wait flag ensures Git waits for the editor to close before proceeding
+    editor = windsurf --wait
+
+    # Case-sensitive file matching (important for cross-platform repos)
+    # Prevents issues where File.js and file.js are treated as the same on macOS
+    ignorecase = false
+
+    # Global gitignore patterns (OS-specific files, editor configs, etc.)
+    excludesfile = ~/.git-template-directory/.gitignore
+
+    # Shared hooks directory for all repos (WARNING: shared across worktrees)
+    # Consider removing if you need per-worktree hooks
+    hooksPath = ~/.git-template-directory/hooks
+
 [init]
-	templateDir = /Users/acbarrows/.git-template-directory
-	defaultBranch = main
+    # Use 'main' as the default branch name for new repositories
+    defaultBranch = main
+
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    # Git Large File Storage configuration for handling large binary files
+    # Stores large files externally while keeping repo size small
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
 [pull]
-	rebase = false
+    # Rebase local commits on top of fetched commits instead of creating merge commits
+    # Keeps history linear and cleaner (WORKFLOW CHANGE: was 'false' before)
+    rebase = true
+
+    # Automatically stash uncommitted changes before pull, then pop after
+    # Eliminates "cannot pull with uncommitted changes" errors
+    autoStash = true
+
+[rebase]
+    # Automatically stash/pop uncommitted changes during rebase operations
+    autoStash = true
+
+    # Automatically reorder and squash commits marked with 'fixup!' or 'squash!' prefixes
+    # Enables cleaner history cleanup workflows
+    autoSquash = true
+
+[push]
+    # Only push the current branch to its upstream (prevents accidental multi-branch pushes)
+    default = current
+
+    # Automatically push annotated tags when pushing commits they point to
+    # Useful for release workflows
+    followTags = true
+
+    # Automatically create upstream branch on first push (eliminates --set-upstream errors)
+    # WORKTREE BENEFIT: Each worktree can push to different remotes without manual setup
+    autoSetupRemote = true
+
 [diff]
-	tool = vscode
-[difftool "vscode"]
-	cmd = code --wait --diff $LOCAL $REMOTE
+    # Use Windsurf as the visual diff tool (aligned with core.editor choice)
+    tool = windsurf
+
+    # Histogram algorithm produces more readable diffs than default Myers
+    # Better at detecting moved/refactored code blocks
+    algorithm = histogram
+
+    # Highlight moved code blocks in diffs with different colors
+    # Critical for reviewing refactoring PRs
+    colorMoved = default
+
+    # Show submodule changes as commit logs instead of just SHA changes
+    submodule = log
+
+[difftool "windsurf"]
+    # Windsurf's diff view (uses VS Code's diff engine under the hood)
+    cmd = windsurf --wait --diff $LOCAL $REMOTE
+
 [merge]
-	tool = vscode
-[mergetool "vscode"]
-	cmd = code --wait $MERGED
-[checkout]
-	defaultRemote = origin
+    # Use Windsurf as the visual merge conflict resolution tool
+    tool = windsurf
+
+    # zdiff3 shows 3 sections in conflicts: ours | base | theirs (instead of just ours | theirs)
+    # Makes conflict resolution much clearer by showing the common ancestor
+    conflictStyle = zdiff3
+
+[mergetool "windsurf"]
+    # Windsurf's merge conflict editor
+    cmd = windsurf --wait $MERGED
+
 [fetch]
-	prune = true
+    # Automatically remove local references to deleted remote branches
+    # WORKTREE BENEFIT: Keeps all worktrees in sync with remote branch deletions
+    prune = true
+
+    # Also prune deleted remote tags (Git 2.17+)
+    pruneTags = true
+
+[branch]
+    # Sort branches by most recent commit date (not alphabetically)
+    # WORKTREE BENEFIT: Quickly see which worktrees/branches are actively being worked on
+    sort = -committerdate
+
+[tag]
+    # Sort tags by version number (semantic versioning aware)
+    sort = -version:refname
+
+[rerere]
+    # Reuse Recorded Resolution - remembers how you resolved merge conflicts
+    # WORKTREE BENEFIT: Conflict resolutions are shared across all worktrees
+    # If you resolve a conflict in one worktree, Git auto-applies it in others
+    enabled = true
+
+    # Automatically stage resolved conflicts
+    autoUpdate = true
+
+[submodule]
+    # Automatically update submodules when checking out commits or pulling
+    # Eliminates manual 'git submodule update' commands
+    recurse = true
+
+[status]
+    # Show submodule commit changes in 'git status' output
+    submoduleSummary = true
+
+[blame]
+    # Exclude commits listed in .git-blame-ignore-revs from blame output
+    # Use for mass formatting commits (Prettier, ESLint autofixes, etc.)
+    # Create .git-blame-ignore-revs in each repo with commit SHAs to ignore
+    ignoreRevsFile = .git-blame-ignore-revs
+
+[maintenance]
+    # Automatically run background repo optimization tasks
+    # WORKTREE BENEFIT: Optimizes the shared .git directory for all worktrees
+    auto = true
+
+    # Use incremental optimization strategy (faster than full gc)
+    strategy = incremental
+
+[gc]
+    # Run garbage collection in background (non-blocking)
+    autoDetach = true
+
+[worktree]
+    # Automatically guess which remote branch to track when creating worktrees
+    # Example: 'git worktree add ../feature-x' will track origin/feature-x if it exists
+    guessRemote = true
+
+[extensions]
+    # Enable per-worktree configuration (allows different settings per worktree)
+    # Useful if you need different hooks or configs in different worktrees
+    worktreeConfig = true
+
+# ────────────────────────────────────────────────────────────────────────────
+# NOTE: Git doesn't support declarative hook configuration in .gitconfig
+# To run 'npm install' automatically in new worktrees, create an executable
+# post-checkout hook at: ~/.git-template-directory/hooks/post-checkout
+#
+# Example hook content:
+#   #!/bin/sh
+#   if [ -f package.json ]; then
+#     echo "Running npm install in new worktree..."
+#     npm install
+#   fi
+# ────────────────────────────────────────────────────────────────────────────
+
+# Platform-specific credential helpers should be set in global ~/.gitconfig, not here
+# macOS:   git config --global credential.helper osxkeychain
+# Windows: git config --global credential.helper manager-core
+# Linux:   git config --global credential.helper cache

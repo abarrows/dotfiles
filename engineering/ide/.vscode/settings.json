@@ -762,22 +762,22 @@
         {
           "scope": "ref.matchtext",
           "settings": {
-            "foreground": "#000",
-          },
-        },
-      ],
+            "foreground": "#000"
+          }
+        }
+      ]
     },
     "[*Dark*]": {
       "textMateRules": [
         {
           "scope": "ref.matchtext",
           "settings": {
-            "foreground": "#fff",
-          },
-        },
-      ],
+            "foreground": "#fff"
+          }
+        }
+      ]
     },
-    "textMateRules": [],
+    "textMateRules": []
   },
   "editor.unicodeHighlight.ambiguousCharacters": false,
   "editor.unicodeHighlight.invisibleCharacters": false,
@@ -821,7 +821,7 @@
     ".env.*": "dotenv",
     ".env.example": "dotenv",
     ".zshrc": "shellscript",
-    ".env*": "dotenv",
+    ".env*": "dotenv"
   },
   "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",

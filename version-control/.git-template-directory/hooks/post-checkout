@@ -1,0 +1,31 @@
+#!/bin/sh
+# Post-checkout hook - runs after git checkout or git worktree add
+#
+# This hook automatically runs npm install when:
+# 1. Checking out a branch with a different package.json
+# 2. Creating a new worktree
+#
+# Arguments passed by Git:
+#   $1 = ref of previous HEAD
+#   $2 = ref of new HEAD
+#   $3 = flag indicating branch checkout (1) or file checkout (0)
+
+prev_head=$1
+new_head=$2
+branch_checkout=$3
+
+# Only run on branch checkouts (not file checkouts)
+if [ "$branch_checkout" = "1" ]; then
+    # Check if package.json exists
+    if [ -f package.json ]; then
+        # Check if package.json or package-lock.json changed
+        if git diff --name-only "$prev_head" "$new_head" | grep -qE '^(package\.json|package-lock\.json)$'; then
+            echo "📦 Dependencies changed, running npm install..."
+            npm install
+        # For new worktrees, prev_head will be all zeros
+        elif [ "$prev_head" = "0000000000000000000000000000000000000000" ]; then
+            echo "📦 New worktree detected, running npm install..."
+            npm install
+        fi
+    fi
+fi

@@ -1,0 +1,76 @@
+# <type>(<scope>): <subject>
+#
+# <body>
+#
+# <footer>
+#
+# ────────────────────────────────────────────────────────────────────────────
+# COMMIT MESSAGE GUIDELINES (Conventional Commits)
+# ────────────────────────────────────────────────────────────────────────────
+#
+# TYPE (required):
+#   feat:     New feature for the user
+#   fix:      Bug fix
+#   docs:     Documentation only changes
+#   style:    Formatting, missing semicolons, etc (no code change)
+#   refactor: Code change that neither fixes a bug nor adds a feature
+#   perf:     Performance improvement
+#   test:     Adding or updating tests
+#   build:    Changes to build system or dependencies
+#   ci:       Changes to CI configuration files and scripts
+#   chore:    Other changes that don't modify src or test files
+#   revert:   Reverts a previous commit
+#
+# SCOPE (optional):
+#   Component, module, or area affected (e.g., auth, api, ui, database)
+#   Examples: feat(auth), fix(api), docs(readme)
+#
+# SUBJECT (required):
+#   - Use imperative mood: "add" not "added" or "adds"
+#   - Don't capitalize first letter
+#   - No period at the end
+#   - Limit to 50 characters
+#   - Complete the sentence: "If applied, this commit will..."
+#
+# BODY (optional):
+#   - Wrap at 72 characters
+#   - Explain WHAT and WHY, not HOW
+#   - Separate from subject with blank line
+#   - Use bullet points for multiple items
+#
+# FOOTER (optional):
+#   - Reference issues: "Closes #123" or "Fixes #456"
+#   - Breaking changes: "BREAKING CHANGE: description"
+#   - Co-authors: "Co-authored-by: Name <email>"
+#
+# ────────────────────────────────────────────────────────────────────────────
+# EXAMPLES
+# ────────────────────────────────────────────────────────────────────────────
+#
+# feat(auth): add OAuth2 authentication flow
+#
+# Implement OAuth2 authentication using the authorization code flow.
+# This allows users to sign in with their Google accounts.
+#
+# - Add OAuth2 client configuration
+# - Implement callback handler
+# - Add user session management
+#
+# Closes #234
+#
+# ────────────────────────────────────────────────────────────────────────────
+#
+# fix(api): prevent race condition in user creation
+#
+# Add database transaction to ensure atomic user creation.
+# Previously, concurrent requests could create duplicate users.
+#
+# Fixes #567
+#
+# ────────────────────────────────────────────────────────────────────────────
+#
+# docs: update installation instructions
+#
+# BREAKING CHANGE: Node.js 18+ is now required
+#
+# ────────────────────────────────────────────────────────────────────────────

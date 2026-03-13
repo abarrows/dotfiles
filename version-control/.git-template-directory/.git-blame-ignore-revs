@@ -1,0 +1,47 @@
+# Git Blame Ignore Revisions
+# ────────────────────────────────────────────────────────────────────────────
+# This file contains commit SHAs that should be ignored by git blame.
+# Use this for mass formatting commits (Prettier, ESLint, etc.) that don't
+# represent meaningful code changes.
+#
+# Usage:
+#   1. Add commit SHAs to this file (one per line)
+#   2. Git will automatically exclude these commits from blame output
+#   3. Use 'git blame --ignore-revs-file .git-blame-ignore-revs' to test
+#
+# To find formatting commit SHAs:
+#   git log --oneline --grep="prettier\|eslint\|format" --all
+#
+# ────────────────────────────────────────────────────────────────────────────
+
+# Example entries (replace with actual commit SHAs from your repos):
+
+# Prettier migration - 2024-01-15
+# a1b2c3d4e5f6789012345678901234567890abcd
+
+# ESLint autofix - 2024-02-20
+# f6e5d4c3b2a1098765432109876543210fedcba9
+
+# Migrate to new code style - 2024-03-10
+# 1234567890abcdef1234567890abcdef12345678
+
+# Automated whitespace cleanup - 2024-04-05
+# abcdef1234567890abcdef1234567890abcdef12
+
+# ────────────────────────────────────────────────────────────────────────────
+# HOW TO ADD NEW ENTRIES:
+# ────────────────────────────────────────────────────────────────────────────
+#
+# 1. Find the commit SHA of the formatting change:
+#    git log --oneline -n 20
+#
+# 2. Add the full 40-character SHA to this file with a descriptive comment
+#
+# 3. Commit this file to your repository:
+#    git add .git-blame-ignore-revs
+#    git commit -m "chore: ignore formatting commit in blame"
+#
+# 4. Verify it works:
+#    git blame --ignore-revs-file .git-blame-ignore-revs <file>
+#
+# ────────────────────────────────────────────────────────────────────────────
