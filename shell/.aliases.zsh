@@ -35,6 +35,7 @@ alias edithosts="sudo open -a Visual\ Studio\ Code.app /etc/hosts"
 
 # Version Control
 alias gs="git status"
+alias gitsetup="~/$CURRENT_COMPANY/repos/development-team/dotfiles/onboarding_bin/setup_git.sh"
 alias glog="git log --pretty=format:'%h was %an, %ar, message: %s'"
 alias gpatch="~/Retail-Success/repos/development-team/dotfiles/onboarding_bin/patch-branch.sh"
 alias gadd="git add ."
