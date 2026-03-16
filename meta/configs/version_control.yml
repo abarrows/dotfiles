@@ -1,21 +1,117 @@
 ---
 - shell:
     - echo '7. Setting up Version Control - Gitconfig and template repo...'
+
 - link:
     ~/.git-template-directory/.github/CODEOWNERS:
       path: version-control/.git-template-directory/.github/CODEOWNERS
       relink: true
-    # Leave out if no not using atlassian.
-    # ~/.git-template-directory/hooks/prepare-commit-msg:
-    #   path: version-control/.git-template-directory/hooks/prepare-commit-msg
-    #   relink: true
     ~/.git-template-directory/.gitignore:
       path: version-control/.git-template-directory/.gitignore
       relink: true
+    ~/.git-template-directory/commit-template.txt:
+      path: version-control/.git-template-directory/commit-template.txt
+      relink: true
+    ~/.git-template-directory/.git-blame-ignore-revs:
+      path: version-control/.git-template-directory/.git-blame-ignore-revs
+      relink: true
+    ~/.git-template-directory/hooks/post-checkout:
+      path: version-control/.git-template-directory/hooks/post-checkout
+      relink: true
+    # Leave out if not using atlassian.
+    # ~/.git-template-directory/hooks/prepare-commit-msg:
+    #   path: version-control/.git-template-directory/hooks/prepare-commit-msg
+    #   relink: true
     # ~/.ssh/config:
     #   path: engineering/security/.ssh/config
     #   relink: true
-# Version Control
-# - shell: null
-#     - description: '8. Globally Configuring Git based on environment variables...'
-#       command: ./onboarding_bin/setup_git.sh
+
+- shell:
+    - description: "8. Configuring Global Git Settings from Template..."
+      command: |
+        echo "Applying Git configuration to global ~/.gitconfig..."
+
+        # Set template directory
+        git config --global init.templateDir ~/.git-template-directory
+
+        # Commit settings
+        git config --global commit.gpgsign true
+        git config --global commit.template ~/.git-template-directory/commit-template.txt
+
+        # Core settings
+        git config --global core.editor "windsurf --wait"
+        git config --global core.ignorecase false
+        git config --global core.excludesfile ~/.git-template-directory/.gitignore
+        git config --global core.hooksPath ~/.git-template-directory/hooks
+
+        # Init settings
+        git config --global init.defaultBranch main
+
+        # LFS settings
+        git config --global filter.lfs.clean "git-lfs clean -- %f"
+        git config --global filter.lfs.smudge "git-lfs smudge -- %f"
+        git config --global filter.lfs.process "git-lfs filter-process"
+        git config --global filter.lfs.required true
+
+        # Pull settings
+        git config --global pull.rebase true
+        git config --global pull.autoStash true
+
+        # Rebase settings
+        git config --global rebase.autoStash true
+        git config --global rebase.autoSquash true
+
+        # Push settings
+        git config --global push.default current
+        git config --global push.followTags true
+        git config --global push.autoSetupRemote true
+
+        # Diff settings
+        git config --global diff.tool windsurf
+        git config --global diff.algorithm histogram
+        git config --global diff.colorMoved default
+        git config --global diff.submodule log
+        git config --global difftool.windsurf.cmd "windsurf --wait --diff \$LOCAL \$REMOTE"
+
+        # Merge settings
+        git config --global merge.tool windsurf
+        git config --global merge.conflictStyle zdiff3
+        git config --global mergetool.windsurf.cmd "windsurf --wait \$MERGED"
+
+        # Fetch settings
+        git config --global fetch.prune true
+        git config --global fetch.pruneTags true
+
+        # Branch settings
+        git config --global branch.sort -committerdate
+
+        # Tag settings
+        git config --global tag.sort -version:refname
+
+        # Rerere settings
+        git config --global rerere.enabled true
+        git config --global rerere.autoUpdate true
+
+        # Submodule settings
+        git config --global submodule.recurse true
+
+        # Status settings
+        git config --global status.submoduleSummary true
+
+        # Blame settings
+        git config --global blame.ignoreRevsFile .git-blame-ignore-revs
+
+        # Maintenance settings
+        git config --global maintenance.auto true
+        git config --global maintenance.strategy incremental
+
+        # GC settings
+        git config --global gc.autoDetach true
+
+        # Worktree settings
+        git config --global worktree.guessRemote true
+
+        # Extensions settings
+        git config --global extensions.worktreeConfig true
+
+        echo "✅ Global Git configuration applied successfully!"
