@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Here is how to execute this in a Mac terminal
+
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abarrows/dotfiles/production/onboarding_bin/pre-onboarding-script.sh)"
+
 # Detect the architecture of the Mac
 arch_name="$(uname -m)"
 
