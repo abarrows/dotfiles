@@ -110,8 +110,15 @@ Using the dotbot plugin dotbot-brew, a homebrew bundle file called Brewfile.base
 Accept invitation from github to join our organization, using your personal
 account is fine.
 
-Setup Git and save in 1password
-`https://github.com/settings/keys`
+To begin, run the following command in your terminal:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://github.com/abarrows/dotfiles/blob/production/onboarding_bin/set-variables.sh)"
+```
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abarrows/dotfiles/production/onboarding_bin/pre-onboarding-script.sh)"
+```
 
 Download and install Homebrew (alternative article explaining it)
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
@@ -150,11 +157,11 @@ After the script runs, what exactly did it do and why does it matter?
 - Default recipes
 - Default casks (iOS apps)
 
-5. Node
+1. Node
    - NVM Version Manager
-6. Yarn
+2. Yarn
    - Global NPM Packages
-7. VS Code (Machine Level)
+3. VS Code (Machine Level)
    - .devcontainer. and .vscode - Development Environment IDE General Settings and project agnostic
      configuration/linting/tooling. IE: Things like:
    - Settings.json
@@ -166,7 +173,7 @@ After the script runs, what exactly did it do and why does it matter?
      - Productivity
      - Formatters
      - Workload integrations (JIRA/Github/Etc.)
-8. VS Code - General Code Quality Tools
+4. VS Code - General Code Quality Tools
    - .editorconfig
    - package.json (Everything I work on has js and related dependencies)
    - Eslint
@@ -175,7 +182,7 @@ After the script runs, what exactly did it do and why does it matter?
    - Shell Checker
    - YAML Lint
    - JSON Lint/Sorting
-9. VS Code - Project/Technology Specific
+5. VS Code - Project/Technology Specific
    - workspace environment - Workspace Environment for the specific tech stack.
    - IE: RoR, Next.js, etc. This will contain any overrides/modifications to:
 
@@ -211,10 +218,9 @@ The following tools can be used for improving the confidence of this apps logic 
    beautifier formatters and rubocop linting capabilities/auto-correct features.
    | DEPENDENCIES: `gem install erb_lint`, VS Code Extension:
    ERB Formatter/Beautify | CONFIG: `./erb-lint.yml` | USAGE:
-
    - 1. COMMAND: (This will scan the app and display linting errors in console)
         erblint --lint-all --enable-all-linters
-   - 2. COMMAND: (This will auto-fix all errors that can be fixed) erblint --lint-all --enable-all-linters --autocorrect
+   - 1. COMMAND: (This will auto-fix all errors that can be fixed) erblint --lint-all --enable-all-linters --autocorrect
 
 8. Solargraph gem - (VS CODE ONLY) DESCRIPTION: This is an extension that
    enforces rubocop, rails best practices, fasterer, reek, erb-linting, etc. and
@@ -224,9 +230,9 @@ The following tools can be used for improving the confidence of this apps logic 
    <https://marketplace.visualstudio.com/items?itemName=castwide.solargraph> |
    USAGE:
    - 1. `bundle exec yard gems && solargraph download-core && solargraph config .`
-   - 2. Navigate to the VS Code Command Palette (CMD + Shift + P) Run command:
+   - 1. Navigate to the VS Code Command Palette (CMD + Shift + P) Run command:
         `Restart Solargraph`
-   - 3. Open a .rb file and you should begin seeing rubocop and many of the other linters listed
+   - 1. Open a .rb file and you should begin seeing rubocop and many of the other linters listed
         above) errors within the VS Code _problems_ pane.
 
 ## TODOS
@@ -249,7 +255,7 @@ The following tools can be used for improving the confidence of this apps logic 
   /home/codespace/.codespaces/.persistedshare/dotfiles/onboarding_bin/pathChecker.sh
 - ~/.gitconfig already exists but is a regular file or directory
 
-3. Add global precommit hook.
+1. Add global precommit hook.
 
 .gnupg failed to sign commit data when adding .gitconfig. I suspect this has
 to do with having two entities in git or homebrew managing the GPG functionality.

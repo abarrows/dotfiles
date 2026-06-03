@@ -6,7 +6,7 @@
     "default": true,
     "example": "You are looking for all references of the string - exampleVar - in the current file.  This will display a search bar in the top right of the editor listing out how many references there are.",
     "frequency": "Frequent",
-    "when": "*"
+    "when": "*",
   },
   {
     "command": "workbench.action.findInFiles",
@@ -15,7 +15,7 @@
     "default": true,
     "example": "You are looking for all references of the string - exampleVar - This allows you to search through all the files in the workspace and view them.",
     "frequency": "Frequent",
-    "when": "*"
+    "when": "*",
   },
   {
     "command": "editor.action.addSelectionToNextFindMatch",
@@ -24,7 +24,7 @@
     "default": true,
     "example": "If I wanted to find all references of the description key in this JSON array, I would first type cmd+f then type description and hit enter.  Then, by hitting cmd+d multiple times it would add each new occurrence to my selection.  At the end, you can begin typing and navigation the same commands for each occurrence simultaneously.",
     "frequency": "Frequent",
-    "when": "editorFocus"
+    "when": "editorFocus",
   },
   {
     "command": "editor.action.selectHighlights",
@@ -33,7 +33,7 @@
     "default": true,
     "example": "If I wanted to find and select ALL references of the -description- key in this file, I would first type cmd+f then type description and hit enter.  By hitting cmd+alt+d once, it will add all matching occurrence of the word -description- to my selection.  You can now begin typing a replacement and will will be changed simultaneously.",
     "frequency": "Frequent",
-    "when": "editorFocus"
+    "when": "editorFocus",
   },
   {
     "command": "editor.action.moveSelectionToPreviousFindMatch",
@@ -42,7 +42,7 @@
     "default": false,
     "example": "If I wanted to find all references of the description key in this JSON array, I would first type cmd+f then type description and hit enter.  Then, if I select one too many cmd+d, I can use this command to subtract the last occurrence.",
     "frequency": "Frequent",
-    "when": "editorFocus && editorHasSelection"
+    "when": "editorFocus && editorHasSelection",
   },
   {
     "command": "workbench.action.gotoLine",
@@ -51,7 +51,7 @@
     "default": true,
     "example": "When using the Cmd+P shortcut to jump directly to a file, you can add :XXX at the end of the file name and not only jump into that file but directly to that line.",
     "frequency": "Occasional",
-    "when": "editorFocus && editorHasSelection"
+    "when": "editorFocus && editorHasSelection",
   },
   {
     "command": "cursorWordLeft",
@@ -60,7 +60,7 @@
     "default": true,
     "example": "If you are trying to navigate through the first two sentences out of a paragraph, using this shortcut will drastically speed up the process.",
     "frequency": "Frequent",
-    "when": "textInputFocus"
+    "when": "textInputFocus",
   },
   {
     "command": "cursorWordRight",
@@ -69,7 +69,7 @@
     "default": true,
     "example": "If you are trying to navigate through the first two sentences out of a paragraph, using this shortcut will drastically speed up the process.",
     "frequency": "Frequent",
-    "when": "textInputFocus"
+    "when": "textInputFocus",
   },
   {
     "command": "cursorWordPartStartLeft",
@@ -78,7 +78,7 @@
     "default": true,
     "example": "If you are trying to navigate through the first two sentences out of a paragraph, using this shortcut will drastically speed up the process.",
     "frequency": "Frequent",
-    "when": "textInputFocus"
+    "when": "textInputFocus",
   },
   {
     "command": "cursorWordPartRight",
@@ -87,7 +87,7 @@
     "default": true,
     "example": "If you are trying to navigate through the first two sentences out of a paragraph, using this shortcut will drastically speed up the process.",
     "frequency": "Frequent",
-    "when": "textInputFocus"
+    "when": "textInputFocus",
   },
   {
     "command": "cursorWordStartLeftSelect",
@@ -96,7 +96,7 @@
     "default": true,
     "example": "If you are trying to cut the first two sentences out of a paragraph of copy, using this shortcut will drastically speed up the process.",
     "frequency": "Frequent",
-    "when": "textInputFocus"
+    "when": "textInputFocus",
   },
   {
     "command": "cursorWordRightSelect",
@@ -105,7 +105,7 @@
     "default": true,
     "example": "If you are trying to cut the first two sentences out of a paragraph of copy, using this shortcut will drastically speed up the process.",
     "frequency": "Frequent",
-    "when": "textInputFocus"
+    "when": "textInputFocus",
   },
   {
     "command": "spaceBlockJumper.moveUp",
@@ -114,7 +114,7 @@
     "default": false,
     "example": " In a long file, you don't want to jump UP to the top of the page but need to scan dozens of blocks quickly.",
     "frequency": "Frequent",
-    "when": "editorFocus"
+    "when": "editorFocus",
   },
   {
     "command": "spaceBlockJumper.moveDown",
@@ -123,7 +123,7 @@
     "default": false,
     "example": " In a long file, you don't want to jump down to the bottom of the page but need to scan dozens of blocks quickly.",
     "frequency": "Frequent",
-    "when": "editorFocus"
+    "when": "editorFocus",
   },
   {
     "command": "spaceBlockJumper.selectUp",
@@ -132,7 +132,7 @@
     "default": false,
     "example": "In a long file, you don't want to jump up to the bottom of the page but need to select multiple blocks of code, quickly.",
     "frequency": "Frequent",
-    "when": "editorFocus"
+    "when": "editorFocus",
   },
   {
     "command": "spaceBlockJumper.selectDown",
@@ -141,7 +141,7 @@
     "default": false,
     "example": "In a long file, you don't want to jump down to the bottom of the page but need to select multiple blocks of code, quickly.",
     "frequency": "Frequent",
-    "when": "editorFocus"
+    "when": "editorFocus",
   },
   {
     "command": "editor.action.moveLinesUpAction",
@@ -150,7 +150,7 @@
     "default": false,
     "example": "You realize a javascript variable was instantiated in a function when it should be in the next function UP.  Executing this shortcut will move it UP a line into the function where it should be instantiated.",
     "frequency": "Frequent",
-    "when": "editorTextFocus && !editorReadonly"
+    "when": "editorTextFocus && !editorReadonly",
   },
   {
     "command": "editor.action.moveLinesDownAction",
@@ -159,7 +159,7 @@
     "default": false,
     "example": "You realize a javascript variable was instantiated in the global scope.  Executing this shortcut will move it down a line into the function where it should be instantiated.",
     "frequency": "Frequent",
-    "when": "editorTextFocus && !editorReadonly"
+    "when": "editorTextFocus && !editorReadonly",
   },
   {
     "command": "editor.action.deleteLines",
@@ -168,17 +168,17 @@
     "default": false,
     "example": "Useful for removing a simple var declaration.",
     "frequency": "Frequent",
-    "when": "textInputFocus && !editorReadonly"
+    "when": "textInputFocus && !editorReadonly",
   },
   {
     "command": "workbench.action.chat.startVoiceChat",
     "key": "cmd+u",
-    "when": "!voiceChatInProgress"
+    "when": "!voiceChatInProgress",
   },
   {
     "command": "workbench.action.chat.stopListeningAndSubmit",
     "key": "cmd+u",
-    "when": "voiceChatInProgress"
+    "when": "voiceChatInProgress",
   },
   {
     "command": "workbench.action.closeEditorsInGroup",
@@ -187,7 +187,7 @@
     "default": false,
     "example": "You were debugging a problem and ended up opening 23 tabs.  This will close all them so you can reopen the one file that matters",
     "frequency": "Occasionally",
-    "when": "editorFocus"
+    "when": "editorFocus",
   },
   {
     "command": "cursorUndo",
@@ -196,7 +196,7 @@
     "default": false,
     "example": "You are jumping down instances of a string and go to far, this command can bring you back to the last known cursor position.",
     "frequency": "Frequent",
-    "when": "*"
+    "when": "*",
   },
   {
     "command": "cursorRedo",
@@ -205,7 +205,7 @@
     "default": false,
     "example": "You are jumping down instances of a string and thought you went too far but need to redo, this command can bring you back to the furthest known cursor position.",
     "frequency": "Frequent",
-    "when": "*"
+    "when": "*",
   },
   {
     "command": "expand_region",
@@ -214,7 +214,7 @@
     "default": false,
     "example": "Very useful for expanding in single apostrophes, everything within a tag, object, or function.  For instance, if you have a DIV soup and you want to make sure you kill the text and all the required divs.",
     "frequency": "Frequent",
-    "when": "editorTextFocus"
+    "when": "editorTextFocus",
   },
   {
     "command": "undo_expand_region",
@@ -223,7 +223,7 @@
     "default": false,
     "example": "Very useful if the expansion goes one level too far, this allows you to shrink it one level.",
     "frequency": "Frequent",
-    "when": "editorHasSelection && editorTextFocus"
+    "when": "editorHasSelection && editorTextFocus",
   },
   {
     "command": "editor.emmet.action.removeTag",
@@ -232,7 +232,7 @@
     "default": false,
     "example": "Helpful when you have a div tag that has s dozens of lines between the opening and closing tags.",
     "frequency": "Occasional",
-    "when": "editorFocus"
+    "when": "editorFocus",
   },
   {
     "command": "editor.emmet.action.updateTag",
@@ -241,7 +241,7 @@
     "default": false,
     "example": "IE: Switching a div tag to a sidebar tag.",
     "frequency": "Occasional",
-    "when": "*"
+    "when": "*",
   },
   {
     "command": "editor.action.copyLinesDownAction",
@@ -249,7 +249,7 @@
     "key": "shift+cmd+k",
     "default": false,
     "frequency": "Occasional",
-    "when": "editorTextFocus && !editorReadonly"
+    "when": "editorTextFocus && !editorReadonly",
   },
   {
     "command": "editor.emmet.action.matchTag",
@@ -258,7 +258,7 @@
     "default": false,
     "example": "Within an html file, you want to quickly jump down two hundred lines to the closing div tag.",
     "frequency": "Occasional",
-    "when": "editorTextFocus && !editorReadonly"
+    "when": "editorTextFocus && !editorReadonly",
   },
   {
     "command": "editor.emmet.action.wrapWithAbbreviation",
@@ -267,7 +267,7 @@
     "default": true,
     "example": "Within an html file you want to quickly add a div.row around a bootstrap div.col class with a bunch of content within it.",
     "frequency": "Occasional",
-    "when": "editorTextFocus && !editorReadonly"
+    "when": "editorTextFocus && !editorReadonly",
   },
   {
     "command": "workbench.action.files.saveWithoutFormatting",
@@ -276,7 +276,7 @@
     "default": true,
     "example": "While updating a YML file, you save and notice that a new value is incorrectly indented.  By using this command, you realize that the formatter is set to bash scripts instead of YML.",
     "frequency": "Occasional",
-    "when": "*"
+    "when": "*",
   },
   {
     "command": "workbench.view.explorer",
@@ -285,7 +285,7 @@
     "default": true,
     "example": "Say you are looking for a specific image, after clicking in one file in an images/ folder, use this shortcut to quickly jump back to the folder you were just in.  The down and up arrow keys allow you to navigate through the files.  Each one can be quickly opened with spacebar.",
     "frequency": "Occasional",
-    "when": "viewContainer.workbench.view.explorer.enabled"
+    "when": "viewContainer.workbench.view.explorer.enabled",
   },
   {
     "command": "workbench.action.splitEditorRight",
@@ -294,7 +294,7 @@
     "default": false,
     "example": "You want to compare two similar files side by side.  Useful when on a traditional wide-screen monitor.",
     "frequency": "Occasional",
-    "when": "editorFocus"
+    "when": "editorFocus",
   },
   {
     "command": "workbench.action.splitEditorDown",
@@ -302,7 +302,7 @@
     "key": "ctrl+shift+h",
     "default": false,
     "example": "You want to compare two similar files side by side.  Useful when on a non-traditional monitor turned vertically long.",
-    "when": "editorFocus"
+    "when": "editorFocus",
   },
   {
     "command": "workbench.view.debug",
@@ -310,14 +310,14 @@
     "key": "ctrl+5",
     "default": false,
     "example": "Say you are looking for a specific image, after clicking in one file in an images/ folder, use this shortcut to quickly jump back to the folder you were just in.  The down and up arrow keys allow you to navigate through the files.  Each one can be quickly opened with spacebar.",
-    "when": "viewContainer.workbench.view.debug.enabled"
+    "when": "viewContainer.workbench.view.debug.enabled",
   },
   {
     "command": "diffMerge.nextDiff",
     "description": "When reviewing diffs within the source control sidebar, this shortcut quickly navigates to the NEXT changed block.",
     "key": "ctrl+shift+down",
     "example": "If I have three diff/merge changes to this keybindings file, this shortcut allows to quickly jump hundreds of lines in some cases, directly to the next change.",
-    "when": "diffMerge.panelFocused"
+    "when": "diffMerge.panelFocused",
   },
   {
     "command": "workbench.action.compareEditor.nextChange",
@@ -325,7 +325,7 @@
     "key": "ctrl+shift+down",
     "default": false,
     "example": "If I have three diff/merge changes to this keybindings file, this shortcut allows to quickly jump hundreds of lines in some cases, directly to the next change.",
-    "when": "textCompareEditorVisible"
+    "when": "textCompareEditorVisible",
   },
   {
     "command": "merge-conflict.next",
@@ -333,7 +333,7 @@
     "key": "ctrl+shift+down",
     "default": true,
     "example": "You are merging in staging changes and there are 1000 lines between the current conflict and the next one.  This will quickly jump you DOWN to it.",
-    "when": "*"
+    "when": "*",
   },
   {
     "command": "diffMerge.prevDiff",
@@ -341,7 +341,7 @@
     "key": "ctrl+shift+up",
     "default": false,
     "example": "If I have three changes to this keybindings file, this shortcut allows to quickly jump hundreds of lines in some cases, directly to the PREVIOUS change.",
-    "when": "diffMerge.panelFocused"
+    "when": "diffMerge.panelFocused",
   },
   {
     "command": "workbench.action.compareEditor.previousChange",
@@ -349,7 +349,7 @@
     "key": "ctrl+shift+up",
     "default": false,
     "example": "If I have three diff/merge changes to this keybindings file, this shortcut allows to quickly jump hundreds of lines in some cases, directly to the PREVIOUS change.",
-    "when": "textCompareEditorVisible"
+    "when": "textCompareEditorVisible",
   },
   {
     "command": "merge-conflict.previous",
@@ -357,7 +357,7 @@
     "key": "ctrl+shift+up",
     "default": false,
     "example": "You are merging in staging changes and there are 1000 lines between the current conflict and the previous one.  This will quickly jump you UP to it.",
-    "when": "*"
+    "when": "*",
   },
   {
     "command": "merge-conflict.accept.current",
@@ -365,14 +365,14 @@
     "key": "ctrl+shift+z",
     "default": false,
     "example": "You are merging in staging changes and want to take those over your own.  You can execute this keybindings and it will select the changes listed below your current code.",
-    "when": "*"
+    "when": "*",
   },
   {
     "command": "merge-conflict.accept.incoming",
     "description": "During a merge conflict, this allows you to quickly accept the incoming change.",
     "key": "ctrl+shift+x",
     "example": "You are merging in staging changes and want to take those over your own.  You can execute this keybindings and it will select the changes listed below your current code.",
-    "when": "*"
+    "when": "*",
   },
   {
     "command": "gitlens.toggleFileBlame",
@@ -380,64 +380,57 @@
     "key": "ctrl+b",
     "default": false,
     "example": "Toggle this to quickly scan who did what in a file, when, and their commit message.",
-    "when": "editorTextFocus && gitlens:activeFileStatus =~ /blameable/"
+    "when": "editorTextFocus && gitlens:activeFileStatus =~ /blameable/",
   },
   {
     "command": "gitlens.toggleFileBlame",
     "key": "ctrl+b",
     "example": "Toggling this, after the above command allows you drill in on a specific line change and see the history even before the latest change.",
-    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /blameable/"
+    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /blameable/",
   },
   {
     "command": "gitlens.toggleFileBlame",
     "key": "ctrl+b",
-    "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /blameable/"
-  },
-  {
-    "command": "editor.action.clipboardPasteAction",
-    "description": "To ensure the pasting behavior is uniform across everything, the when value here is set to all situations.",
-    "key": "cmd+v",
-    "example": "When an input field is active is certain panes, this ensures you can paste even from the global clipboard.",
-    "when": "*"
+    "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /blameable/",
   },
   {
     "command": "-editor.action.selectHighlights",
     "description": "IMPORTANT: All key bindings where the command value is prefixed with a hyphen (like this one).  You can safely ignore.  These are just to clear up any conflicts with the keybindings above.",
     "key": "shift+cmd+l",
-    "when": "editorFocus"
+    "when": "editorFocus",
   },
   {
     "command": "-editor.action.moveLinesDownAction",
     "key": "alt+down",
-    "when": "editorTextFocus && !editorReadonly"
+    "when": "editorTextFocus && !editorReadonly",
   },
   {
     "command": "-editor.action.copyLinesDownAction",
     "key": "shift+alt+down",
-    "when": "editorTextFocus && !editorReadonly"
+    "when": "editorTextFocus && !editorReadonly",
   },
   {
     "command": "-editor.action.moveLinesUpAction",
     "key": "alt+up",
-    "when": "editorTextFocus && !editorReadonly"
+    "when": "editorTextFocus && !editorReadonly",
   },
   {
     "command": "-editor.action.copyLinesUpAction",
     "key": "shift+alt+up",
-    "when": "editorTextFocus && !editorReadonly"
+    "when": "editorTextFocus && !editorReadonly",
   },
   {
     "command": "-editor.action.deleteLines",
     "key": "shift+cmd+k",
-    "when": "textInputFocus && !editorReadonly"
+    "when": "textInputFocus && !editorReadonly",
   },
   {
     "command": "-workbench.action.closeEditorsInGroup",
-    "key": "cmd+k w"
+    "key": "cmd+k w",
   },
   {
     "command": "-workbench.view.explorer",
-    "key": "shift+cmd+e"
+    "key": "shift+cmd+e",
   },
   {
     "command": "-expand_region",
@@ -445,66 +438,62 @@
     "key": "ctrl+w",
     "experimental": true,
     "frequency": "Frequent",
-    "when": "editorTextFocus"
+    "when": "editorTextFocus",
   },
   {
     "command": "-undo_expand_region",
     "key": "ctrl+shift+w",
-    "when": "editorHasSelection && editorTextFocus"
+    "when": "editorHasSelection && editorTextFocus",
   },
   {
     "command": "-workbench.action.togglePanel",
-    "key": "cmd+j"
+    "key": "cmd+j",
   },
   {
     "command": "-editor.foldRecursively",
     "description": "This command folds the current block you are on and all blocks within it.  It requires that folding is enabled.",
     "key": "cmd+k cmd+[",
-    "when": "editorTextFocus && foldingEnabled"
+    "when": "editorTextFocus && foldingEnabled",
   },
   {
     "command": "editor.action.previousMatchFindAction",
     "key": "shift+cmd+g",
-    "when": "editorFocus"
+    "when": "editorFocus",
   },
   {
     "command": "-workbench.action.compareEditor.nextChange",
     "key": "alt+f5",
-    "when": "editorTextFocus || textCompareEditorVisible"
+    "when": "editorTextFocus || textCompareEditorVisible",
   },
   {
     "command": "-workbench.action.compareEditor.previousChange",
     "key": "shift+alt+f5",
-    "when": "editorTextFocus || textCompareEditorVisible"
+    "when": "editorTextFocus || textCompareEditorVisible",
   },
   {
     "command": "-gitlens.toggleFileBlame",
     "description": "This is helpful when in a file and you quickly need to see who worked on a line last and when it was.",
     "key": "ctrl+b",
-    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /blameable/"
+    "when": "editorTextFocus && config.gitlens.keymap == 'alternate' && gitlens:activeFileStatus =~ /blameable/",
   },
   {
     "command": "-references-view.prev",
     "key": "shift+f4",
-    "when": "reference-list.hasResult && references-view.canNavigate"
+    "when": "reference-list.hasResult && references-view.canNavigate",
   },
   {
     "command": "-editor.emmet.action.balanceIn",
     "description": "Shortcut for smart selecting inward.  By smart, I mean it selects all of a tag, then the child tag within that.  The drawback is this emmet keybinding only works with a few different languages. NOTE: You will first need to have content selected with a child for this shortcut to work.",
     "key": "cmd+i",
     "experimental": true,
-    "frequency": "Occasional"
+    "frequency": "Occasional",
   },
   {
     "command": "-editor.emmet.action.balanceOut",
     "description": "Shortcut for smart selecting outward.  By smart, I mean it selects all of a tag, then the parent tag above that.  The drawback is this emmet keybinding only works with a few different languages.",
     "key": "shift+cmd+i",
     "experimental": true,
-    "frequency": "Occasional"
-  },
-  {
-    "command": "-editor.action.clipboardPasteAction",
-    "key": "cmd+v"
+    "frequency": "Occasional",
   },
   {
     "command": "cursorWordPartStartLeft",
@@ -513,7 +502,7 @@
     "default": true,
     "example": "If you are trying to navigate through the first two sentences out of a paragraph, using this shortcut will drastically speed up the process.",
     "frequency": "Frequent",
-    "when": "textInputFocus"
+    "when": "textInputFocus",
   },
   {
     "command": "cursorWordPartRight",
@@ -522,7 +511,7 @@
     "default": true,
     "example": "If you are trying to navigate through the first two sentences out of a paragraph, using this shortcut will drastically speed up the process.",
     "frequency": "Frequent",
-    "when": "textInputFocus"
+    "when": "textInputFocus",
   },
   {
     "command": "workbench.action.files.saveWithoutFormatting",
@@ -531,74 +520,93 @@
     "default": true,
     "example": "While updating a YML file, you save and notice that a new value is incorrectly indented.  By using this command, you realize that the formatter is set to bash scripts instead of YML.",
     "frequency": "Occasional",
-    "when": "*"
+    "when": "*",
   },
   {
     "command": "-workbench.action.files.saveWithoutFormatting",
-    "key": "cmd+k s"
+    "key": "cmd+k s",
   },
   {
     "command": "-cursorLineEnd",
     "key": "ctrl+e",
-    "when": "textInputFocus"
+    "when": "textInputFocus",
   },
   {
     "command": "atlascode.showExploreSettings",
-    "key": "shift+cmd+2"
+    "key": "shift+cmd+2",
   },
   {
     "command": "workbench.action.chat.open",
-    "key": "alt+cmd+i"
+    "key": "alt+cmd+i",
   },
   {
     "command": "-workbench.action.chat.open",
     "key": "ctrl+cmd+i",
-    "when": "hasChatProvider"
+    "when": "hasChatProvider",
   },
   {
     "command": "workbench.action.reopenClosedEditor",
-    "key": "cmd+r"
+    "key": "cmd+r",
   },
   {
     "command": "editor.debug.action.showDebugHover",
     "key": "cmd+y",
-    "when": "editorTextFocus && inDebugMode"
+    "when": "editorTextFocus && inDebugMode",
   },
   {
     "command": "editor.action.inlineSuggest.trigger",
     "key": "ctrl+alt+cmd+i",
-    "when": "config.github.copilot.inlineSuggest.enable && editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible"
+    "when": "config.github.copilot.inlineSuggest.enable && editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible",
   },
   {
     "command": "-editor.action.inlineSuggest.trigger",
     "key": "alt+\\",
-    "when": "config.github.copilot.inlineSuggest.enable && editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible"
+    "when": "config.github.copilot.inlineSuggest.enable && editorTextFocus && !editorHasSelection && !inlineSuggestionsVisible",
   },
   {
     "command": "github.copilot.terminal.explainTerminalSelectionContextMenu",
-    "key": "ctrl+alt+cmd+/"
+    "key": "ctrl+alt+cmd+/",
   },
   {
     "command": "-workbench.action.toggleDevTools",
     "key": "alt+cmd+i",
-    "when": "isDevelopment"
+    "when": "isDevelopment",
   },
   {
     "command": "workbench.panel.chat.view.copilot.toggleVisibility",
     "key": "shift+cmd+u",
-    "when": "github.copilot.activated || !github.copilot.activated"
+    "when": "github.copilot.activated || !github.copilot.activated",
   },
   {
     "command": "workbench.action.newWindow",
-    "key": "alt+cmd+n"
+    "key": "alt+cmd+n",
   },
   {
     "command": "-workbench.action.newWindow",
-    "key": "shift+cmd+n"
+    "key": "shift+cmd+n",
   },
   {
     "command": "explorer.newFolder",
     "key": "cmd+n",
-    "when": "sideBarFocus"
-  }
+    "when": "sideBarFocus",
+  },
+  {
+    "key": "cmd+k v",
+    "command": "-markdown.showPreviewToSide",
+    "when": "!notebookEditorFocused && editorLangId =~ /^(markdown|prompt|instructions|chatagent|skill)$/",
+  },
+  {
+    "key": "shift+cmd+v",
+    "command": "-notebook.cell.pasteAbove",
+    "when": "notebookEditorFocused && !inputFocus",
+  },
+  {
+    "key": "alt+cmd+v",
+    "command": "-extension.validateJson",
+  },
+  {
+    "key": "cmd+v",
+    "command": "-markdown.extension.editing.paste",
+    "when": "editorHasSelection && editorTextFocus && editorLangId =~ /^markdown$|^rmd$|^quarto$/",
+  },
 ]

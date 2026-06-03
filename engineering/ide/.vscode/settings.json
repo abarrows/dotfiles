@@ -811,6 +811,7 @@
   "extensions.closeExtensionDetailsOnViewChange": true,
   "extensions.ignoreRecommendations": true,
   "files.associations": {
+    ".mjmlconfig": "json",
     "*ci.yaml": "azure-pipelines",
     "*.base": "ruby",
     "*.devops": "ruby",
@@ -891,24 +892,24 @@
   "githubPullRequests.queries": [
     {
       "label": "Local Pull Request Branches",
-      "query": "default",
+      "query": "default"
     },
     {
       "label": "Waiting For My Review",
-      "query": "repo:${owner}/${repository} is:open review-requested:${user}",
+      "query": "repo:${owner}/${repository} is:open review-requested:${user}"
     },
     {
       "label": "Assigned To Me",
-      "query": "repo:${owner}/${repository} is:open assignee:${user}",
+      "query": "repo:${owner}/${repository} is:open assignee:${user}"
     },
     {
       "label": "Created By Me",
-      "query": "repo:${owner}/${repository} is:open author:${user}",
+      "query": "repo:${owner}/${repository} is:open author:${user}"
     },
     {
       "label": "All Open",
-      "query": "default",
-    },
+      "query": "default"
+    }
   ],
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": true,
@@ -1258,4 +1259,17 @@
   "gitlens.ai.experimental.composer.enabled": true,
   "github.copilot.chat.anthropic.contextEditing.enabled": true,
   "github.copilot.chat.anthropic.tools.websearch.enabled": true,
+  "jira-plugin.workingProject": "",
+  "@azure.argTenant": "",
+  "chat.hookFilesLocations": {
+    ".github/hooks": true,
+    ".claude/settings.local.json": true,
+    ".claude/settings.json": true,
+    "~/.copilot/hooks": true,
+    "~/.claude/settings.json": true,
+    "~/.agents/hooks": true,
+  },
+  "window.newWindowProfile": "Default",
+  "atlascode.rovodev.enabled": true,
+  "atlascode.jira.enabled": true,
 }

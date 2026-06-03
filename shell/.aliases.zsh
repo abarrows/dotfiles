@@ -15,7 +15,7 @@ alias repos="cd ~/$CURRENT_COMPANY/repos/"
 
 # General Shell Operation
 alias ls="ls -al"
-alias cnpm="rm -rf node_modules && rm -rf package-lock.json && npm install --cache-clean d --os=linux --os=darwin --cpu=x64 --cpu=arm64"
+alias cnpm="rm -rf node_modules package-lock.json && npm cache clean --force && npm install"
 alias du="docker compose up --build"
 # alias dockerdestroy="docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q) && docker rmi -f $(docker images -a -q) && docker builder prune -f && docker volume prune -f && docker system prune -f && docker networ
 # k prune -f"
@@ -116,7 +116,8 @@ alias wpd="./bin/webpack-dev-server"
 
 # Personal
 alias personal="cd ~/$CURRENT_COMPANY/repos/personal"
-alias aiprompts="cd ~/$CURRENT_COMPANY/repos/personal/fabric && $IDE_PATH ."
+alias ai="cd ~/$CURRENT_COMPANY/repos/personal/ai && $IDE_PATH ."
+alias aiprompts="cd ~/$CURRENT_COMPANY/repos/personal/ai-prompts && $IDE_PATH ."
 alias chatwithacb="cd ~/$CURRENT_COMPANY/repos/personal/chat-with-acb && $IDE_PATH ."
 # material-skilltree
 alias skilltree="cd ~/$CURRENT_COMPANY/repos/personal/skilltree-ui && $IDE_PATH ."

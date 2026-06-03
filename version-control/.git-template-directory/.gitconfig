@@ -159,7 +159,18 @@
     # Enable per-worktree configuration (allows different settings per worktree)
     # Useful if you need different hooks or configs in different worktrees
     worktreeConfig = true
+[alias]
+    # Show which branches last touched a file (branch name + date + commit message)
+    who-touched = "!f() { git log --all --source --format='%h %ad %-30D %s' --date=short -- \"$1\" | grep -v '^$' | head -${2:-15}; }; f"
 
+    # Show the last N diffs for a file across all branches
+    file-history = "!f() { git log --all -p --date=short --format='%n%C(yellow)%h %C(cyan)%ad %C(green)%D%C(reset)%n%s%n' -- \"$1\" | head -${2:-200}; }; f"
+
+    # List branches that contain changes to a specific file, sorted by most recent
+    branches-with = "!f() { for branch in $(git for-each-ref --format='%(refname:short)' refs/heads/); do last=$(git log -1 --format='%ad' --date=short \"$branch\" -- \"$1\" 2>/dev/null); if [ -n \"$last\" ]; then echo \"$last $branch\"; fi; done | sort -r | head -${2:-10}; }; f"
+
+    # Show the last change made to a file on each branch (compact view)
+    last-change = "!f() { for branch in $(git for-each-ref --format='%(refname:short)' refs/heads/); do info=$(git log -1 --format='%ad | %h | %s' --date=short \"$branch\" -- \"$1\" 2>/dev/null); if [ -n \"$info\" ]; then printf '%-40s %s\\n' \"$branch\" \"$info\"; fi; done | sort -t'|' -k1 -r; }; f"
 # ────────────────────────────────────────────────────────────────────────────
 # NOTE: Git doesn't support declarative hook configuration in .gitconfig
 # To run 'npm install' automatically in new worktrees, create an executable
