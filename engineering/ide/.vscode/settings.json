@@ -892,24 +892,24 @@
   "githubPullRequests.queries": [
     {
       "label": "Local Pull Request Branches",
-      "query": "default"
+      "query": "default",
     },
     {
       "label": "Waiting For My Review",
-      "query": "repo:${owner}/${repository} is:open review-requested:${user}"
+      "query": "repo:${owner}/${repository} is:open review-requested:${user}",
     },
     {
       "label": "Assigned To Me",
-      "query": "repo:${owner}/${repository} is:open assignee:${user}"
+      "query": "repo:${owner}/${repository} is:open assignee:${user}",
     },
     {
       "label": "Created By Me",
-      "query": "repo:${owner}/${repository} is:open author:${user}"
+      "query": "repo:${owner}/${repository} is:open author:${user}",
     },
     {
       "label": "All Open",
-      "query": "default"
-    }
+      "query": "default",
+    },
   ],
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": true,
@@ -1272,4 +1272,9 @@
   "window.newWindowProfile": "Default",
   "atlascode.rovodev.enabled": true,
   "atlascode.jira.enabled": true,
+  "atlascode.jira.lastCreatePreSelectedValues": {
+    "siteId": "62e81b79-b5b8-4727-84c4-68f5ae75b2ac",
+    "projectKey": "WR",
+    "issueTypeId": "",
+  },
 }

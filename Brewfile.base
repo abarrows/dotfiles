@@ -47,7 +47,7 @@ cask 'cursor' # EXPERIMENTAL - New AI focused competitor to VS Code
 cask 'disk-drill' # RECOMMENDED - Duplicate file finder and storage visualizer.
 cask 'docker'     # REQUIRED - Department approved containerized environment tools
 cask 'dropbox'    # OPTIONAL - Department approved cloud storage for UXD and Design
-cask 'devin'       # RECOMMENDED - IDE for development on Mac OSX.
+# cask 'devin'       # RECOMMENDED - IDE (previously windsurf) for development on Mac OSX.
 cask 'vysor'       # RECOMMENDED - Android screen mirroring for testing mobile applications.
 cask 'dotnet-sdk' # REQUIRED - DEVOPS Microsoft .NET Core SDK
 cask 'expressvpn'      # REQUIRED - Department approved VPN for testing geo location
@@ -69,7 +69,7 @@ cask 'inkscape' # RECOMMENDED - Front-end team approved vector graphics editor
 # cask "microsoft-office" || true # REQUIRED - Department approved productivity
 # suite
 cask 'karabiner-elements' # RECOMMENDED - Useful for remapping keys on Mac OSX.
-# cask 'lm-studio'          # RECOMMENDED - Private local Large Language Model.
+cask 'lm-studio'          # RECOMMENDED - Private local Large Language Model.
 # IE: F keys require fn + key on one keyboard and not the other.
 cask 'microsoft-edge'  # REQUIRED - Corporate approved browser for using CoPilot and browser testing.
 cask 'microsoft-teams' # REQUIRED - Department approved communication tool
