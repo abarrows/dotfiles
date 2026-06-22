@@ -129,29 +129,42 @@ Using the dotbot plugin dotbot-brew, a homebrew bundle file called Brewfile.base
 Accept invitation from github to join our organization, using your personal
 account is fine.
 
-To begin, run the following command in your terminal:
+> **Most people should use the [Quick Start](#quick-start-one-command) above
+> (`onboard.sh`), which performs every step below in order.** The longhand flow
+> here is for reference or partial/manual runs.
 
-```bash
-/bin/bash -c "$(curl -fsSL https://github.com/abarrows/dotfiles/blob/production/onboarding_bin/set-variables.sh)"
-```
+To bootstrap a bare machine (installs Homebrew, prompts for your machine
+variables, writes `~/.envrc`, installs `gh`, and clones this repo), run:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abarrows/dotfiles/production/onboarding_bin/pre-onboarding-script.sh)"
 ```
 
+The bootstrap script already installs Homebrew and `gh` and clones the repo, so
+you normally do **not** need to install them by hand. If you do it manually:
+
 Download and install Homebrew (alternative article explaining it)
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
-Install “git“ using the command line:
-`brew install git`
+Install git and the GitHub CLI, then authenticate (auth is required before the
+clone):
+`brew install git gh && gh auth login`
 
 Checkout [this Dotfiles Repo](https://github.com/abarrows/dotfiles) locally:
 `git clone git@github.com:abarrows/dotfiles.git`
 
-Navigate to the root folder of the above project and using the command line run:
-`git submodule add https://github.com/anishathalye/dotbot`
-`sudo chmod -R 755 /usr/local/share/zsh`
-`./install`
+Navigate to the root folder of the project and run the installer. The dotbot
+submodules are already declared in `.gitmodules` and are fetched automatically by
+`install-profile` (do NOT run `git submodule add` — it will error):
+
+```bash
+./install-profile base        # then: ./install-profile react | ruby | devops
+```
+
+> If you hit Homebrew permission errors, fix ownership of the brew prefix with
+> `./onboarding_bin/normalize-permissions.sh` (it uses `$(brew --prefix)`, which
+> is `/opt/homebrew` on Apple Silicon and `/usr/local` on Intel — the old
+> `sudo chmod -R 755 /usr/local/share/zsh` was Intel-only).
 
 ## Detailed List of Toolsets
 
