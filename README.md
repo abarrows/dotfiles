@@ -8,6 +8,25 @@ tech stack that you will be working in. By the end of running our base profile
 and the tech stack of your choice, the new engineer should have almost everything required
 to optimally work on any UI application within an ecosystem of products and services.
 
+## Quick Start (one command)
+
+`onboarding_bin/onboard.sh` collapses the whole flow below into a single
+orchestrated run. From a bare machine:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abarrows/dotfiles/production/onboarding_bin/onboard.sh)" -- react
+```
+
+(Replace `react` with `ruby`, `devops`, or omit it for base only. Already cloned?
+Run `./onboarding_bin/onboard.sh react` from the repo root.)
+
+It is idempotent and safe to re-run. It automates Xcode CLT, Homebrew, `gh`,
+the repo clone, `.envrc`, `./install-profile`, and **non-interactive** SSH + GPG
+key generation. The only steps it cannot remove are the interactive identity
+gates: your **sudo password**, the **Xcode CLT dialog**, **`gh auth login`**, and
+**pasting your SSH + GPG public keys into GitHub** (it prints both keys and opens
+the GitHub settings pages for you). The longhand steps below remain for reference.
+
 ## Table of Contents
 
 - [Team Onboarding Dotfiles and Tooling](#team-onboarding-dotfiles-and-tooling)
