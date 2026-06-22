@@ -114,4 +114,21 @@
         # Extensions settings
         git config --global extensions.worktreeConfig true
 
+        # Signing key — commit.gpgsign is enabled above, so a signingkey MUST be
+        # set or every commit fails. Pull it from ~/.envrc (linked by the
+        # `security` config, which runs earlier in the base profile).
+        if [ -f "$HOME/.envrc" ]; then
+          set -a
+          . "$HOME/.envrc"
+          set +a
+        fi
+        if [ -n "${CURRENT_USER_GPG_KEY:-}" ]; then
+          git config --global user.signingkey "${CURRENT_USER_GPG_KEY}"
+          echo "Set user.signingkey from CURRENT_USER_GPG_KEY."
+        else
+          echo "⚠️  CURRENT_USER_GPG_KEY is not set in .envrc. commit.gpgsign is ON"
+          echo "    but no signingkey is configured — signed commits will fail."
+          echo "    Run ./onboarding_bin/onboard.sh (or setup_gpg.sh) to create/wire one."
+        fi
+
         echo "✅ Global Git configuration applied successfully!"
