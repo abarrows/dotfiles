@@ -6,7 +6,9 @@
       "Bash(echo:*)",
       "Bash(ruby -ryaml -e \"YAML.load_file\\('meta/configs/version_control.yml'\\); puts 'version_control.yml: valid YAML'\")",
       "Bash(yamllint -d relaxed meta/configs/version_control.yml)",
-      "Bash(shellcheck -S warning onboarding_bin/onboard.sh onboarding_bin/install-homebrew.sh)"
+      "Bash(shellcheck -S warning onboarding_bin/onboard.sh onboarding_bin/install-homebrew.sh)",
+      "Bash(bash -n onboarding_bin/onboard.sh)",
+      "Bash(shellcheck -S warning onboarding_bin/onboard.sh)"
     ]
   }
 }

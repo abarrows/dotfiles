@@ -9,7 +9,10 @@
 #     1. sudo password (Homebrew install + chown of the brew prefix)
 #     2. Xcode Command Line Tools GUI dialog (must be clicked + downloads)
 #     3. `gh auth login` (browser / device identity)
-#     4. pasting your SSH + GPG PUBLIC keys into github.com
+#     4. GPG passphrase entry (pinentry dialog — protects your signing key)
+#   SSH + GPG PUBLIC keys are uploaded to GitHub automatically via `gh` (it falls
+#   back to printing the key + opening the settings page only if the gh token
+#   lacks key-write scope).
 #   Everything else is automated and sequenced here. This script collapses the
 #   ~10-step README flow into: run one command, answer the gates above.
 #
@@ -98,9 +101,12 @@ install_homebrew() {
 # Step 3 — Bootstrap packages needed before the repo / Brewfile run.
 # ----------------------------------------------------------------------------
 install_bootstrap_pkgs() {
-  step "Bootstrap packages (git, gh, direnv)"
+  step "Bootstrap packages (git, gh, direnv, gnupg, pinentry-mac)"
   local pkg
-  for pkg in git gh direnv; do
+  # gnupg + pinentry-mac are here (not just in Brewfile.base) so the GPG step's
+  # interactive passphrase dialog works even if that step runs before/without a
+  # full Brewfile pass.
+  for pkg in git gh direnv gnupg pinentry-mac; do
     if brew list --formula "$pkg" >/dev/null 2>&1; then
       ok "$pkg present"
     else
@@ -203,7 +209,8 @@ run_dotbot() {
 }
 
 # ----------------------------------------------------------------------------
-# Step 8 — SSH key (generate non-interactively; paste pub key is the only gate).
+# Step 8 — SSH key. Generated non-interactively; the PUBLIC key is auto-uploaded
+#          to GitHub via `gh ssh-key add` (manual paste only as a fallback).
 # ----------------------------------------------------------------------------
 setup_ssh_key() {
   step "SSH key"
@@ -239,16 +246,28 @@ EOF
   grep -qs github.com "$HOME/.ssh/known_hosts" 2>/dev/null \
     || ssh-keyscan -t ed25519 github.com >>"$HOME/.ssh/known_hosts" 2>/dev/null || true
 
-  printf '\n   Your SSH PUBLIC key:\n\n'
-  sed 's/^/      /' "$key.pub"
-  open "https://github.com/settings/ssh/new" >/dev/null 2>&1 || true
-  MANUAL_ACTIONS+=("Paste the SSH public key above at https://github.com/settings/ssh/new")
+  # Upload the public key to GitHub (gh is authenticated by now).
+  local title out
+  title="${CURRENT_NAME:-$USER}@$(scutil --get LocalHostName 2>/dev/null || hostname -s)"
+  if out="$(gh ssh-key add "$key.pub" --title "$title" 2>&1)"; then
+    ok "SSH public key uploaded to GitHub"
+  elif printf '%s' "$out" | grep -qiE 'already|exist'; then
+    ok "SSH public key already on GitHub"
+  else
+    warn "Could not auto-upload SSH key (token may lack the 'admin:public_key' scope)."
+    printf '\n   Your SSH PUBLIC key:\n\n'
+    sed 's/^/      /' "$key.pub"
+    open "https://github.com/settings/ssh/new" >/dev/null 2>&1 || true
+    MANUAL_ACTIONS+=("Add your SSH key: paste it at https://github.com/settings/ssh/new — or run: gh auth refresh -s admin:public_key && gh ssh-key add $key.pub")
+  fi
 }
 
 # ----------------------------------------------------------------------------
-# Step 9 — GPG key (generated NON-interactively; paste pub key is the only gate).
-#          This is the big manual-step win: setup_gpg.sh's interactive
-#          `gpg --full-gen-key` walkthrough is replaced by a batch generation.
+# Step 9 — GPG signing key. Generation is INTERACTIVE (you set a passphrase via
+#          the pinentry dialog, protecting your signing identity); the resulting
+#          PUBLIC key is auto-uploaded via `gh gpg-key add` and user.signingkey is
+#          wired up so signed commits work immediately. Replaces setup_gpg.sh's
+#          ~16-step manual `gpg --full-gen-key` walkthrough.
 # ----------------------------------------------------------------------------
 setup_gpg_key() {
   step "GPG signing key"
@@ -259,18 +278,15 @@ setup_gpg_key() {
   [[ -z "$email" ]] && { warn "No email in .envrc; skipping GPG generation"; return; }
 
   mkdir -p "$HOME/.gnupg"; chmod 700 "$HOME/.gnupg"
-  grep -qs allow-loopback-pinentry "$HOME/.gnupg/gpg-agent.conf" 2>/dev/null \
-    || echo "allow-loopback-pinentry" >>"$HOME/.gnupg/gpg-agent.conf"
-  gpgconf --reload gpg-agent >/dev/null 2>&1 || true
 
   local keyid
   keyid="$(gpg --list-secret-keys --keyid-format=long "$email" 2>/dev/null | awk '/^sec/{print $2}' | cut -d/ -f2 | head -1)"
 
   if [[ -z "$keyid" ]]; then
-    log "Generating a 4096-bit RSA GPG key for $name <$email> (3y expiry)..."
-    gpg --batch --pinentry-mode loopback --passphrase '' \
-        --quick-generate-key "$name <$email>" rsa4096 default 3y >/dev/null 2>&1 \
-      || { warn "GPG batch generation failed; run ./onboarding_bin/setup_gpg.sh manually"; return; }
+    log "Generating a 4096-bit RSA GPG key for $name <$email> (3y expiry)."
+    warn "A passphrase dialog will appear — choose a passphrase to protect your signing key."
+    gpg --quick-generate-key "$name <$email>" rsa4096 default 3y \
+      || { warn "GPG generation failed; run ./onboarding_bin/setup_gpg.sh manually"; return; }
     keyid="$(gpg --list-secret-keys --keyid-format=long "$email" 2>/dev/null | awk '/^sec/{print $2}' | cut -d/ -f2 | head -1)"
   fi
   [[ -z "$keyid" ]] && { warn "Could not determine GPG key id; skipping"; return; }
@@ -291,10 +307,19 @@ setup_gpg_key() {
     fi
   fi
 
-  printf '\n   Your GPG PUBLIC key:\n\n'
-  gpg --armor --export "$keyid" | sed 's/^/      /'
-  open "https://github.com/settings/gpg/new" >/dev/null 2>&1 || true
-  MANUAL_ACTIONS+=("Paste the GPG public key above at https://github.com/settings/gpg/new")
+  # Upload the public key to GitHub (gh is authenticated by now).
+  local gout
+  if gout="$(gpg --armor --export "$keyid" | gh gpg-key add - 2>&1)"; then
+    ok "GPG public key uploaded to GitHub"
+  elif printf '%s' "$gout" | grep -qiE 'already|exist'; then
+    ok "GPG public key already on GitHub"
+  else
+    warn "Could not auto-upload GPG key (token may lack the 'write:gpg_key' scope)."
+    printf '\n   Your GPG PUBLIC key:\n\n'
+    gpg --armor --export "$keyid" | sed 's/^/      /'
+    open "https://github.com/settings/gpg/new" >/dev/null 2>&1 || true
+    MANUAL_ACTIONS+=("Add your GPG key: paste it at https://github.com/settings/gpg/new — or run: gh auth refresh -s write:gpg_key && gpg --armor --export $keyid | gh gpg-key add -")
+  fi
 }
 
 # ----------------------------------------------------------------------------
