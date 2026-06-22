@@ -3,7 +3,10 @@
     "allow": [
       "Bash(claude login:*)",
       "Bash(CLAUDECODE= claude:*)",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(ruby -ryaml -e \"YAML.load_file\\('meta/configs/version_control.yml'\\); puts 'version_control.yml: valid YAML'\")",
+      "Bash(yamllint -d relaxed meta/configs/version_control.yml)",
+      "Bash(shellcheck -S warning onboarding_bin/onboard.sh onboarding_bin/install-homebrew.sh)"
     ]
   }
 }
