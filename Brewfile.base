@@ -4,6 +4,7 @@
 cask_args appdir: '/Applications' # rubocop:disable Naming/FileName
 tap 'homebrew/bundle'
 tap 'homebrew/services'
+'cocoapods'          # RECOMMENDED - Package manager for iOS and macOS development
 brew 'direnv'        # REQUIRED - BASE/ROR/NODE/
 brew 'dotenv-linter' # REQUIRED - BASE/ROR/NODE/
 brew 'freetype'      # REQUIRED - BASE/ROR/NODE CL
@@ -52,6 +53,7 @@ cask 'vysor'       # RECOMMENDED - Android screen mirroring for testing mobile a
 cask 'dotnet-sdk' # REQUIRED - DEVOPS Microsoft .NET Core SDK
 cask 'expressvpn'      # REQUIRED - Department approved VPN for testing geo location
 cask 'firefox' || true # REQUIRED - Front-end team approved browser for our viewing our applications
+
 # NOTE: These come preinstalled, uncheck if you have done a factory reset.
 cask 'figma'                    # RECOMMENDED - As an alternative to illustrator and sketch.
 cask 'font-fira-code'           # RECOMMENDED -  command line icon fonts
