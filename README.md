@@ -8,25 +8,6 @@ tech stack that you will be working in. By the end of running our base profile
 and the tech stack of your choice, the new engineer should have almost everything required
 to optimally work on any UI application within an ecosystem of products and services.
 
-## Quick Start (one command)
-
-`onboarding_bin/onboard.sh` collapses the whole flow below into a single
-orchestrated run. From a bare machine:
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abarrows/dotfiles/production/onboarding_bin/onboard.sh)" -- react
-```
-
-(Replace `react` with `ruby`, `devops`, or omit it for base only. Already cloned?
-Run `./onboarding_bin/onboard.sh react` from the repo root.)
-
-It is idempotent and safe to re-run. It automates Xcode CLT, Homebrew, `gh`,
-the repo clone, `.envrc`, `./install-profile`, and **non-interactive** SSH + GPG
-key generation. The only steps it cannot remove are the interactive identity
-gates: your **sudo password**, the **Xcode CLT dialog**, **`gh auth login`**, and
-**pasting your SSH + GPG public keys into GitHub** (it prints both keys and opens
-the GitHub settings pages for you). The longhand steps below remain for reference.
-
 ## Table of Contents
 
 - [Team Onboarding Dotfiles and Tooling](#team-onboarding-dotfiles-and-tooling)
@@ -129,42 +110,29 @@ Using the dotbot plugin dotbot-brew, a homebrew bundle file called Brewfile.base
 Accept invitation from github to join our organization, using your personal
 account is fine.
 
-> **Most people should use the [Quick Start](#quick-start-one-command) above
-> (`onboard.sh`), which performs every step below in order.** The longhand flow
-> here is for reference or partial/manual runs.
+To begin, run the following command in your terminal:
 
-To bootstrap a bare machine (installs Homebrew, prompts for your machine
-variables, writes `~/.envrc`, installs `gh`, and clones this repo), run:
+```bash
+/bin/bash -c "$(curl -fsSL https://github.com/abarrows/dotfiles/blob/production/onboarding_bin/set-variables.sh)"
+```
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/abarrows/dotfiles/production/onboarding_bin/pre-onboarding-script.sh)"
 ```
 
-The bootstrap script already installs Homebrew and `gh` and clones the repo, so
-you normally do **not** need to install them by hand. If you do it manually:
-
 Download and install Homebrew (alternative article explaining it)
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
-Install git and the GitHub CLI, then authenticate (auth is required before the
-clone):
-`brew install git gh && gh auth login`
+Install “git“ using the command line:
+`brew install git`
 
 Checkout [this Dotfiles Repo](https://github.com/abarrows/dotfiles) locally:
 `git clone git@github.com:abarrows/dotfiles.git`
 
-Navigate to the root folder of the project and run the installer. The dotbot
-submodules are already declared in `.gitmodules` and are fetched automatically by
-`install-profile` (do NOT run `git submodule add` — it will error):
-
-```bash
-./install-profile base        # then: ./install-profile react | ruby | devops
-```
-
-> If you hit Homebrew permission errors, fix ownership of the brew prefix with
-> `./onboarding_bin/normalize-permissions.sh` (it uses `$(brew --prefix)`, which
-> is `/opt/homebrew` on Apple Silicon and `/usr/local` on Intel — the old
-> `sudo chmod -R 755 /usr/local/share/zsh` was Intel-only).
+Navigate to the root folder of the above project and using the command line run:
+`git submodule add https://github.com/anishathalye/dotbot`
+`sudo chmod -R 755 /usr/local/share/zsh`
+`./install`
 
 ## Detailed List of Toolsets
 

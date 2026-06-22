@@ -1,6 +1,5 @@
 initialize
 macosx
-xcode
 homebrew_base
 security
 command_line

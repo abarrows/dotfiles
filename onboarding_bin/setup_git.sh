@@ -1,13 +1,5 @@
 #!/bin/bash
 
-# ⚠️ DEPRECATED as the onboarding path. The canonical global git configuration
-# is now applied by meta/configs/version_control.yml (run by `install-profile
-# base`), and onboard.sh sets user.signingkey directly. This script writes an
-# OVERLAPPING gitconfig that DIFFERS from version_control.yml (editor `code` vs
-# `windsurf`, pull.rebase false vs true) — running it after onboarding will
-# silently change those settings. Kept only for manual/standalone repair. Do not
-# wire it into a profile; pick one source of truth before using it.
-#
 # In order to setup your global git configuration you must set .envrc value
 # prior running this script or onboarding.
 
