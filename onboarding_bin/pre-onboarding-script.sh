@@ -88,7 +88,16 @@ EOF
 
 echo ".envrc has been created or updated."
 
-# Open .envrc and create directories
+# When orchestrated by onboard.sh, stop here: onboard.sh already installs
+# Homebrew/gh, clones the repo, and moves ~/.envrc into it. Running the tail
+# below would install brew/gh again and clone a SECOND nested copy of the repo.
+if [[ -n "${ONBOARD_ORCHESTRATED:-}" ]]; then
+  echo "Orchestrated run — leaving repo clone + relocation to onboard.sh."
+  return 0 2>/dev/null || exit 0
+fi
+
+# Standalone bootstrap: open .envrc, create the repo directory, install gh, and
+# clone the dotfiles repo (moving ~/.envrc into it).
 open ~/.envrc
 mkdir -p "$CURRENT_COMPANY/repos/development-team"
 cd "$CURRENT_COMPANY/repos/development-team" || exit

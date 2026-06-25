@@ -1,32 +1,54 @@
 #!/usr/bin/env bash
 
-# Dotfiles Environment Variables
+# Dotfiles Environment Variables (template — copy to .envrc and fill in)
+#
+# Every line below must be a comment, a blank line, or `export VAR="value"`.
+# Do NOT write `VAR=# comment` on one line — bash parses the text after the
+# value as a command, and sourcing the file fails with "<word>: command not found".
 
+# ----------------------------------------------------------------------------
 # Sensitive Variables
-# Github email address for professional or organizational teams
-GIT_EMAIL_ADDRESS_PROFESSIONAL="jdoe@acmecompany.com"
-# Please setup first by following these instructions:
-# https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
-CURRENT_USER_GPG_KEY=# Your professional SSH long form key.
+# ----------------------------------------------------------------------------
 
+# GitHub email address for your professional / organizational account.
+export GIT_EMAIL_ADDRESS_PROFESSIONAL="jdoe@acmecompany.com"
+
+# Your GPG signing key id (long form). Leave empty if you don't have one yet —
+# onboard.sh can generate and upload one for you.
+# https://docs.github.com/en/authentication/managing-commit-signature-verification
+export CURRENT_USER_GPG_KEY=""
+
+# Your JIRA API token. Leave empty if not applicable.
+export JIRA_API_TOKEN=""
+
+# ----------------------------------------------------------------------------
 # Non-Sensitive Variables
-# This is your reader friendly name
-CURRENT_NAME="Jane Doe"
-# This is your machine username. IE: /Users/jdoe
-CURRENT_USER="jdoe"
-# This is the folder name of all of your company's repos
-CURRENT_COMPANY="Career"
-# The application folder name for vscode.
-IDE_PATH="code"
-# This is the url to your team's base jira cloud instance
-JIRA_BASE_URL="https://atlassian.examplecompany.com"
-# This is your jira login email and should match your git email
-JIRA_USER_EMAIL="jdoe@exampledomain.com"
+# ----------------------------------------------------------------------------
 
+# Your reader-friendly name (used for git config + key titles).
+export CURRENT_NAME="Jane Doe"
+
+# Your machine username (e.g. /Users/jdoe).
+export CURRENT_USER="jdoe"
+
+# Your GitHub profile URL.
+export CURRENT_USER_GITHUB_URL="https://github.com/jdoe"
+
+# The folder name that holds all of your company's repos.
+export CURRENT_COMPANY="Career"
+
+# The command/path used to launch your IDE (e.g. "code").
+export IDE_PATH="code"
+
+# Your team's base JIRA cloud instance URL.
+export JIRA_BASE_URL="https://atlassian.examplecompany.com"
+
+# Your JIRA login email (should match your git email).
+export JIRA_USER_EMAIL="jdoe@exampledomain.com"
+
+# ----------------------------------------------------------------------------
 # Optional Variables
-GIT_EMAIL_ADDRESS_PERSONAL=# Your private Github email address used for personal projects
-CURRENT_USER_GPG_KEY=# Your personal SSH long form key.
-# Please setup first by following these instructions:
-# https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+# ----------------------------------------------------------------------------
 
-CURRENT_USER_GITHUB_URL="https://www.github.com/jdoe"
+# Private GitHub email used for personal projects. Leave empty if unused.
+export GIT_EMAIL_ADDRESS_PERSONAL=""
