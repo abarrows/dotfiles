@@ -7,17 +7,24 @@
 # Detect the architecture of the Mac
 arch_name="$(uname -m)"
 
-# Check if Homebrew is installed
-if [[ ! -r "/usr/local/bin/brew" && ! -r "/opt/homebrew/bin/brew" ]]; then
+# Homebrew install logic is mirrored in onboard.sh `install_homebrew()` (the
+# canonical reference) and install-homebrew.sh. Keep the three in sync: native
+# arm64 (no `arch -x86_64`) + NONINTERACTIVE=1.
+#
+# Skip entirely when orchestrated by onboard.sh: it already installed Homebrew
+# (step 2) before delegating here, so re-running this block is pure redundancy.
+if [[ -n "${ONBOARD_ORCHESTRATED:-}" ]]; then
+  echo "Orchestrated run — Homebrew already handled by onboard.sh; skipping install."
+elif [[ ! -r "/usr/local/bin/brew" && ! -r "/opt/homebrew/bin/brew" ]]; then
   echo "Homebrew is NOT installed. Installing..."
 
   if [[ "${arch_name}" == "arm64" ]]; then
-    # M1 Macs
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # Apple Silicon Macs — native arm64 Homebrew into /opt/homebrew.
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo "Installed Homebrew for M1+ Mac"
   elif [[ "${arch_name}" == "x86_64" ]]; then
     # Intel Macs
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo "Installed Homebrew for Intel-based Mac"
   else
     echo "Unknown architecture: ${arch_name}"

@@ -74,6 +74,12 @@ install_xcode_clt() {
 
 # ----------------------------------------------------------------------------
 # Step 2 — Homebrew  (GATE: sudo password)
+#
+# CANONICAL Homebrew install logic. Mirrored (kept in sync) in
+# install-homebrew.sh and pre-onboarding-script.sh — those two CANNOT source
+# this one because both run in the curl|bash bootstrap path before the repo
+# exists. If you change the install command here, update those two to match:
+# native arm64 (no `arch -x86_64`) + NONINTERACTIVE=1.
 # ----------------------------------------------------------------------------
 install_homebrew() {
   step "Homebrew"
