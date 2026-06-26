@@ -1,7 +1,7 @@
 cask_args appdir: '/Applications'
-tap 'homebrew/bundle'
-tap 'homebrew/cask-fonts'
-tap 'homebrew/services'
+# NOTE: homebrew/bundle, homebrew/cask-fonts and homebrew/services were
+# deprecated/emptied by Homebrew. bundle & services are built into core, and
+# cask fonts migrated into homebrew/cask — no taps are required.
 brew "coreutils" # REQUIRED - ROR/DEVOPS Required to build ruby containers and new ruby version binaries.
 brew "cmake" # RECOMMENDED - ROR/DEVOPS
 # brew 'imagemagick' # RECOMMENDED - ROR Image manipulation utility for web #

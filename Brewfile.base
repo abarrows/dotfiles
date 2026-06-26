@@ -2,8 +2,8 @@
 # frozen_string_literal: true
 
 cask_args appdir: '/Applications' # rubocop:disable Naming/FileName
-tap 'homebrew/bundle'
-tap 'homebrew/services'
+# NOTE: homebrew/bundle and homebrew/services were deprecated and emptied by
+# Homebrew — `brew bundle` is built into core now, so no taps are required.
 'cocoapods'          # RECOMMENDED - Package manager for iOS and macOS development
 brew 'direnv'        # REQUIRED - BASE/ROR/NODE/
 brew 'dotenv-linter' # REQUIRED - BASE/ROR/NODE/
@@ -23,7 +23,9 @@ brew 'pyenv'         # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended packag
 brew 'pinentry-mac'  # REQUIRED - The other dependency used for signed commits on mac.
 brew 'pipx' # RECOMMENDED Used for installing Python packages.
 brew 'postgresql@14' # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
-# brew "redis" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Primary Caching Dependency for Back-end Software Engineers
+# brew "redis" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Primary Caching
+# Dependency for Back-end Software Engineers
+brew 'powershell'    # RECOMMENDED - DEVOPS Powershell for managing Windows
 brew 'shellcheck' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Linter and auto-fixing
 brew 'shfmt' # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Formatter
 brew 'starship'   # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended platform agnostic shell prompt.
@@ -46,12 +48,10 @@ brew 'gemini-cli' # RECOMMENDED - Google Gemini AI CLI tool
 cask 'claude-code' # RECOMMENDED - AI Claude Code / CLI
 cask 'cursor' # EXPERIMENTAL - New AI focused competitor to VS Code
 cask 'disk-drill' # RECOMMENDED - Duplicate file finder and storage visualizer.
-cask 'docker'     # REQUIRED - Department approved containerized environment tools
+cask 'docker-desktop' # REQUIRED - Department approved containerized environment tools (formerly 'docker')
 cask 'dropbox'    # OPTIONAL - Department approved cloud storage for UXD and Design
-# cask 'devin'       # RECOMMENDED - IDE (previously windsurf) for development on Mac OSX.
 cask 'vysor'       # RECOMMENDED - Android screen mirroring for testing mobile applications.
 cask 'dotnet-sdk' # REQUIRED - DEVOPS Microsoft .NET Core SDK
-cask 'expressvpn'      # REQUIRED - Department approved VPN for testing geo location
 cask 'firefox' || true # REQUIRED - Front-end team approved browser for our viewing our applications
 
 # NOTE: These come preinstalled, uncheck if you have done a factory reset.
@@ -61,7 +61,6 @@ cask 'font-fira-code-nerd-font' # RECOMMENDED - command line icon fonts for view
 cask 'gemini'                   # RECOMMENDED - Duplicate remover
 cask 'gpg-suite'                # REQUIRED - Allows for setting up signed commits with github.
 cask 'chatgpt'                  # RECOMMENDED - General AI Chatbot
-cask 'windsurf'                 # RECOMMENDED - General AI Chatbot
 # cask 'google-chrome'            # REQUIRED -  Department approved primary browser
 cask 'google-drive'             # OPTIONAL - Recommended backup utility for use with google drive
 cask 'font-noto-color-emoji'    # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Emoji font for command line
@@ -86,10 +85,9 @@ cask 'visual-studio-code' || true # REQUIRED -  Digital Technology approved IDE 
 # cask "mamp" # RECOMMENDED - Front-end team approved server environment tool for wordpress and general web development
 # cask 'slack' # OPTIONAL - Department approved communication tool for specific
 # vendors like sourcepoint
-cask 'powershell'    # RECOMMENDED - DEVOPS Powershell for managing Windows
 cask 'spotify'       # RECOMMENDED - Music Service
 cask 'vlc'           # RECOMMENDED - Video format conversion utility
 cask 'warp'          # RECOMMENDED - Team preferred command prompt for Mac OSX
-cask 'windsurf' # RECOMMENDED - Alternative to vs code
+cask 'devin-desktop' # RECOMMENDED - Alternative to VS Code (formerly 'windsurf')
 cask 'zoom' # REQUIRED - Department approved video chat and calls utility
 cask '1password-cli' # RECOMMENDED - Useful for integrating with alfred and vaults.

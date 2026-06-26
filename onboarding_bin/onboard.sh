@@ -144,6 +144,25 @@ ensure_gh_auth() {
 # Step 5 — Locate or clone the dotfiles repo.
 # ----------------------------------------------------------------------------
 REPO_DIR=""
+
+# Bring an existing checkout up to date and CONTINUE — never abort the run.
+# Safe by design: skips when the tree has uncommitted changes, and only ever
+# fast-forwards (won't create merge commits or clobber local work). Any failure
+# (offline, diverged, detached) just warns and proceeds with what's on disk.
+update_checkout() {
+  local dir="$1"
+  if [[ -n "$(git -C "$dir" status --porcelain 2>/dev/null)" ]]; then
+    warn "Local changes present — leaving checkout as-is (run 'git pull' yourself if needed)."
+    return
+  fi
+  log "Updating checkout (git pull --ff-only)..."
+  if git -C "$dir" pull --ff-only >/dev/null 2>&1; then
+    ok "Up to date"
+  else
+    warn "Could not fast-forward (offline or diverged) — continuing with the current checkout."
+  fi
+}
+
 resolve_repo() {
   step "Dotfiles repository"
 
@@ -152,6 +171,7 @@ resolve_repo() {
   if [[ -n "$here" && -f "$here/install-profile" && -d "$here/meta" ]]; then
     REPO_DIR="$here"
     ok "Using existing checkout: $REPO_DIR"
+    update_checkout "$REPO_DIR"
     return
   fi
 
@@ -161,6 +181,7 @@ resolve_repo() {
   REPO_DIR="$parent/dotfiles"
   if [[ -d "$REPO_DIR/.git" ]]; then
     ok "Found existing clone: $REPO_DIR"
+    update_checkout "$REPO_DIR"
     return
   fi
   mkdir -p "$parent"

@@ -1,8 +1,7 @@
 cask_args appdir: '/Applications'
-tap 'homebrew/bundle'
-tap 'homebrew/cask'
-tap 'homebrew/cask-fonts'
-tap 'homebrew/services'
+# NOTE: homebrew/bundle, homebrew/cask, homebrew/cask-fonts and homebrew/services
+# were deprecated/emptied by Homebrew. bundle, services and cask are built into
+# core, and cask fonts migrated into homebrew/cask — no taps are required.
 brew 'act' # RECOMMENDED - DEVOPS Allows for testing Github Actions on your local machine
 brew 'azure-cli' # RECOMMENDED - DEVOPS Used with internal
 brew 'coreutils' # RECOMMENDED - DEVOPS Basic tools for the GNU OS
