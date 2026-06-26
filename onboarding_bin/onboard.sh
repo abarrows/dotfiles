@@ -74,6 +74,12 @@ install_xcode_clt() {
 
 # ----------------------------------------------------------------------------
 # Step 2 — Homebrew  (GATE: sudo password)
+#
+# CANONICAL Homebrew install logic. Mirrored (kept in sync) in
+# install-homebrew.sh and pre-onboarding-script.sh — those two CANNOT source
+# this one because both run in the curl|bash bootstrap path before the repo
+# exists. If you change the install command here, update those two to match:
+# native arm64 (no `arch -x86_64`) + NONINTERACTIVE=1.
 # ----------------------------------------------------------------------------
 install_homebrew() {
   step "Homebrew"
@@ -170,11 +176,32 @@ ensure_envrc() {
   step "Machine variables (.envrc)"
   local target="$REPO_DIR/.envrc"
 
+  local pre="$REPO_DIR/onboarding_bin/pre-onboarding-script.sh"
   if [[ -f "$target" ]]; then
     ok ".envrc already present in repo"
   elif [[ -f "$HOME/.envrc" ]]; then
     mv "$HOME/.envrc" "$target"
     ok "Moved ~/.envrc into the repo"
+  elif [[ -f "$pre" ]]; then
+    # Delegate to pre-onboarding-script.sh: it prompts for each value and writes
+    # a clean, `export`-style ~/.envrc (no malformed placeholders). ONBOARD_ORCHESTRATED
+    # tells it to skip its brew/clone tail (onboard.sh already did both). We feed
+    # /dev/tty so the prompts work even when this runs via `curl ... | bash`.
+    log "Collecting your machine variables..."
+    if [[ -r /dev/tty ]]; then
+      ONBOARD_ORCHESTRATED=1 bash "$pre" </dev/tty || warn "pre-onboarding-script.sh reported errors (review above)"
+    else
+      ONBOARD_ORCHESTRATED=1 bash "$pre" || warn "pre-onboarding-script.sh reported errors (review above)"
+    fi
+    if [[ -f "$HOME/.envrc" ]]; then
+      mv "$HOME/.envrc" "$target"
+      ok ".envrc generated and saved into the repo"
+    else
+      warn "~/.envrc was not created — falling back to the template"
+      cp "$REPO_DIR/.envrc.example" "$target"
+      "${EDITOR:-open}" "$target" >/dev/null 2>&1 || open "$target" 2>/dev/null || true
+      ask _ "   Press Enter once you've saved your values in .envrc... "
+    fi
   else
     cp "$REPO_DIR/.envrc.example" "$target"
     warn "Created .envrc from template — fill in your real values."

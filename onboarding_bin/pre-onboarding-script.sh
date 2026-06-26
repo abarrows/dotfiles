@@ -7,17 +7,24 @@
 # Detect the architecture of the Mac
 arch_name="$(uname -m)"
 
-# Check if Homebrew is installed
-if [[ ! -r "/usr/local/bin/brew" && ! -r "/opt/homebrew/bin/brew" ]]; then
+# Homebrew install logic is mirrored in onboard.sh `install_homebrew()` (the
+# canonical reference) and install-homebrew.sh. Keep the three in sync: native
+# arm64 (no `arch -x86_64`) + NONINTERACTIVE=1.
+#
+# Skip entirely when orchestrated by onboard.sh: it already installed Homebrew
+# (step 2) before delegating here, so re-running this block is pure redundancy.
+if [[ -n "${ONBOARD_ORCHESTRATED:-}" ]]; then
+  echo "Orchestrated run — Homebrew already handled by onboard.sh; skipping install."
+elif [[ ! -r "/usr/local/bin/brew" && ! -r "/opt/homebrew/bin/brew" ]]; then
   echo "Homebrew is NOT installed. Installing..."
 
   if [[ "${arch_name}" == "arm64" ]]; then
-    # M1 Macs
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # Apple Silicon Macs — native arm64 Homebrew into /opt/homebrew.
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo "Installed Homebrew for M1+ Mac"
   elif [[ "${arch_name}" == "x86_64" ]]; then
     # Intel Macs
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     echo "Installed Homebrew for Intel-based Mac"
   else
     echo "Unknown architecture: ${arch_name}"
@@ -88,7 +95,16 @@ EOF
 
 echo ".envrc has been created or updated."
 
-# Open .envrc and create directories
+# When orchestrated by onboard.sh, stop here: onboard.sh already installs
+# Homebrew/gh, clones the repo, and moves ~/.envrc into it. Running the tail
+# below would install brew/gh again and clone a SECOND nested copy of the repo.
+if [[ -n "${ONBOARD_ORCHESTRATED:-}" ]]; then
+  echo "Orchestrated run — leaving repo clone + relocation to onboard.sh."
+  return 0 2>/dev/null || exit 0
+fi
+
+# Standalone bootstrap: open .envrc, create the repo directory, install gh, and
+# clone the dotfiles repo (moving ~/.envrc into it).
 open ~/.envrc
 mkdir -p "$CURRENT_COMPANY/repos/development-team"
 cd "$CURRENT_COMPANY/repos/development-team" || exit

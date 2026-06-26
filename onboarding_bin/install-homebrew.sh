@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Homebrew install logic is mirrored in onboard.sh `install_homebrew()` (the
+# canonical reference for the one-shot flow) and pre-onboarding-script.sh.
+# Keep the three in sync: native arm64 (no `arch -x86_64`) + NONINTERACTIVE=1.
+
 # Detect the architecture of the mac (arm64 is for M1 Macs, x86_64 is for Intel Macs)
 arch_name="$(uname -m)"
 
@@ -12,10 +16,10 @@ if [[ ! -r "/usr/local/bin/brew" && ! -r "/opt/homebrew/bin/brew" ]]; then
     # (Do NOT prefix with `arch -x86_64`: that installs Rosetta x86 Homebrew
     # into /usr/local, which is wrong for Apple Silicon and diverges from
     # pre-onboarding-script.sh / onboard.sh.)
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   elif [ "${arch_name}" = "x86_64" ]; then
     # Intel Macs
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   else
     echo "Unknown architecture: ${arch_name}"
     exit 1
