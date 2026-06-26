@@ -30,12 +30,13 @@ the GitHub settings pages for you). The longhand steps below remain for referenc
 ## Table of Contents
 
 - [Team Onboarding Dotfiles and Tooling](#team-onboarding-dotfiles-and-tooling)
+  - [Quick Start (one command)](#quick-start-one-command)
   - [Table of Contents](#table-of-contents)
   - [What IS included?](#what-is-included)
   - [Pre-Onboarding](#pre-onboarding)
-      - [Initialize](#initialize)
-      - [Mac Preferences and Setup](#mac-preferences-and-setup)
-      - [Homebrew\_base - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
+    - [Initialize](#initialize)
+    - [Mac Preferences and Setup](#mac-preferences-and-setup)
+    - [Homebrewase - Package Manager for Macs](#homebrew_base---package-manager-for-macs)
     - [Software Engineering - General](#software-engineering---general)
       - [Git - Team configured version control](#git---team-configured-version-control)
       - [Shell - Extended and fine-tuned command line tools](#shell---extended-and-fine-tuned-command-line-tools)
