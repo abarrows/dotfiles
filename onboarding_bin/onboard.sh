@@ -167,7 +167,10 @@ resolve_repo() {
   step "Dotfiles repository"
 
   # Already running from inside the repo?
-  local here; here="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." 2>/dev/null && pwd)"
+  # ${BASH_SOURCE[0]:-} defaults to empty so `set -u` does not abort on the
+  # curl|bash bootstrap path, where BASH_SOURCE is unset (then `here` is empty
+  # and we fall through to the clone path, which is correct for that case).
+  local here; here="$(cd "$(dirname "${BASH_SOURCE[0]:-}")/.." 2>/dev/null && pwd)"
   if [[ -n "$here" && -f "$here/install-profile" && -d "$here/meta" ]]; then
     REPO_DIR="$here"
     ok "Using existing checkout: $REPO_DIR"
@@ -388,8 +391,37 @@ summary() {
 }
 
 # ----------------------------------------------------------------------------
+# Administrator access — ask for the sudo password ONCE up front, then keep the
+# sudo timestamp warm in the background so the many cask installers that call
+# sudo don't each re-prompt. NOTE: casks that use their own macOS privileged-
+# helper GUI prompt (some .pkg / system-extension casks) may still ask — that's
+# a system security gate we won't bypass (would require a NOPASSWD sudoers rule).
+# ----------------------------------------------------------------------------
+SUDO_KEEPALIVE_PID=""
+prime_sudo() {
+  step "Administrator access"
+  warn "Enter your macOS password once — it will be cached for the rest of the run."
+  if [[ -r /dev/tty ]]; then
+    sudo -v </dev/tty || die "sudo is required to install Homebrew and casks"
+  else
+    sudo -v || die "sudo is required to install Homebrew and casks"
+  fi
+  # Refresh the timestamp every 50s (under sudo's default 5-min timeout) until
+  # this script exits, so later sudo calls inherit the cached credentials.
+  ( while true; do sudo -n true 2>/dev/null; sleep 50; kill -0 "$$" 2>/dev/null || exit; done ) &
+  SUDO_KEEPALIVE_PID=$!
+  ok "Credentials cached for this session"
+}
+
+stop_sudo_keepalive() {
+  [[ -n "$SUDO_KEEPALIVE_PID" ]] && kill "$SUDO_KEEPALIVE_PID" 2>/dev/null || true
+}
+
+# ----------------------------------------------------------------------------
 main() {
+  trap stop_sudo_keepalive EXIT
   log "Mac onboarding — stack: ${STACK:-base only}"
+  prime_sudo
   install_xcode_clt
   install_homebrew
   install_bootstrap_pkgs
