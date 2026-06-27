@@ -6,8 +6,11 @@ if [[ -f $LFILE ]]; then
 elif [[ -f $MFILE ]]; then
   _distro="macos"
 
-  # on mac os use the systemprofiler to determine the current model
-  _device=$(system_profiler SPHardwareDataType | awk '/Model Name/ {print $3,$4,$5,$6,$7}')
+  # on mac os use the systemprofiler to determine the current model.
+  # 2>/dev/null: on some Macs system_profiler prints a diagnostic line
+  # (e.g. "hw.cpufamily: 0x...") to stderr that would otherwise leak into
+  # every new shell. We only want stdout ("Model Name") for the icon match.
+  _device=$(system_profiler SPHardwareDataType 2>/dev/null | awk '/Model Name/ {print $3,$4,$5,$6,$7}')
 
   case $_device in
   *MacBook*) DEVICE="" ;;
