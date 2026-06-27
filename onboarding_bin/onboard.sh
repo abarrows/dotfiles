@@ -196,17 +196,23 @@ resolve_repo() {
 # ----------------------------------------------------------------------------
 # Step 6 — Machine variables (.envrc).  GATE only on first run (fill values).
 # ----------------------------------------------------------------------------
-ensure_envrc() {
-  step "Machine variables (.envrc)"
-  local target="$REPO_DIR/.envrc"
 
+# True when $1 sources cleanly. A malformed old-template file (e.g. a line like
+# `VAR=# Your key here` — `VAR=#` then `Your` is parsed as a command) emits
+# "command not found" to stderr; empty stderr means the file is safe to adopt.
+# Sourced in a throwaway subshell so it can't pollute our environment.
+envrc_is_sourceable() {
+  [[ -f "$1" ]] || return 1
+  local errout
+  errout="$(bash -c "source '$1'" 2>&1 >/dev/null)" || true
+  [[ -z "$errout" ]]
+}
+
+# Prompt for machine variables and write a clean .envrc to $1.
+generate_envrc() {
+  local target="$1"
   local pre="$REPO_DIR/onboarding_bin/pre-onboarding-script.sh"
-  if [[ -f "$target" ]]; then
-    ok ".envrc already present in repo"
-  elif [[ -f "$HOME/.envrc" ]]; then
-    mv "$HOME/.envrc" "$target"
-    ok "Moved ~/.envrc into the repo"
-  elif [[ -f "$pre" ]]; then
+  if [[ -f "$pre" ]]; then
     # Delegate to pre-onboarding-script.sh: it prompts for each value and writes
     # a clean, `export`-style ~/.envrc (no malformed placeholders). ONBOARD_ORCHESTRATED
     # tells it to skip its brew/clone tail (onboard.sh already did both). We feed
@@ -217,11 +223,11 @@ ensure_envrc() {
     else
       ONBOARD_ORCHESTRATED=1 bash "$pre" || warn "pre-onboarding-script.sh reported errors (review above)"
     fi
-    if [[ -f "$HOME/.envrc" ]]; then
+    if [[ -f "$HOME/.envrc" ]] && envrc_is_sourceable "$HOME/.envrc"; then
       mv "$HOME/.envrc" "$target"
       ok ".envrc generated and saved into the repo"
     else
-      warn "~/.envrc was not created — falling back to the template"
+      warn "~/.envrc was not created cleanly — falling back to the template"
       cp "$REPO_DIR/.envrc.example" "$target"
       "${EDITOR:-open}" "$target" >/dev/null 2>&1 || open "$target" 2>/dev/null || true
       ask _ "   Press Enter once you've saved your values in .envrc... "
@@ -232,6 +238,36 @@ ensure_envrc() {
     "${EDITOR:-open}" "$target" >/dev/null 2>&1 || open "$target" 2>/dev/null || true
     ask _ "   Press Enter once you've saved your values in .envrc... "
     ok ".envrc ready"
+  fi
+}
+
+ensure_envrc() {
+  step "Machine variables (.envrc)"
+  local target="$REPO_DIR/.envrc"
+
+  # Only adopt an existing .envrc if it actually sources cleanly. Otherwise an
+  # old-template copy (malformed `VAR=# ...` lines, placeholder values) gets
+  # silently adopted, the prompt is skipped, and every new shell spews
+  # "command not found" while aliases resolve to bogus placeholder paths.
+  if [[ -f "$target" ]]; then
+    if envrc_is_sourceable "$target"; then
+      ok ".envrc already present in repo"
+    else
+      warn "Repo .envrc is malformed (old template?) — backing up to .envrc.malformed.bak and regenerating"
+      mv "$target" "$target.malformed.bak"
+      generate_envrc "$target"
+    fi
+  elif [[ -f "$HOME/.envrc" ]]; then
+    if envrc_is_sourceable "$HOME/.envrc"; then
+      mv "$HOME/.envrc" "$target"
+      ok "Moved ~/.envrc into the repo"
+    else
+      warn "Existing ~/.envrc is malformed (old template?) — backing up to ~/.envrc.malformed.bak and regenerating"
+      mv "$HOME/.envrc" "$HOME/.envrc.malformed.bak"
+      generate_envrc "$target"
+    fi
+  else
+    generate_envrc "$target"
   fi
 
   # Load values into THIS session so later steps (company path, keys) see them.
