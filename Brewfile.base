@@ -25,7 +25,7 @@ brew 'pipx' # RECOMMENDED Used for installing Python packages.
 brew 'postgresql@14' # REQUIRED - BASE/ROR/NODE/DEVOPS Database System for Postgres
 # brew "redis" # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Primary Caching
 # Dependency for Back-end Software Engineers
-brew 'powershell'    # RECOMMENDED - DEVOPS Powershell for managing Windows
+# brew 'powershell'    # RECOMMENDED - DEVOPS Powershell for managing Windows
 brew 'shellcheck' # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Linter and auto-fixing
 brew 'shfmt' # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended Command Line Formatter
 brew 'starship'   # RECOMMENDED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended platform agnostic shell prompt.
