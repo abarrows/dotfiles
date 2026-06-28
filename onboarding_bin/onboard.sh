@@ -308,6 +308,7 @@ generate_envrc() {
     ok ".envrc moved from ~/ into repo"
     return
   fi
+
   local pre="$REPO_DIR/onboarding_bin/pre-onboarding-script.sh"
   if [[ -f "$pre" ]]; then
     # Delegate to pre-onboarding-script.sh: it prompts for each value and writes
