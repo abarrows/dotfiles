@@ -12,7 +12,19 @@
       "Bash(set -e)",
       "mcp__claude_ai_Atlassian__getAccessibleAtlassianResources",
       "mcp__claude_ai_Atlassian__getJiraProjectIssueTypesMetadata",
-      "mcp__claude_ai_Atlassian__createJiraIssue"
+      "mcp__claude_ai_Atlassian__createJiraIssue",
+      "mcp__claude_ai_Atlassian__getVisibleJiraProjects",
+      "mcp__claude_ai_Atlassian__searchJiraIssuesUsingJql",
+      "Bash(awk '/^main\\\\\\(\\\\\\)|^# ===.*Main|^run\\\\\\(\\\\\\)|^# Orchestrat/{f=1} f' onboarding_bin/onboard.sh)",
+      "Bash(bash -n /Users/andyb/Retail-Success/repos/development-team/dotfiles/onboarding_bin/onboard.sh)",
+      "Bash(find \"/Users/andyb/Library/Application Support/Claude/local-agent-mode-sessions/skills-plugin\" -name \"SKILL.md\" 2>/dev/null | grep -E \"local-development|developer-onboard\" | head -10)",
+      "Bash(find \"/Users/andyb/Library/Application Support/Claude\" -name \"SKILL.md\" 2>/dev/null | xargs grep -l -E \"local.development|developer.onboard|onboard\" 2>/dev/null | head -20)",
+      "Bash(find ~/.claude/plugins/cache -name \"SKILL.md\" 2>/dev/null | xargs grep -l -i \"local.develop\\\\|developer.onboard\\\\|onboard\\\\|machine.setup\" 2>/dev/null)",
+      "Bash(brew info *)",
+      "Bash(brew tap *)",
+      "Bash(/opt/homebrew/bin/hermes --version)",
+      "Read(//Users/andyb/.local/bin/**)",
+      "Read(//Users/andyb/.hermes/**)"
     ]
   }
 }
