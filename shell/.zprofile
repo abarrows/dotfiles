@@ -21,3 +21,6 @@ fi
 
 # Created by `pipx` on 2024-09-29 16:51:26
 # export PATH="$PATH:/Users/acbarrows/.local/bin"
+
+# Hermes Agent — ensure ~/.local/bin is on PATH
+export PATH="$HOME/.local/bin:$PATH"
