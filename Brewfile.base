@@ -16,6 +16,7 @@ brew 'icu4c'         # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Compiled Library D
 brew 'gnupg'         # REQUIRED - Needed for signing your commits with github.
 brew 'mongosh'       # RECOMMENDED - Commonly used with nosql projects.
 brew 'nvm'           # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Version manager for node
+brew 'ollama'        # RECOMMENDED - AI Ollama CLI tool
 brew 'openssl'       # REQUIRED - ROR/NODE/DEVOPS/PYTHON/PG Network Utility for SSL requests
 brew 'pandoc'        # OPTIONAL - ROR/NODE/DEVOPS/PYTHON/PG Allows for markdown to easily exported to word, pdfs, & html
 brew 'pipx'          # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Recommended package manager for python
