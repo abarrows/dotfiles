@@ -11,7 +11,6 @@ brew 'freetype'      # REQUIRED - BASE/ROR/NODE CL
 brew 'gh'            # REQUIRED - BASE/ROR/NODE/DEVOPS Github CLI
 brew 'git'           # REQUIRED - ROR/NODE/DEVOPS/PYTHON Core version control
 brew 'hadolint'      # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Used to lint Dockerfiles../
-brew 'hermes-agent' # REQUIRED - Coding harness and agent that self learns.
 brew 'icu4c'         # REQUIRED - BASE/ROR/NODE/DEVOPS/PYTHON Compiled Library Dependency for unicode and globalization
 brew 'gnupg'         # REQUIRED - Needed for signing your commits with github.
 brew 'mongosh'       # RECOMMENDED - Commonly used with nosql projects.
