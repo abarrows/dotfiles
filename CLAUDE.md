@@ -15,7 +15,7 @@ Read this before editing anything — the flow spans several files:
    - `./install-standalone <config...>` — runs `meta/base.yml` then the named configs only. No brew plugin dir.
    - ⚠️ The README references `./install`; **that script does not exist**. Use the two above.
 
-2. **Profiles** — `meta/profiles/<name>` is a plain newline-delimited list of config names (no extension). Existing: `base`, `devops`, `react`, `ruby`. A profile = the ordered set of configs for a stack.
+2. **Profiles** — `meta/profiles/<name>` is a plain newline-delimited list of config names (no extension). Existing: `base`, `devops`, `react`, `ruby`, `ai`. A profile = the ordered set of configs for a stack. (`ai` runs the `hermes` config, which installs the Hermes Agent via its own first-party installer — `onboarding_bin/install-hermes-agent.sh` — *not* Homebrew, because Hermes self-updates via `hermes update`.)
 
 3. **Configs** — `meta/configs/<name>.yml` are dotbot directive files (`link`, `shell`, `clean`, and brew bundles). `meta/base.yml` always runs first (sets link defaults, inits submodules, cleans `~` / `~/.config`).
 
