@@ -4,6 +4,18 @@
 if [ -r "/opt/homebrew/bin/brew" ]; then
   eval $(/opt/homebrew/bin/brew shellenv)
 fi
+
+# Ensure a writable temp dir. Headless / launchd-launched contexts inherit the
+# root-owned macOS fallback (TMPDIR=/var/folders/zz/.../T, mode 0700), which is
+# unwritable by the user and breaks vitest/npm/esbuild with EACCES. Only override
+# when TMPDIR is unset or not writable, so interactive machines keep system temp.
+if [ -z "$TMPDIR" ] || [ ! -w "${TMPDIR%/}" ]; then
+  export TMPDIR="$HOME/.claude/tmp"
+  export TMP="$TMPDIR"
+  export TEMP="$TMPDIR"
+  mkdir -p "$TMPDIR"
+fi
+
 if [[ $- == *i* ]] && [ -t 0 ]; then
   echo "This is an interactive shell"
 else
