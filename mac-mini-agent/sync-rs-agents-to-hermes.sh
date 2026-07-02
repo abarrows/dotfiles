@@ -26,13 +26,26 @@ warn() { printf '\033[1;33m! %s\033[0m\n' "$*"; }
 
 HERMES_SKILLS_DIR="${HERMES_SKILLS_DIR:-$HOME/.hermes/skills/rs-agents}"
 
-step "Locating the installed rs-agents plugin (released version)"
-# Prefer the Claude Code plugin cache (exactly what `reload plugins` installed).
-# Pick the highest version dir if several are cached.
+# --soft: for onboarding — if no source is found, warn and exit 0 (don't fail the install).
+SOFT=0
+[[ "${1:-}" == "--soft" ]] && SOFT=1
+
+step "Locating rs-agents skills (source of truth: the released plugin)"
+# 1) Prefer the installed Claude Code plugin cache — exactly what `reload plugins` gave.
 SRC="$(ls -d "$HOME"/.claude/plugins/cache/*/rs-agents/*/skills 2>/dev/null | sort -V | tail -1 || true)"
+# 2) Fallback: a local Wayroo.tools clone (RS_AGENTS_SKILLS_SRC overrides). Same
+#    <name>/SKILL.md layout, so the copy below works for either source.
 if [[ -z "${SRC}" || ! -d "${SRC}" ]]; then
-  warn "rs-agents plugin skills not found under ~/.claude/plugins/cache/*/rs-agents/*/skills"
-  warn "Install/refresh the plugin in Claude Code first (add the wayroo marketplace, then 'reload plugins')."
+  for cand in "${RS_AGENTS_SKILLS_SRC:-}" \
+              "$HOME/Retail-Success/repos/development-team/Wayroo.tools/ai/skills"; do
+    [[ -n "$cand" && -d "$cand" ]] && { SRC="$cand"; break; }
+  done
+fi
+if [[ -z "${SRC}" || ! -d "${SRC}" ]]; then
+  warn "rs-agents skills not found (no plugin cache, no Wayroo.tools clone)."
+  warn "Install the rs-agents plugin in Claude Code (add the wayroo marketplace + 'reload plugins'),"
+  warn "or set RS_AGENTS_SKILLS_SRC=/path/to/Wayroo.tools/ai/skills, then re-run this script."
+  [[ $SOFT -eq 1 ]] && { warn "(--soft) skipping rs-agents sync; Hermes install continues."; exit 0; }
   exit 1
 fi
 bold "  source: ${SRC}"

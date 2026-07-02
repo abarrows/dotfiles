@@ -26,3 +26,19 @@ else
   # "Run 'hermes setup' after install".
   curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
 fi
+
+# ── Connect rs-agents into Hermes (via SKILLS, not `hermes plugins`) ──────────
+# Hermes cannot consume the rs-agents *Claude Code plugin* directly — `hermes
+# plugins` expects Python provider plugins, a different format. rs-agents reaches
+# Hermes through its SKILLS: mirror the released plugin's SKILL.md files into
+# ~/.hermes/skills/rs-agents so any selected local model can discover them
+# on-demand. Best-effort (--soft): if the source isn't present yet (plugin not
+# installed / repo not cloned), the Hermes install still succeeds — run the sync
+# later once the rs-agents plugin is available.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SYNC="${SCRIPT_DIR}/../mac-mini-agent/sync-rs-agents-to-hermes.sh"
+if [ -f "$SYNC" ]; then
+  echo ""
+  echo "Connecting rs-agents skills into Hermes (via skills sync)..."
+  bash "$SYNC" --soft || echo "rs-agents sync skipped (non-fatal)."
+fi
