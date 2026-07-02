@@ -106,12 +106,42 @@ except Exception:
 PY
 fi
 
-# ── 4. Sync rs-agents skills into Hermes (the bridge) ────────────────────────
-step "4. Sync rs-agents skills into Hermes"
-run "bash '$HERE/sync-rs-agents-to-hermes.sh'"
+# ── 4. Ensure the rs-agents Claude Code plugin (the sync SOURCE) ─────────────
+step "4. Ensure rs-agents Claude Code plugin (source-of-truth channel)"
+run "bash '$HERE/../onboarding_bin/install-claude-plugins.sh'"
 
-# ── 5. Health check ──────────────────────────────────────────────────────────
-step "5. Verify the harness"
+# ── 5. Sync rs-agents skills into Hermes (the bridge) ────────────────────────
+step "5. Sync rs-agents skills into Hermes"
+run "bash '$HERE/sync-rs-agents-to-hermes.sh' --soft"
+
+# ── 6. Keep Hermes in sync — launchd timer re-runs the sync (login + hourly) ─
+# The clean-rebuild sync mirrors the plugin cache, so add/modify/DELETE all
+# propagate. Cheap + idempotent, so it runs on both laptop and mini.
+step "6. Install the rs-agents -> Hermes auto-resync timer"
+SYNC_PLIST="$HOME/Library/LaunchAgents/com.retailsuccess.rs-agents-sync.plist"
+if [[ $DRY -eq 1 ]]; then
+  printf '   [dry-run] write + load %s (RunAtLoad + hourly: bash %s --soft)\n' "$SYNC_PLIST" "$HERE/sync-rs-agents-to-hermes.sh"
+else
+  cat > "$SYNC_PLIST" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0"><dict>
+  <key>Label</key><string>com.retailsuccess.rs-agents-sync</string>
+  <key>ProgramArguments</key><array>
+    <string>/bin/bash</string><string>$HERE/sync-rs-agents-to-hermes.sh</string><string>--soft</string>
+  </array>
+  <key>RunAtLoad</key><true/>
+  <key>StartInterval</key><integer>3600</integer>
+  <key>StandardOutPath</key><string>/tmp/rs-agents-sync.out.log</string>
+  <key>StandardErrorPath</key><string>/tmp/rs-agents-sync.err.log</string>
+</dict></plist>
+PLIST
+  launchctl unload "$SYNC_PLIST" 2>/dev/null || true
+  launchctl load -w "$SYNC_PLIST"
+  bold "  auto-resync installed (hourly + on login). Disable: launchctl unload $SYNC_PLIST"
+fi
+
+# ── 7. Health check ──────────────────────────────────────────────────────────
+step "7. Verify the harness"
 run "bash '$HERE/verify-ollama-hermes.sh' '$MODEL'"
 
 printf '\n'; bold "✔ Coding harness provisioned. Default model: ${MODEL}. Talk to it with: hermes -z \"...\""

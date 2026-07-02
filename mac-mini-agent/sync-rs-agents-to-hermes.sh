@@ -20,6 +20,9 @@
 # ─────────────────────────────────────────────────────────────────────────────
 set -euo pipefail
 
+# launchd runs with a minimal PATH; make sure user-local tools (hermes) resolve.
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
+
 bold() { printf '\033[1m%s\033[0m\n' "$*"; }
 step() { printf '\n\033[1;36m▶ %s\033[0m\n' "$*"; }
 warn() { printf '\033[1;33m! %s\033[0m\n' "$*"; }

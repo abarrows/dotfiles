@@ -36,6 +36,17 @@ fi
 # installed / repo not cloned), the Hermes install still succeeds — run the sync
 # later once the rs-agents plugin is available.
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# 1) Ensure the rs-agents Claude Code plugin is installed — that's the SOURCE the
+#    Hermes sync mirrors from (and Claude Code auto-updates it on startup).
+PLUGINS="${SCRIPT_DIR}/install-claude-plugins.sh"
+if [ -f "$PLUGINS" ]; then
+  echo ""
+  echo "Ensuring the rs-agents Claude Code plugin is installed..."
+  bash "$PLUGINS" || echo "rs-agents plugin install skipped (non-fatal)."
+fi
+
+# 2) Mirror the plugin's skills into Hermes (best-effort; soft-skips if no source).
 SYNC="${SCRIPT_DIR}/../mac-mini-agent/sync-rs-agents-to-hermes.sh"
 if [ -f "$SYNC" ]; then
   echo ""
