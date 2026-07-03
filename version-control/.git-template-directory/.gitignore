@@ -200,3 +200,5 @@ atlassian-ide-plugin.xml
 connections.xml
 server_instances.xml
 ruby/.gem*
+
+**/.claude/settings.local.json

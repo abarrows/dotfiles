@@ -53,3 +53,14 @@ if [ -f "$SYNC" ]; then
   echo "Connecting rs-agents skills into Hermes (via skills sync)..."
   bash "$SYNC" --soft || echo "rs-agents sync skipped (non-fatal)."
 fi
+
+# 3) Wire Hermes to the Docker Desktop MCP Toolkit gateway (best-effort;
+#    soft-skips if Docker/the Toolkit isn't installed yet). One MCP_DOCKER
+#    entry gives any local model the same tool plane Claude Code uses; the
+#    Toolkit + Keychain stay the source of truth for servers and secrets.
+MCP_CONNECT="${SCRIPT_DIR}/connect-hermes-mcp.sh"
+if [ -f "$MCP_CONNECT" ]; then
+  echo ""
+  echo "Connecting Hermes to the Docker MCP Toolkit gateway..."
+  bash "$MCP_CONNECT" --soft || echo "MCP Toolkit wiring skipped (non-fatal)."
+fi

@@ -24,8 +24,6 @@ firsttris.vscode-jest-runner
 fnando.linter
 foxundermoon.shell-format
 github.codespaces
-github.copilot
-github.copilot-chat
 github.vscode-github-actions
 github.vscode-pull-request-github
 gluca.log-view-l4n
