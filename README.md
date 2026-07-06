@@ -159,7 +159,7 @@ submodules are already declared in `.gitmodules` and are fetched automatically b
 `install-profile` (do NOT run `git submodule add` — it will error):
 
 ```bash
-./install-profile base        # then: ./install-profile react | ruby | devops
+./install-profile base        # then: ./install-profile react | ruby | devops | ai
 ```
 
 > If you hit Homebrew permission errors, fix ownership of the brew prefix with

@@ -1,9 +1,15 @@
 extends: default
-indentation: 2
-line-length: 120
 
+# NOTE: yamllint rules must live under `rules:`. `indentation`, `line-length`,
+# and `min-spaces-from-content` were previously at the top level / under the
+# wrong key, which made yamllint error out with "invalid config" on every file.
 rules:
-  min-spaces-from-content: 1
+  # Character-limit rule turned off — no maximum line length is enforced.
+  line-length: disable
+  indentation:
+    spaces: 2
+  comments:
+    min-spaces-from-content: 1
   truthy:
     check-keys: false
   document-start:
@@ -14,3 +20,7 @@ ignore: |
   /node_modules/*.yml
   /node_modules/*.yamllint
   /bin/
+  # Vendored dotbot submodules — third-party YAML, not ours to lint.
+  meta/dotbot/
+  meta/dotbot-brew/
+  meta/dotbot-vscode/

@@ -1,0 +1,11 @@
+---
+# hermes - Installs the Hermes Agent (Nous Research) AI coding harness via its
+# official installer and opens the interactive setup wizard. Hermes self-updates
+# (`hermes update`) and lives under ~/.hermes, so it is installed from its own
+# installer, NOT via Homebrew. Requires ~/.local/bin on PATH (set up by base).
+
+- shell:
+    - description: 'Installing Hermes Agent (AI) and opening its setup wizard...'
+      command: './onboarding_bin/install-hermes-agent.sh'
+      stdout: true
+      stderr: true

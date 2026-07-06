@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  com.retailsuccess.ollama.plist — always-on Ollama for the 24/7 mac-mini.
+
+  Bakes in the performance env vars that `brew services start ollama` does NOT set
+  (flash attention + q8_0 KV cache + a 64K served context for Hermes tool use).
+
+  Install (mac-mini / always-on box only):
+    cp com.retailsuccess.ollama.plist ~/Library/LaunchAgents/
+    launchctl load -w ~/Library/LaunchAgents/com.retailsuccess.ollama.plist
+
+  Do NOT install on a 16 GB laptop — a KeepAlive model resident 24/7 competes with
+  everything else. There, start Ollama on-demand instead (see the quick-start).
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.retailsuccess.ollama</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/opt/homebrew/bin/ollama</string>
+        <string>serve</string>
+    </array>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>OLLAMA_FLASH_ATTENTION</key>
+        <string>1</string>
+        <key>OLLAMA_KV_CACHE_TYPE</key>
+        <string>q8_0</string>
+        <key>OLLAMA_CONTEXT_LENGTH</key>
+        <string>65536</string>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/ollama.out.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/ollama.err.log</string>
+</dict>
+</plist>

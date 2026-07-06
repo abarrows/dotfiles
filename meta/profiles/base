@@ -7,4 +7,5 @@ command_line
 version_control
 nvm
 ide
+hermes
 cleanup
