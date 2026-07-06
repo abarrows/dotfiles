@@ -21,7 +21,7 @@
 set -euo pipefail
 
 # launchd runs with a minimal PATH; make sure user-local tools (hermes) resolve.
-export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
 
 bold() { printf '\033[1m%s\033[0m\n' "$*"; }
 step() { printf '\n\033[1;36m▶ %s\033[0m\n' "$*"; }
@@ -35,6 +35,9 @@ SOFT=0
 
 step "Locating rs-agents skills (source of truth: the released plugin)"
 # 1) Prefer the installed Claude Code plugin cache — exactly what `reload plugins` gave.
+#    (sort -V picks the newest version within a marketplace; if rs-agents ever ships
+#    from more than one marketplace, sort on the version segment instead — the
+#    marketplace name sorts before the version here.)
 SRC="$(ls -d "$HOME"/.claude/plugins/cache/*/rs-agents/*/skills 2>/dev/null | sort -V | tail -1 || true)"
 # 2) Fallback: a local Wayroo.tools clone (RS_AGENTS_SKILLS_SRC overrides). Same
 #    <name>/SKILL.md layout, so the copy below works for either source.
@@ -54,22 +57,35 @@ fi
 bold "  source: ${SRC}"
 
 step "Mirroring skills into Hermes"
-# Clean rebuild so removed/renamed skills don't linger (idempotent).
-rm -rf "${HERMES_SKILLS_DIR}"
-mkdir -p "${HERMES_SKILLS_DIR}"
+# Clean rebuild so removed/renamed skills don't linger (idempotent) — but stage
+# into a temp dir and swap only on a non-empty mirror: this sync runs hourly via
+# launchd, so a restructured/empty source must never wipe a working skill set.
+mkdir -p "$(dirname "${HERMES_SKILLS_DIR}")"
+STAGE="$(mktemp -d "${HERMES_SKILLS_DIR}.stage.XXXXXX")"
+trap 'rm -rf "${STAGE}"' EXIT
 count=0
 for d in "${SRC}"/*/; do
   [[ -f "${d}SKILL.md" ]] || continue
   name="$(basename "$d")"
-  mkdir -p "${HERMES_SKILLS_DIR}/${name}"
-  cp "${d}SKILL.md" "${HERMES_SKILLS_DIR}/${name}/SKILL.md"
+  mkdir -p "${STAGE}/${name}"
+  cp "${d}SKILL.md" "${STAGE}/${name}/SKILL.md"
   count=$((count + 1))
 done
+if (( count == 0 )); then
+  warn "source '${SRC}' contains no <name>/SKILL.md dirs — leaving existing Hermes skills untouched."
+  warn "The plugin layout may have changed; update the source lookup in this script."
+  [[ $SOFT -eq 1 ]] && { warn "(--soft) skipping rs-agents sync; Hermes install continues."; exit 0; }
+  exit 1
+fi
+rm -rf "${HERMES_SKILLS_DIR}"
+mv "${STAGE}" "${HERMES_SKILLS_DIR}"
+trap - EXIT
 bold "  synced ${count} rs-agents skills -> ${HERMES_SKILLS_DIR}"
 
 step "Verifying Hermes sees them"
 if command -v hermes >/dev/null 2>&1; then
-  hermes skills list 2>/dev/null | grep -c "rs-agents" | xargs -I{} echo "  hermes reports {} skills in the 'rs-agents' category"
+  # grep -c exits 1 on zero matches; don't let pipefail abort after a good sync.
+  hermes skills list 2>/dev/null | grep -c "rs-agents" | xargs -I{} echo "  hermes reports {} skills in the 'rs-agents' category" || true
 else
   warn "hermes not on PATH — skipped verification"
 fi

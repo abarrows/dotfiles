@@ -10,9 +10,14 @@
 #
 set -uo pipefail
 
+# launchd/onboarding runs may lack Homebrew on PATH; make ollama + hermes resolve
+# on both Apple-silicon and Intel Macs.
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+
 OLLAMA_URL="${OLLAMA_URL:-http://localhost:11434}"
 CFG="$HOME/.hermes/config.yaml"
-MODEL="${1:-$(awk '/^model:/{m=1;next} m&&/default:/{print $2; exit}' "$CFG")}"
+# model.default may be quoted in YAML (model names contain ':'), so strip quotes.
+MODEL="${1:-$(awk '/^model:/{m=1;next} m&&/default:/{gsub(/["'\'']/,"",$2); print $2; exit}' "$CFG" 2>/dev/null)}"
 
 if [ -z "$MODEL" ]; then
   echo "Error: no default model could be derived." >&2
@@ -23,7 +28,11 @@ if [ -z "$MODEL" ]; then
 fi
 
 MARK="===VERIFY $(date +%H%M%S)==="
-SLOG=/tmp/ollama-spike.log   # the ollama serve log (used to prove a local hit)
+# Where `ollama serve` request lines actually land: the launchd unit sends stderr
+# (the request/access log) to ollama.err.log; the on-demand start in
+# provision-coding-harness.sh merges both streams into ollama.out.log. Mark and
+# scan whichever exists to prove a local hit (override with OLLAMA_LOGS).
+SLOGS="${OLLAMA_LOGS:-/tmp/ollama.err.log /tmp/ollama.out.log}"
 FAILED=0
 
 g(){ printf "  \033[32mPASS\033[0m  %s\n" "$1"; }
@@ -64,7 +73,7 @@ echo "$DIRECT" | grep -q "PING_OK" && g "direct inference correct ($((t1-t0))s)"
 # snapshot swap to detect memory thrash across the heavy Hermes call
 sw(){ sysctl -n vm.swapusage | sed -E 's/.*used = ([0-9.]+M).*/\1/'; }
 SWAP0=$(sw)
-printf '\n%s\n' "$MARK" >> "$SLOG"
+for f in $SLOGS; do [ -e "$f" ] && printf '\n%s\n' "$MARK" >> "$f"; done
 
 # L4 — Hermes end-to-end AND proof it routed LOCALLY (the subtle correctness check)
 echo "[L4] Hermes -z end-to-end + local-routing proof"
@@ -75,14 +84,25 @@ t1=$(date +%s); LAT=$((t1-t0))
   && g "correct answer (exit 0, ${LAT}s): '$OUT'" \
   || r "Hermes failed (exit $RC, ${LAT}s): '$OUT'"
 # local proof #1: Ollama logged a chat request during the window
-if awk -v m="$MARK" '$0~m{f=1} f' "$SLOG" 2>/dev/null | grep -qiE "chat/completions|POST"; then
+LOCAL_HIT=0
+for f in $SLOGS; do
+  awk -v m="$MARK" '$0~m{f=1} f' "$f" 2>/dev/null | grep -qiE "chat/completions|POST" && { LOCAL_HIT=1; break; }
+done
+if [ "$LOCAL_HIT" -eq 1 ]; then
   g "request hit the LOCAL Ollama server (not cloud)"
 else
   i "no local request line in ollama log (check proof #2)"
 fi
-# local proof #2: the model is loaded in ollama ps
+# local proof #2: the model is loaded in ollama ps. If BOTH proofs come up empty,
+# the "inference is actually LOCAL" guarantee is unproven — that is a FAIL, not info.
 PS=$(ollama ps 2>/dev/null | sed -n '2p')
-[ -n "$PS" ] && g "model loaded locally: $PS" || i "ollama ps shows nothing loaded (may have unloaded)"
+if [ -n "$PS" ]; then
+  g "model loaded locally: $PS"
+elif [ "$LOCAL_HIT" -eq 1 ]; then
+  i "ollama ps shows nothing loaded (may have unloaded)"
+else
+  r "no local-routing evidence (no ollama log hit, nothing loaded) — possible cloud fallback"
+fi
 
 # FIT — memory + latency (why llama3.1:8b@64K failed on 16 GB)
 echo "[FIT] Memory + latency"

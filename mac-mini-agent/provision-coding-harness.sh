@@ -19,6 +19,10 @@
 # ─────────────────────────────────────────────────────────────────────────────
 set -euo pipefail
 
+# Onboarding + launchd runs often lack Homebrew on PATH; make brew-installed and
+# user-local tools (ollama, hermes) resolve on both Apple-silicon and Intel Macs.
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+
 DRY=0; ENABLE_SERVICE=0
 for a in "$@"; do
   case "$a" in
@@ -34,15 +38,16 @@ warn() { printf '\033[1;33m! %s\033[0m\n' "$*"; }
 run()  { if [[ $DRY -eq 1 ]]; then printf '   [dry-run] %s\n' "$*"; else eval "$*"; fi; }
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-OLLAMA_BIN="/opt/homebrew/bin/ollama"
-HERMES_PY="$HOME/.hermes/hermes-agent/venv/bin/python"
+OLLAMA_BIN="${OLLAMA_BIN:-$(command -v ollama || true)}"
+HERMES_PY="${HERMES_PY:-$HOME/.hermes/hermes-agent/venv/bin/python}"
 RAM_GB=$(( $(sysctl -n hw.memsize) / 1073741824 ))
 
 # ── 0. Prereqs ───────────────────────────────────────────────────────────────
 step "0. Prerequisites (RAM=${RAM_GB} GB)"
-command -v "$OLLAMA_BIN" >/dev/null || { warn "ollama not installed — 'brew install ollama' (or run the Brewfile)."; exit 1; }
+[[ -n "$OLLAMA_BIN" && -x "$OLLAMA_BIN" ]] || { warn "ollama not installed — 'brew install ollama' (or run the Brewfile)."; exit 1; }
 command -v hermes >/dev/null      || { warn "hermes not installed — run onboarding_bin/install-hermes-agent.sh first."; exit 1; }
-bold "  ollama: $($OLLAMA_BIN --version 2>/dev/null | head -1)"
+[[ -x "$HERMES_PY" ]]             || { warn "Hermes venv python not found at $HERMES_PY — re-run onboarding_bin/install-hermes-agent.sh (or set HERMES_PY)."; exit 1; }
+bold "  ollama: $("$OLLAMA_BIN" --version 2>/dev/null | head -1)"
 bold "  hermes: $(hermes --version 2>/dev/null | head -1)"
 
 if (( RAM_GB >= 32 )); then MODEL="llama3.1:8b"; else MODEL="qwen2.5-coder:7b"; fi
@@ -70,10 +75,10 @@ fi
 # ── 2. Pull models ───────────────────────────────────────────────────────────
 step "2. Pull models (sized to RAM)"
 for m in "$MODEL" "$SMOKE"; do
-  if [[ $DRY -eq 0 ]] && ollama list 2>/dev/null | grep -q "^${m}[[:space:]]"; then
+  if [[ $DRY -eq 0 ]] && "$OLLAMA_BIN" list 2>/dev/null | grep -q "^${m}[[:space:]]"; then
     bold "  ${m} already present"
   else
-    run "ollama pull '$m'"
+    run "'$OLLAMA_BIN' pull '$m'"
   fi
 done
 
