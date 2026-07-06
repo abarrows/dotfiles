@@ -13,6 +13,15 @@ set -uo pipefail
 OLLAMA_URL="${OLLAMA_URL:-http://localhost:11434}"
 CFG="$HOME/.hermes/config.yaml"
 MODEL="${1:-$(awk '/^model:/{m=1;next} m&&/default:/{print $2; exit}' "$CFG")}"
+
+if [ -z "$MODEL" ]; then
+  echo "Error: no default model could be derived." >&2
+  echo "       Checked Hermes config: $CFG" >&2
+  echo "       Expected a 'model:' section with a 'default:' entry, or a model argument:" >&2
+  echo "         $0 <model>" >&2
+  exit 1
+fi
+
 MARK="===VERIFY $(date +%H%M%S)==="
 SLOG=/tmp/ollama-spike.log   # the ollama serve log (used to prove a local hit)
 FAILED=0
