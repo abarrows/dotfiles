@@ -114,6 +114,20 @@ export GOROOT=$(brew --prefix go)/libexec
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
 
+# Oh My Zsh + its plugins (below) are interactive-shell conveniences only
+# (prompt/theme, completions, aliases, and the zsh-nvm lazy-load shims).
+# Guard the whole bootstrap behind an interactive check so that any
+# non-interactive/sub-shell invocation (e.g. tooling that runs `zsh -c` or
+# explicitly `source`s this file to pick up PATH) never defines the zsh-nvm
+# lazy shim functions (node/npm/npx/yarn). Those shims call `_zsh_nvm_load`,
+# which only exists once the zsh-nvm plugin body below has fully loaded; if
+# a non-interactive shell ends up with the shim but not the plugin body, you
+# get the cosmetic "command not found: _zsh_nvm_load" noise. Skipping this
+# whole block for non-interactive shells removes that failure mode entirely
+# and does not affect interactive nvm auto-use/lazy-load/version-switching,
+# since real interactive shells still satisfy `[[ -o interactive ]]`.
+if [[ -o interactive ]]; then
+
 # ZSH PLUGIN: zsh-nvm
 # Variables needed before loading plugin.
 export NVM_COMPLETION=true
@@ -156,6 +170,8 @@ echo "ZSH/PLUGINS: Loaded."
 
 # Load Oh My Zsh
 source $ZSH/oh-my-zsh.sh
+
+fi # [[ -o interactive ]] — end of Oh My Zsh / zsh-nvm interactive-only bootstrap
 
 # source "$HOME/.m1-mysql-fixes.zsh"
 
