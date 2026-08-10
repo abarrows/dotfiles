@@ -79,7 +79,8 @@
       "Bash(sed 's/\\\\x1b\\\\[[0-9;]*m//g' /tmp/rs-agents-sync.out.log)",
       "Bash(docker mcp *)",
       "Bash(grep -iA2 profile)",
-      "Bash(docker info *)"
+      "Bash(docker info *)",
+      "mcp__Claude_Code_Remote__add_repo"
     ]
   }
 }
