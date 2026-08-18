@@ -20,7 +20,26 @@ die()  { printf '\n  ✖ %s\n' "$*" >&2; exit 1; }
 # =============================================================== 1. guards ===
 step "Checking this machine"
 
-[ "$(uname -s)" = "Darwin" ] || die "macOS only. For other platforms, ask in the AI rollout channel."
+# Windows machines get the PowerShell loader (Chocolatey-based). Catch the
+# common mistake of pasting this bash one-liner into Git Bash or WSL.
+windows_redirect() {
+  cat >&2 <<'TXT'
+
+  ✖ This looks like a Windows machine. This bash loader targets macOS only —
+    the apps must install on the Windows side. Open PowerShell **as
+    administrator** (not Git Bash / WSL) and run the Windows one-liner:
+
+      irm https://raw.githubusercontent.com/abarrows/dotfiles/production/onboarding_bin/local-ai-setup.ps1 | iex
+TXT
+  exit 1
+}
+case "$(uname -s)" in
+  Darwin) : ;;
+  MINGW*|MSYS*|CYGWIN*) windows_redirect ;;
+  Linux) grep -qi microsoft /proc/version 2>/dev/null && windows_redirect
+         die "macOS or Windows only. For other platforms, ask in the AI rollout channel." ;;
+  *) die "macOS or Windows only. For other platforms, ask in the AI rollout channel." ;;
+esac
 
 [ "$(id -u)" -ne 0 ] || die "Don't run as root/sudo — Homebrew refuses root. Run as yourself; you'll be prompted when needed."
 
