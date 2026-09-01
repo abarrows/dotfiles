@@ -36,3 +36,6 @@ fi
 
 # Hermes Agent — ensure ~/.local/bin is on PATH
 export PATH="$HOME/.local/bin:$PATH"
+
+# Added by swiftly
+. "/Users/andyb/.swiftly/env.sh"
