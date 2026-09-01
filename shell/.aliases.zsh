@@ -151,6 +151,7 @@ alias apimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Management.Ap
 alias servicelucimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Management.Api && $IDE_PATH ."
 
 # Company Digital Products
+alias uiwayroo="cd ~/$CURRENT_COMPANY/repos/digital-products/Wayroo.Mobile.RN && $IDE_PATH ."
 alias uilucimanage="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Management.UI/ && $IDE_PATH ."
 alias uiluciinvoice="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.InvoicePortal.UI/ && $IDE_PATH ."
 alias uilucishopping="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Shopping.UI/ && $IDE_PATH ."

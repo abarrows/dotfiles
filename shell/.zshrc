@@ -202,3 +202,16 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$PATH:/Users/andyb/.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+# Remove a stale git index.lock (refuses if a git process is running)
+alias git-unlock='pgrep -x git >/dev/null && echo "git is running — wait!" || rm -v "$(git rev-parse --git-dir)/index.lock"'
+
+# Android SDK (added for Expo / React Native — Wayroo.Mobile.RN)
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator"
+
+# Java (Android Studio bundled JDK — for Gradle / React Native builds)
+export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
+export PATH=$PATH:$HOME/.maestro/bin

@@ -4,11 +4,9 @@ formulahendry.github-actions
 henriiik.docker-linter
 KnisterPeter.vscode-github
 me-dutour-mathieu.vscode-github-actions
-ms-azuretools.vscode-docker
 ms-kubernetes-tools.vscode-aks-tools
 ms-kubernetes-tools.vscode-kubernetes-tools
 ms-vscode.remote-explorer
 ms-vscode-remote.remote-ssh
 ms-vscode-remote.remote-ssh-edit
-ms-vscode-remote.remote-wsl
 MS-vsliveshare.vsliveshare

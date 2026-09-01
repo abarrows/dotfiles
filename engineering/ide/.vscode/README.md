@@ -34,6 +34,26 @@ descriptions of the information:
    used in any rails project. (More
    Information)[https://rahul-arora.medium.com/debugging-ruby-on-rails-server-in-vs-code-819b45113e78]
 
+## Settings Sync — extensions are dotfiles-owned (do this on every machine)
+
+**This repo is the single source of truth for extensions** — the `extensions*.txt` lists,
+installed by `onboarding_bin/vscode-install-extensions-*.sh`. VS Code **Settings Sync is NOT**.
+
+Settings Sync will silently add / remove / enable / disable extensions to match another machine
+or an older cloud snapshot. On **2026-08-11** it uninstalled `dbaeumer.vscode-eslint` and
+`esbenp.prettier-vscode` here, silently breaking lint and format-on-save. To keep dotfiles
+authoritative:
+
+1. **Turn the Extensions resource OFF in Settings Sync — on every machine.** There is no
+   `settings.json` key for this; it is UI-only:
+   Command Palette → **Settings Sync: Configure…** → uncheck **Extensions**.
+2. `settings.json` → `settingsSync.ignoredExtensions` lists the core dev tools (eslint, prettier,
+   stylelint, shell-format) as a per-extension safety net — no wildcard is supported, so it can
+   only protect named extensions, which is why step 1 is the real fix.
+
+Settings / Keybindings / Snippets are also symlinked from this repo, so consider turning those
+Sync resources off too if you want dotfiles fully authoritative.
+
 ## Extensions
 
 *Needs to be cross checked with extensions_base.txt and updated for 2023*
