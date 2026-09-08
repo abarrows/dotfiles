@@ -1,4 +1,2 @@
 christian-kohler.npm-intellisense
-dsznajder.es7-react-js-snippets
-EQuimper.react-native-react-redux
 wix.vscode-import-cost
