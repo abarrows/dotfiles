@@ -11,7 +11,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.shellcheck": "explicit"
     },
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    "editor.defaultFormatter": "ms-azuretools.vscode-containers"
   },
   "[dockerfile][dotenv][shellscript]": {
     "editor.codeActionsOnSave": {
@@ -24,7 +24,7 @@
       "source.fixAll.shellcheck": "explicit",
       "source.fixAll.stylelint": "never"
     },
-    "editor.defaultFormatter": "foxundermoon.shell-format"
+    "editor.defaultFormatter": "dotenv.dotenv-vscode"
   },
   "[dotenv][shellscript]": {
     "editor.codeActionsOnSave": {
@@ -1301,5 +1301,8 @@
     "**/.forgejo/workflows/*.yaml",
     "azure-pipelines.yml",
     "azure-pipelines.yaml"
-  ]
+  ],
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "chat.viewSessions.orientation": "stacked",
+  "gitlens.graph.details.location": "auto"
 }

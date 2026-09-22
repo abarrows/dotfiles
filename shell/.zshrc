@@ -211,7 +211,9 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
 export PATH="$PATH:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator"
 
-# Java (Android Studio bundled JDK — for Gradle / React Native builds)
-export JAVA_HOME="/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+# Java for Gradle / React Native builds. NOT Android Studio's bundled JBR: it silently moved to
+# JDK 25, and JDK 24+ fails AGP's configureCMake with "A restricted method in java.lang.System
+# has been called" (hit 2026-09-06). Gradle wants JDK 17-21; brew's openjdk@17 stays put.
+export JAVA_HOME="/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home"
 export PATH="$JAVA_HOME/bin:$PATH"
 export PATH=$PATH:$HOME/.maestro/bin
