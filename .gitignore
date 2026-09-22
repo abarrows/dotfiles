@@ -204,6 +204,9 @@ atlassian-ide-plugin.xml
 # !.vscode/extensions.json
 *devcontainer.env
 
+# Claude
+.claude/settings.local.json
+
 ###################
 
 # Project Specific

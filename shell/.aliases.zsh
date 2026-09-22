@@ -149,6 +149,8 @@ alias rsgithub="cd ~/$CURRENT_COMPANY/repos/development-team/.github && $IDE_PAT
 alias uiemail="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.EmailTemplates && $IDE_PATH ."
 alias apimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Management.Api && $IDE_PATH ."
 alias servicelucimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Management.Api && $IDE_PATH ."
+alias serviceluciorders="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Orders.Api && $IDE_PATH ."
+alias servicelucimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Management.Api && $IDE_PATH ."
 
 # Company Digital Products
 alias uiwayroo="cd ~/$CURRENT_COMPANY/repos/digital-products/Wayroo.Mobile.RN && $IDE_PATH ."

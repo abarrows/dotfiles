@@ -11,7 +11,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.shellcheck": "explicit",
     },
-    "editor.defaultFormatter": "ms-azuretools.vscode-docker",
+    "editor.defaultFormatter": "ms-azuretools.vscode-containers",
   },
   "[dockerfile][dotenv][shellscript]": {
     "editor.codeActionsOnSave": {
@@ -892,24 +892,24 @@
   "githubPullRequests.queries": [
     {
       "label": "Local Pull Request Branches",
-      "query": "default",
+      "query": "default"
     },
     {
       "label": "Waiting For My Review",
-      "query": "repo:${owner}/${repository} is:open review-requested:${user}",
+      "query": "repo:${owner}/${repository} is:open review-requested:${user}"
     },
     {
       "label": "Assigned To Me",
-      "query": "repo:${owner}/${repository} is:open assignee:${user}",
+      "query": "repo:${owner}/${repository} is:open assignee:${user}"
     },
     {
       "label": "Created By Me",
-      "query": "repo:${owner}/${repository} is:open author:${user}",
+      "query": "repo:${owner}/${repository} is:open author:${user}"
     },
     {
       "label": "All Open",
-      "query": "default",
-    },
+      "query": "default"
+    }
   ],
   "gitlens.advanced.messages": {
     "suppressCommitHasNoPreviousCommitWarning": true,

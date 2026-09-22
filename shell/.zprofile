@@ -1,3 +1,7 @@
+# The following lines were added by Docker Desktop to add commands to your PATH.
+export PATH="$PATH:/Users/andyb/.docker/bin"
+# End of Docker Desktop section.
+
 #!/usr/bin/env bash
 
 # Evaluation if this machine is an M1 Mac done in the .m1-mysql-fixes.sh file
