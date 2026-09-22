@@ -105,7 +105,10 @@
       "Bash(brew outdated *)",
       "Bash(HOMEBREW_NO_AUTO_UPDATE=1 brew list --versions zsh)",
       "Read(//opt/homebrew/Cellar/zsh/**)",
-      "mcp__plugin_atlassian_atlassian__search"
+      "mcp__plugin_atlassian_atlassian__search",
+      "Bash(grep -o '\"type\":\"summary\".\\\\{0,200\\\\}' /Users/andyb/.claude/projects/-Users-andyb-Retail-Success-repos-development-team-dotfiles/f4628b96-d0a0-4c50-b67d-b6a8b330402d.jsonl)",
+      "Bash(mdfind -name \"hermes-agent\")",
+      "Bash(~/.local/bin/hermes gateway *)"
     ]
   }
 }
