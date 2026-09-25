@@ -185,11 +185,6 @@ ulimit -n 65536
 
 # Added by Windsurf
 export PATH="/Users/andyb/.codeium/windsurf/bin:$PATH"
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/andyb/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
-# End of Docker CLI completions
 
 # bun completions
 [ -s "/Users/andyb/.bun/_bun" ] && source "/Users/andyb/.bun/_bun"
