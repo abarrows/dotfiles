@@ -55,7 +55,7 @@ alias nb="npm run build"
 alias ns="npm run start"
 # alias gpull="\$updatesubmodule && git pull --all"
 alias removegit="rm -rf .git"
-alias prunebranches="$HOME/.onboarding_bin/prune-merged-in-branches.sh"
+alias prunebranches="repo-hygiene audit --repo . && repo-hygiene manifest --repo ."
 
 # Apache
 alias editapache="cd ~/etc && cd apache2 && edit httpd.conf"

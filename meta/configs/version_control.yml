@@ -18,6 +18,10 @@
     ~/.git-template-directory/hooks/post-checkout:
       path: version-control/.git-template-directory/hooks/post-checkout
       relink: true
+    ~/.local/bin/repo-hygiene:
+      path: onboarding_bin/repo-hygiene/repo_hygiene.py
+      create: true
+      relink: true
     # Leave out if not using atlassian.
     # ~/.git-template-directory/hooks/prepare-commit-msg:
     #   path: version-control/.git-template-directory/hooks/prepare-commit-msg

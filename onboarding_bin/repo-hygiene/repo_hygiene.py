@@ -1,0 +1,1368 @@
+#!/usr/bin/env python3
+"""repo-hygiene: keep ~/Retail-Success/repos/* down to active work and default branches.
+
+Subcommands (all read-only except `apply --execute` and `recover-worktrees --execute`):
+  audit              fetch, enumerate branches/worktrees/stashes/orphan dirs, classify, write audit JSON
+  manifest           turn the latest audit into an editable manifest.tsv with rule-based defaults
+  apply              validate the manifest, archive (bundle + patches), then delete; dry-run by default
+  verify             check the end-state invariants; --restore-test round-trips the last bundle
+  restore            fetch refs back out of a bundle
+  recover-worktrees  repair or salvage broken worktree registrations and orphan directories
+
+Design rules: stdlib only; deterministic; idempotent; never calls rebase, reset --hard or push --force.
+"""
+from __future__ import annotations
+
+import argparse
+import collections
+import datetime as dt
+import fnmatch
+import hashlib
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import tempfile
+
+try:
+    import tomllib
+except ImportError:  # pragma: no cover
+    tomllib = None
+
+VERSION = "0.1.0"
+HERE = os.path.dirname(os.path.realpath(__file__))
+NOW = dt.datetime.now(dt.timezone.utc)
+TS = NOW.strftime("%Y%m%d-%H%M%S")
+
+DEFAULT_CONFIG = {
+    "root": os.path.expanduser("~/Retail-Success/repos"),
+    "archive": os.path.expanduser("~/Retail-Success/repos/.archive"),
+    "categories": ["admins", "development-team", "digital-products", "digital-services", "personal"],
+    "protected": ["develop", "main", "master", "production", "staging", "main-public",
+                  "release/*", "hotfix/v*", "merge-down/*"],
+    "noise_paths": [".codegraph/*", "*.tsbuildinfo", ".husky/_/*", ".claude/*", ".DS_Store", "*/.DS_Store"],
+    "stash_noise": [r"^autostash$", r"^lint-staged automatic backup$", r"^Teleport auto-stash$"],
+    "branch_noise": [r"^cascade/", r"^worktree-agent-", r"^dependabot/", r"^claude/[a-z]+-[a-z]+-[0-9a-f]{6}$"],
+    "thresholds": {"branch_age_days": 180, "stash_age_days": 90, "idle_worktree_days": 14,
+                   "oversized_bytes": 1 << 30},
+    "repos": {},
+}
+
+BRANCH_ACTIONS = {"keep", "pr", "archive-delete", "review", "blocked", "note"}
+WORKTREE_ACTIONS = {"keep", "migrate", "remove", "repair", "salvage-remove", "review", "blocked", "note"}
+STASH_ACTIONS = {"keep", "export-drop", "drop", "review"}
+MANIFEST_COLUMNS = ["kind", "action", "bucket", "name", "sha", "age_d", "ahead", "behind", "pr", "evidence", "reason"]
+
+
+# ----------------------------------------------------------------------------- helpers
+class HygieneError(RuntimeError):
+    pass
+
+
+def run(args, cwd=None, check=True, env=None, input=None):
+    r = subprocess.run(args, cwd=cwd, capture_output=True, text=True, env=env, input=input)
+    if check and r.returncode != 0:
+        raise HygieneError(f"{' '.join(args)} (cwd={cwd}) rc={r.returncode}: {r.stderr.strip()}")
+    return r
+
+
+def git(repo, *args, check=True, env=None, input=None):
+    return run(["git", "-C", repo, *args], check=check, env=env, input=input)
+
+
+def gout(repo, *args, default=""):
+    r = git(repo, *args, check=False)
+    return r.stdout.strip() if r.returncode == 0 else default
+
+
+def ref_exists(repo, ref):
+    return git(repo, "show-ref", "--verify", "--quiet", ref, check=False).returncode == 0
+
+
+def is_ancestor(repo, a, b):
+    return git(repo, "merge-base", "--is-ancestor", a, b, check=False).returncode == 0
+
+
+def commit_exists(repo, sha):
+    return bool(sha) and git(repo, "cat-file", "-e", f"{sha}^{{commit}}", check=False).returncode == 0
+
+
+def sha256_file(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def age_days(iso):
+    try:
+        d = dt.datetime.fromisoformat(iso)
+        if d.tzinfo is None:
+            d = d.replace(tzinfo=dt.timezone.utc)
+        return (NOW - d).days
+    except Exception:
+        return None
+
+
+def du_bytes(path):
+    total = 0
+    for dirpath, dirnames, filenames in os.walk(path, onerror=lambda e: None):
+        for fn in filenames:
+            try:
+                total += os.lstat(os.path.join(dirpath, fn)).st_size
+            except OSError:
+                pass
+    return total
+
+
+def human(n):
+    for unit in ("B", "KB", "MB", "GB", "TB"):
+        if n < 1024:
+            return f"{n:.0f}{unit}" if unit == "B" else f"{n:.1f}{unit}"
+        n /= 1024
+    return f"{n:.1f}PB"
+
+
+def slug_from_url(url):
+    m = re.search(r"github\.com[:/]([^/]+)/([^/]+?)(?:\.git)?/?$", url or "")
+    return f"{m.group(1)}/{m.group(2)}" if m else ""
+
+
+def load_config(path):
+    cfg = json.loads(json.dumps(DEFAULT_CONFIG))
+    if path and os.path.exists(path):
+        if tomllib is None:
+            raise HygieneError("python >= 3.11 is required for TOML config")
+        with open(path, "rb") as f:
+            user = tomllib.load(f)
+        for k, v in user.items():
+            if isinstance(v, dict) and isinstance(cfg.get(k), dict):
+                cfg[k].update(v)
+            else:
+                cfg[k] = v
+    cfg["root"] = os.path.realpath(os.path.expanduser(cfg["root"]))
+    cfg["archive"] = os.path.realpath(os.path.expanduser(cfg["archive"]))
+    return cfg
+
+
+def discover_repos(cfg):
+    out = []
+    for cat in cfg["categories"]:
+        d = os.path.join(cfg["root"], cat)
+        if not os.path.isdir(d):
+            continue
+        for name in sorted(os.listdir(d)):
+            if os.path.isdir(os.path.join(d, name, ".git")):
+                out.append(f"{cat}/{name}")
+    return out
+
+
+# ----------------------------------------------------------------------------- repo context
+class Repo:
+    def __init__(self, cfg, rel):
+        self.cfg = cfg
+        self.rel = rel.strip("/")
+        if self.rel.count("/") != 1:
+            raise HygieneError(f"--repo must be <category>/<name>, got {rel!r}")
+        self.category, self.name = self.rel.split("/")
+        self.path = os.path.realpath(os.path.join(cfg["root"], self.rel))
+        if not os.path.isdir(os.path.join(self.path, ".git")):
+            raise HygieneError(f"not a main git checkout: {self.path}")
+        self.opts = cfg.get("repos", {}).get(self.rel, {})
+        self.archive = os.path.join(cfg["archive"], self.rel.replace("/", "__"))
+        self.remote_url = gout(self.path, "remote", "get-url", "origin")
+        self.has_remote = bool(self.remote_url) and self.opts.get("remote") != "none"
+        self.slug = slug_from_url(self.remote_url) if self.has_remote else ""
+        self.local_branches = [b for b in gout(self.path, "for-each-ref", "refs/heads", "--format=%(refname:short)").split("\n") if b]
+        self.default = self.opts.get("default") or self.detect_default()
+        self.protected_local = [b for b in self.local_branches if self.is_protected(b)]
+        self.targets = self.integration_targets()
+        self.primary = self.targets[0] if self.targets else None
+        self.thr = cfg["thresholds"]
+
+    def detect_default(self):
+        head = gout(self.path, "symbolic-ref", "--short", "refs/remotes/origin/HEAD").replace("origin/", "")
+        if head and self.is_protected(head):
+            return head
+        for cand in ("develop", "main", "master", "production"):
+            if cand in self.local_branches:
+                return cand
+        return head or "main"
+
+    def is_protected(self, name):
+        return any(fnmatch.fnmatchcase(name, pat) for pat in self.cfg["protected"] + list(self.opts.get("protected_extra", [])))
+
+    def integration_targets(self):
+        targets = []
+        remote_protected = [l.replace("refs/remotes/origin/", "") for l in gout(self.path, "for-each-ref", "refs/remotes/origin", "--format=%(refname)").split("\n")
+                            if l and l != "refs/remotes/origin/HEAD" and self.is_protected(l.replace("refs/remotes/origin/", ""))]
+        for b in [self.default] + sorted(set(self.protected_local) | set(remote_protected)):
+            for ref in (f"origin/{b}", b):
+                if ref not in targets and (ref_exists(self.path, f"refs/remotes/{ref}") if ref.startswith("origin/") else ref_exists(self.path, f"refs/heads/{ref}")):
+                    targets.append(ref)
+        return targets
+
+    def protected_refs_full(self):
+        out = [f"refs/heads/{b}" for b in self.protected_local]
+        for line in gout(self.path, "for-each-ref", "refs/remotes/origin", "--format=%(refname)").split("\n"):
+            short = line.replace("refs/remotes/origin/", "")
+            if line and short != "HEAD" and self.is_protected(short):
+                out.append(line)
+        return out
+
+    def is_noise_path(self, p):
+        return any(fnmatch.fnmatchcase(p, pat) for pat in self.cfg["noise_paths"])
+
+    def is_noise_branch(self, name):
+        return any(re.search(pat, name) for pat in self.cfg["branch_noise"])
+
+    def is_noise_stash(self, subject):
+        return any(re.search(pat, subject) for pat in self.cfg["stash_noise"])
+
+    def worktree_home(self):
+        return os.path.join(self.path, ".claude", "worktrees")
+
+    def layout_ok(self, wt_path):
+        return os.path.dirname(os.path.realpath(wt_path)) == os.path.realpath(self.worktree_home())
+
+    def status_split(self, wt_path):
+        """Return (real_dirt, noise_dirt) lists for a checkout (modified + untracked)."""
+        r = git(wt_path, "status", "--porcelain", "--untracked-files=all", check=False)
+        real, noise = [], []
+        for line in r.stdout.split("\n"):
+            if not line.strip():
+                continue
+            p = line[3:]
+            if " -> " in p:
+                p = p.split(" -> ")[-1]
+            p = p.strip('"')
+            (noise if self.is_noise_path(p) else real).append(line)
+        return real, noise
+
+    def latest_audit_path(self):
+        p = os.path.join(self.archive, "audit-latest.json")
+        return p if os.path.exists(p) else None
+
+    def load_audit(self):
+        p = self.latest_audit_path()
+        if not p:
+            raise HygieneError(f"no audit for {self.rel}; run `audit --repo {self.rel}` first")
+        with open(p) as f:
+            return json.load(f)
+
+
+# ----------------------------------------------------------------------------- PR data
+PR_FIELDS = "number,state,headRefName,headRefOid,baseRefName,mergedAt,closedAt,mergeCommit,author,title,isDraft"
+
+
+def fetch_prs(repo: Repo, log):
+    if not repo.slug or not shutil.which("gh"):
+        log(f"  PRs: skipped (slug={repo.slug or '-'}, gh={'yes' if shutil.which('gh') else 'no'})")
+        return {}, "none"
+    os.makedirs(repo.archive, exist_ok=True)
+    cache = os.path.join(repo.archive, f"prs-{NOW:%Y-%m-%d}.json")
+    if os.path.exists(cache):
+        with open(cache) as f:
+            data = json.load(f)
+        src = "cache"
+    else:
+        r = run(["gh", "pr", "list", "-R", repo.slug, "--state", "all", "--limit", "3000", "--json", PR_FIELDS], check=False)
+        if r.returncode != 0:
+            log(f"  PRs: gh failed: {r.stderr.strip()[:200]}")
+            return {}, "failed"
+        data = json.loads(r.stdout)
+        with open(cache, "w") as f:
+            json.dump(data, f)
+        src = "gh"
+    by_head = collections.defaultdict(list)
+    for p in data:
+        by_head[p["headRefName"]].append(p)
+    log(f"  PRs: {len(data)} from {src}")
+    return by_head, src
+
+
+def best_pr(prs_for_head):
+    for st in ("OPEN", "MERGED", "CLOSED"):
+        for p in prs_for_head or []:
+            if p["state"] == st:
+                return p
+    return None
+
+
+# ----------------------------------------------------------------------------- audit
+def audit_repo(repo: Repo, log, fetch=True):
+    os.makedirs(repo.archive, exist_ok=True)
+    log(f"== audit {repo.rel} (default={repo.default}, targets={repo.targets}, slug={repo.slug or '-'})")
+    fetch_ok = True
+    if fetch and repo.has_remote:
+        r = git(repo.path, "fetch", "--prune", "origin", check=False)
+        fetch_ok = r.returncode == 0
+        log(f"  fetch --prune: {'ok' if fetch_ok else 'FAILED ' + r.stderr.strip()[:200]}")
+        if fetch_ok:
+            repo.targets = repo.integration_targets()
+            repo.primary = repo.targets[0] if repo.targets else None
+    prs, pr_source = fetch_prs(repo, log)
+
+    # --- worktrees
+    worktrees = parse_worktrees(repo)
+    wt_by_branch = {w["branch"]: w for w in worktrees if w.get("branch")}
+    main_wt = worktrees[0] if worktrees else None
+    for w in worktrees:
+        if w["present"]:
+            real, noise = repo.status_split(w["path"])
+            w["dirt"], w["noise"] = real, noise
+            w["head"] = gout(w["path"], "rev-parse", "HEAD")
+            w["size"] = du_bytes(w["path"]) if w["kind"] == "linked" else 0
+            w["last_touch"] = int(NOW.timestamp() - os.stat(w["path"]).st_mtime) // 86400
+        else:
+            w["dirt"], w["noise"], w["head"], w["size"], w["last_touch"] = [], [], "", 0, None
+        w["layout_ok"] = w["kind"] == "main" or repo.layout_ok(w["path"])
+        w["in_progress"] = in_progress_ops(repo, w)
+
+    # --- orphan directories
+    orphans = scan_orphans(repo, worktrees)
+
+    # --- branches
+    merged_sets = {t: set(gout(repo.path, "branch", "--format=%(refname:short)", "--merged", t).split("\n")) for t in repo.targets}
+    open_pr_branches = []
+    fmt = "%(refname:short)%09%(objectname)%09%(upstream:short)%09%(upstream:track,nobracket)%09%(committerdate:iso8601-strict)%09%(subject)"
+    branches = []
+    for row in gout(repo.path, "for-each-ref", "refs/heads", f"--format={fmt}").split("\n"):
+        if not row:
+            continue
+        name, sha, up, track, cdate, subject = (row.split("\t") + [""] * 6)[:6]
+        b = {"name": name, "sha": sha, "upstream": up, "track": track, "commit_date": cdate[:10],
+             "age_days": age_days(cdate), "subject": subject[:100], "protected": repo.is_protected(name),
+             "noise": repo.is_noise_branch(name), "merged_into": [t for t, s in merged_sets.items() if name in s],
+             "worktree": wt_by_branch.get(name, {}).get("path", ""),
+             "checked_out_main": bool(main_wt and main_wt.get("branch") == name)}
+        if repo.primary:
+            lr = gout(repo.path, "rev-list", "--left-right", "--count", f"{repo.primary}...{name}")
+            behind, ahead = (lr.split() + ["0", "0"])[:2] if lr else ("0", "0")
+            b["ahead"], b["behind"] = int(ahead), int(behind)
+        else:
+            b["ahead"], b["behind"] = 0, 0
+        pr = best_pr(prs.get(name))
+        if pr:
+            b["pr"] = {"number": pr["number"], "state": pr["state"], "base": pr["baseRefName"],
+                       "head_oid": pr.get("headRefOid", ""), "merge_oid": (pr.get("mergeCommit") or {}).get("oid", ""),
+                       "author": (pr.get("author") or {}).get("login", ""), "base_protected": repo.is_protected(pr["baseRefName"]),
+                       "draft": pr.get("isDraft", False)}
+            b["tip_vs_pr_head"] = tip_vs_pr_head(repo, sha, b["pr"])
+            if pr["state"] == "OPEN":
+                open_pr_branches.append(name)
+        else:
+            b["pr"] = None
+            b["tip_vs_pr_head"] = ""
+        b["bucket"] = bucket_for(repo, b, pr_source)
+        branches.append(b)
+
+    # expensive per-branch evidence only where a decision hinges on it
+    for b in branches:
+        needs_evidence = b["bucket"] in ("D4", "D5", "D6", "D7") or (b["bucket"] == "D2" and (b["tip_vs_pr_head"] not in ("equal", "ancestor") or not b["pr"]["base_protected"]))
+        if needs_evidence and repo.primary:
+            if 0 < b["ahead"] <= 50:
+                out = gout(repo.path, "log", "--cherry-pick", "--right-only", "--no-merges", "--format=%H", f"{repo.primary}...{b['name']}")
+                b["cherry_unique"] = len([l for l in out.split("\n") if l])
+            else:
+                b["cherry_unique"] = None if b["ahead"] > 50 else 0
+            added = [p for p in gout(repo.path, "diff", "--diff-filter=A", "--name-only", f"{repo.primary}...{b['name']}").split("\n") if p]
+            stranded = []
+            for p in added[:200]:
+                if any(git(repo.path, "cat-file", "-e", f"{ob}:{p}", check=False).returncode == 0 for ob in open_pr_branches if ob != b["name"]):
+                    continue
+                stranded.append(p)
+            b["stranded_files"] = stranded[:20]
+            b["stranded_count"] = len(stranded)
+        else:
+            b["cherry_unique"] = None
+            b["stranded_files"], b["stranded_count"] = [], 0
+
+    # --- stashes
+    stashes = []
+    for row in gout(repo.path, "stash", "list", "--format=%gd%x09%H%x09%ci%x09%gs").split("\n"):
+        if not row:
+            continue
+        ref, sha, date, subject = (row.split("\t") + [""] * 4)[:4]
+        idx = int(re.search(r"\{(\d+)\}", ref).group(1))
+        m = re.match(r"^(?:WIP on|On) ([^:]+): (.*)$", subject)
+        base, subj = (m.group(1), m.group(2)) if m else ("", subject)
+        stashes.append({"index": idx, "sha": sha, "date": date[:10], "age_days": age_days(date.replace(" ", "T", 1).replace(" ", "")),
+                        "base_branch": base, "subject": subj[:100], "noise": repo.is_noise_stash(subj)})
+
+    audit = {"version": VERSION, "ts": TS, "repo": repo.rel, "path": repo.path, "default": repo.default,
+             "targets": repo.targets, "slug": repo.slug, "fetch_ok": fetch_ok, "pr_source": pr_source,
+             "branches": branches, "worktrees": worktrees, "orphans": orphans, "stashes": stashes,
+             "counts": {"branches": len(branches), "worktrees": len(worktrees), "stashes": len(stashes), "orphans": len(orphans),
+                        "buckets": dict(collections.Counter(b["bucket"] for b in branches))}}
+    body = json.dumps(audit, indent=1, sort_keys=True)
+    audit["audit_id"] = hashlib.sha256(body.encode()).hexdigest()[:16]
+    path = os.path.join(repo.archive, f"audit-{TS}.json")
+    with open(path, "w") as f:
+        json.dump(audit, f, indent=1, sort_keys=True)
+    shutil.copyfile(path, os.path.join(repo.archive, "audit-latest.json"))
+    log(f"  branches={len(branches)} {audit['counts']['buckets']} worktrees={len(worktrees)} orphans={len(orphans)} stashes={len(stashes)}")
+    log(f"  wrote {path} (audit-id {audit['audit_id']})")
+    return audit
+
+
+def parse_worktrees(repo: Repo):
+    wts, cur = [], None
+    for line in gout(repo.path, "worktree", "list", "--porcelain").split("\n"):
+        if line.startswith("worktree "):
+            if cur:
+                wts.append(cur)
+            cur = {"path": line[9:], "branch": "", "locked": "", "prunable": "", "detached": False}
+        elif cur is None:
+            continue
+        elif line.startswith("HEAD "):
+            cur["registered_head"] = line[5:]
+        elif line.startswith("branch "):
+            cur["branch"] = line[7:].replace("refs/heads/", "")
+        elif line.startswith("locked"):
+            cur["locked"] = line[6:].strip() or "yes"
+        elif line.startswith("prunable"):
+            cur["prunable"] = line[8:].strip() or "yes"
+        elif line == "detached":
+            cur["detached"] = True
+    if cur:
+        wts.append(cur)
+    for i, w in enumerate(wts):
+        w["kind"] = "main" if i == 0 else "linked"
+        w["present"] = os.path.isdir(w["path"])
+        if w["present"]:
+            w["path"] = os.path.realpath(w["path"])
+        w["id"] = os.path.basename(w["path"])
+        w["sessions_path"] = w["path"].startswith("/sessions/")
+    return wts
+
+
+def in_progress_ops(repo: Repo, w):
+    if not w["present"]:
+        return []
+    gd = gout(w["path"], "rev-parse", "--git-dir")
+    gd = gd if os.path.isabs(gd) else os.path.join(w["path"], gd)
+    return [m for m in ("MERGE_HEAD", "REBASE_HEAD", "CHERRY_PICK_HEAD", "rebase-merge", "rebase-apply", "BISECT_LOG") if os.path.exists(os.path.join(gd, m))]
+
+
+def scan_orphans(repo: Repo, worktrees):
+    """Directories with a `.git` gitfile that belong to this repo but are not (validly) registered."""
+    registered = {os.path.realpath(w["path"]) for w in worktrees}
+    cat_dir = os.path.dirname(repo.path)
+    candidates = []
+    for container in (f"{repo.name}.worktree", f"{repo.name}.worktrees", f"{repo.name}-worktrees"):
+        d = os.path.join(cat_dir, container)
+        if os.path.isdir(d):
+            candidates += [os.path.join(d, n) for n in sorted(os.listdir(d))]
+    home = repo.worktree_home()
+    if os.path.isdir(home):
+        candidates += [os.path.join(home, n) for n in sorted(os.listdir(home))]
+    for n in sorted(os.listdir(cat_dir)):
+        p = os.path.join(cat_dir, n)
+        if n != repo.name and (n.startswith(f"{repo.name}-") or n.startswith("wt-") or n == f"{repo.name}.worktree") and os.path.isdir(p):
+            candidates.append(p)
+    out = []
+    for p in candidates:
+        ap = os.path.realpath(p)
+        gitfile = os.path.join(ap, ".git")
+        if ap in registered or not os.path.isfile(gitfile):
+            if os.path.isdir(ap) and not os.path.exists(gitfile) and ap not in registered and os.path.dirname(ap) != cat_dir:
+                out.append({"path": ap, "shape": "not-git", "gitdir": "", "size": du_bytes(ap)})
+            continue
+        with open(gitfile) as f:
+            gitdir = f.read().strip().replace("gitdir: ", "")
+        marker = f"/{repo.name}/.git/worktrees/"
+        if marker not in gitdir + "/":
+            continue  # belongs to another repo
+        shape = "orphan-sessions" if gitdir.startswith("/sessions/") else "orphan-missing-admin"
+        wid = os.path.basename(gitdir.rstrip("/"))
+        admin = os.path.join(repo.path, ".git", "worktrees", wid)
+        out.append({"path": ap, "shape": shape, "gitdir": gitdir, "admin_exists": os.path.isdir(admin), "worktree_id": wid,
+                    "candidate_branch": guess_branch(repo, ap), "size": du_bytes(ap),
+                    "mtime": dt.datetime.fromtimestamp(os.stat(ap).st_mtime, dt.timezone.utc).strftime("%Y-%m-%d")})
+    return out
+
+
+def guess_branch(repo: Repo, dirpath):
+    base = os.path.basename(dirpath)
+    for cand in (base, f"feature/{base}", f"feature/{base.replace('feature-', '')}", f"claude/{base.replace('claude-', '')}",
+                 f"bugfix/{base}", f"hotfix/{base}"):
+        if cand in repo.local_branches:
+            return cand
+    m = re.search(r"(WR-\d+)", base)
+    if m:
+        hits = [b for b in repo.local_branches if m.group(1) in b]
+        if len(hits) == 1:
+            return hits[0]
+    return ""
+
+
+def tip_vs_pr_head(repo: Repo, sha, pr):
+    head, merge = pr.get("head_oid"), pr.get("merge_oid")
+    if head and sha == head:
+        return "equal"
+    if head and commit_exists(repo.path, head) and is_ancestor(repo.path, sha, head):
+        return "ancestor"
+    if merge and commit_exists(repo.path, merge) and is_ancestor(repo.path, sha, merge):
+        return "ancestor"
+    if head and commit_exists(repo.path, head) and is_ancestor(repo.path, head, sha):
+        return "ahead"
+    if head and not commit_exists(repo.path, head):
+        return "unknown"
+    return "unrelated"
+
+
+def bucket_for(repo: Repo, b, pr_source):
+    pr = b["pr"]
+    if b["protected"]:
+        return "D8"
+    if b["merged_into"] or (not b["upstream"] and b["ahead"] == 0):
+        return "D1"
+    if pr and pr["state"] == "MERGED":
+        return "D2"
+    if pr and pr["state"] == "OPEN":
+        return "D3"
+    if pr and pr["state"] == "CLOSED":
+        return "D4"
+    if not b["upstream"] or "ahead" in b["track"]:
+        return "D7"
+    if "gone" in b["track"]:
+        return "D5"
+    return "D6"
+
+
+# ----------------------------------------------------------------------------- manifest rules
+def build_rows(repo: Repo, audit):
+    """Return manifest rows: dicts with MANIFEST_COLUMNS plus `section` (decide|prefilled|auto)."""
+    thr = repo.thr
+    rows = []
+    wt_by_branch = {w["branch"]: w for w in audit["worktrees"] if w.get("branch") and w["kind"] == "linked"}
+    branch_actions = {}
+
+    def row(kind, action, section, bucket, name, sha, age, ahead, behind, pr, evidence, reason):
+        r = {"kind": kind, "action": action, "section": section, "bucket": bucket, "name": name, "sha": (sha or "")[:12],
+             "age_d": "" if age is None else str(age), "ahead": str(ahead), "behind": str(behind), "pr": pr,
+             "evidence": evidence, "reason": reason}
+        rows.append(r)
+        return r
+
+    for b in sorted(audit["branches"], key=lambda x: (x["bucket"], x["name"])):
+        pr = b["pr"]
+        prs = f"#{pr['number']} {pr['state']}" + ("" if not pr or pr["base_protected"] else f"→{pr['base']}") if pr else "-"
+        wt = wt_by_branch.get(b["name"])
+        wt_dirty = bool(wt and wt["present"] and wt["dirt"])
+        bucket, age, name = b["bucket"], b["age_days"], b["name"]
+        ev, reason, action, section = [], "", "review", "decide"
+        if b["noise"]:
+            ev.append("noise-branch")
+        if b["worktree"]:
+            ev.append("worktree" + ("(dirty)" if wt_dirty else ""))
+        if b.get("cherry_unique") is not None:
+            ev.append(f"cherry_unique={b['cherry_unique']}")
+        if b.get("stranded_count"):
+            ev.append(f"stranded={b['stranded_count']}:" + ",".join(b["stranded_files"][:3]))
+        if b["tip_vs_pr_head"]:
+            ev.append(f"tip_vs_pr={b['tip_vs_pr_head']}")
+        if bucket == "D8":
+            action, section, reason = "keep", "auto", "protected"
+        elif bucket == "D1":
+            action, section, reason = "archive-delete", "auto", ("merged into " + ",".join(b["merged_into"])) if b["merged_into"] else "no upstream, 0 ahead"
+        elif bucket == "D2":
+            if pr["base_protected"] and b["tip_vs_pr_head"] in ("equal", "ancestor"):
+                action, section, reason = "archive-delete", "auto", f"squash-merged via PR into {pr['base']}"
+            elif b.get("cherry_unique") == 0:
+                action, section, reason = "archive-delete", "auto", f"PR merged into {pr['base']}; every local commit is patch-equivalent to {repo.primary}"
+            elif not pr["base_protected"]:
+                reason = f"PR merged into non-protected {pr['base']} (stacked); confirm that chain is integrated"
+            else:
+                reason = f"local tip is {b['tip_vs_pr_head']} relative to merged PR head; extra commits"
+        elif bucket == "D3":
+            action, section, reason = "keep", "auto", "open PR"
+            if b["upstream"] and "ahead" in b["track"]:
+                reason += "; local commits not pushed"
+        elif bucket == "D4":
+            action, section, reason = "archive-delete", "prefilled", "PR closed unmerged"
+        elif bucket in ("D5", "D6", "D7"):
+            label = {"D5": "upstream gone, no PR", "D6": "on origin, no PR", "D7": "never pushed" if not b["upstream"] else "unpushed local commits"}[bucket]
+            if bucket == "D7" and pr and pr["state"] == "MERGED":
+                reason = f"{label}; tip ahead of merged PR #{pr['number']}"
+            elif b.get("cherry_unique") == 0:
+                action, section, reason = "archive-delete", "auto", f"{label}; all commits patch-equivalent to {repo.primary}"
+            elif b["noise"]:
+                action, section, reason = "archive-delete", "prefilled", f"{label}; tool snapshot/bot branch"
+            elif age is not None and age >= thr["branch_age_days"]:
+                action, section, reason = "archive-delete", "prefilled", f"{label}; {age}d old (>= {thr['branch_age_days']})"
+            else:
+                reason = f"{label}; {age}d old, has unique commits"
+        if b["checked_out_main"] and action in ("archive-delete",):
+            action, section, reason = "blocked", "decide", reason + f"; checked out in main worktree (git -C {repo.path} switch {repo.default})"
+        elif wt_dirty and action == "archive-delete":
+            action, section, reason = "review", "decide", reason + "; its worktree has uncommitted changes"
+        elif b["worktree"] and action == "archive-delete" and bucket != "D1" and section != "auto":
+            action, section = "review", "decide"
+        branch_actions[name] = action
+        row("branch", action, section, bucket, name, b["sha"], age, b["ahead"], b["behind"], prs, " ".join(ev), reason)
+
+    for w in audit["worktrees"]:
+        if w["kind"] == "main":
+            on_default = w.get("branch") == repo.default
+            row("worktree", "note", "auto", "-", w["path"], w.get("head", ""), None, "", "", "-",
+                f"main branch={w.get('branch') or 'detached'} dirt={len(w['dirt'])} noise={len(w['noise'])}",
+                "main checkout" + ("" if on_default else f"; not on {repo.default}"))
+            continue
+        name = w["path"]
+        ev = [f"branch={w.get('branch') or ('detached' if w['detached'] else '?')}", f"dirt={len(w['dirt'])}", f"noise={len(w['noise'])}",
+              f"size={human(w['size'])}", "layout-ok" if w["layout_ok"] else "LAYOUT", f"idle={w['last_touch']}d"]
+        if w["locked"]:
+            ev.append(f"locked={w['locked']}")
+        if w["in_progress"]:
+            ev.append("in-progress=" + ",".join(w["in_progress"]))
+        if not w["present"]:
+            action, section, reason = ("repair", "decide", "registration missing; " + ("locked cloud-session path, admin dir present" if w["locked"] else "prunable"))
+        elif w["in_progress"]:
+            action, section, reason = "review", "decide", "merge/rebase in progress"
+        elif w["detached"]:
+            action, section, reason = "review", "decide", "detached HEAD"
+        else:
+            ba = branch_actions.get(w.get("branch"), "review")
+            if ba in ("keep", "pr"):
+                action, section, reason = ("keep" if w["layout_ok"] else "migrate"), "auto", f"branch {ba}" + ("" if w["layout_ok"] else f"; move under {repo.worktree_home()}")
+                if w["dirt"] and w["last_touch"] is not None and w["last_touch"] >= thr["idle_worktree_days"]:
+                    reason += f"; dirty and idle {w['last_touch']}d"
+            elif ba == "archive-delete" and not w["dirt"]:
+                action, section, reason = "remove", "auto", "clean; branch archived"
+            elif ba == "archive-delete":
+                action, section, reason = "salvage-remove", "decide", f"branch archived but {len(w['dirt'])} uncommitted paths; salvage patch will be written"
+            elif ba == "blocked":
+                action, section, reason = "review", "decide", "branch blocked"
+            else:
+                action, section, reason = "review", "decide", "branch needs a decision first"
+        row("worktree", action, section, "-", name, w.get("head", ""), w["last_touch"], "", "", "-", " ".join(ev), reason)
+
+    for o in audit["orphans"]:
+        if o["shape"] == "not-git":
+            row("worktree", "note", "auto", "-", o["path"], "", None, "", "", "-", f"size={human(o['size'])}", "directory without git metadata; leave or delete by hand")
+            continue
+        row("worktree", "review", "decide", "-", o["path"], "", None, "", "", "-",
+            f"{o['shape']} admin={'yes' if o['admin_exists'] else 'no'} branch={o['candidate_branch'] or '?'} size={human(o['size'])} mtime={o['mtime']}",
+            "orphan directory: `recover-worktrees` will diff it against the branch, salvage, then remove (set to salvage-remove)")
+
+    for s in sorted(audit["stashes"], key=lambda x: x["index"]):
+        name = f"stash@{{{s['index']}}}"
+        ev = f"{s['date']} on {s['base_branch'] or '?'}: {s['subject']}"
+        if s["noise"]:
+            action, section, reason = "drop", "auto", "tool noise"
+        elif s["age_days"] is not None and s["age_days"] >= thr["stash_age_days"]:
+            action, section, reason = "export-drop", "auto", f"{s['age_days']}d old; exported as patch"
+        else:
+            action, section, reason = "keep", "prefilled", f"{s['age_days']}d old; decide keep / export-drop / drop"
+        row("stash", action, section, "-", name, s["sha"], s["age_days"], "", "", "-", ev, reason)
+    return rows
+
+
+def write_manifest(repo: Repo, audit, rows, path):
+    sections = [("decide", "NEEDS YOUR DECISION"), ("prefilled", "PRE-FILLED, PLEASE SKIM"), ("auto", "AUTO (collapsed)")]
+    lines = [f"# repo-hygiene manifest v1\trepo={repo.rel}\tdefault={repo.default}\taudit-id={audit['audit_id']}\tgenerated={TS}",
+             "# Edit only the `action` column. branch: keep|pr|archive-delete   worktree: keep|migrate|remove|repair|salvage-remove   stash: keep|export-drop|drop",
+             "# Every `review` row must be changed before apply. `blocked` and `note` rows are informational.",
+             "\t".join(MANIFEST_COLUMNS)]
+    for key, title in sections:
+        sec = [r for r in rows if r["section"] == key]
+        lines.append(f"# ---- {title} ({len(sec)}) ----")
+        for r in sec:
+            lines.append("\t".join(r[c].replace("\t", " ").replace("\n", " ") for c in MANIFEST_COLUMNS))
+    with open(path, "w") as f:
+        f.write("\n".join(lines) + "\n")
+
+
+def read_manifest(path):
+    header, rows = {}, []
+    with open(path) as f:
+        for line in f:
+            line = line.rstrip("\n")
+            if line.startswith("# repo-hygiene manifest"):
+                for part in line.split("\t")[1:]:
+                    k, _, v = part.partition("=")
+                    header[k] = v
+            elif not line or line.startswith("#") or line.startswith("kind\t"):
+                continue
+            else:
+                vals = line.split("\t")
+                if len(vals) < len(MANIFEST_COLUMNS):
+                    vals += [""] * (len(MANIFEST_COLUMNS) - len(vals))
+                rows.append(dict(zip(MANIFEST_COLUMNS, vals)))
+    return header, rows
+
+
+def manifest_has_edits(repo: Repo, path):
+    """True if manifest.tsv differs from what the latest audit would generate (i.e. user edits)."""
+    gen = os.path.join(repo.archive, "manifest.generated.tsv")
+    if not (os.path.exists(path) and os.path.exists(gen)):
+        return False
+    _, a = read_manifest(path)
+    _, b = read_manifest(gen)
+    return [(r["kind"], r["name"], r["action"]) for r in a] != [(r["kind"], r["name"], r["action"]) for r in b]
+
+
+def validate_manifest(repo: Repo, audit, rows, policy=None):
+    problems = []
+    if not rows:
+        problems.append("manifest has no rows")
+    by_branch = {b["name"]: b for b in audit["branches"]}
+    by_wt = {w["path"]: w for w in audit["worktrees"]}
+    by_orphan = {o["path"]: o for o in audit["orphans"]}
+    by_stash = {s["sha"][:12]: s for s in audit["stashes"]}
+    wt_actions = {}
+    for r in rows:
+        k, a, n = r["kind"], r["action"], r["name"]
+        if k == "branch":
+            if a not in BRANCH_ACTIONS:
+                problems.append(f"branch {n}: bad action {a!r}")
+            b = by_branch.get(n)
+            if not b:
+                problems.append(f"branch {n}: not in audit")
+            elif b["sha"][:12] != r["sha"]:
+                problems.append(f"branch {n}: sha drifted {r['sha']} -> {b['sha'][:12]}")
+            elif b["protected"] and a != "keep":
+                problems.append(f"branch {n}: protected but action {a}")
+        elif k == "worktree":
+            if a not in WORKTREE_ACTIONS:
+                problems.append(f"worktree {n}: bad action {a!r}")
+            if n not in by_wt and n not in by_orphan:
+                problems.append(f"worktree {n}: not in audit")
+            wt_actions[n] = a
+        elif k == "stash":
+            if a not in STASH_ACTIONS:
+                problems.append(f"stash {n}: bad action {a!r}")
+            if r["sha"][:12] not in by_stash:
+                problems.append(f"stash {n} {r['sha']}: not in audit (stashes are matched by sha)")
+        else:
+            problems.append(f"unknown kind {k!r} for {n}")
+        if a == "review" and policy != "safe":
+            problems.append(f"{k} {n}: still marked review")
+    for r in rows:
+        if r["kind"] == "branch" and r["action"] == "archive-delete":
+            b = by_branch.get(r["name"])
+            if b and b["worktree"] and wt_actions.get(b["worktree"]) == "keep":
+                problems.append(f"branch {r['name']}: archive-delete but its worktree {b['worktree']} is keep")
+    return problems
+
+
+# ----------------------------------------------------------------------------- apply
+class Applier:
+    def __init__(self, repo: Repo, audit, rows, execute, log, skip_drifted=False, policy=None):
+        self.repo, self.audit, self.rows, self.execute, self.log = repo, audit, rows, execute, log
+        self.skip_drifted, self.policy = skip_drifted, policy
+        self.removed_bytes = 0
+        self.by_branch = {b["name"]: b for b in audit["branches"]}
+        self.by_wt = {w["path"]: w for w in audit["worktrees"]}
+        self.by_orphan = {o["path"]: o for o in audit["orphans"]}
+        self.by_stash_sha = {s["sha"][:12]: s for s in audit["stashes"]}
+        self.archive_refs = []
+        self.lock = os.path.join(repo.archive, ".lock")
+
+    def do(self, desc, fn):
+        self.log(("  [exec] " if self.execute else "  [dry ] ") + desc)
+        if self.execute:
+            return fn()
+
+    def run_all(self):
+        repo = self.repo
+        rows = [r for r in self.rows if r["action"] not in ("note",)]
+        if self.policy == "safe":
+            rows = [r for r in rows if r["action"] in ("keep", "archive-delete", "remove", "drop", "export-drop", "migrate")]
+        if os.path.exists(self.lock):
+            raise HygieneError(f"lock present: {self.lock}")
+        if self.execute:
+            with open(self.lock, "w") as f:
+                f.write(str(os.getpid()))
+        try:
+            self.precheck(rows)
+            self.recover(rows)
+            salvaged = self.salvage(rows)
+            self.export_stashes(rows)
+            self.bundle(rows)
+            self.raise_prs(rows)
+            self.worktrees(rows, salvaged)
+            self.branches(rows)
+            self.stashes(rows)
+            self.finish(rows)
+        finally:
+            if self.execute and os.path.exists(self.lock):
+                os.remove(self.lock)
+
+    # -- 2. prechecks
+    def precheck(self, rows):
+        repo = self.repo
+        if repo.has_remote:
+            r = git(repo.path, "fetch", "--prune", "origin", check=False)
+            if r.returncode != 0:
+                raise HygieneError("fetch failed; refusing to apply: " + r.stderr.strip()[:200])
+        for w in self.audit["worktrees"]:
+            if w["present"] and in_progress_ops(repo, w):
+                raise HygieneError(f"in-progress git operation in {w['path']}")
+        problems = validate_manifest(repo, self.audit, rows, self.policy)
+        if problems:
+            raise HygieneError("manifest invalid:\n    " + "\n    ".join(problems))
+        # drift: compare live state with the audit for every row we will touch
+        drifted = []
+        for r in rows:
+            if r["kind"] == "branch":
+                live = gout(repo.path, "rev-parse", f"refs/heads/{r['name']}")
+                if live[:12] != r["sha"]:
+                    drifted.append(f"branch {r['name']} {r['sha']} -> {live[:12] or 'gone'}")
+            elif r["kind"] == "worktree" and r["name"] in self.by_wt and self.by_wt[r["name"]]["present"]:
+                w = self.by_wt[r["name"]]
+                live_head = gout(w["path"], "rev-parse", "HEAD")
+                real, _ = repo.status_split(w["path"])
+                if live_head != w["head"] or len(real) != len(w["dirt"]):
+                    drifted.append(f"worktree {r['name']} head/dirt changed")
+            elif r["kind"] == "stash":
+                if r["sha"] not in {s[:12] for s in gout(repo.path, "stash", "list", "--format=%H").split("\n")}:
+                    drifted.append(f"stash {r['name']} {r['sha']} no longer present")
+        if drifted:
+            msg = "state drifted since audit:\n    " + "\n    ".join(drifted)
+            if not self.skip_drifted:
+                raise HygieneError(msg + "\n  re-run audit + manifest, or pass --skip-drifted")
+            self.log("  WARN " + msg)
+            names = {d.split(" ")[1] for d in drifted}
+            rows[:] = [r for r in rows if r["name"] not in names]
+        self.log(f"  prechecks ok: {len(rows)} rows")
+
+    # -- 3. recovery
+    def recover(self, rows):
+        for r in rows:
+            if r["kind"] != "worktree":
+                continue
+            if r["action"] == "repair" and r["name"] in self.by_wt:
+                recover_shape_a(self.repo, self.by_wt[r["name"]], self.do, self.log)
+            elif r["name"] in self.by_orphan and r["action"] in ("salvage-remove", "remove"):
+                o = self.by_orphan[r["name"]]
+                ref = recover_orphan(self.repo, o, self.do, self.log)
+                if ref:
+                    self.archive_refs.append(ref)
+
+    # -- 4. salvage dirty worktrees
+    def salvage(self, rows):
+        salvaged = set()
+        for r in rows:
+            if r["kind"] != "worktree" or r["action"] not in ("remove", "salvage-remove") or r["name"] not in self.by_wt:
+                continue
+            w = self.by_wt[r["name"]]
+            if not w["present"]:
+                continue
+            real, _ = self.repo.status_split(w["path"])
+            if real:
+                ref = salvage_tree(self.repo, w["path"], w["id"], self.do, self.log)
+                if ref:
+                    self.archive_refs.append(ref)
+                salvaged.add(r["name"])
+            for vi in self.repo.opts.get("valuable_ignored", []):
+                src = os.path.join(w["path"], vi)
+                if os.path.exists(src):
+                    dst = os.path.join(self.repo.archive, "salvage", f"{TS}-{w['id']}", vi)
+                    self.do(f"copy ignored {vi} from {w['id']}", lambda s=src, d=dst: (os.makedirs(os.path.dirname(d), exist_ok=True), shutil.copy2(s, d)))
+        return salvaged
+
+    # -- 5. stash export
+    def export_stashes(self, rows):
+        repo = self.repo
+        outdir = os.path.join(repo.archive, "stashes")
+        idx_path = os.path.join(outdir, "index.tsv")
+        for r in rows:
+            if r["kind"] != "stash" or r["action"] not in ("drop", "export-drop"):
+                continue
+            s = self.by_stash_sha[r["sha"]]
+            ref = f"refs/archive/stash/{s['sha'][:12]}"
+            self.do(f"ref {ref} <- {r['name']}", lambda ref=ref, s=s: git(repo.path, "update-ref", ref, s["sha"]))
+            self.archive_refs.append(ref)
+            if r["action"] == "export-drop":
+                slug = re.sub(r"[^A-Za-z0-9._-]+", "-", s["subject"])[:40].strip("-") or "stash"
+                patch = os.path.join(outdir, f"{TS}-{s['index']}-{slug}.patch")
+
+                def export(s=s, patch=patch):
+                    os.makedirs(outdir, exist_ok=True)
+                    p = git(repo.path, "stash", "show", "-p", "--include-untracked", s["sha"], check=False)
+                    if p.returncode != 0:
+                        p = git(repo.path, "show", "-p", "--format=", s["sha"])
+                    with open(patch, "w") as f:
+                        f.write(p.stdout)
+                    with open(idx_path, "a") as f:
+                        f.write("\t".join([s["sha"], s["date"], s["base_branch"], s["subject"], os.path.basename(patch)]) + "\n")
+                self.do(f"export {r['name']} -> {os.path.basename(patch)}", export)
+
+    # -- 6. bundle
+    def bundle(self, rows):
+        repo = self.repo
+        deletions = [r for r in rows if r["kind"] == "branch" and r["action"] == "archive-delete"]
+        refs = [f"refs/heads/{r['name']}" for r in deletions] + list(dict.fromkeys(self.archive_refs))
+        refs_tsv = os.path.join(repo.archive, f"{TS}.refs.tsv")
+        bundle = os.path.join(repo.archive, f"{TS}.bundle")
+        if not refs:
+            self.log("  bundle: nothing to archive")
+            return
+        excl = [f"^{ref}" for ref in repo.protected_refs_full()]
+
+        def make():
+            os.makedirs(repo.archive, exist_ok=True)
+            r = git(repo.path, "bundle", "create", bundle, *refs, *excl, check=False)
+            in_bundle = r.returncode == 0
+            if not in_bundle:
+                if "empty bundle" in (r.stderr or "").lower():
+                    for ref in refs:
+                        if not any(is_ancestor(repo.path, ref, p) for p in repo.protected_refs_full()):
+                            raise HygieneError(f"empty bundle but {ref} is not reachable from a protected ref")
+                    self.log("  bundle: empty (every tip reachable from protected refs); refs.tsv is the record")
+                else:
+                    raise HygieneError("bundle create failed: " + r.stderr.strip()[:300])
+            else:
+                git(repo.path, "bundle", "verify", bundle)
+                self.log(f"  bundle: {bundle} verified ({human(os.path.getsize(bundle))})")
+            with open(refs_tsv, "w") as f:
+                f.write("ref\tsha\tbucket\taction\tin_bundle\n")
+                prot = repo.protected_refs_full()
+                for r_ in deletions:
+                    ref = f"refs/heads/{r_['name']}"
+                    reachable = any(is_ancestor(repo.path, ref, p) for p in prot)
+                    f.write("\t".join([ref, gout(repo.path, "rev-parse", ref), r_["bucket"], r_["action"], "no(reachable)" if reachable else ("yes" if in_bundle else "no")]) + "\n")
+                for ref in dict.fromkeys(self.archive_refs):
+                    f.write("\t".join([ref, gout(repo.path, "rev-parse", ref), "-", "archive", "yes" if in_bundle else "no"]) + "\n")
+        self.do(f"bundle {len(refs)} refs -> {os.path.basename(bundle)} (thin, excluding {len(excl)} protected refs)", make)
+
+    # -- 7. PRs
+    def raise_prs(self, rows):
+        repo = self.repo
+        for r in rows:
+            if r["kind"] != "branch" or r["action"] != "pr":
+                continue
+            b = self.by_branch[r["name"]]
+            base = repo.default
+            m = re.match(r"^(hotfix|backport)/", b["name"])
+            if m:
+                self.log(f"  pr {b['name']}: release-bound branch; run by hand: git push -u origin {b['name']} && gh pr create --base origin/release/vX --title '{b['name']}' (rollback sha {b['sha'][:12]})")
+                continue
+
+            def create(b=b, base=base):
+                p = git(repo.path, "push", "-u", "origin", b["name"], check=False)
+                if p.returncode != 0:
+                    self.log(f"    push rejected; branch left intact: {p.stderr.strip()[:200]}")
+                    return
+                body = gout(repo.path, "log", "--no-merges", "--format=- %s", f"{repo.primary}..{b['name']}")
+                c = run(["gh", "pr", "create", "-R", repo.slug, "--base", base, "--head", b["name"], "--title", b["name"], "--assignee", "@me",
+                         "--body", f"Salvaged by repo-hygiene from a local branch.\n\n{body}\n"], check=False)
+                self.log("    " + (c.stdout.strip() if c.returncode == 0 else "gh pr create failed: " + c.stderr.strip()[:200]))
+            self.do(f"push + pr {b['name']} -> {base}", create)
+
+    # -- 8. worktrees
+    def worktrees(self, rows, salvaged):
+        repo = self.repo
+        for r in rows:
+            if r["kind"] != "worktree" or r["name"] not in self.by_wt:
+                continue
+            w = self.by_wt[r["name"]]
+            if r["action"] == "migrate" and w["present"]:
+                dest = os.path.join(repo.worktree_home(), w["id"])
+                if os.path.exists(dest):
+                    self.log(f"  migrate {w['id']}: destination exists, skipped")
+                    continue
+
+                def move(w=w, dest=dest):
+                    os.makedirs(repo.worktree_home(), exist_ok=True)
+                    ensure_excluded(repo)
+                    git(repo.path, "worktree", "move", w["path"], dest)
+                self.do(f"worktree move {w['path']} -> {dest}", move)
+            elif r["action"] in ("remove", "salvage-remove") and w["present"]:
+                real, _ = repo.status_split(w["path"])
+                force = bool(real) and (r["name"] in salvaged)
+                if real and not force:
+                    self.log(f"  remove {w['id']}: uncommitted paths and no salvage; skipped")
+                    continue
+                size = w["size"]
+
+                def remove(w=w, force=force):
+                    args = ["worktree", "remove"] + (["--force"] if force or w["noise"] else []) + [w["path"]]
+                    git(repo.path, *args)
+                    self.removed_bytes += size
+                self.do(f"worktree remove{' --force' if force or w['noise'] else ''} {w['path']} ({human(size)})", remove)
+
+    # -- 9. branches
+    def branches(self, rows):
+        repo = self.repo
+        live_checked_out = {w["branch"] for w in parse_worktrees(repo) if w.get("branch")}
+        for r in rows:
+            if r["kind"] != "branch" or r["action"] != "archive-delete":
+                continue
+            if r["name"] in live_checked_out and self.execute:
+                self.log(f"  branch -D {r['name']}: still checked out somewhere; skipped")
+                continue
+            self.do(f"branch -D {r['name']} ({r['bucket']}: {r['reason'][:60]})", lambda n=r["name"]: git(repo.path, "branch", "-D", n))
+
+    # -- 10. stashes
+    def stashes(self, rows):
+        repo = self.repo
+        todo = [r for r in rows if r["kind"] == "stash" and r["action"] in ("drop", "export-drop")]
+        for r in sorted(todo, key=lambda x: -int(re.search(r"\{(\d+)\}", x["name"]).group(1))):
+            def drop(r=r):
+                # locate by sha at drop time; indexes shift after each drop
+                lst = [l.split("\t") for l in gout(repo.path, "stash", "list", "--format=%gd%x09%H").split("\n") if l]
+                hit = [ref for ref, sha in lst if sha[:12] == r["sha"]]
+                if not hit:
+                    self.log(f"    {r['name']} {r['sha']} not found; skipped")
+                    return
+                git(repo.path, "stash", "drop", hit[0])
+            self.do(f"stash drop {r['name']} {r['sha']} ({r['action']})", drop)
+
+    # -- 11/12. finish
+    def finish(self, rows):
+        repo = self.repo
+        self.do("worktree prune", lambda: git(repo.path, "worktree", "prune"))
+        for ref in dict.fromkeys(self.archive_refs):
+            self.do(f"update-ref -d {ref}", lambda ref=ref: git(repo.path, "update-ref", "-d", ref))
+        keep = sorted(r["name"] for r in rows if r["action"] == "keep" and r["kind"] == "branch" and r["bucket"] not in ("D8", "D3"))
+        keep_wt = sorted(r["name"] for r in rows if r["action"] == "keep" and r["kind"] == "worktree")
+        keep_st = sorted(r["sha"] for r in rows if r["action"] == "keep" and r["kind"] == "stash")
+
+        def write_keep():
+            with open(os.path.join(repo.archive, "keep.txt"), "w") as f:
+                f.write("\n".join([f"branch\t{k}" for k in keep] + [f"worktree\t{k}" for k in keep_wt] + [f"stash\t{k}" for k in keep_st]) + "\n")
+        self.do(f"write keep.txt ({len(keep)} branches, {len(keep_wt)} worktrees, {len(keep_st)} stashes)", write_keep)
+        self.log(f"  disk released: {human(self.removed_bytes)}")
+
+
+def ensure_excluded(repo: Repo):
+    if git(repo.path, "check-ignore", "-q", ".claude/worktrees/x", check=False).returncode == 0:
+        return
+    excl = os.path.join(repo.path, ".git", "info", "exclude")
+    os.makedirs(os.path.dirname(excl), exist_ok=True)
+    with open(excl, "a") as f:
+        f.write("\n.claude/worktrees/\n")
+
+
+def salvage_tree(repo: Repo, work_tree, wid, do, log, parent="HEAD", git_dir=None):
+    """Commit the uncommitted state of a checkout to refs/archive/salvage/<wid> without touching its index."""
+    ref = f"refs/archive/salvage/{wid}"
+    patch = os.path.join(repo.archive, "salvage", f"{TS}-{wid}.patch")
+
+    def make():
+        os.makedirs(os.path.dirname(patch), exist_ok=True)
+        with tempfile.NamedTemporaryFile(delete=False) as tmp:
+            idx = tmp.name
+        os.remove(idx)
+        env = dict(os.environ, GIT_INDEX_FILE=idx)
+        base = ["git"] + (["--git-dir", git_dir] if git_dir else []) + ["--work-tree", work_tree]
+        run(base + ["read-tree", parent], cwd=work_tree, env=env)
+        excl = [f":(exclude){p}" for p in repo.cfg["noise_paths"] if "*" not in p or p.endswith("/*")]
+        run(base + ["add", "-A", "--", "."] + [e.replace("/*", "") for e in excl], cwd=work_tree, env=env, check=False)
+        tree = run(base + ["write-tree"], cwd=work_tree, env=env).stdout.strip()
+        parent_sha = run(base + ["rev-parse", parent], cwd=work_tree).stdout.strip()
+        commit = run(base + ["commit-tree", tree, "-p", parent_sha, "-m", f"salvage({wid}): uncommitted state {TS}"], cwd=work_tree, env=env).stdout.strip()
+        run(base + ["update-ref", ref, commit], cwd=work_tree)
+        diff = run(base + ["diff", parent_sha, tree], cwd=work_tree).stdout
+        with open(patch, "w") as f:
+            f.write(diff)
+        os.remove(idx)
+        log(f"    salvaged {wid}: {ref} = {commit[:12]}, patch {os.path.basename(patch)} ({len(diff.splitlines())} lines)")
+    do(f"salvage uncommitted state of {wid} -> {ref}", make)
+    return ref
+
+
+def recover_shape_a(repo: Repo, w, do, log):
+    """Registered + missing + admin dir exists: repair the local twin directory, then unlock."""
+    local = None
+    cat_dir = os.path.dirname(repo.path)
+    for container in (f"{repo.name}.worktree", f"{repo.name}.worktrees", f"{repo.name}-worktrees", os.path.join(repo.name, ".claude", "worktrees")):
+        cand = os.path.join(cat_dir, container, w["id"])
+        if os.path.isfile(os.path.join(cand, ".git")):
+            local = cand
+            break
+    if not local:
+        log(f"  repair {w['id']}: no local twin directory found; leaving registration alone (report only)")
+        return
+
+    def repair():
+        r = git(repo.path, "worktree", "repair", local, check=False)
+        log("    repair: " + (r.stdout.strip() or r.stderr.strip() or "ok"))
+        admin = os.path.join(repo.path, ".git", "worktrees", w["id"])
+        with open(os.path.join(admin, "gitdir"), "w") as f:
+            f.write(os.path.join(local, ".git") + "\n")
+        with open(os.path.join(local, ".git"), "w") as f:
+            f.write(f"gitdir: {admin}\n")
+        if w["locked"]:
+            git(repo.path, "worktree", "unlock", local, check=False)
+        real, noise = repo.status_split(local)
+        log(f"    repaired {local}: dirt={len(real)} noise={len(noise)}; re-run audit + manifest to decide keep/remove")
+    do(f"worktree repair {local} (registration pointed at {w['path']})", repair)
+
+
+def recover_orphan(repo: Repo, o, do, log):
+    """Gitfile points at a dead admin dir: diff files against the candidate branch, salvage, remove."""
+    branch = o.get("candidate_branch")
+    if not branch:
+        log(f"  orphan {o['path']}: no candidate branch; leaving in place (choose one and re-run with --branch)")
+        return None
+    git_dir = os.path.join(repo.path, ".git")
+    wid = os.path.basename(o["path"])
+    ref = None
+    with tempfile.NamedTemporaryFile(delete=False) as tmp:
+        idx = tmp.name
+    os.remove(idx)
+    env = dict(os.environ, GIT_INDEX_FILE=idx)
+    base = ["git", "--git-dir", git_dir, "--work-tree", o["path"]]
+    run(base + ["read-tree", branch], cwd=o["path"], env=env)
+    st = run(base + ["status", "--porcelain", "--untracked-files=all"], cwd=o["path"], env=env, check=False).stdout
+    os.path.exists(idx) and os.remove(idx)
+    real = [l for l in st.split("\n") if l.strip() and not repo.is_noise_path(l[3:].strip('"'))]
+    log(f"  orphan {wid}: vs {branch}: {len(real)} non-noise differences")
+    if real:
+        ref = salvage_tree(repo, o["path"], wid, do, log, parent=branch, git_dir=git_dir)
+    do(f"rm -rf {o['path']} ({human(o['size'])})", lambda: shutil.rmtree(o["path"]))
+    return ref
+
+
+# ----------------------------------------------------------------------------- verify
+def verify_repo(repo: Repo, log, restore_test=False):
+    problems = []
+    keep = {"branch": set(), "worktree": set(), "stash": set()}
+    kp = os.path.join(repo.archive, "keep.txt")
+    if os.path.exists(kp):
+        for line in open(kp):
+            k, _, v = line.strip().partition("\t")
+            if k in keep:
+                keep[k].add(v)
+    audit = audit_repo(repo, lambda *_: None, fetch=False)
+    wt_by_branch = {w["branch"]: w for w in audit["worktrees"] if w.get("branch")}
+    for b in audit["branches"]:
+        ok = b["bucket"] in ("D8", "D3") or b["name"] in keep["branch"] or (b["worktree"] and b["worktree"] in keep["worktree"])
+        if not ok:
+            problems.append(f"branch {b['name']} ({b['bucket']}) is neither protected, open-PR, nor kept")
+    for w in audit["worktrees"]:
+        if w["kind"] == "main":
+            continue
+        if not w["present"]:
+            problems.append(f"worktree {w['path']} missing" + (" (locked)" if w["locked"] else ""))
+            continue
+        if w["prunable"]:
+            problems.append(f"worktree {w['path']} prunable")
+        if w["locked"] and w["path"] not in keep["worktree"]:
+            problems.append(f"worktree {w['path']} locked ({w['locked']})")
+        if not w["layout_ok"]:
+            problems.append(f"worktree {w['path']} outside {repo.worktree_home()}")
+        if w["dirt"] and not (w.get("branch") in keep["branch"] or w["path"] in keep["worktree"] or wt_by_branch.get(w.get("branch"), {}) and any(b["name"] == w.get("branch") and b["bucket"] == "D3" for b in audit["branches"])):
+            problems.append(f"worktree {w['path']} dirty ({len(w['dirt'])} paths) without a kept branch")
+    for o in audit["orphans"]:
+        if o["shape"] != "not-git":
+            problems.append(f"orphan directory {o['path']} ({o['shape']})")
+    for s in audit["stashes"]:
+        if s["noise"]:
+            problems.append(f"stash@{{{s['index']}}} is tool noise")
+        elif s["age_days"] is not None and s["age_days"] >= repo.thr["stash_age_days"] and s["sha"][:12] not in keep["stash"]:
+            problems.append(f"stash@{{{s['index']}}} is {s['age_days']}d old and not kept")
+    if restore_test:
+        problems += restore_test_last_bundle(repo, log)
+    for p in problems:
+        log("  FAIL " + p)
+    log(f"== verify {repo.rel}: {'OK' if not problems else str(len(problems)) + ' problems'}")
+    return problems
+
+
+def restore_test_last_bundle(repo: Repo, log):
+    bundles = sorted(f for f in os.listdir(repo.archive) if f.endswith(".bundle")) if os.path.isdir(repo.archive) else []
+    if not bundles:
+        return []
+    b = os.path.join(repo.archive, bundles[-1])
+    refs_tsv = b.replace(".bundle", ".refs.tsv")
+    probs = []
+    r = git(repo.path, "bundle", "verify", b, check=False)
+    if r.returncode != 0:
+        return [f"bundle {bundles[-1]} does not verify: {r.stderr.strip()[:200]}"]
+    git(repo.path, "fetch", "--no-tags", b, "+refs/heads/*:refs/restore-test/heads/*", "+refs/archive/*:refs/restore-test/archive/*", check=False)
+    if os.path.exists(refs_tsv):
+        for line in list(open(refs_tsv))[1:]:
+            ref, sha, *_ = line.rstrip("\n").split("\t")
+            if not commit_exists(repo.path, sha):
+                probs.append(f"restore-test: {ref} {sha[:12]} not restorable")
+    for line in gout(repo.path, "for-each-ref", "refs/restore-test", "--format=%(refname)").split("\n"):
+        if line:
+            git(repo.path, "update-ref", "-d", line, check=False)
+    log(f"  restore-test: {bundles[-1]} {'round-trips' if not probs else 'FAILED'}")
+    return probs
+
+
+# ----------------------------------------------------------------------------- restore
+def restore(repo: Repo, bundle, log, branch=None, stash=None, salvage=None, everything=False):
+    if not bundle:
+        bundles = sorted(f for f in os.listdir(repo.archive) if f.endswith(".bundle"))
+        if not bundles:
+            raise HygieneError("no bundle found")
+        bundle = os.path.join(repo.archive, bundles[-1])
+    git(repo.path, "bundle", "verify", bundle)
+    heads = gout(repo.path, "bundle", "list-heads", bundle)
+    log(heads)
+    if branch:
+        git(repo.path, "fetch", bundle, f"refs/heads/{branch}:refs/heads/{branch}")
+        log(f"restored branch {branch}")
+    if stash:
+        git(repo.path, "fetch", bundle, f"refs/archive/stash/{stash}:refs/archive/tmp")
+        git(repo.path, "stash", "store", "-m", f"restored {stash}", "refs/archive/tmp")
+        git(repo.path, "update-ref", "-d", "refs/archive/tmp")
+        log(f"restored stash {stash} as stash@{{0}}")
+    if salvage:
+        git(repo.path, "fetch", bundle, f"refs/archive/salvage/{salvage}:refs/heads/salvage/{salvage}")
+        log(f"restored salvage/{salvage} as a branch")
+    if everything:
+        git(repo.path, "fetch", bundle, "refs/heads/*:refs/heads/*", "refs/archive/*:refs/archive/*", check=False)
+        log("restored every ref in the bundle (branches under refs/heads, others under refs/archive)")
+    if not (branch or stash or salvage or everything):
+        log("nothing selected; pass --branch, --stash, --salvage or --all")
+
+
+# ----------------------------------------------------------------------------- CLI
+def make_logger(repo: Repo | None, name):
+    path = os.path.join(repo.archive, f"{TS}.{name}.log") if repo else None
+    if path:
+        os.makedirs(repo.archive, exist_ok=True)
+
+    def log(*parts):
+        msg = " ".join(str(p) for p in parts)
+        print(msg, flush=True)
+        if path:
+            with open(path, "a") as f:
+                f.write(msg + "\n")
+    return log
+
+
+def rel_from_cwd(cfg):
+    common = gout(os.getcwd(), "rev-parse", "--git-common-dir")
+    if not common:
+        raise HygieneError("not inside a git repository")
+    main = os.path.dirname(os.path.realpath(common if os.path.isabs(common) else os.path.join(os.getcwd(), common)))
+    rel = os.path.relpath(main, cfg["root"])
+    if rel.startswith(".."):
+        raise HygieneError(f"{main} is outside root {cfg['root']}")
+    return rel
+
+
+def repos_from_args(cfg, args):
+    if getattr(args, "repo", None):
+        return [Repo(cfg, rel_from_cwd(cfg) if args.repo == "." else args.repo)]
+    if getattr(args, "all", False):
+        out = []
+        for rel in discover_repos(cfg):
+            try:
+                out.append(Repo(cfg, rel))
+            except HygieneError as e:
+                print(f"skip {rel}: {e}")
+        return out
+    raise HygieneError("pass --repo <category>/<name> or --all")
+
+
+def cmd_audit(cfg, args):
+    for repo in repos_from_args(cfg, args):
+        audit_repo(repo, make_logger(repo, "audit"), fetch=not args.no_fetch)
+
+
+def cmd_manifest(cfg, args):
+    for repo in repos_from_args(cfg, args):
+        audit = repo.load_audit()
+        rows = build_rows(repo, audit)
+        gen = os.path.join(repo.archive, "manifest.generated.tsv")
+        target = os.path.join(repo.archive, "manifest.tsv")
+        if os.path.exists(target) and manifest_has_edits(repo, target) and not args.force:
+            target = os.path.join(repo.archive, "manifest.tsv.new")
+            print(f"{repo.rel}: manifest.tsv has your edits; wrote {target} instead (use --force to overwrite)")
+        write_manifest(repo, audit, rows, gen)
+        write_manifest(repo, audit, rows, target)
+        c = collections.Counter(r["section"] for r in rows)
+        print(f"{repo.rel}: {target}  decide={c['decide']} prefilled={c['prefilled']} auto={c['auto']}")
+
+
+def cmd_apply(cfg, args):
+    for repo in repos_from_args(cfg, args):
+        log = make_logger(repo, "apply" if args.execute else "apply-dry")
+        audit = repo.load_audit()
+        if args.policy == "safe":
+            rows = [r for r in build_rows(repo, audit) if r["section"] == "auto"]
+            log(f"== apply --policy safe {repo.rel}: {len(rows)} auto rows")
+        else:
+            mpath = args.manifest or os.path.join(repo.archive, "manifest.tsv")
+            header, rows = read_manifest(mpath)
+            if header.get("audit-id") != audit.get("audit_id"):
+                raise HygieneError(f"manifest audit-id {header.get('audit-id')} != latest audit {audit.get('audit_id')}; re-run audit + manifest")
+            log(f"== apply {repo.rel} from {mpath} ({'EXECUTE' if args.execute else 'dry-run'})")
+        Applier(repo, audit, rows, args.execute, log, skip_drifted=args.skip_drifted, policy=args.policy).run_all()
+        if args.execute:
+            shutil.copyfile(args.manifest or os.path.join(repo.archive, "manifest.tsv"), os.path.join(repo.archive, f"manifest-{TS}.applied.tsv")) if args.policy != "safe" else None
+            verify_repo(repo, log, restore_test=False)
+
+
+def cmd_verify(cfg, args):
+    bad = 0
+    for repo in repos_from_args(cfg, args):
+        bad += len(verify_repo(repo, make_logger(repo, "verify"), restore_test=args.restore_test))
+    sys.exit(1 if bad else 0)
+
+
+def cmd_restore(cfg, args):
+    repo = Repo(cfg, rel_from_cwd(cfg) if args.repo == "." else args.repo)
+    restore(repo, args.bundle, make_logger(repo, "restore"), branch=args.branch, stash=args.stash, salvage=args.salvage, everything=args.all)
+
+
+def cmd_recover(cfg, args):
+    repo = Repo(cfg, rel_from_cwd(cfg) if args.repo == "." else args.repo)
+    log = make_logger(repo, "recover" if args.execute else "recover-dry")
+    audit = audit_repo(repo, log, fetch=False)
+
+    def do(desc, fn):
+        log(("  [exec] " if args.execute else "  [dry ] ") + desc)
+        if args.execute:
+            return fn()
+    for w in audit["worktrees"]:
+        if w["kind"] == "linked" and not w["present"]:
+            recover_shape_a(repo, w, do, log)
+    for o in audit["orphans"]:
+        if o["shape"] == "not-git":
+            continue
+        if args.branch and len(audit["orphans"]) == 1:
+            o["candidate_branch"] = args.branch
+        recover_orphan(repo, o, do, log)
+    if args.execute:
+        do("worktree prune", lambda: git(repo.path, "worktree", "prune"))
+        audit_repo(repo, log, fetch=False)
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(prog="repo-hygiene", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--config", default=os.environ.get("REPO_HYGIENE_CONFIG", os.path.join(HERE, "hygiene.toml")))
+    ap.add_argument("--version", action="version", version=VERSION)
+    sub = ap.add_subparsers(dest="cmd", required=True)
+
+    def common(p, all_ok=True):
+        p.add_argument("--repo", help="<category>/<name> relative to root, or . for the repo containing the cwd")
+        if all_ok:
+            p.add_argument("--all", action="store_true", help="every main checkout under root/<categories>")
+    p = sub.add_parser("audit"); common(p); p.add_argument("--no-fetch", action="store_true"); p.set_defaults(fn=cmd_audit)
+    p = sub.add_parser("manifest"); common(p); p.add_argument("--force", action="store_true", help="overwrite an edited manifest.tsv"); p.set_defaults(fn=cmd_manifest)
+    p = sub.add_parser("apply"); common(p)
+    p.add_argument("--execute", action="store_true", help="perform the actions (default is dry-run)")
+    p.add_argument("--manifest", help="path to manifest.tsv (default .archive/<repo>/manifest.tsv)")
+    p.add_argument("--policy", choices=["safe"], help="safe: only the auto rows of a fresh manifest; no human marks needed")
+    p.add_argument("--skip-drifted", action="store_true"); p.set_defaults(fn=cmd_apply)
+    p = sub.add_parser("verify"); common(p); p.add_argument("--restore-test", action="store_true"); p.set_defaults(fn=cmd_verify)
+    p = sub.add_parser("restore"); common(p, all_ok=False); p.add_argument("--bundle"); p.add_argument("--branch"); p.add_argument("--stash", help="12-char stash sha")
+    p.add_argument("--salvage", help="worktree id"); p.add_argument("--all", action="store_true"); p.set_defaults(fn=cmd_restore)
+    p = sub.add_parser("recover-worktrees"); common(p, all_ok=False); p.add_argument("--execute", action="store_true"); p.add_argument("--branch", help="candidate branch when exactly one orphan exists")
+    p.set_defaults(fn=cmd_recover)
+    args = ap.parse_args(argv)
+    cfg = load_config(args.config)
+    try:
+        args.fn(cfg, args)
+    except HygieneError as e:
+        print(f"error: {e}", file=sys.stderr)
+        sys.exit(2)
+
+
+if __name__ == "__main__":
+    main()
