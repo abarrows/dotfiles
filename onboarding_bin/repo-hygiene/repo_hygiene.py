@@ -1518,6 +1518,7 @@ def cmd_manifest(cfg, args):
         gen = os.path.join(repo.archive, "manifest.generated.tsv")
         target = os.path.join(repo.archive, "manifest.tsv")
         carried = 0
+        pristine = [dict(r) for r in rows]
         if os.path.exists(target) and manifest_has_edits(repo, target) and not args.force:
             # carry the user's marks forward for rows whose identity (kind, name, sha) is unchanged
             _, old_rows = read_manifest(target)
@@ -1531,7 +1532,7 @@ def cmd_manifest(cfg, args):
                 if key in marks and r["action"] in ("review", "keep", "archive-delete", "export-drop", "drop", "remove", "salvage-remove", "migrate"):
                     r["action"] = marks[key]; r["section"] = "decide" if r["section"] == "decide" else r["section"]; carried += 1
             shutil.copyfile(target, target + ".bak")
-        write_manifest(repo, audit, rows, gen)
+        write_manifest(repo, audit, pristine, gen)
         write_manifest(repo, audit, rows, target)
         if carried:
             print(f"{repo.rel}: carried {carried} of your marks into the regenerated manifest (previous copy: manifest.tsv.bak)")
