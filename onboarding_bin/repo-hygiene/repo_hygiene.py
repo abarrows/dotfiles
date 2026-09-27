@@ -1517,11 +1517,24 @@ def cmd_manifest(cfg, args):
         rows = build_rows(repo, audit)
         gen = os.path.join(repo.archive, "manifest.generated.tsv")
         target = os.path.join(repo.archive, "manifest.tsv")
+        carried = 0
         if os.path.exists(target) and manifest_has_edits(repo, target) and not args.force:
-            target = os.path.join(repo.archive, "manifest.tsv.new")
-            print(f"{repo.rel}: manifest.tsv has your edits; wrote {target} instead (use --force to overwrite)")
+            # carry the user's marks forward for rows whose identity (kind, name, sha) is unchanged
+            _, old_rows = read_manifest(target)
+            _, old_gen = read_manifest(gen) if os.path.exists(gen) else ({}, [])
+            gen_action = {(r["kind"], r["name"], r["sha"]): r["action"] for r in old_gen}
+            user_settable = {"keep", "pr", "archive-delete", "export-drop", "drop", "remove", "salvage-remove", "migrate", "repair"}
+            marks = {(r["kind"], r["name"], r["sha"]): r["action"] for r in old_rows
+                     if r["action"] in user_settable and r["action"] != gen_action.get((r["kind"], r["name"], r["sha"]))}
+            for r in rows:
+                key = (r["kind"], r["name"], r["sha"])
+                if key in marks and r["action"] in ("review", "keep", "archive-delete", "export-drop", "drop", "remove", "salvage-remove", "migrate"):
+                    r["action"] = marks[key]; r["section"] = "decide" if r["section"] == "decide" else r["section"]; carried += 1
+            shutil.copyfile(target, target + ".bak")
         write_manifest(repo, audit, rows, gen)
         write_manifest(repo, audit, rows, target)
+        if carried:
+            print(f"{repo.rel}: carried {carried} of your marks into the regenerated manifest (previous copy: manifest.tsv.bak)")
         review = os.path.join(repo.archive, "review.md")
         n_hi = write_review(repo, audit, rows, review)
         c = collections.Counter(r["section"] for r in rows)
@@ -1539,7 +1552,7 @@ def cmd_apply(cfg, args):
             mpath = args.manifest or os.path.join(repo.archive, "manifest.tsv")
             header, rows = read_manifest(mpath)
             if header.get("audit-id") != audit.get("audit_id"):
-                raise HygieneError(f"manifest audit-id {header.get('audit-id')} != latest audit {audit.get('audit_id')}; re-run audit + manifest")
+                log(f"  note: manifest was generated from audit {header.get('audit-id')}, latest is {audit.get('audit_id')}; every row is re-checked against the latest audit by sha")
             log(f"== apply {repo.rel} from {mpath} ({'EXECUTE' if args.execute else 'dry-run'})")
         Applier(repo, audit, rows, args.execute, log, skip_drifted=args.skip_drifted, policy=args.policy).run_all()
         if args.execute:
