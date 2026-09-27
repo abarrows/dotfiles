@@ -45,6 +45,8 @@ DEFAULT_CONFIG = {
     "noise_paths": [".codegraph/*", "*.tsbuildinfo", ".husky/_/*", ".claude/*", ".DS_Store", "*/.DS_Store"],
     "stash_noise": [r"^autostash$", r"^lint-staged automatic backup$", r"^Teleport auto-stash$"],
     "branch_noise": [r"^cascade/", r"^worktree-agent-", r"^dependabot/", r"^claude/[a-z]+-[a-z]+-[0-9a-f]{6}$"],
+    "generated_paths": ["src/types/api/*", "*package-lock.json", "*yarn.lock", "*pnpm-lock.yaml", "*.snap", "*/dist/*", "*/build/*",
+                        "*/coverage/*", "*.min.js", "*.min.css", "*/storybook-static/*", "*.tsbuildinfo", "*/mocks/handlers/handlers.js"],
     "thresholds": {"branch_age_days": 180, "stash_age_days": 90, "idle_worktree_days": 14,
                    "oversized_bytes": 1 << 30},
     "repos": {},
@@ -216,6 +218,35 @@ class Repo:
     def is_noise_path(self, p):
         return any(fnmatch.fnmatchcase(p, pat) for pat in self.cfg["noise_paths"])
 
+    def is_generated_path(self, p):
+        return any(fnmatch.fnmatchcase(p, pat) for pat in self.cfg.get("generated_paths", []))
+
+    def change_summary(self, base, head, paths_only=False):
+        """Diffstat between base...head split into hand-written vs generated files."""
+        names = [l for l in gout(self.path, "diff", "--name-only", f"{base}...{head}").split("\n") if l]
+        hand = [n for n in names if not self.is_generated_path(n) and not self.is_noise_path(n)]
+        gen = [n for n in names if n not in hand]
+        ins = dels = 0
+        if hand:
+            for line in gout(self.path, "diff", "--numstat", f"{base}...{head}", "--", *hand[:400]).split("\n"):
+                parts = line.split("\t")
+                if len(parts) == 3 and parts[0].isdigit() and parts[1].isdigit():
+                    ins += int(parts[0]); dels += int(parts[1])
+        return {"files": len(names), "hand_files": len(hand), "gen_files": len(gen), "ins": ins, "dels": dels, "top_files": hand[:8] or gen[:4]}
+
+    @staticmethod
+    def value_rating(summary, unique_commits, age, stranded=0):
+        lines = (summary or {}).get("ins", 0) + (summary or {}).get("dels", 0)
+        hand = (summary or {}).get("hand_files", 0)
+        if unique_commits == 0 and lines == 0:
+            return "none"
+        if hand == 0 or lines < 10:
+            return "low"
+        score = lines + 25 * hand + 40 * stranded
+        if age is not None and age < 90:
+            score *= 1.5
+        return "high" if score >= 400 else "medium"
+
     def is_noise_branch(self, name):
         return any(re.search(pat, name) for pat in self.cfg["branch_noise"])
 
@@ -315,10 +346,25 @@ def audit_repo(repo: Repo, log, fetch=True):
             real, noise = repo.status_split(w["path"])
             w["dirt"], w["noise"] = real, noise
             w["head"] = gout(w["path"], "rev-parse", "HEAD")
+            if real:
+                paths = [l[3:].split(" -> ")[-1].strip('"') for l in real]
+                ins = dels = 0
+                tracked = [l[3:].split(" -> ")[-1].strip('"') for l in real if not l.startswith("??")]
+                for line in gout(w["path"], "diff", "--numstat", "HEAD", "--", *tracked[:400]).split("\n"):
+                    parts = line.split("\t")
+                    if len(parts) == 3 and parts[0].isdigit() and parts[1].isdigit():
+                        ins += int(parts[0]); dels += int(parts[1])
+                untracked = [l[3:] for l in real if l.startswith("??")]
+                w["dirt_detail"] = {"files": len(real), "untracked": len(untracked), "ins": ins, "dels": dels,
+                                    "top_files": [p for p in paths if not repo.is_generated_path(p)][:8]}
+                w["value"] = repo.value_rating({"ins": ins, "dels": dels, "hand_files": len([p for p in paths if not repo.is_generated_path(p)])}, len(real), w.get("last_touch"))
+            else:
+                w["dirt_detail"], w["value"] = None, "none"
             w["size"] = du_bytes(w["path"]) if w["kind"] == "linked" else 0
             w["last_touch"] = int(NOW.timestamp() - os.stat(w["path"]).st_mtime) // 86400
         else:
             w["dirt"], w["noise"], w["head"], w["size"], w["last_touch"] = [], [], "", 0, None
+            w["dirt_detail"], w["value"] = None, "unknown"
         w["layout_ok"] = w["kind"] == "main" or repo.layout_ok(w["path"])
         w["in_progress"] = in_progress_ops(repo, w)
 
@@ -377,9 +423,16 @@ def audit_repo(repo: Repo, log, fetch=True):
                 stranded.append(p)
             b["stranded_files"] = stranded[:20]
             b["stranded_count"] = len(stranded)
+            commits = [l.split("\t", 2) for l in gout(repo.path, "log", "--no-merges", "--date=short", "--format=%h%x09%ad%x09%s", f"{repo.primary}..{b['name']}").split("\n") if l]
+            b["unique_commits"] = [{"sha": c[0], "date": c[1], "subject": c[2][:90]} for c in commits[:8]]
+            b["unique_commit_count"] = len(commits)
+            b["changes"] = repo.change_summary(repo.primary, b["name"])
+            b["value"] = repo.value_rating(b["changes"], len(commits), b["age_days"], b["stranded_count"])
         else:
             b["cherry_unique"] = None
             b["stranded_files"], b["stranded_count"] = [], 0
+            b["unique_commits"], b["unique_commit_count"], b["changes"] = [], 0, None
+            b["value"] = "none" if b["bucket"] in ("D1", "D8") else "merged-upstream" if b["bucket"] in ("D2", "D3") else "n/a"
 
     # --- stashes
     stashes = []
@@ -390,8 +443,18 @@ def audit_repo(repo: Repo, log, fetch=True):
         idx = int(re.search(r"\{(\d+)\}", ref).group(1))
         m = re.match(r"^(?:WIP on|On) ([^:]+): (.*)$", subject)
         base, subj = (m.group(1), m.group(2)) if m else ("", subject)
-        stashes.append({"index": idx, "sha": sha, "date": date[:10], "age_days": age_days(date.replace(" ", "T", 1).replace(" ", "")),
-                        "base_branch": base, "subject": subj[:100], "noise": repo.is_noise_stash(subj)})
+        st = {"index": idx, "sha": sha, "date": date[:10], "age_days": age_days(date.replace(" ", "T", 1).replace(" ", "")),
+              "base_branch": base, "subject": subj[:100], "noise": repo.is_noise_stash(subj)}
+        names = [l for l in gout(repo.path, "stash", "show", "--name-only", "--include-untracked", sha).split("\n") if l]
+        ins = dels = 0
+        for line in gout(repo.path, "stash", "show", "--numstat", "--include-untracked", sha).split("\n"):
+            parts = line.split("\t")
+            if len(parts) == 3 and parts[0].isdigit() and parts[1].isdigit() and not repo.is_generated_path(parts[2]):
+                ins += int(parts[0]); dels += int(parts[1])
+        hand = [n for n in names if not repo.is_generated_path(n)]
+        st["changes"] = {"files": len(names), "hand_files": len(hand), "gen_files": len(names) - len(hand), "ins": ins, "dels": dels, "top_files": hand[:8] or names[:4]}
+        st["value"] = "low" if st["noise"] else repo.value_rating(st["changes"], 1, st["age_days"])
+        stashes.append(st)
 
     audit = {"version": VERSION, "ts": TS, "repo": repo.rel, "path": repo.path, "default": repo.default,
              "targets": repo.targets, "slug": repo.slug, "fetch_ok": fetch_ok, "pr_source": pr_source,
@@ -480,10 +543,39 @@ def scan_orphans(repo: Repo, worktrees):
         shape = "orphan-sessions" if gitdir.startswith("/sessions/") else "orphan-missing-admin"
         wid = os.path.basename(gitdir.rstrip("/"))
         admin = os.path.join(repo.path, ".git", "worktrees", wid)
-        out.append({"path": ap, "shape": shape, "gitdir": gitdir, "admin_exists": os.path.isdir(admin), "worktree_id": wid,
-                    "candidate_branch": guess_branch(repo, ap), "size": du_bytes(ap),
-                    "mtime": dt.datetime.fromtimestamp(os.stat(ap).st_mtime, dt.timezone.utc).strftime("%Y-%m-%d")})
+        o = {"path": ap, "shape": shape, "gitdir": gitdir, "admin_exists": os.path.isdir(admin), "worktree_id": wid,
+             "candidate_branch": guess_branch(repo, ap), "size": du_bytes(ap),
+             "mtime": dt.datetime.fromtimestamp(os.stat(ap).st_mtime, dt.timezone.utc).strftime("%Y-%m-%d")}
+        o["diff_vs_branch"] = orphan_diff(repo, ap, o["candidate_branch"]) if o["candidate_branch"] else None
+        o["value"] = repo.value_rating(o["diff_vs_branch"], 1, None) if o["diff_vs_branch"] else "unknown"
+        out.append(o)
     return out
+
+
+def orphan_diff(repo: Repo, dirpath, branch):
+    """Read-only: compare an orphan directory's files with a branch via a temporary index."""
+    with tempfile.NamedTemporaryFile(delete=False) as tmp:
+        idx = tmp.name
+    os.remove(idx)
+    env = dict(os.environ, GIT_INDEX_FILE=idx)
+    base = ["git", "--git-dir", os.path.join(repo.path, ".git"), "--work-tree", dirpath]
+    try:
+        run(base + ["read-tree", branch], cwd=dirpath, env=env)
+        st = run(base + ["status", "--porcelain", "--untracked-files=all"], cwd=dirpath, env=env, check=False).stdout
+        paths = [l[3:].strip('"') for l in st.split("\n") if l.strip() and not repo.is_noise_path(l[3:].strip('"'))]
+        tracked = [l[3:].strip('"') for l in st.split("\n") if l.strip() and not l.startswith("??") and not repo.is_noise_path(l[3:].strip('"'))]
+        ins = dels = 0
+        for line in run(base + ["diff", "--numstat", branch, "--", *tracked[:400]], cwd=dirpath, env=env, check=False).stdout.split("\n") if tracked else []:
+            parts = line.split("\t")
+            if len(parts) == 3 and parts[0].isdigit() and parts[1].isdigit():
+                ins += int(parts[0]); dels += int(parts[1])
+        hand = [p for p in paths if not repo.is_generated_path(p)]
+        return {"files": len(paths), "hand_files": len(hand), "gen_files": len(paths) - len(hand), "ins": ins, "dels": dels, "top_files": hand[:8] or paths[:4]}
+    except HygieneError:
+        return None
+    finally:
+        if os.path.exists(idx):
+            os.remove(idx)
 
 
 def guess_branch(repo: Repo, dirpath):
@@ -566,6 +658,9 @@ def build_rows(repo: Repo, audit):
             ev.append(f"stranded={b['stranded_count']}:" + ",".join(b["stranded_files"][:3]))
         if b["tip_vs_pr_head"]:
             ev.append(f"tip_vs_pr={b['tip_vs_pr_head']}")
+        if b.get("changes"):
+            c = b["changes"]
+            ev.append(f"value={b['value']} commits={b['unique_commit_count']} files={c['files']}(hand {c['hand_files']}) +{c['ins']}/-{c['dels']}")
         if bucket == "D8":
             action, section, reason = "keep", "auto", "protected"
         elif bucket == "D1":
@@ -616,6 +711,9 @@ def build_rows(repo: Repo, audit):
         name = w["path"]
         ev = [f"branch={w.get('branch') or ('detached' if w['detached'] else '?')}", f"dirt={len(w['dirt'])}", f"noise={len(w['noise'])}",
               f"size={human(w['size'])}", "layout-ok" if w["layout_ok"] else "LAYOUT", f"idle={w['last_touch']}d"]
+        if w.get("dirt_detail"):
+            d = w["dirt_detail"]
+            ev.append(f"value={w['value']} +{d['ins']}/-{d['dels']} untracked={d['untracked']} top={','.join(d['top_files'][:3])}")
         if w["locked"]:
             ev.append(f"locked={w['locked']}")
         if w["in_progress"]:
@@ -646,13 +744,16 @@ def build_rows(repo: Repo, audit):
         if o["shape"] == "not-git":
             row("worktree", "note", "auto", "-", o["path"], "", None, "", "", "-", f"size={human(o['size'])}", "directory without git metadata; leave or delete by hand")
             continue
+        dv = o.get("diff_vs_branch")
+        dv_s = f" diff-vs-branch: files={dv['files']} +{dv['ins']}/-{dv['dels']} value={o['value']}" if dv else ""
         row("worktree", "review", "decide", "-", o["path"], "", None, "", "", "-",
-            f"{o['shape']} admin={'yes' if o['admin_exists'] else 'no'} branch={o['candidate_branch'] or '?'} size={human(o['size'])} mtime={o['mtime']}",
+            f"{o['shape']} admin={'yes' if o['admin_exists'] else 'no'} branch={o['candidate_branch'] or '?'} size={human(o['size'])} mtime={o['mtime']}{dv_s}",
             "orphan directory: `recover-worktrees` will diff it against the branch, salvage, then remove (set to salvage-remove)")
 
     for s in sorted(audit["stashes"], key=lambda x: x["index"]):
         name = f"stash@{{{s['index']}}}"
-        ev = f"{s['date']} on {s['base_branch'] or '?'}: {s['subject']}"
+        c = s.get("changes") or {}
+        ev = f"{s['date']} on {s['base_branch'] or '?'}: {s['subject']} | value={s.get('value','?')} files={c.get('files',0)} +{c.get('ins',0)}/-{c.get('dels',0)} top={','.join(c.get('top_files',[])[:3])}"
         if s["noise"]:
             action, section, reason = "drop", "auto", "tool noise"
         elif s["age_days"] is not None and s["age_days"] >= thr["stash_age_days"]:
@@ -676,6 +777,60 @@ def write_manifest(repo: Repo, audit, rows, path):
             lines.append("\t".join(r[c].replace("\t", " ").replace("\n", " ") for c in MANIFEST_COLUMNS))
     with open(path, "w") as f:
         f.write("\n".join(lines) + "\n")
+
+
+def write_review(repo: Repo, audit, rows, path):
+    """Human-readable companion to manifest.tsv: what is inside every at-risk item, most valuable first."""
+    order = {"high": 0, "medium": 1, "low": 2, "unknown": 3, "n/a": 4, "none": 5, "merged-upstream": 6}
+    act = {(r["kind"], r["name"]): r for r in rows}
+    L = [f"# Review: {repo.rel}", "", f"Generated {TS} from audit {audit['audit_id']}. Items are sorted most-valuable first; the `action` shown is the manifest default.",
+         "Value = hand-written lines + files + stranded files, boosted when younger than 90 days. Generated files (API types, lockfiles, snapshots, build output) are excluded from the count.", ""]
+    at_risk = [b for b in audit["branches"] if b.get("changes")]
+    at_risk.sort(key=lambda b: (order.get(b["value"], 9), -(b["changes"]["ins"] + b["changes"]["dels"])))
+    L.append(f"## Branches with unique work ({len(at_risk)})"); L.append("")
+    for b in at_risk:
+        r = act.get(("branch", b["name"]), {})
+        c = b["changes"]; pr = b["pr"]
+        L.append(f"### `{b['name']}` — {b['bucket']}, {b['age_days']}d old, action **{r.get('action','?')}**, value **{b['value'].upper()}**")
+        L.append(f"- {b['unique_commit_count']} unique commit(s), {c['files']} files ({c['hand_files']} hand-written, {c['gen_files']} generated), +{c['ins']}/-{c['dels']} hand-written lines"
+                 + (f"; PR #{pr['number']} {pr['state']} → {pr['base']}" if pr else "; no PR") + (f"; cherry-unique {b['cherry_unique']}" if b.get("cherry_unique") is not None else "")
+                 + (f"; worktree `{b['worktree']}`" if b["worktree"] else ""))
+        if b["unique_commits"]:
+            L.append("- Commits: " + " · ".join(f"{u['date']} {u['subject']}" for u in b["unique_commits"][:5]) + (" · …" if b["unique_commit_count"] > 5 else ""))
+        if c["top_files"]:
+            L.append("- Files: " + ", ".join(f"`{f}`" for f in c["top_files"]))
+        if b["stranded_count"]:
+            L.append(f"- Stranded (exist nowhere else): " + ", ".join(f"`{f}`" for f in b["stranded_files"][:6]) + (f" (+{b['stranded_count']-6} more)" if b["stranded_count"] > 6 else ""))
+        L.append(f"- Why: {r.get('reason','')}"); L.append("")
+    dirty = [w for w in audit["worktrees"] if w["kind"] == "linked" and w.get("dirt_detail")]
+    orphans = [o for o in audit["orphans"] if o["shape"] != "not-git"]
+    if dirty or orphans:
+        L.append(f"## Worktrees with uncommitted changes ({len(dirty)}) and orphan directories ({len(orphans)})"); L.append("")
+        for w in sorted(dirty, key=lambda w: order.get(w["value"], 9)):
+            d = w["dirt_detail"]; r = act.get(("worktree", w["path"]), {})
+            L.append(f"### `{w['path']}` — branch `{w.get('branch')}`, idle {w['last_touch']}d, action **{r.get('action','?')}**, value **{w['value'].upper()}**")
+            L.append(f"- {d['files']} changed paths ({d['untracked']} untracked), +{d['ins']}/-{d['dels']} lines, {human(w['size'])} on disk")
+            L.append("- Files: " + ", ".join(f"`{f}`" for f in d["top_files"])); L.append("")
+        for o in orphans:
+            dv = o.get("diff_vs_branch"); r = act.get(("worktree", o["path"]), {})
+            L.append(f"### `{o['path']}` — {o['shape']}, last touched {o['mtime']}, {human(o['size'])}, action **{r.get('action','?')}**, value **{o['value'].upper()}**")
+            if dv:
+                L.append(f"- vs `{o['candidate_branch']}`: {dv['files']} differing paths, +{dv['ins']}/-{dv['dels']} lines; files: " + ", ".join(f"`{f}`" for f in dv["top_files"]))
+            else:
+                L.append("- no candidate branch identified; recover-worktrees needs --branch")
+            L.append("")
+    st = [s for s in audit["stashes"]]
+    if st:
+        L.append(f"## Stashes ({len(st)})"); L.append("")
+        for s in sorted(st, key=lambda s: (order.get(s.get("value"), 9), -(s.get("changes") or {}).get("ins", 0))):
+            c = s.get("changes") or {}; r = act.get(("stash", f"stash@{{{s['index']}}}"), {})
+            L.append(f"- `stash@{{{s['index']}}}` {s['date']} on `{s['base_branch'] or '?'}`: **{s['subject']}** — {c.get('files',0)} files +{c.get('ins',0)}/-{c.get('dels',0)}, value **{s.get('value','?').upper()}**, action **{r.get('action','?')}**"
+                     + (f" — files: " + ", ".join(f"`{f}`" for f in c.get("top_files", [])[:5]) if c.get("top_files") else ""))
+        L.append("")
+    with open(path, "w") as f:
+        f.write("\n".join(L) + "\n")
+    hi = [b for b in at_risk if b["value"] in ("high", "medium")] + [w for w in dirty if w["value"] in ("high", "medium")] + [s for s in st if s.get("value") in ("high", "medium")]
+    return len(hi)
 
 
 def read_manifest(path):
@@ -1275,8 +1430,10 @@ def cmd_manifest(cfg, args):
             print(f"{repo.rel}: manifest.tsv has your edits; wrote {target} instead (use --force to overwrite)")
         write_manifest(repo, audit, rows, gen)
         write_manifest(repo, audit, rows, target)
+        review = os.path.join(repo.archive, "review.md")
+        n_hi = write_review(repo, audit, rows, review)
         c = collections.Counter(r["section"] for r in rows)
-        print(f"{repo.rel}: {target}  decide={c['decide']} prefilled={c['prefilled']} auto={c['auto']}")
+        print(f"{repo.rel}: {target}  decide={c['decide']} prefilled={c['prefilled']} auto={c['auto']}  review={review} ({n_hi} medium/high-value items)")
 
 
 def cmd_apply(cfg, args):
