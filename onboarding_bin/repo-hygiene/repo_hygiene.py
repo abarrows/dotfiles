@@ -222,17 +222,22 @@ class Repo:
         return any(fnmatch.fnmatchcase(p, pat) for pat in self.cfg.get("generated_paths", []))
 
     def change_summary(self, base, head, paths_only=False):
-        """Diffstat between base...head split into hand-written vs generated files."""
-        names = [l for l in gout(self.path, "diff", "--name-only", f"{base}...{head}").split("\n") if l]
+        """Diffstat between base...head split into hand-written vs generated files.
+        When the histories share no ancestor, compare the two trees directly and say so."""
+        unrelated = git(self.path, "merge-base", base, head, check=False).returncode != 0
+        rng = f"{base} {head}" if unrelated else f"{base}...{head}"
+        names = [l for l in gout(self.path, "diff", "--name-only", *rng.split()).split("\n") if l]
         hand = [n for n in names if not self.is_generated_path(n) and not self.is_noise_path(n)]
         gen = [n for n in names if n not in hand]
         ins = dels = 0
         if hand:
-            for line in gout(self.path, "diff", "--numstat", f"{base}...{head}", "--", *hand[:400]).split("\n"):
+            for line in gout(self.path, "diff", "--numstat", *rng.split(), "--", *hand[:400]).split("\n"):
                 parts = line.split("\t")
                 if len(parts) == 3 and parts[0].isdigit() and parts[1].isdigit():
                     ins += int(parts[0]); dels += int(parts[1])
-        return {"files": len(names), "hand_files": len(hand), "gen_files": len(gen), "ins": ins, "dels": dels, "top_files": hand[:8] or gen[:4]}
+        only_in_head = [l for l in gout(self.path, "diff", "--name-only", "--diff-filter=A", *rng.split()).split("\n") if l] if unrelated else []
+        return {"files": len(names), "hand_files": len(hand), "gen_files": len(gen), "ins": ins, "dels": dels, "top_files": hand[:8] or gen[:4],
+                "unrelated_history": unrelated, "only_in_branch": only_in_head[:12], "only_in_branch_count": len(only_in_head)}
 
     @staticmethod
     def value_rating(summary, unique_commits, age, stranded=0):
@@ -424,6 +429,8 @@ def audit_repo(repo: Repo, log, fetch=True):
             b["stranded_files"] = stranded[:20]
             b["stranded_count"] = len(stranded)
             commits = [l.split("\t", 2) for l in gout(repo.path, "log", "--no-merges", "--date=short", "--format=%h%x09%ad%x09%s", f"{repo.primary}..{b['name']}").split("\n") if l]
+            if not commits and git(repo.path, "merge-base", repo.primary, b["name"], check=False).returncode != 0:
+                commits = [l.split("\t", 2) for l in gout(repo.path, "log", "--no-merges", "--date=short", "--format=%h%x09%ad%x09%s", "-n", "200", b["name"]).split("\n") if l]
             b["unique_commits"] = [{"sha": c[0], "date": c[1], "subject": c[2][:90]} for c in commits[:8]]
             b["unique_commit_count"] = len(commits)
             b["changes"] = repo.change_summary(repo.primary, b["name"])
@@ -783,7 +790,7 @@ def write_manifest(repo: Repo, audit, rows, path):
 WIP_RE = re.compile(r"\b(wip|not working|broken|temp|todo|experiment|snapshot|hack|test only|scratch)\b", re.I)
 
 
-def explain_branch(repo: Repo, b, r):
+def explain_branch(repo: Repo, b, r, pr_source="none"):
     """Plain-language what / complete? / recommendation / confidence for a branch row."""
     pr = b["pr"]; bucket = b["bucket"]; action = r.get("action", "?")
     tgt = repo.primary or repo.default
@@ -796,10 +803,16 @@ def explain_branch(repo: Repo, b, r):
         "D4": f"Its PR #{pr['number']} was closed without being merged." if pr else "",
         "D5": "It was pushed to GitHub once, but that copy has since been deleted and no PR references it.",
         "D6": "It is still on GitHub, but no PR was ever opened for it.",
-        "D7": "It exists only on this machine; GitHub has none of these commits." if not b["upstream"] else "Its latest commits were never pushed; GitHub holds an older copy.",
+        "D7": ("This repo has no remote, so every branch exists only on this machine." if not repo.has_remote else
+               "It exists only on this machine; GitHub has none of these commits.") if not b["upstream"] else "Its latest commits were never pushed; GitHub holds an older copy.",
         "D8": "Protected branch.",
     }.get(bucket, "")
-    if b.get("cherry_unique") is not None:
+    if (b.get("changes") or {}).get("unrelated_history"):
+        c = b["changes"]
+        what += (f" It comes from an older, unrelated history of this repo (no common ancestor with {tgt}), so commit comparison is impossible;"
+                 f" comparing files instead: {c['only_in_branch_count']} file(s) exist only in this branch"
+                 + (": " + ", ".join(c["only_in_branch"][:5]) if c["only_in_branch"] else "") + ".")
+    elif b.get("cherry_unique") is not None:
         what += f" {b['cherry_unique']} of its {b['unique_commit_count']} commits carry changes {tgt} does not already have."
     if b["stranded_count"]:
         what += f" {b['stranded_count']} file(s) in it exist nowhere else."
@@ -823,7 +836,9 @@ def explain_branch(repo: Repo, b, r):
         rec = f"Worth a look: if the work is still wanted, rebase it onto {tgt} and open a PR; otherwise delete it (archived first)."
     else:
         rec = "Probably delete it (archived first); the unique changes are small."
-    if bucket in ("D1", "D8") or (bucket == "D2" and b["tip_vs_pr_head"] in ("equal", "ancestor")):
+    if (b.get("changes") or {}).get("unrelated_history"):
+        conf, why = "Medium", "unrelated history: judged by comparing file trees, not commits"
+    elif bucket in ("D1", "D8") or (bucket == "D2" and b["tip_vs_pr_head"] in ("equal", "ancestor")):
         conf, why = "High", "git confirms every commit is already in the target"
     elif b.get("cherry_unique") is not None and (pr or bucket == "D7"):
         conf, why = "High", "PR state and a commit-by-commit content comparison both checked"
@@ -831,8 +846,10 @@ def explain_branch(repo: Repo, b, r):
         conf, why = "Medium", "the merged PR's final commit is missing locally, so the match relies on content comparison only"
     elif b.get("cherry_unique") is None and b["ahead"] > 50:
         conf, why = "Medium", f"the branch is {b['ahead']} commits ahead, too large for the content comparison"
+    elif pr_source in ("gh", "cache") and b.get("cherry_unique") is not None:
+        conf, why = "Medium", "no PR exists for it; the judgement rests on the commit-by-commit content comparison"
     else:
-        conf, why = "Low", "no PR data available for this branch"
+        conf, why = "Low", "PR data could not be fetched for this repo"
     return what, complete, rec, f"{conf} ({why})"
 
 
@@ -869,7 +886,7 @@ def write_review(repo: Repo, audit, rows, path):
     for b in at_risk:
         r = act.get(("branch", b["name"]), {})
         c = b["changes"]; pr = b["pr"]
-        what, complete, rec, conf = explain_branch(repo, b, r)
+        what, complete, rec, conf = explain_branch(repo, b, r, audit.get("pr_source", "none"))
         L.append(f"### `{b['name']}` — value **{b['value'].upper()}**, {b['age_days']} days old")
         L.append(f"- What it is: {what}")
         L.append(f"- {b['unique_commit_count']} unique commit(s), {c['files']} files ({c['hand_files']} hand-written, {c['gen_files']} generated), +{c['ins']}/-{c['dels']} hand-written lines"
