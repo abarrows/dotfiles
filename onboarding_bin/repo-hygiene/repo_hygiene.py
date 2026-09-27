@@ -671,9 +671,10 @@ def build_rows(repo: Repo, audit):
             elif b.get("cherry_unique") == 0:
                 action, section, reason = "archive-delete", "auto", f"PR merged into {pr['base']}; every local commit is patch-equivalent to {repo.primary}"
             elif not pr["base_protected"]:
-                reason = f"PR merged into non-protected {pr['base']} (stacked); confirm that chain is integrated"
+                reason = f"PR #{pr['number']} merged into another feature branch ({pr['base']}), not into {repo.default}; check that branch reached {repo.default}"
             else:
-                reason = f"local tip is {b['tip_vs_pr_head']} relative to merged PR head; extra commits"
+                reason = (f"has commits that PR #{pr['number']} never included" if b['tip_vs_pr_head'] == "ahead"
+                          else f"PR #{pr['number']} merged, but its final commit is not on this machine so the branch cannot be matched to it; has unique commits")
         elif bucket == "D3":
             action, section, reason = "keep", "auto", "open PR"
             if b["upstream"] and "ahead" in b["track"]:
@@ -681,7 +682,7 @@ def build_rows(repo: Repo, audit):
         elif bucket == "D4":
             action, section, reason = "archive-delete", "prefilled", "PR closed unmerged"
         elif bucket in ("D5", "D6", "D7"):
-            label = {"D5": "upstream gone, no PR", "D6": "on origin, no PR", "D7": "never pushed" if not b["upstream"] else "unpushed local commits"}[bucket]
+            label = {"D5": "GitHub copy deleted, no PR found", "D6": "still on GitHub, no PR", "D7": "exists only on this machine" if not b["upstream"] else "latest commits never pushed"}[bucket]
             if bucket == "D7" and pr and pr["state"] == "MERGED":
                 reason = f"{label}; tip ahead of merged PR #{pr['number']}"
             elif b.get("cherry_unique") == 0:
@@ -779,19 +780,98 @@ def write_manifest(repo: Repo, audit, rows, path):
         f.write("\n".join(lines) + "\n")
 
 
+WIP_RE = re.compile(r"\b(wip|not working|broken|temp|todo|experiment|snapshot|hack|test only|scratch)\b", re.I)
+
+
+def explain_branch(repo: Repo, b, r):
+    """Plain-language what / complete? / recommendation / confidence for a branch row."""
+    pr = b["pr"]; bucket = b["bucket"]; action = r.get("action", "?")
+    tgt = repo.primary or repo.default
+    what = {
+        "D1": f"Everything in it is already in {', '.join(b['merged_into']) or tgt}.",
+        "D2": (f"Its PR #{pr['number']} was merged into {pr['base']}." if pr else "") + (
+            " The branch also has commits that PR never included." if b["tip_vs_pr_head"] == "ahead" else
+            " The PR's final commit is not on this machine, so I could not match the branch to it exactly." if b["tip_vs_pr_head"] == "unknown" else ""),
+        "D3": f"Its PR #{pr['number']} is still open." if pr else "",
+        "D4": f"Its PR #{pr['number']} was closed without being merged." if pr else "",
+        "D5": "It was pushed to GitHub once, but that copy has since been deleted and no PR references it.",
+        "D6": "It is still on GitHub, but no PR was ever opened for it.",
+        "D7": "It exists only on this machine; GitHub has none of these commits." if not b["upstream"] else "Its latest commits were never pushed; GitHub holds an older copy.",
+        "D8": "Protected branch.",
+    }.get(bucket, "")
+    if b.get("cherry_unique") is not None:
+        what += f" {b['cherry_unique']} of its {b['unique_commit_count']} commits carry changes {tgt} does not already have."
+    if b["stranded_count"]:
+        what += f" {b['stranded_count']} file(s) in it exist nowhere else."
+    flags = []
+    if any(WIP_RE.search(c["subject"]) for c in b.get("unique_commits", [])):
+        flags.append("commit messages mention WIP, not-working or experiments")
+    if b["worktree"]:
+        flags.append("it has a checked-out worktree; see the worktree section for uncommitted changes")
+    if b["age_days"] is not None and b["age_days"] > 365:
+        flags.append(f"untouched for {b['age_days']} days, so it will need rebasing onto {tgt}")
+    complete = "; ".join(flags) if flags else "no red flags in the commit messages; whether it still builds and runs is untested"
+    if action == "archive-delete":
+        rec = "Delete it; the commits are archived in the bundle first."
+    elif action == "keep":
+        rec = "Keep it."
+    elif action == "blocked":
+        rec = f"Switch the main checkout to {repo.default} first, then delete it."
+    elif action == "pr":
+        rec = "Push it and open a PR."
+    elif b["value"] in ("high", "medium"):
+        rec = f"Worth a look: if the work is still wanted, rebase it onto {tgt} and open a PR; otherwise delete it (archived first)."
+    else:
+        rec = "Probably delete it (archived first); the unique changes are small."
+    if bucket in ("D1", "D8") or (bucket == "D2" and b["tip_vs_pr_head"] in ("equal", "ancestor")):
+        conf, why = "High", "git confirms every commit is already in the target"
+    elif b.get("cherry_unique") is not None and (pr or bucket == "D7"):
+        conf, why = "High", "PR state and a commit-by-commit content comparison both checked"
+    elif b["tip_vs_pr_head"] == "unknown":
+        conf, why = "Medium", "the merged PR's final commit is missing locally, so the match relies on content comparison only"
+    elif b.get("cherry_unique") is None and b["ahead"] > 50:
+        conf, why = "Medium", f"the branch is {b['ahead']} commits ahead, too large for the content comparison"
+    else:
+        conf, why = "Low", "no PR data available for this branch"
+    return what, complete, rec, f"{conf} ({why})"
+
+
+def explain_stash(repo: Repo, s, r):
+    action = r.get("action", "?"); c = s.get("changes") or {}
+    what = f"Uncommitted work parked on `{s['base_branch'] or '?'}` on {s['date']}: {c.get('files', 0)} file(s), +{c.get('ins', 0)}/-{c.get('dels', 0)} lines."
+    complete = "tool-generated stash (autostash / lint-staged), not deliberate work" if s["noise"] else (
+        "subject mentions WIP or experiments" if WIP_RE.search(s["subject"]) else "a stash is by definition unfinished; the patch shows exactly what was mid-flight")
+    rec = {"drop": "Drop it; nothing hand-written is in it.", "export-drop": "Drop it after exporting the patch to the archive (default for stashes older than the age threshold).",
+           "keep": "Keep it, or mark export-drop if the patch is enough."}.get(action, "Decide.")
+    conf = "High (stash content inspected file by file)" if not s["noise"] else "High (matched the tool-noise pattern)"
+    return what, complete, rec, conf
+
+
+def explain_worktree(repo: Repo, w, r):
+    d = w.get("dirt_detail") or {}; action = r.get("action", "?")
+    what = f"Checkout of `{w.get('branch') or 'detached HEAD'}` with {d.get('files', 0)} uncommitted path(s) (+{d.get('ins', 0)}/-{d.get('dels', 0)} lines), idle {w['last_touch']} day(s)."
+    complete = "uncommitted changes are by definition unfinished; the salvage patch will capture them" if d else "clean"
+    rec = {"remove": "Remove it; the branch decision covers the commits.", "salvage-remove": "Remove it after the uncommitted changes are saved as a patch and archived.",
+           "keep": "Keep it.", "migrate": f"Keep it and move it under {repo.worktree_home()}.", "repair": "Repair the registration first (recover-worktrees)."}.get(action, "Decide.")
+    return what, complete, rec, "High (working tree inspected directly)"
+
+
 def write_review(repo: Repo, audit, rows, path):
     """Human-readable companion to manifest.tsv: what is inside every at-risk item, most valuable first."""
     order = {"high": 0, "medium": 1, "low": 2, "unknown": 3, "n/a": 4, "none": 5, "merged-upstream": 6}
     act = {(r["kind"], r["name"]): r for r in rows}
     L = [f"# Review: {repo.rel}", "", f"Generated {TS} from audit {audit['audit_id']}. Items are sorted most-valuable first; the `action` shown is the manifest default.",
-         "Value = hand-written lines + files + stranded files, boosted when younger than 90 days. Generated files (API types, lockfiles, snapshots, build output) are excluded from the count.", ""]
+         "Value = hand-written lines + files + stranded files, boosted when younger than 90 days. Generated files (API types, lockfiles, snapshots, build output) are excluded from the count.",
+         "Each item says what it is in plain words, whether it looks complete, a recommendation, and how confident the engine is and why. `Complete / working?` is a heuristic from commit messages and working-tree state; only running the code proves it.", ""]
     at_risk = [b for b in audit["branches"] if b.get("changes")]
     at_risk.sort(key=lambda b: (order.get(b["value"], 9), -(b["changes"]["ins"] + b["changes"]["dels"])))
     L.append(f"## Branches with unique work ({len(at_risk)})"); L.append("")
     for b in at_risk:
         r = act.get(("branch", b["name"]), {})
         c = b["changes"]; pr = b["pr"]
-        L.append(f"### `{b['name']}` — {b['bucket']}, {b['age_days']}d old, action **{r.get('action','?')}**, value **{b['value'].upper()}**")
+        what, complete, rec, conf = explain_branch(repo, b, r)
+        L.append(f"### `{b['name']}` — value **{b['value'].upper()}**, {b['age_days']} days old")
+        L.append(f"- What it is: {what}")
         L.append(f"- {b['unique_commit_count']} unique commit(s), {c['files']} files ({c['hand_files']} hand-written, {c['gen_files']} generated), +{c['ins']}/-{c['dels']} hand-written lines"
                  + (f"; PR #{pr['number']} {pr['state']} → {pr['base']}" if pr else "; no PR") + (f"; cherry-unique {b['cherry_unique']}" if b.get("cherry_unique") is not None else "")
                  + (f"; worktree `{b['worktree']}`" if b["worktree"] else ""))
@@ -801,16 +881,22 @@ def write_review(repo: Repo, audit, rows, path):
             L.append("- Files: " + ", ".join(f"`{f}`" for f in c["top_files"]))
         if b["stranded_count"]:
             L.append(f"- Stranded (exist nowhere else): " + ", ".join(f"`{f}`" for f in b["stranded_files"][:6]) + (f" (+{b['stranded_count']-6} more)" if b["stranded_count"] > 6 else ""))
-        L.append(f"- Why: {r.get('reason','')}"); L.append("")
+        L.append(f"- Complete / working? {complete}")
+        L.append(f"- Recommendation: {rec} (manifest default: `{r.get('action','?')}`)")
+        L.append(f"- Confidence: {conf}"); L.append("")
     dirty = [w for w in audit["worktrees"] if w["kind"] == "linked" and w.get("dirt_detail")]
     orphans = [o for o in audit["orphans"] if o["shape"] != "not-git"]
     if dirty or orphans:
         L.append(f"## Worktrees with uncommitted changes ({len(dirty)}) and orphan directories ({len(orphans)})"); L.append("")
         for w in sorted(dirty, key=lambda w: order.get(w["value"], 9)):
             d = w["dirt_detail"]; r = act.get(("worktree", w["path"]), {})
-            L.append(f"### `{w['path']}` — branch `{w.get('branch')}`, idle {w['last_touch']}d, action **{r.get('action','?')}**, value **{w['value'].upper()}**")
-            L.append(f"- {d['files']} changed paths ({d['untracked']} untracked), +{d['ins']}/-{d['dels']} lines, {human(w['size'])} on disk")
-            L.append("- Files: " + ", ".join(f"`{f}`" for f in d["top_files"])); L.append("")
+            what, complete, rec, conf = explain_worktree(repo, w, r)
+            L.append(f"### `{w['path']}` — value **{w['value'].upper()}**")
+            L.append(f"- What it is: {what} {human(w['size'])} on disk.")
+            L.append("- Files: " + ", ".join(f"`{f}`" for f in d["top_files"]))
+            L.append(f"- Complete / working? {complete}")
+            L.append(f"- Recommendation: {rec} (manifest default: `{r.get('action','?')}`)")
+            L.append(f"- Confidence: {conf}"); L.append("")
         for o in orphans:
             dv = o.get("diff_vs_branch"); r = act.get(("worktree", o["path"]), {})
             L.append(f"### `{o['path']}` — {o['shape']}, last touched {o['mtime']}, {human(o['size'])}, action **{r.get('action','?')}**, value **{o['value'].upper()}**")
@@ -824,8 +910,14 @@ def write_review(repo: Repo, audit, rows, path):
         L.append(f"## Stashes ({len(st)})"); L.append("")
         for s in sorted(st, key=lambda s: (order.get(s.get("value"), 9), -(s.get("changes") or {}).get("ins", 0))):
             c = s.get("changes") or {}; r = act.get(("stash", f"stash@{{{s['index']}}}"), {})
-            L.append(f"- `stash@{{{s['index']}}}` {s['date']} on `{s['base_branch'] or '?'}`: **{s['subject']}** — {c.get('files',0)} files +{c.get('ins',0)}/-{c.get('dels',0)}, value **{s.get('value','?').upper()}**, action **{r.get('action','?')}**"
-                     + (f" — files: " + ", ".join(f"`{f}`" for f in c.get("top_files", [])[:5]) if c.get("top_files") else ""))
+            what, complete, rec, conf = explain_stash(repo, s, r)
+            L.append(f"### `stash@{{{s['index']}}}` **{s['subject']}** — value **{s.get('value','?').upper()}**")
+            L.append(f"- What it is: {what}")
+            if c.get("top_files"):
+                L.append("- Files: " + ", ".join(f"`{f}`" for f in c.get("top_files", [])[:6]))
+            L.append(f"- Complete / working? {complete}")
+            L.append(f"- Recommendation: {rec} (manifest default: `{r.get('action','?')}`)")
+            L.append(f"- Confidence: {conf}"); L.append("")
         L.append("")
     with open(path, "w") as f:
         f.write("\n".join(L) + "\n")
