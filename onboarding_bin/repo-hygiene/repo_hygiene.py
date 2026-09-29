@@ -422,8 +422,9 @@ def audit_repo(repo: Repo, log, fetch=True):
                 b["cherry_unique"] = None if b["ahead"] > 50 else 0
             added = [p for p in gout(repo.path, "diff", "--diff-filter=A", "--name-only", f"{repo.primary}...{b['name']}").split("\n") if p]
             stranded = []
+            elsewhere = [ob for ob in open_pr_branches if ob != b["name"]] + [t for t in repo.targets if t != repo.primary]
             for p in added[:200]:
-                if any(git(repo.path, "cat-file", "-e", f"{ob}:{p}", check=False).returncode == 0 for ob in open_pr_branches if ob != b["name"]):
+                if any(git(repo.path, "cat-file", "-e", f"{ob}:{p}", check=False).returncode == 0 for ob in elsewhere):
                     continue
                 stranded.append(p)
             b["stranded_files"] = stranded[:20]
