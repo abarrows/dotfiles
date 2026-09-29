@@ -11,7 +11,7 @@
     "editor.codeActionsOnSave": {
       "source.fixAll.shellcheck": "explicit"
     },
-    "editor.defaultFormatter": "ms-azuretools.vscode-containers"
+    "editor.defaultFormatter": "ms-azuretools.vscode-containers",
   },
   "[dockerfile][dotenv][shellscript]": {
     "editor.codeActionsOnSave": {
