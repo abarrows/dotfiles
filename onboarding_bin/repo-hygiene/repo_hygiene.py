@@ -550,6 +550,10 @@ def scan_orphans(repo: Repo, worktrees):
         shape = "orphan-sessions" if gitdir.startswith("/sessions/") else "orphan-missing-admin"
         wid = os.path.basename(gitdir.rstrip("/"))
         admin = os.path.join(repo.path, ".git", "worktrees", wid)
+        if os.path.isdir(admin) and any(w["id"] == wid and not w["present"] for w in worktrees):
+            # Shape A twin: the registration still exists (missing, usually locked) and this is its local
+            # directory. recover_shape_a repairs it in place; it must never be treated as an orphan.
+            continue
         o = {"path": ap, "shape": shape, "gitdir": gitdir, "admin_exists": os.path.isdir(admin), "worktree_id": wid,
              "candidate_branch": guess_branch(repo, ap), "size": du_bytes(ap),
              "mtime": dt.datetime.fromtimestamp(os.stat(ap).st_mtime, dt.timezone.utc).strftime("%Y-%m-%d")}
