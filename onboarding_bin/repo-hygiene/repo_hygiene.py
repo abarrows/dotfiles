@@ -573,9 +573,11 @@ def orphan_diff(repo: Repo, dirpath, branch):
     base = ["git", "--git-dir", os.path.join(repo.path, ".git"), "--work-tree", dirpath]
     try:
         run(base + ["read-tree", branch], cwd=dirpath, env=env)
-        st = run(base + ["status", "--porcelain", "--untracked-files=all"], cwd=dirpath, env=env, check=False).stdout
-        paths = [l[3:].strip('"') for l in st.split("\n") if l.strip() and not repo.is_noise_path(l[3:].strip('"'))]
-        tracked = [l[3:].strip('"') for l in st.split("\n") if l.strip() and not l.startswith("??") and not repo.is_noise_path(l[3:].strip('"'))]
+        # Content-based: a fresh index has no stat cache, so `status` over-reports; `diff <branch>` hashes files.
+        changed = [l for l in run(base + ["diff", "--name-only", branch], cwd=dirpath, env=env, check=False).stdout.split("\n") if l.strip()]
+        untracked = [l for l in run(base + ["ls-files", "--others", "--exclude-standard"], cwd=dirpath, env=env, check=False).stdout.split("\n") if l.strip()]
+        tracked = [p for p in changed if not repo.is_noise_path(p)]
+        paths = tracked + [p for p in untracked if not repo.is_noise_path(p)]
         ins = dels = 0
         for line in run(base + ["diff", "--numstat", branch, "--", *tracked[:400]], cwd=dirpath, env=env, check=False).stdout.split("\n") if tracked else []:
             parts = line.split("\t")
