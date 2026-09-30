@@ -221,6 +221,19 @@ class Repo:
     def is_generated_path(self, p):
         return any(fnmatch.fnmatchcase(p, pat) for pat in self.cfg.get("generated_paths", []))
 
+    def content_superseded(self, base, head):
+        """True when every file this branch touches is byte-identical on `base`.
+        Squash merges defeat commit-level comparison (N commits collapse into one, so no single
+        commit ever matches); comparing the two trees over just those paths does not care."""
+        names = [l for l in gout(self.path, "diff", "--name-only", f"{base}...{head}").split("\n") if l]
+        if not names:
+            return False
+        for i in range(0, len(names), 200):
+            r = git(self.path, "diff", "--quiet", head, base, "--", *names[i:i + 200], check=False)
+            if r.returncode != 0:
+                return False
+        return True
+
     def change_summary(self, base, head, paths_only=False):
         """Diffstat between base...head split into hand-written vs generated files.
         When the histories share no ancestor, compare the two trees directly and say so."""
@@ -435,11 +448,13 @@ def audit_repo(repo: Repo, log, fetch=True):
             b["unique_commits"] = [{"sha": c[0], "date": c[1], "subject": c[2][:90]} for c in commits[:8]]
             b["unique_commit_count"] = len(commits)
             b["changes"] = repo.change_summary(repo.primary, b["name"])
-            b["value"] = repo.value_rating(b["changes"], len(commits), b["age_days"], b["stranded_count"])
+            b["content_superseded"] = repo.content_superseded(repo.primary, b["name"])
+            b["value"] = "none" if b["content_superseded"] else repo.value_rating(b["changes"], len(commits), b["age_days"], b["stranded_count"])
         else:
             b["cherry_unique"] = None
             b["stranded_files"], b["stranded_count"] = [], 0
             b["unique_commits"], b["unique_commit_count"], b["changes"] = [], 0, None
+            b["content_superseded"] = False
             b["value"] = "none" if b["bucket"] in ("D1", "D8") else "merged-upstream" if b["bucket"] in ("D2", "D3") else "n/a"
 
     # --- stashes
@@ -680,7 +695,9 @@ def build_rows(repo: Repo, audit):
         elif bucket == "D1":
             action, section, reason = "archive-delete", "auto", ("merged into " + ",".join(b["merged_into"])) if b["merged_into"] else "no upstream, 0 ahead"
         elif bucket == "D2":
-            if pr["base_protected"] and b["tip_vs_pr_head"] in ("equal", "ancestor"):
+            if b.get("content_superseded"):
+                action, section, reason = "archive-delete", "auto", f"PR #{pr['number']} merged; every file it touches is byte-identical on {repo.primary}"
+            elif pr["base_protected"] and b["tip_vs_pr_head"] in ("equal", "ancestor"):
                 action, section, reason = "archive-delete", "auto", f"squash-merged via PR into {pr['base']}"
             elif b.get("cherry_unique") == 0:
                 action, section, reason = "archive-delete", "auto", f"PR merged into {pr['base']}; every local commit is patch-equivalent to {repo.primary}"
@@ -699,6 +716,8 @@ def build_rows(repo: Repo, audit):
             label = {"D5": "GitHub copy deleted, no PR found", "D6": "still on GitHub, no PR", "D7": "exists only on this machine" if not b["upstream"] else "latest commits never pushed"}[bucket]
             if bucket == "D7" and pr and pr["state"] == "MERGED":
                 reason = f"{label}; tip ahead of merged PR #{pr['number']}"
+            elif b.get("content_superseded"):
+                action, section, reason = "archive-delete", "auto", f"{label}; every file it touches is byte-identical on {repo.primary}"
             elif b.get("cherry_unique") == 0:
                 action, section, reason = "archive-delete", "auto", f"{label}; all commits patch-equivalent to {repo.primary}"
             elif b["noise"]:
@@ -814,6 +833,9 @@ def explain_branch(repo: Repo, b, r, pr_source="none"):
                "It exists only on this machine; GitHub has none of these commits.") if not b["upstream"] else "Its latest commits were never pushed; GitHub holds an older copy.",
         "D8": "Protected branch.",
     }.get(bucket, "")
+    if b.get("content_superseded"):
+        what += (f" Every one of the {b['changes']['files']} files it touches is byte-identical on {tgt}, so none of its"
+                 " content is missing there (its commits look unique only because the merge squashed them).")
     if (b.get("changes") or {}).get("unrelated_history"):
         c = b["changes"]
         what += (f" It comes from an older, unrelated history of this repo (no common ancestor with {tgt}), so commit comparison is impossible;"
@@ -843,7 +865,9 @@ def explain_branch(repo: Repo, b, r, pr_source="none"):
         rec = f"Worth a look: if the work is still wanted, rebase it onto {tgt} and open a PR; otherwise delete it (archived first)."
     else:
         rec = "Probably delete it (archived first); the unique changes are small."
-    if (b.get("changes") or {}).get("unrelated_history"):
+    if b.get("content_superseded"):
+        conf, why = "High", "every touched file compared byte-for-byte against the target"
+    elif (b.get("changes") or {}).get("unrelated_history"):
         conf, why = "Medium", "unrelated history: judged by comparing file trees, not commits"
     elif bucket in ("D1", "D8") or (bucket == "D2" and b["tip_vs_pr_head"] in ("equal", "ancestor")):
         conf, why = "High", "git confirms every commit is already in the target"
