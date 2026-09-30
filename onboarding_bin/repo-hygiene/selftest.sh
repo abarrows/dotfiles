@@ -88,5 +88,27 @@ echo "== second apply --policy safe must be a no-op"; $RH audit --repo cat/demo 
 echo "== restore --all"; $RH restore --repo cat/demo --all
 for s in $SHAS $STASH_NAMED; do g cat-file -e "$s^{commit}" || { echo "FAIL: $s not restorable"; exit 1; }; done
 test -n "$(g branch --list feature/unique)" || { echo "FAIL: feature/unique not restored"; exit 1; }
+# Branches whose tips stayed reachable from a protected ref are deliberately NOT bundled; they
+# must still come back, from the refs.tsv record (regression: sourcery review of PR #55).
+for b in feature/merged feature/merged2; do
+  test -n "$(g branch --list $b)" || { echo "FAIL: $b not restored from refs.tsv (empty-bundle path)"; exit 1; }
+done
+echo "   reachable-tip branches restored from refs.tsv: ok"
+# A repo with no resolvable integration target must not auto-delete anything.
+NT="$T/no-target"; git init -q -b orphanmain "$NT"; ( cd "$NT" && echo x > f.txt && git add -A && git commit -q -m init && git checkout -q -b some-work && echo y >> f.txt && git commit -q -am work )
+mkdir -p "$T/repos/cat2"; mv "$NT" "$T/repos/cat2/demo2"
+cat > "$T/hygiene2.toml" <<EOF2
+root = "$T/repos"
+archive = "$T/.archive2"
+categories = ["cat2"]
+EOF2
+python3 "$ENGINE" --config "$T/hygiene2.toml" audit --repo cat2/demo2 >/dev/null 2>&1
+python3 "$ENGINE" --config "$T/hygiene2.toml" manifest --repo cat2/demo2 >/dev/null 2>&1
+M2="$T/.archive2/cat2__demo2/manifest.tsv"
+test -f "$M2" || { echo "FAIL: no-target manifest was never written, so the guard is untested"; exit 1; }
+test "$(awk -F'\t' '!/^#/ && $1=="branch"' "$M2" | wc -l | tr -d ' ')" -ge 2 || { echo "FAIL: no-target manifest has too few branch rows to be meaningful"; exit 1; }
+test -z "$(awk -F'\t' '!/^#/ && $1=="branch" && $2=="archive-delete"' "$M2")" || { echo "FAIL: a repo with no integration target prefilled a deletion"; exit 1; }
+test -n "$(awk -F'\t' '!/^#/ && $1=="branch" && $2=="review"' "$M2")" || { echo "FAIL: no-target repo should send branches to review"; exit 1; }
+echo "   no-integration-target repo: $(awk -F'\t' '!/^#/ && $1=="branch"' "$M2" | wc -l | tr -d ' ') branch rows, 0 auto-deletes, review required: ok"
 g for-each-ref refs/archive --format='   restored %(refname)'
 echo "SELFTEST PASSED"

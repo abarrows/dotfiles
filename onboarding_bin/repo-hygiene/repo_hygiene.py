@@ -64,10 +64,22 @@ class HygieneError(RuntimeError):
 
 
 def run(args, cwd=None, check=True, env=None, input=None):
+    # `args` is always a list and `shell` is never enabled, so the shell never parses any of it:
+    # branch names containing ;, |, $() and friends are inert. The residual risk is argument
+    # injection - a ref literally named `--upload-pack=...` would be read by git as an option -
+    # so any such name is refused before it reaches git (see `safe_ref`).
     r = subprocess.run(args, cwd=cwd, capture_output=True, text=True, env=env, input=input)
     if check and r.returncode != 0:
         raise HygieneError(f"{' '.join(args)} (cwd={cwd}) rc={r.returncode}: {r.stderr.strip()}")
     return r
+
+
+def safe_ref(name):
+    """Refuse ref names that git would read as options. Git forbids these anyway, so a name like
+    this means something is wrong (or hostile) rather than merely unusual."""
+    if name.startswith("-"):
+        raise HygieneError(f"refusing to act on a ref whose name starts with '-': {name!r}")
+    return name
 
 
 def git(repo, *args, check=True, env=None, input=None):
@@ -257,7 +269,13 @@ class Repo:
             self._blob_hist[key] = seen
         return blob in self._blob_hist[key]
 
-    def unique_lines(self, base, head, path):
+    def havens(self, extra=()):
+        """Refs where content would still be found: the integration targets (develop, master,
+        release/*) plus any open-PR branches. Work merged to a release branch, or still sitting
+        on an open PR, is not lost just because the default branch lacks it."""
+        return list(dict.fromkeys(list(self.targets) + [r for r in extra if r]))
+
+    def unique_lines(self, base, head, path, havens=None):
         """Lines this branch ADDED to `path` (vs the merge base) that appear nowhere in `base`'s
         current version of it. An older version that the target later rewrote contributes none:
         its lines are either still there or were deliberately replaced. Non-empty means content
@@ -265,24 +283,24 @@ class Repo:
         mb = gout(self.path, "merge-base", base, head)
         if not mb:
             return []
-        before = gout(self.path, "show", f"{mb}:{path}", default="")
         after = gout(self.path, "show", f"{head}:{path}", default="")
-        target = gout(self.path, "show", f"{base}:{path}", default="")
         if not after:
             return []
-        before_set = {l.strip() for l in before.split("\n")}
-        target_set = {l.strip() for l in target.split("\n")}
+        before_set = {l.strip() for l in gout(self.path, "show", f"{mb}:{path}", default="").split("\n")}
+        safe = set()
+        for ref in (havens if havens is not None else [base]):
+            safe |= {l.strip() for l in gout(self.path, "show", f"{ref}:{path}", default="").split("\n")}
         added = [l for l in after.split("\n") if l.strip() and l.strip() not in before_set]
-        return [l for l in added if l.strip() not in target_set]
+        return [l for l in added if l.strip() not in safe]
 
-    def never_landed(self, base, head):
-        """Hand-written paths whose version on `head` never existed anywhere in `base`'s history.
-        These are the only real candidates for lost work."""
+    def never_landed(self, base, head, havens=None):
+        """Hand-written paths whose version on `head` never existed in the history of any haven."""
         diffs, n = self.hand_differences(base, head)
         if not diffs:
             return [], n
         hm = self.blob_map(head, diffs)
-        return [p for p in diffs if not self.blob_ever_on(base, p, hm.get(p, ""))], n
+        refs = havens if havens is not None else [base]
+        return [p for p in diffs if not any(self.blob_ever_on(r, p, hm.get(p, "")) for r in refs)], n
 
     def hand_differences(self, base, head):
         """Hand-written paths whose content differs between `head` and `base`.
@@ -536,10 +554,13 @@ def audit_repo(repo: Repo, log, fetch=True):
             b["unique_commit_count"] = len(commits)
             b["changes"] = repo.change_summary(repo.primary, b["name"])
             b["hand_diffs"], b["hand_paths"] = repo.hand_differences(repo.primary, b["name"])
-            nl, _ = repo.never_landed(repo.primary, b["name"])
+            havens = repo.havens(open_pr_branches + ([f"origin/{b['pr']['base']}"] if b["pr"] and b["pr"]["base_protected"] else []))
+            havens = [h for h in havens if h != b["name"]]
+            b["havens"] = havens
+            nl, _ = repo.never_landed(repo.primary, b["name"], havens)
             b["unique_content"] = {}
             for path in nl[:40]:
-                lines = repo.unique_lines(repo.primary, b["name"], path)
+                lines = repo.unique_lines(repo.primary, b["name"], path, havens)
                 if lines:
                     b["unique_content"][path] = {"lines": len(lines), "sample": [l.strip()[:120] for l in lines[:3]]}
             b["never_landed"] = sorted(b["unique_content"])
@@ -741,7 +762,9 @@ def bucket_for(repo: Repo, b, pr_source):
     pr = b["pr"]
     if b["protected"]:
         return "D8"
-    if b["merged_into"] or (not b["upstream"] and b["ahead"] == 0):
+    if b["merged_into"]:
+        return "D1"
+    if not b["upstream"] and b["ahead"] == 0 and repo.primary:
         return "D1"
     if pr and pr["state"] == "MERGED":
         return "D2"
@@ -793,7 +816,10 @@ def build_rows(repo: Repo, audit):
             ev.append(f"value={b['value']} commits={b['unique_commit_count']} files={c['files']}(hand {c['hand_files']}) +{c['ins']}/-{c['dels']}")
             uc = sum(v["lines"] for v in b.get("unique_content", {}).values())
             ev.append(f"unique_lines={uc} in {len(b.get('never_landed', []))}/{b.get('hand_paths', 0)} files" + (":" + ",".join(b["never_landed"][:2]) if b.get("never_landed") else ""))
-        if bucket == "D8":
+        if not repo.targets and bucket != "D8":
+            action, section, reason = "review", "decide", ("no integration target could be resolved for this repo, so nothing"
+                                                           " can be proven merged; decide each branch by hand")
+        elif bucket == "D8":
             action, section, reason = "keep", "auto", "protected"
         elif bucket == "D1":
             action, section, reason = "archive-delete", "auto", ("merged into " + ",".join(b["merged_into"])) if b["merged_into"] else "no upstream, 0 ahead"
@@ -939,12 +965,13 @@ def explain_branch(repo: Repo, b, r, pr_source="none"):
     if b.get("content_superseded"):
         sup = len(b.get("superseded_versions", []))
         extra = f" ({sup} file(s) differ from {tgt} today, but every line this branch added is already there, so {tgt} simply moved on.)" if sup else ""
-        what += (f" Nothing it adds is missing from {tgt}: across the {b['hand_paths']} hand-written files it touches,"
-                 f" every added line is already present there.{extra}")
+        where = "the branches it would have landed on" if len(b.get("havens", [])) > 1 else tgt
+        what += (f" Nothing it adds is missing: across the {b['hand_paths']} hand-written files it touches,"
+                 f" every added line is already on {where}.{extra}")
     elif b.get("never_landed"):
         tot = sum(v["lines"] for v in b.get("unique_content", {}).values())
         bits = [f"`{f}` ({b['unique_content'][f]['lines']} lines)" for f in b["never_landed"][:6]]
-        what += (f" {tot} line(s) it adds appear nowhere on {tgt}, across {len(b['never_landed'])} file(s): "
+        what += (f" {tot} line(s) it adds appear on no branch at all (checked {len(b.get('havens', []))} targets and open PRs), across {len(b['never_landed'])} file(s): "
                  + ", ".join(bits) + (" …" if len(b["never_landed"]) > 6 else "") + ".")
     if (b.get("changes") or {}).get("unrelated_history"):
         c = b["changes"]
@@ -976,9 +1003,9 @@ def explain_branch(repo: Repo, b, r, pr_source="none"):
     else:
         rec = "Probably delete it (archived first); the unique changes are small."
     if b.get("content_superseded"):
-        conf, why = "High", "every added line checked against the target's current content and history"
+        conf, why = "High", "every added line checked against all targets, release branches and open PRs"
     elif b.get("never_landed"):
-        conf, why = "High", "added lines checked against the target's current content and history"
+        conf, why = "High", "added lines checked against all targets, release branches and open PRs"
     elif (b.get("changes") or {}).get("unrelated_history"):
         conf, why = "Medium", "unrelated history: judged by comparing file trees, not commits"
     elif bucket in ("D1", "D8") or (bucket == "D2" and b["tip_vs_pr_head"] in ("equal", "ancestor")):
@@ -1432,7 +1459,7 @@ class Applier:
         self.do("worktree prune", lambda: git(repo.path, "worktree", "prune"))
         for ref in dict.fromkeys(self.archive_refs):
             self.do(f"update-ref -d {ref}", lambda ref=ref: git(repo.path, "update-ref", "-d", ref))
-        keep = sorted(r["name"] for r in rows if r["action"] == "keep" and r["kind"] == "branch" and r["bucket"] not in ("D8", "D3"))
+        keep = sorted(r["name"] for r in rows if r["action"] in ("keep", "pr") and r["kind"] == "branch" and r["bucket"] not in ("D8", "D3"))
         keep_wt = sorted(r["name"] for r in rows if r["action"] == "keep" and r["kind"] == "worktree")
         keep_st = sorted(r["sha"] for r in rows if r["action"] == "keep" and r["kind"] == "stash")
 
@@ -1589,7 +1616,9 @@ def restore_test_last_bundle(repo: Repo, log):
     r = git(repo.path, "bundle", "verify", b, check=False)
     if r.returncode != 0:
         return [f"bundle {bundles[-1]} does not verify: {r.stderr.strip()[:200]}"]
-    git(repo.path, "fetch", "--no-tags", b, "+refs/heads/*:refs/restore-test/heads/*", "+refs/archive/*:refs/restore-test/archive/*", check=False)
+    fr = git(repo.path, "fetch", "--no-tags", b, "+refs/heads/*:refs/restore-test/heads/*", "+refs/archive/*:refs/restore-test/archive/*", check=False)
+    if fr.returncode != 0:
+        return [f"restore-test: fetching {os.path.basename(b)} failed: {fr.stderr.strip()[:200]}"]
     if os.path.exists(refs_tsv):
         for line in list(open(refs_tsv))[1:]:
             ref, sha, *_ = line.rstrip("\n").split("\t")
@@ -1606,14 +1635,38 @@ def restore_test_last_bundle(repo: Repo, log):
 def restore(repo: Repo, bundle, log, branch=None, stash=None, salvage=None, everything=False):
     if not bundle:
         bundles = sorted(f for f in os.listdir(repo.archive) if f.endswith(".bundle"))
-        if not bundles:
-            raise HygieneError("no bundle found")
-        bundle = os.path.join(repo.archive, bundles[-1])
-    git(repo.path, "bundle", "verify", bundle)
-    heads = gout(repo.path, "bundle", "list-heads", bundle)
-    log(heads)
+        tsvs = sorted(f for f in os.listdir(repo.archive) if f.endswith(".refs.tsv"))
+        if not bundles and not tsvs:
+            raise HygieneError("no bundle or refs.tsv found")
+        bundle = os.path.join(repo.archive, bundles[-1] if bundles else tsvs[-1].replace(".refs.tsv", ".bundle"))
+    bundle_has = os.path.exists(bundle)
+    if bundle_has:
+        git(repo.path, "bundle", "verify", bundle)
+        log(gout(repo.path, "bundle", "list-heads", bundle))
+    else:
+        log(f"no bundle file ({os.path.basename(bundle)}); restoring from the refs.tsv record instead")
+    refs_tsv = bundle.replace(".bundle", ".refs.tsv") if bundle else ""
+    recorded = {}
+    if refs_tsv and os.path.exists(refs_tsv):
+        for line in list(open(refs_tsv))[1:]:
+            f = line.rstrip("\n").split("\t")
+            if len(f) >= 2:
+                recorded[f[0]] = f[1]
+
+    def from_record(ref):
+        """Recreate a ref from refs.tsv when the bundle does not carry it (every tip was already
+        reachable from a protected ref, so git refused to write an empty bundle)."""
+        sha = recorded.get(ref if ref.startswith("refs/") else f"refs/heads/{ref}")
+        if sha and commit_exists(repo.path, sha):
+            git(repo.path, "update-ref", ref if ref.startswith("refs/") else f"refs/heads/{ref}", sha)
+            return True
+        return False
+
     if branch:
-        git(repo.path, "fetch", bundle, f"refs/heads/{branch}:refs/heads/{branch}")
+        safe_ref(branch)
+        r = git(repo.path, "fetch", bundle, f"refs/heads/{branch}:refs/heads/{branch}", check=False) if bundle_has else None
+        if (r is None or r.returncode != 0) and not from_record(branch):
+            raise HygieneError(f"{branch} is in neither the bundle nor {os.path.basename(refs_tsv)}")
         log(f"restored branch {branch}")
     if stash:
         git(repo.path, "fetch", bundle, f"refs/archive/stash/{stash}:refs/archive/tmp")
@@ -1624,8 +1677,11 @@ def restore(repo: Repo, bundle, log, branch=None, stash=None, salvage=None, ever
         git(repo.path, "fetch", bundle, f"refs/archive/salvage/{salvage}:refs/heads/salvage/{salvage}")
         log(f"restored salvage/{salvage} as a branch")
     if everything:
-        git(repo.path, "fetch", bundle, "refs/heads/*:refs/heads/*", "refs/archive/*:refs/archive/*", check=False)
-        log("restored every ref in the bundle (branches under refs/heads, others under refs/archive)")
+        if bundle_has:
+            git(repo.path, "fetch", bundle, "refs/heads/*:refs/heads/*", "refs/archive/*:refs/archive/*", check=False)
+        n = sum(1 for ref in recorded if from_record(ref))
+        log(f"restored every ref in the bundle, plus {n} recreated from {os.path.basename(refs_tsv)}"
+            " (tips still reachable from protected refs, so they were never bundled)")
     if not (branch or stash or salvage or everything):
         log("nothing selected; pass --branch, --stash, --salvage or --all")
 
