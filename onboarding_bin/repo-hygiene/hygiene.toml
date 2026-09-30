@@ -3,8 +3,8 @@
 # `branch_noise` and `stash_noise` are regular expressions; `noise_paths` are
 # fnmatch globs tested against repo-relative paths (a `*` matches `/` too).
 
-root = "/Users/andyb/Retail-Success/repos"
-archive = "/Users/andyb/Retail-Success/repos/.archive"
+root = "~/Retail-Success/repos"
+archive = "~/Retail-Success/repos/.archive"
 categories = ["admins", "development-team", "digital-products", "digital-services", "personal"]
 
 # Branch names that are never deleted and count as integration targets.
