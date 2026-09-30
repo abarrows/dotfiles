@@ -38,6 +38,7 @@ oversized_bytes = 1073741824
 default = "production"
 
 [repos."development-team/Wayroo.tools"]
+generated_extra = ["ai/INDEX.md", "ai/map/*", "ai/knowledge/README.md", "ai/.claude-plugin/plugin.json", "ai/.obsidian/*"]
 default = "master"
 
 [repos."digital-products/Wayroo.Mobile.RN"]
@@ -59,3 +60,9 @@ protected_extra = ["hotfix/*", "release-*"]
 
 [repos."digital-products/Luci.Android"]
 protected_extra = ["hotfix/*", "release-*"]
+
+# rs-agents packs regenerate INDEX.md, map/ and the knowledge/projects README tables with
+# scripts/generate-index.js, so they differ on every branch because the target moved on.
+[repos."personal/ai"]
+default = "main"
+generated_extra = ["ai/INDEX.md", "ai/map/*", "ai/knowledge/README.md", "ai/projects/README.md", "INDEX.md", "map/*"]

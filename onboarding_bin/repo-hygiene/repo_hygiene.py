@@ -184,6 +184,7 @@ class Repo:
         self.targets = self.integration_targets()
         self.primary = self.targets[0] if self.targets else None
         self.thr = cfg["thresholds"]
+        self._blob_hist = {}
 
     def detect_default(self):
         head = gout(self.path, "symbolic-ref", "--short", "refs/remotes/origin/HEAD").replace("origin/", "")
@@ -219,20 +220,88 @@ class Repo:
         return any(fnmatch.fnmatchcase(p, pat) for pat in self.cfg["noise_paths"])
 
     def is_generated_path(self, p):
-        return any(fnmatch.fnmatchcase(p, pat) for pat in self.cfg.get("generated_paths", []))
+        pats = list(self.cfg.get("generated_paths", [])) + list(self.opts.get("generated_extra", []))
+        return any(fnmatch.fnmatchcase(p, pat) for pat in pats)
+
+    def changed_paths(self, base, head):
+        """Paths the branch introduces relative to the merge base. NUL-separated, so paths with
+        spaces, quotes or non-ASCII are exact (--name-only would quote and escape them)."""
+        out = git(self.path, "diff", "-z", "--name-only", f"{base}...{head}", check=False).stdout
+        return [p for p in out.split("\0") if p]
+
+    def blob_map(self, ref, paths):
+        """path -> blob sha for `ref`, restricted to `paths`. Missing paths are simply absent."""
+        want = set(paths)
+        out = git(self.path, "ls-tree", "-r", "-z", "--format=%(objectname) %(path)", ref, check=False).stdout
+        m = {}
+        for rec in out.split("\0"):
+            if not rec:
+                continue
+            sha, _, path = rec.partition(" ")
+            if path in want:
+                m[path] = sha
+        return m
+
+    def blob_ever_on(self, ref, path, blob, limit=400):
+        """True if `blob` was ever the content of `path` anywhere in `ref`'s history.
+        A file differing from the target does not mean the branch's work is missing: the target
+        usually moved on after the merge. What matters is whether this exact version ever landed."""
+        key = (ref, path)
+        if key not in self._blob_hist:
+            commits = [c for c in gout(self.path, "log", "--format=%H", "-n", str(limit), ref, "--", path).split("\n") if c]
+            seen = set()
+            for c in commits:
+                sha = gout(self.path, "rev-parse", f"{c}:{path}")
+                if sha:
+                    seen.add(sha)
+            self._blob_hist[key] = seen
+        return blob in self._blob_hist[key]
+
+    def unique_lines(self, base, head, path):
+        """Lines this branch ADDED to `path` (vs the merge base) that appear nowhere in `base`'s
+        current version of it. An older version that the target later rewrote contributes none:
+        its lines are either still there or were deliberately replaced. Non-empty means content
+        that exists only on this branch."""
+        mb = gout(self.path, "merge-base", base, head)
+        if not mb:
+            return []
+        before = gout(self.path, "show", f"{mb}:{path}", default="")
+        after = gout(self.path, "show", f"{head}:{path}", default="")
+        target = gout(self.path, "show", f"{base}:{path}", default="")
+        if not after:
+            return []
+        before_set = {l.strip() for l in before.split("\n")}
+        target_set = {l.strip() for l in target.split("\n")}
+        added = [l for l in after.split("\n") if l.strip() and l.strip() not in before_set]
+        return [l for l in added if l.strip() not in target_set]
+
+    def never_landed(self, base, head):
+        """Hand-written paths whose version on `head` never existed anywhere in `base`'s history.
+        These are the only real candidates for lost work."""
+        diffs, n = self.hand_differences(base, head)
+        if not diffs:
+            return [], n
+        hm = self.blob_map(head, diffs)
+        return [p for p in diffs if not self.blob_ever_on(base, p, hm.get(p, ""))], n
+
+    def hand_differences(self, base, head):
+        """Hand-written paths whose content differs between `head` and `base`.
+        Generated artifacts (indexes, maps, lockfiles, build output) and tool noise are excluded:
+        they differ on every branch simply because the target moved on, and they are regenerated,
+        not authored. Squash merges defeat commit-level comparison, so this compares blob ids over
+        just the paths the branch touches - no pathspec quoting, no dependence on merge style."""
+        paths = [p for p in self.changed_paths(base, head)
+                 if not self.is_generated_path(p) and not self.is_noise_path(p)]
+        if not paths:
+            return [], 0
+        hm, bm = self.blob_map(head, paths), self.blob_map(base, paths)
+        return sorted(p for p in paths if hm.get(p) != bm.get(p)), len(paths)
 
     def content_superseded(self, base, head):
-        """True when every file this branch touches is byte-identical on `base`.
-        Squash merges defeat commit-level comparison (N commits collapse into one, so no single
-        commit ever matches); comparing the two trees over just those paths does not care."""
-        names = [l for l in gout(self.path, "diff", "--name-only", f"{base}...{head}").split("\n") if l]
-        if not names:
-            return False
-        for i in range(0, len(names), 200):
-            r = git(self.path, "diff", "--quiet", head, base, "--", *names[i:i + 200], check=False)
-            if r.returncode != 0:
-                return False
-        return True
+        """True when the branch touches hand-written files and every one of them already has
+        identical content on `base`."""
+        diffs, n = self.hand_differences(base, head)
+        return n > 0 and not diffs
 
     def change_summary(self, base, head, paths_only=False):
         """Diffstat between base...head split into hand-written vs generated files.
@@ -389,6 +458,24 @@ def audit_repo(repo: Repo, log, fetch=True):
     # --- orphan directories
     orphans = scan_orphans(repo, worktrees)
 
+    # A merged PR's head often is not local (review suggestions committed on GitHub, then the
+    # branch deleted). Without it, "did this land?" is undecidable. refs/pull/<n>/head still
+    # resolves after a merge, so fetch the ones we lack in a single batch.
+    if repo.has_remote and prs:
+        want = []
+        for name, lst in prs.items():
+            if not any(b == name for b in repo.local_branches):
+                continue
+            pr = best_pr(lst)
+            if pr and pr["state"] == "MERGED" and pr.get("headRefOid") and not commit_exists(repo.path, pr["headRefOid"]):
+                want.append(pr["number"])
+        for i in range(0, len(want), 60):
+            chunk = want[i:i + 60]
+            specs = [f"+refs/pull/{n}/head:refs/archive/pr/{n}" for n in chunk]
+            git(repo.path, "fetch", "--no-tags", "--quiet", "origin", *specs, check=False)
+        if want:
+            log(f"  fetched {len(want)} merged-PR head(s) so their branches can be judged")
+
     # --- branches
     merged_sets = {t: set(gout(repo.path, "branch", "--format=%(refname:short)", "--merged", t).split("\n")) for t in repo.targets}
     open_pr_branches = []
@@ -448,13 +535,24 @@ def audit_repo(repo: Repo, log, fetch=True):
             b["unique_commits"] = [{"sha": c[0], "date": c[1], "subject": c[2][:90]} for c in commits[:8]]
             b["unique_commit_count"] = len(commits)
             b["changes"] = repo.change_summary(repo.primary, b["name"])
-            b["content_superseded"] = repo.content_superseded(repo.primary, b["name"])
+            b["hand_diffs"], b["hand_paths"] = repo.hand_differences(repo.primary, b["name"])
+            nl, _ = repo.never_landed(repo.primary, b["name"])
+            b["unique_content"] = {}
+            for path in nl[:40]:
+                lines = repo.unique_lines(repo.primary, b["name"], path)
+                if lines:
+                    b["unique_content"][path] = {"lines": len(lines), "sample": [l.strip()[:120] for l in lines[:3]]}
+            b["never_landed"] = sorted(b["unique_content"])
+            b["superseded_versions"] = [p for p in nl if p not in b["unique_content"]]
+            b["content_superseded"] = b["hand_paths"] > 0 and not b["never_landed"]
             b["value"] = "none" if b["content_superseded"] else repo.value_rating(b["changes"], len(commits), b["age_days"], b["stranded_count"])
         else:
             b["cherry_unique"] = None
             b["stranded_files"], b["stranded_count"] = [], 0
             b["unique_commits"], b["unique_commit_count"], b["changes"] = [], 0, None
             b["content_superseded"] = False
+            b["hand_diffs"], b["hand_paths"], b["never_landed"] = [], 0, []
+            b["unique_content"], b["superseded_versions"] = {}, []
             b["value"] = "none" if b["bucket"] in ("D1", "D8") else "merged-upstream" if b["bucket"] in ("D2", "D3") else "n/a"
 
     # --- stashes
@@ -484,6 +582,9 @@ def audit_repo(repo: Repo, log, fetch=True):
              "branches": branches, "worktrees": worktrees, "orphans": orphans, "stashes": stashes,
              "counts": {"branches": len(branches), "worktrees": len(worktrees), "stashes": len(stashes), "orphans": len(orphans),
                         "buckets": dict(collections.Counter(b["bucket"] for b in branches))}}
+    for ref in [r for r in gout(repo.path, "for-each-ref", "refs/archive/pr", "--format=%(refname)").split("\n") if r]:
+        git(repo.path, "update-ref", "-d", ref, check=False)
+
     body = json.dumps(audit, indent=1, sort_keys=True)
     audit["audit_id"] = hashlib.sha256(body.encode()).hexdigest()[:16]
     path = os.path.join(repo.archive, f"audit-{TS}.json")
@@ -690,13 +791,15 @@ def build_rows(repo: Repo, audit):
         if b.get("changes"):
             c = b["changes"]
             ev.append(f"value={b['value']} commits={b['unique_commit_count']} files={c['files']}(hand {c['hand_files']}) +{c['ins']}/-{c['dels']}")
+            uc = sum(v["lines"] for v in b.get("unique_content", {}).values())
+            ev.append(f"unique_lines={uc} in {len(b.get('never_landed', []))}/{b.get('hand_paths', 0)} files" + (":" + ",".join(b["never_landed"][:2]) if b.get("never_landed") else ""))
         if bucket == "D8":
             action, section, reason = "keep", "auto", "protected"
         elif bucket == "D1":
             action, section, reason = "archive-delete", "auto", ("merged into " + ",".join(b["merged_into"])) if b["merged_into"] else "no upstream, 0 ahead"
         elif bucket == "D2":
             if b.get("content_superseded"):
-                action, section, reason = "archive-delete", "auto", f"PR #{pr['number']} merged; every file it touches is byte-identical on {repo.primary}"
+                action, section, reason = "archive-delete", "auto", f"PR #{pr['number']} merged; every version of the {b['hand_paths']} hand-written files it touches has landed on {repo.primary}"
             elif pr["base_protected"] and b["tip_vs_pr_head"] in ("equal", "ancestor"):
                 action, section, reason = "archive-delete", "auto", f"squash-merged via PR into {pr['base']}"
             elif b.get("cherry_unique") == 0:
@@ -717,7 +820,7 @@ def build_rows(repo: Repo, audit):
             if bucket == "D7" and pr and pr["state"] == "MERGED":
                 reason = f"{label}; tip ahead of merged PR #{pr['number']}"
             elif b.get("content_superseded"):
-                action, section, reason = "archive-delete", "auto", f"{label}; every file it touches is byte-identical on {repo.primary}"
+                action, section, reason = "archive-delete", "auto", f"{label}; every version of the {b['hand_paths']} hand-written files it touches has landed on {repo.primary}"
             elif b.get("cherry_unique") == 0:
                 action, section, reason = "archive-delete", "auto", f"{label}; all commits patch-equivalent to {repo.primary}"
             elif b["noise"]:
@@ -834,8 +937,15 @@ def explain_branch(repo: Repo, b, r, pr_source="none"):
         "D8": "Protected branch.",
     }.get(bucket, "")
     if b.get("content_superseded"):
-        what += (f" Every one of the {b['changes']['files']} files it touches is byte-identical on {tgt}, so none of its"
-                 " content is missing there (its commits look unique only because the merge squashed them).")
+        sup = len(b.get("superseded_versions", []))
+        extra = f" ({sup} file(s) differ from {tgt} today, but every line this branch added is already there, so {tgt} simply moved on.)" if sup else ""
+        what += (f" Nothing it adds is missing from {tgt}: across the {b['hand_paths']} hand-written files it touches,"
+                 f" every added line is already present there.{extra}")
+    elif b.get("never_landed"):
+        tot = sum(v["lines"] for v in b.get("unique_content", {}).values())
+        bits = [f"`{f}` ({b['unique_content'][f]['lines']} lines)" for f in b["never_landed"][:6]]
+        what += (f" {tot} line(s) it adds appear nowhere on {tgt}, across {len(b['never_landed'])} file(s): "
+                 + ", ".join(bits) + (" …" if len(b["never_landed"]) > 6 else "") + ".")
     if (b.get("changes") or {}).get("unrelated_history"):
         c = b["changes"]
         what += (f" It comes from an older, unrelated history of this repo (no common ancestor with {tgt}), so commit comparison is impossible;"
@@ -866,7 +976,9 @@ def explain_branch(repo: Repo, b, r, pr_source="none"):
     else:
         rec = "Probably delete it (archived first); the unique changes are small."
     if b.get("content_superseded"):
-        conf, why = "High", "every touched file compared byte-for-byte against the target"
+        conf, why = "High", "every added line checked against the target's current content and history"
+    elif b.get("never_landed"):
+        conf, why = "High", "added lines checked against the target's current content and history"
     elif (b.get("changes") or {}).get("unrelated_history"):
         conf, why = "Medium", "unrelated history: judged by comparing file trees, not commits"
     elif bucket in ("D1", "D8") or (bucket == "D2" and b["tip_vs_pr_head"] in ("equal", "ancestor")):
@@ -927,6 +1039,10 @@ def write_review(repo: Repo, audit, rows, path):
             L.append("- Commits: " + " · ".join(f"{u['date']} {u['subject']}" for u in b["unique_commits"][:5]) + (" · …" if b["unique_commit_count"] > 5 else ""))
         if c["top_files"]:
             L.append("- Files: " + ", ".join(f"`{f}`" for f in c["top_files"]))
+        if b.get("unique_content"):
+            L.append("- Content found only on this branch:")
+            for f, v in list(b["unique_content"].items())[:6]:
+                L.append(f"  - `{f}` — {v['lines']} line(s), e.g. " + " / ".join(f"`{s}`" for s in v["sample"][:2]))
         if b["stranded_count"]:
             L.append(f"- Stranded (exist nowhere else): " + ", ".join(f"`{f}`" for f in b["stranded_files"][:6]) + (f" (+{b['stranded_count']-6} more)" if b["stranded_count"] > 6 else ""))
         L.append(f"- Complete / working? {complete}")
