@@ -1618,6 +1618,7 @@ def restore_test_last_bundle(repo: Repo, log):
         return [f"bundle {bundles[-1]} does not verify: {r.stderr.strip()[:200]}"]
     fr = git(repo.path, "fetch", "--no-tags", b, "+refs/heads/*:refs/restore-test/heads/*", "+refs/archive/*:refs/restore-test/archive/*", check=False)
     if fr.returncode != 0:
+        # No point inspecting refs that were never fetched.
         return [f"restore-test: fetching {os.path.basename(b)} failed: {fr.stderr.strip()[:200]}"]
     if os.path.exists(refs_tsv):
         for line in list(open(refs_tsv))[1:]:
