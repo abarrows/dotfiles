@@ -190,7 +190,8 @@ class Repo:
         self.remote_url = gout(self.path, "remote", "get-url", "origin")
         self.has_remote = bool(self.remote_url) and self.opts.get("remote") != "none"
         self.slug = slug_from_url(self.remote_url) if self.has_remote else ""
-        self.local_branches = [b for b in gout(self.path, "for-each-ref", "refs/heads", "--format=%(refname:short)").split("\n") if b]
+        self.local_branches = [b[len("refs/heads/"):] for b in
+                               gout(self.path, "for-each-ref", "refs/heads", "--format=%(refname)").split("\n") if b]
         self.default = self.opts.get("default") or self.detect_default()
         self.protected_local = [b for b in self.local_branches if self.is_protected(b)]
         self.targets = self.integration_targets()
@@ -495,14 +496,17 @@ def audit_repo(repo: Repo, log, fetch=True):
             log(f"  fetched {len(want)} merged-PR head(s) so their branches can be judged")
 
     # --- branches
-    merged_sets = {t: set(gout(repo.path, "branch", "--format=%(refname:short)", "--merged", t).split("\n")) for t in repo.targets}
+    merged_sets = {t: {b[len("refs/heads/"):] for b in
+                       gout(repo.path, "branch", "--format=%(refname)", "--merged", t).split("\n") if b}
+                   for t in repo.targets}
     open_pr_branches = []
-    fmt = "%(refname:short)%09%(objectname)%09%(upstream:short)%09%(upstream:track,nobracket)%09%(committerdate:iso8601-strict)%09%(subject)"
+    fmt = "%(refname)%09%(objectname)%09%(upstream:short)%09%(upstream:track,nobracket)%09%(committerdate:iso8601-strict)%09%(subject)"
     branches = []
     for row in gout(repo.path, "for-each-ref", "refs/heads", f"--format={fmt}").split("\n"):
         if not row:
             continue
         name, sha, up, track, cdate, subject = (row.split("\t") + [""] * 6)[:6]
+        name = name[len("refs/heads/"):] if name.startswith("refs/heads/") else name
         b = {"name": name, "sha": sha, "upstream": up, "track": track, "commit_date": cdate[:10],
              "age_days": age_days(cdate), "subject": subject[:100], "protected": repo.is_protected(name),
              "noise": repo.is_noise_branch(name), "merged_into": [t for t, s in merged_sets.items() if name in s],
