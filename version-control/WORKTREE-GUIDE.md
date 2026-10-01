@@ -1,4 +1,13 @@
-# Git Worktree + VS Code/Windsurf: Common Pitfalls & Solutions
+# Git Worktree + VS Code/Windsurf: Convention & Common Pitfalls
+
+## Convention (2026-09)
+
+- Every worktree lives **inside the repo** at `<repo>/.claude/worktrees/<slug>/`, where `<slug>` is the branch name minus its prefix (`WR-20123-order-export`). This is the path Claude Code's `EnterWorktree` tool uses; always pass it a name so the directory matches the branch. Sibling layouts (`<repo>.worktrees/`, `<repo>-worktrees/`, flat `../worktree-*`) are retired.
+- Create by hand with `git worktree add .claude/worktrees/<slug> -b feature/WR-<n>-<slug> origin/develop` from the main checkout (use `origin/release/vX` for release-bound fixes).
+- Open a worktree as its own window (`code -n <path>` / `windsurf -n <path>`); never add it to the main window's workspace.
+- Tear down once the PR is open and pushed: `git worktree remove .claude/worktrees/<slug>` from the main checkout (or `ExitWorktree remove` in Claude Code). Never hand-delete branches; GitHub deletes the remote on merge and `repo-hygiene` reaps the local copy.
+- `**/.claude/worktrees/` is ignored globally via `~/.git-template-directory/.gitignore`; VS Code hides it through the user-level `files.exclude` / `search.exclude` / `files.watcherExclude` entries in `engineering/ide/.vscode/settings.json`.
+- Housekeeping: `repo-hygiene audit --repo . && repo-hygiene manifest --repo .` (read-only), then edit `.archive/<repo>/manifest.tsv` and `repo-hygiene apply --repo . --execute`. See `onboarding_bin/repo-hygiene/`.
 
 ## Overview
 
@@ -185,23 +194,23 @@ npm run lint-staged
 
 ### 8. **Search Results Include Other Worktrees**
 
-**Problem:** VS Code search finds files from other worktrees.
+**Problem:** VS Code search or Quick Open (Cmd+P) lists files from nested worktrees.
 
-**Cause:** VS Code indexes the entire repository, including other worktrees.
+**Cause:** `search.useIgnoreFiles` is `false`, so `.gitignore` is not consulted, or the `.claude/worktrees` globs are missing from the user settings.
 
-**Solution:**
+**Solution:** user settings only (already in `engineering/ide/.vscode/settings.json`):
 
 ```json
-// .vscode/settings.json
 {
-  "search.exclude": {
-    "**/.git": true,
-    "**/node_modules": true,
-    // Exclude other worktrees (adjust paths)
-    "../worktree-*": true
-  }
+  "files.exclude": { "**/.claude/worktrees": true },
+  "search.exclude": { "**/.claude/worktrees": true },
+  "files.watcherExclude": { "**/.claude/worktrees/**": true },
+  "search.useIgnoreFiles": true,
+  "search.useGlobalIgnoreFiles": true
 }
 ```
+
+Also keep tool globs from crawling nested worktrees: add `.claude` to `tsconfig.json` `exclude`, `**/.claude/**` to the Vitest/Jest `exclude`, and a Metro `blockList` in React Native repos.
 
 ---
 

@@ -30,7 +30,7 @@ Read this before editing anything — the flow spans several files:
 - `shell/` — zsh dotfiles: `.zshrc`, `.aliases.zsh`, `.functions.zsh`, `.plugins.zsh`, `.theme.zsh`, `starship.toml`, Warp/iTerm profiles. (Oh My Zsh + Starship; Warp is the default terminal — the iTerm config in `command_line.yml` is commented out.)
 - `engineering/` — `formatters/` (`.editorconfig`, prettier, htmlhint), `javascripts/` (`.nvmrc`, `.npmrc`), `ruby/` (erb-lint, better-html, fasterer, devcontainer, Dockerfile), `ide/.vscode/` (settings, keybindings, launch), `security/.ssh/`.
 - `version-control/` — git template directory (`hooks/`, `CODEOWNERS`, `commit-template.txt`, `.gitignore`, `.git-blame-ignore-revs`), plus `WORKTREE-GUIDE.md` and PR/README templates. Note: the global `~/.gitconfig` is **not** linked — it is built imperatively by a `shell:` block in `meta/configs/version_control.yml`.
-- `onboarding_bin/` — standalone, ad-hoc setup & maintenance shell scripts (Homebrew/rbenv/nvm/oh-my-zsh installers, ssh/gpg setup, branch/worktree pruning, VS Code extension management). Several configs invoke these via `shell:`.
+- `onboarding_bin/` — standalone, ad-hoc setup & maintenance shell scripts (Homebrew/rbenv/nvm/oh-my-zsh installers, ssh/gpg setup, `repo-hygiene/` (branch, worktree and stash cleanup), VS Code extension management). Several configs invoke these via `shell:`.
 - `operating_system/` — macOS preferences (`meta/configs/macosx.yml`).
 - `Brewfile.base` / `Brewfile.ruby` / `Brewfile.devops` — Homebrew bundles consumed by the `homebrew_*` configs.
 - `devops/`, `sandbox/` — DevOps notes and linter test fixtures.

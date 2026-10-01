@@ -825,6 +825,7 @@
   "files.autoSave": "off",
   "files.defaultLanguage": "${activeEditorLanguage}",
   "files.exclude": {
+    "**/.claude/worktrees": true,
     "**/.history": true,
     "**/.idea": true,
     "**/log/**.log": true,
@@ -835,6 +836,7 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "files.watcherExclude": {
+    "**/.claude/worktrees/**": true,
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/.hg/store/**": true,
@@ -995,6 +997,7 @@
   "scss.validate": false,
   "search.collapseResults": "alwaysCollapse",
   "search.exclude": {
+    "**/.claude/worktrees": true,
     "**/.coverage": true,
     "**/.git": true,
     "**/.history/**": true,
@@ -1011,7 +1014,8 @@
   },
   "search.globalFindClipboard": true,
   "search.quickOpen.includeHistory": false,
-  "search.useIgnoreFiles": false,
+  "search.useIgnoreFiles": true,
+  "search.useGlobalIgnoreFiles": true,
   "security.promptForLocalFileProtocolHandling": false,
   "security.workspace.trust.untrustedFiles": "open",
   // Extensions are owned by this repo (extensions*.txt), NOT Settings Sync.

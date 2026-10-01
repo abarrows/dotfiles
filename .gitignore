@@ -214,3 +214,7 @@ atlassian-ide-plugin.xml
 connections.xml
 server_instances.xml
 ruby/.gem*
+
+# Python bytecode (repo-hygiene)
+__pycache__/
+*.pyc

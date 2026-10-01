@@ -1,0 +1,68 @@
+# repo-hygiene configuration
+# Paths may use ~; they are expanded at load time so the file stays portable across machines. Patterns: `protected` uses shell globs (fnmatch);
+# `branch_noise` and `stash_noise` are regular expressions; `noise_paths` are
+# fnmatch globs tested against repo-relative paths (a `*` matches `/` too).
+
+root = "~/Retail-Success/repos"
+archive = "~/Retail-Success/repos/.archive"
+categories = ["admins", "development-team", "digital-products", "digital-services", "personal"]
+
+# Branch names that are never deleted and count as integration targets.
+protected = [
+  "develop", "main", "master", "production", "staging", "main-public",
+  "release/*", "hotfix/v*", "merge-down/*",
+]
+
+# Working-tree paths whose modifications are tool churn, not work.
+noise_paths = [
+  ".codegraph/*", "*.tsbuildinfo", ".husky/_/*", ".claude/*", ".DS_Store", "*/.DS_Store",
+]
+
+# Stash subjects (after stripping "On <branch>: " / "WIP on <branch>: ") that are tool churn.
+stash_noise = ["^autostash$", "^lint-staged automatic backup$", "^Teleport auto-stash$"]
+
+# Branches that are tool snapshots or bot branches: archive-delete regardless of age.
+branch_noise = [
+  "^cascade/", "^worktree-agent-", "^dependabot/",
+  "^claude/[a-z]+-[a-z]+-[0-9a-f]{6}$",
+]
+
+[thresholds]
+branch_age_days = 180
+stash_age_days = 90
+idle_worktree_days = 14
+oversized_bytes = 1073741824
+
+# Per-repo overrides. Keys are "<category>/<name>".
+[repos."development-team/dotfiles"]
+default = "production"
+
+[repos."development-team/Wayroo.tools"]
+generated_extra = ["ai/INDEX.md", "ai/map/*", "ai/knowledge/README.md", "ai/.claude-plugin/plugin.json", "ai/.obsidian/*"]
+default = "master"
+
+[repos."digital-products/Wayroo.Mobile.RN"]
+default = "main"
+
+[repos."personal/gocomics_ui"]
+default = "main"
+
+[repos."personal/template-nextjs-ui"]
+remote = "none"
+default = "main"
+
+[repos."digital-products/Luci.Shopping.UI"]
+valuable_ignored = ["src/api/cart.json", "src/api/db.json"]
+
+# Mobile repos name release-style branches without the `v` prefix.
+[repos."digital-products/Luci.iOS"]
+protected_extra = ["hotfix/*", "release-*"]
+
+[repos."digital-products/Luci.Android"]
+protected_extra = ["hotfix/*", "release-*"]
+
+# rs-agents packs regenerate INDEX.md, map/ and the knowledge/projects README tables with
+# scripts/generate-index.js, so they differ on every branch because the target moved on.
+[repos."personal/ai"]
+default = "main"
+generated_extra = ["ai/INDEX.md", "ai/map/*", "ai/knowledge/README.md", "ai/projects/README.md", "INDEX.md", "map/*"]

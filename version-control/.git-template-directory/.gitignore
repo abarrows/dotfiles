@@ -202,3 +202,6 @@ server_instances.xml
 ruby/.gem*
 
 **/.claude/settings.local.json
+
+# Claude Code worktrees live inside the repo (repo-hygiene convention, 2026-09)
+**/.claude/worktrees/
