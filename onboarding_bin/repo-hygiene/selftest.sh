@@ -109,6 +109,15 @@ test -f "$M2" || { echo "FAIL: no-target manifest was never written, so the guar
 test "$(awk -F'\t' '!/^#/ && $1=="branch"' "$M2" | wc -l | tr -d ' ')" -ge 2 || { echo "FAIL: no-target manifest has too few branch rows to be meaningful"; exit 1; }
 test -z "$(awk -F'\t' '!/^#/ && $1=="branch" && $2=="archive-delete"' "$M2")" || { echo "FAIL: a repo with no integration target prefilled a deletion"; exit 1; }
 test -n "$(awk -F'\t' '!/^#/ && $1=="branch" && $2=="review"' "$M2")" || { echo "FAIL: no-target repo should send branches to review"; exit 1; }
+# A tag sharing a branch's name makes %(refname:short) return "heads/<name>", which then fails
+# to resolve as refs/heads/<name> (regression: Luci.Shopping.UI release/v87.1).
+g checkout -q develop; g branch -q release/v9.9 2>/dev/null || true; g tag release/v9.9 2>/dev/null || true
+$RH audit --repo cat/demo --no-fetch >/dev/null 2>&1
+$RH manifest --repo cat/demo --force >/dev/null 2>&1
+BAD="$(awk -F'\t' '!/^#/ && $1=="branch" && $4 ~ /^heads\//' "$T/.archive/cat__demo/manifest.tsv" | wc -l | tr -d ' ')"
+test "$BAD" = "0" || { echo "FAIL: $BAD branch row(s) carry a heads/-prefixed name from a tag collision"; exit 1; }
+awk -F'\t' '!/^#/ && $1=="branch" && $4=="release/v9.9"' "$T/.archive/cat__demo/manifest.tsv" | grep -q . || { echo "FAIL: the colliding branch is not in the manifest under its real name"; exit 1; }
+echo "   tag/branch name collision resolves to the real branch name: ok"
 echo "   no-integration-target repo: $(awk -F'\t' '!/^#/ && $1=="branch"' "$M2" | wc -l | tr -d ' ') branch rows, 0 auto-deletes, review required: ok"
 g for-each-ref refs/archive --format='   restored %(refname)'
 echo "SELFTEST PASSED"
