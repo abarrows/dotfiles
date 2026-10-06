@@ -199,6 +199,7 @@ class Repo:
         self.thr = cfg["thresholds"]
         self._blob_hist = {}
         self._tree_cache = {}
+        self._cacheable = set(self.targets)
 
     def detect_default(self):
         head = gout(self.path, "symbolic-ref", "--short", "refs/remotes/origin/HEAD").replace("origin/", "")
@@ -258,7 +259,7 @@ class Repo:
         if cached is not None:
             return {p: cached[p] for p in paths if p in cached}
         args = ["ls-tree", "-r", "-z", "--format=%(objectname) %(path)", ref]
-        full = ref in self.targets
+        full = ref in self._cacheable
         if not full:
             args += ["--"] + paths
         out = git(self.path, *args, check=False).stdout
@@ -318,20 +319,46 @@ class Repo:
                     return []
             return [f"<binary file {path}, content differs from every target>"]
         before_set = {l.strip() for l in gout(self.path, "show", f"{mb}:{path}", default="").split("\n")}
+        # Read each DISTINCT blob once. Dozens of release branches usually share one version of a
+        # file, so this collapses ~40 `git show` calls into one or two `cat-file`s.
+        blobs = {self.blob_map(ref, [path]).get(path) for ref in (havens if havens is not None else [base])}
         safe = set()
-        for ref in (havens if havens is not None else [base]):
-            safe |= {l.strip() for l in gout(self.path, "show", f"{ref}:{path}", default="").split("\n")}
+        for sha in {b for b in blobs if b}:
+            safe |= {l.strip() for l in gout(self.path, "cat-file", "blob", sha, default="").split("\n")}
         added = [l for l in after.split("\n") if l.strip() and l.strip() not in before_set]
         return [l for l in added if l.strip() not in safe]
 
+    def mainline_refs(self, refs):
+        """Refs whose history is worth walking. Release and hotfix branches are cut from a trunk,
+        so anything that ever existed on one existed on its trunk too; walking all of them was the
+        single most expensive thing the audit did."""
+        trunks = [r for r in refs if r.rsplit("/", 1)[-1] in ("develop", "main", "master", "production", "staging")]
+        return trunks or list(refs[:1])
+
     def never_landed(self, base, head, havens=None):
-        """Hand-written paths whose version on `head` never existed in the history of any haven."""
+        """Hand-written paths whose version on `head` exists on no haven, now or at any point.
+
+        Two passes, cheap first: a path whose blob is in some haven's current tree is settled with
+        a dict lookup. Only what survives that needs a history walk, and only along the trunks."""
         diffs, n = self.hand_differences(base, head)
         if not diffs:
             return [], n
         hm = self.blob_map(head, diffs)
-        refs = havens if havens is not None else [base]
-        return [p for p in diffs if not any(self.blob_ever_on(r, p, hm.get(p, "")) for r in refs)], n
+        refs = list(havens if havens is not None else [base])
+        current = {}
+        for r in refs:
+            for pth, sha in self.blob_map(r, diffs).items():
+                current.setdefault(pth, set()).add(sha)
+        trunks = self.mainline_refs(refs)
+        out = []
+        for pth in diffs:
+            blob = hm.get(pth, "")
+            if blob and blob in current.get(pth, ()):
+                continue
+            if any(self.blob_ever_on(r, pth, blob) for r in trunks):
+                continue
+            out.append(pth)
+        return out, n
 
     def hand_differences(self, base, head):
         """Hand-written paths whose content differs between `head` and `base`.
@@ -525,6 +552,9 @@ def audit_repo(repo: Repo, log, fetch=True):
         if want:
             log(f"  fetched {len(want)} merged-PR head(s) so their branches can be judged")
 
+    open_pr_names = {p["headRefName"] for lst in prs.values() for p in lst if p["state"] == "OPEN"}
+    repo._cacheable |= {n for n in open_pr_names if n in repo.local_branches}
+
     # --- branches
     merged_sets = {t: {b[len("refs/heads/"):] for b in
                        gout(repo.path, "branch", "--format=%(refname)", "--merged", t).split("\n") if b}
@@ -564,6 +594,11 @@ def audit_repo(repo: Repo, log, fetch=True):
         branches.append(b)
 
     # expensive per-branch evidence only where a decision hinges on it
+    needs = [b for b in branches if b["bucket"] in ("D4", "D5", "D6", "D7") or
+             (b["bucket"] == "D2" and (b["tip_vs_pr_head"] not in ("equal", "ancestor") or not b["pr"]["base_protected"]))]
+    if len(needs) > 40:
+        log(f"  analysing content of {len(needs)} branches (the rest need no evidence)")
+    done = 0
     for b in branches:
         needs_evidence = b["bucket"] in ("D4", "D5", "D6", "D7") or (b["bucket"] == "D2" and (b["tip_vs_pr_head"] not in ("equal", "ancestor") or not b["pr"]["base_protected"]))
         if needs_evidence and repo.primary:
@@ -573,12 +608,14 @@ def audit_repo(repo: Repo, log, fetch=True):
             else:
                 b["cherry_unique"] = None if b["ahead"] > 50 else 0
             added = [p for p in gout(repo.path, "diff", "--diff-filter=A", "--name-only", f"{repo.primary}...{b['name']}").split("\n") if p]
-            stranded = []
             elsewhere = [ob for ob in open_pr_branches if ob != b["name"]] + [t for t in repo.targets if t != repo.primary]
-            for p in added[:200]:
-                if any(git(repo.path, "cat-file", "-e", f"{ob}:{p}", check=False).returncode == 0 for ob in elsewhere):
-                    continue
-                stranded.append(p)
+            probe = added[:200]
+            present = set()
+            for ob in elsewhere:
+                if not probe:
+                    break
+                present |= set(repo.blob_map(ob, probe))
+            stranded = [p for p in probe if p not in present]
             b["stranded_files"] = stranded[:20]
             b["stranded_count"] = len(stranded)
             commits = [l.split("\t", 2) for l in gout(repo.path, "log", "--no-merges", "--date=short", "--format=%h%x09%ad%x09%s", f"{repo.primary}..{b['name']}").split("\n") if l]
@@ -601,6 +638,9 @@ def audit_repo(repo: Repo, log, fetch=True):
             b["superseded_versions"] = [p for p in nl if p not in b["unique_content"]]
             b["content_superseded"] = b["hand_paths"] > 0 and not b["never_landed"]
             b["value"] = "none" if b["content_superseded"] else repo.value_rating(b["changes"], len(commits), b["age_days"], b["stranded_count"])
+            done += 1
+            if len(needs) > 40 and done % 50 == 0:
+                log(f"    ...{done}/{len(needs)} analysed")
         else:
             b["cherry_unique"] = None
             b["stranded_files"], b["stranded_count"] = [], 0
