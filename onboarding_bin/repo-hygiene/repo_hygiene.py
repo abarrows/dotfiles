@@ -198,6 +198,7 @@ class Repo:
         self.primary = self.targets[0] if self.targets else None
         self.thr = cfg["thresholds"]
         self._blob_hist = {}
+        self._tree_cache = {}
 
     def detect_default(self):
         head = gout(self.path, "symbolic-ref", "--short", "refs/remotes/origin/HEAD").replace("origin/", "")
@@ -243,16 +244,33 @@ class Repo:
         return [p for p in out.split("\0") if p]
 
     def blob_map(self, ref, paths):
-        """path -> blob sha for `ref`, restricted to `paths`. Missing paths are simply absent."""
-        want = set(paths)
-        out = git(self.path, "ls-tree", "-r", "-z", "--format=%(objectname) %(path)", ref, check=False).stdout
+        """path -> blob sha for `ref`, restricted to `paths`. Missing paths are simply absent.
+
+        Listing a whole tree costs the same whether one path is wanted or a thousand, and on a
+        repo with hundreds of branches that dominated the run. The integration target is listed
+        once and cached; every other ref is listed with the wanted paths as a pathspec, which git
+        resolves by walking only those entries. Paths are passed as argv, so spaces and non-ASCII
+        need no quoting."""
+        paths = list(paths)
+        if not paths:
+            return {}
+        cached = self._tree_cache.get(ref)
+        if cached is not None:
+            return {p: cached[p] for p in paths if p in cached}
+        args = ["ls-tree", "-r", "-z", "--format=%(objectname) %(path)", ref]
+        full = ref in self.targets
+        if not full:
+            args += ["--"] + paths
+        out = git(self.path, *args, check=False).stdout
         m = {}
         for rec in out.split("\0"):
             if not rec:
                 continue
             sha, _, path = rec.partition(" ")
-            if path in want:
-                m[path] = sha
+            m[path] = sha
+        if full:
+            self._tree_cache[ref] = m
+            return {p: m[p] for p in paths if p in m}
         return m
 
     def blob_ever_on(self, ref, path, blob, limit=400):
@@ -261,12 +279,16 @@ class Repo:
         usually moved on after the merge. What matters is whether this exact version ever landed."""
         key = (ref, path)
         if key not in self._blob_hist:
-            commits = [c for c in gout(self.path, "log", "--format=%H", "-n", str(limit), ref, "--", path).split("\n") if c]
+            # `--raw --no-abbrev` prints the post-image blob id for every commit that touched the
+            # path, so one call replaces the old walk of one `rev-parse` per commit.
+            out = gout(self.path, "log", "--format=", "--raw", "--no-abbrev", "-n", str(limit), ref, "--", path)
             seen = set()
-            for c in commits:
-                sha = gout(self.path, "rev-parse", f"{c}:{path}")
-                if sha:
-                    seen.add(sha)
+            for line in out.split("\n"):
+                if not line.startswith(":"):
+                    continue
+                parts = line.split("\t")[0].split()
+                if len(parts) >= 4 and len(parts[3]) == 40 and parts[3] != "0" * 40:
+                    seen.add(parts[3])
             self._blob_hist[key] = seen
         return blob in self._blob_hist[key]
 
