@@ -68,7 +68,7 @@ def run(args, cwd=None, check=True, env=None, input=None):
     # branch names containing ;, |, $() and friends are inert. The residual risk is argument
     # injection - a ref literally named `--upload-pack=...` would be read by git as an option -
     # so any such name is refused before it reaches git (see `safe_ref`).
-    r = subprocess.run(args, cwd=cwd, capture_output=True, text=True, env=env, input=input)
+    r = subprocess.run(args, cwd=cwd, capture_output=True, text=True, errors="replace", env=env, input=input)
     if check and r.returncode != 0:
         raise HygieneError(f"{' '.join(args)} (cwd={cwd}) rc={r.returncode}: {r.stderr.strip()}")
     return r
@@ -309,6 +309,14 @@ class Repo:
         after = gout(self.path, "show", f"{head}:{path}", default="")
         if not after:
             return []
+        if "\x00" in after[:8000] or "\ufffd" in after[:8000]:
+            # Not text: comparing "lines" is meaningless. Decide by blob identity instead, so a
+            # binary that already exists on a haven is correctly reported as carrying nothing new.
+            mine = self.blob_map(head, [path]).get(path)
+            for ref in (havens if havens is not None else [base]):
+                if mine and self.blob_map(ref, [path]).get(path) == mine:
+                    return []
+            return [f"<binary file {path}, content differs from every target>"]
         before_set = {l.strip() for l in gout(self.path, "show", f"{mb}:{path}", default="").split("\n")}
         safe = set()
         for ref in (havens if havens is not None else [base]):
