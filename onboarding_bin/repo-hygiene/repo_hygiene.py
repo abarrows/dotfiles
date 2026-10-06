@@ -737,7 +737,13 @@ def scan_orphans(repo: Repo, worktrees):
     candidates = []
     for container in (f"{repo.name}.worktree", f"{repo.name}.worktrees", f"{repo.name}-worktrees"):
         d = os.path.join(cat_dir, container)
-        if os.path.isdir(d):
+        if not os.path.isdir(d):
+            continue
+        # `<repo>.worktree` is sometimes a worktree itself rather than a folder of them. Listing
+        # its children then reported the repo's own src/, public/, .github/ ... as orphans.
+        if os.path.isfile(os.path.join(d, ".git")):
+            candidates.append(d)
+        else:
             candidates += [os.path.join(d, n) for n in sorted(os.listdir(d))]
     home = repo.worktree_home()
     if os.path.isdir(home):
