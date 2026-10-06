@@ -753,8 +753,12 @@ def scan_orphans(repo: Repo, worktrees):
         if n != repo.name and (n.startswith(f"{repo.name}-") or n.startswith("wt-") or n == f"{repo.name}.worktree") and os.path.isdir(p):
             candidates.append(p)
     out = []
+    seen = set()
     for p in candidates:
         ap = os.path.realpath(p)
+        if ap in seen:          # a path can match more than one scan pattern
+            continue
+        seen.add(ap)
         gitfile = os.path.join(ap, ".git")
         if ap in registered or not os.path.isfile(gitfile):
             if os.path.isdir(ap) and not os.path.exists(gitfile) and ap not in registered and os.path.dirname(ap) != cat_dir:
