@@ -1200,8 +1200,12 @@ def write_review(repo: Repo, audit, rows, path):
     return len(hi)
 
 
+SECTION_TITLES = {"NEEDS YOUR DECISION": "decide", "PRE-FILLED, PLEASE SKIM": "prefilled", "AUTO (collapsed)": "auto"}
+
+
 def read_manifest(path):
     header, rows = {}, []
+    section = "prefilled"
     with open(path) as f:
         for line in f:
             line = line.rstrip("\n")
@@ -1209,13 +1213,20 @@ def read_manifest(path):
                 for part in line.split("\t")[1:]:
                     k, _, v = part.partition("=")
                     header[k] = v
+            elif line.startswith("# ---- "):
+                title = line[len("# ---- "):].rsplit(" (", 1)[0]
+                section = SECTION_TITLES.get(title, section)
             elif not line or line.startswith("#") or line.startswith("kind\t"):
                 continue
             else:
                 vals = line.split("\t")
                 if len(vals) < len(MANIFEST_COLUMNS):
                     vals += [""] * (len(MANIFEST_COLUMNS) - len(vals))
-                rows.append(dict(zip(MANIFEST_COLUMNS, vals)))
+                r = dict(zip(MANIFEST_COLUMNS, vals))
+                # `section` is implied by the header a row sits under, not a column; keep it so a
+                # manifest that is read and written back (e.g. `mark`) round-trips unchanged.
+                r["section"] = section
+                rows.append(r)
     return header, rows
 
 
@@ -1901,6 +1912,85 @@ def cmd_recover(cfg, args):
         audit_repo(repo, log, fetch=False)
 
 
+def cmd_mark(cfg, args):
+    """Set the action column on manifest rows from a decisions file.
+
+    Each non-blank, non-`#` line of --from is `kind<TAB>action<TAB>name`, where name is the
+    exact branch or stash name, or any unambiguous trailing part of a worktree path. Only
+    rows currently marked `review` are changed unless --force. An entry that matches no row,
+    or more than one, is an error and nothing is written, so a typo can never silently no-op.
+    """
+    allowed = {"branch": BRANCH_ACTIONS, "worktree": WORKTREE_ACTIONS, "stash": STASH_ACTIONS}
+    settable = {"keep", "pr", "archive-delete", "export-drop", "drop", "remove", "salvage-remove", "migrate", "repair"}
+    specs = []
+    with open(args.source) as f:
+        for n, line in enumerate(f, 1):
+            line = line.rstrip("\n")
+            if not line.strip() or line.lstrip().startswith("#"):
+                continue
+            parts = [p.strip() for p in line.split("\t") if p.strip()]
+            if len(parts) != 3:
+                raise HygieneError(f"{args.source}:{n}: expected 'kind<TAB>action<TAB>name', got {line!r}")
+            kind, action, name = parts
+            if kind not in allowed:
+                raise HygieneError(f"{args.source}:{n}: unknown kind {kind!r}")
+            if action not in allowed[kind] or action not in settable:
+                raise HygieneError(f"{args.source}:{n}: action {action!r} is not settable for {kind}; "
+                                   f"allowed: {sorted(allowed[kind] & settable)}")
+            specs.append((kind, action, name, n))
+
+    for repo in repos_from_args(cfg, args):
+        audit = repo.load_audit()
+        target = args.manifest or os.path.join(repo.archive, "manifest.tsv")
+        if not os.path.exists(target):
+            raise HygieneError(f"no manifest at {target}; run `repo-hygiene manifest --repo {repo.rel}` first")
+        header, rows = read_manifest(target)
+        if header.get("audit-id") != audit["audit_id"]:
+            raise HygieneError(f"{target} was generated from audit {header.get('audit-id')} but the latest is "
+                               f"{audit['audit_id']}; re-run `manifest` (your marks carry forward) then `mark` again")
+        changes, errors, already = [], [], 0
+        for kind, action, name, n in specs:
+            if kind == "worktree":
+                hits = [r for r in rows if r["kind"] == kind and (r["name"] == name or r["name"].endswith("/" + name.lstrip("/")))]
+            else:
+                hits = [r for r in rows if r["kind"] == kind and r["name"] == name]
+            if not hits:
+                errors.append(f"{args.source}:{n}: no {kind} row matches {name!r}")
+                continue
+            if len(hits) > 1:
+                errors.append(f"{args.source}:{n}: {name!r} matches {len(hits)} {kind} rows: "
+                              + ", ".join(h["name"] for h in hits))
+                continue
+            row = hits[0]
+            if row["action"] == action:
+                # Already where this file wants it — e.g. the mark was carried forward by a
+                # `manifest` regenerate. Re-running the same decisions file must be a no-op.
+                already += 1
+                continue
+            # The `decide` and `prefilled` sections are the human's to set. The `auto` section holds
+            # the engine's own provably-safe defaults, so overriding one takes --force.
+            if row.get("section") == "auto" and not args.force:
+                errors.append(f"{args.source}:{n}: {name!r} is an AUTO row set to `{row['action']}` and this file "
+                              f"asks for `{action}`; pass --force to override an engine default")
+                continue
+            changes.append((row, action))
+        if errors:
+            for e in errors:
+                print(f"error: {e}", file=sys.stderr)
+            raise HygieneError(f"{len(errors)} unusable entr{'y' if len(errors) == 1 else 'ies'}; manifest not written")
+        for row, action in changes:
+            print(f"  {row['kind']:9s} {row['action']:14s} -> {action:14s} {row['name']}")
+            row["action"] = action
+        shutil.copyfile(target, target + ".bak")
+        write_manifest(repo, audit, rows, target)
+        left = [r["name"] for r in rows if r["action"] == "review"]
+        print(f"{repo.rel}: {len(changes)} row(s) marked in {target} (previous copy: manifest.tsv.bak)"
+              + (f", {already} already set" if already else "")
+              + f"; {len(left)} `review` row(s) remain")
+        for name in left:
+            print(f"  still review: {name}")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="repo-hygiene", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--config", default=os.environ.get("REPO_HYGIENE_CONFIG", os.path.join(HERE, "hygiene.toml")))
@@ -1913,6 +2003,11 @@ def main(argv=None):
             p.add_argument("--all", action="store_true", help="every main checkout under root/<categories>")
     p = sub.add_parser("audit"); common(p); p.add_argument("--no-fetch", action="store_true"); p.set_defaults(fn=cmd_audit)
     p = sub.add_parser("manifest"); common(p); p.add_argument("--force", action="store_true", help="overwrite an edited manifest.tsv"); p.set_defaults(fn=cmd_manifest)
+    p = sub.add_parser("mark"); common(p)
+    p.add_argument("--from", dest="source", required=True, help="decisions file: 'kind<TAB>action<TAB>name' per line")
+    p.add_argument("--manifest", help="path to manifest.tsv (default .archive/<repo>/manifest.tsv)")
+    p.add_argument("--force", action="store_true", help="also overwrite rows that are not `review`")
+    p.set_defaults(fn=cmd_mark)
     p = sub.add_parser("apply"); common(p)
     p.add_argument("--execute", action="store_true", help="perform the actions (default is dry-run)")
     p.add_argument("--manifest", help="path to manifest.tsv (default .archive/<repo>/manifest.tsv)")

@@ -53,23 +53,44 @@ echo "== audit"; $RH audit --repo cat/demo
 echo "== manifest"; $RH manifest --repo cat/demo
 M="$T/.archive/cat__demo/manifest.tsv"
 echo "-- manifest as generated:"; grep -v '^#' "$M" | cut -f1-4,10 | column -t -s $'\t' | sed 's/^/   /'
-# simulate the user's marks
-python3 - "$M" <<'EOF'
-import sys
-p = sys.argv[1]; out = []
-for line in open(p):
-    if line.startswith("#") or line.startswith("kind\t"):
-        out.append(line); continue
-    c = line.rstrip("\n").split("\t")
-    kind, action, name = c[0], c[1], c[3]
-    if kind == "branch" and name == "feature/unique": c[1] = "archive-delete"
-    if kind == "branch" and name == "feature/gone": c[1] = "keep"
-    if kind == "branch" and name == "feature/wtdirty": c[1] = "archive-delete"
-    if kind == "worktree" and name.endswith("wt-dirty"): c[1] = "salvage-remove"
-    if kind == "stash" and "named wip" in line: c[1] = "export-drop"
-    out.append("\t".join(c) + "\n")
-open(p, "w").write("".join(out))
-EOF
+# the user's marks, applied through the `mark` subcommand (the documented path)
+NAMED_STASH_ROW="$(awk -F'\t' '!/^#/ && $1=="stash" && /named wip/{print $4}' "$M")"
+D="$T/.archive/cat__demo/decisions.tsv"
+{
+  printf 'branch\tarchive-delete\tfeature/unique\n'
+  printf 'branch\tkeep\tfeature/gone\n'
+  printf 'branch\tarchive-delete\tfeature/wtdirty\n'
+  printf 'worktree\tsalvage-remove\twt-dirty\n'
+  [ -n "$NAMED_STASH_ROW" ] && printf 'stash\texport-drop\t%s\n' "$NAMED_STASH_ROW"
+} > "$D"
+echo "== mark"; $RH mark --repo cat/demo --from "$D"
+# an entry that matches nothing must abort without writing, so a typo cannot silently no-op
+cp "$M" "$M.probe"
+printf 'branch\tkeep\tfeature/does-not-exist\n' > "$D.bad"
+if $RH mark --repo cat/demo --from "$D.bad" >/dev/null 2>&1; then
+  echo "FAIL: mark accepted an unmatched entry"; exit 1
+fi
+cmp -s "$M" "$M.probe" || { echo "FAIL: mark wrote the manifest despite an unusable entry"; exit 1; }
+echo "   mark rejects an unmatched entry and leaves the manifest untouched: ok"
+# re-running the same decisions file must be a no-op, not an error (marks survive a regenerate)
+$RH mark --repo cat/demo --from "$D" | grep -q 'already set' || { echo "FAIL: mark is not idempotent"; exit 1; }
+cmp -s "$M" "$M.probe" || { echo "FAIL: idempotent mark changed the manifest"; exit 1; }
+echo "   mark is idempotent when every row is already decided: ok"
+# an AUTO row carries the engine's own provably-safe default, so overriding one takes --force
+AUTO_ROW="$(awk -F'\t' '!/^#/ && $1=="branch" && $2=="archive-delete" && $3=="D1"{print $4; exit}' "$M")"
+printf 'branch\tkeep\t%s\n' "$AUTO_ROW" > "$D.auto"
+if $RH mark --repo cat/demo --from "$D.auto" >/dev/null 2>&1; then
+  echo "FAIL: mark overrode an AUTO row without --force"; exit 1
+fi
+cmp -s "$M" "$M.probe" || { echo "FAIL: refused AUTO override still wrote the manifest"; exit 1; }
+$RH mark --repo cat/demo --from "$D.auto" --force >/dev/null
+[ "$(awk -F'\t' -v b="$AUTO_ROW" '!/^#/ && $1=="branch" && $4==b{print $2}' "$M")" = "keep" ] \
+  || { echo "FAIL: --force did not override the AUTO row"; exit 1; }
+echo "   mark needs --force to override an AUTO row, and --force works: ok"
+# put it back so the rest of the selftest sees the original plan
+printf 'branch\tarchive-delete\t%s\n' "$AUTO_ROW" > "$D.auto"
+$RH mark --repo cat/demo --from "$D.auto" --force >/dev/null
+rm -f "$M.probe" "$D.bad" "$D.auto"
 echo "== apply (dry)"; $RH apply --repo cat/demo
 SHAS="$(for b in feature/merged feature/squashed feature/unique feature/wtdirty; do g rev-parse "$b"; done)"
 STASH_NAMED="$(g stash list --format=%H | tail -1)"
