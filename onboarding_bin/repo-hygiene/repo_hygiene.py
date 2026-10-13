@@ -68,7 +68,7 @@ def run(args, cwd=None, check=True, env=None, input=None):
     # branch names containing ;, |, $() and friends are inert. The residual risk is argument
     # injection - a ref literally named `--upload-pack=...` would be read by git as an option -
     # so any such name is refused before it reaches git (see `safe_ref`).
-    r = subprocess.run(args, cwd=cwd, capture_output=True, text=True, env=env, input=input)
+    r = subprocess.run(args, cwd=cwd, capture_output=True, text=True, errors="replace", env=env, input=input)
     if check and r.returncode != 0:
         raise HygieneError(f"{' '.join(args)} (cwd={cwd}) rc={r.returncode}: {r.stderr.strip()}")
     return r
@@ -198,6 +198,8 @@ class Repo:
         self.primary = self.targets[0] if self.targets else None
         self.thr = cfg["thresholds"]
         self._blob_hist = {}
+        self._tree_cache = {}
+        self._cacheable = set(self.targets)
 
     def detect_default(self):
         head = gout(self.path, "symbolic-ref", "--short", "refs/remotes/origin/HEAD").replace("origin/", "")
@@ -243,16 +245,33 @@ class Repo:
         return [p for p in out.split("\0") if p]
 
     def blob_map(self, ref, paths):
-        """path -> blob sha for `ref`, restricted to `paths`. Missing paths are simply absent."""
-        want = set(paths)
-        out = git(self.path, "ls-tree", "-r", "-z", "--format=%(objectname) %(path)", ref, check=False).stdout
+        """path -> blob sha for `ref`, restricted to `paths`. Missing paths are simply absent.
+
+        Listing a whole tree costs the same whether one path is wanted or a thousand, and on a
+        repo with hundreds of branches that dominated the run. The integration target is listed
+        once and cached; every other ref is listed with the wanted paths as a pathspec, which git
+        resolves by walking only those entries. Paths are passed as argv, so spaces and non-ASCII
+        need no quoting."""
+        paths = list(paths)
+        if not paths:
+            return {}
+        cached = self._tree_cache.get(ref)
+        if cached is not None:
+            return {p: cached[p] for p in paths if p in cached}
+        args = ["ls-tree", "-r", "-z", "--format=%(objectname) %(path)", ref]
+        full = ref in self._cacheable
+        if not full:
+            args += ["--"] + paths
+        out = git(self.path, *args, check=False).stdout
         m = {}
         for rec in out.split("\0"):
             if not rec:
                 continue
             sha, _, path = rec.partition(" ")
-            if path in want:
-                m[path] = sha
+            m[path] = sha
+        if full:
+            self._tree_cache[ref] = m
+            return {p: m[p] for p in paths if p in m}
         return m
 
     def blob_ever_on(self, ref, path, blob, limit=400):
@@ -261,12 +280,16 @@ class Repo:
         usually moved on after the merge. What matters is whether this exact version ever landed."""
         key = (ref, path)
         if key not in self._blob_hist:
-            commits = [c for c in gout(self.path, "log", "--format=%H", "-n", str(limit), ref, "--", path).split("\n") if c]
+            # `--raw --no-abbrev` prints the post-image blob id for every commit that touched the
+            # path, so one call replaces the old walk of one `rev-parse` per commit.
+            out = gout(self.path, "log", "--format=", "--raw", "--no-abbrev", "-n", str(limit), ref, "--", path)
             seen = set()
-            for c in commits:
-                sha = gout(self.path, "rev-parse", f"{c}:{path}")
-                if sha:
-                    seen.add(sha)
+            for line in out.split("\n"):
+                if not line.startswith(":"):
+                    continue
+                parts = line.split("\t")[0].split()
+                if len(parts) >= 4 and len(parts[3]) == 40 and parts[3] != "0" * 40:
+                    seen.add(parts[3])
             self._blob_hist[key] = seen
         return blob in self._blob_hist[key]
 
@@ -287,21 +310,55 @@ class Repo:
         after = gout(self.path, "show", f"{head}:{path}", default="")
         if not after:
             return []
+        if "\x00" in after[:8000] or "\ufffd" in after[:8000]:
+            # Not text: comparing "lines" is meaningless. Decide by blob identity instead, so a
+            # binary that already exists on a haven is correctly reported as carrying nothing new.
+            mine = self.blob_map(head, [path]).get(path)
+            for ref in (havens if havens is not None else [base]):
+                if mine and self.blob_map(ref, [path]).get(path) == mine:
+                    return []
+            return [f"<binary file {path}, content differs from every target>"]
         before_set = {l.strip() for l in gout(self.path, "show", f"{mb}:{path}", default="").split("\n")}
+        # Read each DISTINCT blob once. Dozens of release branches usually share one version of a
+        # file, so this collapses ~40 `git show` calls into one or two `cat-file`s.
+        blobs = {self.blob_map(ref, [path]).get(path) for ref in (havens if havens is not None else [base])}
         safe = set()
-        for ref in (havens if havens is not None else [base]):
-            safe |= {l.strip() for l in gout(self.path, "show", f"{ref}:{path}", default="").split("\n")}
+        for sha in {b for b in blobs if b}:
+            safe |= {l.strip() for l in gout(self.path, "cat-file", "blob", sha, default="").split("\n")}
         added = [l for l in after.split("\n") if l.strip() and l.strip() not in before_set]
         return [l for l in added if l.strip() not in safe]
 
+    def mainline_refs(self, refs):
+        """Refs whose history is worth walking. Release and hotfix branches are cut from a trunk,
+        so anything that ever existed on one existed on its trunk too; walking all of them was the
+        single most expensive thing the audit did."""
+        trunks = [r for r in refs if r.rsplit("/", 1)[-1] in ("develop", "main", "master", "production", "staging")]
+        return trunks or list(refs[:1])
+
     def never_landed(self, base, head, havens=None):
-        """Hand-written paths whose version on `head` never existed in the history of any haven."""
+        """Hand-written paths whose version on `head` exists on no haven, now or at any point.
+
+        Two passes, cheap first: a path whose blob is in some haven's current tree is settled with
+        a dict lookup. Only what survives that needs a history walk, and only along the trunks."""
         diffs, n = self.hand_differences(base, head)
         if not diffs:
             return [], n
         hm = self.blob_map(head, diffs)
-        refs = havens if havens is not None else [base]
-        return [p for p in diffs if not any(self.blob_ever_on(r, p, hm.get(p, "")) for r in refs)], n
+        refs = list(havens if havens is not None else [base])
+        current = {}
+        for r in refs:
+            for pth, sha in self.blob_map(r, diffs).items():
+                current.setdefault(pth, set()).add(sha)
+        trunks = self.mainline_refs(refs)
+        out = []
+        for pth in diffs:
+            blob = hm.get(pth, "")
+            if blob and blob in current.get(pth, ()):
+                continue
+            if any(self.blob_ever_on(r, pth, blob) for r in trunks):
+                continue
+            out.append(pth)
+        return out, n
 
     def hand_differences(self, base, head):
         """Hand-written paths whose content differs between `head` and `base`.
@@ -495,6 +552,9 @@ def audit_repo(repo: Repo, log, fetch=True):
         if want:
             log(f"  fetched {len(want)} merged-PR head(s) so their branches can be judged")
 
+    open_pr_names = {p["headRefName"] for lst in prs.values() for p in lst if p["state"] == "OPEN"}
+    repo._cacheable |= {n for n in open_pr_names if n in repo.local_branches}
+
     # --- branches
     merged_sets = {t: {b[len("refs/heads/"):] for b in
                        gout(repo.path, "branch", "--format=%(refname)", "--merged", t).split("\n") if b}
@@ -534,6 +594,11 @@ def audit_repo(repo: Repo, log, fetch=True):
         branches.append(b)
 
     # expensive per-branch evidence only where a decision hinges on it
+    needs = [b for b in branches if b["bucket"] in ("D4", "D5", "D6", "D7") or
+             (b["bucket"] == "D2" and (b["tip_vs_pr_head"] not in ("equal", "ancestor") or not b["pr"]["base_protected"]))]
+    if len(needs) > 40:
+        log(f"  analysing content of {len(needs)} branches (the rest need no evidence)")
+    done = 0
     for b in branches:
         needs_evidence = b["bucket"] in ("D4", "D5", "D6", "D7") or (b["bucket"] == "D2" and (b["tip_vs_pr_head"] not in ("equal", "ancestor") or not b["pr"]["base_protected"]))
         if needs_evidence and repo.primary:
@@ -543,12 +608,14 @@ def audit_repo(repo: Repo, log, fetch=True):
             else:
                 b["cherry_unique"] = None if b["ahead"] > 50 else 0
             added = [p for p in gout(repo.path, "diff", "--diff-filter=A", "--name-only", f"{repo.primary}...{b['name']}").split("\n") if p]
-            stranded = []
             elsewhere = [ob for ob in open_pr_branches if ob != b["name"]] + [t for t in repo.targets if t != repo.primary]
-            for p in added[:200]:
-                if any(git(repo.path, "cat-file", "-e", f"{ob}:{p}", check=False).returncode == 0 for ob in elsewhere):
-                    continue
-                stranded.append(p)
+            probe = added[:200]
+            present = set()
+            for ob in elsewhere:
+                if not probe:
+                    break
+                present |= set(repo.blob_map(ob, probe))
+            stranded = [p for p in probe if p not in present]
             b["stranded_files"] = stranded[:20]
             b["stranded_count"] = len(stranded)
             commits = [l.split("\t", 2) for l in gout(repo.path, "log", "--no-merges", "--date=short", "--format=%h%x09%ad%x09%s", f"{repo.primary}..{b['name']}").split("\n") if l]
@@ -571,6 +638,9 @@ def audit_repo(repo: Repo, log, fetch=True):
             b["superseded_versions"] = [p for p in nl if p not in b["unique_content"]]
             b["content_superseded"] = b["hand_paths"] > 0 and not b["never_landed"]
             b["value"] = "none" if b["content_superseded"] else repo.value_rating(b["changes"], len(commits), b["age_days"], b["stranded_count"])
+            done += 1
+            if len(needs) > 40 and done % 50 == 0:
+                log(f"    ...{done}/{len(needs)} analysed")
         else:
             b["cherry_unique"] = None
             b["stranded_files"], b["stranded_count"] = [], 0
@@ -667,7 +737,13 @@ def scan_orphans(repo: Repo, worktrees):
     candidates = []
     for container in (f"{repo.name}.worktree", f"{repo.name}.worktrees", f"{repo.name}-worktrees"):
         d = os.path.join(cat_dir, container)
-        if os.path.isdir(d):
+        if not os.path.isdir(d):
+            continue
+        # `<repo>.worktree` is sometimes a worktree itself rather than a folder of them. Listing
+        # its children then reported the repo's own src/, public/, .github/ ... as orphans.
+        if os.path.isfile(os.path.join(d, ".git")):
+            candidates.append(d)
+        else:
             candidates += [os.path.join(d, n) for n in sorted(os.listdir(d))]
     home = repo.worktree_home()
     if os.path.isdir(home):
@@ -677,8 +753,12 @@ def scan_orphans(repo: Repo, worktrees):
         if n != repo.name and (n.startswith(f"{repo.name}-") or n.startswith("wt-") or n == f"{repo.name}.worktree") and os.path.isdir(p):
             candidates.append(p)
     out = []
+    seen = set()
     for p in candidates:
         ap = os.path.realpath(p)
+        if ap in seen:          # a path can match more than one scan pattern
+            continue
+        seen.add(ap)
         gitfile = os.path.join(ap, ".git")
         if ap in registered or not os.path.isfile(gitfile):
             if os.path.isdir(ap) and not os.path.exists(gitfile) and ap not in registered and os.path.dirname(ap) != cat_dir:
@@ -1120,8 +1200,12 @@ def write_review(repo: Repo, audit, rows, path):
     return len(hi)
 
 
+SECTION_TITLES = {"NEEDS YOUR DECISION": "decide", "PRE-FILLED, PLEASE SKIM": "prefilled", "AUTO (collapsed)": "auto"}
+
+
 def read_manifest(path):
     header, rows = {}, []
+    section = "prefilled"
     with open(path) as f:
         for line in f:
             line = line.rstrip("\n")
@@ -1129,13 +1213,20 @@ def read_manifest(path):
                 for part in line.split("\t")[1:]:
                     k, _, v = part.partition("=")
                     header[k] = v
+            elif line.startswith("# ---- "):
+                title = line[len("# ---- "):].rsplit(" (", 1)[0]
+                section = SECTION_TITLES.get(title, section)
             elif not line or line.startswith("#") or line.startswith("kind\t"):
                 continue
             else:
                 vals = line.split("\t")
                 if len(vals) < len(MANIFEST_COLUMNS):
                     vals += [""] * (len(MANIFEST_COLUMNS) - len(vals))
-                rows.append(dict(zip(MANIFEST_COLUMNS, vals)))
+                r = dict(zip(MANIFEST_COLUMNS, vals))
+                # `section` is implied by the header a row sits under, not a column; keep it so a
+                # manifest that is read and written back (e.g. `mark`) round-trips unchanged.
+                r["section"] = section
+                rows.append(r)
     return header, rows
 
 
@@ -1821,6 +1912,85 @@ def cmd_recover(cfg, args):
         audit_repo(repo, log, fetch=False)
 
 
+def cmd_mark(cfg, args):
+    """Set the action column on manifest rows from a decisions file.
+
+    Each non-blank, non-`#` line of --from is `kind<TAB>action<TAB>name`, where name is the
+    exact branch or stash name, or any unambiguous trailing part of a worktree path. Only
+    rows currently marked `review` are changed unless --force. An entry that matches no row,
+    or more than one, is an error and nothing is written, so a typo can never silently no-op.
+    """
+    allowed = {"branch": BRANCH_ACTIONS, "worktree": WORKTREE_ACTIONS, "stash": STASH_ACTIONS}
+    settable = {"keep", "pr", "archive-delete", "export-drop", "drop", "remove", "salvage-remove", "migrate", "repair"}
+    specs = []
+    with open(args.source) as f:
+        for n, line in enumerate(f, 1):
+            line = line.rstrip("\n")
+            if not line.strip() or line.lstrip().startswith("#"):
+                continue
+            parts = [p.strip() for p in line.split("\t") if p.strip()]
+            if len(parts) != 3:
+                raise HygieneError(f"{args.source}:{n}: expected 'kind<TAB>action<TAB>name', got {line!r}")
+            kind, action, name = parts
+            if kind not in allowed:
+                raise HygieneError(f"{args.source}:{n}: unknown kind {kind!r}")
+            if action not in allowed[kind] or action not in settable:
+                raise HygieneError(f"{args.source}:{n}: action {action!r} is not settable for {kind}; "
+                                   f"allowed: {sorted(allowed[kind] & settable)}")
+            specs.append((kind, action, name, n))
+
+    for repo in repos_from_args(cfg, args):
+        audit = repo.load_audit()
+        target = args.manifest or os.path.join(repo.archive, "manifest.tsv")
+        if not os.path.exists(target):
+            raise HygieneError(f"no manifest at {target}; run `repo-hygiene manifest --repo {repo.rel}` first")
+        header, rows = read_manifest(target)
+        if header.get("audit-id") != audit["audit_id"]:
+            raise HygieneError(f"{target} was generated from audit {header.get('audit-id')} but the latest is "
+                               f"{audit['audit_id']}; re-run `manifest` (your marks carry forward) then `mark` again")
+        changes, errors, already = [], [], 0
+        for kind, action, name, n in specs:
+            if kind == "worktree":
+                hits = [r for r in rows if r["kind"] == kind and (r["name"] == name or r["name"].endswith("/" + name.lstrip("/")))]
+            else:
+                hits = [r for r in rows if r["kind"] == kind and r["name"] == name]
+            if not hits:
+                errors.append(f"{args.source}:{n}: no {kind} row matches {name!r}")
+                continue
+            if len(hits) > 1:
+                errors.append(f"{args.source}:{n}: {name!r} matches {len(hits)} {kind} rows: "
+                              + ", ".join(h["name"] for h in hits))
+                continue
+            row = hits[0]
+            if row["action"] == action:
+                # Already where this file wants it — e.g. the mark was carried forward by a
+                # `manifest` regenerate. Re-running the same decisions file must be a no-op.
+                already += 1
+                continue
+            # The `decide` and `prefilled` sections are the human's to set. The `auto` section holds
+            # the engine's own provably-safe defaults, so overriding one takes --force.
+            if row.get("section") == "auto" and not args.force:
+                errors.append(f"{args.source}:{n}: {name!r} is an AUTO row set to `{row['action']}` and this file "
+                              f"asks for `{action}`; pass --force to override an engine default")
+                continue
+            changes.append((row, action))
+        if errors:
+            for e in errors:
+                print(f"error: {e}", file=sys.stderr)
+            raise HygieneError(f"{len(errors)} unusable entr{'y' if len(errors) == 1 else 'ies'}; manifest not written")
+        for row, action in changes:
+            print(f"  {row['kind']:9s} {row['action']:14s} -> {action:14s} {row['name']}")
+            row["action"] = action
+        shutil.copyfile(target, target + ".bak")
+        write_manifest(repo, audit, rows, target)
+        left = [r["name"] for r in rows if r["action"] == "review"]
+        print(f"{repo.rel}: {len(changes)} row(s) marked in {target} (previous copy: manifest.tsv.bak)"
+              + (f", {already} already set" if already else "")
+              + f"; {len(left)} `review` row(s) remain")
+        for name in left:
+            print(f"  still review: {name}")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="repo-hygiene", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--config", default=os.environ.get("REPO_HYGIENE_CONFIG", os.path.join(HERE, "hygiene.toml")))
@@ -1833,6 +2003,11 @@ def main(argv=None):
             p.add_argument("--all", action="store_true", help="every main checkout under root/<categories>")
     p = sub.add_parser("audit"); common(p); p.add_argument("--no-fetch", action="store_true"); p.set_defaults(fn=cmd_audit)
     p = sub.add_parser("manifest"); common(p); p.add_argument("--force", action="store_true", help="overwrite an edited manifest.tsv"); p.set_defaults(fn=cmd_manifest)
+    p = sub.add_parser("mark"); common(p)
+    p.add_argument("--from", dest="source", required=True, help="decisions file: 'kind<TAB>action<TAB>name' per line")
+    p.add_argument("--manifest", help="path to manifest.tsv (default .archive/<repo>/manifest.tsv)")
+    p.add_argument("--force", action="store_true", help="also overwrite rows that are not `review`")
+    p.set_defaults(fn=cmd_mark)
     p = sub.add_parser("apply"); common(p)
     p.add_argument("--execute", action="store_true", help="perform the actions (default is dry-run)")
     p.add_argument("--manifest", help="path to manifest.tsv (default .archive/<repo>/manifest.tsv)")
