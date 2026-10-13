@@ -114,6 +114,9 @@ alias rspeccontroller="rails g controller_test $1"
 # Node and Javascript
 alias wpd="./bin/webpack-dev-server"
 
+# AI Utilities
+alias cct='claude --agent rs-agents:orchestrator'  # ticket work: orchestrator as the main thread
+
 # Personal
 alias personal="cd ~/$CURRENT_COMPANY/repos/personal"
 alias ai="cd ~/$CURRENT_COMPANY/repos/personal/ai && $IDE_PATH ."
