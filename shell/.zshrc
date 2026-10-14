@@ -23,6 +23,11 @@ else
   export PATH="/usr/local/bin:$PATH"
 fi
 
+# Warp specific bug not persisting session
+# https://github.com/warpdotdev/warp/issues/16205
+CLAUDE_CODE_FORCE_SESSION_PERSISTENCE=1
+MCP_GATEWAY_DOCKER_BIND_ALLOWED_PATHS=/Users/andyb
+
 # The system paths are implicitly included, but can be specified if needed.
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 

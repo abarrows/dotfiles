@@ -114,6 +114,11 @@ alias rspeccontroller="rails g controller_test $1"
 # Node and Javascript
 alias wpd="./bin/webpack-dev-server"
 
+# AI Utilities
+alias claude-last='cat $(ls -t ~/.claude/projects/*/*.jsonl | head -n 1) | grep '\''"role":"assistant"'\'' | tail -n 1 | sed -E '\''s/.*"content":"([^"]*)".*/\1/'\'' | sed '\''s/\\n/\n/g'\'''
+alias cct='claude --agent rs-agents:orchestrator'  # ticket work: orchestrator as the main thread
+
+
 # Personal
 alias personal="cd ~/$CURRENT_COMPANY/repos/personal"
 alias ai="cd ~/$CURRENT_COMPANY/repos/personal/ai && $IDE_PATH ."
@@ -127,6 +132,7 @@ alias acmepullrequest="cd ~/$CURRENT_COMPANY/repos/personal/acme-pull-request/ &
 alias typescriptplayground="cd ~/$CURRENT_COMPANY/repos/personal/typescript-playground/ && $IDE_PATH ."
 alias nextjsplayground="cd ~/$CURRENT_COMPANY/repos/personal/nextjs-playground/ && $IDE_PATH ."
 alias personalresume="cd ~/$CURRENT_COMPANY/repos/personal/resume/ && $IDE_PATH ."
+alias acb-finance="cd ~/$CURRENT_COMPANY/repos/personal/acb-finance/ && $IDE_PATH ."
 alias resume="cd ~/$CURRENT_COMPANY/repos/personal/resume/ && $IDE_PATH ."
 
 # Clients
@@ -150,10 +156,12 @@ alias uiwayroo="cd ~/$CURRENT_COMPANY/repos/digital-products/Wayroo.Mobile.RN &&
 alias toolswayroo="cd ~/$CURRENT_COMPANY/repos/development-team/Wayroo.tools && $IDE_PATH ."
 alias uilucisupport="cd ~/$CURRENT_COMPANY/repos/digital-products/RetailSuccess.Support && $IDE_PATH ."
 alias rsgithub="cd ~/$CURRENT_COMPANY/repos/development-team/.github && $IDE_PATH ."
+alias uibless="cd ~/$CURRENT_COMPANY/repos/digital-products/Bless.Shopping.Web && $IDE_PATH ."
 alias uiemail="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.EmailTemplates && $IDE_PATH ."
 alias apimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Management.Api && $IDE_PATH ."
 alias servicelucimanage="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Management.Api && $IDE_PATH ."
-alias serviceluciorders="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Orders.Api && $IDE_PATH ."
+alias serviceluciorders="cd ~/$CURRENT_COMPANY/repos/digital-services/Luci.Orders && $IDE_PATH ."
+alias servicebless="cd ~/$CURRENT_COMPANY/repos/digital-services/Bless.Shopping && $IDE_PATH ."
 
 # Company Digital Products
 alias uilucimanage="cd ~/$CURRENT_COMPANY/repos/digital-products/Luci.Management.UI/ && $IDE_PATH ."
