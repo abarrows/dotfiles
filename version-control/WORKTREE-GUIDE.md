@@ -1,13 +1,21 @@
 # Git Worktree + VS Code/Windsurf: Convention & Common Pitfalls
 
-## Convention (2026-09)
+## Convention
 
-- Every worktree lives **inside the repo** at `<repo>/.claude/worktrees/<slug>/`, where `<slug>` is the branch name minus its prefix (`WR-20123-order-export`). This is the path Claude Code's `EnterWorktree` tool uses; always pass it a name so the directory matches the branch. Sibling layouts (`<repo>.worktrees/`, `<repo>-worktrees/`, flat `../worktree-*`) are retired.
-- Create by hand with `git worktree add .claude/worktrees/<slug> -b feature/WR-<n>-<slug> origin/develop` from the main checkout (use `origin/release/vX` for release-bound fixes).
-- Open a worktree as its own window (`code -n <path>` / `windsurf -n <path>`); never add it to the main window's workspace.
-- Tear down once the PR is open and pushed: `git worktree remove .claude/worktrees/<slug>` from the main checkout (or `ExitWorktree remove` in Claude Code). Never hand-delete branches; GitHub deletes the remote on merge and `repo-hygiene` reaps the local copy.
-- `**/.claude/worktrees/` is ignored globally via `~/.git-template-directory/.gitignore`; VS Code hides it through the user-level `files.exclude` / `search.exclude` / `files.watcherExclude` entries in `engineering/ide/.vscode/settings.json`.
-- Housekeeping: `repo-hygiene audit --repo . && repo-hygiene manifest --repo .` (read-only), then edit `.archive/<repo>/manifest.tsv` and `repo-hygiene apply --repo . --execute`. See `onboarding_bin/repo-hygiene/`.
+**The rules live in one place: the `git-worktree-workflow` skill in rs-agents** (`Retail-Success/Wayroo.tools` → `ai/skills/git-worktree-workflow/SKILL.md`), which covers the location, creation, teardown, the smells, and the repair procedures for cloud-session and orphaned worktrees. Read that first; it is what the agents follow. The short version:
+
+- Every worktree lives at `<repo>/.claude/worktrees/<slug>/`. Sibling layouts (`<repo>.worktrees/`, `<repo>-worktrees/`, flat `../worktree-*`) are retired.
+- Open one as its own window (`code -n <path>` / `windsurf -n <path>`), never inside the main window.
+- Remove it once the PR is open and pushed. Never hand-delete branches — the sweep bundles before it deletes.
+
+What this repo owns, and why the rest of this guide exists:
+
+- `**/.claude/worktrees/` is ignored for every repo via `version-control/.git-template-directory/.gitignore`, linked to `~/.git-template-directory/.gitignore` by `core.excludesfile`. One line, no per-repo `.gitignore` edit.
+- VS Code hides worktrees through the user-level `files.exclude` / `search.exclude` / `files.watcherExclude` entries in `engineering/ide/.vscode/settings.json`.
+- Housekeeping is `onboarding_bin/repo-hygiene/` — `repo-hygiene audit --repo .` then `manifest`, edit `.archive/<repo>/manifest.tsv` (or use `mark --from <decisions>.tsv`), then `apply --repo . --execute`. The `prunebranches` alias runs the read-only half.
+- The weekly sweep is `onboarding_bin/repo-hygiene/sweep.sh` plus `com.retailsuccess.repo-hygiene.plist`. It is report-only until `~/.config/repo-hygiene/policy` says `safe`, and it prints when two consecutive clean reports make it eligible.
+
+The sections below are the editor-specific pitfalls this convention was designed around. They are kept because they explain *why* the layout is what it is.
 
 ## Overview
 
