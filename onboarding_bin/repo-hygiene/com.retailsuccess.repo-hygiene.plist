@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Weekly repo-hygiene sweep. Report-only until ~/.config/repo-hygiene/policy says
+  otherwise; see onboarding_bin/repo-hygiene/sweep.sh.
+
+  Monday 06:45, after the 06:00 daily recap so the two never contend for the
+  repos. RunAtLoad is false on purpose: installing this should not kick off a
+  full audit of every repo in the middle of a working day.
+
+      launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.retailsuccess.repo-hygiene.plist
+      launchctl kickstart -k gui/$(id -u)/com.retailsuccess.repo-hygiene   # test now
+      launchctl bootout gui/$(id -u)/com.retailsuccess.repo-hygiene        # remove
+-->
+<plist version="1.0"><dict>
+  <key>Label</key><string>com.retailsuccess.repo-hygiene</string>
+
+  <key>ProgramArguments</key><array>
+    <string>/bin/bash</string>
+    <string>/Users/andyb/Retail-Success/repos/development-team/dotfiles/onboarding_bin/repo-hygiene/sweep.sh</string>
+    <string>--quiet</string>
+  </array>
+
+  <key>StartCalendarInterval</key><dict>
+    <key>Weekday</key><integer>1</integer>
+    <key>Hour</key><integer>6</integer>
+    <key>Minute</key><integer>45</integer>
+  </dict>
+
+  <key>RunAtLoad</key><false/>
+
+  <key>EnvironmentVariables</key><dict>
+    <key>PATH</key><string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+
+  <key>LowPriorityIO</key><true/>
+  <key>Nice</key><integer>10</integer>
+  <key>ProcessType</key><string>Background</string>
+
+  <key>StandardOutPath</key><string>/tmp/repo-hygiene-sweep.out.log</string>
+  <key>StandardErrorPath</key><string>/tmp/repo-hygiene-sweep.err.log</string>
+</dict></plist>
