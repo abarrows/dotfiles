@@ -22,6 +22,11 @@
       path: onboarding_bin/repo-hygiene/repo_hygiene.py
       create: true
       relink: true
+    ~/.claude/hooks/worktree-leftovers.sh:
+      path: onboarding_bin/repo-hygiene/hooks/worktree-leftovers.sh
+      create: true
+      relink: true
+      force: true
     # Leave out if not using atlassian.
     # ~/.git-template-directory/hooks/prepare-commit-msg:
     #   path: version-control/.git-template-directory/hooks/prepare-commit-msg
