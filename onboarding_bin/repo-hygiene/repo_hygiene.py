@@ -1286,9 +1286,13 @@ def validate_manifest(repo: Repo, audit, rows, policy=None):
 
 # ----------------------------------------------------------------------------- apply
 class Applier:
-    def __init__(self, repo: Repo, audit, rows, execute, log, skip_drifted=False, policy=None):
+    def __init__(self, repo: Repo, audit, rows, execute, log, skip_drifted=False, policy=None, remote_delete=True):
         self.repo, self.audit, self.rows, self.execute, self.log = repo, audit, rows, execute, log
         self.skip_drifted, self.policy = skip_drifted, policy
+        # Default rule (Andy, 2026-10-25): what is archived and deleted here is deleted on origin too,
+        # unless the branch is protected, has an open PR, carries commits this machine lacks, or is
+        # named in .archive/<repo>/keep-remote.txt. `apply --local-only` turns the whole step off.
+        self.remote_delete = remote_delete
         self.removed_bytes = 0
         self.by_branch = {b["name"]: b for b in audit["branches"]}
         self.by_wt = {w["path"]: w for w in audit["worktrees"]}
@@ -1522,16 +1526,88 @@ class Applier:
                 self.do(f"worktree remove{' --force' if force or w['noise'] else ''} {w['path']} ({human(size)})", remove)
 
     # -- 9. branches
+    def remote_heads(self):
+        """origin's branch tips, read once. None means origin could not be read, in which case
+        the remote is left completely alone."""
+        if not (self.remote_delete and self.repo.has_remote):
+            return {}
+        p = run(["git", "-C", self.repo.path, "ls-remote", "--heads", "origin"], check=False)
+        if p.returncode != 0:
+            self.log("  remote: could not read origin; remote branches left alone")
+            return None
+        heads = {}
+        for line in p.stdout.splitlines():
+            sha, _, ref = line.partition("\t")
+            if ref.startswith("refs/heads/"):
+                heads[ref[len("refs/heads/"):]] = sha
+        return heads
+
+    def open_pr_heads(self):
+        """Head branch names of open PRs, or None when GitHub cannot be asked (fail closed)."""
+        if not self.repo.slug:
+            return set()   # not a GitHub remote, so there are no GitHub PRs to protect
+        if not shutil.which("gh"):
+            return None
+        p = run(["gh", "pr", "list", "-R", self.repo.slug, "--state", "open", "--limit", "1000", "--json", "headRefName"], check=False)
+        if p.returncode != 0:
+            return None
+        try:
+            return {x["headRefName"] for x in json.loads(p.stdout or "[]")}
+        except ValueError:
+            return None
+
+    def keep_remote_names(self):
+        path = os.path.join(self.repo.archive, "keep-remote.txt")
+        if not os.path.exists(path):
+            return set()
+        return {ln.strip() for ln in open(path) if ln.strip() and not ln.startswith("#")}
+
+    def remote_verdict(self, name, heads, open_heads, keep_remote):
+        """None = delete it on origin; otherwise the reason it stays."""
+        if name not in heads:
+            return "not on origin"
+        if self.repo.is_protected(name) or name == self.repo.default:
+            return "protected"
+        if name in keep_remote:
+            return "listed in keep-remote.txt"
+        if open_heads is None:
+            return "could not confirm there is no open PR"
+        if name in open_heads:
+            return "open PR"
+        local = self.by_branch.get(name, {}).get("sha", "")
+        rsha = heads[name]
+        covered = rsha == local or (local and run(["git", "-C", self.repo.path, "merge-base", "--is-ancestor", rsha, local], check=False).returncode == 0)
+        if not covered:
+            return "origin has commits that are not in the archive"
+        return None
+
     def branches(self, rows):
         repo = self.repo
         live_checked_out = {w["branch"] for w in parse_worktrees(repo) if w.get("branch")}
-        for r in rows:
-            if r["kind"] != "branch" or r["action"] != "archive-delete":
-                continue
+        todo = [r for r in rows if r["kind"] == "branch" and r["action"] == "archive-delete"]
+        heads = self.remote_heads() if todo else {}
+        open_heads = self.open_pr_heads() if heads else set()
+        keep_remote = self.keep_remote_names()
+        remote_log = os.path.join(repo.archive, f"{TS}.remote-deleted.tsv")
+        for r in todo:
             if r["name"] in live_checked_out and self.execute:
                 self.log(f"  branch -D {r['name']}: still checked out somewhere; skipped")
                 continue
             self.do(f"branch -D {r['name']} ({r['bucket']}: {r['reason'][:60]})", lambda n=r["name"]: git(repo.path, "branch", "-D", n))
+            if not heads:
+                continue
+            why = self.remote_verdict(r["name"], heads, open_heads, keep_remote)
+            if why == "not on origin":
+                continue
+            if why:
+                self.log(f"    origin/{r['name']}: kept ({why})")
+                continue
+
+            def drop_remote(n=r["name"], tip=heads[r["name"]]):
+                git(repo.path, "push", "origin", "--delete", n)
+                with open(remote_log, "a") as f:
+                    f.write(f"{n}\t{tip}\n")
+            self.do(f"push origin --delete {r['name']} (tip {heads[r['name']][:12]}, in the bundle)", drop_remote)
 
     # -- 10. stashes
     def stashes(self, rows):
@@ -1871,7 +1947,7 @@ def cmd_apply(cfg, args):
             if header.get("audit-id") != audit.get("audit_id"):
                 log(f"  note: manifest was generated from audit {header.get('audit-id')}, latest is {audit.get('audit_id')}; every row is re-checked against the latest audit by sha")
             log(f"== apply {repo.rel} from {mpath} ({'EXECUTE' if args.execute else 'dry-run'})")
-        Applier(repo, audit, rows, args.execute, log, skip_drifted=args.skip_drifted, policy=args.policy).run_all()
+        Applier(repo, audit, rows, args.execute, log, skip_drifted=args.skip_drifted, policy=args.policy, remote_delete=not args.local_only).run_all()
         if args.execute:
             shutil.copyfile(args.manifest or os.path.join(repo.archive, "manifest.tsv"), os.path.join(repo.archive, f"manifest-{TS}.applied.tsv")) if args.policy != "safe" else None
             verify_repo(repo, log, restore_test=False)
@@ -2012,6 +2088,7 @@ def main(argv=None):
     p.add_argument("--execute", action="store_true", help="perform the actions (default is dry-run)")
     p.add_argument("--manifest", help="path to manifest.tsv (default .archive/<repo>/manifest.tsv)")
     p.add_argument("--policy", choices=["safe"], help="safe: only the auto rows of a fresh manifest; no human marks needed")
+    p.add_argument("--local-only", action="store_true", help="delete branches on this machine only; by default archive-delete also deletes them on origin (never protected branches, open PRs, or tips that are not archived)")
     p.add_argument("--skip-drifted", action="store_true"); p.set_defaults(fn=cmd_apply)
     p = sub.add_parser("verify"); common(p); p.add_argument("--restore-test", action="store_true"); p.set_defaults(fn=cmd_verify)
     p = sub.add_parser("restore"); common(p, all_ok=False); p.add_argument("--bundle"); p.add_argument("--branch"); p.add_argument("--stash", help="12-char stash sha")

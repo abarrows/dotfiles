@@ -107,10 +107,20 @@ for path in sorted(glob.glob(os.path.join(root, ".archive", "*", "audit-latest.j
     for o in a.get("orphans", []):
         rows.append(("ORPHAN_GITFILE_DIR", repo,
                      f"{o.get('path','?')} — {o.get('shape','gitfile dir')}, no registration, last touched {o.get('mtime','?')}"))
+    # Branches whose origin copy was deleted. Protected ones (release/*, develop, ...) are never
+    # auto-removed, so before this check they sat here forever after being deleted on GitHub.
+    for b in a.get("branches", []):
+        if "gone" not in (b.get("track") or ""):
+            continue
+        n = b.get("ahead") or 0
+        if b.get("bucket") == "D8":
+            rows.append(("PROTECTED_REMOTE_GONE", repo, f"{b['name']} — deleted on origin, still here ({n} commit(s) ahead); remove it with `git branch -D {b['name']}` if you meant it to go"))
+        elif b.get("bucket") in ("D5", "D6", "D7", "D4"):
+            rows.append(("REMOTE_GONE", repo, f"{b['name']} — deleted on origin; {n} commit(s) exist only on this machine" if n else f"{b['name']} — deleted on origin, nothing unique left"))
     linked = [w for w in a.get("worktrees", []) if w.get("present") and w.get("kind") == "linked"]
     if len(linked) > 3:
         rows.append(("TOO_MANY_WORKTREES", repo, f"{len(linked)} linked worktrees"))
-for cls, repo, detail in rows:
+for cls, repo, detail in sorted(rows):
     print(f"{cls}\t{repo}\t{detail}")
 PY
 )"
@@ -166,7 +176,26 @@ log "== done in ${ELAPSED}s"
 if [ "$ANOM_COUNT" -gt 0 ] || [ "$REMOVED" -gt 0 ]; then
   MSG="$ANOM_COUNT anomaly/anomalies"
   [ "$REMOVED" -gt 0 ] && MSG="$MSG · $REMOVED repo(s) swept"
-  osascript -e "display notification \"$MSG\" with title \"repo-hygiene sweep\"" >/dev/null 2>&1 || true
+  # The report is what the alert opens. Grouped by what to do, one line each.
+  REPORT="$LOG_DIR/latest-report.md"
+  {
+    printf '# Repo hygiene — %s\n\n_policy: %s · %s item(s)_\n\n' "$(date '+%Y-%m-%d %H:%M')" "$POLICY" "$ANOM_COUNT"
+    printf '%s\n' "$ANOM_OUT" | awk -F'\t' '
+      BEGIN{
+        t["PROTECTED_REMOTE_GONE"]="Deleted on origin, still on this machine (protected, so never auto-removed)";
+        t["REMOTE_GONE"]="Deleted on origin — local copy remains";
+        t["STALE_DIRTY"]="Idle worktrees with uncommitted changes";
+        t["IDLE_NO_PR"]="Idle clean worktrees — safe to remove";
+        t["LAYOUT_VIOLATION"]="Worktrees outside .claude/worktrees";
+        t["ORPHAN_GITFILE_DIR"]="Directories with no registration";
+        t["OVERSIZED"]="Over 1 GB"; t["TOO_MANY_WORKTREES"]="More than 3 worktrees";
+        t["MISSING_LOCKED"]="Cloud-session registrations — repair, never prune"; t["IN_PROGRESS"]="Unfinished merge or rebase"}
+      {cls=$1; if(cls!=last){ printf "\n## %s\n\n", (cls in t ? t[cls] : cls); last=cls } printf "- `%s` — %s\n", $2, $3 }'
+    printf '\nNothing above has been changed. To act on a repo: `repo-hygiene audit --repo <repo> && repo-hygiene manifest --repo <repo>`.\n'
+  } > "$REPORT" 2>/dev/null || true
+  APP="$HOME/Applications/Repo Hygiene Alerts.app/Contents/MacOS/applet"
+  if [ -x "$APP" ]; then "$APP" "$MSG — see the list" >/dev/null 2>&1 || true
+  else osascript -e "display notification \"$MSG\" with title \"repo-hygiene sweep\"" >/dev/null 2>&1 || true; fi
 fi
 
 # A sweep that could not audit is a real failure; anomalies on their own are not.

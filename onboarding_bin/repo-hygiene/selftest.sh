@@ -41,6 +41,19 @@ echo dirty > "$R/.claude/worktrees/wt-dirty/dirty.txt"; git -C "$R/.claude/workt
 echo more > "$R/.claude/worktrees/wt-dirty/uncommitted.txt"
 # 6. stashes
 echo x > "$R/x.txt"; g add x.txt; g stash push -q -m "autostash"; echo y > "$R/y.txt"; g add y.txt; g stash push -q -m "named wip"
+# 7. remote deletion: branches that ARE still on origin
+#    rpushed  merged + on origin           -> deleted on origin too (the default rule)
+#    rkeep    merged + on origin, but named in keep-remote.txt -> stays on origin
+#    rahead   origin has a commit the archive lacks -> stays on origin even though it is deleted locally
+#    release/v1  protected pattern         -> never touched, locally or on origin
+g checkout -q develop
+for b in feature/rpushed feature/rkeep release/v1; do
+  g checkout -q -b "$b" develop; echo "$b" > "$R/$(echo $b | tr / _).txt"; g add -A; g commit -q -m "work on $b"; g push -q -u origin "$b"
+  g checkout -q develop; g merge -q --no-ff "$b" -m "merge $b"; g push -q origin develop
+done
+g checkout -q -b feature/rahead develop; echo a > "$R/rahead.txt"; g add -A; g commit -q -m "rahead work"; g push -q -u origin feature/rahead
+git clone -q "$T/origin.git" "$T/other" 2>/dev/null; ( cd "$T/other" && git checkout -q feature/rahead && echo extra > extra.txt && git add -A && git commit -q -m "someone else pushed more" && git push -q origin feature/rahead )
+g checkout -q develop
 g fetch -q --prune origin
 
 cat > "$T/hygiene.toml" <<EOF
@@ -60,9 +73,11 @@ D="$T/.archive/cat__demo/decisions.tsv"
   printf 'branch\tarchive-delete\tfeature/unique\n'
   printf 'branch\tkeep\tfeature/gone\n'
   printf 'branch\tarchive-delete\tfeature/wtdirty\n'
+  printf 'branch\tarchive-delete\tfeature/rahead\n'
   printf 'worktree\tsalvage-remove\twt-dirty\n'
   [ -n "$NAMED_STASH_ROW" ] && printf 'stash\texport-drop\t%s\n' "$NAMED_STASH_ROW"
 } > "$D"
+printf '# kept on origin on purpose\nfeature/rkeep\n' > "$T/.archive/cat__demo/keep-remote.txt"
 echo "== mark"; $RH mark --repo cat/demo --from "$D"
 # an entry that matches nothing must abort without writing, so a typo cannot silently no-op
 cp "$M" "$M.probe"
@@ -91,12 +106,24 @@ echo "   mark needs --force to override an AUTO row, and --force works: ok"
 printf 'branch\tarchive-delete\t%s\n' "$AUTO_ROW" > "$D.auto"
 $RH mark --repo cat/demo --from "$D.auto" --force >/dev/null
 rm -f "$M.probe" "$D.bad" "$D.auto"
-echo "== apply (dry)"; $RH apply --repo cat/demo
+echo "== apply (dry)"; $RH apply --repo cat/demo | tee "$T/dry.txt"
+grep -q 'push origin --delete feature/rpushed' "$T/dry.txt" || { echo "FAIL: dry run did not plan the remote deletion"; exit 1; }
+if grep -qE 'push origin --delete (feature/rkeep|feature/rahead|release/v1)' "$T/dry.txt"; then echo "FAIL: dry run plans to delete a branch that must stay on origin"; exit 1; fi
 SHAS="$(for b in feature/merged feature/squashed feature/unique feature/wtdirty; do g rev-parse "$b"; done)"
 STASH_NAMED="$(g stash list --format=%H | tail -1)"
 echo "== apply --execute"; $RH apply --repo cat/demo --execute
 echo "== state after apply"; g branch --list | sed 's/^/   /'; g worktree list | sed 's/^/   /'; g stash list | sed 's/^/   /'
 test -z "$(g branch --list feature/merged feature/squashed feature/unique feature/wtdirty)" || { echo "FAIL: branches not deleted"; exit 1; }
+# remote side of the default rule
+on_origin() { git -C "$T/origin.git" rev-parse --verify -q "refs/heads/$1" >/dev/null; }
+on_origin feature/rpushed && { echo "FAIL: feature/rpushed is still on origin"; exit 1; }
+on_origin feature/rkeep   || { echo "FAIL: keep-remote.txt was ignored; feature/rkeep left origin"; exit 1; }
+on_origin feature/rahead  || { echo "FAIL: deleted a branch whose origin tip was not archived"; exit 1; }
+on_origin release/v1      || { echo "FAIL: deleted a protected branch on origin"; exit 1; }
+test -z "$(g branch --list feature/rpushed feature/rkeep feature/rahead)" || { echo "FAIL: the three remote-case branches should be deleted locally"; exit 1; }
+test -n "$(g branch --list release/v1)" || { echo "FAIL: a protected branch was deleted locally"; exit 1; }
+grep -q feature/rpushed "$T"/.archive/cat__demo/*.remote-deleted.tsv || { echo "FAIL: remote deletion not recorded"; exit 1; }
+echo "   remote rule: merged branch removed from origin; keep-remote, unarchived-tip and protected branches stayed: ok"
 test -n "$(g branch --list feature/gone)" || { echo "FAIL: kept branch deleted"; exit 1; }
 test "$(g worktree list | wc -l | tr -d ' ')" = "1" || { echo "FAIL: worktrees remain"; exit 1; }
 test "$(g stash list | wc -l | tr -d ' ')" = "0" || { echo "FAIL: stashes remain"; exit 1; }
